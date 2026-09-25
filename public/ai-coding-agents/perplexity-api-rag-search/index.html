@@ -1,70 +1,172 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Model selection mapping for different use cases | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Model selection mapping for different use cases | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/perplexity-api-rag-search/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/perplexity-api-rag-search/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Model selection mapping for different use cases</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Model selection mapping for different use cases</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>The race to build intelligent, fact-aware applications reached a pivotal milestone with the Perplexity API — a purpose-built RAG (Retrieval-Augmented Generation) search service that fuses large language models with live web indexing. Unlike traditional LLM APIs that rely solely on static training data, Perplexity&rsquo;s Sonar models query the internet in real time, retrieve authoritative sources, and return structured answers complete with inline citations. For developers building chatbots, research tools, knowledge assistants, and content verification pipelines, this represents a paradigm shift: applications that don&rsquo;t just generate text, but ground every claim in verifiable reality.</p><p>This guide provides a comprehensive integration roadmap for the Perplexity API in 2026. You&rsquo;ll learn how the RAG search architecture works, which Sonar model fits your use case, how to implement streaming chat completions, handle citations programmatically, manage rate limits, and deploy production-grade search applications that deliver accurate, sourced answers to users.</p><hr><h2 id=what-is-the-perplexity-api-and-why-does-rag-matter>What Is the Perplexity API and Why Does RAG Matter?</h2><p>Perplexity AI launched its API to solve a fundamental limitation of conventional language models: hallucination and knowledge cutoff. Standard LLMs are frozen in time, trained on data that stops at a specific date. Ask them about yesterday&rsquo;s market movement, a breaking news story, or a recently released software version, and they either confabulate or admit ignorance.</p><p>The Perplexity API eliminates this constraint through built-in RAG. When you send a query, Perplexity&rsquo;s backend performs a live web search, retrieves relevant documents, ranks them by authority, and feeds them into the language model as contextual grounding. The model then synthesizes an answer that cites specific URLs, enabling users to verify every piece of information.</p><p>This architecture matters because it transforms LLMs from closed-book exam takers into open-book researchers. The retrieval layer ensures factual accuracy. The generation layer ensures readability and synthesis. The citation layer ensures trust. Together, they create a search experience that rivals traditional engines while delivering the conversational fluency users expect from AI.</p><p>For developers, the practical implication is profound: you no longer need to build your own retrieval pipeline, manage vector databases, or tune chunking strategies. Perplexity handles document retrieval, relevance scoring, and context injection automatically, exposing a clean chat completions interface that feels familiar to anyone who has worked with OpenAI&rsquo;s API.</p><hr><h2 id=understanding-the-sonar-model-family-which-one-to-choose>Understanding the Sonar Model Family: Which One to Choose</h2><p>Perplexity offers a tiered model lineup under the Sonar brand, each optimized for different latency, accuracy, and cost requirements. Selecting the right model is the first architectural decision you&rsquo;ll make.</p><h3 id=sonar-standard>Sonar (Standard)</h3><p>The base Sonar model offers the fastest response times and lowest cost per query. It excels at straightforward informational queries where the answer can be found in readily accessible web content. Use Sonar for chatbots, FAQ systems, and applications where user experience demands snappy replies.</p><h3 id=sonar-pro>Sonar Pro</h3><p>Sonar Pro trades some latency for significantly deeper reasoning and multi-step research capabilities. It performs multiple search iterations, follows chain-of-thought reasoning, and synthesizes complex answers from disparate sources. Choose Sonar Pro for research assistants, content analysis tools, and any application where answer quality trumps speed.</p><h3 id=sonar-reasoning>Sonar Reasoning</h3><p>The reasoning variant applies explicit step-by-step analysis before generating a response. It breaks queries into sub-questions, searches for each component, and constructs logically rigorous answers. This model is ideal for analytical tasks, fact-checking workflows, and educational applications.</p><h3 id=sonar-deep-research>Sonar Deep Research</h3><p>For enterprise-grade research and comprehensive topic exploration, Sonar Deep Research conducts extensive multi-source investigation, evaluating dozens of documents to produce exhaustive, well-structured reports. Expect higher latency and token usage, but unmatched thoroughness.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Model selection mapping for different use cases</span>
-</span></span><span style=display:flex><span>MODEL_MAP <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;fast_chat&#34;</span>: <span style=color:#e6db74>&#34;sonar&#34;</span>,           <span style=color:#75715e># Quick Q&amp;A, low latency</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;deep_research&#34;</span>: <span style=color:#e6db74>&#34;sonar-pro&#34;</span>,   <span style=color:#75715e># Thorough investigation</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;analytical&#34;</span>: <span style=color:#e6db74>&#34;sonar-reasoning&#34;</span>, <span style=color:#75715e># Step-by-step reasoning</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;enterprise&#34;</span>: <span style=color:#e6db74>&#34;sonar-deep-research&#34;</span>  <span style=color:#75715e># Comprehensive reports</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=getting-started-api-keys-and-authentication>Getting Started: API Keys and Authentication</h2><p>Before writing integration code, you&rsquo;ll need a Perplexity API key. Visit the Perplexity developer portal, create an account, and generate an API key from the dashboard. Perplexity uses standard Bearer token authentication over HTTPS.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Store your API key securely</span>
-</span></span><span style=display:flex><span>export PERPLEXITY_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pplx-your-api-key-here&#34;</span>
-</span></span></code></pre></div><p>All API requests require the <code>Authorization: Bearer &lt;token></code> header. The base endpoint for chat completions is <code>https://api.perplexity.ai/chat/completions</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>API_KEY <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;PERPLEXITY_API_KEY&#34;</span>)
-</span></span><span style=display:flex><span>BASE_URL <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://api.perplexity.ai&#34;</span>
-</span></span><span style=display:flex><span>HEADERS <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Authorization&#34;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Bearer </span><span style=color:#e6db74>{</span>API_KEY<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Content-Type&#34;</span>: <span style=color:#e6db74>&#34;application/json&#34;</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>Perplexity offers a generous free tier for experimentation, with paid tiers scaling based on query volume and model selection. The pricing structure is query-based rather than token-based for simpler billing, though token consumption is tracked for usage analytics.</p><hr><h2 id=basic-chat-completions-your-first-rag-query>Basic Chat Completions: Your First RAG Query</h2><p>The Perplexity API implements an OpenAI-compatible chat completions interface, making migration trivial if you&rsquo;re already using GPT-based models. The critical difference is the automatic web search and citation injection that happens behind the scenes.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>perplexity_query</span>(query: str, model: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;sonar-pro&#34;</span>) <span style=color:#f92672>-&gt;</span> dict: <span style=color:#e6db74>&#34;&#34;&#34;Send a single RAG-enhanced query to Perplexity API.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    url <span style=color:#f92672>=</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>BASE_URL<span style=color:#e6db74>}</span><span style=color:#e6db74>/chat/completions&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    payload <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;model&#34;</span>: model,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;messages&#34;</span>: [
-</span></span><span style=display:flex><span>            {
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>,
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;You are a helpful research assistant. Provide accurate, well-sourced answers.&#34;</span>
-</span></span><span style=display:flex><span>            },
-</span></span><span style=display:flex><span>            {
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>,
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;content&#34;</span>: query
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>        ],
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;max_tokens&#34;</span>: <span style=color:#ae81ff>1024</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;temperature&#34;</span>: <span style=color:#ae81ff>0.2</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(url, headers<span style=color:#f92672>=</span>HEADERS, json<span style=color:#f92672>=</span>payload)
-</span></span><span style=display:flex><span>    response<span style=color:#f92672>.</span>raise_for_status()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> response<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Execute your first RAG search</span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> perplexity_query(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;What are the latest developments in fusion energy from 2026?&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>print(result[<span style=color:#e6db74>&#34;choices&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;message&#34;</span>][<span style=color:#e6db74>&#34;content&#34;</span>])
-</span></span></code></pre></div><p>Notice that no search parameters, document IDs, or retrieval configuration is required. Perplexity automatically determines whether web search is needed, executes the retrieval, and grounds the response in sourced material.</p><p>The response includes not just the generated text but also citation metadata: `````python</p><h1 id=extract-citations-from-the-response>Extract citations from the response</h1><p>message = result[&ldquo;choices&rdquo;][0][&ldquo;message&rdquo;]
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model selection mapping for different use cases | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Model selection mapping for different use cases | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/perplexity-api-rag-search/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/perplexity-api-rag-search/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Model selection mapping for different use cases</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Model selection mapping for different use cases</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>The race to build intelligent, fact-aware applications reached a pivotal milestone with the Perplexity API — a purpose-built RAG (Retrieval-Augmented Generation) search service that fuses large language models with live web indexing. Unlike traditional LLM APIs that rely solely on static training data, Perplexity&rsquo;s Sonar models query the internet in real time, retrieve authoritative sources, and return structured answers complete with inline citations. For developers building chatbots, research tools, knowledge assistants, and content verification pipelines, this represents a paradigm shift: applications that don&rsquo;t just generate text, but ground every claim in verifiable reality.</p>
+<p>This guide provides a comprehensive integration roadmap for the Perplexity API in 2026. You&rsquo;ll learn how the RAG search architecture works, which Sonar model fits your use case, how to implement streaming chat completions, handle citations programmatically, manage rate limits, and deploy production-grade search applications that deliver accurate, sourced answers to users.</p>
+<hr>
+<h2 id="what-is-the-perplexity-api-and-why-does-rag-matter">What Is the Perplexity API and Why Does RAG Matter?</h2>
+<p>Perplexity AI launched its API to solve a fundamental limitation of conventional language models: hallucination and knowledge cutoff. Standard LLMs are frozen in time, trained on data that stops at a specific date. Ask them about yesterday&rsquo;s market movement, a breaking news story, or a recently released software version, and they either confabulate or admit ignorance.</p>
+<p>The Perplexity API eliminates this constraint through built-in RAG. When you send a query, Perplexity&rsquo;s backend performs a live web search, retrieves relevant documents, ranks them by authority, and feeds them into the language model as contextual grounding. The model then synthesizes an answer that cites specific URLs, enabling users to verify every piece of information.</p>
+<p>This architecture matters because it transforms LLMs from closed-book exam takers into open-book researchers. The retrieval layer ensures factual accuracy. The generation layer ensures readability and synthesis. The citation layer ensures trust. Together, they create a search experience that rivals traditional engines while delivering the conversational fluency users expect from AI.</p>
+<p>For developers, the practical implication is profound: you no longer need to build your own retrieval pipeline, manage vector databases, or tune chunking strategies. Perplexity handles document retrieval, relevance scoring, and context injection automatically, exposing a clean chat completions interface that feels familiar to anyone who has worked with OpenAI&rsquo;s API.</p>
+<hr>
+<h2 id="understanding-the-sonar-model-family-which-one-to-choose">Understanding the Sonar Model Family: Which One to Choose</h2>
+<p>Perplexity offers a tiered model lineup under the Sonar brand, each optimized for different latency, accuracy, and cost requirements. Selecting the right model is the first architectural decision you&rsquo;ll make.</p>
+<h3 id="sonar-standard">Sonar (Standard)</h3>
+<p>The base Sonar model offers the fastest response times and lowest cost per query. It excels at straightforward informational queries where the answer can be found in readily accessible web content. Use Sonar for chatbots, FAQ systems, and applications where user experience demands snappy replies.</p>
+<h3 id="sonar-pro">Sonar Pro</h3>
+<p>Sonar Pro trades some latency for significantly deeper reasoning and multi-step research capabilities. It performs multiple search iterations, follows chain-of-thought reasoning, and synthesizes complex answers from disparate sources. Choose Sonar Pro for research assistants, content analysis tools, and any application where answer quality trumps speed.</p>
+<h3 id="sonar-reasoning">Sonar Reasoning</h3>
+<p>The reasoning variant applies explicit step-by-step analysis before generating a response. It breaks queries into sub-questions, searches for each component, and constructs logically rigorous answers. This model is ideal for analytical tasks, fact-checking workflows, and educational applications.</p>
+<h3 id="sonar-deep-research">Sonar Deep Research</h3>
+<p>For enterprise-grade research and comprehensive topic exploration, Sonar Deep Research conducts extensive multi-source investigation, evaluating dozens of documents to produce exhaustive, well-structured reports. Expect higher latency and token usage, but unmatched thoroughness.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Model selection mapping for different use cases</span>
+</span></span><span style="display:flex;"><span>MODEL_MAP <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fast_chat&#34;</span>: <span style="color:#e6db74">&#34;sonar&#34;</span>,           <span style="color:#75715e"># Quick Q&amp;A, low latency</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;deep_research&#34;</span>: <span style="color:#e6db74">&#34;sonar-pro&#34;</span>,   <span style="color:#75715e"># Thorough investigation</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;analytical&#34;</span>: <span style="color:#e6db74">&#34;sonar-reasoning&#34;</span>, <span style="color:#75715e"># Step-by-step reasoning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;enterprise&#34;</span>: <span style="color:#e6db74">&#34;sonar-deep-research&#34;</span>  <span style="color:#75715e"># Comprehensive reports</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="getting-started-api-keys-and-authentication">Getting Started: API Keys and Authentication</h2>
+<p>Before writing integration code, you&rsquo;ll need a Perplexity API key. Visit the Perplexity developer portal, create an account, and generate an API key from the dashboard. Perplexity uses standard Bearer token authentication over HTTPS.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Store your API key securely</span>
+</span></span><span style="display:flex;"><span>export PERPLEXITY_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pplx-your-api-key-here&#34;</span>
+</span></span></code></pre></div><p>All API requests require the <code>Authorization: Bearer &lt;token&gt;</code> header. The base endpoint for chat completions is <code>https://api.perplexity.ai/chat/completions</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>API_KEY <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;PERPLEXITY_API_KEY&#34;</span>)
+</span></span><span style="display:flex;"><span>BASE_URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://api.perplexity.ai&#34;</span>
+</span></span><span style="display:flex;"><span>HEADERS <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Authorization&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Bearer </span><span style="color:#e6db74">{</span>API_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Perplexity offers a generous free tier for experimentation, with paid tiers scaling based on query volume and model selection. The pricing structure is query-based rather than token-based for simpler billing, though token consumption is tracked for usage analytics.</p>
+<hr>
+<h2 id="basic-chat-completions-your-first-rag-query">Basic Chat Completions: Your First RAG Query</h2>
+<p>The Perplexity API implements an OpenAI-compatible chat completions interface, making migration trivial if you&rsquo;re already using GPT-based models. The critical difference is the automatic web search and citation injection that happens behind the scenes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">perplexity_query</span>(query: str, model: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sonar-pro&#34;</span>) <span style="color:#f92672">-&gt;</span> dict: <span style="color:#e6db74">&#34;&#34;&#34;Send a single RAG-enhanced query to Perplexity API.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">/chat/completions&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    payload <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;model&#34;</span>: model,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;messages&#34;</span>: [
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;You are a helpful research assistant. Provide accurate, well-sourced answers.&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;content&#34;</span>: query
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;max_tokens&#34;</span>: <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;temperature&#34;</span>: <span style="color:#ae81ff">0.2</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(url, headers<span style="color:#f92672">=</span>HEADERS, json<span style="color:#f92672">=</span>payload)
+</span></span><span style="display:flex;"><span>    response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Execute your first RAG search</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> perplexity_query(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;What are the latest developments in fusion energy from 2026?&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#e6db74">&#34;choices&#34;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;message&#34;</span>][<span style="color:#e6db74">&#34;content&#34;</span>])
+</span></span></code></pre></div><p>Notice that no search parameters, document IDs, or retrieval configuration is required. Perplexity automatically determines whether web search is needed, executes the retrieval, and grounds the response in sourced material.</p>
+<p>The response includes not just the generated text but also citation metadata: `````python</p>
+<h1 id="extract-citations-from-the-response">Extract citations from the response</h1>
+<p>message = result[&ldquo;choices&rdquo;][0][&ldquo;message&rdquo;]
 answer_text = message[&ldquo;content&rdquo;]
-citations = message.get(&ldquo;citations&rdquo;, [])</p><p>print(f"Answer: {answer_text[:200]}&mldr;")
-print(f"\nSources cited: {len(citations)}")
-for i, citation in enumerate(citations[:5], 1): print(f" [{i}] {citation}")</p><pre tabindex=0><code>
+citations = message.get(&ldquo;citations&rdquo;, [])</p>
+<p>print(f&quot;Answer: {answer_text[:200]}&hellip;&quot;)
+print(f&quot;\nSources cited: {len(citations)}&quot;)
+for i, citation in enumerate(citations[:5], 1): print(f&quot;  [{i}] {citation}&quot;)</p>
+<pre tabindex="0"><code>
 * * *
 
 ## Working with Citations: Building Trust Through Transparency
@@ -89,20 +191,34 @@ def format_response_with_citations(result: dict) -&gt; str: &#34;&#34;&#34;Forma
     return formatted
 
 print(format_response_with_citations(result))
-</code></pre><h3 id=rendering-citations-in-web-applications>Rendering Citations in Web Applications</h3><p>When building web interfaces, render citations as interactive footnotes or sidebar references: `````html
+</code></pre><h3 id="rendering-citations-in-web-applications">Rendering Citations in Web Applications</h3>
+<p>When building web interfaces, render citations as interactive footnotes or sidebar references: `````html
 function CitedResponse({ content, citations }) {
 // Parse [1], [2] markers in content
-const parts = content.split(/([\d+])/g);</p><p>return (<div classname=cited-response><div classname=answer-text>{parts.map((part, i) => {
+const parts = content.split(/([\d+])/g);</p>
+<p>return (
+<div className="cited-response">
+<div className="answer-text">
+{parts.map((part, i) =&gt; {
 const match = part.match(/[(\d+)]/);
 if (match) {
 const idx = parseInt(match[1]) - 1;
 return (
-<sup key={i} classname=citation-ref><a href={citations[idx]} target=_blank rel=noopener>{part}
-</a></sup>);
+<sup key={i} className="citation-ref">
+<a href={citations[idx]} target="_blank" rel="noopener">
+{part}
+</a>
+</sup>
+);
 }
 return <span key={i}>{part}</span>;
-})}</div><citationlist citations={citations}></div>);
-}</p><pre tabindex=0><code>
+})}
+</div>
+<CitationList citations={citations} />
+</div>
+);
+}</p>
+<pre tabindex="0"><code>
 * * *
 
 ## Streaming Responses for Real-Time User Experience
@@ -153,119 +269,130 @@ def perplexity_stream(query: str, model: str = &#34;sonar-pro&#34;): &#34;&#34;&
 answer, sources = perplexity_stream(
     &#34;What was the outcome of the latest UN climate summit?&#34;
 )
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Node.js streaming example using fetch
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>streamPerplexity</span>(<span style=color:#a6e22e>query</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;https://api.perplexity.ai/chat/completions&#39;</span>, {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>POST</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>Authorization</span><span style=color:#f92672>:</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>Bearer</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>PERPLEXITY_API_KEY</span>}<span style=color:#e6db74>````</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;application/json&#39;</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>body</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>({
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>model</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;sonar-pro&#39;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>messages</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>role</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>user</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>query</span> }],
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>stream</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>    })
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>reader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>getReader</span>();
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>decoder</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>TextDecoder</span>();
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (<span style=color:#66d9ef>true</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>done</span>, <span style=color:#a6e22e>value</span> } <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>reader</span>.<span style=color:#a6e22e>read</span>();
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>done</span>) <span style=color:#66d9ef>break</span>;
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>chunk</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>decoder</span>.<span style=color:#a6e22e>decode</span>(<span style=color:#a6e22e>value</span>);
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>lines</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>chunk</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#39;\n&#39;</span>).<span style=color:#a6e22e>filter</span>(<span style=color:#a6e22e>line</span> =&gt; <span style=color:#a6e22e>line</span>.<span style=color:#a6e22e>startsWith</span>(<span style=color:#e6db74>&#39;data: &#39;</span>));
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>line</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>lines</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>line</span>.<span style=color:#a6e22e>slice</span>(<span style=color:#ae81ff>6</span>);
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>data</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;[DONE]&#39;</span>) <span style=color:#66d9ef>return</span>;
-</span></span><span style=display:flex><span>      
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>parsed</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>data</span>);
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>token</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>parsed</span>.<span style=color:#a6e22e>choices</span>[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>?</span>.<span style=color:#a6e22e>delta</span><span style=color:#f92672>?</span>.<span style=color:#a6e22e>content</span> <span style=color:#f92672>||</span> <span style=color:#e6db74>&#39;&#39;</span>;
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>stdout</span>.<span style=color:#a6e22e>write</span>(<span style=color:#a6e22e>token</span>);
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=multi-turn-conversations-with-contextual-search>Multi-Turn Conversations with Contextual Search</h2><p>Perplexity maintains conversation context across multiple turns, enabling follow-up questions that reference previous exchanges. The search system adapts to the conversation flow, refining retrievals based on accumulated context.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PerplexityConversation</span>: <span style=color:#e6db74>&#34;&#34;&#34;Stateful conversation handler with RAG search memory.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, model: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;sonar-pro&#34;</span>, system_prompt: str <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>): self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> model
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>messages <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> system_prompt: self<span style=color:#f92672>.</span>messages<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: system_prompt})
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>citation_history <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>ask</span>(self, query: str) <span style=color:#f92672>-&gt;</span> dict: <span style=color:#e6db74>&#34;&#34;&#34;Send a message and maintain conversation history.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>messages<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: query})
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        payload <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;model&#34;</span>: self<span style=color:#f92672>.</span>model,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;messages&#34;</span>: self<span style=color:#f92672>.</span>messages,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;max_tokens&#34;</span>: <span style=color:#ae81ff>1024</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;temperature&#34;</span>: <span style=color:#ae81ff>0.2</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;return_citations&#34;</span>: <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>BASE_URL<span style=color:#e6db74>}</span><span style=color:#e6db74>/chat/completions&#34;</span>,
-</span></span><span style=display:flex><span>            headers<span style=color:#f92672>=</span>HEADERS,
-</span></span><span style=display:flex><span>            json<span style=color:#f92672>=</span>payload
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>        response<span style=color:#f92672>.</span>raise_for_status()
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> response<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        assistant_msg <span style=color:#f92672>=</span> result[<span style=color:#e6db74>&#34;choices&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;message&#34;</span>]
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>messages<span style=color:#f92672>.</span>append({
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;assistant&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;content&#34;</span>: assistant_msg[<span style=color:#e6db74>&#34;content&#34;</span>]
-</span></span><span style=display:flex><span>        })
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>citation_history<span style=color:#f92672>.</span>extend(assistant_msg<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;citations&#34;</span>, []))
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_conversation_summary</span>(self) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Generate a summary of the conversation and sources used.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        unique_sources <span style=color:#f92672>=</span> list(set(self<span style=color:#f92672>.</span>citation_history))
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Turns: </span><span style=color:#e6db74>{</span>len(self<span style=color:#f92672>.</span>messages)<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span><span style=color:#e6db74>}</span><span style=color:#e6db74>, Unique sources: </span><span style=color:#e6db74>{</span>len(unique_sources)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Usage: Multi-turn research session</span>
-</span></span><span style=display:flex><span>conv <span style=color:#f92672>=</span> PerplexityConversation(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sonar-pro&#34;</span>,
-</span></span><span style=display:flex><span>    system_prompt<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You are a market research analyst specializing in technology trends.&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Turn 1: Initial research</span>
-</span></span><span style=display:flex><span>r1 <span style=color:#f92672>=</span> conv<span style=color:#f92672>.</span>ask(<span style=color:#e6db74>&#34;What are the top 5 AI chip companies by market cap in 2026?&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Turn 2: Follow-up with context</span>
-</span></span><span style=display:flex><span>r2 <span style=color:#f92672>=</span> conv<span style=color:#f92672>.</span>ask(<span style=color:#e6db74>&#34;Which of these is investing most heavily in R&amp;D?&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Turn 3: Deep dive</span>
-</span></span><span style=display:flex><span>r3 <span style=color:#f92672>=</span> conv<span style=color:#f92672>.</span>ask(<span style=color:#e6db74>&#34;What specific products are they launching this year?&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(conv<span style=color:#f92672>.</span>get_conversation_summary())
-</span></span></code></pre></div><hr><h2 id=advanced-query-patterns-structured-data-and-domain-filtering>Advanced Query Patterns: Structured Data and Domain Filtering</h2><p>Beyond basic Q&amp;A, the Perplexity API supports advanced query patterns that give developers fine-grained control over the retrieval and generation process.</p><h3 id=search-domain-targeting>Search Domain Targeting</h3><p>Restrict searches to specific domains for authoritative sourcing in specialized fields: `````python
-def targeted_search(query: str, domains: list[str]) -> dict: &ldquo;&ldquo;&ldquo;Search within specified domains for authoritative results.&rdquo;&rdquo;&rdquo;
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Node.js streaming example using fetch
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">streamPerplexity</span>(<span style="color:#a6e22e">query</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;https://api.perplexity.ai/chat/completions&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">POST</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Authorization</span><span style="color:#f92672">:</span> <span style="color:#e6db74">````</span><span style="color:#a6e22e">Bearer</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PERPLEXITY_API_KEY</span>}<span style="color:#e6db74">````</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">model</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;sonar-pro&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">messages</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">query</span> }],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">stream</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">reader</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">getReader</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextDecoder</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">done</span>, <span style="color:#a6e22e">value</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">read</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">done</span>) <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">chunk</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decoder</span>.<span style="color:#a6e22e">decode</span>(<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">lines</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">chunk</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;\n&#39;</span>).<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">line</span> =&gt; <span style="color:#a6e22e">line</span>.<span style="color:#a6e22e">startsWith</span>(<span style="color:#e6db74">&#39;data: &#39;</span>));
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">line</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">lines</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">line</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;[DONE]&#39;</span>) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">parsed</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">parsed</span>.<span style="color:#a6e22e">choices</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">?</span>.<span style="color:#a6e22e">delta</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">content</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">stdout</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">token</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="multi-turn-conversations-with-contextual-search">Multi-Turn Conversations with Contextual Search</h2>
+<p>Perplexity maintains conversation context across multiple turns, enabling follow-up questions that reference previous exchanges. The search system adapts to the conversation flow, refining retrievals based on accumulated context.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PerplexityConversation</span>: <span style="color:#e6db74">&#34;&#34;&#34;Stateful conversation handler with RAG search memory.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, model: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sonar-pro&#34;</span>, system_prompt: str <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>): self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> model
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>messages <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> system_prompt: self<span style="color:#f92672">.</span>messages<span style="color:#f92672">.</span>append({<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: system_prompt})
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>citation_history <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ask</span>(self, query: str) <span style="color:#f92672">-&gt;</span> dict: <span style="color:#e6db74">&#34;&#34;&#34;Send a message and maintain conversation history.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>messages<span style="color:#f92672">.</span>append({<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: query})
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        payload <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;model&#34;</span>: self<span style="color:#f92672">.</span>model,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;messages&#34;</span>: self<span style="color:#f92672">.</span>messages,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;max_tokens&#34;</span>: <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;temperature&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;return_citations&#34;</span>: <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">/chat/completions&#34;</span>,
+</span></span><span style="display:flex;"><span>            headers<span style="color:#f92672">=</span>HEADERS,
+</span></span><span style="display:flex;"><span>            json<span style="color:#f92672">=</span>payload
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        assistant_msg <span style="color:#f92672">=</span> result[<span style="color:#e6db74">&#34;choices&#34;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;message&#34;</span>]
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>messages<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;assistant&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;content&#34;</span>: assistant_msg[<span style="color:#e6db74">&#34;content&#34;</span>]
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>citation_history<span style="color:#f92672">.</span>extend(assistant_msg<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;citations&#34;</span>, []))
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_conversation_summary</span>(self) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Generate a summary of the conversation and sources used.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        unique_sources <span style="color:#f92672">=</span> list(set(self<span style="color:#f92672">.</span>citation_history))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Turns: </span><span style="color:#e6db74">{</span>len(self<span style="color:#f92672">.</span>messages)<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, Unique sources: </span><span style="color:#e6db74">{</span>len(unique_sources)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Usage: Multi-turn research session</span>
+</span></span><span style="display:flex;"><span>conv <span style="color:#f92672">=</span> PerplexityConversation(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sonar-pro&#34;</span>,
+</span></span><span style="display:flex;"><span>    system_prompt<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You are a market research analyst specializing in technology trends.&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Turn 1: Initial research</span>
+</span></span><span style="display:flex;"><span>r1 <span style="color:#f92672">=</span> conv<span style="color:#f92672">.</span>ask(<span style="color:#e6db74">&#34;What are the top 5 AI chip companies by market cap in 2026?&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Turn 2: Follow-up with context</span>
+</span></span><span style="display:flex;"><span>r2 <span style="color:#f92672">=</span> conv<span style="color:#f92672">.</span>ask(<span style="color:#e6db74">&#34;Which of these is investing most heavily in R&amp;D?&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Turn 3: Deep dive</span>
+</span></span><span style="display:flex;"><span>r3 <span style="color:#f92672">=</span> conv<span style="color:#f92672">.</span>ask(<span style="color:#e6db74">&#34;What specific products are they launching this year?&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(conv<span style="color:#f92672">.</span>get_conversation_summary())
+</span></span></code></pre></div><hr>
+<h2 id="advanced-query-patterns-structured-data-and-domain-filtering">Advanced Query Patterns: Structured Data and Domain Filtering</h2>
+<p>Beyond basic Q&amp;A, the Perplexity API supports advanced query patterns that give developers fine-grained control over the retrieval and generation process.</p>
+<h3 id="search-domain-targeting">Search Domain Targeting</h3>
+<p>Restrict searches to specific domains for authoritative sourcing in specialized fields: `````python
+def targeted_search(query: str, domains: list[str]) -&gt; dict: &ldquo;&ldquo;&ldquo;Search within specified domains for authoritative results.&rdquo;&rdquo;&rdquo;
 payload = {
 &ldquo;model&rdquo;: &ldquo;sonar-pro&rdquo;,
 &ldquo;messages&rdquo;: [
 {
 &ldquo;role&rdquo;: &ldquo;system&rdquo;,
-&ldquo;content&rdquo;: f"Prioritize sources from: {&rsquo;, &lsquo;.join(domains)}. Cite these preferentially."
+&ldquo;content&rdquo;: f&quot;Prioritize sources from: {&rsquo;, &lsquo;.join(domains)}. Cite these preferentially.&quot;
 },
 {&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: query}
 ],
 &ldquo;search_domain_filter&rdquo;: domains,
 &ldquo;return_citations&rdquo;: True
-}</p><pre><code>response = requests.post(
+}</p>
+<pre><code>response = requests.post(
     f&quot;{BASE_URL}/chat/completions&quot;,
     headers=HEADERS,
     json=payload
 )
 return response.json()
-</code></pre><h1 id=medical-query-restricted-to-authoritative-health-domains>Medical query restricted to authoritative health domains</h1><p>medical_result = targeted_search(
+</code></pre>
+<h1 id="medical-query-restricted-to-authoritative-health-domains">Medical query restricted to authoritative health domains</h1>
+<p>medical_result = targeted_search(
 &ldquo;What are the latest mRNA vaccine developments?&rdquo;,
-domains=[&ldquo;who.int&rdquo;, &ldquo;cdc.gov&rdquo;, &ldquo;nejm.org&rdquo;, " Lancet.com"]
-)</p><pre tabindex=0><code>
+domains=[&ldquo;who.int&rdquo;, &ldquo;cdc.gov&rdquo;, &ldquo;nejm.org&rdquo;, &quot; Lancet.com&quot;]
+)</p>
+<pre tabindex="0"><code>
 ### Recency Filtering
 
 Control the temporal scope of web searches to ensure freshness: `````python
@@ -286,20 +413,23 @@ def recent_search(query: str, recency_days: int = 7) -&gt; dict: &#34;&#34;&#34;
 
 # Get only news from the last 24 hours
 breaking = recent_search(&#34;Major tech acquisitions today&#34;, recency_days=1)
-</code></pre><h3 id=json-mode-for-structured-extraction>JSON Mode for Structured Extraction</h3><p>When building data pipelines, request structured output for automatic parsing: `````python
-import json</p><p>def structured_search(query: str, schema: dict) -> dict: &ldquo;&ldquo;&ldquo;Search and return structured JSON matching a schema.&rdquo;&rdquo;&rdquo;
+</code></pre><h3 id="json-mode-for-structured-extraction">JSON Mode for Structured Extraction</h3>
+<p>When building data pipelines, request structured output for automatic parsing: `````python
+import json</p>
+<p>def structured_search(query: str, schema: dict) -&gt; dict: &ldquo;&ldquo;&ldquo;Search and return structured JSON matching a schema.&rdquo;&rdquo;&rdquo;
 payload = {
 &ldquo;model&rdquo;: &ldquo;sonar-pro&rdquo;,
 &ldquo;messages&rdquo;: [
 {
 &ldquo;role&rdquo;: &ldquo;system&rdquo;,
-&ldquo;content&rdquo;: f"Respond with valid JSON matching this schema: {json.dumps(schema)}"
+&ldquo;content&rdquo;: f&quot;Respond with valid JSON matching this schema: {json.dumps(schema)}&quot;
 },
 {&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: query}
 ],
 &ldquo;response_format&rdquo;: {&ldquo;type&rdquo;: &ldquo;json_object&rdquo;},
 &ldquo;return_citations&rdquo;: True
-}</p><pre><code>response = requests.post(
+}</p>
+<pre><code>response = requests.post(
     f&quot;{BASE_URL}/chat/completions&quot;,
     headers=HEADERS,
     json=payload
@@ -310,17 +440,21 @@ result = response.json()
 content = result[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot;]
 result[&quot;structured&quot;] = json.loads(content)
 return result
-</code></pre><h1 id=extract-structured-company-data>Extract structured company data</h1><p>company_schema = {
+</code></pre>
+<h1 id="extract-structured-company-data">Extract structured company data</h1>
+<p>company_schema = {
 &ldquo;company_name&rdquo;: &ldquo;string&rdquo;,
 &ldquo;founded_year&rdquo;: &ldquo;integer&rdquo;,
 &ldquo;headquarters&rdquo;: &ldquo;string&rdquo;,
 &ldquo;key_products&rdquo;: [&ldquo;string&rdquo;],
 &ldquo;market_cap_usd&rdquo;: &ldquo;string&rdquo;
-}</p><p>structured = structured_search(
+}</p>
+<p>structured = structured_search(
 &ldquo;Provide details about Perplexity AI the company&rdquo;,
 company_schema
 )
-print(json.dumps(structured[&ldquo;structured&rdquo;], indent=2))</p><pre tabindex=0><code>
+print(json.dumps(structured[&ldquo;structured&rdquo;], indent=2))</p>
+<pre tabindex="0"><code>
 * * *
 
 ## Production Deployment: Rate Limits, Error Handling, and Retry Logic
@@ -403,118 +537,148 @@ for q in queries: try: result = client.query(q)
         results.append(result)
         print(f&#34;✓ Query completed: {q[:50]}...&#34;)
     except Exception as e: print(f&#34;✗ Query failed: {q[:50]}... - {e}&#34;)
-</code></pre><hr><h2 id=building-a-complete-rag-search-application>Building a Complete RAG Search Application</h2><p>Let&rsquo;s synthesize everything into a complete Flask application that demonstrates production patterns for a RAG-powered search service.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># app.py - Complete RAG Search API</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask, request, jsonify, Response
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> flask_cors <span style=color:#f92672>import</span> CORS
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> Flask(__name__)
-</span></span><span style=display:flex><span>CORS(app)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>PERPLEXITY_KEY <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;PERPLEXITY_API_KEY&#34;</span>]
-</span></span><span style=display:flex><span>BASE_URL <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://api.perplexity.ai&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RAGSearchService</span>: <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self): self<span style=color:#f92672>.</span>headers <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;Authorization&#34;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Bearer </span><span style=color:#e6db74>{</span>PERPLEXITY_KEY<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;Content-Type&#34;</span>: <span style=color:#e6db74>&#34;application/json&#34;</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search</span>(self, query: str, model: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;sonar-pro&#34;</span>, stream: bool <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>): <span style=color:#e6db74>&#34;&#34;&#34;Execute RAG search with optional streaming.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        payload <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;model&#34;</span>: model,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;messages&#34;</span>: [
-</span></span><span style=display:flex><span>                {
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>,
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Provide accurate, well-sourced answers with citations.&#34;</span>
-</span></span><span style=display:flex><span>                },
-</span></span><span style=display:flex><span>                {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: query}
-</span></span><span style=display:flex><span>            ],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;stream&#34;</span>: stream,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;return_citations&#34;</span>: <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;max_tokens&#34;</span>: <span style=color:#ae81ff>2048</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>BASE_URL<span style=color:#e6db74>}</span><span style=color:#e6db74>/chat/completions&#34;</span>,
-</span></span><span style=display:flex><span>            headers<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>headers,
-</span></span><span style=display:flex><span>            json<span style=color:#f92672>=</span>payload,
-</span></span><span style=display:flex><span>            stream<span style=color:#f92672>=</span>stream
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>        response<span style=color:#f92672>.</span>raise_for_status()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> response
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>service <span style=color:#f92672>=</span> RAGSearchService()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/search&#34;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;POST&#34;</span>])
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search</span>(): <span style=color:#e6db74>&#34;&#34;&#34;Synchronous RAG search endpoint.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    data <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>get_json()
-</span></span><span style=display:flex><span>    query <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;query&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
-</span></span><span style=display:flex><span>    model <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;model&#34;</span>, <span style=color:#e6db74>&#34;sonar-pro&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> query: <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;error&#34;</span>: <span style=color:#e6db74>&#34;Query is required&#34;</span>}), <span style=color:#ae81ff>400</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>: result <span style=color:#f92672>=</span> service<span style=color:#f92672>.</span>search(query, model<span style=color:#f92672>=</span>model)
-</span></span><span style=display:flex><span>        data <span style=color:#f92672>=</span> result<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        message <span style=color:#f92672>=</span> data[<span style=color:#e6db74>&#34;choices&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;message&#34;</span>]
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> jsonify({
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;answer&#34;</span>: message[<span style=color:#e6db74>&#34;content&#34;</span>],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;citations&#34;</span>: message<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;citations&#34;</span>, []),
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;model&#34;</span>: model,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;usage&#34;</span>: data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;usage&#34;</span>, {})
-</span></span><span style=display:flex><span>        })
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;error&#34;</span>: str(e)}), <span style=color:#ae81ff>500</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/search/stream&#34;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;POST&#34;</span>])
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search_stream</span>(): <span style=color:#e6db74>&#34;&#34;&#34;Streaming RAG search endpoint with Server-Sent Events.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    data <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>get_json()
-</span></span><span style=display:flex><span>    query <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;query&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
-</span></span><span style=display:flex><span>    model <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;model&#34;</span>, <span style=color:#e6db74>&#34;sonar-pro&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> query: <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;error&#34;</span>: <span style=color:#e6db74>&#34;Query is required&#34;</span>}), <span style=color:#ae81ff>400</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>generate</span>(): response <span style=color:#f92672>=</span> service<span style=color:#f92672>.</span>search(query, model<span style=color:#f92672>=</span>model, stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> line <span style=color:#f92672>in</span> response<span style=color:#f92672>.</span>iter_lines(): <span style=color:#66d9ef>if</span> line: decoded <span style=color:#f92672>=</span> line<span style=color:#f92672>.</span>decode(<span style=color:#e6db74>&#34;utf-8&#34;</span>)
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> decoded<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;data: &#34;</span>): <span style=color:#66d9ef>yield</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>decoded<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> Response(
-</span></span><span style=display:flex><span>        generate(),
-</span></span><span style=display:flex><span>        mimetype<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/event-stream&#34;</span>,
-</span></span><span style=display:flex><span>        headers<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;Cache-Control&#34;</span>: <span style=color:#e6db74>&#34;no-cache&#34;</span>}
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/health&#34;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;GET&#34;</span>])
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>health</span>(): <span style=color:#e6db74>&#34;&#34;&#34;Health check endpoint.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;healthy&#34;</span>, <span style=color:#e6db74>&#34;service&#34;</span>: <span style=color:#e6db74>&#34;rag-search&#34;</span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>: app<span style=color:#f92672>.</span>run(host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0.0.0.0&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>5000</span>, debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Dockerfile for containerized deployment</span>
-</span></span><span style=display:flex><span>FROM python:3.11-slim
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>WORKDIR /app
-</span></span><span style=display:flex><span>COPY requirements.txt .
-</span></span><span style=display:flex><span>RUN pip install --no-cache-dir -r requirements.txt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>COPY app.py .
-</span></span><span style=display:flex><span>ENV PERPLEXITY_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>
-</span></span><span style=display:flex><span>ENV FLASK_ENV<span style=color:#f92672>=</span>production
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>EXPOSE <span style=color:#ae81ff>5000</span>
-</span></span><span style=display:flex><span>CMD <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;gunicorn&#34;</span>, <span style=color:#e6db74>&#34;-w&#34;</span>, <span style=color:#e6db74>&#34;4&#34;</span>, <span style=color:#e6db74>&#34;-b&#34;</span>, <span style=color:#e6db74>&#34;0.0.0.0:5000&#34;</span>, <span style=color:#e6db74>&#34;app:app&#34;</span><span style=color:#f92672>]</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: rag-search: build</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;5000:5000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>healthcheck: test</span>: [<span style=color:#e6db74>&#34;CMD&#34;</span>, <span style=color:#e6db74>&#34;curl&#34;</span>, <span style=color:#e6db74>&#34;-f&#34;</span>, <span style=color:#e6db74>&#34;http://localhost:5000/health&#34;</span>]
-</span></span><span style=display:flex><span>      <span style=color:#f92672>interval</span>: <span style=color:#ae81ff>30s</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>timeout</span>: <span style=color:#ae81ff>10s</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>retries</span>: <span style=color:#ae81ff>3</span>
-</span></span></code></pre></div><hr><h2 id=faq>FAQ</h2><h3 id=how-does-perplexity-api-differ-from-openais-gpt-api>How does Perplexity API differ from OpenAI&rsquo;s GPT API?</h3><p>Perplexity API automatically performs live web search and citation injection, while OpenAI&rsquo;s API relies on training data unless you manually implement RAG with external vector databases. Perplexity handles retrieval, ranking, and grounding internally, offering an all-in-one RAG solution.</p><h3 id=what-are-the-rate-limits-for-the-perplexity-api>What are the rate limits for the Perplexity API?</h3><p>Rate limits vary by subscription tier. The free tier typically allows 20 requests per minute, while Pro and Enterprise tiers scale to 100-1000+ RPM. Check your developer dashboard for exact limits associated with your plan.</p><h3 id=can-i-use-perplexity-api-with-my-own-documents>Can I use Perplexity API with my own documents?</h3><p>Currently, Perplexity API focuses on web search RAG rather than private document ingestion. For custom document RAG, you would need to combine Perplexity&rsquo;s web search with a vector database solution for your proprietary content, or use a dedicated RAG platform.</p><h3 id=how-accurate-are-the-citations-provided-by-perplexity>How accurate are the citations provided by Perplexity?</h3><p>Perplexity&rsquo;s citation system is highly accurate, with sources directly linked to the URLs retrieved during the search phase. The <code>[1]</code>, <code>[2]</code> markers in responses correspond exactly to the <code>citations</code> array. However, always validate critical information against primary sources.</p><h3 id=is-streaming-supported-for-all-sonar-models>Is streaming supported for all Sonar models?</h3><p>Yes, streaming via Server-Sent Events is supported across all Sonar model variants. The streaming implementation follows the OpenAI-compatible format, making it easy to adapt existing streaming clients.</p><h3 id=what-is-the-pricing-model-for-perplexity-api>What is the pricing model for Perplexity API?</h3><p>Perplexity uses a combined pricing model based on query volume and token consumption. Base Sonar is the most economical, while Sonar Deep Research incurs higher costs due to extensive multi-step retrieval. Visit the Perplexity pricing page for current rates.</p><h3 id=can-i-filter-searches-to-specific-domains-or-date-ranges>Can I filter searches to specific domains or date ranges?</h3><p>Yes, the API supports <code>search_domain_filter</code> to restrict queries to specific domains and ````search_recency_filter``` to limit results by recency (e.g., &ldquo;7d&rdquo; for last 7 days). These parameters help ensure authoritative and timely sourcing.</p><hr><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li></ul><p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p><h2 id=conclusion>Conclusion</h2><p>The Perplexity API represents a significant advancement in developer-accessible RAG technology. By combining live web indexing, multiple specialized Sonar models, transparent citations, and OpenAI-compatible interfaces, it eliminates the infrastructure complexity traditionally associated with retrieval-augmented generation.</p><p>For developers building the next generation of intelligent applications — from research assistants and fact-checking tools to dynamic knowledge bases and content verification systems — Perplexity offers a direct path to production-grade RAG without managing vector databases, embedding pipelines, or relevance tuning.</p><p>As we move through 2026, the expectation that AI applications provide sourced, verifiable answers is becoming the standard, not the exception. Integrating Perplexity&rsquo;s RAG search API positions your applications to meet this expectation, delivering experiences that users can trust because every answer stands on a foundation of real, citable sources.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><hr>
+<h2 id="building-a-complete-rag-search-application">Building a Complete RAG Search Application</h2>
+<p>Let&rsquo;s synthesize everything into a complete Flask application that demonstrates production patterns for a RAG-powered search service.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># app.py - Complete RAG Search API</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, request, jsonify, Response
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask_cors <span style="color:#f92672">import</span> CORS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(__name__)
+</span></span><span style="display:flex;"><span>CORS(app)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PERPLEXITY_KEY <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;PERPLEXITY_API_KEY&#34;</span>]
+</span></span><span style="display:flex;"><span>BASE_URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://api.perplexity.ai&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RAGSearchService</span>: <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self): self<span style="color:#f92672">.</span>headers <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Authorization&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Bearer </span><span style="color:#e6db74">{</span>PERPLEXITY_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search</span>(self, query: str, model: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sonar-pro&#34;</span>, stream: bool <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>): <span style="color:#e6db74">&#34;&#34;&#34;Execute RAG search with optional streaming.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        payload <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;model&#34;</span>: model,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;messages&#34;</span>: [
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Provide accurate, well-sourced answers with citations.&#34;</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: query}
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;stream&#34;</span>: stream,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;return_citations&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;max_tokens&#34;</span>: <span style="color:#ae81ff">2048</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">/chat/completions&#34;</span>,
+</span></span><span style="display:flex;"><span>            headers<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>headers,
+</span></span><span style="display:flex;"><span>            json<span style="color:#f92672">=</span>payload,
+</span></span><span style="display:flex;"><span>            stream<span style="color:#f92672">=</span>stream
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> response
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>service <span style="color:#f92672">=</span> RAGSearchService()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/search&#34;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;POST&#34;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search</span>(): <span style="color:#e6db74">&#34;&#34;&#34;Synchronous RAG search endpoint.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>get_json()
+</span></span><span style="display:flex;"><span>    query <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;query&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>    model <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;model&#34;</span>, <span style="color:#e6db74">&#34;sonar-pro&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> query: <span style="color:#66d9ef">return</span> jsonify({<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;Query is required&#34;</span>}), <span style="color:#ae81ff">400</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: result <span style="color:#f92672">=</span> service<span style="color:#f92672">.</span>search(query, model<span style="color:#f92672">=</span>model)
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        message <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;choices&#34;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;message&#34;</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> jsonify({
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;answer&#34;</span>: message[<span style="color:#e6db74">&#34;content&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;citations&#34;</span>: message<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;citations&#34;</span>, []),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;model&#34;</span>: model,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;usage&#34;</span>: data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;usage&#34;</span>, {})
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: <span style="color:#66d9ef">return</span> jsonify({<span style="color:#e6db74">&#34;error&#34;</span>: str(e)}), <span style="color:#ae81ff">500</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/search/stream&#34;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;POST&#34;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search_stream</span>(): <span style="color:#e6db74">&#34;&#34;&#34;Streaming RAG search endpoint with Server-Sent Events.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>get_json()
+</span></span><span style="display:flex;"><span>    query <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;query&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>    model <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;model&#34;</span>, <span style="color:#e6db74">&#34;sonar-pro&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> query: <span style="color:#66d9ef">return</span> jsonify({<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;Query is required&#34;</span>}), <span style="color:#ae81ff">400</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate</span>(): response <span style="color:#f92672">=</span> service<span style="color:#f92672">.</span>search(query, model<span style="color:#f92672">=</span>model, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> response<span style="color:#f92672">.</span>iter_lines(): <span style="color:#66d9ef">if</span> line: decoded <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;utf-8&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> decoded<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74">&#34;data: &#34;</span>): <span style="color:#66d9ef">yield</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>decoded<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Response(
+</span></span><span style="display:flex;"><span>        generate(),
+</span></span><span style="display:flex;"><span>        mimetype<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/event-stream&#34;</span>,
+</span></span><span style="display:flex;"><span>        headers<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;Cache-Control&#34;</span>: <span style="color:#e6db74">&#34;no-cache&#34;</span>}
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/health&#34;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;GET&#34;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">health</span>(): <span style="color:#e6db74">&#34;&#34;&#34;Health check endpoint.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> jsonify({<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;healthy&#34;</span>, <span style="color:#e6db74">&#34;service&#34;</span>: <span style="color:#e6db74">&#34;rag-search&#34;</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: app<span style="color:#f92672">.</span>run(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span>, debug<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile for containerized deployment</span>
+</span></span><span style="display:flex;"><span>FROM python:3.11-slim
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span><span style="display:flex;"><span>COPY requirements.txt .
+</span></span><span style="display:flex;"><span>RUN pip install --no-cache-dir -r requirements.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY app.py .
+</span></span><span style="display:flex;"><span>ENV PERPLEXITY_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>ENV FLASK_ENV<span style="color:#f92672">=</span>production
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">5000</span>
+</span></span><span style="display:flex;"><span>CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;gunicorn&#34;</span>, <span style="color:#e6db74">&#34;-w&#34;</span>, <span style="color:#e6db74">&#34;4&#34;</span>, <span style="color:#e6db74">&#34;-b&#34;</span>, <span style="color:#e6db74">&#34;0.0.0.0:5000&#34;</span>, <span style="color:#e6db74">&#34;app:app&#34;</span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: rag-search: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;5000:5000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck: test</span>: [<span style="color:#e6db74">&#34;CMD&#34;</span>, <span style="color:#e6db74">&#34;curl&#34;</span>, <span style="color:#e6db74">&#34;-f&#34;</span>, <span style="color:#e6db74">&#34;http://localhost:5000/health&#34;</span>]
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><hr>
+<h2 id="faq">FAQ</h2>
+<h3 id="how-does-perplexity-api-differ-from-openais-gpt-api">How does Perplexity API differ from OpenAI&rsquo;s GPT API?</h3>
+<p>Perplexity API automatically performs live web search and citation injection, while OpenAI&rsquo;s API relies on training data unless you manually implement RAG with external vector databases. Perplexity handles retrieval, ranking, and grounding internally, offering an all-in-one RAG solution.</p>
+<h3 id="what-are-the-rate-limits-for-the-perplexity-api">What are the rate limits for the Perplexity API?</h3>
+<p>Rate limits vary by subscription tier. The free tier typically allows 20 requests per minute, while Pro and Enterprise tiers scale to 100-1000+ RPM. Check your developer dashboard for exact limits associated with your plan.</p>
+<h3 id="can-i-use-perplexity-api-with-my-own-documents">Can I use Perplexity API with my own documents?</h3>
+<p>Currently, Perplexity API focuses on web search RAG rather than private document ingestion. For custom document RAG, you would need to combine Perplexity&rsquo;s web search with a vector database solution for your proprietary content, or use a dedicated RAG platform.</p>
+<h3 id="how-accurate-are-the-citations-provided-by-perplexity">How accurate are the citations provided by Perplexity?</h3>
+<p>Perplexity&rsquo;s citation system is highly accurate, with sources directly linked to the URLs retrieved during the search phase. The <code>[1]</code>, <code>[2]</code> markers in responses correspond exactly to the <code>citations</code> array. However, always validate critical information against primary sources.</p>
+<h3 id="is-streaming-supported-for-all-sonar-models">Is streaming supported for all Sonar models?</h3>
+<p>Yes, streaming via Server-Sent Events is supported across all Sonar model variants. The streaming implementation follows the OpenAI-compatible format, making it easy to adapt existing streaming clients.</p>
+<h3 id="what-is-the-pricing-model-for-perplexity-api">What is the pricing model for Perplexity API?</h3>
+<p>Perplexity uses a combined pricing model based on query volume and token consumption. Base Sonar is the most economical, while Sonar Deep Research incurs higher costs due to extensive multi-step retrieval. Visit the Perplexity pricing page for current rates.</p>
+<h3 id="can-i-filter-searches-to-specific-domains-or-date-ranges">Can I filter searches to specific domains or date ranges?</h3>
+<p>Yes, the API supports <code>search_domain_filter</code> to restrict queries to specific domains and ````search_recency_filter``` to limit results by recency (e.g., &ldquo;7d&rdquo; for last 7 days). These parameters help ensure authoritative and timely sourcing.</p>
+<hr>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li>
+</ul>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Perplexity API represents a significant advancement in developer-accessible RAG technology. By combining live web indexing, multiple specialized Sonar models, transparent citations, and OpenAI-compatible interfaces, it eliminates the infrastructure complexity traditionally associated with retrieval-augmented generation.</p>
+<p>For developers building the next generation of intelligent applications — from research assistants and fact-checking tools to dynamic knowledge bases and content verification systems — Perplexity offers a direct path to production-grade RAG without managing vector databases, embedding pipelines, or relevance tuning.</p>
+<p>As we move through 2026, the expectation that AI applications provide sourced, verifiable answers is becoming the standard, not the exception. Integrating Perplexity&rsquo;s RAG search API positions your applications to meet this expectation, delivering experiences that users can trust because every answer stands on a foundation of real, citable sources.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;perplexity-api-rag-search&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-20&rdquo;,
@@ -528,20 +692,296 @@ for q in queries: try: result = client.query(q)
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/perplexity-api-rag-search%22>https://dibi8.com/resources/perplexity-api-rag-search"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/perplexity-api-rag-search%22">https://dibi8.com/resources/perplexity-api-rag-search"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/perplexity-api-rag-search/>ai-seo-geo-dibi8-methodology-google-sge-perplexity</a></li><li><a href=/ai-coding-agents/perplexity-api-rag-search/>ai-seo-geo-dibi8-methodology-google-sge-perplexity</a></li><li><a href=/ai-coding-agents/perplexity-api-rag-search/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li><li><a href=/ai-coding-agents/perplexity-api-rag-search/>llm-inference-cost-optimization-guide-2026</a></li><li><a href=/ai-coding-agents/perplexity-api-rag-search/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fperplexity-api-rag-search%2f&text=Model%20selection%20mapping%20for%20different%20use%20cases" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fperplexity-api-rag-search%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/perplexity-api-rag-search/">ai-seo-geo-dibi8-methodology-google-sge-perplexity</a></li>
+<li><a href="/ai-coding-agents/perplexity-api-rag-search/">ai-seo-geo-dibi8-methodology-google-sge-perplexity</a></li>
+<li><a href="/ai-coding-agents/perplexity-api-rag-search/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
+<li><a href="/ai-coding-agents/perplexity-api-rag-search/">llm-inference-cost-optimization-guide-2026</a></li>
+<li><a href="/ai-coding-agents/perplexity-api-rag-search/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fperplexity-api-rag-search%2f&text=Model%20selection%20mapping%20for%20different%20use%20cases" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fperplexity-api-rag-search%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

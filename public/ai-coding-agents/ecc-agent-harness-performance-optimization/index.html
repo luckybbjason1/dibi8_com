@@ -1,40 +1,123 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ECC: Agent Harness Performance Optimization — 2026 Guide | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="ECC: Agent Harness Performance Optimization — 2026 Guide | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/ecc-agent-harness-performance-optimization/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/ecc-agent-harness-performance-optimization/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>ECC: Agent Harness Performance Optimization — 2026 Guide</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">ECC: Agent Harness Performance Optimization — 2026 Guide</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=ecc-agent-harness-performance-optimization--2026-guide>ECC: Agent Harness Performance Optimization — 2026 Guide</h1><p>ECC (212,000+ stars) is an agent harness performance optimization system that reduces context window usage and speeds up AI coding agents. It works with Claude Code, Codex, Opencode, Cursor, and 20+ other tools through a unified skill and MCP server layer.</p><p><img alt="ECC Architecture" loading=lazy src=https://opengraph.github.com/github/affaan-m/ECC></p><h2 id=what-is-ecc>What Is ECC?</h2><p>ECC sits between your AI coding agent (Claude Code, Codex CLI, Cursor, etc.) and the underlying model. It intercepts tool outputs, response tokens, and context data — then applies compression, caching, and selective filtering to reduce the amount of data the agent needs to process.</p><pre tabindex=0><code>User → Agent (Claude Code) → ECC Middleware → Model (Sonnet/Opus)
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECC: Agent Harness Performance Optimization — 2026 Guide | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="ECC: Agent Harness Performance Optimization — 2026 Guide | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/ecc-agent-harness-performance-optimization/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/ecc-agent-harness-performance-optimization/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">ECC: Agent Harness Performance Optimization — 2026 Guide</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">ECC: Agent Harness Performance Optimization — 2026 Guide</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="ecc-agent-harness-performance-optimization--2026-guide">ECC: Agent Harness Performance Optimization — 2026 Guide</h1>
+<p>ECC (212,000+ stars) is an agent harness performance optimization system that reduces context window usage and speeds up AI coding agents. It works with Claude Code, Codex, Opencode, Cursor, and 20+ other tools through a unified skill and MCP server layer.</p>
+<p><img alt="ECC Architecture" loading="lazy" src="https://opengraph.github.com/github/affaan-m/ECC"></p>
+<h2 id="what-is-ecc">What Is ECC?</h2>
+<p>ECC sits between your AI coding agent (Claude Code, Codex CLI, Cursor, etc.) and the underlying model. It intercepts tool outputs, response tokens, and context data — then applies compression, caching, and selective filtering to reduce the amount of data the agent needs to process.</p>
+<pre tabindex="0"><code>User → Agent (Claude Code) → ECC Middleware → Model (Sonnet/Opus)
                     ↑
            Performance optimization layer
 </code></pre><p>The system operates through three main mechanisms: 1. <strong>Context Compression</strong> — Reduces tool output size by identifying and removing redundant tokens, whitespace, and low-value diagnostic output
 2. <strong>Skill Registry</strong> — Pre-built optimization profiles for common coding tasks (debugging, code review, refactoring)
-3. <strong>Memory System</strong> — Tracks agent behavior patterns to progressively optimize future interactions</p><p><img alt="ECC Compression Pipeline" loading=lazy src=https://raw.githubusercontent.com/affaan-m/ECC/main/compression-pipeline.png></p><p>ECC is written in JavaScript/TypeScript and uses an MIT license, making it freely available for commercial and personal projects. The repository includes a CLI tool, an MCP server for integration, and a marketplace plugin for Anthropic&rsquo;s ecosystem.</p><h2 id=how-ecc-works>How ECC Works</h2><p>ECC&rsquo;s optimization pipeline runs in real-time as data flows between your agent and the model. Here&rsquo;s the flow: `````bash</p><h1 id=ecc-intercepts-tool-output-before-it-reaches-the-llm-context>ECC intercepts tool output before it reaches the LLM context</h1><p>Claude Code → exec(&ldquo;ls -la /tmp&rdquo;) → [raw output: 15KB]
+3. <strong>Memory System</strong> — Tracks agent behavior patterns to progressively optimize future interactions</p>
+<p><img alt="ECC Compression Pipeline" loading="lazy" src="https://raw.githubusercontent.com/affaan-m/ECC/main/compression-pipeline.png"></p>
+<p>ECC is written in JavaScript/TypeScript and uses an MIT license, making it freely available for commercial and personal projects. The repository includes a CLI tool, an MCP server for integration, and a marketplace plugin for Anthropic&rsquo;s ecosystem.</p>
+<h2 id="how-ecc-works">How ECC Works</h2>
+<p>ECC&rsquo;s optimization pipeline runs in real-time as data flows between your agent and the model. Here&rsquo;s the flow: `````bash</p>
+<h1 id="ecc-intercepts-tool-output-before-it-reaches-the-llm-context">ECC intercepts tool output before it reaches the LLM context</h1>
+<p>Claude Code → exec(&ldquo;ls -la /tmp&rdquo;) → [raw output: 15KB]
 ↓
 ECC compression layer
 ↓
-[compressed output: 2.3KB] → LLM context</p><pre tabindex=0><code>
+[compressed output: 2.3KB] → LLM context</p>
+<pre tabindex="0"><code>
 The compression ratio depends on output type: - **Terminal output**: 60-85% reduction (removes ANSI codes, redundant paths, repeated patterns)
 - **Code diffs**: 40-60% reduction (keeps hunks, removes context lines when irrelevant)
 - **File contents**: 70-90% reduction (identifies unchanged sections, summarizes boilerplate)
 - **Log files**: 80-95% reduction (filters noise, keeps errors/warnings only)
 
 ECC achieves this through a combination of regex-based token filtering, semantic deduplication, and configurable compression profiles. Each profile targets a specific output type and can be tuned per-project.
-</code></pre><p>ECC Compression Flow: ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐
-│ Agent │────▶│ ECC │────▶│ Compress │────▶│ Model │
-│ (Claude) │ │ Middleware│ │ Engine │ │ (Sonnet) │
-└──────────┘ └──────────┘ └──────────┘ └──────────┘
+</code></pre><p>ECC Compression Flow: ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+│  Agent    │────▶│  ECC      │────▶│  Compress │────▶│  Model    │
+│  (Claude) │     │  Middleware│    │  Engine   │     │ (Sonnet)  │
+└──────────┘     └──────────┘     └──────────┘     └──────────┘
 Profile: terminal
 Filter: ANSI codes
-Reduce: 85%</p><pre tabindex=0><code>
+Reduce: 85%</p>
+<pre tabindex="0"><code>
 ## Installation &amp; Setup
 
 ECC supports multiple installation methods depending on your workflow: `````bash
@@ -42,15 +125,17 @@ ECC supports multiple installation methods depending on your workflow: `````bash
 git clone https://github.com/affaan-m/ECC.git
 cd ECC
 npm install
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Method 2: npm global install (lightweight)</span>
-</span></span><span style=display:flex><span>npm install -g ecc-universal
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Method 3: Anthropic Marketplace plugin</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Search for &#34;ecc@ecc&#34; in the Claude Code marketplace</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install and the plugin registers automatically</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Post-install: Sync ECC to Codex if using Codex CLI</span>
-</span></span><span style=display:flex><span>npm install <span style=color:#f92672>&amp;&amp;</span> bash scripts/sync-ecc-to-codex.sh
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Method 2: npm global install (lightweight)</span>
+</span></span><span style="display:flex;"><span>npm install -g ecc-universal
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Method 3: Anthropic Marketplace plugin</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search for &#34;ecc@ecc&#34; in the Claude Code marketplace</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install and the plugin registers automatically</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Post-install: Sync ECC to Codex if using Codex CLI</span>
+</span></span><span style="display:flex;"><span>npm install <span style="color:#f92672">&amp;&amp;</span> bash scripts/sync-ecc-to-codex.sh
 </span></span></code></pre></div><p>After installation, verify with: `````bash
-ecc &ndash;version</p><h1 id=should-show-the-installed-version-number>Should show the installed version number</h1><pre tabindex=0><code>
+ecc &ndash;version</p>
+<h1 id="should-show-the-installed-version-number">Should show the installed version number</h1>
+<pre tabindex="0"><code>
 For Claude Code integration, ECC registers as a skill layer. For Cursor, it operates as an extension. For MCP-compatible agents, the bundled server (````ecc-mcp-server````) connects directly.
 
 ## Integration with Popular Tools
@@ -61,7 +146,14 @@ ECC integrates natively with Claude Code through its marketplace plugin system. 
 # Claude Code with ECC compression active
 claude &#34;explain the error in my last command&#34;
 # ECC compresses the error output from ~8KB to ~1.2KB before sending to the model
-</code></pre><p>The marketplace identifier is <code>ecc@ecc</code> (shortened to fit Claude Code&rsquo;s namespace limits).</p><h3 id=codex-cli>Codex CLI</h3><p>For OpenAI&rsquo;s Codex, ECC provides a sync script that configures the compression layer: `````bash</p><h1 id=install-codex-cli-first>Install Codex CLI first</h1><p>npm install -g opencode</p><h1 id=sync-ecc-to-codex>Sync ECC to Codex</h1><p>bash scripts/sync-ecc-to-codex.sh</p><pre tabindex=0><code>
+</code></pre><p>The marketplace identifier is <code>ecc@ecc</code> (shortened to fit Claude Code&rsquo;s namespace limits).</p>
+<h3 id="codex-cli">Codex CLI</h3>
+<p>For OpenAI&rsquo;s Codex, ECC provides a sync script that configures the compression layer: `````bash</p>
+<h1 id="install-codex-cli-first">Install Codex CLI first</h1>
+<p>npm install -g opencode</p>
+<h1 id="sync-ecc-to-codex">Sync ECC to Codex</h1>
+<p>bash scripts/sync-ecc-to-codex.sh</p>
+<pre tabindex="0"><code>
 ### Cursor IDE
 
 ECC runs as a Cursor extension. In Cursor settings, enable the ECC skill layer. The extension hooks into Cursor&#39;s agent pipeline and compresses file reads, terminal outputs, and search results.
@@ -80,12 +172,16 @@ For CI/CD integration, [WebShare.io](https://www.webshare.io/?referral_code=oa14
     }
   }
 }
-</code></pre><h3 id=gitlab-ci--github-actions>GitLab CI / GitHub Actions</h3><p>ECC can be integrated into CI pipelines to reduce token costs: `````yaml</p><h1 id=githubworkflowsecc-optimizationyml>.github/workflows/ecc-optimization.yml</h1><p>jobs: optimize: runs-on: ubuntu-latest
+</code></pre><h3 id="gitlab-ci--github-actions">GitLab CI / GitHub Actions</h3>
+<p>ECC can be integrated into CI pipelines to reduce token costs: `````yaml</p>
+<h1 id="githubworkflowsecc-optimizationyml">.github/workflows/ecc-optimization.yml</h1>
+<p>jobs: optimize: runs-on: ubuntu-latest
 steps: - uses: actions/checkout@v4
 - name: Install ECC
 run: npm install -g ecc-universal
 - name: Run ECC optimization
-run: ecc &ndash;target . &ndash;output optimized-output.json</p><pre tabindex=0><code>
+run: ecc &ndash;target . &ndash;output optimized-output.json</p>
+<pre tabindex="0"><code>
 ## Benchmarks / Real-World Use Cases
 
 ### Token Reduction Benchmarks
@@ -122,7 +218,11 @@ After ECC: - 45 tool executions × avg 3.2KB output = 144KB processed
 
 Monthly savings (5 sessions/day, 22 days): $3.63/month
 Annual savings: $43.56/year
-</code></pre><h3 id=enterprise-case-studies>Enterprise Case Studies</h3><p>Companies using ECC report average token savings of 60-75% across development teams. The biggest gains come from teams that perform heavy terminal interaction (CI debugging, log analysis, dependency management) where raw output tends to be verbose.</p><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><h3 id=custom-compression-profiles>Custom Compression Profiles</h3><p>ECC allows creating project-specific compression profiles: `````json
+</code></pre><h3 id="enterprise-case-studies">Enterprise Case Studies</h3>
+<p>Companies using ECC report average token savings of 60-75% across development teams. The biggest gains come from teams that perform heavy terminal interaction (CI debugging, log analysis, dependency management) where raw output tends to be verbose.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="custom-compression-profiles">Custom Compression Profiles</h3>
+<p>ECC allows creating project-specific compression profiles: `````json
 // .ecc-profile.json
 {
 &ldquo;name&rdquo;: &ldquo;my-project&rdquo;,
@@ -133,12 +233,13 @@ Annual savings: $43.56/year
 &ldquo;max_output_size&rdquo;: &ldquo;5KB&rdquo;
 },
 &ldquo;files&rdquo;: {
-&ldquo;skip_extensions&rdquo;: [".lock", &ldquo;.map&rdquo;, &ldquo;.min.js&rdquo;],
+&ldquo;skip_extensions&rdquo;: [&quot;.lock&quot;, &ldquo;.map&rdquo;, &ldquo;.min.js&rdquo;],
 &ldquo;max_read_size&rdquo;: &ldquo;10KB&rdquo;
 }
 },
 &ldquo;sensitivity&rdquo;: &ldquo;balanced&rdquo;
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 ### Debugging Mode
 
 To see what ECC is compressing and how much: `````bash
@@ -146,11 +247,19 @@ To see what ECC is compressing and how much: `````bash
 export ECC_DEBUG=1
 claude &#34;check my code&#34;
 # Shows compression stats for each intercepted tool output
-</code></pre><pre tabindex=0><code>[EC] Tool output intercepted: exec(&#34;find . -name *.js&#34;)
+</code></pre><pre tabindex="0"><code>[EC] Tool output intercepted: exec(&#34;find . -name *.js&#34;)
 [EC] Raw size: 24.3 KB → Compressed: 3.1 KB (87% reduction)
 [EC] Filtered: 186 lines (node_modules, .git, test fixtures)
 [EC] Kept: 34 lines (source files)
-</code></pre><h3 id=performance-tuning>Performance Tuning</h3><p>ECC&rsquo;s performance is configurable through environment variables: `````bash</p><h1 id=maximum-compression-aggressive-filtering-may-miss-edge-cases>Maximum compression (aggressive filtering, may miss edge cases)</h1><p>export ECC_COMPRESSION=aggressive</p><h1 id=balanced-mode-default-good-for-most-cases>Balanced mode (default, good for most cases)</h1><p>export ECC_COMPRESSION=balanced</p><h1 id=minimal-compression-keep-most-data-only-remove-noise>Minimal compression (keep most data, only remove noise)</h1><p>export ECC_COMPRESSION=conservative</p><pre tabindex=0><code>
+</code></pre><h3 id="performance-tuning">Performance Tuning</h3>
+<p>ECC&rsquo;s performance is configurable through environment variables: `````bash</p>
+<h1 id="maximum-compression-aggressive-filtering-may-miss-edge-cases">Maximum compression (aggressive filtering, may miss edge cases)</h1>
+<p>export ECC_COMPRESSION=aggressive</p>
+<h1 id="balanced-mode-default-good-for-most-cases">Balanced mode (default, good for most cases)</h1>
+<p>export ECC_COMPRESSION=balanced</p>
+<h1 id="minimal-compression-keep-most-data-only-remove-noise">Minimal compression (keep most data, only remove noise)</h1>
+<p>export ECC_COMPRESSION=conservative</p>
+<pre tabindex="0"><code>
 For production use, ````balanced```` mode provides the best trade-off between compression and data integrity. The ````aggressive```` mode is recommended for CI environments where you primarily need error detection.
 
 ECC can be deployed on [HTStack](https://my.htstack.com/aff.php?aff=27187) for enterprise teams needing multi-region availability and dedicated support.
@@ -163,8 +272,20 @@ docker run -d \
   -p 8080:8080 \
   -v $(pwd)/.ecc-profile.json:/app/.ecc-profile.json \
   affaanm/ecc:latest
-</code></pre><p>Agents connect via the MCP protocol on port 8080. The Docker image includes the full ECC engine with all compression profiles.</p><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | ECC | headroom | Claude Code built-in | No optimization |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>Agents connect via the MCP protocol on port 8080. The Docker image includes the full ECC engine with all compression profiles.</p>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | ECC | headroom | Claude Code built-in | No optimization |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Token reduction | 73% avg | 60-95% | None | 0% |
 | Multi-agent support | 20+ tools | Library + proxy | Claude Code only | N/A |
 | Custom profiles | ✅ | ❌ | ❌ | N/A |
@@ -172,8 +293,50 @@ docker run -d \
 | Marketplace plugin | ✅ (ecc@ecc) | ❌ | N/A | N/A |
 | Open source | MIT | Open | Proprietary | N/A |
 | CI/CD integration | ✅ | Partial | ❌ | N/A |
-| Active maintenance | 212K stars | 21K stars | Built-in | N/A |</p><p>ECC&rsquo;s key differentiator is its <strong>unified skill layer</strong> that works across all major coding agents without requiring tool-specific configuration. While headroom achieves slightly higher compression ratios (up to 95%), ECC&rsquo;s cross-agent compatibility and marketplace plugin make it more practical for teams using multiple tools.</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p>ECC is a young project (launched 2026) with significant momentum but some known limitations: - <strong>Compression artifacts</strong>: In aggressive mode, the compression filter occasionally removes context that the model later needs. This is rare in balanced mode (~2% of sessions report needing uncompressed data).</p><ul><li><strong>Marketplace-only Claude integration</strong>: The marketplace plugin (<code>ecc@ecc</code>) is the most seamless integration path. Manual installation requires additional configuration.</li><li><strong>JavaScript ecosystem</strong>: The project is built in JavaScript/TypeScript. Python-based agents work through the MCP server, but native Python bindings don&rsquo;t exist yet.</li><li><strong>No GPU acceleration</strong>: Compression runs on CPU. For extremely large outputs (>100KB), compression may add 50-200ms of latency.</li><li><strong>Learning curve</strong>: Custom compression profiles require understanding regex patterns and ECC&rsquo;s internal filtering system.</li></ul><p>The project is actively maintained with new compression profiles added weekly. Most limitations are expected to improve as the project matures.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><p><strong>Q: Does ECC work with local models like Ollama?</strong></p><p>A: Yes, through the MCP server. Any agent that supports the Model Context Protocol can connect to ECC regardless of the underlying model. Local models benefit from the same token reduction since ECC operates before the data reaches the model.</p><p><strong>Q: Will compression cause the AI to miss important details in my code?</strong></p><p>A: In balanced mode (default), ECC preserves all meaningful code content and only filters noise, redundant output, and unchanged sections. In practice, this means code diffs, error messages, and file content are all preserved with their essential information intact. The 73% average compression targets non-code output (terminal logs, directory listings, dependency output).</p><p><strong>Q: Can I use ECC with team projects?</strong></p><p>A: ECC supports project-level configuration through <code>.ecc-profile.json</code>. Teams can share compression profiles in their repository, ensuring consistent token optimization across all developers. The marketplace plugin automatically loads the repository&rsquo;s ECC profile when opening a project.</p><p><strong>Q: How does ECC compare to Claude Code&rsquo;s built-in context management?</strong></p><p>A: Claude Code&rsquo;s built-in system manages context windows but doesn&rsquo;t actively compress tool output. ECC sits on top and reduces the amount of data entering the context window in the first place. They&rsquo;re complementary, not competitive — ECC reduces the input, Claude Code manages what fits.</p><p><strong>Q: Is ECC free for commercial use?</strong></p><p>A: Yes, ECC is licensed under MIT. There are no usage limits, subscription fees, or commercial restrictions. The marketplace plugin is free to install and use. Enterprise deployments can use the Docker image or MCP server without additional licensing.</p><p><strong>Q: What about security? Does ECC intercept sensitive data?</strong></p><p>A: ECC only processes data that flows through the agent&rsquo;s tool pipeline. It does not intercept keystrokes, clipboard content, or network traffic outside the agent"s operations. Compression profiles can be configured to exclude sensitive file patterns (e.g., <code>.env</code>, <code>*.key</code>) from any processing.</p><h2 id=conclusion>Conclusion</h2><p>ECC represents a practical approach to the context window problem that every AI coding agent user faces. With 212,000+ GitHub stars and 20+ tool integrations, it has become one of the most popular agent optimization tools of 2026.</p><p>The core value proposition is simple: reduce the data your agent processes without losing the information it needs. The 73% average token reduction translates to roughly 3x effective context, lower API costs, and faster response times.</p><p><strong>Try ECC today</strong> — install with <code>npm install -g ecc-universal</code> and see the difference. The marketplace plugin (````ecc@ecc```) is the easiest path for Claude Code users.</p><p>For more on agent optimization: - <a href=/resources/llm-frameworks/headroom-token-compression-proxy-library-mcp-server/>Headroom: Token Compression Proxy</a> — alternative compression approach</p><ul><li><a href=/resources/llm-frameworks/ai-agent-memory-systems-2026/>Agent Memory Systems</a> — complement ECC with persistent agent memory</li></ul><p>For more on developer tools: - <a href=/resources/dev-utils/docker-development-environment-best-practices/>Docker Development Best Practices</a> — run ECC in containers</p><p><strong>Sources & Further Reading</strong>: - Official docs: <a href=https://github.com/affaan-m/ECC>https://github.com/affaan-m/ECC</a></p><ul><li>GitHub repository: <a href=https://github.com/affaan-m/ECC>https://github.com/affaan-m/ECC</a></li><li>Marketplace plugin: claude.ai/code/marketplace?plugin=ecc@ecc</li><li>Community discussion: <a href=https://github.com/affaan-m/ECC/discussions>https://github.com/affaan-m/ECC/discussions</a></li></ul><p><strong>Join our community</strong>: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><strong>Disclosure</strong>: This article contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Active maintenance | 212K stars | 21K stars | Built-in | N/A |</p>
+<p>ECC&rsquo;s key differentiator is its <strong>unified skill layer</strong> that works across all major coding agents without requiring tool-specific configuration. While headroom achieves slightly higher compression ratios (up to 95%), ECC&rsquo;s cross-agent compatibility and marketplace plugin make it more practical for teams using multiple tools.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>ECC is a young project (launched 2026) with significant momentum but some known limitations: - <strong>Compression artifacts</strong>: In aggressive mode, the compression filter occasionally removes context that the model later needs. This is rare in balanced mode (~2% of sessions report needing uncompressed data).</p>
+<ul>
+<li><strong>Marketplace-only Claude integration</strong>: The marketplace plugin (<code>ecc@ecc</code>) is the most seamless integration path. Manual installation requires additional configuration.</li>
+<li><strong>JavaScript ecosystem</strong>: The project is built in JavaScript/TypeScript. Python-based agents work through the MCP server, but native Python bindings don&rsquo;t exist yet.</li>
+<li><strong>No GPU acceleration</strong>: Compression runs on CPU. For extremely large outputs (&gt;100KB), compression may add 50-200ms of latency.</li>
+<li><strong>Learning curve</strong>: Custom compression profiles require understanding regex patterns and ECC&rsquo;s internal filtering system.</li>
+</ul>
+<p>The project is actively maintained with new compression profiles added weekly. Most limitations are expected to improve as the project matures.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Does ECC work with local models like Ollama?</strong></p>
+<p>A: Yes, through the MCP server. Any agent that supports the Model Context Protocol can connect to ECC regardless of the underlying model. Local models benefit from the same token reduction since ECC operates before the data reaches the model.</p>
+<p><strong>Q: Will compression cause the AI to miss important details in my code?</strong></p>
+<p>A: In balanced mode (default), ECC preserves all meaningful code content and only filters noise, redundant output, and unchanged sections. In practice, this means code diffs, error messages, and file content are all preserved with their essential information intact. The 73% average compression targets non-code output (terminal logs, directory listings, dependency output).</p>
+<p><strong>Q: Can I use ECC with team projects?</strong></p>
+<p>A: ECC supports project-level configuration through <code>.ecc-profile.json</code>. Teams can share compression profiles in their repository, ensuring consistent token optimization across all developers. The marketplace plugin automatically loads the repository&rsquo;s ECC profile when opening a project.</p>
+<p><strong>Q: How does ECC compare to Claude Code&rsquo;s built-in context management?</strong></p>
+<p>A: Claude Code&rsquo;s built-in system manages context windows but doesn&rsquo;t actively compress tool output. ECC sits on top and reduces the amount of data entering the context window in the first place. They&rsquo;re complementary, not competitive — ECC reduces the input, Claude Code manages what fits.</p>
+<p><strong>Q: Is ECC free for commercial use?</strong></p>
+<p>A: Yes, ECC is licensed under MIT. There are no usage limits, subscription fees, or commercial restrictions. The marketplace plugin is free to install and use. Enterprise deployments can use the Docker image or MCP server without additional licensing.</p>
+<p><strong>Q: What about security? Does ECC intercept sensitive data?</strong></p>
+<p>A: ECC only processes data that flows through the agent&rsquo;s tool pipeline. It does not intercept keystrokes, clipboard content, or network traffic outside the agent&quot;s operations. Compression profiles can be configured to exclude sensitive file patterns (e.g., <code>.env</code>, <code>*.key</code>) from any processing.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>ECC represents a practical approach to the context window problem that every AI coding agent user faces. With 212,000+ GitHub stars and 20+ tool integrations, it has become one of the most popular agent optimization tools of 2026.</p>
+<p>The core value proposition is simple: reduce the data your agent processes without losing the information it needs. The 73% average token reduction translates to roughly 3x effective context, lower API costs, and faster response times.</p>
+<p><strong>Try ECC today</strong> — install with <code>npm install -g ecc-universal</code> and see the difference. The marketplace plugin (````ecc@ecc```) is the easiest path for Claude Code users.</p>
+<p>For more on agent optimization: - <a href="/resources/llm-frameworks/headroom-token-compression-proxy-library-mcp-server/">Headroom: Token Compression Proxy</a> — alternative compression approach</p>
+<ul>
+<li><a href="/resources/llm-frameworks/ai-agent-memory-systems-2026/">Agent Memory Systems</a> — complement ECC with persistent agent memory</li>
+</ul>
+<p>For more on developer tools: - <a href="/resources/dev-utils/docker-development-environment-best-practices/">Docker Development Best Practices</a> — run ECC in containers</p>
+<p><strong>Sources &amp; Further Reading</strong>: - Official docs: <a href="https://github.com/affaan-m/ECC">https://github.com/affaan-m/ECC</a></p>
+<ul>
+<li>GitHub repository: <a href="https://github.com/affaan-m/ECC">https://github.com/affaan-m/ECC</a></li>
+<li>Marketplace plugin: claude.ai/code/marketplace?plugin=ecc@ecc</li>
+<li>Community discussion: <a href="https://github.com/affaan-m/ECC/discussions">https://github.com/affaan-m/ECC/discussions</a></li>
+</ul>
+<p><strong>Join our community</strong>: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><strong>Disclosure</strong>: This article contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;ECC: Optimize Claude Code, Codex, and Cursor Performance with Agent Harness Tuning — 2026 Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-13&rdquo;,
@@ -187,20 +350,296 @@ docker run -d \
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/ecc-agent-harness-performance-optimization%22>https://dibi8.com/resources/ecc-agent-harness-performance-optimization"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/ecc-agent-harness-performance-optimization%22">https://dibi8.com/resources/ecc-agent-harness-performance-optimization"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/ecc-agent-harness-performance-optimization/>ai-engineering-from-scratch</a></li><li><a href=/ai-coding-agents/ecc-agent-harness-performance-optimization/>compound-engineering-multi-agent-coding-claude-codex-cursor</a></li><li><a href=/ai-coding-agents/ecc-agent-harness-performance-optimization/>design-md-google-open-source-format-ai-coding-agents-design-systems</a></li><li><a href=/ai-coding-agents/ecc-agent-harness-performance-optimization/>personal-ai-infrastructure-daniel-miessler</a></li><li><a href=/ai-coding-agents/ecc-agent-harness-performance-optimization/>prompts-chat</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fecc-agent-harness-performance-optimization%2f&text=ECC%3a%20Agent%20Harness%20Performance%20Optimization%20%e2%80%94%202026%20Guide" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fecc-agent-harness-performance-optimization%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/ecc-agent-harness-performance-optimization/">ai-engineering-from-scratch</a></li>
+<li><a href="/ai-coding-agents/ecc-agent-harness-performance-optimization/">compound-engineering-multi-agent-coding-claude-codex-cursor</a></li>
+<li><a href="/ai-coding-agents/ecc-agent-harness-performance-optimization/">design-md-google-open-source-format-ai-coding-agents-design-systems</a></li>
+<li><a href="/ai-coding-agents/ecc-agent-harness-performance-optimization/">personal-ai-infrastructure-daniel-miessler</a></li>
+<li><a href="/ai-coding-agents/ecc-agent-harness-performance-optimization/">prompts-chat</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fecc-agent-harness-performance-optimization%2f&text=ECC%3a%20Agent%20Harness%20Performance%20Optimization%20%e2%80%94%202026%20Guide" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fecc-agent-harness-performance-optimization%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

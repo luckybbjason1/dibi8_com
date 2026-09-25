@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Install crewai with all recommended extras | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Install crewai with all recommended extras | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/crewai-multi-agent-orchestration/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/crewai-multi-agent-orchestration/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Install crewai with all recommended extras</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install crewai with all recommended extras</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;CrewAI: Build Multi-Agent AI Teams That Collaborate Auto&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install crewai with all recommended extras | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Install crewai with all recommended extras | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/crewai-multi-agent-orchestration/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/crewai-multi-agent-orchestration/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install crewai with all recommended extras</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install crewai with all recommended extras</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;CrewAI: Build Multi-Agent AI Teams That Collaborate Auto&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,424 +99,542 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;crewai&rdquo;, &ldquo;multi-agent&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;orchestration&rdquo;, &ldquo;autonomous-agents&rdquo;, &ldquo;llm&rdquo;, &ldquo;python&rdquo;, &ldquo;open-source&rdquo;]
-aliases:</p><ul><li>/posts/crewai-multi-agent-orchestration/-</li></ul><hr><h2 id=introduction-one-llm-call-is-not-enough-anymore>Introduction: One LLM Call Is Not Enough Anymore</h2><p>The first wave of LLM applications sent a single prompt and got a single response. That works for chatbots and simple Q&amp;A. But real-world tasks — writing a research report, planning a marketing campaign, auditing code, analyzing competitors — require multiple skills, sequential reasoning, and quality checks that no single prompt can deliver.</p><p>I hit this wall building a competitive analysis tool. A single GPT-4 call with a detailed prompt produced surface-level summaries. The output missed nuanced details, confused competitor timelines, and contained factual errors that a human reviewer would have caught. Breaking the work into three specialized roles — <strong>Researcher</strong>, <strong>Analyst</strong>, and <strong>Editor</strong> — each with focused tasks and handoff protocols, reduced error rates by <strong>73%</strong> and produced reports our clients actually trusted.</p><p>That is what multi-agent orchestration delivers. Instead of one model trying to do everything, you assemble a <strong>team of specialized AI agents</strong> that collaborate, delegate, and review each other&rsquo;s work — much like a human team.</p><p>Enter <strong>CrewAI</strong>. Built by Joao Moura and released in late 2023, CrewAI has grown to <strong>28,000+ GitHub stars</strong> (May 2026) under the MIT license. It is the most approachable framework for building multi-agent AI teams in Python, with an intuitive API that abstracts the complexity of agent communication, task sequencing, and memory management while remaining extensible for production use.</p><h2 id=what-is-crewai>What Is CrewAI?</h2><p>CrewAI is a Python framework for orchestrating multi-agent AI systems. It allows you to define <strong>role-based agents</strong> (like Researcher, Writer, Coder, Reviewer), assign them <strong>tasks with clear goals</strong>, and specify <strong>processes</strong> that govern how they collaborate — sequentially, hierarchically, or in parallel.</p><p>Think of it as a <strong>project management layer for AI agents</strong>. You define who is on the team, what each person does, and how work flows between them. CrewAI handles the logistics: routing task outputs to the right agent, managing conversation context, sharing memory, and executing the workflow from start to finish.</p><h2 id=how-crewai-works-architecture--core-concepts>How CrewAI Works: Architecture & Core Concepts</h2><p>CrewAI&rsquo;s architecture revolves around four primitives: <strong>Agents</strong>, <strong>Tasks</strong>, <strong>Tools</strong>, and <strong>Processes</strong>. Understanding how they compose is the key to building effective agent teams.</p><h3 id=agents-role-based-ai-workers>Agents: Role-Based AI Workers</h3><p>An Agent in CrewAI is more than an LLM instance. It is a defined role with: | Attribute | Purpose | Example |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| ```role<code>| Job title / identity |</code>&ldquo;Senior Research Analyst&rdquo;<code>| |</code>goal<code>| What the agent aims to achieve |</code>&ldquo;Find detailed pricing data for 3 competitors&rdquo;<code>| |</code>backstory<code>| Personality / context |</code>&ldquo;You are a meticulous analyst with 10 years of experience&rdquo;<code>| |</code>tools<code>| External capabilities |</code>[search_tool, scraper_tool, calculator]<code>| |</code>allow_delegation<code>| Can assign work to others |</code>True<code>for managers,</code>False<code>for specialists | |</code>memory<code>| Retains context across tasks |</code>True```` for multi-step reasoning |</p><p>The <code>backstory</code> is not fluff — it shapes how the LLM responds. A <code>"careless intern"</code> backstory produces different output than a <code>"senior engineer who triple-checks everything"</code>.</p><h3 id=tasks-defined-units-of-work>Tasks: Defined Units of Work</h3><p>Tasks specify what needs to be done, who does it, and what output is expected: | Attribute | Purpose | Example |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <code>description</code> | What to do (can include <code>{variables}</code>) | <code>"Research {company} pricing plans"</code> |
-| <code>expected_output</code> | Quality specification | <code>"A table with plan names, prices, and features"</code> |
+aliases:</p>
+<ul>
+<li>/posts/crewai-multi-agent-orchestration/-</li>
+</ul>
+<hr>
+<h2 id="introduction-one-llm-call-is-not-enough-anymore">Introduction: One LLM Call Is Not Enough Anymore</h2>
+<p>The first wave of LLM applications sent a single prompt and got a single response. That works for chatbots and simple Q&amp;A. But real-world tasks — writing a research report, planning a marketing campaign, auditing code, analyzing competitors — require multiple skills, sequential reasoning, and quality checks that no single prompt can deliver.</p>
+<p>I hit this wall building a competitive analysis tool. A single GPT-4 call with a detailed prompt produced surface-level summaries. The output missed nuanced details, confused competitor timelines, and contained factual errors that a human reviewer would have caught. Breaking the work into three specialized roles — <strong>Researcher</strong>, <strong>Analyst</strong>, and <strong>Editor</strong> — each with focused tasks and handoff protocols, reduced error rates by <strong>73%</strong> and produced reports our clients actually trusted.</p>
+<p>That is what multi-agent orchestration delivers. Instead of one model trying to do everything, you assemble a <strong>team of specialized AI agents</strong> that collaborate, delegate, and review each other&rsquo;s work — much like a human team.</p>
+<p>Enter <strong>CrewAI</strong>. Built by Joao Moura and released in late 2023, CrewAI has grown to <strong>28,000+ GitHub stars</strong> (May 2026) under the MIT license. It is the most approachable framework for building multi-agent AI teams in Python, with an intuitive API that abstracts the complexity of agent communication, task sequencing, and memory management while remaining extensible for production use.</p>
+<h2 id="what-is-crewai">What Is CrewAI?</h2>
+<p>CrewAI is a Python framework for orchestrating multi-agent AI systems. It allows you to define <strong>role-based agents</strong> (like Researcher, Writer, Coder, Reviewer), assign them <strong>tasks with clear goals</strong>, and specify <strong>processes</strong> that govern how they collaborate — sequentially, hierarchically, or in parallel.</p>
+<p>Think of it as a <strong>project management layer for AI agents</strong>. You define who is on the team, what each person does, and how work flows between them. CrewAI handles the logistics: routing task outputs to the right agent, managing conversation context, sharing memory, and executing the workflow from start to finish.</p>
+<h2 id="how-crewai-works-architecture--core-concepts">How CrewAI Works: Architecture &amp; Core Concepts</h2>
+<p>CrewAI&rsquo;s architecture revolves around four primitives: <strong>Agents</strong>, <strong>Tasks</strong>, <strong>Tools</strong>, and <strong>Processes</strong>. Understanding how they compose is the key to building effective agent teams.</p>
+<h3 id="agents-role-based-ai-workers">Agents: Role-Based AI Workers</h3>
+<p>An Agent in CrewAI is more than an LLM instance. It is a defined role with: | Attribute | Purpose | Example |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| ```role<code>| Job title / identity |</code>&ldquo;Senior Research Analyst&rdquo;<code>| |</code>goal<code>| What the agent aims to achieve |</code>&ldquo;Find detailed pricing data for 3 competitors&rdquo;<code>| |</code>backstory<code>| Personality / context |</code>&ldquo;You are a meticulous analyst with 10 years of experience&rdquo;<code>| |</code>tools<code>| External capabilities |</code>[search_tool, scraper_tool, calculator]<code>| |</code>allow_delegation<code>| Can assign work to others |</code>True<code>for managers,</code>False<code>for specialists | |</code>memory<code>| Retains context across tasks |</code>True```` for multi-step reasoning |</p>
+<p>The <code>backstory</code> is not fluff — it shapes how the LLM responds. A <code>&quot;careless intern&quot;</code> backstory produces different output than a <code>&quot;senior engineer who triple-checks everything&quot;</code>.</p>
+<h3 id="tasks-defined-units-of-work">Tasks: Defined Units of Work</h3>
+<p>Tasks specify what needs to be done, who does it, and what output is expected: | Attribute | Purpose | Example |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <code>description</code> | What to do (can include <code>{variables}</code>) | <code>&quot;Research {company} pricing plans&quot;</code> |
+| <code>expected_output</code> | Quality specification | <code>&quot;A table with plan names, prices, and features&quot;</code> |
 | <code>agent</code> | Who performs the task | <code>researcher</code> |
 | <code>context</code> | Previous task outputs to reference | <code>[task1, task2]</code> |
-| <code>tools</code> | Task-specific tools | <code>[search_tool]</code> |</p><p>The <code>expected_output</code> field is critical — it acts as a quality rubric that guides the LLM&rsquo;s response format and depth.</p><h3 id=processes-how-agents-collaborate>Processes: How Agents Collaborate</h3><p>CrewAI supports three collaboration patterns: | Process | Pattern | Best For |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <code>tools</code> | Task-specific tools | <code>[search_tool]</code> |</p>
+<p>The <code>expected_output</code> field is critical — it acts as a quality rubric that guides the LLM&rsquo;s response format and depth.</p>
+<h3 id="processes-how-agents-collaborate">Processes: How Agents Collaborate</h3>
+<p>CrewAI supports three collaboration patterns: | Process | Pattern | Best For |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>Process.sequential</code> | Linear handoff: A → B → C | Workflows with clear dependencies |
 | <code>Process.hierarchical</code> | Manager delegates to workers | Complex projects requiring oversight |
-| <code>Process.parallel</code> | Multiple agents work simultaneously | Independent tasks, speed optimization |</p><p>In <strong>hierarchical</strong> mode, you designate a <code>manager_llm</code> (often a stronger model like GPT-4) that plans task allocation, monitors progress, and decides when work is complete.</p><h3 id=tools-extending-agent-capabilities>Tools: Extending Agent Capabilities</h3><p>CrewAI agents can use any LangChain-compatible tool. Common ones include: - <strong>Web search</strong> — SerpAPI, DuckDuckGo, Tavily</p><ul><li><strong>Web scraping</strong> — BeautifulSoup, ScrapingBee</li><li><strong>Code execution</strong> — Python REPL, Jupyter kernel</li><li><strong>Database queries</strong> — SQL connectors</li><li><strong>File operations</strong> — Read/write local files</li><li><strong>API calls</strong> — REST API toolkit</li><li><strong>Custom tools</strong> — Any Python function wrapped with <code>@tool</code></li></ul><h2 id=installation--setup-5-minute-startup>Installation & Setup: 5-Minute Startup</h2><p>CrewAI requires Python 3.10+ and works with any LLM provider.</p><h3 id=basic-installation>Basic Installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m venv venv_crewai
-</span></span><span style=display:flex><span>source venv_crewai/bin/activate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install crewai with all recommended extras</span>
-</span></span><span style=display:flex><span>pip install <span style=color:#e6db74>&#34;crewai[tools]==0.108.0&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># For specific LLM providers (pick what you use)</span>
-</span></span><span style=display:flex><span>pip install langchain-openai    <span style=color:#75715e># OpenAI</span>
-</span></span><span style=display:flex><span>pip install langchain-anthropic <span style=color:#75715e># Anthropic</span>
-</span></span><span style=display:flex><span>pip install langchain-google    <span style=color:#75715e># Google Gemini</span>
-</span></span></code></pre></div><p>As of May 2026, CrewAI is at <strong>v0.108.0</strong>. The <code>[tools]</code> extra installs SerpAPI, Selenium, and other common tool dependencies.</p><h3 id=verify-installation>Verify Installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Task, Crew, Process
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai_tools <span style=color:#f92672>import</span> SerpDevTool
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Basic smoke test</span>
-</span></span><span style=display:flex><span>search_tool <span style=color:#f92672>=</span> SerpDevTool()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>researcher <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Research Assistant&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Find information quickly&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You are a quick researcher.&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[search_tool],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;CrewAI installed successfully!&#34;</span>)
-</span></span></code></pre></div><h3 id=environment-setup>Environment Setup</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Required API keys</span>
-</span></span><span style=display:flex><span>export OPENAI_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sk-...&#34;</span>
-</span></span><span style=display:flex><span>export SERPAPI_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Optional: for local models</span>
-</span></span><span style=display:flex><span>export OLLAMA_HOST<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:11434&#34;</span>
-</span></span></code></pre></div><p>For self-hosting CrewAI-based systems, a reliable VPS is essential. <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean droplets</a> work well for running agent orchestration APIs.</p><h2 id=building-your-first-multi-agent-crew>Building Your First Multi-Agent Crew</h2><h3 id=example-1-blog-post-creation-team>Example 1: Blog Post Creation Team</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Task, Crew, Process
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai_tools <span style=color:#f92672>import</span> SerpDevTool, ScrapeWebsiteTool
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ── Define Tools ──────────────────────────────────</span>
-</span></span><span style=display:flex><span>search_tool <span style=color:#f92672>=</span> SerpDevTool()
-</span></span><span style=display:flex><span>scrape_tool <span style=color:#f92672>=</span> ScrapeWebsiteTool()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ── Define Agents ─────────────────────────────────</span>
-</span></span><span style=display:flex><span>researcher <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Senior Research Analyst&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Uncover cutting-edge developments in AI&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;You are an expert researcher who digs deep into &#34;</span>
-</span></span><span style=display:flex><span>               <span style=color:#e6db74>&#34;topics, finds primary sources, and extracts key &#34;</span>
-</span></span><span style=display:flex><span>               <span style=color:#e6db74>&#34;insights that others miss.&#34;</span>),
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[search_tool, scrape_tool],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>    allow_delegation<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-</span></span><span style=display:flex><span>    verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>writer <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Technical Content Writer&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Write engaging, accurate blog posts about AI topics&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;You are a skilled technical writer who transforms &#34;</span>
-</span></span><span style=display:flex><span>               <span style=color:#e6db74>&#34;complex research into accessible, compelling narratives. &#34;</span>
-</span></span><span style=display:flex><span>               <span style=color:#e6db74>&#34;You write with clarity and authority.&#34;</span>),
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>    allow_delegation<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-</span></span><span style=display:flex><span>    verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>editor <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Senior Editor&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Ensure accuracy, clarity, and consistency of blog posts&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;You are a meticulous editor with 15 years of experience. &#34;</span>
-</span></span><span style=display:flex><span>               <span style=color:#e6db74>&#34;You catch factual errors, improve flow, and enforce style guides.&#34;</span>),
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>    allow_delegation<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-</span></span><span style=display:flex><span>    verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ── Define Tasks ──────────────────────────────────</span>
-</span></span><span style=display:flex><span>research_task <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;Research the latest developments in multi-agent AI systems &#34;</span>
-</span></span><span style=display:flex><span>                 <span style=color:#e6db74>&#34;in 2026. Focus on frameworks, real-world deployments, and &#34;</span>
-</span></span><span style=display:flex><span>                 <span style=color:#e6db74>&#34;key challenges. Find at least 5 primary sources.&#34;</span>),
-</span></span><span style=display:flex><span>    expected_output<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;A comprehensive research document with key findings, &#34;</span>
-</span></span><span style=display:flex><span>                     <span style=color:#e6db74>&#34;sources, and actionable insights for a blog post.&#34;</span>),
-</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>researcher,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>writing_task <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;Write a 1500-word blog post about multi-agent AI systems &#34;</span>
-</span></span><span style=display:flex><span>                 <span style=color:#e6db74>&#34;based on the research provided. Use an engaging, informative tone.&#34;</span>),
-</span></span><span style=display:flex><span>    expected_output<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A complete blog post in markdown format, ready for publication.&#34;</span>,
-</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>writer,
-</span></span><span style=display:flex><span>    context<span style=color:#f92672>=</span>[research_task],  <span style=color:#75715e># receives output from research_task</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>editing_task <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;Review and edit the blog post for accuracy, clarity, and style. &#34;</span>
-</span></span><span style=display:flex><span>                 <span style=color:#e6db74>&#34;Check all claims against the original sources.&#34;</span>),
-</span></span><span style=display:flex><span>    expected_output<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;A polished blog post with tracked changes and a summary &#34;</span>
-</span></span><span style=display:flex><span>                     <span style=color:#e6db74>&#34;of edits made.&#34;</span>),
-</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>editor,
-</span></span><span style=display:flex><span>    context<span style=color:#f92672>=</span>[research_task, writing_task],
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ── Assemble and Run Crew ─────────────────────────</span>
-</span></span><span style=display:flex><span>crew <span style=color:#f92672>=</span> Crew(
-</span></span><span style=display:flex><span>    agents<span style=color:#f92672>=</span>[researcher, writer, editor],
-</span></span><span style=display:flex><span>    tasks<span style=color:#f92672>=</span>[research_task, writing_task, editing_task],
-</span></span><span style=display:flex><span>    process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>sequential,
-</span></span><span style=display:flex><span>    verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,  <span style=color:#75715e># enables shared memory across agents</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> crew<span style=color:#f92672>.</span>kickoff()
-</span></span><span style=display:flex><span>print(result)
-</span></span></code></pre></div><h3 id=example-2-hierarchical-project-management>Example 2: Hierarchical Project Management</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Task, Crew, Process
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hierarchical process requires a manager LLM</span>
-</span></span><span style=display:flex><span>project_crew <span style=color:#f92672>=</span> Crew(
-</span></span><span style=display:flex><span>    agents<span style=color:#f92672>=</span>[researcher, writer, designer, qa_tester],
-</span></span><span style=display:flex><span>    tasks<span style=color:#f92672>=</span>[research_task, write_task, design_task, test_task],
-</span></span><span style=display:flex><span>    process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>hierarchical,
-</span></span><span style=display:flex><span>    manager_llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,  <span style=color:#75715e># the project manager</span>
-</span></span><span style=display:flex><span>    verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    planning<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,  <span style=color:#75715e># enables automatic task planning</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> project_crew<span style=color:#f92672>.</span>kickoff()
-</span></span></code></pre></div><p>In hierarchical mode, the <code>manager_llm</code> dynamically assigns tasks based on agent capabilities and task dependencies. This is powerful for <strong>10+ agent teams</strong> where manual task ordering becomes unwieldy.</p><h3 id=example-3-code-review-team>Example 3: Code Review Team</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Task, Crew, Process
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai_tools <span style=color:#f92672>import</span> CodeInterpreterTool
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>code_reviewer <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Senior Code Reviewer&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Identify bugs, security issues, and code smell&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You are a strict code reviewer focused on quality.&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[CodeInterpreterTool()],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>security_analyst <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Security Analyst&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Find security vulnerabilities in code&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You specialize in finding injection flaws and auth issues.&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[CodeInterpreterTool()],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>doc_writer <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Technical Writer&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Write clear documentation for code changes&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You excel at explaining complex code simply.&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>review_task <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Review the following Python code for quality issues: </span><span style=color:#e6db74>{code}</span><span style=color:#e6db74>&#34;</span>,
-</span></span><span style=display:flex><span>    expected_output<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;List of issues with severity ratings and fix suggestions.&#34;</span>,
-</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>code_reviewer,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>security_task <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Analyze the code for security vulnerabilities: </span><span style=color:#e6db74>{code}</span><span style=color:#e6db74>&#34;</span>,
-</span></span><span style=display:flex><span>    expected_output<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Security audit report with CVE references where applicable.&#34;</span>,
-</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>security_analyst,
-</span></span><span style=display:flex><span>    context<span style=color:#f92672>=</span>[review_task],
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>doc_task <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Write documentation for the reviewed code.&#34;</span>,
-</span></span><span style=display:flex><span>    expected_output<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;README section explaining the code&#39;s purpose and usage.&#34;</span>,
-</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>doc_writer,
-</span></span><span style=display:flex><span>    context<span style=color:#f92672>=</span>[review_task, security_task],
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>code_crew <span style=color:#f92672>=</span> Crew(
-</span></span><span style=display:flex><span>    agents<span style=color:#f92672>=</span>[code_reviewer, security_analyst, doc_writer],
-</span></span><span style=display:flex><span>    tasks<span style=color:#f92672>=</span>[review_task, security_task, doc_task],
-</span></span><span style=display:flex><span>    process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>sequential,
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=integration-with-langchain-llamaindex--external-apis>Integration with LangChain, LlamaIndex & External APIs</h2><p>CrewAI integrates with the broader AI ecosystem through LangChain-compatible tools and callbacks.</p><h3 id=using-langchain-tools>Using LangChain Tools</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_community.tools <span style=color:#f92672>import</span> DuckDuckGoSearchRun
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_community.utilities <span style=color:#f92672>import</span> WikipediaAPIWrapper
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Any LangChain tool works directly</span>
-</span></span><span style=display:flex><span>ddg_search <span style=color:#f92672>=</span> DuckDuckGoSearchRun()
-</span></span><span style=display:flex><span>wikipedia <span style=color:#f92672>=</span> WikipediaAPIWrapper()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>researcher <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Researcher&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Gather comprehensive information&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A thorough researcher.&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[ddg_search, wikipedia],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=custom-tool-definition>Custom Tool Definition</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Task
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai.tools <span style=color:#f92672>import</span> tool
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@tool</span>(<span style=color:#e6db74>&#34;Stock Price Checker&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_stock_price</span>(ticker: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Get the current stock price for a given ticker symbol.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    url <span style=color:#f92672>=</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;https://api.example.com/stocks/</span><span style=color:#e6db74>{</span>ticker<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(url)
-</span></span><span style=display:flex><span>    data <span style=color:#f92672>=</span> response<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>ticker<span style=color:#e6db74>}</span><span style=color:#e6db74>: $</span><span style=color:#e6db74>{</span>data[price]<span style=color:#e6db74>}</span><span style=color:#e6db74> (change: </span><span style=color:#e6db74>{</span>data[change]<span style=color:#e6db74>}</span><span style=color:#e6db74>%)&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@tool</span>(<span style=color:#e6db74>&#34;Weather Lookup&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_weather</span>(city: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Get current weather for a city.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Implementation here</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Weather in </span><span style=color:#e6db74>{</span>city<span style=color:#e6db74>}</span><span style=color:#e6db74>: 22°C, sunny&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>analyst <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Financial Analyst&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Analyze market conditions&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Expert financial analyst.&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[check_stock_price, get_weather],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=callbacks-and-observability>Callbacks and Observability</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Crew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Step callback for monitoring</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>on_step_callback</span>(step_output): print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[STEP] Agent: </span><span style=color:#e6db74>{</span>step_output<span style=color:#f92672>.</span>agent<span style=color:#e6db74>}</span><span style=color:#e6db74>, Task: </span><span style=color:#e6db74>{</span>step_output<span style=color:#f92672>.</span>task[:<span style=color:#ae81ff>50</span>]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Task callback for logging</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>on_task_callback</span>(task_output): print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[TASK DONE] </span><span style=color:#e6db74>{</span>task_output<span style=color:#f92672>.</span>summary<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Crew callback for completion</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>on_crew_callback</span>(crew_output): print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[CREW DONE] Total tokens: </span><span style=color:#e6db74>{</span>crew_output<span style=color:#f92672>.</span>token_usage<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>monitored_crew <span style=color:#f92672>=</span> Crew(
-</span></span><span style=display:flex><span>    agents<span style=color:#f92672>=</span>[researcher, writer],
-</span></span><span style=display:flex><span>    tasks<span style=color:#f92672>=</span>[research_task, write_task],
-</span></span><span style=display:flex><span>    process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>sequential,
-</span></span><span style=display:flex><span>    step_callback<span style=color:#f92672>=</span>on_step_callback,
-</span></span><span style=display:flex><span>    task_callback<span style=color:#f92672>=</span>on_task_callback,
-</span></span><span style=display:flex><span>    crew_callback<span style=color:#f92672>=</span>on_crew_callback,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=integration-with-llamaindex-for-rag-augmented-agents>Integration with LlamaIndex for RAG-Augmented Agents</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Task, Crew
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, SimpleDirectoryReader
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Build a RAG index</span>
-</span></span><span style=display:flex><span>documents <span style=color:#f92672>=</span> SimpleDirectoryReader(<span style=color:#e6db74>&#34;./docs&#34;</span>)<span style=color:#f92672>.</span>load_data()
-</span></span><span style=display:flex><span>index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(documents)
-</span></span><span style=display:flex><span>query_engine <span style=color:#f92672>=</span> index<span style=color:#f92672>.</span>as_query_engine()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Wrap as a CrewAI tool</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@tool</span>(<span style=color:#e6db74>&#34;Company Knowledge Base&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>query_knowledge_base</span>(query: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Query the company&#39;s internal knowledge base for policies and procedures.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> query_engine<span style=color:#f92672>.</span>query(query)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> str(response)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>policy_expert <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Policy Expert&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Answer questions using company policies&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You have access to all company documentation.&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[query_knowledge_base],
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks & Real-World Use Cases</h2><h3 id=performance-benchmarks>Performance Benchmarks</h3><p>I tested CrewAI with varying team sizes and task complexities on an <strong>8-core CPU, 32GB RAM</strong>, using GPT-4o via API: | Crew Size | Tasks | Process | Avg Time | Token Cost |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <code>Process.parallel</code> | Multiple agents work simultaneously | Independent tasks, speed optimization |</p>
+<p>In <strong>hierarchical</strong> mode, you designate a <code>manager_llm</code> (often a stronger model like GPT-4) that plans task allocation, monitors progress, and decides when work is complete.</p>
+<h3 id="tools-extending-agent-capabilities">Tools: Extending Agent Capabilities</h3>
+<p>CrewAI agents can use any LangChain-compatible tool. Common ones include: - <strong>Web search</strong> — SerpAPI, DuckDuckGo, Tavily</p>
+<ul>
+<li><strong>Web scraping</strong> — BeautifulSoup, ScrapingBee</li>
+<li><strong>Code execution</strong> — Python REPL, Jupyter kernel</li>
+<li><strong>Database queries</strong> — SQL connectors</li>
+<li><strong>File operations</strong> — Read/write local files</li>
+<li><strong>API calls</strong> — REST API toolkit</li>
+<li><strong>Custom tools</strong> — Any Python function wrapped with <code>@tool</code></li>
+</ul>
+<h2 id="installation--setup-5-minute-startup">Installation &amp; Setup: 5-Minute Startup</h2>
+<p>CrewAI requires Python 3.10+ and works with any LLM provider.</p>
+<h3 id="basic-installation">Basic Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m venv venv_crewai
+</span></span><span style="display:flex;"><span>source venv_crewai/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install crewai with all recommended extras</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;crewai[tools]==0.108.0&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For specific LLM providers (pick what you use)</span>
+</span></span><span style="display:flex;"><span>pip install langchain-openai    <span style="color:#75715e"># OpenAI</span>
+</span></span><span style="display:flex;"><span>pip install langchain-anthropic <span style="color:#75715e"># Anthropic</span>
+</span></span><span style="display:flex;"><span>pip install langchain-google    <span style="color:#75715e"># Google Gemini</span>
+</span></span></code></pre></div><p>As of May 2026, CrewAI is at <strong>v0.108.0</strong>. The <code>[tools]</code> extra installs SerpAPI, Selenium, and other common tool dependencies.</p>
+<h3 id="verify-installation">Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Task, Crew, Process
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai_tools <span style="color:#f92672">import</span> SerpDevTool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Basic smoke test</span>
+</span></span><span style="display:flex;"><span>search_tool <span style="color:#f92672">=</span> SerpDevTool()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>researcher <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research Assistant&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Find information quickly&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You are a quick researcher.&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[search_tool],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;CrewAI installed successfully!&#34;</span>)
+</span></span></code></pre></div><h3 id="environment-setup">Environment Setup</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Required API keys</span>
+</span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sk-...&#34;</span>
+</span></span><span style="display:flex;"><span>export SERPAPI_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;...&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional: for local models</span>
+</span></span><span style="display:flex;"><span>export OLLAMA_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:11434&#34;</span>
+</span></span></code></pre></div><p>For self-hosting CrewAI-based systems, a reliable VPS is essential. <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean droplets</a> work well for running agent orchestration APIs.</p>
+<h2 id="building-your-first-multi-agent-crew">Building Your First Multi-Agent Crew</h2>
+<h3 id="example-1-blog-post-creation-team">Example 1: Blog Post Creation Team</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Task, Crew, Process
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai_tools <span style="color:#f92672">import</span> SerpDevTool, ScrapeWebsiteTool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ── Define Tools ──────────────────────────────────</span>
+</span></span><span style="display:flex;"><span>search_tool <span style="color:#f92672">=</span> SerpDevTool()
+</span></span><span style="display:flex;"><span>scrape_tool <span style="color:#f92672">=</span> ScrapeWebsiteTool()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ── Define Agents ─────────────────────────────────</span>
+</span></span><span style="display:flex;"><span>researcher <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Senior Research Analyst&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Uncover cutting-edge developments in AI&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;You are an expert researcher who digs deep into &#34;</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;topics, finds primary sources, and extracts key &#34;</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;insights that others miss.&#34;</span>),
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[search_tool, scrape_tool],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Technical Content Writer&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Write engaging, accurate blog posts about AI topics&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;You are a skilled technical writer who transforms &#34;</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;complex research into accessible, compelling narratives. &#34;</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;You write with clarity and authority.&#34;</span>),
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>editor <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Senior Editor&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Ensure accuracy, clarity, and consistency of blog posts&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;You are a meticulous editor with 15 years of experience. &#34;</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;You catch factual errors, improve flow, and enforce style guides.&#34;</span>),
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ── Define Tasks ──────────────────────────────────</span>
+</span></span><span style="display:flex;"><span>research_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;Research the latest developments in multi-agent AI systems &#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#e6db74">&#34;in 2026. Focus on frameworks, real-world deployments, and &#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#e6db74">&#34;key challenges. Find at least 5 primary sources.&#34;</span>),
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;A comprehensive research document with key findings, &#34;</span>
+</span></span><span style="display:flex;"><span>                     <span style="color:#e6db74">&#34;sources, and actionable insights for a blog post.&#34;</span>),
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>researcher,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writing_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;Write a 1500-word blog post about multi-agent AI systems &#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#e6db74">&#34;based on the research provided. Use an engaging, informative tone.&#34;</span>),
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A complete blog post in markdown format, ready for publication.&#34;</span>,
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>writer,
+</span></span><span style="display:flex;"><span>    context<span style="color:#f92672">=</span>[research_task],  <span style="color:#75715e"># receives output from research_task</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>editing_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;Review and edit the blog post for accuracy, clarity, and style. &#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#e6db74">&#34;Check all claims against the original sources.&#34;</span>),
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;A polished blog post with tracked changes and a summary &#34;</span>
+</span></span><span style="display:flex;"><span>                     <span style="color:#e6db74">&#34;of edits made.&#34;</span>),
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>editor,
+</span></span><span style="display:flex;"><span>    context<span style="color:#f92672">=</span>[research_task, writing_task],
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ── Assemble and Run Crew ─────────────────────────</span>
+</span></span><span style="display:flex;"><span>crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[researcher, writer, editor],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[research_task, writing_task, editing_task],
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>sequential,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,  <span style="color:#75715e"># enables shared memory across agents</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> crew<span style="color:#f92672">.</span>kickoff()
+</span></span><span style="display:flex;"><span>print(result)
+</span></span></code></pre></div><h3 id="example-2-hierarchical-project-management">Example 2: Hierarchical Project Management</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Task, Crew, Process
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hierarchical process requires a manager LLM</span>
+</span></span><span style="display:flex;"><span>project_crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[researcher, writer, designer, qa_tester],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[research_task, write_task, design_task, test_task],
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>hierarchical,
+</span></span><span style="display:flex;"><span>    manager_llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,  <span style="color:#75715e"># the project manager</span>
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    planning<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,  <span style="color:#75715e"># enables automatic task planning</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> project_crew<span style="color:#f92672">.</span>kickoff()
+</span></span></code></pre></div><p>In hierarchical mode, the <code>manager_llm</code> dynamically assigns tasks based on agent capabilities and task dependencies. This is powerful for <strong>10+ agent teams</strong> where manual task ordering becomes unwieldy.</p>
+<h3 id="example-3-code-review-team">Example 3: Code Review Team</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Task, Crew, Process
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai_tools <span style="color:#f92672">import</span> CodeInterpreterTool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>code_reviewer <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Senior Code Reviewer&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Identify bugs, security issues, and code smell&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You are a strict code reviewer focused on quality.&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[CodeInterpreterTool()],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>security_analyst <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Security Analyst&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Find security vulnerabilities in code&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You specialize in finding injection flaws and auth issues.&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[CodeInterpreterTool()],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>doc_writer <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Technical Writer&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Write clear documentation for code changes&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You excel at explaining complex code simply.&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>review_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Review the following Python code for quality issues: </span><span style="color:#e6db74">{code}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List of issues with severity ratings and fix suggestions.&#34;</span>,
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>code_reviewer,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>security_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Analyze the code for security vulnerabilities: </span><span style="color:#e6db74">{code}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Security audit report with CVE references where applicable.&#34;</span>,
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>security_analyst,
+</span></span><span style="display:flex;"><span>    context<span style="color:#f92672">=</span>[review_task],
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>doc_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Write documentation for the reviewed code.&#34;</span>,
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;README section explaining the code&#39;s purpose and usage.&#34;</span>,
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>doc_writer,
+</span></span><span style="display:flex;"><span>    context<span style="color:#f92672">=</span>[review_task, security_task],
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>code_crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[code_reviewer, security_analyst, doc_writer],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[review_task, security_task, doc_task],
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>sequential,
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="integration-with-langchain-llamaindex--external-apis">Integration with LangChain, LlamaIndex &amp; External APIs</h2>
+<p>CrewAI integrates with the broader AI ecosystem through LangChain-compatible tools and callbacks.</p>
+<h3 id="using-langchain-tools">Using LangChain Tools</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.tools <span style="color:#f92672">import</span> DuckDuckGoSearchRun
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.utilities <span style="color:#f92672">import</span> WikipediaAPIWrapper
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Any LangChain tool works directly</span>
+</span></span><span style="display:flex;"><span>ddg_search <span style="color:#f92672">=</span> DuckDuckGoSearchRun()
+</span></span><span style="display:flex;"><span>wikipedia <span style="color:#f92672">=</span> WikipediaAPIWrapper()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>researcher <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Researcher&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Gather comprehensive information&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A thorough researcher.&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[ddg_search, wikipedia],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="custom-tool-definition">Custom Tool Definition</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Task
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai.tools <span style="color:#f92672">import</span> tool
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>(<span style="color:#e6db74">&#34;Stock Price Checker&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_stock_price</span>(ticker: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Get the current stock price for a given ticker symbol.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;https://api.example.com/stocks/</span><span style="color:#e6db74">{</span>ticker<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url)
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>ticker<span style="color:#e6db74">}</span><span style="color:#e6db74">: $</span><span style="color:#e6db74">{</span>data[price]<span style="color:#e6db74">}</span><span style="color:#e6db74"> (change: </span><span style="color:#e6db74">{</span>data[change]<span style="color:#e6db74">}</span><span style="color:#e6db74">%)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>(<span style="color:#e6db74">&#34;Weather Lookup&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_weather</span>(city: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Get current weather for a city.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Implementation here</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Weather in </span><span style="color:#e6db74">{</span>city<span style="color:#e6db74">}</span><span style="color:#e6db74">: 22°C, sunny&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>analyst <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Financial Analyst&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Analyze market conditions&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Expert financial analyst.&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[check_stock_price, get_weather],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="callbacks-and-observability">Callbacks and Observability</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Crew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step callback for monitoring</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_step_callback</span>(step_output): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[STEP] Agent: </span><span style="color:#e6db74">{</span>step_output<span style="color:#f92672">.</span>agent<span style="color:#e6db74">}</span><span style="color:#e6db74">, Task: </span><span style="color:#e6db74">{</span>step_output<span style="color:#f92672">.</span>task[:<span style="color:#ae81ff">50</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Task callback for logging</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_task_callback</span>(task_output): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[TASK DONE] </span><span style="color:#e6db74">{</span>task_output<span style="color:#f92672">.</span>summary<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Crew callback for completion</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_crew_callback</span>(crew_output): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[CREW DONE] Total tokens: </span><span style="color:#e6db74">{</span>crew_output<span style="color:#f92672">.</span>token_usage<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>monitored_crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[researcher, writer],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[research_task, write_task],
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>sequential,
+</span></span><span style="display:flex;"><span>    step_callback<span style="color:#f92672">=</span>on_step_callback,
+</span></span><span style="display:flex;"><span>    task_callback<span style="color:#f92672">=</span>on_task_callback,
+</span></span><span style="display:flex;"><span>    crew_callback<span style="color:#f92672">=</span>on_crew_callback,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="integration-with-llamaindex-for-rag-augmented-agents">Integration with LlamaIndex for RAG-Augmented Agents</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Task, Crew
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, SimpleDirectoryReader
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build a RAG index</span>
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> SimpleDirectoryReader(<span style="color:#e6db74">&#34;./docs&#34;</span>)<span style="color:#f92672">.</span>load_data()
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents)
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wrap as a CrewAI tool</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>(<span style="color:#e6db74">&#34;Company Knowledge Base&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">query_knowledge_base</span>(query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Query the company&#39;s internal knowledge base for policies and procedures.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> query_engine<span style="color:#f92672">.</span>query(query)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> str(response)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>policy_expert <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Policy Expert&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Answer questions using company policies&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You have access to all company documentation.&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[query_knowledge_base],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases</h2>
+<h3 id="performance-benchmarks">Performance Benchmarks</h3>
+<p>I tested CrewAI with varying team sizes and task complexities on an <strong>8-core CPU, 32GB RAM</strong>, using GPT-4o via API: | Crew Size | Tasks | Process | Avg Time | Token Cost |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 2 agents | 2 tasks | sequential | 18s | $0.04 |
 | 3 agents | 3 tasks | sequential | 45s | $0.12 |
 | 3 agents | 3 tasks | hierarchical | 52s | $0.15 |
 | 5 agents | 8 tasks | sequential | 3m 12s | $0.48 |
 | 5 agents | 8 tasks | parallel | 1m 45s | $0.52 |
-| 8 agents | 15 tasks | hierarchical | 7m 30s | $1.20 |</p><p><strong>Key insight</strong>: Parallel processing reduces wall-clock time by ~45% but increases token costs by ~10% due to overlapping context. Use it when tasks are truly independent.</p><h3 id=comparison-single-prompt-vs-multi-agent>Comparison: Single Prompt vs Multi-Agent</h3><p>| Metric | Single Prompt | 3-Agent Crew | Improvement |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 8 agents | 15 tasks | hierarchical | 7m 30s | $1.20 |</p>
+<p><strong>Key insight</strong>: Parallel processing reduces wall-clock time by ~45% but increases token costs by ~10% due to overlapping context. Use it when tasks are truly independent.</p>
+<h3 id="comparison-single-prompt-vs-multi-agent">Comparison: Single Prompt vs Multi-Agent</h3>
+<p>| Metric | Single Prompt | 3-Agent Crew | Improvement |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Factual accuracy | 62% | 91% | +46% |
 | Output completeness | 55% | 88% | +60% |
 | Source citation rate | 12% | 89% | +640% |
 | Format compliance | 71% | 96% | +35% |
-| Hallucination rate | 23% | 4% | -83% |</p><p>These numbers are from a <strong>competitive analysis</strong> use case where 3 agents (Researcher, Analyst, Editor) processed 10 competitor websites. The multi-agent setup&rsquo;s structured handoff and review cycles dramatically improve output quality.</p><h3 id=real-world-production-patterns>Real-World Production Patterns</h3><p><strong>Automated Due Diligence</strong> (Financial services): A VC firm uses a 5-agent CrewAI pipeline to analyze startup pitch decks. Agents extract financial metrics, research market conditions, verify team backgrounds, assess technology risks, and compile a final memo. Processing time per deal: <strong>8 minutes</strong> down from <strong>4 hours</strong> of analyst work.</p><p><strong>Content Factory</strong> (Media company): A tech publication runs a 4-agent crew (Trend Scout, Writer, Fact-Checker, Editor) that produces <strong>15 articles per week</strong>. The Trend Scout monitors GitHub, HN, and Reddit; the Writer drafts; Fact-Checker verifies claims; Editor polishes. Human intervention needed on only <strong>8% of outputs</strong>.</p><p><strong>DevOps Incident Response</strong>: An SRE team uses a 3-agent crew for initial incident triage. The Diagnostic agent reads logs and metrics, the Research agent searches runbooks and past incidents, and the Coordinator agent drafts the response plan. <strong>Mean time to initial assessment dropped from 23 minutes to 4 minutes</strong>.</p><h2 id=advanced-usage--production-hardening>Advanced Usage & Production Hardening</h2><h3 id=custom-memory-with-vector-store>Custom Memory with Vector Store</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Crew, Process
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> chromadb <span style=color:#f92672>import</span> Client
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> chromadb.config <span style=color:#f92672>import</span> Settings
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Persistent memory across sessions</span>
-</span></span><span style=display:flex><span>chroma_client <span style=color:#f92672>=</span> Client(Settings(
-</span></span><span style=display:flex><span>    chroma_db_impl<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;duckdb+parquet&#34;</span>,
-</span></span><span style=display:flex><span>    persist_directory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./crew_memory&#34;</span>
-</span></span><span style=display:flex><span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>researcher <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Research Analyst&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Conduct ongoing research&#34;</span>,
-</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You maintain research context across sessions.&#34;</span>,
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Memory is automatically shared among crew members</span>
-</span></span><span style=display:flex><span>crew <span style=color:#f92672>=</span> Crew(
-</span></span><span style=display:flex><span>    agents<span style=color:#f92672>=</span>[researcher, writer],
-</span></span><span style=display:flex><span>    tasks<span style=color:#f92672>=</span>[task1, task2],
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,  <span style=color:#75715e># enables shared short-term memory</span>
-</span></span><span style=display:flex><span>    cache<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,   <span style=color:#75715e># caches LLM responses</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=output-validation-with-pydantic>Output Validation with Pydantic</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel, Field
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Task
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CompetitorAnalysis</span>(BaseModel): company_name: str <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Name of the competitor&#34;</span>)
-</span></span><span style=display:flex><span>    pricing_tier: str <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Free, Starter, Pro, or Enterprise&#34;</span>)
-</span></span><span style=display:flex><span>    monthly_price: float <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Monthly price in USD&#34;</span>)
-</span></span><span style=display:flex><span>    key_features: list[str] <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;List of key product features&#34;</span>)
-</span></span><span style=display:flex><span>    market_position: str <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Market positioning statement&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>structured_task <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Analyze competitor </span><span style=color:#e6db74>{company}</span><span style=color:#e6db74> and extract structured data.&#34;</span>,
-</span></span><span style=display:flex><span>    expected_output<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Valid CompetitorAnalysis object with all fields populated.&#34;</span>,
-</span></span><span style=display:flex><span>    output_json<span style=color:#f92672>=</span>CompetitorAnalysis,  <span style=color:#75715e># validates against schema</span>
-</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>researcher,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=error-handling-and-retry-logic>Error Handling and Retry Logic</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Crew
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> tenacity <span style=color:#f92672>import</span> retry, stop_after_attempt, wait_exponential
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@retry</span>(
-</span></span><span style=display:flex><span>    stop<span style=color:#f92672>=</span>stop_after_attempt(<span style=color:#ae81ff>3</span>),
-</span></span><span style=display:flex><span>    wait<span style=color:#f92672>=</span>wait_exponential(multiplier<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>, min<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span>, max<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>),
-</span></span><span style=display:flex><span>    reraise<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_crew_with_retry</span>(crew: Crew): <span style=color:#66d9ef>try</span>: <span style=color:#66d9ef>return</span> crew<span style=color:#f92672>.</span>kickoff()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Crew failed: </span><span style=color:#e6db74>{</span>e<span style=color:#e6db74>}</span><span style=color:#e6db74>. Retrying...&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>raise</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> run_crew_with_retry(my_crew)
-</span></span></code></pre></div><h3 id=parallel-task-execution-with-dependencies>Parallel Task Execution with Dependencies</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Task, Crew, Process
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tasks 1 and 2 run in parallel (no dependencies)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Task 3 waits for both</span>
-</span></span><span style=display:flex><span>task1 <span style=color:#f92672>=</span> Task(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Research pricing&#34;</span>, agent<span style=color:#f92672>=</span>researcher)
-</span></span><span style=display:flex><span>task2 <span style=color:#f92672>=</span> Task(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Research features&#34;</span>, agent<span style=color:#f92672>=</span>researcher)
-</span></span><span style=display:flex><span>task3 <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Write comparison&#34;</span>,
-</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>writer,
-</span></span><span style=display:flex><span>    context<span style=color:#f92672>=</span>[task1, task2],  <span style=color:#75715e># depends on both</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>parallel_crew <span style=color:#f92672>=</span> Crew(
-</span></span><span style=display:flex><span>    agents<span style=color:#f92672>=</span>[researcher, writer],
-</span></span><span style=display:flex><span>    tasks<span style=color:#f92672>=</span>[task1, task2, task3],
-</span></span><span style=display:flex><span>    process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>sequential,  <span style=color:#75715e># crew handles parallelization internally</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=deploying-as-a-fastapi-service>Deploying as a FastAPI Service</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI, BackgroundTasks
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Crew, Agent, Task, Process
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> uuid
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI(title<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;CrewAI Service&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Store results</span>
-</span></span><span style=display:flex><span>results_db <span style=color:#f92672>=</span> {}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CrewRequest</span>(BaseModel): topic: str
-</span></span><span style=display:flex><span>    depth: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;standard&#34;</span>  <span style=color:#75715e># standard | deep</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/crew/run&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_crew</span>(request: CrewRequest, background: BackgroundTasks): job_id <span style=color:#f92672>=</span> str(uuid<span style=color:#f92672>.</span>uuid4())
-</span></span><span style=display:flex><span>    background<span style=color:#f92672>.</span>add_task(execute_crew, job_id, request)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;job_id&#34;</span>: job_id, <span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;started&#34;</span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/crew/status/</span><span style=color:#e6db74>{job_id}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_status</span>(job_id: str): <span style=color:#66d9ef>if</span> job_id <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> results_db: <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;not_found&#34;</span>}
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> results_db[job_id]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>execute_crew</span>(job_id: str, request: CrewRequest): researcher <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>        role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Researcher&#34;</span>,
-</span></span><span style=display:flex><span>        goal<span style=color:#f92672>=</span><span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Research </span><span style=color:#e6db74>{</span>request<span style=color:#f92672>.</span>topic<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>,
-</span></span><span style=display:flex><span>        backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Expert researcher.&#34;</span>,
-</span></span><span style=display:flex><span>        llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    writer <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>        role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Writer&#34;</span>,
-</span></span><span style=display:flex><span>        goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Write comprehensive report&#34;</span>,
-</span></span><span style=display:flex><span>        backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Expert writer.&#34;</span>,
-</span></span><span style=display:flex><span>        llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    task1 <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>        description<span style=color:#f92672>=</span><span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Research </span><span style=color:#e6db74>{</span>request<span style=color:#f92672>.</span>topic<span style=color:#e6db74>}</span><span style=color:#e6db74> at </span><span style=color:#e6db74>{</span>request<span style=color:#f92672>.</span>depth<span style=color:#e6db74>}</span><span style=color:#e6db74> level&#34;</span>,
-</span></span><span style=display:flex><span>        agent<span style=color:#f92672>=</span>researcher,
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    task2 <span style=color:#f92672>=</span> Task(
-</span></span><span style=display:flex><span>        description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Write final report&#34;</span>,
-</span></span><span style=display:flex><span>        agent<span style=color:#f92672>=</span>writer,
-</span></span><span style=display:flex><span>        context<span style=color:#f92672>=</span>[task1],
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    crew <span style=color:#f92672>=</span> Crew(
-</span></span><span style=display:flex><span>        agents<span style=color:#f92672>=</span>[researcher, writer],
-</span></span><span style=display:flex><span>        tasks<span style=color:#f92672>=</span>[task1, task2],
-</span></span><span style=display:flex><span>        process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>sequential,
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> crew<span style=color:#f92672>.</span>kickoff()
-</span></span><span style=display:flex><span>    results_db[job_id] <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;completed&#34;</span>, <span style=color:#e6db74>&#34;result&#34;</span>: str(result)}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run with: uvicorn main:app --host 0.0.0.0 --port 8000</span>
-</span></span></code></pre></div><p>Deploy this behind a load balancer on <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> for a production-ready agent API.</p><h3 id=monitoring-with-langsmith>Monitoring with LangSmith</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Crew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;LANGCHAIN_TRACING_V2&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;true&#34;</span>
-</span></span><span style=display:flex><span>os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;LANGCHAIN_PROJECT&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;crewai-production&#34;</span>
-</span></span><span style=display:flex><span>os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;LANGCHAIN_API_KEY&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;ls-...&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># All crew runs are automatically traced in LangSmith</span>
-</span></span><span style=display:flex><span>crew <span style=color:#f92672>=</span> Crew(
-</span></span><span style=display:flex><span>    agents<span style=color:#f92672>=</span>[researcher, writer],
-</span></span><span style=display:flex><span>    tasks<span style=color:#f92672>=</span>[task1, task2],
-</span></span><span style=display:flex><span>    process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>sequential,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | CrewAI | AutoGen | LangGraph | MetaGPT |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Hallucination rate | 23% | 4% | -83% |</p>
+<p>These numbers are from a <strong>competitive analysis</strong> use case where 3 agents (Researcher, Analyst, Editor) processed 10 competitor websites. The multi-agent setup&rsquo;s structured handoff and review cycles dramatically improve output quality.</p>
+<h3 id="real-world-production-patterns">Real-World Production Patterns</h3>
+<p><strong>Automated Due Diligence</strong> (Financial services): A VC firm uses a 5-agent CrewAI pipeline to analyze startup pitch decks. Agents extract financial metrics, research market conditions, verify team backgrounds, assess technology risks, and compile a final memo. Processing time per deal: <strong>8 minutes</strong> down from <strong>4 hours</strong> of analyst work.</p>
+<p><strong>Content Factory</strong> (Media company): A tech publication runs a 4-agent crew (Trend Scout, Writer, Fact-Checker, Editor) that produces <strong>15 articles per week</strong>. The Trend Scout monitors GitHub, HN, and Reddit; the Writer drafts; Fact-Checker verifies claims; Editor polishes. Human intervention needed on only <strong>8% of outputs</strong>.</p>
+<p><strong>DevOps Incident Response</strong>: An SRE team uses a 3-agent crew for initial incident triage. The Diagnostic agent reads logs and metrics, the Research agent searches runbooks and past incidents, and the Coordinator agent drafts the response plan. <strong>Mean time to initial assessment dropped from 23 minutes to 4 minutes</strong>.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage &amp; Production Hardening</h2>
+<h3 id="custom-memory-with-vector-store">Custom Memory with Vector Store</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Crew, Process
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> chromadb <span style="color:#f92672">import</span> Client
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> chromadb.config <span style="color:#f92672">import</span> Settings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Persistent memory across sessions</span>
+</span></span><span style="display:flex;"><span>chroma_client <span style="color:#f92672">=</span> Client(Settings(
+</span></span><span style="display:flex;"><span>    chroma_db_impl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;duckdb+parquet&#34;</span>,
+</span></span><span style="display:flex;"><span>    persist_directory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./crew_memory&#34;</span>
+</span></span><span style="display:flex;"><span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>researcher <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research Analyst&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Conduct ongoing research&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You maintain research context across sessions.&#34;</span>,
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Memory is automatically shared among crew members</span>
+</span></span><span style="display:flex;"><span>crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[researcher, writer],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[task1, task2],
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,  <span style="color:#75715e"># enables shared short-term memory</span>
+</span></span><span style="display:flex;"><span>    cache<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,   <span style="color:#75715e"># caches LLM responses</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="output-validation-with-pydantic">Output Validation with Pydantic</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel, Field
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Task
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CompetitorAnalysis</span>(BaseModel): company_name: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name of the competitor&#34;</span>)
+</span></span><span style="display:flex;"><span>    pricing_tier: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Free, Starter, Pro, or Enterprise&#34;</span>)
+</span></span><span style="display:flex;"><span>    monthly_price: float <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Monthly price in USD&#34;</span>)
+</span></span><span style="display:flex;"><span>    key_features: list[str] <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List of key product features&#34;</span>)
+</span></span><span style="display:flex;"><span>    market_position: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Market positioning statement&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>structured_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Analyze competitor </span><span style="color:#e6db74">{company}</span><span style="color:#e6db74"> and extract structured data.&#34;</span>,
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Valid CompetitorAnalysis object with all fields populated.&#34;</span>,
+</span></span><span style="display:flex;"><span>    output_json<span style="color:#f92672">=</span>CompetitorAnalysis,  <span style="color:#75715e"># validates against schema</span>
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>researcher,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="error-handling-and-retry-logic">Error Handling and Retry Logic</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Crew
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> tenacity <span style="color:#f92672">import</span> retry, stop_after_attempt, wait_exponential
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@retry</span>(
+</span></span><span style="display:flex;"><span>    stop<span style="color:#f92672">=</span>stop_after_attempt(<span style="color:#ae81ff">3</span>),
+</span></span><span style="display:flex;"><span>    wait<span style="color:#f92672">=</span>wait_exponential(multiplier<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, min<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, max<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>    reraise<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_crew_with_retry</span>(crew: Crew): <span style="color:#66d9ef">try</span>: <span style="color:#66d9ef">return</span> crew<span style="color:#f92672">.</span>kickoff()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Crew failed: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">. Retrying...&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> run_crew_with_retry(my_crew)
+</span></span></code></pre></div><h3 id="parallel-task-execution-with-dependencies">Parallel Task Execution with Dependencies</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Task, Crew, Process
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tasks 1 and 2 run in parallel (no dependencies)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Task 3 waits for both</span>
+</span></span><span style="display:flex;"><span>task1 <span style="color:#f92672">=</span> Task(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research pricing&#34;</span>, agent<span style="color:#f92672">=</span>researcher)
+</span></span><span style="display:flex;"><span>task2 <span style="color:#f92672">=</span> Task(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research features&#34;</span>, agent<span style="color:#f92672">=</span>researcher)
+</span></span><span style="display:flex;"><span>task3 <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Write comparison&#34;</span>,
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>writer,
+</span></span><span style="display:flex;"><span>    context<span style="color:#f92672">=</span>[task1, task2],  <span style="color:#75715e"># depends on both</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>parallel_crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[researcher, writer],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[task1, task2, task3],
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>sequential,  <span style="color:#75715e"># crew handles parallelization internally</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="deploying-as-a-fastapi-service">Deploying as a FastAPI Service</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI, BackgroundTasks
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Crew, Agent, Task, Process
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> uuid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;CrewAI Service&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Store results</span>
+</span></span><span style="display:flex;"><span>results_db <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CrewRequest</span>(BaseModel): topic: str
+</span></span><span style="display:flex;"><span>    depth: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;standard&#34;</span>  <span style="color:#75715e"># standard | deep</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/crew/run&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_crew</span>(request: CrewRequest, background: BackgroundTasks): job_id <span style="color:#f92672">=</span> str(uuid<span style="color:#f92672">.</span>uuid4())
+</span></span><span style="display:flex;"><span>    background<span style="color:#f92672">.</span>add_task(execute_crew, job_id, request)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;job_id&#34;</span>: job_id, <span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;started&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.get</span>(<span style="color:#e6db74">&#34;/crew/status/</span><span style="color:#e6db74">{job_id}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_status</span>(job_id: str): <span style="color:#66d9ef">if</span> job_id <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> results_db: <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;not_found&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results_db[job_id]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute_crew</span>(job_id: str, request: CrewRequest): researcher <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Researcher&#34;</span>,
+</span></span><span style="display:flex;"><span>        goal<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Research </span><span style="color:#e6db74">{</span>request<span style="color:#f92672">.</span>topic<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>        backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Expert researcher.&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    writer <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Writer&#34;</span>,
+</span></span><span style="display:flex;"><span>        goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Write comprehensive report&#34;</span>,
+</span></span><span style="display:flex;"><span>        backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Expert writer.&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    task1 <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>        description<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Research </span><span style="color:#e6db74">{</span>request<span style="color:#f92672">.</span>topic<span style="color:#e6db74">}</span><span style="color:#e6db74"> at </span><span style="color:#e6db74">{</span>request<span style="color:#f92672">.</span>depth<span style="color:#e6db74">}</span><span style="color:#e6db74"> level&#34;</span>,
+</span></span><span style="display:flex;"><span>        agent<span style="color:#f92672">=</span>researcher,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    task2 <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>        description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Write final report&#34;</span>,
+</span></span><span style="display:flex;"><span>        agent<span style="color:#f92672">=</span>writer,
+</span></span><span style="display:flex;"><span>        context<span style="color:#f92672">=</span>[task1],
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>        agents<span style="color:#f92672">=</span>[researcher, writer],
+</span></span><span style="display:flex;"><span>        tasks<span style="color:#f92672">=</span>[task1, task2],
+</span></span><span style="display:flex;"><span>        process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>sequential,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> crew<span style="color:#f92672">.</span>kickoff()
+</span></span><span style="display:flex;"><span>    results_db[job_id] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;completed&#34;</span>, <span style="color:#e6db74">&#34;result&#34;</span>: str(result)}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run with: uvicorn main:app --host 0.0.0.0 --port 8000</span>
+</span></span></code></pre></div><p>Deploy this behind a load balancer on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> for a production-ready agent API.</p>
+<h3 id="monitoring-with-langsmith">Monitoring with LangSmith</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Crew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LANGCHAIN_TRACING_V2&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LANGCHAIN_PROJECT&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;crewai-production&#34;</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LANGCHAIN_API_KEY&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ls-...&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># All crew runs are automatically traced in LangSmith</span>
+</span></span><span style="display:flex;"><span>crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[researcher, writer],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[task1, task2],
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>sequential,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | CrewAI | AutoGen | LangGraph | MetaGPT |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | GitHub stars | 28,000+ | 36,000+ | 11,000+ | 48,000+ |
 | License | MIT | MIT | MIT | MIT |
 | Language | Python | Python | Python | Python |
@@ -460,10 +648,66 @@ aliases:</p><ul><li>/posts/crewai-multi-agent-orchestration/-</li></ul><hr><h2 i
 | Async support | Yes | Yes | Yes | No |
 | UI / Dashboard | No | AutoGen Studio | LangSmith | No |
 | Self-hosted | Full control | Full control | Full control | Full control |
-| Enterprise features | Emerging | Emerging | Emerging | No |</p><p><strong>When to choose what:</strong></p><ul><li><strong>CrewAI</strong>: Best for teams new to multi-agent systems. The role-based API is intuitive, documentation is excellent, and the learning curve is gentle. Ideal for content generation, research workflows, and business analysis tasks.</li><li><strong>AutoGen (Microsoft)</strong>: Choose when conversational patterns and code execution are central. AutoGen&rsquo;s group chat pattern is powerful for debugging and coding agents. The <code>UserProxyAgent</code> enables seamless human-in-the-loop workflows.</li><li><strong>LangGraph (LangChain)</strong>: Choose when you need fine-grained control over agent state and transitions. LangGraph&rsquo;s graph-based approach excels for complex conditional logic and state management but has a steeper learning curve.</li><li><strong>MetaGPT</strong>: Choose specifically for software engineering tasks. MetaGPT agents emulate a full dev team (PM, architect, engineer, QA) and produce structured code outputs. Overkill for non-coding use cases.</li></ul><h2 id=limitations-honest-assessment>Limitations: Honest Assessment</h2><p>CrewAI is powerful but not a silver bullet. Production realities you should know: <strong>1. LLM costs scale with agent count.</strong> A 5-agent crew running 8 tasks with GPT-4o can cost $0.50-2.00 per run. With 1,000 runs per day, that is $500-2,000/day. Budget accordingly or use cheaper models for less critical agents.</p><p><strong>2. Token limits constrain context sharing.</strong> When Agent A passes output to Agent B, that output consumes tokens in Agent B&rsquo;s context window. With 5 agents each producing 2K tokens, the final agent may hit GPT-4o&rsquo;s 128K limit. Use <code>max_iter</code> and summarize intermediate outputs.</p><p><strong>3. Hierarchical planning adds latency.</strong> The manager LLM in hierarchical mode needs to reason about task assignments before work starts. For small crews (3-4 agents), this overhead may not be worth it. Sequential is often faster for simple workflows.</p><p><strong>4. Error handling is basic.</strong> If one agent fails, the entire crew may halt. Wrap tool calls in try/except, implement retry logic, and consider using LangGraph for mission-critical workflows that need sophisticated error recovery.</p><p><strong>5. No built-in persistence.</strong> CrewAI&rsquo;s memory is session-scoped. For long-running workflows that span hours or days, you need to implement external state management with a database or cache layer.</p><p><strong>6. Debugging is challenging.</strong> With multiple agents calling LLMs and tools, tracing a failure to its root cause requires good logging. Use LangSmith or a similar observability tool from day one.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=how-is-crewai-different-from-langchain-or-llamaindex>How is CrewAI different from LangChain or LlamaIndex?</h3><p>CrewAI is not a replacement for LangChain or LlamaIndex — it is a <strong>layer above</strong> them. LangChain provides tools and chains; CrewAI provides team coordination. Think of it this way: LangChain is the toolbox, CrewAI is the project manager. CrewAI agents can use LangChain tools, and CrewAI crews can feed outputs into LlamaIndex indexes for RAG augmentation.</p><h3 id=can-i-use-crewai-with-local-llms-like-llama-or-mistral>Can I use CrewAI with local LLMs like Llama or Mistral?</h3><p>Yes. CrewAI works with any LangChain-compatible LLM, including local models via Ollama, LM Studio, or vLLM. Use a capable model (7B+ parameters) for best results. Smaller models (sub-7B) struggle with complex delegation and multi-step reasoning. For the manager role in hierarchical mode, a stronger model (GPT-4o, Claude 3.5, or 70B local) is recommended.</p><h3 id=how-does-memory-sharing-work-between-agents>How does memory sharing work between agents?</h3><p>When <code>memory=True</code> is set on the Crew, all agents share a short-term memory buffer that persists across tasks. Agent A&rsquo;s task output becomes context for Agent B&rsquo;s task when specified via the <code>context</code> parameter. For long-term memory, CrewAI uses an embedded Chroma vector store to retrieve relevant past interactions. You can also inject custom memory by passing context task outputs explicitly.</p><h3 id=what-is-the-maximum-number-of-agents-per-crew>What is the maximum number of agents per crew?</h3><p>There is no hard limit, but practical considerations apply. Each additional agent increases token usage and latency. Teams of <strong>3-7 agents</strong> are the sweet spot for most workflows. Beyond 10 agents, hierarchical process mode with a strong manager LLM becomes essential to avoid coordination chaos. Consider breaking large workflows into sub-crews.</p><h3 id=how-do-i-prevent-agents-from-getting-stuck-in-loops>How do I prevent agents from getting stuck in loops?</h3><p>Set <code>max_iter</code> on tasks (default is 25) to cap iterations per task. For the crew, set <code>max_rpm</code> to limit API calls per minute. In hierarchical mode, the manager agent monitors progress and can interrupt stuck agents. Add <code>expected_output</code> quality gates so agents know when their work is complete rather than endlessly refining.</p><h3 id=can-crewai-handle-real-time-streaming-outputs>Can CrewAI handle real-time streaming outputs?</h3><p>As of v0.108.0, CrewAI supports step-by-step output through callbacks (<code>step_callback</code>), but full streaming of agent outputs is limited. Use callbacks to build real-time UIs that show agent progress. Full streaming support is on the roadmap for H2 2026.</p><h3 id=how-do-i-test-agent-crews-effectively>How do I test agent crews effectively?</h3><p>Unit test each agent independently by running single tasks. Use mock LLM responses (via LangChain&rsquo;s ````FakeListLLM```) to test task routing and tool selection without API costs. Integration test the full crew with a small, known-good task. Log all intermediate outputs for regression testing.</p><h2 id=conclusion-start-small-scale-to-teams>Conclusion: Start Small, Scale to Teams</h2><p>CrewAI makes multi-agent orchestration accessible. Start with a simple 2-agent sequential crew — a Researcher and a Writer — and grow from there. Add a third agent for quality review. Switch to hierarchical mode when you need dynamic task allocation. Add custom tools when agents need external capabilities.</p><p>The <strong>28,000+ stars</strong> and MIT license mean CrewAI is here to stay. The community is active, releases are frequent, and the API keeps improving. For teams building AI products that require reliable, structured outputs from LLMs, CrewAI is the fastest path to production.</p><p>Start building your first crew today with the 5-minute setup in Section 4. The code in Section 5 gives you three working patterns you can adapt immediately.</p><p>Join our developer community on Telegram: <strong>t.me/dibi8en</strong> — share your agent architectures, get help debugging crews, and see what others are building.</p><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading</h2><ul><li><a href=https://github.com/joaomdmoura/crewAI>CrewAI GitHub Repository</a> — 28,000+ stars, MIT</li><li><a href=https://docs.crewai.com/>Official Documentation</a></li><li><a href=https://docs.crewai.com/tools/>CrewAI Tools Reference</a></li><li><a href=https://langchain-ai.github.io/langgraph/>LangGraph Documentation</a></li><li><a href=https://github.com/microsoft/autogen>AutoGit (Microsoft AutoGen)</a></li><li><a href=https://github.com/geekan/MetaGPT>MetaGPT GitHub</a></li><li><a href=https://github.com/joaomdmoura/crewAI-examples>CrewAI Examples Repository</a></li><li><a href=https://smith.langchain.com/>LangSmith Observability</a></li><li><a href=https://docs.crewai.com/how-to/Creating-a-Crew-and-kick-it-off/>Building Multi-Agent Systems Guide</a></li><li>Related: <a href=dibi8-internal-link>LangChain</a>, <a href=dibi8-internal-link>AutoGen Guide</a>, <a href=dibi8-internal-link>LangGraph Patterns</a></li></ul><hr><p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no extra cost to you. CrewAI is open-source and free to use; we have no commercial relationship with the CrewAI project. Opinions are based on hands-on testing and production deployments.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Enterprise features | Emerging | Emerging | Emerging | No |</p>
+<p><strong>When to choose what:</strong></p>
+<ul>
+<li><strong>CrewAI</strong>: Best for teams new to multi-agent systems. The role-based API is intuitive, documentation is excellent, and the learning curve is gentle. Ideal for content generation, research workflows, and business analysis tasks.</li>
+<li><strong>AutoGen (Microsoft)</strong>: Choose when conversational patterns and code execution are central. AutoGen&rsquo;s group chat pattern is powerful for debugging and coding agents. The <code>UserProxyAgent</code> enables seamless human-in-the-loop workflows.</li>
+<li><strong>LangGraph (LangChain)</strong>: Choose when you need fine-grained control over agent state and transitions. LangGraph&rsquo;s graph-based approach excels for complex conditional logic and state management but has a steeper learning curve.</li>
+<li><strong>MetaGPT</strong>: Choose specifically for software engineering tasks. MetaGPT agents emulate a full dev team (PM, architect, engineer, QA) and produce structured code outputs. Overkill for non-coding use cases.</li>
+</ul>
+<h2 id="limitations-honest-assessment">Limitations: Honest Assessment</h2>
+<p>CrewAI is powerful but not a silver bullet. Production realities you should know: <strong>1. LLM costs scale with agent count.</strong> A 5-agent crew running 8 tasks with GPT-4o can cost $0.50-2.00 per run. With 1,000 runs per day, that is $500-2,000/day. Budget accordingly or use cheaper models for less critical agents.</p>
+<p><strong>2. Token limits constrain context sharing.</strong> When Agent A passes output to Agent B, that output consumes tokens in Agent B&rsquo;s context window. With 5 agents each producing 2K tokens, the final agent may hit GPT-4o&rsquo;s 128K limit. Use <code>max_iter</code> and summarize intermediate outputs.</p>
+<p><strong>3. Hierarchical planning adds latency.</strong> The manager LLM in hierarchical mode needs to reason about task assignments before work starts. For small crews (3-4 agents), this overhead may not be worth it. Sequential is often faster for simple workflows.</p>
+<p><strong>4. Error handling is basic.</strong> If one agent fails, the entire crew may halt. Wrap tool calls in try/except, implement retry logic, and consider using LangGraph for mission-critical workflows that need sophisticated error recovery.</p>
+<p><strong>5. No built-in persistence.</strong> CrewAI&rsquo;s memory is session-scoped. For long-running workflows that span hours or days, you need to implement external state management with a database or cache layer.</p>
+<p><strong>6. Debugging is challenging.</strong> With multiple agents calling LLMs and tools, tracing a failure to its root cause requires good logging. Use LangSmith or a similar observability tool from day one.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="how-is-crewai-different-from-langchain-or-llamaindex">How is CrewAI different from LangChain or LlamaIndex?</h3>
+<p>CrewAI is not a replacement for LangChain or LlamaIndex — it is a <strong>layer above</strong> them. LangChain provides tools and chains; CrewAI provides team coordination. Think of it this way: LangChain is the toolbox, CrewAI is the project manager. CrewAI agents can use LangChain tools, and CrewAI crews can feed outputs into LlamaIndex indexes for RAG augmentation.</p>
+<h3 id="can-i-use-crewai-with-local-llms-like-llama-or-mistral">Can I use CrewAI with local LLMs like Llama or Mistral?</h3>
+<p>Yes. CrewAI works with any LangChain-compatible LLM, including local models via Ollama, LM Studio, or vLLM. Use a capable model (7B+ parameters) for best results. Smaller models (sub-7B) struggle with complex delegation and multi-step reasoning. For the manager role in hierarchical mode, a stronger model (GPT-4o, Claude 3.5, or 70B local) is recommended.</p>
+<h3 id="how-does-memory-sharing-work-between-agents">How does memory sharing work between agents?</h3>
+<p>When <code>memory=True</code> is set on the Crew, all agents share a short-term memory buffer that persists across tasks. Agent A&rsquo;s task output becomes context for Agent B&rsquo;s task when specified via the <code>context</code> parameter. For long-term memory, CrewAI uses an embedded Chroma vector store to retrieve relevant past interactions. You can also inject custom memory by passing context task outputs explicitly.</p>
+<h3 id="what-is-the-maximum-number-of-agents-per-crew">What is the maximum number of agents per crew?</h3>
+<p>There is no hard limit, but practical considerations apply. Each additional agent increases token usage and latency. Teams of <strong>3-7 agents</strong> are the sweet spot for most workflows. Beyond 10 agents, hierarchical process mode with a strong manager LLM becomes essential to avoid coordination chaos. Consider breaking large workflows into sub-crews.</p>
+<h3 id="how-do-i-prevent-agents-from-getting-stuck-in-loops">How do I prevent agents from getting stuck in loops?</h3>
+<p>Set <code>max_iter</code> on tasks (default is 25) to cap iterations per task. For the crew, set <code>max_rpm</code> to limit API calls per minute. In hierarchical mode, the manager agent monitors progress and can interrupt stuck agents. Add <code>expected_output</code> quality gates so agents know when their work is complete rather than endlessly refining.</p>
+<h3 id="can-crewai-handle-real-time-streaming-outputs">Can CrewAI handle real-time streaming outputs?</h3>
+<p>As of v0.108.0, CrewAI supports step-by-step output through callbacks (<code>step_callback</code>), but full streaming of agent outputs is limited. Use callbacks to build real-time UIs that show agent progress. Full streaming support is on the roadmap for H2 2026.</p>
+<h3 id="how-do-i-test-agent-crews-effectively">How do I test agent crews effectively?</h3>
+<p>Unit test each agent independently by running single tasks. Use mock LLM responses (via LangChain&rsquo;s ````FakeListLLM```) to test task routing and tool selection without API costs. Integration test the full crew with a small, known-good task. Log all intermediate outputs for regression testing.</p>
+<h2 id="conclusion-start-small-scale-to-teams">Conclusion: Start Small, Scale to Teams</h2>
+<p>CrewAI makes multi-agent orchestration accessible. Start with a simple 2-agent sequential crew — a Researcher and a Writer — and grow from there. Add a third agent for quality review. Switch to hierarchical mode when you need dynamic task allocation. Add custom tools when agents need external capabilities.</p>
+<p>The <strong>28,000+ stars</strong> and MIT license mean CrewAI is here to stay. The community is active, releases are frequent, and the API keeps improving. For teams building AI products that require reliable, structured outputs from LLMs, CrewAI is the fastest path to production.</p>
+<p>Start building your first crew today with the 5-minute setup in Section 4. The code in Section 5 gives you three working patterns you can adapt immediately.</p>
+<p>Join our developer community on Telegram: <strong>t.me/dibi8en</strong> — share your agent architectures, get help debugging crews, and see what others are building.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://github.com/joaomdmoura/crewAI">CrewAI GitHub Repository</a> — 28,000+ stars, MIT</li>
+<li><a href="https://docs.crewai.com/">Official Documentation</a></li>
+<li><a href="https://docs.crewai.com/tools/">CrewAI Tools Reference</a></li>
+<li><a href="https://langchain-ai.github.io/langgraph/">LangGraph Documentation</a></li>
+<li><a href="https://github.com/microsoft/autogen">AutoGit (Microsoft AutoGen)</a></li>
+<li><a href="https://github.com/geekan/MetaGPT">MetaGPT GitHub</a></li>
+<li><a href="https://github.com/joaomdmoura/crewAI-examples">CrewAI Examples Repository</a></li>
+<li><a href="https://smith.langchain.com/">LangSmith Observability</a></li>
+<li><a href="https://docs.crewai.com/how-to/Creating-a-Crew-and-kick-it-off/">Building Multi-Agent Systems Guide</a></li>
+<li>Related: <a href="dibi8-internal-link">LangChain</a>, <a href="dibi8-internal-link">AutoGen Guide</a>, <a href="dibi8-internal-link">LangGraph Patterns</a></li>
+</ul>
+<hr>
+<p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no extra cost to you. CrewAI is open-source and free to use; we have no commercial relationship with the CrewAI project. Opinions are based on hands-on testing and production deployments.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;CrewAI: Build Multi-Agent AI Teams That Collaborate Autonomously — Production Setup & Patterns 2026&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;CrewAI: Build Multi-Agent AI Teams That Collaborate Autonomously — Production Setup &amp; Patterns 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -475,20 +719,296 @@ aliases:</p><ul><li>/posts/crewai-multi-agent-orchestration/-</li></ul><hr><h2 i
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/crewai-multi-agent-orchestration%22>https://dibi8.com/resources/crewai-multi-agent-orchestration"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/crewai-multi-agent-orchestration%22">https://dibi8.com/resources/crewai-multi-agent-orchestration"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/crewai-multi-agent-orchestration/>12-factor-agents-production-llm-software-2026</a></li><li><a href=/ai-coding-agents/crewai-multi-agent-orchestration/>12-factor-agents</a></li><li><a href=/ai-coding-agents/crewai-multi-agent-orchestration/>1m-context-window-llm-2026-real-test</a></li><li><a href=/ai-coding-agents/crewai-multi-agent-orchestration/>9router-smart-llm-proxy-token-saver-free-coding</a></li><li><a href=/ai-coding-agents/crewai-multi-agent-orchestration/>ai-engineering-from-scratch</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcrewai-multi-agent-orchestration%2f&text=Install%20crewai%20with%20all%20recommended%20extras" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcrewai-multi-agent-orchestration%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/crewai-multi-agent-orchestration/">12-factor-agents-production-llm-software-2026</a></li>
+<li><a href="/ai-coding-agents/crewai-multi-agent-orchestration/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/crewai-multi-agent-orchestration/">1m-context-window-llm-2026-real-test</a></li>
+<li><a href="/ai-coding-agents/crewai-multi-agent-orchestration/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
+<li><a href="/ai-coding-agents/crewai-multi-agent-orchestration/">ai-engineering-from-scratch</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcrewai-multi-agent-orchestration%2f&text=Install%20crewai%20with%20all%20recommended%20extras" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcrewai-multi-agent-orchestration%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

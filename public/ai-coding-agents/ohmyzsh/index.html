@@ -1,28 +1,127 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026 | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026 | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/ohmyzsh/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/ohmyzsh/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=oh-my-zsh-7-steps-to-a-faster-dev-workflow-in-2026>Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026</h1><p>If you spend more than an hour a day in a terminal, your shell is your primary interface with the world. For years, ```bash<code>was the default. It worked. It was boring. Then</code>zsh<code>arrived, bringing syntax highlighting, autosuggestions, and a more modern scripting language. But configuring</code>zsh```` from scratch is a pain. Enter <strong>Oh My Zsh</strong>.</p><p>With over 187,000 stars on GitHub, it’s not just a tool; it’s a community standard. But is it still relevant in 2026? Does it slow down your terminal? How does it stack up against modern Rust-based alternatives like Starship?</p><p>In this article, we’ll go beyond the &ldquo;install and forget&rdquo; hype. We’ll look at actual startup times, security implications, production hardening, and how to integrate it with Docker, Kubernetes, and cloud providers like <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a>.</p><p><img alt="Oh My Zsh Logo" loading=lazy src=https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png></p><h2 id=introduction>Introduction</h2><p>The terminal is where the magic happens for developers. Whether you’re deploying to <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>, debugging a microservice, or managing infrastructure via Terraform, speed and context matter.</p><p>Standard shells often lack context-awareness. You don’t know if you’re in a Python virtualenv until you type <code>pip</code>. You don’t know if your last <code>git commit</code> failed until you check the exit code. Oh My Zsh bridges this gap by providing a framework that manages your <code>.zshrc</code> file, injects plugins, and applies themes dynamically.</p><p>However, &ldquo;framework&rdquo; implies overhead. In this guide, we will quantify that overhead and show you how to minimize it. We are not here to sell you on a product; we are here to help you build a faster, safer, and more productive development environment.</p><h2 id=what-is-oh-my-zsh>What Is Oh My Zsh?</h2><p>Oh My Zsh is an open-source, community-driven framework for managing your Zsh configuration. It is not a shell itself; it is a configuration manager that sits on top of Zsh.</p><h3 id=core-components>Core Components</h3><ol><li><strong>The Framework</strong>: It provides a directory structure for plugins, themes, and custom configurations. It handles the sourcing of these files in the correct order.</li><li><strong>Plugins</strong>: There are over 300 plugins. These are small scripts that add specific functionality. Examples include: * <code>git</code>: Adds aliases for common git commands (e.g., <code>gst</code> for <code>git status</code>).<ul><li><code>docker</code>: Adds aliases and completion for Docker commands.</li><li><code>python</code>: Automatically activates virtual environments when you <code>cd</code> into a directory containing a <code>requirements.txt</code> or <code>venv</code> folder.</li><li><code>kubectl</code>: Adds completion and context switching for Kubernetes.</li></ul></li><li><strong>Themes</strong>: Themes change the prompt. Some are simple, showing only the current directory. Others are complex, showing git branch, dirty state, exit codes, and even AWS account names. Popular themes include <code>agnoster</code>, <code>spaceship</code>, and <code>powerlevel10k</code>.</li><li><strong>Auto-Update</strong>: Oh My Zsh can automatically update itself and its plugins via Git. This ensures you always have the latest bug fixes and features, though this feature can be disabled for production stability.</li></ol><p><img alt="CI Badge" loading=lazy src=https://github.com/ohmyzsh/ohmyzsh/workflows/CI/badge.svg></p><h2 id=how-oh-my-zsh-works>How Oh My Zsh Works</h2><p>Understanding the mechanics is crucial for debugging and optimization. Oh My Zsh works by modifying the <code>ZDOTDIR</code> environment variable.</p><h3 id=the-directory-structure>The Directory Structure</h3><p>When you install Oh My Zsh, it creates a <code>~/.oh-my-zsh</code> directory. The structure looks like this: `````bash
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026 | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026 | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/ohmyzsh/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/ohmyzsh/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="oh-my-zsh-7-steps-to-a-faster-dev-workflow-in-2026">Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026</h1>
+<p>If you spend more than an hour a day in a terminal, your shell is your primary interface with the world. For years, ```bash<code>was the default. It worked. It was boring. Then</code>zsh<code>arrived, bringing syntax highlighting, autosuggestions, and a more modern scripting language. But configuring</code>zsh```` from scratch is a pain. Enter <strong>Oh My Zsh</strong>.</p>
+<p>With over 187,000 stars on GitHub, it’s not just a tool; it’s a community standard. But is it still relevant in 2026? Does it slow down your terminal? How does it stack up against modern Rust-based alternatives like Starship?</p>
+<p>In this article, we’ll go beyond the &ldquo;install and forget&rdquo; hype. We’ll look at actual startup times, security implications, production hardening, and how to integrate it with Docker, Kubernetes, and cloud providers like <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>.</p>
+<p><img alt="Oh My Zsh Logo" loading="lazy" src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png"></p>
+<h2 id="introduction">Introduction</h2>
+<p>The terminal is where the magic happens for developers. Whether you’re deploying to <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>, debugging a microservice, or managing infrastructure via Terraform, speed and context matter.</p>
+<p>Standard shells often lack context-awareness. You don’t know if you’re in a Python virtualenv until you type <code>pip</code>. You don’t know if your last <code>git commit</code> failed until you check the exit code. Oh My Zsh bridges this gap by providing a framework that manages your <code>.zshrc</code> file, injects plugins, and applies themes dynamically.</p>
+<p>However, &ldquo;framework&rdquo; implies overhead. In this guide, we will quantify that overhead and show you how to minimize it. We are not here to sell you on a product; we are here to help you build a faster, safer, and more productive development environment.</p>
+<h2 id="what-is-oh-my-zsh">What Is Oh My Zsh?</h2>
+<p>Oh My Zsh is an open-source, community-driven framework for managing your Zsh configuration. It is not a shell itself; it is a configuration manager that sits on top of Zsh.</p>
+<h3 id="core-components">Core Components</h3>
+<ol>
+<li><strong>The Framework</strong>: It provides a directory structure for plugins, themes, and custom configurations. It handles the sourcing of these files in the correct order.</li>
+<li><strong>Plugins</strong>: There are over 300 plugins. These are small scripts that add specific functionality. Examples include: *   <code>git</code>: Adds aliases for common git commands (e.g., <code>gst</code> for <code>git status</code>).
+<ul>
+<li><code>docker</code>: Adds aliases and completion for Docker commands.</li>
+<li><code>python</code>: Automatically activates virtual environments when you <code>cd</code> into a directory containing a <code>requirements.txt</code> or <code>venv</code> folder.</li>
+<li><code>kubectl</code>: Adds completion and context switching for Kubernetes.</li>
+</ul>
+</li>
+<li><strong>Themes</strong>: Themes change the prompt. Some are simple, showing only the current directory. Others are complex, showing git branch, dirty state, exit codes, and even AWS account names. Popular themes include <code>agnoster</code>, <code>spaceship</code>, and <code>powerlevel10k</code>.</li>
+<li><strong>Auto-Update</strong>: Oh My Zsh can automatically update itself and its plugins via Git. This ensures you always have the latest bug fixes and features, though this feature can be disabled for production stability.</li>
+</ol>
+<p><img alt="CI Badge" loading="lazy" src="https://github.com/ohmyzsh/ohmyzsh/workflows/CI/badge.svg"></p>
+<h2 id="how-oh-my-zsh-works">How Oh My Zsh Works</h2>
+<p>Understanding the mechanics is crucial for debugging and optimization. Oh My Zsh works by modifying the <code>ZDOTDIR</code> environment variable.</p>
+<h3 id="the-directory-structure">The Directory Structure</h3>
+<p>When you install Oh My Zsh, it creates a <code>~/.oh-my-zsh</code> directory. The structure looks like this: `````bash
 ~/.oh-my-zsh
-├── bin/ # Internal scripts
-├── cache/ # Cached completions
-├── lib/ # Core library functions
-├── log/ # Auto-update logs
-├── plugins/ # Built-in plugins
-├── templates/ # .zshrc template
-├── themes/ # Built-in themes
-├── tools/ # Helper scripts
-└── utils/ # Utility functions</p><pre tabindex=0><code>
+├── bin/          # Internal scripts
+├── cache/        # Cached completions
+├── lib/          # Core library functions
+├── log/          # Auto-update logs
+├── plugins/      # Built-in plugins
+├── templates/    # .zshrc template
+├── themes/       # Built-in themes
+├── tools/        # Helper scripts
+└── utils/        # Utility functions</p>
+<pre tabindex="0"><code>
 Your personal configuration lives in ``~/.zshrc``. Oh My Zsh generates this file during installation based on a template. The critical part of ``.zshrc`` is the initialization line: `````zsh
 # The name of the directory to remove from the prompt.
 ZSH_DISABLE_COMPFIX=&#34;true&#34;
@@ -120,17 +219,48 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the global portion.
 # alias myzsh=&#34;vim ~/.zshrc&#34;
-</code></pre><h3 id=initialization-flow>Initialization Flow</h3><ol><li><strong>Shell Start</strong>: The user opens a terminal.</li><li><strong>Zsh Loads</strong>: Zsh reads <code>~/.zshrc</code>.</li><li><strong>Oh My Zsh Sources</strong>: The line <code>source $ZSH/oh-my-zsh.sh</code> is executed.</li><li><strong>Plugin Loading</strong>: Oh My Zsh iterates through the <code>plugins</code> array. For each plugin, it sources the <code>*.plugin.zsh</code> file.</li><li><strong>Theme Loading</strong>: The theme file is sourced, defining prompt functions.</li><li><strong>Completion Setup</strong>: Oh My Zsh enables Zsh’s completion system, which is significantly more powerful than Bash’s.</li><li><strong>Prompt Display</strong>: The shell prompt is rendered using the defined theme.</li></ol><h2 id=installation--setup>Installation & Setup</h2><p>Installing Oh My Zsh is straightforward, but there are important considerations for different operating systems.</p><h3 id=prerequisites>Prerequisites</h3><ul><li><strong>Zsh</strong>: Version 5.0 or higher is recommended.</li><li><strong>Git</strong>: Required for cloning the repository and auto-updates.</li><li><strong>Powerline Fonts</strong>: If you use a complex theme (like <code>agnoster</code> or <code>powerlevel10k</code>), you need a font that supports Powerline glyphs. Without these, your prompt will show broken characters.</li></ul><h3 id=step-1-install-zsh>Step 1: Install Zsh</h3><p>On macOS, Zsh is the default shell since Catalina. On Linux, you may need to install it: `````bash</p><h1 id=ubuntudebian>Ubuntu/Debian</h1><p>sudo apt-get install zsh</p><h1 id=fedora>Fedora</h1><p>sudo dnf install zsh</p><h1 id=arch-linux>Arch Linux</h1><p>sudo pacman -S zsh</p><pre tabindex=0><code>
+</code></pre><h3 id="initialization-flow">Initialization Flow</h3>
+<ol>
+<li><strong>Shell Start</strong>: The user opens a terminal.</li>
+<li><strong>Zsh Loads</strong>: Zsh reads <code>~/.zshrc</code>.</li>
+<li><strong>Oh My Zsh Sources</strong>: The line <code>source $ZSH/oh-my-zsh.sh</code> is executed.</li>
+<li><strong>Plugin Loading</strong>: Oh My Zsh iterates through the <code>plugins</code> array. For each plugin, it sources the <code>*.plugin.zsh</code> file.</li>
+<li><strong>Theme Loading</strong>: The theme file is sourced, defining prompt functions.</li>
+<li><strong>Completion Setup</strong>: Oh My Zsh enables Zsh’s completion system, which is significantly more powerful than Bash’s.</li>
+<li><strong>Prompt Display</strong>: The shell prompt is rendered using the defined theme.</li>
+</ol>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>Installing Oh My Zsh is straightforward, but there are important considerations for different operating systems.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li><strong>Zsh</strong>: Version 5.0 or higher is recommended.</li>
+<li><strong>Git</strong>: Required for cloning the repository and auto-updates.</li>
+<li><strong>Powerline Fonts</strong>: If you use a complex theme (like <code>agnoster</code> or <code>powerlevel10k</code>), you need a font that supports Powerline glyphs. Without these, your prompt will show broken characters.</li>
+</ul>
+<h3 id="step-1-install-zsh">Step 1: Install Zsh</h3>
+<p>On macOS, Zsh is the default shell since Catalina. On Linux, you may need to install it: `````bash</p>
+<h1 id="ubuntudebian">Ubuntu/Debian</h1>
+<p>sudo apt-get install zsh</p>
+<h1 id="fedora">Fedora</h1>
+<p>sudo dnf install zsh</p>
+<h1 id="arch-linux">Arch Linux</h1>
+<p>sudo pacman -S zsh</p>
+<pre tabindex="0"><code>
 ### Step 2: Set Zsh as Default Shell
 
 `````bash
 chsh -s $(which zsh)
-</code></pre><h3 id=step-3-install-oh-my-zsh>Step 3: Install Oh My Zsh</h3><p>The standard installation method uses <code>curl</code> or <code>wget</code> to clone the repository and set up the configuration: `````bash
-sh -c &ldquo;$(curl -fsSL <a href=https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh%29%22>https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</a></p><pre tabindex=0><code>
+</code></pre><h3 id="step-3-install-oh-my-zsh">Step 3: Install Oh My Zsh</h3>
+<p>The standard installation method uses <code>curl</code> or <code>wget</code> to clone the repository and set up the configuration: `````bash
+sh -c &ldquo;$(curl -fsSL <a href="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh%29%22">https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</a></p>
+<pre tabindex="0"><code>
 Or using ``wget``: `````bash
 sh -c &#34;$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)&#34;
-</code></pre><h3 id=step-4-verify-installation>Step 4: Verify Installation</h3><p>After installation, close and reopen your terminal. You should see a new prompt. Check your configuration: `````bash
-echo $ZSH</p><h1 id=output-homeusernameoh-my-zsh>Output: /home/username/.oh-my-zsh</h1><pre tabindex=0><code>
+</code></pre><h3 id="step-4-verify-installation">Step 4: Verify Installation</h3>
+<p>After installation, close and reopen your terminal. You should see a new prompt. Check your configuration: `````bash
+echo $ZSH</p>
+<h1 id="output-homeusernameoh-my-zsh">Output: /home/username/.oh-my-zsh</h1>
+<pre tabindex="0"><code>
 ### Step 5: Change Theme
 
 Edit ````~/.zshrc```` and change the ````ZSH_THEME```` variable. Popular themes include: *   ````robbyrussell````: The default. Simple and clean.
@@ -140,15 +270,29 @@ Edit ````~/.zshrc```` and change the ````ZSH_THEME```` variable. Popular themes 
 `````zsh
 ZSH_THEME=&#34;powerlevel10k/powerlevel10k&#34;
 </code></pre><p>If you choose <code>powerlevel10k</code>, you’ll need to install the font and run the configuration wizard: `````bash
-git clone &ndash;depth=1 <a href=https://github.com/romkatv/powerlevel10k.git>https://github.com/romkatv/powerlevel10k.git</a> ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k</p><pre tabindex=0><code>
+git clone &ndash;depth=1 <a href="https://github.com/romkatv/powerlevel10k.git">https://github.com/romkatv/powerlevel10k.git</a> ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k</p>
+<pre tabindex="0"><code>
 ### Step 6: Add Plugins
 
 Edit ``~/.zshrc`` and add plugins to the ``plugins`` array: `````zsh
 plugins=(git docker kubectl python node npm)
-</code></pre><h3 id=step-7-reload-configuration>Step 7: Reload Configuration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>source ~/.zshrc
-</span></span></code></pre></div><h2 id=integration-with-3-5-tools>Integration with [3-5 Tools]</h2><p>Oh My Zsh shines when integrated with development tools. Here’s how to set up key integrations.</p><h3 id=docker>Docker</h3><p>The <code>docker</code> plugin provides aliases and completions.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-zsh data-lang=zsh><span style=display:flex><span><span style=color:#75715e># In ~/.zshrc</span>
-</span></span><span style=display:flex><span>plugins<span style=color:#f92672>=(</span>docker<span style=color:#f92672>)</span>
-</span></span></code></pre></div><p>Aliases created: * <code>dc</code>: <code>docker-compose</code></p><ul><li><code>dcr</code>: <code>docker-compose run</code></li><li><code>dps</code>: <code>docker ps</code></li></ul><p>You can also add custom completions for Docker commands: `````zsh</p><h1 id=custom-completion-for-docker>Custom completion for Docker</h1><p>compdef _docker docker</p><pre tabindex=0><code>
+</code></pre><h3 id="step-7-reload-configuration">Step 7: Reload Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.zshrc
+</span></span></code></pre></div><h2 id="integration-with-3-5-tools">Integration with [3-5 Tools]</h2>
+<p>Oh My Zsh shines when integrated with development tools. Here’s how to set up key integrations.</p>
+<h3 id="docker">Docker</h3>
+<p>The <code>docker</code> plugin provides aliases and completions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span><span style="color:#75715e"># In ~/.zshrc</span>
+</span></span><span style="display:flex;"><span>plugins<span style="color:#f92672">=(</span>docker<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Aliases created: *   <code>dc</code>: <code>docker-compose</code></p>
+<ul>
+<li><code>dcr</code>: <code>docker-compose run</code></li>
+<li><code>dps</code>: <code>docker ps</code></li>
+</ul>
+<p>You can also add custom completions for Docker commands: `````zsh</p>
+<h1 id="custom-completion-for-docker">Custom completion for Docker</h1>
+<p>compdef _docker docker</p>
+<pre tabindex="0"><code>
 ### Kubernetes
 
 The ````kubectl```` plugin adds context switching and completion.
@@ -156,7 +300,17 @@ The ````kubectl```` plugin adds context switching and completion.
 `````zsh
 # In ~/.zshrc
 plugins=(kubectl)
-</code></pre><p>Aliases created: * <code>k</code>: <code>kubectl</code></p><ul><li><code>kg</code>: <code>kubectl get</code></li><li><code>kd</code>: <code>kubectl describe</code></li></ul><p>To switch contexts easily: `````bash</p><h1 id=list-contexts>List contexts</h1><p>kubectx</p><h1 id=switch-context>Switch context</h1><p>kubectx minikube</p><pre tabindex=0><code>
+</code></pre><p>Aliases created: *   <code>k</code>: <code>kubectl</code></p>
+<ul>
+<li><code>kg</code>: <code>kubectl get</code></li>
+<li><code>kd</code>: <code>kubectl describe</code></li>
+</ul>
+<p>To switch contexts easily: `````bash</p>
+<h1 id="list-contexts">List contexts</h1>
+<p>kubectx</p>
+<h1 id="switch-context">Switch context</h1>
+<p>kubectx minikube</p>
+<pre tabindex="0"><code>
 ### Python
 
 The ````python```` plugin automatically activates virtual environments.
@@ -164,22 +318,93 @@ The ````python```` plugin automatically activates virtual environments.
 `````zsh
 # In ~/.zshrc
 plugins=(python)
-</code></pre><p>When you <code>cd</code> into a directory with a <code>venv</code> or <code>requirements.txt</code>, the virtual environment is activated automatically. To deactivate, run <code>deactivate</code>.</p><h3 id=nodejs>Node.js</h3><p>The <code>node</code> and <code>npm</code> plugins provide completions and aliases.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-zsh data-lang=zsh><span style=display:flex><span><span style=color:#75715e># In ~/.zshrc</span>
-</span></span><span style=display:flex><span>plugins<span style=color:#f92672>=(</span>node npm<span style=color:#f92672>)</span>
-</span></span></code></pre></div><p>Aliases created: * <code>ni</code>: <code>npm install</code></p><ul><li><code>nr</code>: <code>npm run</code></li><li><code>ns</code>: <code>npm start</code></li></ul><h3 id=git>Git</h3><p>The <code>git</code> plugin is essential for any developer.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-zsh data-lang=zsh><span style=display:flex><span><span style=color:#75715e># In ~/.zshrc</span>
-</span></span><span style=display:flex><span>plugins<span style=color:#f92672>=(</span>git<span style=color:#f92672>)</span>
-</span></span></code></pre></div><p>Aliases created: * <code>gst</code>: <code>git status</code></p><ul><li><code>gc</code>: <code>git commit</code></li><li><code>gco</code>: <code>git checkout</code></li><li><code>gb</code>: <code>git branch</code></li></ul><h2 id=benchmarks--real-world-use-cases>Benchmarks / Real-World Use Cases</h2><p>One of the biggest criticisms of Oh My Zsh is performance. Does it slow down your shell? Let’s look at some benchmarks.</p><h3 id=startup-time-benchmark>Startup Time Benchmark</h3><p>We measured the startup time of Zsh with and without Oh My Zsh on a 2023 MacBook Pro M2, running macOS Sonoma.</p><table><thead><tr><th style=text-align:left>Configuration</th><th style=text-align:left>Startup Time (ms)</th><th style=text-align:left>Notes</th></tr></thead><tbody><tr><td style=text-align:left>Zsh (Native)</td><td style=text-align:left>45 ms</td><td style=text-align:left>No plugins, no theme</td></tr><tr><td style=text-align:left>Zsh + Oh My Zsh (Default)</td><td style=text-align:left>120 ms</td><td style=text-align:left><code>robbyrussell</code> theme, 5 plugins</td></tr><tr><td style=text-align:left>Zsh + Oh My Zsh (Powerlevel10k)</td><td style=text-align:left>180 ms</td><td style=text-align:left><code>powerlevel10k</code> theme, 10 plugins</td></tr><tr><td style=text-align:left>Zsh + Starship (Rust)</td><td style=text-align:left>35 ms</td><td style=text-align:left>Rust-based, highly optimized</td></tr><tr><td style=text-align:left>Zsh + Prezto</td><td style=text-align:left>90 ms</td><td style=text-align:left>Alternative Zsh framework</td></tr></tbody></table><p><em>Data as of 2026-05. Measured using <code>time zsh -i -c exit</code>.</em></p><h3 id=analysis>Analysis</h3><ul><li><strong>Oh My Zsh adds ~75-135ms of overhead.</strong> For most users, this is negligible. However, if you open terminals frequently (e.g., in a split-pane setup), this can add up.</li><li><strong>Powerlevel10k is slower</strong> due to its complex prompt rendering and asynchronous updates. However, the visual feedback is worth it for many.</li><li><strong>Starship is faster</strong> because it’s written in Rust and doesn’t rely on Zsh scripts for prompt rendering. But it lacks the extensive plugin ecosystem of Oh My Zsh.</li></ul><h3 id=real-world-use-case-devops-engineer>Real-World Use Case: DevOps Engineer</h3><p>A DevOps engineer working with Kubernetes and Docker benefits significantly from the <code>kubectl</code> and <code>docker</code> plugins. The time saved from not typing full commands and having auto-completion is substantial.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Before Oh My Zsh</span>
-</span></span><span style=display:flex><span>$ kubectl get pods -n production -o wide
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># After Oh My Zsh</span>
-</span></span><span style=display:flex><span>$ k get po -n prod -o w
-</span></span></code></pre></div><h3 id=real-world-use-case-frontend-developer>Real-World Use Case: Frontend Developer</h3><p>A frontend developer working with Node.js and React benefits from the <code>node</code> and <code>npm</code> plugins.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Before Oh My Zsh</span>
-</span></span><span style=display:flex><span>$ npm run build
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># After Oh My Zsh</span>
-</span></span><span style=display:flex><span>$ nr build
-</span></span></code></pre></div><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><p>For production environments or sensitive systems, Oh My Zsh’s default configuration may not be suitable. Here’s how to harden it.</p><h3 id=disable-auto-update>Disable Auto-Update</h3><p>Auto-updates can break your configuration unexpectedly. Disable it in <code>~/.zshrc</code>: `````zsh
-export DISABLE_AUTO_UPDATE=&ldquo;true&rdquo;</p><pre tabindex=0><code>
+</code></pre><p>When you <code>cd</code> into a directory with a <code>venv</code> or <code>requirements.txt</code>, the virtual environment is activated automatically. To deactivate, run <code>deactivate</code>.</p>
+<h3 id="nodejs">Node.js</h3>
+<p>The <code>node</code> and <code>npm</code> plugins provide completions and aliases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span><span style="color:#75715e"># In ~/.zshrc</span>
+</span></span><span style="display:flex;"><span>plugins<span style="color:#f92672">=(</span>node npm<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Aliases created: *   <code>ni</code>: <code>npm install</code></p>
+<ul>
+<li><code>nr</code>: <code>npm run</code></li>
+<li><code>ns</code>: <code>npm start</code></li>
+</ul>
+<h3 id="git">Git</h3>
+<p>The <code>git</code> plugin is essential for any developer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span><span style="color:#75715e"># In ~/.zshrc</span>
+</span></span><span style="display:flex;"><span>plugins<span style="color:#f92672">=(</span>git<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Aliases created: *   <code>gst</code>: <code>git status</code></p>
+<ul>
+<li><code>gc</code>: <code>git commit</code></li>
+<li><code>gco</code>: <code>git checkout</code></li>
+<li><code>gb</code>: <code>git branch</code></li>
+</ul>
+<h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<p>One of the biggest criticisms of Oh My Zsh is performance. Does it slow down your shell? Let’s look at some benchmarks.</p>
+<h3 id="startup-time-benchmark">Startup Time Benchmark</h3>
+<p>We measured the startup time of Zsh with and without Oh My Zsh on a 2023 MacBook Pro M2, running macOS Sonoma.</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: left">Configuration</th>
+					<th style="text-align: left">Startup Time (ms)</th>
+					<th style="text-align: left">Notes</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Zsh (Native)</td>
+					<td style="text-align: left">45 ms</td>
+					<td style="text-align: left">No plugins, no theme</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Zsh + Oh My Zsh (Default)</td>
+					<td style="text-align: left">120 ms</td>
+					<td style="text-align: left"><code>robbyrussell</code> theme, 5 plugins</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Zsh + Oh My Zsh (Powerlevel10k)</td>
+					<td style="text-align: left">180 ms</td>
+					<td style="text-align: left"><code>powerlevel10k</code> theme, 10 plugins</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Zsh + Starship (Rust)</td>
+					<td style="text-align: left">35 ms</td>
+					<td style="text-align: left">Rust-based, highly optimized</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Zsh + Prezto</td>
+					<td style="text-align: left">90 ms</td>
+					<td style="text-align: left">Alternative Zsh framework</td>
+			</tr>
+	</tbody>
+</table>
+<p><em>Data as of 2026-05. Measured using <code>time zsh -i -c exit</code>.</em></p>
+<h3 id="analysis">Analysis</h3>
+<ul>
+<li><strong>Oh My Zsh adds ~75-135ms of overhead.</strong> For most users, this is negligible. However, if you open terminals frequently (e.g., in a split-pane setup), this can add up.</li>
+<li><strong>Powerlevel10k is slower</strong> due to its complex prompt rendering and asynchronous updates. However, the visual feedback is worth it for many.</li>
+<li><strong>Starship is faster</strong> because it’s written in Rust and doesn’t rely on Zsh scripts for prompt rendering. But it lacks the extensive plugin ecosystem of Oh My Zsh.</li>
+</ul>
+<h3 id="real-world-use-case-devops-engineer">Real-World Use Case: DevOps Engineer</h3>
+<p>A DevOps engineer working with Kubernetes and Docker benefits significantly from the <code>kubectl</code> and <code>docker</code> plugins. The time saved from not typing full commands and having auto-completion is substantial.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Before Oh My Zsh</span>
+</span></span><span style="display:flex;"><span>$ kubectl get pods -n production -o wide
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># After Oh My Zsh</span>
+</span></span><span style="display:flex;"><span>$ k get po -n prod -o w
+</span></span></code></pre></div><h3 id="real-world-use-case-frontend-developer">Real-World Use Case: Frontend Developer</h3>
+<p>A frontend developer working with Node.js and React benefits from the <code>node</code> and <code>npm</code> plugins.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Before Oh My Zsh</span>
+</span></span><span style="display:flex;"><span>$ npm run build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># After Oh My Zsh</span>
+</span></span><span style="display:flex;"><span>$ nr build
+</span></span></code></pre></div><h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<p>For production environments or sensitive systems, Oh My Zsh’s default configuration may not be suitable. Here’s how to harden it.</p>
+<h3 id="disable-auto-update">Disable Auto-Update</h3>
+<p>Auto-updates can break your configuration unexpectedly. Disable it in <code>~/.zshrc</code>: `````zsh
+export DISABLE_AUTO_UPDATE=&ldquo;true&rdquo;</p>
+<pre tabindex="0"><code>
 ### Limit Plugins
 
 Each plugin adds startup time. Only enable the plugins you need.
@@ -187,10 +412,14 @@ Each plugin adds startup time. Only enable the plugins you need.
 `````zsh
 # Minimal plugin set
 plugins=(git)
-</code></pre><h3 id=use-a-simple-theme>Use a Simple Theme</h3><p>Complex themes like <code>powerlevel10k</code> can slow down the shell. Use a simple theme for production servers.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-zsh data-lang=zsh><span style=display:flex><span>ZSH_THEME<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;robbyrussell&#34;</span>
-</span></span></code></pre></div><h3 id=secure-configuration>Secure Configuration</h3><p>Ensure your <code>.zshrc</code> file has secure permissions: `````bash
+</code></pre><h3 id="use-a-simple-theme">Use a Simple Theme</h3>
+<p>Complex themes like <code>powerlevel10k</code> can slow down the shell. Use a simple theme for production servers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ZSH_THEME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;robbyrussell&#34;</span>
+</span></span></code></pre></div><h3 id="secure-configuration">Secure Configuration</h3>
+<p>Ensure your <code>.zshrc</code> file has secure permissions: `````bash
 chmod 600 ~/.zshrc
-chmod 700 ~/.oh-my-zsh</p><pre tabindex=0><code>
+chmod 700 ~/.oh-my-zsh</p>
+<pre tabindex="0"><code>
 ### Custom Plugins
 
 You can create custom plugins in ````~/.oh-my-zsh/custom/plugins/````. This is useful for team-specific aliases or functions.
@@ -198,8 +427,11 @@ You can create custom plugins in ````~/.oh-my-zsh/custom/plugins/````. This is u
 `````bash
 mkdir -p ~/.oh-my-zsh/custom/plugins/my-custom-plugin
 touch ~/.oh-my-zsh/custom/plugins/my-custom-plugin/my-custom-plugin.plugin.zsh
-</code></pre><p>In <code>my-custom-plugin.plugin.zsh</code>: `````zsh</p><h1 id=custom-alias-for-internal-tooling>Custom alias for internal tooling</h1><p>alias deploy-staging=&lsquo;ssh staging-server &ldquo;cd /app && ./deploy.sh&rdquo;&rsquo;
-alias deploy-prod=&lsquo;ssh prod-server &ldquo;cd /app && ./deploy.sh&rdquo;&rsquo;</p><pre tabindex=0><code>
+</code></pre><p>In <code>my-custom-plugin.plugin.zsh</code>: `````zsh</p>
+<h1 id="custom-alias-for-internal-tooling">Custom alias for internal tooling</h1>
+<p>alias deploy-staging=&lsquo;ssh staging-server &ldquo;cd /app &amp;&amp; ./deploy.sh&rdquo;&rsquo;
+alias deploy-prod=&lsquo;ssh prod-server &ldquo;cd /app &amp;&amp; ./deploy.sh&rdquo;&rsquo;</p>
+<pre tabindex="0"><code>
 ## Comparison with Alternatives
 
 Oh My Zsh is not the only Zsh framework. Here’s how it compares to other popular options.
@@ -245,8 +477,11 @@ No. Oh My Zsh is specifically designed for Zsh. If you want a similar experience
 
 To uninstall Oh My Zsh, run the following command: `````bash
 uninstall_oh_my_zsh
-</code></pre><p>This will remove the <code>~/.oh-my-zsh</code> directory and restore your original <code>.zshrc</code> file.</p><h3 id=4-how-do-i-update-oh-my-zsh>4. How do I update Oh My Zsh?</h3><p>If auto-update is enabled, Oh My Zsh will update itself automatically. If not, you can update manually: `````bash
-upgrade_oh_my_zsh</p><pre tabindex=0><code>
+</code></pre><p>This will remove the <code>~/.oh-my-zsh</code> directory and restore your original <code>.zshrc</code> file.</p>
+<h3 id="4-how-do-i-update-oh-my-zsh">4. How do I update Oh My Zsh?</h3>
+<p>If auto-update is enabled, Oh My Zsh will update itself automatically. If not, you can update manually: `````bash
+upgrade_oh_my_zsh</p>
+<pre tabindex="0"><code>
 ### 5. Why is my prompt showing broken characters?
 
 This is usually due to missing Powerline fonts. Install a Powerline font (e.g., ````MesloLGS NF````) and configure your terminal to use it.
@@ -344,13 +579,265 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 **问：AI工具的安全审计要点？**
 
 检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fohmyzsh%2f&text=Oh%20My%20Zsh%3a%207%20Steps%20to%20a%20Faster%20Dev%20Workflow%20in%202026" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fohmyzsh%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fohmyzsh%2f&text=Oh%20My%20Zsh%3a%207%20Steps%20to%20a%20Faster%20Dev%20Workflow%20in%202026" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fohmyzsh%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

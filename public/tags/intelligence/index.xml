@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Intelligence on Dibi8 - AI工具目录</title><link>https://dibi8.com/tags/intelligence/</link><description>Recent content in Intelligence on Dibi8 - AI工具目录</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate><atom:link href="https://dibi8.com/tags/intelligence/index.xml" rel="self" type="application/rss+xml"/><item><title>Tech WeChat Hub: Local-First Intelligence Platform — Real-Time Chat Analysis &amp; Automation 2026</title><link>https://dibi8.com/dev-utils/tech-wechat-hub-local-intelligence-platform-2026/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate><guid>https://dibi8.com/dev-utils/tech-wechat-hub-local-intelligence-platform-2026/</guid><description>Tech WeChat Hub provides local-first intelligence gathering from WeChat with real-time analysis. 2.5K+ stars, MIT license. Private data processing, open source alternative to commercial chat analytics tools.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Intelligence on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/tags/intelligence/</link>
+    <description>Recent content in Intelligence on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/intelligence/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tech WeChat Hub: Local-First Intelligence Platform — Real-Time Chat Analysis &amp; Automation 2026</title>
+      <link>https://dibi8.com/dev-utils/tech-wechat-hub-local-intelligence-platform-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/dev-utils/tech-wechat-hub-local-intelligence-platform-2026/</guid>
+      <description>Tech WeChat Hub provides local-first intelligence gathering from WeChat with real-time analysis. 2.5K&#43; stars, MIT license. Private data processing, open source alternative to commercial chat analytics tools.</description>
+    </item>
+  </channel>
+</rss>

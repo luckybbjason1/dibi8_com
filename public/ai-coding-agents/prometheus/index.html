@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Create monitoring namespace | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Create monitoring namespace | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/prometheus/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/prometheus/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Create monitoring namespace</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Create monitoring namespace</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Create monitoring namespace&rdquo;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create monitoring namespace | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Create monitoring namespace | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/prometheus/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/prometheus/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Create monitoring namespace</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Create monitoring namespace</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Create monitoring namespace&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,36 +99,69 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;prometheus&rdquo;, &ldquo;monitoring&rdquo;, &ldquo;docker&rdquo;, &ldquo;kubernetes&rdquo;, &ldquo;grafana&rdquo;, &ldquo;devops&rdquo;, &ldquo;observability&rdquo;, &ldquo;time-series&rdquo;]
-aliases:</p><ul><li>/posts/prometheus/-</li></ul><hr><h2 id=introduction>Introduction</h2><p>Your application is down. Again. The page loads slowly, customers are complaining, and your team has no visibility into whether the database is choking or the API layer is failing. This is the monitoring gap that kills production confidence. Enter Prometheus — the Cloud Native Computing Foundation&rsquo;s second-ever graduated project (after Kubernetes), with <strong>64,094 GitHub stars</strong> and a battle-tested track record at companies like DigitalOcean, Uber, and SoundCloud. This Prometheus tutorial walks through a production-grade monitoring setup with Docker and Kubernetes, real PromQL queries, and hard numbers you can use to justify the tooling choice to your team. Whether you are comparing Prometheus vs Datadog for cost reasons or need a complete Prometheus Docker deployment guide, this article has you covered.</p><h2 id=what-is-prometheus>What Is Prometheus?</h2><p>Prometheus is an open-source monitoring system and time series database designed for cloud-native environments. Originally built at SoundCloud in 2012 and inspired by Google&rsquo;s Borgmon, it has become the de facto standard for metrics collection in containerized and microservices architectures. The project graduated from the CNCF in 2016 and continues to ship major releases — the latest stable version is <strong>v3.11.0</strong> (April 2026), with v3.12.0-rc.0 in pre-release.</p><p><img alt="Prometheus Logo" loading=lazy src=https://prometheus.io/twitter-image.png?b370f6418ef38b42></p><h2 id=how-prometheus-works>How Prometheus Works</h2><p>Prometheus uses a <strong>pull-based architecture</strong>. Instead of applications pushing metrics to a central collector, Prometheus scrapes HTTP endpoints on a configured interval. This design simplifies service discovery, eliminates the need for agents on every host, and provides built-in health detection — if a target does not respond, the ```up<code>metric immediately reports</code>0````.</p><p>The core components are: | Component | Role |
-|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/posts/prometheus/-</li>
+</ul>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>Your application is down. Again. The page loads slowly, customers are complaining, and your team has no visibility into whether the database is choking or the API layer is failing. This is the monitoring gap that kills production confidence. Enter Prometheus — the Cloud Native Computing Foundation&rsquo;s second-ever graduated project (after Kubernetes), with <strong>64,094 GitHub stars</strong> and a battle-tested track record at companies like DigitalOcean, Uber, and SoundCloud. This Prometheus tutorial walks through a production-grade monitoring setup with Docker and Kubernetes, real PromQL queries, and hard numbers you can use to justify the tooling choice to your team. Whether you are comparing Prometheus vs Datadog for cost reasons or need a complete Prometheus Docker deployment guide, this article has you covered.</p>
+<h2 id="what-is-prometheus">What Is Prometheus?</h2>
+<p>Prometheus is an open-source monitoring system and time series database designed for cloud-native environments. Originally built at SoundCloud in 2012 and inspired by Google&rsquo;s Borgmon, it has become the de facto standard for metrics collection in containerized and microservices architectures. The project graduated from the CNCF in 2016 and continues to ship major releases — the latest stable version is <strong>v3.11.0</strong> (April 2026), with v3.12.0-rc.0 in pre-release.</p>
+<p><img alt="Prometheus Logo" loading="lazy" src="https://prometheus.io/twitter-image.png?b370f6418ef38b42"></p>
+<h2 id="how-prometheus-works">How Prometheus Works</h2>
+<p>Prometheus uses a <strong>pull-based architecture</strong>. Instead of applications pushing metrics to a central collector, Prometheus scrapes HTTP endpoints on a configured interval. This design simplifies service discovery, eliminates the need for agents on every host, and provides built-in health detection — if a target does not respond, the ```up<code>metric immediately reports</code>0````.</p>
+<p>The core components are: | Component | Role |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Prometheus Server</strong> | Scrapes metrics, stores them in TSDB, evaluates rules |
 | <strong>TSDB</strong> | Custom time-series database with Head (in-memory) and Block (on-disk) layers |
 | <strong>Service Discovery</strong> | Automatically finds targets via Kubernetes API, AWS EC2, Consul, DNS |
 | <strong>Alertmanager</strong> | Deduplicates, groups, and routes alerts to Slack, PagerDuty, email |
-| <strong>Exporters</strong> | Sidecar utilities that expose metrics for third-party systems |</p><p><img alt="Prometheus Architecture" loading=lazy src=https://storage.ghost.io/c/5f/2f/5f2f4d20-2abf-4534-8d40-7aa233aedd43/content/images/2025/03/image-118-9.png></p><p>Data flows as follows: Service Discovery identifies targets, the Scraper pulls metrics via HTTP, TSDB stores samples with compression, and the Rule Engine evaluates alerting and recording rules. The Alertmanager handles notification routing, while the HTTP API serves queries to Grafana or the built-in expression browser.</p><p><strong>Key design decisions:</strong></p><ul><li><strong>Pull over push</strong>: Targets only need to expose <code>/metrics</code>; no agent configuration required</li><li><strong>Local storage</strong>: Each Prometheus server is autonomous by default</li><li><strong>Dimensional data model</strong>: Every metric carries key-value labels enabling flexible queries</li><li><strong>PromQL</strong>: A powerful query language for aggregation, rate calculation, and alerting</li></ul><h2 id=installation--setup>Installation & Setup</h2><h3 id=docker-setup-single-node--5-minutes>Docker Setup (Single Node, &lt; 5 Minutes)</h3><p>The fastest path to a running Prometheus instance is Docker. Create a project directory and two files: <strong>prometheus.yml:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>global: scrape_interval</span>: <span style=color:#ae81ff>15s</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>evaluation_interval</span>: <span style=color:#ae81ff>15s</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>scrape_configs: - job_name</span>: <span style=color:#ae81ff>prometheus</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>static_configs: - targets</span>: [<span style=color:#ae81ff>localhost:9090]</span>
-</span></span></code></pre></div><p><strong>docker-compose.yml:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: prometheus: image</span>: <span style=color:#ae81ff>prom/prometheus:v3.11.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>prometheus</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;9090:9090&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>prometheus-data:/prometheus</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./prometheus.yml:/etc/prometheus/prometheus.yml:ro</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: - <span style=color:#e6db74>&#39;--config.file=/etc/prometheus/prometheus.yml&#39;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#39;--storage.tsdb.path=/prometheus&#39;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#39;--storage.tsdb.retention.time=30d&#39;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#39;--web.enable-lifecycle&#39;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: prometheus-data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Start the stack</span>: <span style=color:#ae81ff>`````bash</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>docker compose up -d</span>
-</span></span></code></pre></div><p>Access the UI at <code>http://localhost:9090</code>. The <code>--web.enable-lifecycle</code> flag enables configuration reload via <code>POST /-/reload</code> without restarting the container.</p><h3 id=docker-full-stack-prometheus--grafana--node-exporter--cadvisor>Docker Full Stack: Prometheus + Grafana + Node Exporter + cAdvisor</h3><p>For a complete monitoring stack, add Grafana for visualization and exporters for host/container metrics: `````yaml
-version: &lsquo;3.8&rsquo;</p><p>services: prometheus: image: prom/prometheus:v3.11.0
+| <strong>Exporters</strong> | Sidecar utilities that expose metrics for third-party systems |</p>
+<p><img alt="Prometheus Architecture" loading="lazy" src="https://storage.ghost.io/c/5f/2f/5f2f4d20-2abf-4534-8d40-7aa233aedd43/content/images/2025/03/image-118-9.png"></p>
+<p>Data flows as follows: Service Discovery identifies targets, the Scraper pulls metrics via HTTP, TSDB stores samples with compression, and the Rule Engine evaluates alerting and recording rules. The Alertmanager handles notification routing, while the HTTP API serves queries to Grafana or the built-in expression browser.</p>
+<p><strong>Key design decisions:</strong></p>
+<ul>
+<li><strong>Pull over push</strong>: Targets only need to expose <code>/metrics</code>; no agent configuration required</li>
+<li><strong>Local storage</strong>: Each Prometheus server is autonomous by default</li>
+<li><strong>Dimensional data model</strong>: Every metric carries key-value labels enabling flexible queries</li>
+<li><strong>PromQL</strong>: A powerful query language for aggregation, rate calculation, and alerting</li>
+</ul>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="docker-setup-single-node--5-minutes">Docker Setup (Single Node, &lt; 5 Minutes)</h3>
+<p>The fastest path to a running Prometheus instance is Docker. Create a project directory and two files: <strong>prometheus.yml:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">global: scrape_interval</span>: <span style="color:#ae81ff">15s</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">evaluation_interval</span>: <span style="color:#ae81ff">15s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">scrape_configs: - job_name</span>: <span style="color:#ae81ff">prometheus</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs: - targets</span>: [<span style="color:#ae81ff">localhost:9090]</span>
+</span></span></code></pre></div><p><strong>docker-compose.yml:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: prometheus: image</span>: <span style="color:#ae81ff">prom/prometheus:v3.11.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">prometheus</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;9090:9090&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">prometheus-data:/prometheus</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./prometheus.yml:/etc/prometheus/prometheus.yml:ro</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: - <span style="color:#e6db74">&#39;--config.file=/etc/prometheus/prometheus.yml&#39;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;--storage.tsdb.path=/prometheus&#39;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;--storage.tsdb.retention.time=30d&#39;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;--web.enable-lifecycle&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: prometheus-data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Start the stack</span>: <span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker compose up -d</span>
+</span></span></code></pre></div><p>Access the UI at <code>http://localhost:9090</code>. The <code>--web.enable-lifecycle</code> flag enables configuration reload via <code>POST /-/reload</code> without restarting the container.</p>
+<h3 id="docker-full-stack-prometheus--grafana--node-exporter--cadvisor">Docker Full Stack: Prometheus + Grafana + Node Exporter + cAdvisor</h3>
+<p>For a complete monitoring stack, add Grafana for visualization and exporters for host/container metrics: `````yaml
+version: &lsquo;3.8&rsquo;</p>
+<p>services: prometheus: image: prom/prometheus:v3.11.0
 volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
 - prometheus-data:/prometheus
 ports: - &ldquo;9090:9090&rdquo;
@@ -66,12 +169,14 @@ command: - &lsquo;&ndash;config.file=/etc/prometheus/prometheus.yml&rsquo;
 - &lsquo;&ndash;storage.tsdb.path=/prometheus&rsquo;
 - &lsquo;&ndash;storage.tsdb.retention.time=30d&rsquo;
 - &lsquo;&ndash;web.enable-lifecycle&rsquo;
-restart: unless-stopped</p><p>grafana: image: grafana/grafana:11.0.0
+restart: unless-stopped</p>
+<p>grafana: image: grafana/grafana:11.0.0
 ports: - &ldquo;3000:3000&rdquo;
 volumes: - grafana-data:/var/lib/grafana
 environment: - GF_SECURITY_ADMIN_PASSWORD=admin
 depends_on: - prometheus
-restart: unless-stopped</p><p>node-exporter: image: prom/node-exporter:v1.9.0
+restart: unless-stopped</p>
+<p>node-exporter: image: prom/node-exporter:v1.9.0
 volumes: - /proc:/host/proc:ro
 - /sys:/host/sys:ro
 - /:/rootfs:ro
@@ -79,30 +184,52 @@ command: - &lsquo;&ndash;path.procfs=/host/proc&rsquo;
 - &lsquo;&ndash;path.rootfs=/rootfs&rsquo;
 - &lsquo;&ndash;path.sysfs=/host/sys&rsquo;
 - &lsquo;&ndash;collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)&rsquo;
-restart: unless-stopped</p><p>cadvisor: image: gcr.io/cadvisor/cadvisor:v0.49.1
+restart: unless-stopped</p>
+<p>cadvisor: image: gcr.io/cadvisor/cadvisor:v0.49.1
 volumes: - /:/rootfs:ro
 - /var/run:/var/run:ro
 - /sys:/sys:ro
 - /var/lib/docker/:/var/lib/docker:ro
 - /dev/disk/:/dev/disk:ro
 ports: - &ldquo;8080:8080&rdquo;
-restart: unless-stopped</p><p>volumes: prometheus-data: grafana-data: `````</p><p><strong>Updated prometheus.yml for full stack:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>global: scrape_interval</span>: <span style=color:#ae81ff>15s</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>evaluation_interval</span>: <span style=color:#ae81ff>15s</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>scrape_configs: - job_name</span>: <span style=color:#ae81ff>prometheus</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>static_configs: - targets</span>: [<span style=color:#ae81ff>prometheus:9090]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>job_name</span>: <span style=color:#e6db74>&#39;node-exporter&#39;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>static_configs: - targets</span>: [<span style=color:#ae81ff>node-exporter:9100]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>job_name</span>: <span style=color:#ae81ff>cadvisor</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>static_configs: - targets</span>: [<span style=color:#ae81ff>cadvisor:8080]</span>
-</span></span></code></pre></div><h3 id=kubernetes-deployment-with-helm>Kubernetes Deployment with Helm</h3><p>For production Kubernetes environments, use the <code>kube-prometheus-stack</code> Helm chart. This is the standard approach for Prometheus Kubernetes deployments: `````bash
-helm repo add prometheus-community <a href=https://prometheus-community.github.io/helm-charts>https://prometheus-community.github.io/helm-charts</a>
-helm repo update</p><h1 id=create-monitoring-namespace>Create monitoring namespace</h1><p>kubectl create namespace monitoring</p><h1 id=install-the-stack>Install the stack</h1><p>helm install prometheus prometheus-community/kube-prometheus-stack<br>&ndash;namespace monitoring<br>&ndash;set prometheus.prometheusSpec.retention=30d<br>&ndash;set prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage=50Gi<br>&ndash;set grafana.enabled=true<br>&ndash;set grafana.adminPassword=&lsquo;your-secure-password&rsquo;</p><pre tabindex=0><code>
+restart: unless-stopped</p>
+<p>volumes: prometheus-data: grafana-data: `````</p>
+<p><strong>Updated prometheus.yml for full stack:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">global: scrape_interval</span>: <span style="color:#ae81ff">15s</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">evaluation_interval</span>: <span style="color:#ae81ff">15s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">scrape_configs: - job_name</span>: <span style="color:#ae81ff">prometheus</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs: - targets</span>: [<span style="color:#ae81ff">prometheus:9090]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;node-exporter&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs: - targets</span>: [<span style="color:#ae81ff">node-exporter:9100]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">job_name</span>: <span style="color:#ae81ff">cadvisor</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs: - targets</span>: [<span style="color:#ae81ff">cadvisor:8080]</span>
+</span></span></code></pre></div><h3 id="kubernetes-deployment-with-helm">Kubernetes Deployment with Helm</h3>
+<p>For production Kubernetes environments, use the <code>kube-prometheus-stack</code> Helm chart. This is the standard approach for Prometheus Kubernetes deployments: `````bash
+helm repo add prometheus-community <a href="https://prometheus-community.github.io/helm-charts">https://prometheus-community.github.io/helm-charts</a>
+helm repo update</p>
+<h1 id="create-monitoring-namespace">Create monitoring namespace</h1>
+<p>kubectl create namespace monitoring</p>
+<h1 id="install-the-stack">Install the stack</h1>
+<p>helm install prometheus prometheus-community/kube-prometheus-stack <br>
+&ndash;namespace monitoring <br>
+&ndash;set prometheus.prometheusSpec.retention=30d <br>
+&ndash;set prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage=50Gi <br>
+&ndash;set grafana.enabled=true <br>
+&ndash;set grafana.adminPassword=&lsquo;your-secure-password&rsquo;</p>
+<pre tabindex="0"><code>
 Verify the deployment: `````bash
 kubectl get pods -n monitoring
-</code></pre><p>Port-forward to access services locally: `````bash</p><h1 id=prometheus-ui>Prometheus UI</h1><p>kubectl port-forward svc/prometheus-kube-prometheus-prometheus 9090:9090 -n monitoring</p><h1 id=grafana-default-credentials-admin--the-password-you-set>Grafana (default credentials: admin / the password you set)</h1><p>kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring</p><h1 id=alertmanager>Alertmanager</h1><p>kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 9093:9093 -n monitoring</p><pre tabindex=0><code>
+</code></pre><p>Port-forward to access services locally: `````bash</p>
+<h1 id="prometheus-ui">Prometheus UI</h1>
+<p>kubectl port-forward svc/prometheus-kube-prometheus-prometheus 9090:9090 -n monitoring</p>
+<h1 id="grafana-default-credentials-admin--the-password-you-set">Grafana (default credentials: admin / the password you set)</h1>
+<p>kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring</p>
+<h1 id="alertmanager">Alertmanager</h1>
+<p>kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 9093:9093 -n monitoring</p>
+<pre tabindex="0"><code>
 ### Production Values for Kubernetes
 
 `````yaml
@@ -128,7 +255,9 @@ grafana: enabled: true
   persistence: enabled: true
     size: 10Gi
 </code></pre><p>Apply with: `````bash
-helm upgrade &ndash;install prometheus prometheus-community/kube-prometheus-stack<br>-n monitoring -f values-production.yaml</p><pre tabindex=0><code>
+helm upgrade &ndash;install prometheus prometheus-community/kube-prometheus-stack <br>
+-n monitoring -f values-production.yaml</p>
+<pre tabindex="0"><code>
 ## Integration with Docker, Kubernetes, Grafana, and Alertmanager
 
 ### Prometheus + Grafana Dashboard
@@ -180,16 +309,20 @@ Reference the rules in ``prometheus.yml``: `````yaml
 rule_files: - &#39;/etc/prometheus/alert-rules.yml&#39;
 
 alerting: alertmanagers: - static_configs: - targets: [alertmanager:9093]
-</code></pre><h3 id=alertmanager-configuration-for-slack>Alertmanager Configuration for Slack</h3><p>Create <code>alertmanager.yml</code>: `````yaml
-global: slack_api_url: YOUR_SLACK_WEBHOOK_URL</p><p>route: receiver: &lsquo;slack-notifications&rsquo;
+</code></pre><h3 id="alertmanager-configuration-for-slack">Alertmanager Configuration for Slack</h3>
+<p>Create <code>alertmanager.yml</code>: `````yaml
+global: slack_api_url: YOUR_SLACK_WEBHOOK_URL</p>
+<p>route: receiver: &lsquo;slack-notifications&rsquo;
 group_by: [alertname, severity]
 group_wait: 30s
 group_interval: 5m
-repeat_interval: 4h</p><p>receivers: - name: &lsquo;slack-notifications&rsquo;
+repeat_interval: 4h</p>
+<p>receivers: - name: &lsquo;slack-notifications&rsquo;
 slack_configs: - channel: &lsquo;#alerts&rsquo;
 send_resolved: true
 title: &rsquo;'
-text: ''</p><pre tabindex=0><code>
+text: ''</p>
+<pre tabindex="0"><code>
 ### Prometheus + Kubernetes Service Discovery
 
 Prometheus discovers Kubernetes targets automatically: `````yaml
@@ -205,38 +338,84 @@ scrape_configs: - job_name: &#39;kubernetes-pods&#39;
         target_label: __address__
         regex: ([^:]+)(?::\d+)?;(\d+)
         replacement: $1:$2
-</code></pre><h3 id=promql-query-examples>PromQL Query Examples</h3><p><strong>Calculate request rate per second:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-promql data-lang=promql><span style=display:flex><span><span style=color:#66d9ef>rate</span><span style=color:#f92672>(</span>http_requests_total[<span style=color:#e6db74>5m</span>]<span style=color:#f92672>)</span>
-</span></span></code></pre></div><p><strong>95th percentile latency:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-promql data-lang=promql><span style=display:flex><span><span style=color:#66d9ef>histogram_quantile</span><span style=color:#f92672>(</span><span style=color:#ae81ff>0.95</span>, 
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>sum</span><span style=color:#f92672>(</span><span style=color:#66d9ef>rate</span><span style=color:#f92672>(</span>http_request_duration_seconds_bucket[<span style=color:#e6db74>5m</span>]<span style=color:#f92672>))</span> <span style=color:#66d9ef>by</span> <span style=color:#f92672>(</span>le<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>)</span>
-</span></span></code></pre></div><p><strong>CPU usage percentage:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-promql data-lang=promql><span style=display:flex><span><span style=color:#ae81ff>100</span> <span style=color:#f92672>-</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>avg</span> <span style=color:#66d9ef>by</span><span style=color:#f92672>(</span>instance<span style=color:#f92672>)</span> <span style=color:#f92672>(</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>irate</span><span style=color:#f92672>(</span>node_cpu_seconds_total{mode<span style=color:#f92672>=</span>&#34;<span style=color:#e6db74>idle</span>&#34;}[<span style=color:#e6db74>5m</span>]<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>)</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>100</span><span style=color:#f92672>)</span>
-</span></span></code></pre></div><p><strong>Memory usage in MB:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-promql data-lang=promql><span style=display:flex><span><span style=color:#f92672>(</span>node_memory_MemTotal_bytes <span style=color:#f92672>-</span> node_memory_MemAvailable_bytes<span style=color:#f92672>)</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>1024</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>1024</span>
-</span></span></code></pre></div><p><strong>Error rate by endpoint:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-promql data-lang=promql><span style=display:flex><span><span style=color:#66d9ef>sum</span><span style=color:#f92672>(</span><span style=color:#66d9ef>rate</span><span style=color:#f92672>(</span>http_requests_total{status<span style=color:#f92672>=~</span>&#34;<span style=color:#e6db74>5..</span>&#34;}[<span style=color:#e6db74>5m</span>]<span style=color:#f92672>))</span> <span style=color:#66d9ef>by</span> <span style=color:#f92672>(</span>handler<span style=color:#f92672>)</span> 
-</span></span><span style=display:flex><span><span style=color:#f92672>/</span> 
-</span></span><span style=display:flex><span><span style=color:#66d9ef>sum</span><span style=color:#f92672>(</span><span style=color:#66d9ef>rate</span><span style=color:#f92672>(</span>http_requests_total[<span style=color:#e6db74>5m</span>]<span style=color:#f92672>))</span> <span style=color:#66d9ef>by</span> <span style=color:#f92672>(</span>handler<span style=color:#f92672>)</span>
-</span></span></code></pre></div><p><strong>Disk usage prediction (will fill in 7 days?):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-promql data-lang=promql><span style=display:flex><span><span style=color:#66d9ef>predict_linear</span><span style=color:#f92672>(</span>
-</span></span><span style=display:flex><span>  node_filesystem_avail_bytes[<span style=color:#e6db74>1h</span>], 
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>7</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>24</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>3600</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>)</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>
-</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks / Real-World Use Cases</h2><h3 id=ingestion-performance>Ingestion Performance</h3><p>| Setup | Samples/Second | CPU Cores | Memory |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="promql-query-examples">PromQL Query Examples</h3>
+<p><strong>Calculate request rate per second:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-promql" data-lang="promql"><span style="display:flex;"><span><span style="color:#66d9ef">rate</span><span style="color:#f92672">(</span>http_requests_total[<span style="color:#e6db74">5m</span>]<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p><strong>95th percentile latency:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-promql" data-lang="promql"><span style="display:flex;"><span><span style="color:#66d9ef">histogram_quantile</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0.95</span>, 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">sum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">rate</span><span style="color:#f92672">(</span>http_request_duration_seconds_bucket[<span style="color:#e6db74">5m</span>]<span style="color:#f92672">))</span> <span style="color:#66d9ef">by</span> <span style="color:#f92672">(</span>le<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">)</span>
+</span></span></code></pre></div><p><strong>CPU usage percentage:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-promql" data-lang="promql"><span style="display:flex;"><span><span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">avg</span> <span style="color:#66d9ef">by</span><span style="color:#f92672">(</span>instance<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">irate</span><span style="color:#f92672">(</span>node_cpu_seconds_total{mode<span style="color:#f92672">=</span>&#34;<span style="color:#e6db74">idle</span>&#34;}[<span style="color:#e6db74">5m</span>]<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span><span style="color:#f92672">)</span>
+</span></span></code></pre></div><p><strong>Memory usage in MB:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-promql" data-lang="promql"><span style="display:flex;"><span><span style="color:#f92672">(</span>node_memory_MemTotal_bytes <span style="color:#f92672">-</span> node_memory_MemAvailable_bytes<span style="color:#f92672">)</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">1024</span>
+</span></span></code></pre></div><p><strong>Error rate by endpoint:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-promql" data-lang="promql"><span style="display:flex;"><span><span style="color:#66d9ef">sum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">rate</span><span style="color:#f92672">(</span>http_requests_total{status<span style="color:#f92672">=~</span>&#34;<span style="color:#e6db74">5..</span>&#34;}[<span style="color:#e6db74">5m</span>]<span style="color:#f92672">))</span> <span style="color:#66d9ef">by</span> <span style="color:#f92672">(</span>handler<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">rate</span><span style="color:#f92672">(</span>http_requests_total[<span style="color:#e6db74">5m</span>]<span style="color:#f92672">))</span> <span style="color:#66d9ef">by</span> <span style="color:#f92672">(</span>handler<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p><strong>Disk usage prediction (will fill in 7 days?):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-promql" data-lang="promql"><span style="display:flex;"><span><span style="color:#66d9ef">predict_linear</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>  node_filesystem_avail_bytes[<span style="color:#e6db74">1h</span>], 
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">7</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">3600</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">)</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="ingestion-performance">Ingestion Performance</h3>
+<p>| Setup | Samples/Second | CPU Cores | Memory |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Prometheus single-node | ~100,000–300,000 | 4 | 2–4 GB |
 | Prometheus + Cortex | 1M+ | Cluster | Scales horizontally |
 | VictoriaMetrics (single) | Up to 1,000,000 | 8 | ~2 GB |
 | InfluxDB 3.0 OSS | ~122,000 | 4 | 4–8 GB |
-| InfluxDB 1.8 OSS | ~200,000–400,000 | 4 | 4–8 GB |</p><p>Source: Independent TSBS benchmarks, 2025–2026. Prometheus trades raw ingestion throughput for query flexibility and operational simplicity.</p><h3 id=resource-footprint-by-scale>Resource Footprint by Scale</h3><p>| Cluster Size | Prometheus CPU | Prometheus RAM | Storage (30d) |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| InfluxDB 1.8 OSS | ~200,000–400,000 | 4 | 4–8 GB |</p>
+<p>Source: Independent TSBS benchmarks, 2025–2026. Prometheus trades raw ingestion throughput for query flexibility and operational simplicity.</p>
+<h3 id="resource-footprint-by-scale">Resource Footprint by Scale</h3>
+<p>| Cluster Size | Prometheus CPU | Prometheus RAM | Storage (30d) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Small (&lt; 50 pods) | 500m | 1–2 Gi | 20–50 Gi |
 | Medium (50–200 pods) | 1000m | 2–4 Gi | 50–100 Gi |
 | Large (200–500 pods) | 2000m | 4–8 Gi | 100–200 Gi |
-| XL (500+ pods) | 4000m | 8–16 Gi | 200–500 Gi |</p><h3 id=real-world-use-cases>Real-World Use Cases</h3><ul><li><strong>DigitalOcean</strong>: Monitors thousands of VMs and Kubernetes clusters using Prometheus federation</li><li><strong>Uber</strong>: Scales to billions of time series with M3DB (Prometheus-compatible)</li><li><strong>SoundCloud</strong>: Original creator; monitors microservices at scale with minimal operational overhead</li></ul><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><h3 id=security-best-practices>Security Best Practices</h3><ol><li><strong>Enable Basic Authentication</strong> (Prometheus v2.24+): `````yaml</li></ol><h1 id=webyml>web.yml</h1><p>basic_auth_users: admin: $2y$10$&mldr; # bcrypt hash</p><pre tabindex=0><code>
+| XL (500+ pods) | 4000m | 8–16 Gi | 200–500 Gi |</p>
+<h3 id="real-world-use-cases">Real-World Use Cases</h3>
+<ul>
+<li><strong>DigitalOcean</strong>: Monitors thousands of VMs and Kubernetes clusters using Prometheus federation</li>
+<li><strong>Uber</strong>: Scales to billions of time series with M3DB (Prometheus-compatible)</li>
+<li><strong>SoundCloud</strong>: Original creator; monitors microservices at scale with minimal operational overhead</li>
+</ul>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="security-best-practices">Security Best Practices</h3>
+<ol>
+<li><strong>Enable Basic Authentication</strong> (Prometheus v2.24+): `````yaml</li>
+</ol>
+<h1 id="webyml">web.yml</h1>
+<p>basic_auth_users: admin: $2y$10$&hellip; # bcrypt hash</p>
+<pre tabindex="0"><code>
 `````bash
 # Generate password hash
 htpasswd -nBC 10 &#34;&#34; | tr -d &#39;:\n&#39;
 </code></pre><p>Reference in startup flags: `````yaml
-command: - &lsquo;&ndash;config.file=/etc/prometheus/prometheus.yml&rsquo;</p><ul><li>&lsquo;&ndash;web.config.file=/etc/prometheus/web.yml&rsquo;</li></ul><pre tabindex=0><code>
+command: - &lsquo;&ndash;config.file=/etc/prometheus/prometheus.yml&rsquo;</p>
+<ul>
+<li>&lsquo;&ndash;web.config.file=/etc/prometheus/web.yml&rsquo;</li>
+</ul>
+<pre tabindex="0"><code>
 2. **Use TLS for scrape targets:**
 `````yaml
 scrape_configs: - job_name: &#39;secure-target&#39;
@@ -245,24 +424,52 @@ scrape_configs: - job_name: &#39;secure-target&#39;
       cert_file: /etc/prometheus/certs/client.crt
       key_file: /etc/prometheus/certs/client.key
       insecure_skip_verify: false
-</code></pre><ol start=3><li><p><strong>Network policies</strong> (Kubernetes) restrict which pods can reach Prometheus port 9090.</p></li><li><p><strong>Run as non-root</strong>: The official image supports UID 65534 (nobody). From v3.10.0, a distroless variant uses UID/GID 65532.</p></li></ol><h3 id=scaling-strategies>Scaling Strategies</h3><ul><li><strong>Federation</strong>: A global Prometheus scrapes aggregated metrics from regional Prometheus instances</li><li><strong>Remote Write</strong>: Stream metrics to long-term storage (Thanos, Cortex, VictoriaMetrics, Mimir)</li><li><strong>Sharding</strong>: Split scrape targets across multiple Prometheus instances by job or namespace</li><li><strong>High Availability</strong>: Run two identical Prometheus instances scraping the same targets; use Thanos Querier for deduplication</li></ul><h3 id=monitoring-prometheus-itself>Monitoring Prometheus Itself</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-promql data-lang=promql><span style=display:flex><span><span style=color:#75715e># Scrape success rate</span>
-</span></span><span style=display:flex><span>prometheus_target_scrapes_exceeded_sample_limit_total
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># TSDB statistics</span>
-</span></span><span style=display:flex><span>prometheus_tsdb_head_series
-</span></span><span style=display:flex><span>prometheus_tsdb_head_chunks
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Rule evaluation duration</span>
-</span></span><span style=display:flex><span>prometheus_rule_evaluation_duration_seconds
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Alertmanager notification failures</span>
-</span></span><span style=display:flex><span>prometheus_notifications_dropped_total
-</span></span></code></pre></div><h3 id=long-term-storage-with-thanos>Long-Term Storage with Thanos</h3><p>Thanos extends Prometheus with object storage (S3, GCS, Azure Blob) for long-term retention and global querying: `````yaml</p><h1 id=sidecar-runs-alongside-each-prometheus-pod>Sidecar runs alongside each Prometheus pod</h1><ul><li>name: thanos-sidecar
+</code></pre><ol start="3">
+<li>
+<p><strong>Network policies</strong> (Kubernetes) restrict which pods can reach Prometheus port 9090.</p>
+</li>
+<li>
+<p><strong>Run as non-root</strong>: The official image supports UID 65534 (nobody). From v3.10.0, a distroless variant uses UID/GID 65532.</p>
+</li>
+</ol>
+<h3 id="scaling-strategies">Scaling Strategies</h3>
+<ul>
+<li><strong>Federation</strong>: A global Prometheus scrapes aggregated metrics from regional Prometheus instances</li>
+<li><strong>Remote Write</strong>: Stream metrics to long-term storage (Thanos, Cortex, VictoriaMetrics, Mimir)</li>
+<li><strong>Sharding</strong>: Split scrape targets across multiple Prometheus instances by job or namespace</li>
+<li><strong>High Availability</strong>: Run two identical Prometheus instances scraping the same targets; use Thanos Querier for deduplication</li>
+</ul>
+<h3 id="monitoring-prometheus-itself">Monitoring Prometheus Itself</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-promql" data-lang="promql"><span style="display:flex;"><span><span style="color:#75715e"># Scrape success rate</span>
+</span></span><span style="display:flex;"><span>prometheus_target_scrapes_exceeded_sample_limit_total
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TSDB statistics</span>
+</span></span><span style="display:flex;"><span>prometheus_tsdb_head_series
+</span></span><span style="display:flex;"><span>prometheus_tsdb_head_chunks
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Rule evaluation duration</span>
+</span></span><span style="display:flex;"><span>prometheus_rule_evaluation_duration_seconds
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Alertmanager notification failures</span>
+</span></span><span style="display:flex;"><span>prometheus_notifications_dropped_total
+</span></span></code></pre></div><h3 id="long-term-storage-with-thanos">Long-Term Storage with Thanos</h3>
+<p>Thanos extends Prometheus with object storage (S3, GCS, Azure Blob) for long-term retention and global querying: `````yaml</p>
+<h1 id="sidecar-runs-alongside-each-prometheus-pod">Sidecar runs alongside each Prometheus pod</h1>
+<ul>
+<li>name: thanos-sidecar
 image: quay.io/thanos/thanos:v0.37.0
-args: - sidecar<ul><li>&ndash;tsdb.path=/prometheus</li><li>&ndash;objstore.config-file=/etc/thanos/objstore.yml
+args: - sidecar
+<ul>
+<li>&ndash;tsdb.path=/prometheus</li>
+<li>&ndash;objstore.config-file=/etc/thanos/objstore.yml
 volumeMounts: - name: prometheus-data
-mountPath: /prometheus</li><li>name: thanos-objstore
-mountPath: /etc/thanos</li></ul></li></ul><pre tabindex=0><code>
+mountPath: /prometheus</li>
+<li>name: thanos-objstore
+mountPath: /etc/thanos</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code>
 ## Comparison with Alternatives
 
 | Feature | Prometheus | InfluxDB | Datadog | New Relic |
@@ -404,13 +611,265 @@ Before you deploy any of the tools above into production, you&#39;ll need solid 
 
 * * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fprometheus%2f&text=Create%20monitoring%20namespace" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fprometheus%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fprometheus%2f&text=Create%20monitoring%20namespace" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fprometheus%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

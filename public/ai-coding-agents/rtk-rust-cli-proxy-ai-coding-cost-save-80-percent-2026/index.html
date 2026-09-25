@@ -1,23 +1,130 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026) | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026) | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026)</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026)</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=i-cut-my-ai-coding-bill-by-80-with-this-rust-cli-proxy--heres-the-exact-setup-rtk-guide-2026>I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here&rsquo;s the Exact Setup (rtk Guide 2026)</h1><blockquote><p><strong>TL;DR</strong>: rtk is a single Rust binary, zero-dependency CLI proxy that filters and compresses command output before it reaches your AI agent&rsquo;s context window. It reduces LLM token consumption by <strong>60–90%</strong> across <strong>100+ dev commands</strong> and <strong>13 AI coding tools</strong>, with <strong>&lt;10ms overhead</strong>. Install in 30 seconds, forget it&rsquo;s there, watch your API bill drop.</p></blockquote><hr><h2 id=table-of-contents>Table of Contents</h2><ol><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#the-silent-cost-crisis-hitting-ai-powered-developers-in-2026>The Silent Cost Crisis Hitting AI-Powered Developers in 2026</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#what-rtk-actually-does-and-what-it-doesnt>What rtk Actually Does (And What It Doesn&rsquo;t)</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#real-numbers-80-token-reduction-in-a-30-minute-claude-code-session>Real Numbers: 80% Token Reduction in a 30-Minute Claude Code Session</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#the-four-compression-strategies-behind-rtk>The Four Compression Strategies Behind rtk</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#universal-compatibility-13-ai-tools-one-install>Universal Compatibility: 13 AI Tools, One Install</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#installation-30-seconds-zero-config>Installation: 30 Seconds, Zero Config</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#hands-on-from-git-workflows-to-aws-and-kubernetes>Hands-On: From Git Workflows to AWS and Kubernetes</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#limitations-and-pro-tips>Limitations and Pro Tips</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#how-rtk-compares-to-alternatives>How rtk Compares to Alternatives</a></li><li><a href=/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#bottom-line-the-highest-roi-tool-youll-install-this-year>Bottom Line: The Highest-ROI Tool You&rsquo;ll Install This Year</a></li></ol><hr><h2 id=the-silent-cost-crisis-hitting-ai-powered-developers-in-2026>The Silent Cost Crisis Hitting AI-Powered Developers in 2026</h2><p>If you&rsquo;re using Claude Code, Cursor, GitHub Copilot, Gemini CLI, or any AI coding agent daily, you already know the productivity gains are real. What fewer developers talk about is the <strong>cost curve</strong>.</p><p>Here&rsquo;s what typical AI tooling spend looks like for a professional developer in mid-2026: | Usage Pattern | Monthly API Cost | Stack Context |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here&#39;s the Exact Setup (rtk Guide 2026) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here&#39;s the Exact Setup (rtk Guide 2026) | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here&#39;s the Exact Setup (rtk Guide 2026)</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here&#39;s the Exact Setup (rtk Guide 2026)</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="i-cut-my-ai-coding-bill-by-80-with-this-rust-cli-proxy--heres-the-exact-setup-rtk-guide-2026">I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here&rsquo;s the Exact Setup (rtk Guide 2026)</h1>
+<blockquote>
+<p><strong>TL;DR</strong>: rtk is a single Rust binary, zero-dependency CLI proxy that filters and compresses command output before it reaches your AI agent&rsquo;s context window. It reduces LLM token consumption by <strong>60–90%</strong> across <strong>100+ dev commands</strong> and <strong>13 AI coding tools</strong>, with <strong>&lt;10ms overhead</strong>. Install in 30 seconds, forget it&rsquo;s there, watch your API bill drop.</p>
+</blockquote>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#the-silent-cost-crisis-hitting-ai-powered-developers-in-2026">The Silent Cost Crisis Hitting AI-Powered Developers in 2026</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#what-rtk-actually-does-and-what-it-doesnt">What rtk Actually Does (And What It Doesn&rsquo;t)</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#real-numbers-80-token-reduction-in-a-30-minute-claude-code-session">Real Numbers: 80% Token Reduction in a 30-Minute Claude Code Session</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#the-four-compression-strategies-behind-rtk">The Four Compression Strategies Behind rtk</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#universal-compatibility-13-ai-tools-one-install">Universal Compatibility: 13 AI Tools, One Install</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#installation-30-seconds-zero-config">Installation: 30 Seconds, Zero Config</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#hands-on-from-git-workflows-to-aws-and-kubernetes">Hands-On: From Git Workflows to AWS and Kubernetes</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#limitations-and-pro-tips">Limitations and Pro Tips</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#how-rtk-compares-to-alternatives">How rtk Compares to Alternatives</a></li>
+<li><a href="/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#bottom-line-the-highest-roi-tool-youll-install-this-year">Bottom Line: The Highest-ROI Tool You&rsquo;ll Install This Year</a></li>
+</ol>
+<hr>
+<h2 id="the-silent-cost-crisis-hitting-ai-powered-developers-in-2026">The Silent Cost Crisis Hitting AI-Powered Developers in 2026</h2>
+<p>If you&rsquo;re using Claude Code, Cursor, GitHub Copilot, Gemini CLI, or any AI coding agent daily, you already know the productivity gains are real. What fewer developers talk about is the <strong>cost curve</strong>.</p>
+<p>Here&rsquo;s what typical AI tooling spend looks like for a professional developer in mid-2026: | Usage Pattern | Monthly API Cost | Stack Context |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Light (1–2 hrs/day) | $50–100 | Side projects, occasional agent help |
 | Moderate (3–4 hrs/day) | $150–400 | Full-time development with agent assistance |
-| Heavy / Team lead | $500–2,000+ | Agent-driven workflows, multi-file refactoring |</p><p>That doesn&rsquo;t include subscription fees: Claude Pro ($20), Cursor Pro ($20), ChatGPT Plus ($20), Copilot Pro ($10). Stack them up and you&rsquo;re at <strong>$840+/year before API calls even start</strong>.</p><p>But here&rsquo;s the painful part: <strong>a significant chunk of that API spend is pure waste</strong>.</p><p>Every time your AI agent runs ```git status<code>, </code>cat package.json<code>, </code>cargo test<code>, </code>docker ps<code>, or </code>aws ec2 describe-instances````, the raw output contains noise — blank lines, progress bars, ASCII art, redundant logs, verbose metadata — that gets stuffed into the LLM context window and billed at full token rate.</p><p><strong>rtk exists to eliminate that waste at the source.</strong></p><hr><h2 id=what-rtk-actually-does-and-what-it-doesnt>What rtk Actually Does (And What It Doesn&rsquo;t)</h2><p>rtk (GitHub: <a href=https://github.com/rtk-ai/rtk>rtk-ai/rtk</a>) is not another AI model, not a chat interface, and not a Copilot replacement. Its job is singular and precise: > &ldquo;rtk filters and compresses command outputs before they reach your LLM context.&rdquo;</p><p>It sits as a transparent proxy layer between your AI agent and the shell: `````
-Without rtk: Claude Code &ndash;git status&ndash;> shell &ndash;> git &ndash;> raw 2,000-token output</p><p>With rtk: Claude Code &ndash;git status&ndash;> RTK &ndash;> git &ndash;> filtered 200-token output</p><pre tabindex=0><code>
+| Heavy / Team lead | $500–2,000+ | Agent-driven workflows, multi-file refactoring |</p>
+<p>That doesn&rsquo;t include subscription fees: Claude Pro ($20), Cursor Pro ($20), ChatGPT Plus ($20), Copilot Pro ($10). Stack them up and you&rsquo;re at <strong>$840+/year before API calls even start</strong>.</p>
+<p>But here&rsquo;s the painful part: <strong>a significant chunk of that API spend is pure waste</strong>.</p>
+<p>Every time your AI agent runs ```git status<code>, </code>cat package.json<code>, </code>cargo test<code>, </code>docker ps<code>, or </code>aws ec2 describe-instances````, the raw output contains noise — blank lines, progress bars, ASCII art, redundant logs, verbose metadata — that gets stuffed into the LLM context window and billed at full token rate.</p>
+<p><strong>rtk exists to eliminate that waste at the source.</strong></p>
+<hr>
+<h2 id="what-rtk-actually-does-and-what-it-doesnt">What rtk Actually Does (And What It Doesn&rsquo;t)</h2>
+<p>rtk (GitHub: <a href="https://github.com/rtk-ai/rtk">rtk-ai/rtk</a>) is not another AI model, not a chat interface, and not a Copilot replacement. Its job is singular and precise: &gt; &ldquo;rtk filters and compresses command outputs before they reach your LLM context.&rdquo;</p>
+<p>It sits as a transparent proxy layer between your AI agent and the shell: `````
+Without rtk: Claude Code &ndash;git status&ndash;&gt; shell &ndash;&gt; git &ndash;&gt; raw 2,000-token output</p>
+<p>With rtk: Claude Code &ndash;git status&ndash;&gt; RTK &ndash;&gt; git &ndash;&gt; filtered 200-token output</p>
+<pre tabindex="0"><code>
 **Core specs at a glance:**
 
 | Feature | Detail |
@@ -120,109 +227,419 @@ Switch between tools without losing your token savings. rtk follows your workflo
 brew install rtk
 rtk init -g   # Install auto-rewrite hook for your default AI tool
 # Restart Claude Code / Cursor / your agent
-</code></pre><h3 id=linux>Linux</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
-</span></span><span style=display:flex><span>rtk init -g
-</span></span></code></pre></div><h3 id=windows-wsl-recommended-for-full-hook-support>Windows (WSL recommended for full hook support)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Inside WSL — full features</span>
-</span></span><span style=display:flex><span>curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
-</span></span><span style=display:flex><span>rtk init -g
-</span></span></code></pre></div><h3 id=verify>Verify</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk --version   <span style=color:#75715e># rtk 0.28.2</span>
-</span></span><span style=display:flex><span>rtk gain        <span style=color:#75715e># View token savings stats</span>
-</span></span></code></pre></div><p>After installation, <strong>keep using your tools exactly as before</strong>. The hook transparently rewrites bash commands — <code>git status</code> becomes <code>rtk git status</code> — without any change to your workflow.</p><hr><h2 id=hands-on-from-git-workflows-to-aws-and-kubernetes>Hands-On: From Git Workflows to AWS and Kubernetes</h2><h3 id=git-operations>Git Operations</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk git status        <span style=color:#75715e># Compact status</span>
-</span></span><span style=display:flex><span>rtk git log -n <span style=color:#ae81ff>10</span>     <span style=color:#75715e># One-line commits</span>
-</span></span><span style=display:flex><span>rtk git diff          <span style=color:#75715e># Condensed diff</span>
-</span></span><span style=display:flex><span>rtk git push          <span style=color:#75715e># Returns: ok main</span>
-</span></span></code></pre></div><h3 id=test-runners-failures-only>Test Runners: Failures Only</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk pytest            <span style=color:#75715e># 90% token savings, failures only</span>
-</span></span><span style=display:flex><span>rtk cargo test        <span style=color:#75715e># Same for Rust</span>
-</span></span><span style=display:flex><span>rtk test &lt;cmd&gt;        <span style=color:#75715e># Generic test wrapper</span>
-</span></span></code></pre></div><h3 id=lint--build-grouped-by-rule>Lint & Build: Grouped by Rule</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk lint              <span style=color:#75715e># ESLint grouped by rule/file</span>
-</span></span><span style=display:flex><span>rtk tsc               <span style=color:#75715e># TypeScript errors grouped by file</span>
-</span></span><span style=display:flex><span>rtk ruff check        <span style=color:#75715e># Python lint, 80% savings</span>
-</span></span></code></pre></div><h3 id=docker--k8s-deduplicated-logs>Docker & K8s: Deduplicated Logs</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk docker ps         <span style=color:#75715e># Compact container list</span>
-</span></span><span style=display:flex><span>rtk docker logs &lt;id&gt;  <span style=color:#75715e># Deduplicated logs</span>
-</span></span><span style=display:flex><span>rtk kubectl pods      <span style=color:#75715e># Compact pod list</span>
-</span></span></code></pre></div><h3 id=aws-stripped--sanitized>AWS: Stripped + Sanitized</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk aws ec2 describe-instances   <span style=color:#75715e># Compact instance list</span>
-</span></span><span style=display:flex><span>rtk aws lambda list-functions  <span style=color:#75715e># Name/runtime/memory, secrets stripped</span>
-</span></span><span style=display:flex><span>rtk aws s3 ls                   <span style=color:#75715e># Truncated with tee recovery</span>
-</span></span></code></pre></div><h3 id=data--analytics-structured-output>Data & Analytics: Structured Output</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk json config.json    <span style=color:#75715e># Structure without values (safe)</span>
-</span></span><span style=display:flex><span>rtk deps                <span style=color:#75715e># Dependency summary</span>
-</span></span><span style=display:flex><span>rtk summary &lt;long cmd&gt;  <span style=color:#75715e># Heuristic summary</span>
-</span></span></code></pre></div><hr><h2 id=limitations-and-pro-tips>Limitations and Pro Tips</h2><h3 id=known-limitations>Known Limitations</h3><ol><li><p><strong>Bash-only interception</strong>: Claude Code&rsquo;s built-in <code>Read</code>, <code>Grep</code>, <code>Glob</code> tools bypass the bash hook. Workaround: use shell commands (<code>cat</code>, <code>rg</code>, <code>find</code>) or explicit <code>rtk read</code>, <code>rtk grep</code>.</p></li><li><p><strong>Windows native</strong>: Auto-rewrite requires a Unix shell. Native Windows (cmd/PowerShell) falls back to CLAUDE.md injection mode — works, but requires explicit <code>rtk</code> prefix. WSL gives full support.</p></li><li><p><strong>Edge cases may need full output</strong>: rtk saves raw output via tee on failure. Use <code>-v</code> / <code>--verbose</code> flags when you need more detail.</p></li></ol><h3 id=best-practices>Best Practices</h3><ul><li><strong>Install and forget</strong>: The hook works transparently; don&rsquo;t force yourself to prepend <code>rtk</code></li><li><strong>Check <code>rtk gain</code> weekly</strong>: Understand your savings profile</li><li><strong>Run <code>rtk discover</code></strong>: Find commands in your history that could benefit from rtk but aren&rsquo;t covered yet</li><li><strong>Exclude sensitive commands</strong>: In <code>~/.config/rtk/config.toml</code>: <code>exclude_commands = ["curl", "playwright"]</code></li></ul><hr><h2 id=how-rtk-compares-to-alternatives>How rtk Compares to Alternatives</h2><p>| Tool | Layer | Approach | Scope | Setup Friction |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="linux">Linux</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+</span></span><span style="display:flex;"><span>rtk init -g
+</span></span></code></pre></div><h3 id="windows-wsl-recommended-for-full-hook-support">Windows (WSL recommended for full hook support)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Inside WSL — full features</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+</span></span><span style="display:flex;"><span>rtk init -g
+</span></span></code></pre></div><h3 id="verify">Verify</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk --version   <span style="color:#75715e"># rtk 0.28.2</span>
+</span></span><span style="display:flex;"><span>rtk gain        <span style="color:#75715e"># View token savings stats</span>
+</span></span></code></pre></div><p>After installation, <strong>keep using your tools exactly as before</strong>. The hook transparently rewrites bash commands — <code>git status</code> becomes <code>rtk git status</code> — without any change to your workflow.</p>
+<hr>
+<h2 id="hands-on-from-git-workflows-to-aws-and-kubernetes">Hands-On: From Git Workflows to AWS and Kubernetes</h2>
+<h3 id="git-operations">Git Operations</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk git status        <span style="color:#75715e"># Compact status</span>
+</span></span><span style="display:flex;"><span>rtk git log -n <span style="color:#ae81ff">10</span>     <span style="color:#75715e"># One-line commits</span>
+</span></span><span style="display:flex;"><span>rtk git diff          <span style="color:#75715e"># Condensed diff</span>
+</span></span><span style="display:flex;"><span>rtk git push          <span style="color:#75715e"># Returns: ok main</span>
+</span></span></code></pre></div><h3 id="test-runners-failures-only">Test Runners: Failures Only</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk pytest            <span style="color:#75715e"># 90% token savings, failures only</span>
+</span></span><span style="display:flex;"><span>rtk cargo test        <span style="color:#75715e"># Same for Rust</span>
+</span></span><span style="display:flex;"><span>rtk test &lt;cmd&gt;        <span style="color:#75715e"># Generic test wrapper</span>
+</span></span></code></pre></div><h3 id="lint--build-grouped-by-rule">Lint &amp; Build: Grouped by Rule</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk lint              <span style="color:#75715e"># ESLint grouped by rule/file</span>
+</span></span><span style="display:flex;"><span>rtk tsc               <span style="color:#75715e"># TypeScript errors grouped by file</span>
+</span></span><span style="display:flex;"><span>rtk ruff check        <span style="color:#75715e"># Python lint, 80% savings</span>
+</span></span></code></pre></div><h3 id="docker--k8s-deduplicated-logs">Docker &amp; K8s: Deduplicated Logs</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk docker ps         <span style="color:#75715e"># Compact container list</span>
+</span></span><span style="display:flex;"><span>rtk docker logs &lt;id&gt;  <span style="color:#75715e"># Deduplicated logs</span>
+</span></span><span style="display:flex;"><span>rtk kubectl pods      <span style="color:#75715e"># Compact pod list</span>
+</span></span></code></pre></div><h3 id="aws-stripped--sanitized">AWS: Stripped + Sanitized</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk aws ec2 describe-instances   <span style="color:#75715e"># Compact instance list</span>
+</span></span><span style="display:flex;"><span>rtk aws lambda list-functions  <span style="color:#75715e"># Name/runtime/memory, secrets stripped</span>
+</span></span><span style="display:flex;"><span>rtk aws s3 ls                   <span style="color:#75715e"># Truncated with tee recovery</span>
+</span></span></code></pre></div><h3 id="data--analytics-structured-output">Data &amp; Analytics: Structured Output</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk json config.json    <span style="color:#75715e"># Structure without values (safe)</span>
+</span></span><span style="display:flex;"><span>rtk deps                <span style="color:#75715e"># Dependency summary</span>
+</span></span><span style="display:flex;"><span>rtk summary &lt;long cmd&gt;  <span style="color:#75715e"># Heuristic summary</span>
+</span></span></code></pre></div><hr>
+<h2 id="limitations-and-pro-tips">Limitations and Pro Tips</h2>
+<h3 id="known-limitations">Known Limitations</h3>
+<ol>
+<li>
+<p><strong>Bash-only interception</strong>: Claude Code&rsquo;s built-in <code>Read</code>, <code>Grep</code>, <code>Glob</code> tools bypass the bash hook. Workaround: use shell commands (<code>cat</code>, <code>rg</code>, <code>find</code>) or explicit <code>rtk read</code>, <code>rtk grep</code>.</p>
+</li>
+<li>
+<p><strong>Windows native</strong>: Auto-rewrite requires a Unix shell. Native Windows (cmd/PowerShell) falls back to CLAUDE.md injection mode — works, but requires explicit <code>rtk</code> prefix. WSL gives full support.</p>
+</li>
+<li>
+<p><strong>Edge cases may need full output</strong>: rtk saves raw output via tee on failure. Use <code>-v</code> / <code>--verbose</code> flags when you need more detail.</p>
+</li>
+</ol>
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li><strong>Install and forget</strong>: The hook works transparently; don&rsquo;t force yourself to prepend <code>rtk</code></li>
+<li><strong>Check <code>rtk gain</code> weekly</strong>: Understand your savings profile</li>
+<li><strong>Run <code>rtk discover</code></strong>: Find commands in your history that could benefit from rtk but aren&rsquo;t covered yet</li>
+<li><strong>Exclude sensitive commands</strong>: In <code>~/.config/rtk/config.toml</code>: <code>exclude_commands = [&quot;curl&quot;, &quot;playwright&quot;]</code></li>
+</ul>
+<hr>
+<h2 id="how-rtk-compares-to-alternatives">How rtk Compares to Alternatives</h2>
+<p>| Tool | Layer | Approach | Scope | Setup Friction |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>rtk</strong> | CLI proxy | Output filtering/compression | 100+ commands, 13 agents | 30s, zero config |
 | <strong>Morph</strong> | API gateway | Model routing + context compaction | Generic API calls | Requires code changes |
 | <strong>LiteLLM</strong> | LLM proxy | Caching + routing + observability | Multi-model APIs | Service deployment |
 | <strong>LLMLingua</strong> | Prompt layer | Semantic compression | Prompt text | Manual integration |
-| <strong>ccusage</strong> | Monitoring | Tracking only, no compression | Claude Code only | Read-only |</p><p>rtk&rsquo;s unique advantage: <strong>it lives at the command layer, requires zero code changes, zero infrastructure, and zero new abstractions.</strong> It&rsquo;s a transparent filter you install once and never think about again.</p><hr><h2 id=bottom-line-the-highest-roi-tool-youll-install-this-year>Bottom Line: The Highest-ROI Tool You&rsquo;ll Install This Year</h2><p>In 2026&rsquo;s developer tooling landscape, everyone is building <em>more</em> — more features, more models, more integrations. rtk is a rare example of building <em>less</em>, but better. It doesn&rsquo;t replace your AI agent; it just makes it cheaper to feed.</p><ul><li><strong>No workflow changes</strong></li><li><strong>No code changes</strong></li><li><strong>No infrastructure</strong></li><li><strong>MIT license, completely free</strong></li><li><strong>60–90% real token savings</strong></li></ul><p>If you&rsquo;re paying for AI coding tools, rtk isn&rsquo;t a &ldquo;nice to have.&rdquo; It&rsquo;s the tool that makes every other tool more economically viable.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 30 seconds. Start saving today.</span>
-</span></span><span style=display:flex><span>brew install rtk
-</span></span><span style=display:flex><span>rtk init -g
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Further Reading**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>rtk GitHub Repository<span style=color:#f92672>](</span>https://github.com/rtk-ai/rtk<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>rtk Official Documentation<span style=color:#f92672>](</span>https://rtk-ai.app/guide<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Anthropic Claude Code Pricing<span style=color:#f92672>](</span>https://docs.anthropic.com/<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Morph: <span style=color:#ae81ff>5</span> LLM Cost Optimization Strategies<span style=color:#f92672>](</span>https://www.morphllm.com/ai-coding-costs<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Reviewed against rtk v0.28.2. Features evolve rapidly; consult the latest release notes <span style=color:#66d9ef>for</span> updates.*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here&#39;s the Exact Setup (rtk Guide 2026)&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-01-01&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-01-01&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></code></pre></div></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026%2f&text=I%20Cut%20My%20AI%20Coding%20Bill%20by%2080%25%20With%20This%20Rust%20CLI%20Proxy%20%e2%80%94%20Here%27s%20the%20Exact%20Setup%20%28rtk%20Guide%202026%29" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+| <strong>ccusage</strong> | Monitoring | Tracking only, no compression | Claude Code only | Read-only |</p>
+<p>rtk&rsquo;s unique advantage: <strong>it lives at the command layer, requires zero code changes, zero infrastructure, and zero new abstractions.</strong> It&rsquo;s a transparent filter you install once and never think about again.</p>
+<hr>
+<h2 id="bottom-line-the-highest-roi-tool-youll-install-this-year">Bottom Line: The Highest-ROI Tool You&rsquo;ll Install This Year</h2>
+<p>In 2026&rsquo;s developer tooling landscape, everyone is building <em>more</em> — more features, more models, more integrations. rtk is a rare example of building <em>less</em>, but better. It doesn&rsquo;t replace your AI agent; it just makes it cheaper to feed.</p>
+<ul>
+<li><strong>No workflow changes</strong></li>
+<li><strong>No code changes</strong></li>
+<li><strong>No infrastructure</strong></li>
+<li><strong>MIT license, completely free</strong></li>
+<li><strong>60–90% real token savings</strong></li>
+</ul>
+<p>If you&rsquo;re paying for AI coding tools, rtk isn&rsquo;t a &ldquo;nice to have.&rdquo; It&rsquo;s the tool that makes every other tool more economically viable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 30 seconds. Start saving today.</span>
+</span></span><span style="display:flex;"><span>brew install rtk
+</span></span><span style="display:flex;"><span>rtk init -g
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Further Reading**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>rtk GitHub Repository<span style="color:#f92672">](</span>https://github.com/rtk-ai/rtk<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>rtk Official Documentation<span style="color:#f92672">](</span>https://rtk-ai.app/guide<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Anthropic Claude Code Pricing<span style="color:#f92672">](</span>https://docs.anthropic.com/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Morph: <span style="color:#ae81ff">5</span> LLM Cost Optimization Strategies<span style="color:#f92672">](</span>https://www.morphllm.com/ai-coding-costs<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Reviewed against rtk v0.28.2. Features evolve rapidly; consult the latest release notes <span style="color:#66d9ef">for</span> updates.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here&#39;s the Exact Setup (rtk Guide 2026)&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-01-01&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-01-01&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026%2f&text=I%20Cut%20My%20AI%20Coding%20Bill%20by%2080%25%20With%20This%20Rust%20CLI%20Proxy%20%e2%80%94%20Here%27s%20the%20Exact%20Setup%20%28rtk%20Guide%202026%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

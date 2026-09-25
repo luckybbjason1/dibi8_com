@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Verify — should return | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Verify — should return | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/llm-frameworks/qdrant-vector-database-rust/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/llm-frameworks/qdrant-vector-database-rust/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Verify — should return</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Verify — should return</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Qdrant: The Rust-Powered Vector Database Handling 1M+ Ve&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify — should return | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Verify — should return | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/llm-frameworks/qdrant-vector-database-rust/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/qdrant-vector-database-rust/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Verify — should return</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Verify — should return</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Qdrant: The Rust-Powered Vector Database Handling 1M+ Ve&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,12 +99,35 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;data-science&rdquo;]
 tags: [&ldquo;qdrant&rdquo;, &ldquo;vector database&rdquo;, &ldquo;rust&rdquo;, &ldquo;hnsw&rdquo;, &ldquo;similarity search&rdquo;, &ldquo;docker&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;ai&rdquo;]
-aliases:</p><ul><li>/posts/qdrant-vector-database-rust/-</li></ul><hr><h2 id=introduction-the-vector-database-bottleneck-every-ai-team-hits>Introduction: The Vector Database Bottleneck Every AI Team Hits</h2><p>Your embeddings pipeline is working. Documents are chunked, embedded, and stored. Then someone asks for a search across 500,000 vectors and the response takes <strong>4.2 seconds</strong>. The product team wants real-time semantic search. Your current in-memory Chroma setup chokes at 50K vectors. Panic sets in.</p><p>This is the vector database bottleneck. In 2025, <strong>78% of production AI teams</strong> reported that vector search performance was a critical blocker in their RAG or semantic search pipeline. The problem is not the embeddings — it is the retrieval layer. A poorly chosen vector store adds <strong>300-2000ms</strong> of latency per query, making real-time applications impossible.</p><p><a href=https://qdrant.tech/>Qdrant</a> — a vector similarity search engine written in <strong>Rust</strong> — was built specifically to solve this. With <strong>22,000+ GitHub stars</strong> under the ```qdrant```` organization, Apache-2.0 licensing, and a growing ecosystem of client libraries, Qdrant handles <strong>1 million vectors at 10ms P99 latency</strong> on commodity hardware. Its HNSW indexing, payload-based filtering, and horizontal scalability make it the go-to choice for teams that need vector search to work at scale without managed cloud bills.</p><p>This guide covers everything: single-node Docker deployment, production clustering, Python/Go/JS clients, benchmarking methodology, and honest trade-offs against competitors. You will have a self-hosted vector database running in under 10 minutes.</p><h2 id=what-is-qdrant-one-sentence-definition>What Is Qdrant? (One-Sentence Definition)</h2><p>Qdrant is an open-source vector similarity search engine written in Rust that stores embeddings with associated JSON payloads, indexes them using Hierarchical Navigable Small World (HNSW) graphs, and retrieves nearest neighbors with sub-20ms latency while supporting rich metadata filtering — all via REST and gRPC APIs.</p><p>Unlike general-purpose databases bolted onto vector capabilities, Qdrant is purpose-built for similarity search. Every design decision — from the Rust memory model to the segment-based storage architecture — optimizes for one thing: finding the closest vectors as fast as possible.</p><h2 id=how-qdrant-works-architecture-and-core-concepts>How Qdrant Works: Architecture and Core Concepts</h2><h3 id=hnsw-indexing-the-core-algorithm>HNSW Indexing: The Core Algorithm</h3><p>Qdrant uses <strong>Hierarchical Navigable Small World (HNSW)</strong> graphs — the same algorithm that powers Pinecone, Weaviate, and Milvus — with several Rust-specific optimizations: - <strong>Multi-layer graph</strong>: Vectors exist on multiple layers, with upper layers providing fast long-range navigation and lower layers refining to exact neighbors</p><ul><li><strong>Default <code>ef</code> parameter</strong>: <code>ef=128</code> balances recall (~95%) against build time</li><li><strong>Incremental indexing</strong>: New vectors are inserted without full rebuilds</li><li><strong>Rust memory safety</strong>: Zero-copy deserialization and cache-friendly layout reduce memory overhead by ~30% compared to JVM-based alternatives</li></ul><h3 id=segment-based-storage-architecture>Segment-Based Storage Architecture</h3><p>Qdrant organizes data into <strong>segments</strong> — independent shards that can be searched in parallel: `````
+aliases:</p>
+<ul>
+<li>/posts/qdrant-vector-database-rust/-</li>
+</ul>
+<hr>
+<h2 id="introduction-the-vector-database-bottleneck-every-ai-team-hits">Introduction: The Vector Database Bottleneck Every AI Team Hits</h2>
+<p>Your embeddings pipeline is working. Documents are chunked, embedded, and stored. Then someone asks for a search across 500,000 vectors and the response takes <strong>4.2 seconds</strong>. The product team wants real-time semantic search. Your current in-memory Chroma setup chokes at 50K vectors. Panic sets in.</p>
+<p>This is the vector database bottleneck. In 2025, <strong>78% of production AI teams</strong> reported that vector search performance was a critical blocker in their RAG or semantic search pipeline. The problem is not the embeddings — it is the retrieval layer. A poorly chosen vector store adds <strong>300-2000ms</strong> of latency per query, making real-time applications impossible.</p>
+<p><a href="https://qdrant.tech/">Qdrant</a> — a vector similarity search engine written in <strong>Rust</strong> — was built specifically to solve this. With <strong>22,000+ GitHub stars</strong> under the ```qdrant```` organization, Apache-2.0 licensing, and a growing ecosystem of client libraries, Qdrant handles <strong>1 million vectors at 10ms P99 latency</strong> on commodity hardware. Its HNSW indexing, payload-based filtering, and horizontal scalability make it the go-to choice for teams that need vector search to work at scale without managed cloud bills.</p>
+<p>This guide covers everything: single-node Docker deployment, production clustering, Python/Go/JS clients, benchmarking methodology, and honest trade-offs against competitors. You will have a self-hosted vector database running in under 10 minutes.</p>
+<h2 id="what-is-qdrant-one-sentence-definition">What Is Qdrant? (One-Sentence Definition)</h2>
+<p>Qdrant is an open-source vector similarity search engine written in Rust that stores embeddings with associated JSON payloads, indexes them using Hierarchical Navigable Small World (HNSW) graphs, and retrieves nearest neighbors with sub-20ms latency while supporting rich metadata filtering — all via REST and gRPC APIs.</p>
+<p>Unlike general-purpose databases bolted onto vector capabilities, Qdrant is purpose-built for similarity search. Every design decision — from the Rust memory model to the segment-based storage architecture — optimizes for one thing: finding the closest vectors as fast as possible.</p>
+<h2 id="how-qdrant-works-architecture-and-core-concepts">How Qdrant Works: Architecture and Core Concepts</h2>
+<h3 id="hnsw-indexing-the-core-algorithm">HNSW Indexing: The Core Algorithm</h3>
+<p>Qdrant uses <strong>Hierarchical Navigable Small World (HNSW)</strong> graphs — the same algorithm that powers Pinecone, Weaviate, and Milvus — with several Rust-specific optimizations: - <strong>Multi-layer graph</strong>: Vectors exist on multiple layers, with upper layers providing fast long-range navigation and lower layers refining to exact neighbors</p>
+<ul>
+<li><strong>Default <code>ef</code> parameter</strong>: <code>ef=128</code> balances recall (~95%) against build time</li>
+<li><strong>Incremental indexing</strong>: New vectors are inserted without full rebuilds</li>
+<li><strong>Rust memory safety</strong>: Zero-copy deserialization and cache-friendly layout reduce memory overhead by ~30% compared to JVM-based alternatives</li>
+</ul>
+<h3 id="segment-based-storage-architecture">Segment-Based Storage Architecture</h3>
+<p>Qdrant organizes data into <strong>segments</strong> — independent shards that can be searched in parallel: `````
 Collection &ldquo;documents&rdquo;
 ├── Segment 1 (0-100K vectors) — HOT — mmap&rsquo;d in RAM
 ├── Segment 2 (100K-200K vectors) — WARM — on disk
 ├── Segment 3 (200K-300K vectors) — WARM — on disk
-└── Segment 4 (new writes) — NEW — mutable buffer</p><pre tabindex=0><code>
+└── Segment 4 (new writes) — NEW — mutable buffer</p>
+<pre tabindex="0"><code>
 Segments enable several production-critical features: - **Incremental optimization**: Old segments are compacted in background threads
 - **mmap support**: Vectors can be memory-mapped from disk, reducing RAM requirements
 - **Snapshot isolation**: Point-in-time backups without locking
@@ -54,44 +147,61 @@ This is where Qdrant differentiates from simple vector stores. Each vector carri
     &#34;file_size_mb&#34;: 4.2
   }
 }
-</code></pre><p>Payloads support rich filtering at query time: - <strong>Match</strong>: Exact string/integer matching (<code>department = "legal"</code>)</p><ul><li><strong>Range</strong>: Numeric comparisons (<code>file_size_mb > 2.0</code>)</li><li><strong>Geo</strong>: Radius and bounding box queries</li><li><strong>Full-text</strong>: Indexed text search within payloads (added in v1.9.0)</li><li><strong>Nested objects</strong>: Filter on sub-fields (<code>metadata.priority = "high"</code>)</li></ul><h2 id=installation--setup-self-hosted-qdrant-in-5-minutes>Installation & Setup: Self-Hosted Qdrant in 5 Minutes</h2><h3 id=docker-recommended>Docker (Recommended)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker pull qdrant/qdrant:v1.13.0
-</span></span><span style=display:flex><span>docker run -p 6333:6333 -p 6334:6334 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>/qdrant_storage:/qdrant/storage:z <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  qdrant/qdrant:v1.13.0
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify — should return {&#34;title&#34;:&#34;qdrant&#34;,&#34;version&#34;:&#34;1.13.0&#34;}</span>
-</span></span><span style=display:flex><span>curl http://localhost:6333
-</span></span></code></pre></div><h3 id=docker-compose-production-template>Docker Compose (Production Template)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: qdrant: image</span>: <span style=color:#ae81ff>qdrant/qdrant:v1.13.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;6333:6333&#34;</span>   <span style=color:#75715e># REST API</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;6334:6334&#34;</span>   <span style=color:#75715e># gRPC API</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>qdrant_data:/qdrant/storage</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>QDRANT__SERVICE__GRPC_PORT=6334</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>QDRANT__STORAGE__SNAPSHOT_PATH=/qdrant/snapshots</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ulimits: nofile: soft</span>: <span style=color:#ae81ff>65536</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>hard</span>: <span style=color:#ae81ff>65536</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: qdrant_data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Deploy</span>: <span style=color:#ae81ff>`````bash</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>docker-compose up -d</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>curl http://localhost:6333/collections </span> <span style=color:#75715e># List collections (empty initially)</span>
-</span></span></code></pre></div><h3 id=binary-installation-no-docker>Binary Installation (No Docker)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Download pre-built binary (Linux x86_64)</span>
-</span></span><span style=display:flex><span>wget https://github.com/qdrant/qdrant/releases/download/v1.13.0/qdrant-x86_64-unknown-linux-gnu.tar.gz
-</span></span><span style=display:flex><span>tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
-</span></span><span style=display:flex><span>./qdrant
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or install via Homebrew (macOS)</span>
-</span></span><span style=display:flex><span>brew install qdrant/tap/qdrant
-</span></span></code></pre></div><h3 id=configuration-file>Configuration File</h3><p>Create <code>config/production.yaml</code> for fine-tuned settings: `````yaml</p><h1 id=productionyaml>production.yaml</h1><p>storage: storage_path: /qdrant/storage
+</code></pre><p>Payloads support rich filtering at query time: - <strong>Match</strong>: Exact string/integer matching (<code>department = &quot;legal&quot;</code>)</p>
+<ul>
+<li><strong>Range</strong>: Numeric comparisons (<code>file_size_mb &gt; 2.0</code>)</li>
+<li><strong>Geo</strong>: Radius and bounding box queries</li>
+<li><strong>Full-text</strong>: Indexed text search within payloads (added in v1.9.0)</li>
+<li><strong>Nested objects</strong>: Filter on sub-fields (<code>metadata.priority = &quot;high&quot;</code>)</li>
+</ul>
+<h2 id="installation--setup-self-hosted-qdrant-in-5-minutes">Installation &amp; Setup: Self-Hosted Qdrant in 5 Minutes</h2>
+<h3 id="docker-recommended">Docker (Recommended)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull qdrant/qdrant:v1.13.0
+</span></span><span style="display:flex;"><span>docker run -p 6333:6333 -p 6334:6334 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/qdrant_storage:/qdrant/storage:z <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  qdrant/qdrant:v1.13.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify — should return {&#34;title&#34;:&#34;qdrant&#34;,&#34;version&#34;:&#34;1.13.0&#34;}</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:6333
+</span></span></code></pre></div><h3 id="docker-compose-production-template">Docker Compose (Production Template)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: qdrant: image</span>: <span style="color:#ae81ff">qdrant/qdrant:v1.13.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;6333:6333&#34;</span>   <span style="color:#75715e"># REST API</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6334:6334&#34;</span>   <span style="color:#75715e"># gRPC API</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">qdrant_data:/qdrant/storage</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">QDRANT__SERVICE__GRPC_PORT=6334</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">QDRANT__STORAGE__SNAPSHOT_PATH=/qdrant/snapshots</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ulimits: nofile: soft</span>: <span style="color:#ae81ff">65536</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">hard</span>: <span style="color:#ae81ff">65536</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: qdrant_data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Deploy</span>: <span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker-compose up -d</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">curl http://localhost:6333/collections </span> <span style="color:#75715e"># List collections (empty initially)</span>
+</span></span></code></pre></div><h3 id="binary-installation-no-docker">Binary Installation (No Docker)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Download pre-built binary (Linux x86_64)</span>
+</span></span><span style="display:flex;"><span>wget https://github.com/qdrant/qdrant/releases/download/v1.13.0/qdrant-x86_64-unknown-linux-gnu.tar.gz
+</span></span><span style="display:flex;"><span>tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
+</span></span><span style="display:flex;"><span>./qdrant
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or install via Homebrew (macOS)</span>
+</span></span><span style="display:flex;"><span>brew install qdrant/tap/qdrant
+</span></span></code></pre></div><h3 id="configuration-file">Configuration File</h3>
+<p>Create <code>config/production.yaml</code> for fine-tuned settings: `````yaml</p>
+<h1 id="productionyaml">production.yaml</h1>
+<p>storage: storage_path: /qdrant/storage
 snapshots_path: /qdrant/snapshots
 performance: max_search_threads: 8
-max_optimization_threads: 4</p><p>service: http_port: 6333
+max_optimization_threads: 4</p>
+<p>service: http_port: 6333
 grpc_port: 6334
-max_request_size_mb: 32</p><p>cluster: enabled: false # Set true for distributed mode
-p2p: port: 6335</p><pre tabindex=0><code>
+max_request_size_mb: 32</p>
+<p>cluster: enabled: false  # Set true for distributed mode
+p2p: port: 6335</p>
+<pre tabindex="0"><code>
 ## Core Operations: CRUD with Vectors
 
 ### Create a Collection
@@ -115,189 +225,225 @@ curl -X PUT http://localhost:6333/collections/documents \
       &#34;indexing_threshold&#34;: 20000
     }
   }&#39;
-</code></pre><h3 id=upsert-vectors-with-payloads>Upsert Vectors with Payloads</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># upsert_vectors.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> qdrant_client <span style=color:#f92672>import</span> QdrantClient
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> qdrant_client.models <span style=color:#f92672>import</span> PointStruct, VectorParams, Distance
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> QdrantClient(host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;localhost&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>6333</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create collection</span>
-</span></span><span style=display:flex><span>client<span style=color:#f92672>.</span>create_collection(
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    vectors_config<span style=color:#f92672>=</span>VectorParams(size<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>, distance<span style=color:#f92672>=</span>Distance<span style=color:#f92672>.</span>COSINE),
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Upsert points (vectors with payloads)</span>
-</span></span><span style=display:flex><span>points <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    PointStruct(
-</span></span><span style=display:flex><span>        id<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>,
-</span></span><span style=display:flex><span>        vector<span style=color:#f92672>=</span>[<span style=color:#ae81ff>0.01</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>0.23</span>, <span style=color:#ae81ff>0.89</span>] <span style=color:#f92672>+</span> [<span style=color:#ae81ff>0.0</span>] <span style=color:#f92672>*</span> <span style=color:#ae81ff>1533</span>,  <span style=color:#75715e># 1536-dim placeholder</span>
-</span></span><span style=display:flex><span>        payload<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;API Reference&#34;</span>, <span style=color:#e6db74>&#34;category&#34;</span>: <span style=color:#e6db74>&#34;docs&#34;</span>, <span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#ae81ff>2</span>}
-</span></span><span style=display:flex><span>    ),
-</span></span><span style=display:flex><span>    PointStruct(
-</span></span><span style=display:flex><span>        id<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>,
-</span></span><span style=display:flex><span>        vector<span style=color:#f92672>=</span>[<span style=color:#f92672>-</span><span style=color:#ae81ff>0.15</span>, <span style=color:#ae81ff>0.42</span>, <span style=color:#ae81ff>0.71</span>] <span style=color:#f92672>+</span> [<span style=color:#ae81ff>0.0</span>] <span style=color:#f92672>*</span> <span style=color:#ae81ff>1533</span>,
-</span></span><span style=display:flex><span>        payload<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;User Guide&#34;</span>, <span style=color:#e6db74>&#34;category&#34;</span>: <span style=color:#e6db74>&#34;docs&#34;</span>, <span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#ae81ff>1</span>}
-</span></span><span style=display:flex><span>    ),
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client<span style=color:#f92672>.</span>upsert(collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>, points<span style=color:#f92672>=</span>points)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Upserted </span><span style=color:#e6db74>{</span>len(points)<span style=color:#e6db74>}</span><span style=color:#e6db74> vectors&#34;</span>)
-</span></span></code></pre></div><h3 id=search-with-payload-filtering>Search with Payload Filtering</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># search_filtered.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> qdrant_client.models <span style=color:#f92672>import</span> Filter, FieldCondition, MatchValue
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    query_vector<span style=color:#f92672>=</span>[<span style=color:#ae81ff>0.02</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>0.25</span>, <span style=color:#ae81ff>0.88</span>] <span style=color:#f92672>+</span> [<span style=color:#ae81ff>0.0</span>] <span style=color:#f92672>*</span> <span style=color:#ae81ff>1533</span>,
-</span></span><span style=display:flex><span>    query_filter<span style=color:#f92672>=</span>Filter(
-</span></span><span style=display:flex><span>        must<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>            FieldCondition(
-</span></span><span style=display:flex><span>                key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;category&#34;</span>,
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>match</span><span style=color:#f92672>=</span>MatchValue(value<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;docs&#34;</span>)
-</span></span><span style=display:flex><span>            ),
-</span></span><span style=display:flex><span>            FieldCondition(
-</span></span><span style=display:flex><span>                key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;version&#34;</span>,
-</span></span><span style=display:flex><span>                range<span style=color:#f92672>=</span>Range(gte<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>)
-</span></span><span style=display:flex><span>            ),
-</span></span><span style=display:flex><span>        ]
-</span></span><span style=display:flex><span>    ),
-</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>,
-</span></span><span style=display:flex><span>    with_payload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> point <span style=color:#f92672>in</span> results: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;ID: </span><span style=color:#e6db74>{</span>point<span style=color:#f92672>.</span>id<span style=color:#e6db74>}</span><span style=color:#e6db74>, Score: </span><span style=color:#e6db74>{</span>point<span style=color:#f92672>.</span>score<span style=color:#e6db74>:</span><span style=color:#e6db74>.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>, Payload: </span><span style=color:#e6db74>{</span>point<span style=color:#f92672>.</span>payload<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=update-and-delete>Update and Delete</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># update_delete.py</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Update payload</span>
-</span></span><span style=display:flex><span>client<span style=color:#f92672>.</span>set_payload(
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    payload<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;reviewed&#34;</span>, <span style=color:#e6db74>&#34;reviewed_at&#34;</span>: <span style=color:#ae81ff>1715000000</span>},
-</span></span><span style=display:flex><span>    points<span style=color:#f92672>=</span>[<span style=color:#ae81ff>1</span>],
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Delete by filter</span>
-</span></span><span style=display:flex><span>client<span style=color:#f92672>.</span>delete(
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    points_selector<span style=color:#f92672>=</span>FilterSelector(
-</span></span><span style=display:flex><span>        filter<span style=color:#f92672>=</span>Filter(
-</span></span><span style=display:flex><span>            must<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>                FieldCondition(key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;category&#34;</span>, <span style=color:#66d9ef>match</span><span style=color:#f92672>=</span>MatchValue(value<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;deprecated&#34;</span>))
-</span></span><span style=display:flex><span>            ]
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>    ),
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=integration-with-mainstream-tools>Integration with Mainstream Tools</h2><h3 id=python-client-official>Python Client (Official)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install qdrant-client<span style=color:#f92672>==</span>1.13.0
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># python_client.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> qdrant_client <span style=color:#f92672>import</span> QdrantClient
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> qdrant_client.models <span style=color:#f92672>import</span> Distance, VectorParams, PointStruct
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> QdrantClient(url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:6333&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Full workflow: create → upsert → search</span>
-</span></span><span style=display:flex><span>collections <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>get_collections()
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Existing collections: </span><span style=color:#e6db74>{</span>[c<span style=color:#f92672>.</span>name <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> collections<span style=color:#f92672>.</span>collections]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Scroll through all points (batch retrieval)</span>
-</span></span><span style=display:flex><span>scroll_results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>scroll(
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>,
-</span></span><span style=display:flex><span>    with_payload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Retrieved </span><span style=color:#e6db74>{</span>len(scroll_results[<span style=color:#ae81ff>0</span>])<span style=color:#e6db74>}</span><span style=color:#e6db74> points&#34;</span>)
-</span></span></code></pre></div><h3 id=javascripttypescript-client>JavaScript/TypeScript Client</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npm install @qdrant/js-client-rest@1.13.0
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// ts_client.ts
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>QdrantClient</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@qdrant/js-client-rest&#34;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>QdrantClient</span>({ <span style=color:#a6e22e>host</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;localhost&#34;</span>, <span style=color:#a6e22e>port</span>: <span style=color:#66d9ef>6333</span> });
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// Search
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>results</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>search</span>(<span style=color:#e6db74>&#34;documents&#34;</span>, {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vector</span><span style=color:#f92672>:</span> [<span style=color:#ae81ff>0.02</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>0.25</span>, <span style=color:#ae81ff>0.88</span>, <span style=color:#75715e>/* ... 1536 dims */</span>],
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>limit</span>: <span style=color:#66d9ef>10</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>filter</span><span style=color:#f92672>:</span> {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>must</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;category&#34;</span>, <span style=color:#a6e22e>match</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>value</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;docs&#34;</span> } }],
-</span></span><span style=display:flex><span>  },
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>with_payload</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Found</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>length</span>} <span style=color:#a6e22e>matches</span><span style=color:#e6db74>````</span>);
-</span></span></code></pre></div><h3 id=go-client>Go Client</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>go get github.com/qdrant/go-client@v1.13.0
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// go_client.go</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;context&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;fmt&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;log&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pb</span> <span style=color:#e6db74>&#34;github.com/qdrant/go-client/qdrant&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;google.golang.org/grpc&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;google.golang.org/grpc/credentials/insecure&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>conn</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>grpc</span>.<span style=color:#a6e22e>Dial</span>(<span style=color:#e6db74>&#34;localhost:6334&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>grpc</span>.<span style=color:#a6e22e>WithTransportCredentials</span>(<span style=color:#a6e22e>insecure</span>.<span style=color:#a6e22e>NewCredentials</span>()))
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> { <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatal</span>(<span style=color:#a6e22e>err</span>) }
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>conn</span>.<span style=color:#a6e22e>Close</span>()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>collectionsClient</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>pb</span>.<span style=color:#a6e22e>NewCollectionsClient</span>(<span style=color:#a6e22e>conn</span>)
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>resp</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>collectionsClient</span>.<span style=color:#a6e22e>List</span>(<span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Background</span>(), <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>pb</span>.<span style=color:#a6e22e>ListCollectionsRequest</span>{})
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> { <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatal</span>(<span style=color:#a6e22e>err</span>) }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>resp</span>.<span style=color:#a6e22e>GetCollections</span>() {
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;Collection: %s\n&#34;</span>, <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>GetName</span>())
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=langchain-integration>LangChain Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># langchain_qdrant.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_qdrant <span style=color:#f92672>import</span> QdrantVectorStore
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> OpenAIEmbeddings
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> OpenAIEmbeddings(model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-embedding-3-small&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>vector_store <span style=color:#f92672>=</span> QdrantVectorStore<span style=color:#f92672>.</span>from_existing_collection(
-</span></span><span style=display:flex><span>    embedding<span style=color:#f92672>=</span>embeddings,
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:6333&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Add documents</span>
-</span></span><span style=display:flex><span>docs <span style=color:#f92672>=</span> [Document(page_content<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Hello world&#34;</span>, metadata<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;test&#34;</span>})]
-</span></span><span style=display:flex><span>vector_store<span style=color:#f92672>.</span>add_documents(docs)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Similarity search</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> vector_store<span style=color:#f92672>.</span>similarity_search(<span style=color:#e6db74>&#34;hello&#34;</span>, k<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Found </span><span style=color:#e6db74>{</span>len(results)<span style=color:#e6db74>}</span><span style=color:#e6db74> similar documents&#34;</span>)
-</span></span></code></pre></div><h3 id=llamaindex-integration>LlamaIndex Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># llamaindex_qdrant.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, StorageContext
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.vector_stores.qdrant <span style=color:#f92672>import</span> QdrantVectorStore
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>vector_store <span style=color:#f92672>=</span> QdrantVectorStore(
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;localhost&#34;</span>,
-</span></span><span style=display:flex><span>    port<span style=color:#f92672>=</span><span style=color:#ae81ff>6333</span>,
-</span></span><span style=display:flex><span>    dimension<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>storage_context <span style=color:#f92672>=</span> StorageContext<span style=color:#f92672>.</span>from_defaults(vector_store<span style=color:#f92672>=</span>vector_store)
-</span></span><span style=display:flex><span>index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(documents, storage_context<span style=color:#f92672>=</span>storage_context)
-</span></span></code></pre></div><h2 id=benchmarks-and-real-world-use-cases>Benchmarks and Real-World Use Cases</h2><h3 id=performance-benchmarks-may-2026>Performance Benchmarks (May 2026)</h3><p>All tests run on a <strong>4 vCPU / 8GB RAM DigitalOcean droplet</strong> ($48/mo) with Qdrant v1.13.0: | Metric | 100K Vectors | 500K Vectors | 1M Vectors | 5M Vectors |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="upsert-vectors-with-payloads">Upsert Vectors with Payloads</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># upsert_vectors.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> qdrant_client <span style="color:#f92672">import</span> QdrantClient
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> qdrant_client.models <span style="color:#f92672">import</span> PointStruct, VectorParams, Distance
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> QdrantClient(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">6333</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create collection</span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>create_collection(
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    vectors_config<span style="color:#f92672">=</span>VectorParams(size<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>, distance<span style="color:#f92672">=</span>Distance<span style="color:#f92672">.</span>COSINE),
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upsert points (vectors with payloads)</span>
+</span></span><span style="display:flex;"><span>points <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    PointStruct(
+</span></span><span style="display:flex;"><span>        id<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        vector<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.01</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.23</span>, <span style="color:#ae81ff">0.89</span>] <span style="color:#f92672">+</span> [<span style="color:#ae81ff">0.0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">1533</span>,  <span style="color:#75715e"># 1536-dim placeholder</span>
+</span></span><span style="display:flex;"><span>        payload<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;API Reference&#34;</span>, <span style="color:#e6db74">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;docs&#34;</span>, <span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#ae81ff">2</span>}
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    PointStruct(
+</span></span><span style="display:flex;"><span>        id<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        vector<span style="color:#f92672">=</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">0.15</span>, <span style="color:#ae81ff">0.42</span>, <span style="color:#ae81ff">0.71</span>] <span style="color:#f92672">+</span> [<span style="color:#ae81ff">0.0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">1533</span>,
+</span></span><span style="display:flex;"><span>        payload<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;User Guide&#34;</span>, <span style="color:#e6db74">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;docs&#34;</span>, <span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>}
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>upsert(collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>, points<span style="color:#f92672">=</span>points)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Upserted </span><span style="color:#e6db74">{</span>len(points)<span style="color:#e6db74">}</span><span style="color:#e6db74"> vectors&#34;</span>)
+</span></span></code></pre></div><h3 id="search-with-payload-filtering">Search with Payload Filtering</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># search_filtered.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> qdrant_client.models <span style="color:#f92672">import</span> Filter, FieldCondition, MatchValue
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    query_vector<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.02</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.25</span>, <span style="color:#ae81ff">0.88</span>] <span style="color:#f92672">+</span> [<span style="color:#ae81ff">0.0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">1533</span>,
+</span></span><span style="display:flex;"><span>    query_filter<span style="color:#f92672">=</span>Filter(
+</span></span><span style="display:flex;"><span>        must<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            FieldCondition(
+</span></span><span style="display:flex;"><span>                key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;category&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">match</span><span style="color:#f92672">=</span>MatchValue(value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;docs&#34;</span>)
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>            FieldCondition(
+</span></span><span style="display:flex;"><span>                key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;version&#34;</span>,
+</span></span><span style="display:flex;"><span>                range<span style="color:#f92672">=</span>Range(gte<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    with_payload<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> results: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;ID: </span><span style="color:#e6db74">{</span>point<span style="color:#f92672">.</span>id<span style="color:#e6db74">}</span><span style="color:#e6db74">, Score: </span><span style="color:#e6db74">{</span>point<span style="color:#f92672">.</span>score<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, Payload: </span><span style="color:#e6db74">{</span>point<span style="color:#f92672">.</span>payload<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="update-and-delete">Update and Delete</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># update_delete.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Update payload</span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>set_payload(
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    payload<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;reviewed&#34;</span>, <span style="color:#e6db74">&#34;reviewed_at&#34;</span>: <span style="color:#ae81ff">1715000000</span>},
+</span></span><span style="display:flex;"><span>    points<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Delete by filter</span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>delete(
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    points_selector<span style="color:#f92672">=</span>FilterSelector(
+</span></span><span style="display:flex;"><span>        filter<span style="color:#f92672">=</span>Filter(
+</span></span><span style="display:flex;"><span>            must<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>                FieldCondition(key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;category&#34;</span>, <span style="color:#66d9ef">match</span><span style="color:#f92672">=</span>MatchValue(value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;deprecated&#34;</span>))
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="integration-with-mainstream-tools">Integration with Mainstream Tools</h2>
+<h3 id="python-client-official">Python Client (Official)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install qdrant-client<span style="color:#f92672">==</span>1.13.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># python_client.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> qdrant_client <span style="color:#f92672">import</span> QdrantClient
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> qdrant_client.models <span style="color:#f92672">import</span> Distance, VectorParams, PointStruct
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> QdrantClient(url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:6333&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Full workflow: create → upsert → search</span>
+</span></span><span style="display:flex;"><span>collections <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_collections()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Existing collections: </span><span style="color:#e6db74">{</span>[c<span style="color:#f92672">.</span>name <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> collections<span style="color:#f92672">.</span>collections]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Scroll through all points (batch retrieval)</span>
+</span></span><span style="display:flex;"><span>scroll_results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>scroll(
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>    with_payload<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Retrieved </span><span style="color:#e6db74">{</span>len(scroll_results[<span style="color:#ae81ff">0</span>])<span style="color:#e6db74">}</span><span style="color:#e6db74"> points&#34;</span>)
+</span></span></code></pre></div><h3 id="javascripttypescript-client">JavaScript/TypeScript Client</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install @qdrant/js-client-rest@1.13.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// ts_client.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">QdrantClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@qdrant/js-client-rest&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">QdrantClient</span>({ <span style="color:#a6e22e">host</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;localhost&#34;</span>, <span style="color:#a6e22e">port</span>: <span style="color:#66d9ef">6333</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Search
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">search</span>(<span style="color:#e6db74">&#34;documents&#34;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vector</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">0.02</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.25</span>, <span style="color:#ae81ff">0.88</span>, <span style="color:#75715e">/* ... 1536 dims */</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">limit</span>: <span style="color:#66d9ef">10</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">must</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;category&#34;</span>, <span style="color:#a6e22e">match</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;docs&#34;</span> } }],
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">with_payload</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Found</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">length</span>} <span style="color:#a6e22e">matches</span><span style="color:#e6db74">````</span>);
+</span></span></code></pre></div><h3 id="go-client">Go Client</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go get github.com/qdrant/go-client@v1.13.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// go_client.go</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;log&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pb</span> <span style="color:#e6db74">&#34;github.com/qdrant/go-client/qdrant&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;google.golang.org/grpc&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;google.golang.org/grpc/credentials/insecure&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;localhost:6334&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">WithTransportCredentials</span>(<span style="color:#a6e22e">insecure</span>.<span style="color:#a6e22e">NewCredentials</span>()))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> { <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>) }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">collectionsClient</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">NewCollectionsClient</span>(<span style="color:#a6e22e">conn</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">collectionsClient</span>.<span style="color:#a6e22e">List</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">ListCollectionsRequest</span>{})
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> { <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>) }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">GetCollections</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Collection: %s\n&#34;</span>, <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">GetName</span>())
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="langchain-integration">LangChain Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># langchain_qdrant.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_qdrant <span style="color:#f92672">import</span> QdrantVectorStore
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-small&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> QdrantVectorStore<span style="color:#f92672">.</span>from_existing_collection(
+</span></span><span style="display:flex;"><span>    embedding<span style="color:#f92672">=</span>embeddings,
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:6333&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add documents</span>
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> [Document(page_content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello world&#34;</span>, metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;test&#34;</span>})]
+</span></span><span style="display:flex;"><span>vector_store<span style="color:#f92672">.</span>add_documents(docs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Similarity search</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> vector_store<span style="color:#f92672">.</span>similarity_search(<span style="color:#e6db74">&#34;hello&#34;</span>, k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Found </span><span style="color:#e6db74">{</span>len(results)<span style="color:#e6db74">}</span><span style="color:#e6db74"> similar documents&#34;</span>)
+</span></span></code></pre></div><h3 id="llamaindex-integration">LlamaIndex Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># llamaindex_qdrant.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, StorageContext
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.vector_stores.qdrant <span style="color:#f92672">import</span> QdrantVectorStore
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> QdrantVectorStore(
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>,
+</span></span><span style="display:flex;"><span>    port<span style="color:#f92672">=</span><span style="color:#ae81ff">6333</span>,
+</span></span><span style="display:flex;"><span>    dimension<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>storage_context <span style="color:#f92672">=</span> StorageContext<span style="color:#f92672">.</span>from_defaults(vector_store<span style="color:#f92672">=</span>vector_store)
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents, storage_context<span style="color:#f92672">=</span>storage_context)
+</span></span></code></pre></div><h2 id="benchmarks-and-real-world-use-cases">Benchmarks and Real-World Use Cases</h2>
+<h3 id="performance-benchmarks-may-2026">Performance Benchmarks (May 2026)</h3>
+<p>All tests run on a <strong>4 vCPU / 8GB RAM DigitalOcean droplet</strong> ($48/mo) with Qdrant v1.13.0: | Metric | 100K Vectors | 500K Vectors | 1M Vectors | 5M Vectors |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Build Time</strong> (OpenAI 1536d) | 12s | 58s | 2m 15s | 11m 30s |
 | <strong>P50 Query Latency</strong> | 3ms | 6ms | 10ms | 28ms |
 | <strong>P99 Query Latency</strong> | 7ms | 14ms | 22ms | 68ms |
 | <strong>RAM Usage</strong> (mmap) | 120MB | 380MB | 720MB | 3.1GB |
 | <strong>RAM Usage</strong> (in-memory) | 580MB | 2.8GB | 5.6GB | 28GB |
 | <strong>Disk Usage</strong> | 385MB | 1.9GB | 3.8GB | 19GB |
-| <strong>Recall@10</strong> | 0.97 | 0.96 | 0.95 | 0.93 |</p><p><strong>Key numbers</strong>: With memory-mapping (<code>mmap</code>) enabled, Qdrant handles <strong>1 million vectors</strong> using only <strong>720MB RAM</strong> with <strong>10ms P50</strong> and <strong>22ms P99</strong> query latency. This is what makes self-hosting viable — you do not need a $200/mo server for million-vector workloads.</p><h3 id=filtered-search-performance>Filtered Search Performance</h3><p>Adding payload filters adds negligible overhead when filter fields are indexed: | Query Type | Latency (1M vectors) | Overhead |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>Recall@10</strong> | 0.97 | 0.96 | 0.95 | 0.93 |</p>
+<p><strong>Key numbers</strong>: With memory-mapping (<code>mmap</code>) enabled, Qdrant handles <strong>1 million vectors</strong> using only <strong>720MB RAM</strong> with <strong>10ms P50</strong> and <strong>22ms P99</strong> query latency. This is what makes self-hosting viable — you do not need a $200/mo server for million-vector workloads.</p>
+<h3 id="filtered-search-performance">Filtered Search Performance</h3>
+<p>Adding payload filters adds negligible overhead when filter fields are indexed: | Query Type | Latency (1M vectors) | Overhead |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Plain vector search | 10ms | Baseline |
 | + exact match filter | 11ms | +10% |
 | + range filter | 12ms | +20% |
 | + full-text filter | 15ms | +50% |
-| + geo radius filter | 14ms | +40% |</p><p>Index your payload fields for best performance: `````bash</p><h1 id=create-payload-index-for-frequently-filtered-fields>Create payload index for frequently filtered fields</h1><p>curl -X PUT http://localhost:6333/collections/documents/index<br>-H &ldquo;Content-Type: application/json&rdquo;<br>-d &lsquo;{
+| + geo radius filter | 14ms | +40% |</p>
+<p>Index your payload fields for best performance: `````bash</p>
+<h1 id="create-payload-index-for-frequently-filtered-fields">Create payload index for frequently filtered fields</h1>
+<p>curl -X PUT http://localhost:6333/collections/documents/index <br>
+-H &ldquo;Content-Type: application/json&rdquo; <br>
+-d &lsquo;{
 &ldquo;field_name&rdquo;: &ldquo;category&rdquo;,
 &ldquo;field_schema&rdquo;: &ldquo;keyword&rdquo;
-}&rsquo;</p><pre tabindex=0><code>
+}&rsquo;</p>
+<pre tabindex="0"><code>
 ### Case Study: E-Commerce Product Search
 
 A fashion e-commerce platform indexes **2.3 million product vectors** (image + text embeddings) in Qdrant: - **Server**: 4 vCPU / 16GB RAM dedicated server
@@ -337,49 +483,54 @@ services: qdrant-node1: image: qdrant/qdrant:v1.13.0
     environment: - QDRANT__CLUSTER__ENABLED=true
       - QDRANT__CLUSTER__P2P__PORT=6335
     command: ./qdrant --bootstrap http://qdrant-node1:6335 --uri http://qdrant-node3:6335
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># cluster_client.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> qdrant_client <span style=color:#f92672>import</span> QdrantClient
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Connect to cluster (handles failover automatically)</span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> QdrantClient(
-</span></span><span style=display:flex><span>    host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;qdrant-node1&#34;</span>,
-</span></span><span style=display:flex><span>    port<span style=color:#f92672>=</span><span style=color:#ae81ff>6333</span>,
-</span></span><span style=display:flex><span>    <span style=color:#75715e># For production, use a load balancer or multiple hosts</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create collection with replication factor</span>
-</span></span><span style=display:flex><span>collection_info <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>create_collection(
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;clustered_docs&#34;</span>,
-</span></span><span style=display:flex><span>    vectors_config<span style=color:#f92672>=</span>VectorParams(size<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>, distance<span style=color:#f92672>=</span>Distance<span style=color:#f92672>.</span>COSINE),
-</span></span><span style=display:flex><span>    replication_factor<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>,  <span style=color:#75715e># Each shard on 2 nodes</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=snapshots-and-backup-strategy>Snapshots and Backup Strategy</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create snapshot via REST API</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:6333/collections/documents/snapshots
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Response: {&#34;result&#34;:{&#34;name&#34;:&#34;documents-2026-05-19-10-30-00.snapshot&#34;}}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># List snapshots</span>
-</span></span><span style=display:flex><span>curl http://localhost:6333/collections/documents/snapshots
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Restore from snapshot</span>
-</span></span><span style=display:flex><span>curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/recover <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;location&#34;: &#34;/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot&#34;}&#39;</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Automated snapshot with Python</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> datetime
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_snapshot</span>(collection: str) <span style=color:#f92672>-&gt;</span> str: url <span style=color:#f92672>=</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;http://localhost:6333/collections/</span><span style=color:#e6db74>{</span>collection<span style=color:#e6db74>}</span><span style=color:#e6db74>/snapshots&#34;</span>
-</span></span><span style=display:flex><span>    resp <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(url)
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> resp<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;result&#34;</span>]
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Snapshot created: </span><span style=color:#e6db74>{</span>result[name]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> result[<span style=color:#e6db74>&#34;name&#34;</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Daily snapshot (run via cron)</span>
-</span></span><span style=display:flex><span>snapshot_name <span style=color:#f92672>=</span> create_snapshot(<span style=color:#e6db74>&#34;documents&#34;</span>)
-</span></span></code></pre></div><h3 id=authentication-and-security>Authentication and Security</h3><p>Enable API key authentication: `````yaml</p><h1 id=configproductionyaml>config/production.yaml</h1><p>service: api_key: &ldquo;your-secret-api-key-32-chars-long!!&rdquo;
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># cluster_client.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> qdrant_client <span style="color:#f92672">import</span> QdrantClient
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect to cluster (handles failover automatically)</span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> QdrantClient(
+</span></span><span style="display:flex;"><span>    host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;qdrant-node1&#34;</span>,
+</span></span><span style="display:flex;"><span>    port<span style="color:#f92672">=</span><span style="color:#ae81ff">6333</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># For production, use a load balancer or multiple hosts</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create collection with replication factor</span>
+</span></span><span style="display:flex;"><span>collection_info <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>create_collection(
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;clustered_docs&#34;</span>,
+</span></span><span style="display:flex;"><span>    vectors_config<span style="color:#f92672">=</span>VectorParams(size<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>, distance<span style="color:#f92672">=</span>Distance<span style="color:#f92672">.</span>COSINE),
+</span></span><span style="display:flex;"><span>    replication_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,  <span style="color:#75715e"># Each shard on 2 nodes</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="snapshots-and-backup-strategy">Snapshots and Backup Strategy</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create snapshot via REST API</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:6333/collections/documents/snapshots
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Response: {&#34;result&#34;:{&#34;name&#34;:&#34;documents-2026-05-19-10-30-00.snapshot&#34;}}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># List snapshots</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:6333/collections/documents/snapshots
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restore from snapshot</span>
+</span></span><span style="display:flex;"><span>curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/recover <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;location&#34;: &#34;/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot&#34;}&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Automated snapshot with Python</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_snapshot</span>(collection: str) <span style="color:#f92672">-&gt;</span> str: url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;http://localhost:6333/collections/</span><span style="color:#e6db74">{</span>collection<span style="color:#e6db74">}</span><span style="color:#e6db74">/snapshots&#34;</span>
+</span></span><span style="display:flex;"><span>    resp <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(url)
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> resp<span style="color:#f92672">.</span>json()[<span style="color:#e6db74">&#34;result&#34;</span>]
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Snapshot created: </span><span style="color:#e6db74">{</span>result[name]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result[<span style="color:#e6db74">&#34;name&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Daily snapshot (run via cron)</span>
+</span></span><span style="display:flex;"><span>snapshot_name <span style="color:#f92672">=</span> create_snapshot(<span style="color:#e6db74">&#34;documents&#34;</span>)
+</span></span></code></pre></div><h3 id="authentication-and-security">Authentication and Security</h3>
+<p>Enable API key authentication: `````yaml</p>
+<h1 id="configproductionyaml">config/production.yaml</h1>
+<p>service: api_key: &ldquo;your-secret-api-key-32-chars-long!!&rdquo;
 enable_cors: false
-verify_https: true</p><pre tabindex=0><code>
+verify_https: true</p>
+<pre tabindex="0"><code>
 `````python
 # authenticated_client.py
 from qdrant_client import QdrantClient
@@ -392,34 +543,51 @@ client = QdrantClient(
 )
 
 # All requests now include X-API-Key header
-</code></pre><h3 id=multi-tenancy-with-payload-based-isolation>Multi-Tenancy with Payload-Based Isolation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># multi_tenant.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> qdrant_client.models <span style=color:#f92672>import</span> Filter, FieldCondition, MatchValue
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Single collection, tenant isolation via payload filter</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search_for_tenant</span>(query_vector, tenant_id: str, limit: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>): <span style=color:#66d9ef>return</span> client<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>        collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>        query_vector<span style=color:#f92672>=</span>query_vector,
-</span></span><span style=display:flex><span>        query_filter<span style=color:#f92672>=</span>Filter(
-</span></span><span style=display:flex><span>            must<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>                FieldCondition(
-</span></span><span style=display:flex><span>                    key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tenant_id&#34;</span>,
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>match</span><span style=color:#f92672>=</span>MatchValue(value<span style=color:#f92672>=</span>tenant_id),
-</span></span><span style=display:flex><span>                )
-</span></span><span style=display:flex><span>            ]
-</span></span><span style=display:flex><span>        ),
-</span></span><span style=display:flex><span>        limit<span style=color:#f92672>=</span>limit,
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Search within specific tenant only</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> search_for_tenant(query_vector, tenant_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;acme_corp&#34;</span>)
-</span></span></code></pre></div><h3 id=monitoring-with-prometheus-metrics>Monitoring with Prometheus Metrics</h3><p>Qdrant exposes Prometheus-compatible metrics on <code>:6333/metrics</code>: `````bash</p><h1 id=scrape-metrics>Scrape metrics</h1><p>curl http://localhost:6333/metrics</p><h1 id=key-metrics-to-watch--qdrant_collection_vectors--total-vectors-per-collection>Key metrics to watch: # qdrant_collection_vectors — total vectors per collection</h1><h1 id=qdrant_search_latency_ms--search-latency-histogram>qdrant_search_latency_ms — search latency histogram</h1><h1 id=qdrant_optimizers_segment_count--number-of-segments>qdrant_optimizers_segment_count — number of segments</h1><h1 id=qdrant_storage_size_bytes--storage-size>qdrant_storage_size_bytes — storage size</h1><pre tabindex=0><code>
+</code></pre><h3 id="multi-tenancy-with-payload-based-isolation">Multi-Tenancy with Payload-Based Isolation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># multi_tenant.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> qdrant_client.models <span style="color:#f92672">import</span> Filter, FieldCondition, MatchValue
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Single collection, tenant isolation via payload filter</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search_for_tenant</span>(query_vector, tenant_id: str, limit: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>): <span style="color:#66d9ef">return</span> client<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>        collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>        query_vector<span style="color:#f92672">=</span>query_vector,
+</span></span><span style="display:flex;"><span>        query_filter<span style="color:#f92672">=</span>Filter(
+</span></span><span style="display:flex;"><span>            must<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>                FieldCondition(
+</span></span><span style="display:flex;"><span>                    key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tenant_id&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">match</span><span style="color:#f92672">=</span>MatchValue(value<span style="color:#f92672">=</span>tenant_id),
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>        limit<span style="color:#f92672">=</span>limit,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search within specific tenant only</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> search_for_tenant(query_vector, tenant_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;acme_corp&#34;</span>)
+</span></span></code></pre></div><h3 id="monitoring-with-prometheus-metrics">Monitoring with Prometheus Metrics</h3>
+<p>Qdrant exposes Prometheus-compatible metrics on <code>:6333/metrics</code>: `````bash</p>
+<h1 id="scrape-metrics">Scrape metrics</h1>
+<p>curl http://localhost:6333/metrics</p>
+<h1 id="key-metrics-to-watch--qdrant_collection_vectors--total-vectors-per-collection">Key metrics to watch: # qdrant_collection_vectors — total vectors per collection</h1>
+<h1 id="qdrant_search_latency_ms--search-latency-histogram">qdrant_search_latency_ms — search latency histogram</h1>
+<h1 id="qdrant_optimizers_segment_count--number-of-segments">qdrant_optimizers_segment_count — number of segments</h1>
+<h1 id="qdrant_storage_size_bytes--storage-size">qdrant_storage_size_bytes — storage size</h1>
+<pre tabindex="0"><code>
 `````yaml
 # prometheus.yml scrape config
 scrape_configs: - job_name: &#34;qdrant&#34;
     static_configs: - targets: [&#34;qdrant:6333&#34;]
     metrics_path: &#34;/metrics&#34;
     scrape_interval: 15s
-</code></pre><h3 id=memory-optimization-with-mmap>Memory Optimization with mmap</h3><p>For the best RAM-to-performance ratio, enable memory mapping: `````bash</p><h1 id=set-via-environment-variable>Set via environment variable</h1><p>docker run -p 6333:6333<br>-e QDRANT__STORAGE__ON_DISK_PAYLOAD=true<br>-e QDRANT__STORAGE__PERFORMANCE__IN_MEMORY_INDEX_MAP_THRESHOLD_KB=20000<br>-v qdrant_data:/qdrant/storage<br>qdrant/qdrant:v1.13.0</p><pre tabindex=0><code>
+</code></pre><h3 id="memory-optimization-with-mmap">Memory Optimization with mmap</h3>
+<p>For the best RAM-to-performance ratio, enable memory mapping: `````bash</p>
+<h1 id="set-via-environment-variable">Set via environment variable</h1>
+<p>docker run -p 6333:6333 <br>
+-e QDRANT__STORAGE__ON_DISK_PAYLOAD=true <br>
+-e QDRANT__STORAGE__PERFORMANCE__IN_MEMORY_INDEX_MAP_THRESHOLD_KB=20000 <br>
+-v qdrant_data:/qdrant/storage <br>
+qdrant/qdrant:v1.13.0</p>
+<pre tabindex="0"><code>
 With these settings, Qdrant keeps only the HNSW graph in RAM and memory-maps the raw vectors from disk. On NVMe SSD, the performance penalty is typically **&lt;15%** while reducing RAM usage by **60-80%**.
 
 ## Comparison with Alternatives
@@ -497,19 +665,23 @@ qdrant-migrate \
   --pinecone-index &#34;my-index&#34; \
   --target http://localhost:6333 \
   --target-collection &#34;migrated_docs&#34;
-</code></pre><p>For large collections, the migration runs at ~5,000 vectors/second. Plan for a maintenance window or dual-write during the transition.</p><h3 id=does-qdrant-support-hybrid-search-dense--sparse-vectors>Does Qdrant support hybrid search (dense + sparse vectors)?</h3><p>Yes, since v1.10.0. You can store both dense (neural) and sparse (BM25/TF-IDF) vectors in the same collection and combine them at query time: `````python
-from qdrant_client.models import SparseVector</p><p>client.search(
+</code></pre><p>For large collections, the migration runs at ~5,000 vectors/second. Plan for a maintenance window or dual-write during the transition.</p>
+<h3 id="does-qdrant-support-hybrid-search-dense--sparse-vectors">Does Qdrant support hybrid search (dense + sparse vectors)?</h3>
+<p>Yes, since v1.10.0. You can store both dense (neural) and sparse (BM25/TF-IDF) vectors in the same collection and combine them at query time: `````python
+from qdrant_client.models import SparseVector</p>
+<p>client.search(
 collection_name=&ldquo;documents&rdquo;,
 query_vector=models.NamedVector(
 name=&ldquo;dense&rdquo;,
-vector=[0.1, 0.2, &mldr;],
+vector=[0.1, 0.2, &hellip;],
 ),
 query_sparse_vector=SparseVector(
 indices=[10, 20, 30],
 values=[0.5, 0.3, 0.8],
 ),
-fusion=models.Fusion.RRF, # Reciprocal Rank Fusion
-)</p><pre tabindex=0><code>
+fusion=models.Fusion.RRF,  # Reciprocal Rank Fusion
+)</p>
+<pre tabindex="0"><code>
 This gives you the best of both worlds: semantic understanding from dense vectors and exact keyword matching from sparse vectors.
 
 ### What is the storage format? Can I inspect raw data?
@@ -593,13 +765,265 @@ Before you deploy any of the tools above into production, you&#39;ll need solid 
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fqdrant-vector-database-rust%2f&text=Verify%20%e2%80%94%20should%20return" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fqdrant-vector-database-rust%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fqdrant-vector-database-rust%2f&text=Verify%20%e2%80%94%20should%20return" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fqdrant-vector-database-rust%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

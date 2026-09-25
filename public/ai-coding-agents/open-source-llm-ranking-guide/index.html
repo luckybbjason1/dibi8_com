@@ -1,19 +1,215 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/open-source-llm-ranking-guide/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/open-source-llm-ranking-guide/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=best-open-source-llms-2025-llama-mistral-qwen-deepseek--more>Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More</h1><p>{&lt;/* resource-info */>}</p><p>The open-source LLM ecosystem in 2025 is unrecognizable from just two years ago. Models that once lagged GPT-4 by a wide margin now match or exceed it on specific benchmarks. A new 8B parameter model can outperform GPT-3.5 from 2022. And the variety of specialized models, coding assistants, multilingual systems, and edge-optimized weights means there is almost certainly an open-source model that fits your exact use case.</p><p>This guide ranks and compares the most important open-source LLMs available in 2025. We cover seven major model families: Meta Llama 3, Mistral AI, Qwen, DeepSeek, Google Gemma, Microsoft Phi, and discuss where to download and run them.</p><h2 id=the-open-source-llm-landscape-in-2025>The Open-Source LLM Landscape in 2025</h2><h3 id=why-open-source-models-are-winning>Why Open-Source Models Are Winning</h3><p>Open-source LLMs have closed the gap with proprietary models faster than most predicted. Several factors drive this acceleration: - <strong>Compute democratization</strong>: Cloud GPU rentals, training frameworks like Megatron and DeepSpeed, and parameter-efficient techniques like LoRA lower the barrier to training and fine-tuning</p><ul><li><strong>Knowledge distillation</strong>: Open-weight models benefit from research published by closed-model labs, and some (like DeepSeek) explicitly train on synthetic data from frontier models</li><li><strong>Community contributions</strong>: Thousands of practitioners fine-tune, evaluate, and improve open models, creating a feedback loop that proprietary labs cannot replicate</li><li><strong>Enterprise demand</strong>: Companies prefer open models for data privacy, cost control, customization, and vendor independence</li></ul><h3 id=key-benchmarks-mmlu-humaneval-mt-bench>Key Benchmarks: MMLU, HumanEval, MT-Bench</h3><p>Understanding benchmark scores is essential for comparing models: - <strong>MMLU (Massive Multitask Language Understanding)</strong>: Tests knowledge across 57 subjects including mathematics, history, law, and medicine. Scores range from 0 to 100, with higher scores indicating broader knowledge.</p><ul><li><strong>HumanEval</strong>: Measures code generation ability through 164 programming problems. Pass@1 scores indicate the percentage solved on the first attempt.</li><li><strong>MT-Bench (Multi-Turn Bench)</strong>: Evaluates conversational quality through multi-turn dialogues judged by GPT-4. Scores range from 0 to 10.</li></ul><h3 id=how-to-read-llm-leaderboards>How to Read LLM Leaderboards</h3><p>Two leaderboards dominate open-source model evaluation: - <strong><a href=https://chat.lmsys.org>LMSYS Chatbot Arena</a></strong>: Uses ELO ratings from human preference comparisons. Models are ranked by how often humans prefer their responses in blind side-by-side evaluations. This captures real-world helpfulness better than automated benchmarks.</p><ul><li><strong><a href=https://huggingface.co/spaces/open-llm-leaderboard>Open LLM Leaderboard</a></strong>: Hugging Face&rsquo;s automated leaderboard runs standardized benchmarks (MMLU, TruthfulQA, GSM8K, etc.) on submitted models. It provides reproducible, objective scores but may not reflect conversational quality.</li></ul><p>Treat benchmarks as directional indicators, not absolute truth. A model scoring 85 on MMLU is broadly more knowledgeable than one scoring 75, but the specific tasks you care about matter more than aggregate scores.</p><h2 id=meta-llama-33132-the-open-source-standard>Meta Llama 3/3.1/3.2: The Open-Source Standard</h2><h3 id=model-variants-8b-70b-405b>Model Variants (8B, 70B, 405B)</h3><p>Meta&rsquo;s <a href=https://ai.meta.com/llama>Llama 3</a> family, released in 2024-2025, has become the default choice for open-source LLM deployment. The family includes: - <strong>Llama 3.2 1B/3B</strong>: Lightweight models for edge and mobile devices</p><ul><li><strong>Llama 3.1 8B</strong>: Fast, efficient model ideal for most applications</li><li><strong>Llama 3 70B</strong>: High-capability model competitive with GPT-3.5 and Claude 3 Sonnet</li><li><strong>Llama 3.1 405B</strong>: Meta&rsquo;s largest model, competitive with GPT-4 on many benchmarks</li></ul><h3 id=key-capabilities-and-improvements>Key Capabilities and Improvements</h3><p>Llama 3 introduced significant improvements over Llama 2: - <strong>Training data</strong>: 15 trillion tokens (vs 2 trillion for Llama 2), with heavy filtering for quality</p><ul><li><strong>Context window</strong>: 128K tokens in Llama 3.1 (up from 4K in Llama 3)</li><li><strong>Multilingual support</strong>: Strong performance in 8 languages, with expanded support in 3.1</li><li><strong>Tool use</strong>: Native function calling and tool use capabilities</li><li><strong>Code performance</strong>: Substantially improved HumanEval scores</li></ul><h3 id=use-cases-and-deployment-options>Use Cases and Deployment Options</h3><p>Llama 3 8B is the go-to model for general-purpose applications: chatbots, content generation, summarization, and classification. It runs on a single consumer GPU (RTX 4090) or even CPU with quantization. Llama 3 70B requires multiple GPUs but delivers near-frontier performance for demanding applications.</p><h3 id=license-considerations>License Considerations</h3><p>Llama 3 uses a custom license that permits commercial use for applications with fewer than 700 million monthly active users. Larger deployments require a special license from Meta. This is more permissive than Llama 2&rsquo;s license but still includes restrictions not present in Apache 2.0 models.</p><h2 id=mistral-ai-european-excellence>Mistral AI: European Excellence</h2><h3 id=mistral-7b-and-its-legacy>Mistral 7B and Its Legacy</h3><p>Mistral 7B, released in September 2023, shocked the AI community by outperforming Llama 2 13B despite being half the size. It introduced grouped-query attention (GQA) for faster inference and sliding window attention for longer context handling. Mistral 7B remains a popular choice for resource-constrained deployments.</p><h3 id=mixtral-8x7b-and-8x22b-moe>Mixtral 8x7B and 8x22B (MoE)</h3><p>Mixtral models use Mixture of Experts (MoE) architecture, where only a subset of parameters activates per token. This enables massive model capacity with efficient inference: - <strong>Mixtral 8x7B</strong>: 47B total parameters, 13B active per token. Outperforms Llama 2 70B at faster inference speeds.</p><ul><li><strong>Mixtral 8x22B</strong>: 141B total parameters, 39B active per token. Competitive with GPT-3.5 on most benchmarks.</li></ul><p>MoE models excel in throughput-sensitive applications where you need high quality but cannot wait for a 70B model&rsquo;s inference latency.</p><h3 id=mistral-large-and-codestral>Mistral Large and Codestral</h3><p>Mistral AI also offers frontier-class models through API: - <strong>Mistral Large</strong>: Mistral&rsquo;s most capable model, competitive with Claude 3 Opus and GPT-4</p><ul><li><strong>Codestral</strong>: Specialized for code with a 32K context window, strong across 80+ programming languages</li></ul><h3 id=enterprise-and-api-offerings>Enterprise and API Offerings</h3><p><a href=https://mistral.ai>Mistral AI</a> offers models through La Plateforme (their API), AWS Bedrock, and Azure AI. Their open-weight models use the Apache 2.0 license, the most permissive of any major model family, allowing unrestricted commercial use.</p><h2 id=qwen-alibaba-the-rising-star-from-china>Qwen (Alibaba): The Rising Star from China</h2><h3 id=qwen2-and-qwen25-series>Qwen2 and Qwen2.5 Series</h3><p>Alibaba&rsquo;s Qwen series has emerged as one of the strongest open model families globally. Qwen2.5 (released late 2024) includes: - <strong>Qwen2.5 0.5B to 72B</strong>: A full range of sizes with consistent architecture</p><ul><li><strong>Qwen2.5 Coder</strong>: Specialized for programming tasks</li><li><strong>Qwen2.5 Math</strong>: Fine-tuned for mathematical reasoning</li><li><strong>Qwen2.5 VL</strong>: Vision-language model for image understanding</li></ul><h3 id=qwens-multilingual-capabilities>Qwen&rsquo;s Multilingual Capabilities</h3><p>Qwen excels at multilingual tasks, particularly in Chinese, English, Japanese, Korean, and major European languages. Its tokenizer handles CJK characters more efficiently than Llama&rsquo;s, making it the preferred choice for Asian language applications.</p><h3 id=codeqwen-for-programming-tasks>CodeQwen for Programming Tasks</h3><p>CodeQwen 1.5 and 7B models achieve HumanEval scores comparable to CodeLlama models twice their size. They support 92 programming languages and a 64K context window, making them ideal for codebase-level operations.</p><h3 id=qwen-license-and-usage-terms>Qwen License and Usage Terms</h3><p>Qwen2.5 uses the Qwen License, which permits commercial use with some restrictions on model distillation and competitive use. Review the license terms on <a href=https://huggingface.co/Qwen>Hugging Face</a> before deploying commercially.</p><h2 id=deepseek-efficiency-meets-performance>DeepSeek: Efficiency Meets Performance</h2><h3 id=deepseek-v25-and-v3>DeepSeek V2.5 and V3</h3><p>DeepSeek, developed by Chinese hedge fund High-Flyer, has produced some of the most efficient open models. DeepSeek V3 (released December 2024) features: - <strong>671B total parameters, 37B activated per token</strong> (MoE architecture)</p><ul><li><strong>Training cost</strong>: Reportedly $5.6 million, a fraction of what western labs spend</li><li><strong>MMLU score</strong>: 88.5, competitive with GPT-4o</li><li><strong>128K context window</strong> with efficient attention mechanisms</li></ul><h3 id=deepseek-moe-architecture>DeepSeek MoE Architecture</h3><p>DeepSeek&rsquo;s Mixture of Experts uses a novel auxiliary-loss-free load balancing strategy that improves expert utilization. This architectural innovation is being adopted by other labs and represents a genuine research contribution from the open-source ecosystem.</p><h3 id=deepseek-coder-series>DeepSeek Coder Series</h3><p>DeepSeek Coder V2 achieves a 90.2% score on HumanEval, among the highest of any open model. It supports project-level code understanding with a 128K context window and excels at code completion, bug fixing, and test generation.</p><h3 id=why-deepseek-is-gaining-popularity>Why DeepSeek Is Gaining Popularity</h3><p>DeepSeek proves that efficient training methods can match the quality of models trained with vastly larger budgets. For developers, this means smaller, faster models that punch above their weight class.</p><h2 id=google-gemma-lightweight-and-accessible>Google Gemma: Lightweight and Accessible</h2><h3 id=gemma-2-2b-9b-27b>Gemma 2 (2B, 9B, 27B)</h3><p>Google&rsquo;s <a href=https://ai.google.dev/gemma>Gemma 2</a>, released in June 2024, represents a significant leap over the original Gemma models: - <strong>Gemma 2 2B</strong>: Impressive performance for its size, suitable for edge devices</p><ul><li><strong>Gemma 2 9B</strong>: Outperforms Llama 3 8B on many benchmarks</li><li><strong>Gemma 2 27B</strong>: Competitive with Llama 3 70B despite being less than half the size</li></ul><p>Gemma 2 uses knowledge distillation from larger Google models, achieving remarkable efficiency.</p><h3 id=googles-open-weight-strategy>Google&rsquo;s Open-Weight Strategy</h3><p>Gemma is an &ldquo;open weights&rdquo; rather than &ldquo;open source&rdquo; model. Google releases the model weights but not the training data or full training code. The license is more permissive than Llama&rsquo;s but includes usage restrictions for harmful applications.</p><h3 id=best-use-cases-for-gemma>Best Use Cases for Gemma</h3><p>Gemma 2 2B is ideal for mobile and edge deployment. Gemma 2 9B is excellent for general-purpose applications where you want Llama 3 8B-level quality with Google&rsquo;s safety tuning. Gemma 2 27B serves as a lighter alternative to Llama 3 70B.</p><h2 id=microsoft-phi-small-but-mighty>Microsoft Phi: Small but Mighty</h2><h3 id=phi-3-and-phi-4-series>Phi-3 and Phi-4 Series</h3><p>Microsoft&rsquo;s Phi series demonstrates that training on high-quality, carefully curated data can produce small models with outsized capabilities: - <strong>Phi-3 Mini (3.8B)</strong>: Outperforms models 5x its size on reasoning benchmarks</p><ul><li><strong>Phi-3 Small (7B)</strong>: Strong general-purpose model with excellent reasoning</li><li><strong>Phi-3 Medium (14B)</strong>: Approaches Llama 3 70B quality on some benchmarks</li><li><strong>Phi-4 (14B)</strong>: Latest release with improved reasoning and long-context handling</li></ul><h3 id=remarkable-performance-for-small-models>Remarkable Performance for Small Models</h3><p>Phi models are trained on &ldquo;textbook-quality&rdquo; synthetic data, emphasizing reasoning and knowledge over raw scale. This approach yields models that excel at STEM tasks, logical reasoning, and instruction following despite their small parameter counts.</p><h3 id=edge-and-mobile-deployment>Edge and Mobile Deployment</h3><p>Phi-3 Mini is Microsoft&rsquo;s answer to on-device AI. At 3.8B parameters, it runs comfortably on smartphones and achieves quality that was GPT-3.5 level just 18 months ago. For mobile apps, IoT devices, and browser-based AI, Phi-3 Mini is a top choice.</p><h2 id=performance-comparison-matrix>Performance Comparison Matrix</h2><h3 id=benchmark-scores-comparison>Benchmark Scores Comparison</h3><p>| Model | Size | MMLU | HumanEval | MT-Bench | Context |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/open-source-llm-ranking-guide/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/open-source-llm-ranking-guide/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="best-open-source-llms-2025-llama-mistral-qwen-deepseek--more">Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More</h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>The open-source LLM ecosystem in 2025 is unrecognizable from just two years ago. Models that once lagged GPT-4 by a wide margin now match or exceed it on specific benchmarks. A new 8B parameter model can outperform GPT-3.5 from 2022. And the variety of specialized models, coding assistants, multilingual systems, and edge-optimized weights means there is almost certainly an open-source model that fits your exact use case.</p>
+<p>This guide ranks and compares the most important open-source LLMs available in 2025. We cover seven major model families: Meta Llama 3, Mistral AI, Qwen, DeepSeek, Google Gemma, Microsoft Phi, and discuss where to download and run them.</p>
+<h2 id="the-open-source-llm-landscape-in-2025">The Open-Source LLM Landscape in 2025</h2>
+<h3 id="why-open-source-models-are-winning">Why Open-Source Models Are Winning</h3>
+<p>Open-source LLMs have closed the gap with proprietary models faster than most predicted. Several factors drive this acceleration: - <strong>Compute democratization</strong>: Cloud GPU rentals, training frameworks like Megatron and DeepSpeed, and parameter-efficient techniques like LoRA lower the barrier to training and fine-tuning</p>
+<ul>
+<li><strong>Knowledge distillation</strong>: Open-weight models benefit from research published by closed-model labs, and some (like DeepSeek) explicitly train on synthetic data from frontier models</li>
+<li><strong>Community contributions</strong>: Thousands of practitioners fine-tune, evaluate, and improve open models, creating a feedback loop that proprietary labs cannot replicate</li>
+<li><strong>Enterprise demand</strong>: Companies prefer open models for data privacy, cost control, customization, and vendor independence</li>
+</ul>
+<h3 id="key-benchmarks-mmlu-humaneval-mt-bench">Key Benchmarks: MMLU, HumanEval, MT-Bench</h3>
+<p>Understanding benchmark scores is essential for comparing models: - <strong>MMLU (Massive Multitask Language Understanding)</strong>: Tests knowledge across 57 subjects including mathematics, history, law, and medicine. Scores range from 0 to 100, with higher scores indicating broader knowledge.</p>
+<ul>
+<li><strong>HumanEval</strong>: Measures code generation ability through 164 programming problems. Pass@1 scores indicate the percentage solved on the first attempt.</li>
+<li><strong>MT-Bench (Multi-Turn Bench)</strong>: Evaluates conversational quality through multi-turn dialogues judged by GPT-4. Scores range from 0 to 10.</li>
+</ul>
+<h3 id="how-to-read-llm-leaderboards">How to Read LLM Leaderboards</h3>
+<p>Two leaderboards dominate open-source model evaluation: - <strong><a href="https://chat.lmsys.org">LMSYS Chatbot Arena</a></strong>: Uses ELO ratings from human preference comparisons. Models are ranked by how often humans prefer their responses in blind side-by-side evaluations. This captures real-world helpfulness better than automated benchmarks.</p>
+<ul>
+<li><strong><a href="https://huggingface.co/spaces/open-llm-leaderboard">Open LLM Leaderboard</a></strong>: Hugging Face&rsquo;s automated leaderboard runs standardized benchmarks (MMLU, TruthfulQA, GSM8K, etc.) on submitted models. It provides reproducible, objective scores but may not reflect conversational quality.</li>
+</ul>
+<p>Treat benchmarks as directional indicators, not absolute truth. A model scoring 85 on MMLU is broadly more knowledgeable than one scoring 75, but the specific tasks you care about matter more than aggregate scores.</p>
+<h2 id="meta-llama-33132-the-open-source-standard">Meta Llama 3/3.1/3.2: The Open-Source Standard</h2>
+<h3 id="model-variants-8b-70b-405b">Model Variants (8B, 70B, 405B)</h3>
+<p>Meta&rsquo;s <a href="https://ai.meta.com/llama">Llama 3</a> family, released in 2024-2025, has become the default choice for open-source LLM deployment. The family includes: - <strong>Llama 3.2 1B/3B</strong>: Lightweight models for edge and mobile devices</p>
+<ul>
+<li><strong>Llama 3.1 8B</strong>: Fast, efficient model ideal for most applications</li>
+<li><strong>Llama 3 70B</strong>: High-capability model competitive with GPT-3.5 and Claude 3 Sonnet</li>
+<li><strong>Llama 3.1 405B</strong>: Meta&rsquo;s largest model, competitive with GPT-4 on many benchmarks</li>
+</ul>
+<h3 id="key-capabilities-and-improvements">Key Capabilities and Improvements</h3>
+<p>Llama 3 introduced significant improvements over Llama 2: - <strong>Training data</strong>: 15 trillion tokens (vs 2 trillion for Llama 2), with heavy filtering for quality</p>
+<ul>
+<li><strong>Context window</strong>: 128K tokens in Llama 3.1 (up from 4K in Llama 3)</li>
+<li><strong>Multilingual support</strong>: Strong performance in 8 languages, with expanded support in 3.1</li>
+<li><strong>Tool use</strong>: Native function calling and tool use capabilities</li>
+<li><strong>Code performance</strong>: Substantially improved HumanEval scores</li>
+</ul>
+<h3 id="use-cases-and-deployment-options">Use Cases and Deployment Options</h3>
+<p>Llama 3 8B is the go-to model for general-purpose applications: chatbots, content generation, summarization, and classification. It runs on a single consumer GPU (RTX 4090) or even CPU with quantization. Llama 3 70B requires multiple GPUs but delivers near-frontier performance for demanding applications.</p>
+<h3 id="license-considerations">License Considerations</h3>
+<p>Llama 3 uses a custom license that permits commercial use for applications with fewer than 700 million monthly active users. Larger deployments require a special license from Meta. This is more permissive than Llama 2&rsquo;s license but still includes restrictions not present in Apache 2.0 models.</p>
+<h2 id="mistral-ai-european-excellence">Mistral AI: European Excellence</h2>
+<h3 id="mistral-7b-and-its-legacy">Mistral 7B and Its Legacy</h3>
+<p>Mistral 7B, released in September 2023, shocked the AI community by outperforming Llama 2 13B despite being half the size. It introduced grouped-query attention (GQA) for faster inference and sliding window attention for longer context handling. Mistral 7B remains a popular choice for resource-constrained deployments.</p>
+<h3 id="mixtral-8x7b-and-8x22b-moe">Mixtral 8x7B and 8x22B (MoE)</h3>
+<p>Mixtral models use Mixture of Experts (MoE) architecture, where only a subset of parameters activates per token. This enables massive model capacity with efficient inference: - <strong>Mixtral 8x7B</strong>: 47B total parameters, 13B active per token. Outperforms Llama 2 70B at faster inference speeds.</p>
+<ul>
+<li><strong>Mixtral 8x22B</strong>: 141B total parameters, 39B active per token. Competitive with GPT-3.5 on most benchmarks.</li>
+</ul>
+<p>MoE models excel in throughput-sensitive applications where you need high quality but cannot wait for a 70B model&rsquo;s inference latency.</p>
+<h3 id="mistral-large-and-codestral">Mistral Large and Codestral</h3>
+<p>Mistral AI also offers frontier-class models through API: - <strong>Mistral Large</strong>: Mistral&rsquo;s most capable model, competitive with Claude 3 Opus and GPT-4</p>
+<ul>
+<li><strong>Codestral</strong>: Specialized for code with a 32K context window, strong across 80+ programming languages</li>
+</ul>
+<h3 id="enterprise-and-api-offerings">Enterprise and API Offerings</h3>
+<p><a href="https://mistral.ai">Mistral AI</a> offers models through La Plateforme (their API), AWS Bedrock, and Azure AI. Their open-weight models use the Apache 2.0 license, the most permissive of any major model family, allowing unrestricted commercial use.</p>
+<h2 id="qwen-alibaba-the-rising-star-from-china">Qwen (Alibaba): The Rising Star from China</h2>
+<h3 id="qwen2-and-qwen25-series">Qwen2 and Qwen2.5 Series</h3>
+<p>Alibaba&rsquo;s Qwen series has emerged as one of the strongest open model families globally. Qwen2.5 (released late 2024) includes: - <strong>Qwen2.5 0.5B to 72B</strong>: A full range of sizes with consistent architecture</p>
+<ul>
+<li><strong>Qwen2.5 Coder</strong>: Specialized for programming tasks</li>
+<li><strong>Qwen2.5 Math</strong>: Fine-tuned for mathematical reasoning</li>
+<li><strong>Qwen2.5 VL</strong>: Vision-language model for image understanding</li>
+</ul>
+<h3 id="qwens-multilingual-capabilities">Qwen&rsquo;s Multilingual Capabilities</h3>
+<p>Qwen excels at multilingual tasks, particularly in Chinese, English, Japanese, Korean, and major European languages. Its tokenizer handles CJK characters more efficiently than Llama&rsquo;s, making it the preferred choice for Asian language applications.</p>
+<h3 id="codeqwen-for-programming-tasks">CodeQwen for Programming Tasks</h3>
+<p>CodeQwen 1.5 and 7B models achieve HumanEval scores comparable to CodeLlama models twice their size. They support 92 programming languages and a 64K context window, making them ideal for codebase-level operations.</p>
+<h3 id="qwen-license-and-usage-terms">Qwen License and Usage Terms</h3>
+<p>Qwen2.5 uses the Qwen License, which permits commercial use with some restrictions on model distillation and competitive use. Review the license terms on <a href="https://huggingface.co/Qwen">Hugging Face</a> before deploying commercially.</p>
+<h2 id="deepseek-efficiency-meets-performance">DeepSeek: Efficiency Meets Performance</h2>
+<h3 id="deepseek-v25-and-v3">DeepSeek V2.5 and V3</h3>
+<p>DeepSeek, developed by Chinese hedge fund High-Flyer, has produced some of the most efficient open models. DeepSeek V3 (released December 2024) features: - <strong>671B total parameters, 37B activated per token</strong> (MoE architecture)</p>
+<ul>
+<li><strong>Training cost</strong>: Reportedly $5.6 million, a fraction of what western labs spend</li>
+<li><strong>MMLU score</strong>: 88.5, competitive with GPT-4o</li>
+<li><strong>128K context window</strong> with efficient attention mechanisms</li>
+</ul>
+<h3 id="deepseek-moe-architecture">DeepSeek MoE Architecture</h3>
+<p>DeepSeek&rsquo;s Mixture of Experts uses a novel auxiliary-loss-free load balancing strategy that improves expert utilization. This architectural innovation is being adopted by other labs and represents a genuine research contribution from the open-source ecosystem.</p>
+<h3 id="deepseek-coder-series">DeepSeek Coder Series</h3>
+<p>DeepSeek Coder V2 achieves a 90.2% score on HumanEval, among the highest of any open model. It supports project-level code understanding with a 128K context window and excels at code completion, bug fixing, and test generation.</p>
+<h3 id="why-deepseek-is-gaining-popularity">Why DeepSeek Is Gaining Popularity</h3>
+<p>DeepSeek proves that efficient training methods can match the quality of models trained with vastly larger budgets. For developers, this means smaller, faster models that punch above their weight class.</p>
+<h2 id="google-gemma-lightweight-and-accessible">Google Gemma: Lightweight and Accessible</h2>
+<h3 id="gemma-2-2b-9b-27b">Gemma 2 (2B, 9B, 27B)</h3>
+<p>Google&rsquo;s <a href="https://ai.google.dev/gemma">Gemma 2</a>, released in June 2024, represents a significant leap over the original Gemma models: - <strong>Gemma 2 2B</strong>: Impressive performance for its size, suitable for edge devices</p>
+<ul>
+<li><strong>Gemma 2 9B</strong>: Outperforms Llama 3 8B on many benchmarks</li>
+<li><strong>Gemma 2 27B</strong>: Competitive with Llama 3 70B despite being less than half the size</li>
+</ul>
+<p>Gemma 2 uses knowledge distillation from larger Google models, achieving remarkable efficiency.</p>
+<h3 id="googles-open-weight-strategy">Google&rsquo;s Open-Weight Strategy</h3>
+<p>Gemma is an &ldquo;open weights&rdquo; rather than &ldquo;open source&rdquo; model. Google releases the model weights but not the training data or full training code. The license is more permissive than Llama&rsquo;s but includes usage restrictions for harmful applications.</p>
+<h3 id="best-use-cases-for-gemma">Best Use Cases for Gemma</h3>
+<p>Gemma 2 2B is ideal for mobile and edge deployment. Gemma 2 9B is excellent for general-purpose applications where you want Llama 3 8B-level quality with Google&rsquo;s safety tuning. Gemma 2 27B serves as a lighter alternative to Llama 3 70B.</p>
+<h2 id="microsoft-phi-small-but-mighty">Microsoft Phi: Small but Mighty</h2>
+<h3 id="phi-3-and-phi-4-series">Phi-3 and Phi-4 Series</h3>
+<p>Microsoft&rsquo;s Phi series demonstrates that training on high-quality, carefully curated data can produce small models with outsized capabilities: - <strong>Phi-3 Mini (3.8B)</strong>: Outperforms models 5x its size on reasoning benchmarks</p>
+<ul>
+<li><strong>Phi-3 Small (7B)</strong>: Strong general-purpose model with excellent reasoning</li>
+<li><strong>Phi-3 Medium (14B)</strong>: Approaches Llama 3 70B quality on some benchmarks</li>
+<li><strong>Phi-4 (14B)</strong>: Latest release with improved reasoning and long-context handling</li>
+</ul>
+<h3 id="remarkable-performance-for-small-models">Remarkable Performance for Small Models</h3>
+<p>Phi models are trained on &ldquo;textbook-quality&rdquo; synthetic data, emphasizing reasoning and knowledge over raw scale. This approach yields models that excel at STEM tasks, logical reasoning, and instruction following despite their small parameter counts.</p>
+<h3 id="edge-and-mobile-deployment">Edge and Mobile Deployment</h3>
+<p>Phi-3 Mini is Microsoft&rsquo;s answer to on-device AI. At 3.8B parameters, it runs comfortably on smartphones and achieves quality that was GPT-3.5 level just 18 months ago. For mobile apps, IoT devices, and browser-based AI, Phi-3 Mini is a top choice.</p>
+<h2 id="performance-comparison-matrix">Performance Comparison Matrix</h2>
+<h3 id="benchmark-scores-comparison">Benchmark Scores Comparison</h3>
+<p>| Model | Size | MMLU | HumanEval | MT-Bench | Context |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Llama 3.1 405B | 405B | 88.6 | 89.0 | 9.2 | 128K |
 | Llama 3 70B | 70B | 82.0 | 81.7 | 8.9 | 8K |
 | Llama 3.1 8B | 8B | 73.0 | 72.8 | 7.8 | 128K |
@@ -27,22 +223,50 @@
 | Gemma 2 9B | 9B | 71.3 | 64.3 | 7.8 | 128K |
 | Gemma 2 2B | 2B | 53.2 | 24.3 | 6.4 | 128K |
 | Phi-4 | 14B | 82.6 | 82.2 | 8.4 | 16K |
-| Phi-3 Mini | 3.8B | 68.1 | 59.4 | 7.2 | 128K |</p><p><em>Scores are approximate and vary by evaluation setup. Check current leaderboards for latest results.</em></p><h3 id=inference-speed-comparison>Inference Speed Comparison</h3><p>Inference throughput (tokens/second) on a single A100 GPU with vLLM: | Model | Throughput (t/s) | Time to First Token |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Phi-3 Mini | 3.8B | 68.1 | 59.4 | 7.2 | 128K |</p>
+<p><em>Scores are approximate and vary by evaluation setup. Check current leaderboards for latest results.</em></p>
+<h3 id="inference-speed-comparison">Inference Speed Comparison</h3>
+<p>Inference throughput (tokens/second) on a single A100 GPU with vLLM: | Model | Throughput (t/s) | Time to First Token |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Llama 3.1 8B | ~120 | ~20ms |
 | Mistral 7B | ~140 | ~18ms |
 | Qwen2.5 7B | ~115 | ~22ms |
 | Gemma 2 9B | ~100 | ~25ms |
 | Phi-3 Mini | ~220 | ~12ms |
-| Mixtral 8x7B | ~90 | ~35ms |</p><h3 id=vram-requirements-by-model>VRAM Requirements by Model</h3><p>| Model | FP16 VRAM | 4-bit Quantized | 8-bit Quantized |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Mixtral 8x7B | ~90 | ~35ms |</p>
+<h3 id="vram-requirements-by-model">VRAM Requirements by Model</h3>
+<p>| Model | FP16 VRAM | 4-bit Quantized | 8-bit Quantized |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 2B models | 4 GB | 1.5 GB | 2.5 GB |
 | 7B/8B models | 16 GB | 5 GB | 8 GB |
 | 14B models | 28 GB | 9 GB | 15 GB |
 | 27B models | 54 GB | 16 GB | 28 GB |
 | 70B models | 140 GB | 40 GB | 72 GB |
-| 405B models | 810 GB | 230 GB | 405 GB |</p><h3 id=context-window-lengths>Context Window Lengths</h3><p>All major models released in 2024-2025 support at least 32K token contexts. Llama 3.1, Qwen2.5, Gemma 2, and DeepSeek V3 support 128K contexts. Long-context models enable processing entire codebases, long documents, and multi-turn conversations without truncation.</p><h2 id=how-to-choose-the-right-open-source-llm>How to Choose the Right Open-Source LLM</h2><h3 id=decision-framework-by-use-case>Decision Framework by Use Case</h3><p>Select your model based on the primary task: | Use Case | Recommended Models |
-|</p><hr><p>|</p><hr><p>|
+| 405B models | 810 GB | 230 GB | 405 GB |</p>
+<h3 id="context-window-lengths">Context Window Lengths</h3>
+<p>All major models released in 2024-2025 support at least 32K token contexts. Llama 3.1, Qwen2.5, Gemma 2, and DeepSeek V3 support 128K contexts. Long-context models enable processing entire codebases, long documents, and multi-turn conversations without truncation.</p>
+<h2 id="how-to-choose-the-right-open-source-llm">How to Choose the Right Open-Source LLM</h2>
+<h3 id="decision-framework-by-use-case">Decision Framework by Use Case</h3>
+<p>Select your model based on the primary task: | Use Case | Recommended Models |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | General chat | Llama 3.1 8B, Qwen2.5 7B, Gemma 2 9B |
 | Coding | DeepSeek Coder V2, CodeQwen, Codestral |
 | Enterprise deployment | Llama 3 70B, Mistral Large, Qwen2.5 72B |
@@ -50,9 +274,21 @@
 | Multilingual (Asian) | Qwen2.5, Yi models |
 | Multilingual (European) | Mistral 7B, Llama 3.1 |
 | Reasoning/STEM | Phi-4, DeepSeek V3 |
-| Maximum capability | Llama 3.1 405B, DeepSeek V3, Qwen2.5 72B |</p><h3 id=best-for-coding-deepseek-coder-codestral>Best for Coding: DeepSeek Coder, Codestral</h3><p>For programming tasks, DeepSeek Coder V2 leads open models with a 90.2% HumanEval score. Codestral (32B) offers strong multilingual code support. CodeQwen 7B provides the best quality-to-size ratio for code tasks.</p><h3 id=best-for-chat-llama-3-qwen>Best for Chat: Llama 3, Qwen</h3><p>Llama 3.1 8B and Qwen2.5 7B are the most balanced chat models. They combine strong MMLU scores with good MT-Bench ratings and broad ecosystem support. For English-only applications, Llama 3 has the largest fine-tuning ecosystem. For multilingual chat, Qwen is superior.</p><h3 id=best-for-local-deployment-mistral-phi-gemma>Best for Local Deployment: Mistral, Phi, Gemma</h3><p>Mistral 7B offers the best quality-to-speed ratio for local deployment. Phi-3 Mini maximizes quality at minimal size (3.8B). Gemma 2 2B is the best option for mobile and browser-based deployment.</p><h3 id=best-for-enterprise-llama-3-mistral-large>Best for Enterprise: Llama 3, Mistral Large</h3><p>Llama 3 70B has the most mature ecosystem, tooling, and deployment options. Mistral Large offers frontier quality through API with the permissive Apache 2.0 license for open-weight variants. Both have strong enterprise support through cloud providers.</p><h2 id=where-to-download-and-run-these-models>Where to Download and Run These Models</h2><h3 id=hugging-face-hub>Hugging Face Hub</h3><p>The <a href=https://huggingface.co/models>Hugging Face Hub</a> is the primary repository for open-source models. Search for model names (e.g., &ldquo;meta-llama/Meta-Llama-3-8B-Instruct&rdquo;) to find official uploads. Download with: ````python
+| Maximum capability | Llama 3.1 405B, DeepSeek V3, Qwen2.5 72B |</p>
+<h3 id="best-for-coding-deepseek-coder-codestral">Best for Coding: DeepSeek Coder, Codestral</h3>
+<p>For programming tasks, DeepSeek Coder V2 leads open models with a 90.2% HumanEval score. Codestral (32B) offers strong multilingual code support. CodeQwen 7B provides the best quality-to-size ratio for code tasks.</p>
+<h3 id="best-for-chat-llama-3-qwen">Best for Chat: Llama 3, Qwen</h3>
+<p>Llama 3.1 8B and Qwen2.5 7B are the most balanced chat models. They combine strong MMLU scores with good MT-Bench ratings and broad ecosystem support. For English-only applications, Llama 3 has the largest fine-tuning ecosystem. For multilingual chat, Qwen is superior.</p>
+<h3 id="best-for-local-deployment-mistral-phi-gemma">Best for Local Deployment: Mistral, Phi, Gemma</h3>
+<p>Mistral 7B offers the best quality-to-speed ratio for local deployment. Phi-3 Mini maximizes quality at minimal size (3.8B). Gemma 2 2B is the best option for mobile and browser-based deployment.</p>
+<h3 id="best-for-enterprise-llama-3-mistral-large">Best for Enterprise: Llama 3, Mistral Large</h3>
+<p>Llama 3 70B has the most mature ecosystem, tooling, and deployment options. Mistral Large offers frontier quality through API with the permissive Apache 2.0 license for open-weight variants. Both have strong enterprise support through cloud providers.</p>
+<h2 id="where-to-download-and-run-these-models">Where to Download and Run These Models</h2>
+<h3 id="hugging-face-hub">Hugging Face Hub</h3>
+<p>The <a href="https://huggingface.co/models">Hugging Face Hub</a> is the primary repository for open-source models. Search for model names (e.g., &ldquo;meta-llama/Meta-Llama-3-8B-Instruct&rdquo;) to find official uploads. Download with: ````python
 from transformers import AutoModelForCausalLM
-model = AutoModelForCausalLM.from_pretrained(&ldquo;meta-llama/Meta-Llama-3-8B-Instruct&rdquo;)</p><pre tabindex=0><code>
+model = AutoModelForCausalLM.from_pretrained(&ldquo;meta-llama/Meta-Llama-3-8B-Instruct&rdquo;)</p>
+<pre tabindex="0"><code>
 Some models (Llama, Gemma) require accepting a license agreement on Hugging Face before download.
 
 ### Ollama Model Library
@@ -183,13 +419,265 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 
 * * *
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopen-source-llm-ranking-guide%2f&text=Best%20Open-Source%20LLMs%202025%3a%20Llama%2c%20Mistral%2c%20Qwen%2c%20DeepSeek%20%26%20More" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopen-source-llm-ranking-guide%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopen-source-llm-ranking-guide%2f&text=Best%20Open-Source%20LLMs%202025%3a%20Llama%2c%20Mistral%2c%20Qwen%2c%20DeepSeek%20%26%20More" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopen-source-llm-ranking-guide%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

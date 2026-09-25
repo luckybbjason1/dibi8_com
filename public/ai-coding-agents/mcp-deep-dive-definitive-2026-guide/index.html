@@ -1,30 +1,153 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=model-context-protocol-mcp-deep-dive-the-definitive-2026-guide-to-building-production-ready-mcp-servers>Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers</h1><p>{&lt;/* resource-info */>}</p><hr><h2 id=introduction-why-mcp-is-the-smartest-bet-for-developers-in-2026>Introduction: Why MCP Is the Smartest Bet for Developers in 2026</h2><p>If you&rsquo;re still writing custom integration code for every LLM and every tool, you&rsquo;re doing 2025&rsquo;s work in 2026.</p><p>In November 2024, Anthropic quietly released the <strong>Model Context Protocol (MCP)</strong>. Six months later, it had become the fastest-adopted open standard in AI infrastructure. OpenAI, Google DeepMind, and Microsoft all pledged native support. The community built <strong>10,000+ MCP servers</strong>. Weekly downloads of the official Python and JavaScript SDKs crossed <strong>20 million</strong>.</p><p>Then in December 2025, the Linux Foundation spun up the <strong>Agentic AI Foundation</strong> to steward MCP independently. It is no longer Anthropic&rsquo;s protocol. It is <strong>the industry&rsquo;s protocol</strong>.</p><p>This guide is not a high-level overview. You will write a <strong>real, production-grade MCP server</strong> that monitors website health and SSL certificates, then wire it into Claude Desktop, Cursor, and VS Code Copilot Agent Mode. By the end, you&rsquo;ll have a working tool you can extend for your own APIs and deploy today.</p><hr><h2 id=table-of-contents>Table of Contents</h2><ol><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#1-what-mcp-actually-is-and-what-it-is-not>What MCP Actually Is (And What It Is Not)</a></li><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#2-architecture-how-host-client-and-server-talk>Architecture: How Host, Client, and Server Talk</a></li><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#3-dev-environment-in-5-minutes>Dev Environment in 5 Minutes</a></li><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#4-hands-on-build-a-sitemonitor-mcp-server>Hands-On: Build a SiteMonitor MCP Server</a></li><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#5-connect-to-claude-desktop-cursor-and-vs-code>Connect to Claude Desktop, Cursor, and VS Code</a></li><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#6-level-up-resources-prompts-and-httpsse-transport>Level Up: Resources, Prompts, and HTTP/SSE Transport</a></li><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#7-security--production-hardening>Security & Production Hardening</a></li><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#8-mcp-ecosystem-cheat-sheet-15-servers-to-try-now>MCP Ecosystem Cheat Sheet: 15 Servers to Try Now</a></li><li><a href=/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#9-faq>FAQ</a></li></ol><hr><h2 id=1-what-mcp-actually-is-and-what-it-is-not>1. What MCP Actually Is (And What It Is Not)</h2><h3 id=the-mn-problem>The M×N Problem</h3><p>Before MCP, integrating LLMs with external tools was a combinatorial nightmare: - <strong>M</strong> LLM providers (OpenAI, Anthropic, Google, Meta, Mistral…)</p><ul><li><strong>N</strong> external tools (GitHub, Postgres, Slack, Stripe, Salesforce…)</li><li>Custom glue code for every pair</li></ul><p>MCP collapses this to <strong>M + N</strong>: - Tool authors expose once via MCP (Server)</p><ul><li>LLM vendors implement one MCP client</li><li>Everything just works together</li></ul><p>Think of it as <strong>USB-C for AI</strong>: a single, standardized port that any model can use to plug into any data source or tool.</p><h3 id=what-mcp-is-not>What MCP Is Not</h3><p>| Misconception | Reality |
-|</p><hr><p>|</p><hr><p>|
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="model-context-protocol-mcp-deep-dive-the-definitive-2026-guide-to-building-production-ready-mcp-servers">Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers</h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<hr>
+<h2 id="introduction-why-mcp-is-the-smartest-bet-for-developers-in-2026">Introduction: Why MCP Is the Smartest Bet for Developers in 2026</h2>
+<p>If you&rsquo;re still writing custom integration code for every LLM and every tool, you&rsquo;re doing 2025&rsquo;s work in 2026.</p>
+<p>In November 2024, Anthropic quietly released the <strong>Model Context Protocol (MCP)</strong>. Six months later, it had become the fastest-adopted open standard in AI infrastructure. OpenAI, Google DeepMind, and Microsoft all pledged native support. The community built <strong>10,000+ MCP servers</strong>. Weekly downloads of the official Python and JavaScript SDKs crossed <strong>20 million</strong>.</p>
+<p>Then in December 2025, the Linux Foundation spun up the <strong>Agentic AI Foundation</strong> to steward MCP independently. It is no longer Anthropic&rsquo;s protocol. It is <strong>the industry&rsquo;s protocol</strong>.</p>
+<p>This guide is not a high-level overview. You will write a <strong>real, production-grade MCP server</strong> that monitors website health and SSL certificates, then wire it into Claude Desktop, Cursor, and VS Code Copilot Agent Mode. By the end, you&rsquo;ll have a working tool you can extend for your own APIs and deploy today.</p>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#1-what-mcp-actually-is-and-what-it-is-not">What MCP Actually Is (And What It Is Not)</a></li>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#2-architecture-how-host-client-and-server-talk">Architecture: How Host, Client, and Server Talk</a></li>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#3-dev-environment-in-5-minutes">Dev Environment in 5 Minutes</a></li>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#4-hands-on-build-a-sitemonitor-mcp-server">Hands-On: Build a SiteMonitor MCP Server</a></li>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#5-connect-to-claude-desktop-cursor-and-vs-code">Connect to Claude Desktop, Cursor, and VS Code</a></li>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#6-level-up-resources-prompts-and-httpsse-transport">Level Up: Resources, Prompts, and HTTP/SSE Transport</a></li>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#7-security--production-hardening">Security &amp; Production Hardening</a></li>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#8-mcp-ecosystem-cheat-sheet-15-servers-to-try-now">MCP Ecosystem Cheat Sheet: 15 Servers to Try Now</a></li>
+<li><a href="/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#9-faq">FAQ</a></li>
+</ol>
+<hr>
+<h2 id="1-what-mcp-actually-is-and-what-it-is-not">1. What MCP Actually Is (And What It Is Not)</h2>
+<h3 id="the-mn-problem">The M×N Problem</h3>
+<p>Before MCP, integrating LLMs with external tools was a combinatorial nightmare: - <strong>M</strong> LLM providers (OpenAI, Anthropic, Google, Meta, Mistral…)</p>
+<ul>
+<li><strong>N</strong> external tools (GitHub, Postgres, Slack, Stripe, Salesforce…)</li>
+<li>Custom glue code for every pair</li>
+</ul>
+<p>MCP collapses this to <strong>M + N</strong>: - Tool authors expose once via MCP (Server)</p>
+<ul>
+<li>LLM vendors implement one MCP client</li>
+<li>Everything just works together</li>
+</ul>
+<p>Think of it as <strong>USB-C for AI</strong>: a single, standardized port that any model can use to plug into any data source or tool.</p>
+<h3 id="what-mcp-is-not">What MCP Is Not</h3>
+<p>| Misconception | Reality |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | A new AI model | No—it&rsquo;s a <strong>protocol</strong>, not a model |
 | A replacement for Function Calling | No—MCP standardizes <em>how</em> tools are exposed; Function Calling is <em>how</em> models invoke them. They stack together. |
 | Only for Claude | No—OpenAI, Google, Microsoft, Cursor, Zed, Sourcegraph all support it |
-| Anthropic-proprietary | No—governed by the Linux Foundation since Dec 2025 |</p><h3 id=who-supports-mcp-may-2026>Who Supports MCP (May 2026)</h3><p>| Platform | Support Level | Notes |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Anthropic-proprietary | No—governed by the Linux Foundation since Dec 2025 |</p>
+<h3 id="who-supports-mcp-may-2026">Who Supports MCP (May 2026)</h3>
+<p>| Platform | Support Level | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Claude Desktop / Claude Code</strong> | Native | Reference implementation |
 | <strong>ChatGPT</strong> | Full (Dev Mode) | Read/write, Plus/Pro tiers since Sept 2025 |
 | <strong>Google Gemini</strong> | Confirmed | DeepMind CEO announced roadmap |
 | <strong>Cursor / Windsurf / Zed</strong> | Supported | AI-native IDEs |
 | <strong>VS Code Copilot Agent Mode</strong> | Native | v1.99+ |
-| <strong>Sourcegraph Cody</strong> | Enterprise | Enterprise MCP adoption |</p><hr><h2 id=2-architecture-how-host-client-and-server-talk>2. Architecture: How Host, Client, and Server Talk</h2><p>MCP runs on <strong>JSON-RPC 2.0</strong> over two transport options. Four concepts cover 90% of real-world usage.</p><h3 id=the-four-concepts>The Four Concepts</h3><pre tabindex=0><code>┌─────────────────────────────────────────────────────┐
+| <strong>Sourcegraph Cody</strong> | Enterprise | Enterprise MCP adoption |</p>
+<hr>
+<h2 id="2-architecture-how-host-client-and-server-talk">2. Architecture: How Host, Client, and Server Talk</h2>
+<p>MCP runs on <strong>JSON-RPC 2.0</strong> over two transport options. Four concepts cover 90% of real-world usage.</p>
+<h3 id="the-four-concepts">The Four Concepts</h3>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────┐
 │                      MCP Host                        │
 │  ┌─────────────┐          ┌──────────────────────┐ │
 │  │   LLM       │◄────────►│  MCP Client(s)       │ │
@@ -38,20 +161,44 @@
 │  • Resources (readable data)          │
 │  • Prompts (reusable templates)       │
 └─────────────────────────────────────────────────────┘
-</code></pre><p><strong>Host</strong>: The application running the LLM (e.g., Claude Desktop).<br><strong>Client</strong>: The module inside the Host that speaks MCP.<br><strong>Server</strong>: A standalone process exposing tools/resources/prompts.</p><h3 id=three-interaction-primitives>Three Interaction Primitives</h3><ol><li><strong>Tools</strong>: Functions the AI can call with arguments, receiving structured results.</li><li><strong>Resources</strong>: Read-only data the AI can fetch (files, DB rows, configs).</li><li><strong>Prompts</strong>: Named, parameterized prompt templates the AI can invoke.</li></ol><h3 id=transport-options>Transport Options</h3><p>| Transport | Best For | Trade-off |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p><strong>Host</strong>: The application running the LLM (e.g., Claude Desktop).<br>
+<strong>Client</strong>: The module inside the Host that speaks MCP.<br>
+<strong>Server</strong>: A standalone process exposing tools/resources/prompts.</p>
+<h3 id="three-interaction-primitives">Three Interaction Primitives</h3>
+<ol>
+<li><strong>Tools</strong>: Functions the AI can call with arguments, receiving structured results.</li>
+<li><strong>Resources</strong>: Read-only data the AI can fetch (files, DB rows, configs).</li>
+<li><strong>Prompts</strong>: Named, parameterized prompt templates the AI can invoke.</li>
+</ol>
+<h3 id="transport-options">Transport Options</h3>
+<p>| Transport | Best For | Trade-off |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>stdio</strong> | Local dev, desktop apps | Fastest, zero network exposure, limited to single machine |
 | <strong>HTTP + SSE</strong> | Remote servers, microservices | Slightly higher latency, cross-machine, supports streaming |
-| <strong>Streamable HTTP</strong> | Production, serverless | Stateful fallback, long-running ops |</p><p><strong>Rule of thumb</strong>: Prototype with stdio. Promote to HTTP/SSE for production.</p><hr><h2 id=3-dev-environment-in-5-minutes>3. Dev Environment in 5 Minutes</h2><p>Official SDKs exist for Python, TypeScript, C#/.NET, Java/Kotlin, and Go (community). We&rsquo;ll use <strong>Python</strong> for speed and <strong>TypeScript</strong> as a parallel reference.</p><h3 id=install-uv-fast-python-package-manager>Install uv (Fast Python Package Manager)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -LsSf https://astral.sh/uv/install.sh | sh
-</span></span></code></pre></div><h3 id=scaffold-the-project>Scaffold the Project</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir mcp-site-monitor <span style=color:#f92672>&amp;&amp;</span> cd mcp-site-monitor
-</span></span><span style=display:flex><span>uv init
-</span></span><span style=display:flex><span>uv add <span style=color:#e6db74>&#34;mcp[cli]&#34;</span> httpx
+| <strong>Streamable HTTP</strong> | Production, serverless | Stateful fallback, long-running ops |</p>
+<p><strong>Rule of thumb</strong>: Prototype with stdio. Promote to HTTP/SSE for production.</p>
+<hr>
+<h2 id="3-dev-environment-in-5-minutes">3. Dev Environment in 5 Minutes</h2>
+<p>Official SDKs exist for Python, TypeScript, C#/.NET, Java/Kotlin, and Go (community). We&rsquo;ll use <strong>Python</strong> for speed and <strong>TypeScript</strong> as a parallel reference.</p>
+<h3 id="install-uv-fast-python-package-manager">Install uv (Fast Python Package Manager)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -LsSf https://astral.sh/uv/install.sh | sh
+</span></span></code></pre></div><h3 id="scaffold-the-project">Scaffold the Project</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir mcp-site-monitor <span style="color:#f92672">&amp;&amp;</span> cd mcp-site-monitor
+</span></span><span style="display:flex;"><span>uv init
+</span></span><span style="display:flex;"><span>uv add <span style="color:#e6db74">&#34;mcp[cli]&#34;</span> httpx
 </span></span></code></pre></div><p>Directory layout: `````
 mcp-site-monitor/
-├── .env # Secrets (gitignored)
+├── .env              # Secrets (gitignored)
 ├── .gitignore
 ├── pyproject.toml
-└── server.py # Main MCP server</p><pre tabindex=0><code>
+└── server.py         # Main MCP server</p>
+<pre tabindex="0"><code>
 * * *
 
 ## 4. Hands-On: Build a SiteMonitor MCP Server
@@ -118,21 +265,33 @@ async def check_ssl_expiry(hostname: str, port: int = 443) -&gt; str: &#34;&#34;
 
 
 if __name__ == &#34;__main__&#34;: mcp.run(transport=&#34;stdio&#34;)
-</code></pre><h3 id=key-implementation-details>Key Implementation Details</h3><ol><li><strong><code>@mcp.tool()</code> decorator</strong>: Registers the function as an MCP tool. The docstring becomes the tool description that the LLM reads to decide <em>when</em> to call it.</li><li><strong>Type annotations</strong>: Automatically converted to JSON Schema for input validation.</li><li><strong><code>transport="stdio"</code></strong>: Launches as a child process communicating over stdin/stdout.</li><li><strong>Graceful errors</strong>: Every exception is caught and returned as text. Never let raw stack traces leak into the JSON-RPC stream.</li></ol><h3 id=equivalent-typescript-skeleton>Equivalent TypeScript Skeleton</h3><p>For Node/TypeScript teams, the structure is nearly identical: `````typescript
+</code></pre><h3 id="key-implementation-details">Key Implementation Details</h3>
+<ol>
+<li><strong><code>@mcp.tool()</code> decorator</strong>: Registers the function as an MCP tool. The docstring becomes the tool description that the LLM reads to decide <em>when</em> to call it.</li>
+<li><strong>Type annotations</strong>: Automatically converted to JSON Schema for input validation.</li>
+<li><strong><code>transport=&quot;stdio&quot;</code></strong>: Launches as a child process communicating over stdin/stdout.</li>
+<li><strong>Graceful errors</strong>: Every exception is caught and returned as text. Never let raw stack traces leak into the JSON-RPC stream.</li>
+</ol>
+<h3 id="equivalent-typescript-skeleton">Equivalent TypeScript Skeleton</h3>
+<p>For Node/TypeScript teams, the structure is nearly identical: `````typescript
 import { McpServer } from &ldquo;@modelcontextprotocol/sdk/server/mcp.js&rdquo;;
 import { StdioServerTransport } from &ldquo;@modelcontextprotocol/sdk/server/stdio.js&rdquo;;
-import { z } from &ldquo;zod&rdquo;;</p><p>const server = new McpServer({ name: &ldquo;SiteMonitor&rdquo;, version: &ldquo;1.0.0&rdquo; });</p><p>server.tool(
+import { z } from &ldquo;zod&rdquo;;</p>
+<p>const server = new McpServer({ name: &ldquo;SiteMonitor&rdquo;, version: &ldquo;1.0.0&rdquo; });</p>
+<p>server.tool(
 &ldquo;check_site_status&rdquo;,
 {
 url: z.string().describe(&ldquo;Full URL to check&rdquo;),
 timeout: z.number().optional().describe(&ldquo;Timeout in seconds&rdquo;),
 },
-async ({ url, timeout = 10 }) => {
-// &mldr; httpx equivalent with fetch/axios
+async ({ url, timeout = 10 }) =&gt; {
+// &hellip; httpx equivalent with fetch/axios
 return { content: [{ type: &ldquo;text&rdquo;, text: result }] };
 }
-);</p><p>const transport = new StdioServerTransport();
-await server.connect(transport);</p><pre tabindex=0><code>
+);</p>
+<p>const transport = new StdioServerTransport();
+await server.connect(transport);</p>
+<pre tabindex="0"><code>
 * * *
 
 ## 5. Connect to Claude Desktop, Cursor, and VS Code
@@ -154,7 +313,8 @@ Edit: `````bash
 ]
 }
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 Restart Claude Desktop. Ask: &gt; &#34;Check if https://github.com is up and tell me how many days are left on its SSL cert.&#34;
 
 Claude invokes both tools automatically and formats the results.
@@ -175,7 +335,9 @@ Create ``.cursor/mcp.json`` in your project root: `````json
     }
   }
 }
-</code></pre><p>Cursor&rsquo;s AI Chat discovers and uses the tools inline.</p><h3 id=vs-code-copilot-agent-mode>VS Code Copilot Agent Mode</h3><p>In <code>settings.json</code>: `````json
+</code></pre><p>Cursor&rsquo;s AI Chat discovers and uses the tools inline.</p>
+<h3 id="vs-code-copilot-agent-mode">VS Code Copilot Agent Mode</h3>
+<p>In <code>settings.json</code>: `````json
 {
 &ldquo;github.copilot.chat.mcpServers&rdquo;: {
 &ldquo;site-monitor&rdquo;: {
@@ -184,7 +346,8 @@ Create ``.cursor/mcp.json`` in your project root: `````json
 &ldquo;cwd&rdquo;: &ldquo;/absolute/path/to/mcp-site-monitor&rdquo;
 }
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 * * *
 
 ## 6. Level Up: Resources, Prompts, and HTTP/SSE Transport
@@ -200,24 +363,49 @@ def get_app_config() -&gt; str: &#34;&#34;&#34;Return current application config
 @mcp.resource(&#34;log://latest&#34;)
 def get_latest_log() -&gt; str: &#34;&#34;&#34;Return the most recent monitoring log entry.&#34;&#34;&#34;
     return &#34;[2026-05-15T08:00:00Z] github.com: 200 OK in 23ms&#34;
-</code></pre><h3 id=exposing-prompts-reusable-templates>Exposing Prompts (Reusable Templates)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@mcp.prompt</span>()
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>debug_incident</span>(url: str, status_code: int) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Generate a structured incident-debugging prompt.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;&#34;&#34;Website </span><span style=color:#e6db74>{</span>url<span style=color:#e6db74>}</span><span style=color:#e6db74> is returning HTTP </span><span style=color:#e6db74>{</span>status_code<span style=color:#e6db74>}</span><span style=color:#e6db74>. Investigate: 1. DNS resolution health
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>2. Server process status
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>3. Recent application logs (last 10 min)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>4. Traffic spike patterns from the CDN dashboard
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
-</span></span></code></pre></div><h3 id=switching-to-http--sse-for-production>Switching to HTTP + SSE for Production</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> mcp.server.sse <span style=color:#f92672>import</span> SseServerTransport
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> starlette.applications <span style=color:#f92672>import</span> Starlette
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> starlette.routing <span style=color:#f92672>import</span> Route
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sse <span style=color:#f92672>=</span> SseServerTransport(<span style=color:#e6db74>&#34;/messages/&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>handle_sse</span>(request): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> sse<span style=color:#f92672>.</span>connect_sse(request<span style=color:#f92672>.</span>scope, request<span style=color:#f92672>.</span>receive, request<span style=color:#f92672>.</span>_send) <span style=color:#66d9ef>as</span> streams: <span style=color:#66d9ef>await</span> mcp<span style=color:#f92672>.</span>run(streams[<span style=color:#ae81ff>0</span>], streams[<span style=color:#ae81ff>1</span>], mcp<span style=color:#f92672>.</span>create_initialization_options())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> Starlette(routes<span style=color:#f92672>=</span>[Route(<span style=color:#e6db74>&#34;/sse&#34;</span>, endpoint<span style=color:#f92672>=</span>handle_sse)])
-</span></span></code></pre></div><p>Deploy to any ASGI host (Railway, Fly.io, your own VPS) and point remote clients to the SSE endpoint.</p><hr><h2 id=7-security--production-hardening>7. Security & Production Hardening</h2><p>Connecting AI to external systems is powerful and dangerous. Follow these rules.</p><h3 id=the-non-negotiable-checklist>The Non-Negotiable Checklist</h3><ol><li><strong>Never log to stdout with stdio transport</strong> — stdout is the JSON-RPC channel. Log to stderr or a file only.</li><li><strong>Principle of least privilege</strong> — Expose the minimum tool set and data scope. Do not give AI blanket filesystem access.</li><li><strong>Strict input validation</strong> — Use Pydantic/Zod schemas. Reject malformed inputs at the boundary.</li><li><strong>Require confirmation for destructive ops</strong> — Deletions, payments, email sends should return a confirmation prompt, not execute immediately.</li><li><strong>No hardcoded secrets</strong> — API keys live in <code>.env</code>, never in source control.</li><li><strong>HTTPS everywhere for HTTP transport</strong> — Prevent MITM tampering with tool calls.</li><li><strong>Audit & monitor</strong> — Log every tool invocation. Alert on anomalies.</li></ol><p><strong>Real-world warning</strong>: In July 2025, a critical RCE vulnerability (CVE-2025-49596, CVSS 9.4) was found in Anthropic&rsquo;s MCP Inspector. Browser-based attacks against AI dev tools are now a known threat class. Treat MCP servers as security-critical infrastructure.</p><hr><h2 id=8-mcp-ecosystem-cheat-sheet-15-servers-to-try-now>8. MCP Ecosystem Cheat Sheet: 15 Servers to Try Now</h2><p>| Server | What It Does | Best Use Case |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="exposing-prompts-reusable-templates">Exposing Prompts (Reusable Templates)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.prompt</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">debug_incident</span>(url: str, status_code: int) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Generate a structured incident-debugging prompt.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#34;&#34;Website </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74"> is returning HTTP </span><span style="color:#e6db74">{</span>status_code<span style="color:#e6db74">}</span><span style="color:#e6db74">. Investigate: 1. DNS resolution health
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2. Server process status
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3. Recent application logs (last 10 min)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4. Traffic spike patterns from the CDN dashboard
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="switching-to-http--sse-for-production">Switching to HTTP + SSE for Production</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> mcp.server.sse <span style="color:#f92672">import</span> SseServerTransport
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> starlette.applications <span style="color:#f92672">import</span> Starlette
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> starlette.routing <span style="color:#f92672">import</span> Route
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sse <span style="color:#f92672">=</span> SseServerTransport(<span style="color:#e6db74">&#34;/messages/&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_sse</span>(request): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> sse<span style="color:#f92672">.</span>connect_sse(request<span style="color:#f92672">.</span>scope, request<span style="color:#f92672">.</span>receive, request<span style="color:#f92672">.</span>_send) <span style="color:#66d9ef">as</span> streams: <span style="color:#66d9ef">await</span> mcp<span style="color:#f92672">.</span>run(streams[<span style="color:#ae81ff">0</span>], streams[<span style="color:#ae81ff">1</span>], mcp<span style="color:#f92672">.</span>create_initialization_options())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Starlette(routes<span style="color:#f92672">=</span>[Route(<span style="color:#e6db74">&#34;/sse&#34;</span>, endpoint<span style="color:#f92672">=</span>handle_sse)])
+</span></span></code></pre></div><p>Deploy to any ASGI host (Railway, Fly.io, your own VPS) and point remote clients to the SSE endpoint.</p>
+<hr>
+<h2 id="7-security--production-hardening">7. Security &amp; Production Hardening</h2>
+<p>Connecting AI to external systems is powerful and dangerous. Follow these rules.</p>
+<h3 id="the-non-negotiable-checklist">The Non-Negotiable Checklist</h3>
+<ol>
+<li><strong>Never log to stdout with stdio transport</strong> — stdout is the JSON-RPC channel. Log to stderr or a file only.</li>
+<li><strong>Principle of least privilege</strong> — Expose the minimum tool set and data scope. Do not give AI blanket filesystem access.</li>
+<li><strong>Strict input validation</strong> — Use Pydantic/Zod schemas. Reject malformed inputs at the boundary.</li>
+<li><strong>Require confirmation for destructive ops</strong> — Deletions, payments, email sends should return a confirmation prompt, not execute immediately.</li>
+<li><strong>No hardcoded secrets</strong> — API keys live in <code>.env</code>, never in source control.</li>
+<li><strong>HTTPS everywhere for HTTP transport</strong> — Prevent MITM tampering with tool calls.</li>
+<li><strong>Audit &amp; monitor</strong> — Log every tool invocation. Alert on anomalies.</li>
+</ol>
+<p><strong>Real-world warning</strong>: In July 2025, a critical RCE vulnerability (CVE-2025-49596, CVSS 9.4) was found in Anthropic&rsquo;s MCP Inspector. Browser-based attacks against AI dev tools are now a known threat class. Treat MCP servers as security-critical infrastructure.</p>
+<hr>
+<h2 id="8-mcp-ecosystem-cheat-sheet-15-servers-to-try-now">8. MCP Ecosystem Cheat Sheet: 15 Servers to Try Now</h2>
+<p>| Server | What It Does | Best Use Case |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>filesystem</strong> | Read/write local files | Codebase analysis, doc processing |
 | <strong>github</strong> | PRs, issues, code search | Automated code review |
 | <strong>postgres</strong> / <strong>sqlite</strong> | SQL queries | Data analysis, internal BI |
@@ -226,17 +414,58 @@ def get_latest_log() -&gt; str: &#34;&#34;&#34;Return the most recent monitoring
 | <strong>puppeteer</strong> | Browser automation | Scraping, screenshots |
 | <strong>memory</strong> | Knowledge graph storage | Long-term agent memory |
 | <strong>google-drive</strong> | File operations | Document workflows |
-| <strong>notion</strong> | Pages & databases | Knowledge management |
+| <strong>notion</strong> | Pages &amp; databases | Knowledge management |
 | <strong>fetch</strong> | Arbitrary URL fetching | Content summarization |
 | <strong>sequential-thinking</strong> | Chain-of-thought helper | Complex reasoning tasks |
 | <strong>playwright</strong> | E2E test automation | Test generation |
 | <strong>redis</strong> | Key-value operations | Cache inspection |
 | <strong>docker</strong> | Container management | DevOps automation |
-| <strong>kubernetes</strong> | K8s resource ops | Cluster management |</p><p>Full directories: <a href=https://smithery.ai>Smithery.ai</a> · <a href=https://mcp.so>MCP.so</a></p><hr><h2 id=9-faq>9. FAQ</h2><p><strong>Q: Is MCP a replacement for LangChain, CrewAI, or OpenAI Agents SDK?</strong></p><p>No. MCP is a <strong>protocol</strong> (the &ldquo;plumbing&rdquo;). LangChain is a framework for chaining calls. CrewAI orchestrates multi-agent workflows. OpenAI Agents SDK is a high-level agent builder. These frameworks increasingly <strong>consume</strong> MCP servers as their tool layer.</p><p><strong>Q: Can I run MCP servers in the cloud / on Kubernetes?</strong></p><p>Yes. stdio is for local. HTTP/SSE scales to containers, VPS, and serverless (with caveats around MCP&rsquo;s stateful design). Cloudflare and Vercel have published reference architectures.</p><p><strong>Q: How many tools should one server expose?</strong></p><p>Keep it under <strong>10 tools per server</strong>. Too many tools degrade the LLM&rsquo;s selection accuracy and bloat the context window (every tool definition is injected into the prompt). Split by functional domain: one server for DB ops, another for Slack ops.</p><p><strong>Q: What&rsquo;s the relationship between MCP and Google&rsquo;s A2A protocol?</strong></p><p>MCP connects <strong>AI → Tools</strong> (agent to external system). A2A (Agent-to-Agent) connects <strong>AI ↔ AI</strong> (multi-agent collaboration). They are complementary, not competitive. Google uses both.</p><p><strong>Q: Do I need to pay Anthropic to build MCP servers?</strong></p><p>No. MCP is fully open source under the Apache 2.0 license. You can build, distribute, and commercialize MCP servers without licensing fees.</p><hr><h2 id=closing-the-time-to-build-is-now>Closing: The Time to Build Is Now</h2><p>MCP is not a speculative technology. It is the <strong>live standard</strong> for AI tool integration in 2026. If you don&rsquo;t know how to build an MCP server today, you&rsquo;re missing the foundational skill that every AI-native dev team will expect tomorrow.</p><p>Your next steps: 1. Copy the SiteMonitor code above and run it with ````uv```
+| <strong>kubernetes</strong> | K8s resource ops | Cluster management |</p>
+<p>Full directories: <a href="https://smithery.ai">Smithery.ai</a> · <a href="https://mcp.so">MCP.so</a></p>
+<hr>
+<h2 id="9-faq">9. FAQ</h2>
+<p><strong>Q: Is MCP a replacement for LangChain, CrewAI, or OpenAI Agents SDK?</strong></p>
+<p>No. MCP is a <strong>protocol</strong> (the &ldquo;plumbing&rdquo;). LangChain is a framework for chaining calls. CrewAI orchestrates multi-agent workflows. OpenAI Agents SDK is a high-level agent builder. These frameworks increasingly <strong>consume</strong> MCP servers as their tool layer.</p>
+<p><strong>Q: Can I run MCP servers in the cloud / on Kubernetes?</strong></p>
+<p>Yes. stdio is for local. HTTP/SSE scales to containers, VPS, and serverless (with caveats around MCP&rsquo;s stateful design). Cloudflare and Vercel have published reference architectures.</p>
+<p><strong>Q: How many tools should one server expose?</strong></p>
+<p>Keep it under <strong>10 tools per server</strong>. Too many tools degrade the LLM&rsquo;s selection accuracy and bloat the context window (every tool definition is injected into the prompt). Split by functional domain: one server for DB ops, another for Slack ops.</p>
+<p><strong>Q: What&rsquo;s the relationship between MCP and Google&rsquo;s A2A protocol?</strong></p>
+<p>MCP connects <strong>AI → Tools</strong> (agent to external system). A2A (Agent-to-Agent) connects <strong>AI ↔ AI</strong> (multi-agent collaboration). They are complementary, not competitive. Google uses both.</p>
+<p><strong>Q: Do I need to pay Anthropic to build MCP servers?</strong></p>
+<p>No. MCP is fully open source under the Apache 2.0 license. You can build, distribute, and commercialize MCP servers without licensing fees.</p>
+<hr>
+<h2 id="closing-the-time-to-build-is-now">Closing: The Time to Build Is Now</h2>
+<p>MCP is not a speculative technology. It is the <strong>live standard</strong> for AI tool integration in 2026. If you don&rsquo;t know how to build an MCP server today, you&rsquo;re missing the foundational skill that every AI-native dev team will expect tomorrow.</p>
+<p>Your next steps: 1. Copy the SiteMonitor code above and run it with ````uv```
 2. Wire it into Claude Desktop and ask a natural-language monitoring question
 3. Wrap your team&rsquo;s most-used internal API as an MCP server
-4. Publish it to GitHub and add it to Smithery or MCP.so</p><p><strong>Official Resources</strong></p><ul><li><a href=https://modelcontextprotocol.io>MCP Specification</a></li><li><a href=https://github.com/modelcontextprotocol/python-sdk>Python SDK (FastMCP)</a></li><li><a href=https://github.com/modelcontextprotocol/typescript-sdk>TypeScript SDK</a></li><li><a href=https://smithery.ai>Smithery.ai — Server Registry</a></li><li><a href=https://mcp.so>MCP.so — Community Marketplace</a></li></ul><hr><h2 id=-skip-the-schema-boilerplate>🔌 Skip the Schema Boilerplate</h2><p>Writing JSON Schema by hand for every tool is the most tedious part of MCP development. Use dibi8&rsquo;s free <strong><a href=/tools/mcp-tool-builder/>MCP Tool Builder</a></strong> — paste a Python or TypeScript function signature and get a spec-compliant tool definition + full server boilerplate (FastMCP / TypeScript SDK) + a cURL test command. Saves 80% of the setup time.</p><hr><ul><li></li></ul><hr><h2 id=recommended-infrastructure-for-self-hosting>Recommended Infrastructure for Self-Hosting</h2><p>If you want to run this stack reliably 24/7, infrastructure choice matters: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><p><em>Published May 15, 2026. Based on MCP Protocol Specification 2025-11-25 (One-Year Anniversary Release).</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+4. Publish it to GitHub and add it to Smithery or MCP.so</p>
+<p><strong>Official Resources</strong></p>
+<ul>
+<li><a href="https://modelcontextprotocol.io">MCP Specification</a></li>
+<li><a href="https://github.com/modelcontextprotocol/python-sdk">Python SDK (FastMCP)</a></li>
+<li><a href="https://github.com/modelcontextprotocol/typescript-sdk">TypeScript SDK</a></li>
+<li><a href="https://smithery.ai">Smithery.ai — Server Registry</a></li>
+<li><a href="https://mcp.so">MCP.so — Community Marketplace</a></li>
+</ul>
+<hr>
+<h2 id="-skip-the-schema-boilerplate">🔌 Skip the Schema Boilerplate</h2>
+<p>Writing JSON Schema by hand for every tool is the most tedious part of MCP development. Use dibi8&rsquo;s free <strong><a href="/tools/mcp-tool-builder/">MCP Tool Builder</a></strong> — paste a Python or TypeScript function signature and get a spec-compliant tool definition + full server boilerplate (FastMCP / TypeScript SDK) + a cURL test command. Saves 80% of the setup time.</p>
+<hr>
+<ul>
+<li></li>
+</ul>
+<hr>
+<h2 id="recommended-infrastructure-for-self-hosting">Recommended Infrastructure for Self-Hosting</h2>
+<p>If you want to run this stack reliably 24/7, infrastructure choice matters: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<p><em>Published May 15, 2026. Based on MCP Protocol Specification 2025-11-25 (One-Year Anniversary Release).</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -250,20 +479,285 @@ def get_latest_log() -&gt; str: &#34;&#34;&#34;Return the most recent monitoring
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/mcp-deep-dive-definitive-2026-guide%22>https://dibi8.com/resources/mcp-deep-dive-definitive-2026-guide"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/mcp-deep-dive-definitive-2026-guide%22">https://dibi8.com/resources/mcp-deep-dive-definitive-2026-guide"</a>
 }
-}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmcp-deep-dive-definitive-2026-guide%2f&text=Model%20Context%20Protocol%20%28MCP%29%20Deep%20Dive%3a%20The%20Definitive%202026%20Guide%20to%20Building%20Production-Ready%20MCP%20Servers" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmcp-deep-dive-definitive-2026-guide%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmcp-deep-dive-definitive-2026-guide%2f&text=Model%20Context%20Protocol%20%28MCP%29%20Deep%20Dive%3a%20The%20Definitive%202026%20Guide%20to%20Building%20Production-Ready%20MCP%20Servers" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmcp-deep-dive-definitive-2026-guide%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

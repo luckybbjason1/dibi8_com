@@ -1,19 +1,102 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/claude-code-vs-aider/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/claude-code-vs-aider/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=claude-code-vs-aider-in-2026-commercial-vs-open-source-cli-showdown>Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown</h1><h2 id=quick-answer>Quick Answer</h2><p><strong>Claude Code</strong> wins for developers who want maximum agent autonomy on a flat monthly subscription with no API surprise bills. <strong>Aider</strong> wins for developers who want full transparency, open-source freedom, and pay-per-token cost control.</p><p>Use <strong>Claude Code</strong> if: You want a fully managed AI coding agent on a flat $20-$200/month plan, you work on monorepos that need 1M context, and you trust Anthropic to drive long autonomous loops.</p><p>Use <strong>Aider</strong> if: You want open-source tooling under Apache 2.0, you want to bring your own API key (or local model), you prefer auditable edit-commit-diff loops, and you want to optimize cost per session below subscription pricing.</p><hr><h2 id=side-by-side-comparison>Side-by-Side Comparison</h2><p>| Feature | Claude Code | Aider |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/claude-code-vs-aider/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/claude-code-vs-aider/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="claude-code-vs-aider-in-2026-commercial-vs-open-source-cli-showdown">Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown</h1>
+<h2 id="quick-answer">Quick Answer</h2>
+<p><strong>Claude Code</strong> wins for developers who want maximum agent autonomy on a flat monthly subscription with no API surprise bills. <strong>Aider</strong> wins for developers who want full transparency, open-source freedom, and pay-per-token cost control.</p>
+<p>Use <strong>Claude Code</strong> if: You want a fully managed AI coding agent on a flat $20-$200/month plan, you work on monorepos that need 1M context, and you trust Anthropic to drive long autonomous loops.</p>
+<p>Use <strong>Aider</strong> if: You want open-source tooling under Apache 2.0, you want to bring your own API key (or local model), you prefer auditable edit-commit-diff loops, and you want to optimize cost per session below subscription pricing.</p>
+<hr>
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>| Feature | Claude Code | Aider |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Vendor</strong> | Anthropic | Paul Gauthier (open source) |
 | <strong>Launched</strong> | 2024 | 2023 |
 | <strong>License</strong> | Commercial, proprietary | Apache 2.0 |
@@ -29,10 +112,59 @@
 | <strong>Self-hostable</strong> | No (cloud-only) | Yes (with local model like Ollama) |
 | <strong>Best codebase size</strong> | 1M LOC (with Sonnet 1M context) | Unlimited (uses repo map streaming) |
 | <strong>MCP support</strong> | Yes (native) | No native; community plugins |
-| <strong>Subagent system</strong> | Yes (Task tool) | No |</p><hr><h2 id=when-to-choose-claude-code>When to Choose Claude Code</h2><h3 id=use-case-1-long-autonomous-loops>Use case 1: Long autonomous loops</h3><p>Claude Code can take a vague spec like &ldquo;add OAuth login with Google and GitHub, update the schema, write tests, and deploy&rdquo; and run for 30-60 minutes with minimal supervision. It plans, edits, runs tests, observes failures, and self-corrects. Aider is built for tighter human-in-the-loop turns and won&rsquo;t drive that long a loop on its own.</p><h3 id=use-case-2-massive-monorepos>Use case 2: Massive monorepos</h3><p>The Sonnet 1M context tier means Claude Code can hold an entire 800K-LOC repo in working memory. Combined with the subagent system, it can dispatch parallel &ldquo;research agents&rdquo; to explore unfamiliar code without polluting your main session. Aider on a 1M codebase requires you to manually add files via ```/add````.</p><h3 id=use-case-3-flat-fee-predictability>Use case 3: Flat-fee predictability</h3><p>$20/month Pro or $200/month Max means your monthly AI coding cost is bounded. Heavy users routinely burn $200+ in raw Anthropic API costs going through Aider — at that volume, Claude Code Max is the same price with no metering anxiety.</p><hr><h2 id=when-to-choose-aider>When to Choose Aider</h2><h3 id=use-case-1-open-source-freedom>Use case 1: Open-source freedom</h3><p>Aider is Apache 2.0, runs locally, and can route through any OpenAI-compatible API. You can audit the source, fork it, and run it on a local Ollama model with zero outbound calls. For air-gapped enterprise environments or &ldquo;no vendor lock-in&rdquo; shops, this is the only choice.</p><h3 id=use-case-2-pay-per-token-cost-control>Use case 2: Pay-per-token cost control</h3><p>Aider charges nothing for the tool. You pay only the underlying model API. For occasional use (5-10 sessions/week), this beats any flat subscription. Use Gemini Flash or Sonnet 1M with cache discount and you can easily come in under $10/month total spend.</p><h3 id=use-case-3-auditable-edit-commit-diff-workflow>Use case 3: Auditable edit-commit-diff workflow</h3><p>Aider&rsquo;s loop is: propose edit → show unified diff → wait for approval → commit with descriptive message. Every change is one git commit, fully reviewable. For teams who want AI assistance without losing git-blame history quality, Aider&rsquo;s discipline shines.</p><hr><h2 id=pricing-deep-dive>Pricing Deep Dive</h2><h3 id=claude-code>Claude Code</h3><ul><li><strong>Pro</strong>: $20/month, limited usage (~50-100 messages/day depending on length)</li><li><strong>Max 5x</strong>: $100/month, 5x Pro limits</li><li><strong>Max 20x</strong>: $200/month, 20x Pro limits (effectively unlimited for solo devs)</li><li><strong>API mode</strong>: Pay per token at Anthropic API rates (separate billing)</li></ul><p>→ <strong>Total monthly cost for a power user</strong>: $20-$200 flat.</p><h3 id=aider>Aider</h3><ul><li><strong>Tool</strong>: Free, MIT-style (Apache 2.0)</li><li><strong>API costs</strong> (BYO key, typical monthly spend): - Sonnet 4.6 with prompt caching: $10-$40/month<ul><li>GPT-4o: $15-$50/month</li><li>Gemini 2.5 Pro: $5-$30/month</li><li>Local Ollama (Llama 3.3 70B / DeepSeek): $0 + electricity</li></ul></li></ul><p>→ <strong>Total monthly cost for a power user</strong>: $0-$50, fully variable.</p><h3 id=budget-winner>Budget Winner</h3><p>For light use (&lt;20 sessions/week): <strong>Aider with cached Sonnet ~$10-$15/month</strong> beats Claude Code Pro.
-For heavy use (>50 sessions/week): <strong>Claude Code Pro $20/month</strong> is the cost ceiling.
-For unlimited heavy use: <strong>Claude Code Max $200/month</strong> beats $300+ raw API burn through Aider.</p><hr><h2 id=performance-benchmarks-subjective-from-my-daily-use>Performance Benchmarks (Subjective, From My Daily Use)</h2><p>| Task | Claude Code | Aider |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>Subagent system</strong> | Yes (Task tool) | No |</p>
+<hr>
+<h2 id="when-to-choose-claude-code">When to Choose Claude Code</h2>
+<h3 id="use-case-1-long-autonomous-loops">Use case 1: Long autonomous loops</h3>
+<p>Claude Code can take a vague spec like &ldquo;add OAuth login with Google and GitHub, update the schema, write tests, and deploy&rdquo; and run for 30-60 minutes with minimal supervision. It plans, edits, runs tests, observes failures, and self-corrects. Aider is built for tighter human-in-the-loop turns and won&rsquo;t drive that long a loop on its own.</p>
+<h3 id="use-case-2-massive-monorepos">Use case 2: Massive monorepos</h3>
+<p>The Sonnet 1M context tier means Claude Code can hold an entire 800K-LOC repo in working memory. Combined with the subagent system, it can dispatch parallel &ldquo;research agents&rdquo; to explore unfamiliar code without polluting your main session. Aider on a 1M codebase requires you to manually add files via ```/add````.</p>
+<h3 id="use-case-3-flat-fee-predictability">Use case 3: Flat-fee predictability</h3>
+<p>$20/month Pro or $200/month Max means your monthly AI coding cost is bounded. Heavy users routinely burn $200+ in raw Anthropic API costs going through Aider — at that volume, Claude Code Max is the same price with no metering anxiety.</p>
+<hr>
+<h2 id="when-to-choose-aider">When to Choose Aider</h2>
+<h3 id="use-case-1-open-source-freedom">Use case 1: Open-source freedom</h3>
+<p>Aider is Apache 2.0, runs locally, and can route through any OpenAI-compatible API. You can audit the source, fork it, and run it on a local Ollama model with zero outbound calls. For air-gapped enterprise environments or &ldquo;no vendor lock-in&rdquo; shops, this is the only choice.</p>
+<h3 id="use-case-2-pay-per-token-cost-control">Use case 2: Pay-per-token cost control</h3>
+<p>Aider charges nothing for the tool. You pay only the underlying model API. For occasional use (5-10 sessions/week), this beats any flat subscription. Use Gemini Flash or Sonnet 1M with cache discount and you can easily come in under $10/month total spend.</p>
+<h3 id="use-case-3-auditable-edit-commit-diff-workflow">Use case 3: Auditable edit-commit-diff workflow</h3>
+<p>Aider&rsquo;s loop is: propose edit → show unified diff → wait for approval → commit with descriptive message. Every change is one git commit, fully reviewable. For teams who want AI assistance without losing git-blame history quality, Aider&rsquo;s discipline shines.</p>
+<hr>
+<h2 id="pricing-deep-dive">Pricing Deep Dive</h2>
+<h3 id="claude-code">Claude Code</h3>
+<ul>
+<li><strong>Pro</strong>: $20/month, limited usage (~50-100 messages/day depending on length)</li>
+<li><strong>Max 5x</strong>: $100/month, 5x Pro limits</li>
+<li><strong>Max 20x</strong>: $200/month, 20x Pro limits (effectively unlimited for solo devs)</li>
+<li><strong>API mode</strong>: Pay per token at Anthropic API rates (separate billing)</li>
+</ul>
+<p>→ <strong>Total monthly cost for a power user</strong>: $20-$200 flat.</p>
+<h3 id="aider">Aider</h3>
+<ul>
+<li><strong>Tool</strong>: Free, MIT-style (Apache 2.0)</li>
+<li><strong>API costs</strong> (BYO key, typical monthly spend): - Sonnet 4.6 with prompt caching: $10-$40/month
+<ul>
+<li>GPT-4o: $15-$50/month</li>
+<li>Gemini 2.5 Pro: $5-$30/month</li>
+<li>Local Ollama (Llama 3.3 70B / DeepSeek): $0 + electricity</li>
+</ul>
+</li>
+</ul>
+<p>→ <strong>Total monthly cost for a power user</strong>: $0-$50, fully variable.</p>
+<h3 id="budget-winner">Budget Winner</h3>
+<p>For light use (&lt;20 sessions/week): <strong>Aider with cached Sonnet ~$10-$15/month</strong> beats Claude Code Pro.
+For heavy use (&gt;50 sessions/week): <strong>Claude Code Pro $20/month</strong> is the cost ceiling.
+For unlimited heavy use: <strong>Claude Code Max $200/month</strong> beats $300+ raw API burn through Aider.</p>
+<hr>
+<h2 id="performance-benchmarks-subjective-from-my-daily-use">Performance Benchmarks (Subjective, From My Daily Use)</h2>
+<p>| Task | Claude Code | Aider |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Single-file bug fix | 8/10 | 9/10 |
 | Multi-file refactor (5-10 files) | 9/10 | 8/10 |
 | Multi-file refactor (50+ files) | 9/10 | 6/10 |
@@ -42,17 +174,87 @@ For unlimited heavy use: <strong>Claude Code Max $200/month</strong> beats $300+
 | Long autonomous loops | 9/10 | 5/10 |
 | Git commit hygiene | 7/10 | 9/10 |
 | Cost transparency | 6/10 | 9/10 |
-| Open-source / self-host | 0/10 | 10/10 |</p><p>→ Claude Code wins on agent autonomy and scale. Aider wins on git hygiene, cost transparency, and open-source freedom.</p><hr><h2 id=migration-tips>Migration Tips</h2><h3 id=claude-code--aider>Claude Code → Aider</h3><ul><li>Install: <code>pip install aider-chat</code> or <code>pipx install aider-chat</code></li><li>Set your API key: <code>export ANTHROPIC_API_KEY=sk-ant-...</code></li><li>Run from your repo root: <code>aider --sonnet</code></li><li>Use <code>/add file.py</code> to include files (Aider does NOT auto-discover like Claude Code)</li><li>Enable auto-commit: it&rsquo;s on by default; review diffs before approving</li><li>Lower your expectation of autonomy — Aider expects 1-2 turn loops, not 30-minute runs</li></ul><h3 id=aider--claude-code>Aider → Claude Code</h3><ul><li>Install: <code>npm install -g @anthropic-ai/claude-code</code> or use <code>claude</code> CLI from anthropic.com</li><li>Authenticate: <code>claude login</code> (uses Anthropic account, not API key)</li><li>Run from your repo root: <code>claude</code></li><li>Don&rsquo;t manually ````/add``` files — Claude Code uses subagents to find what it needs</li><li>Disable auto-commit if you want Aider-style git hygiene; otherwise let it batch</li><li>Expect longer single turns (10-60 seconds) but fewer total turns per task</li></ul><h3 id=self-hosting-note>Self-Hosting Note</h3><p>Want to run Aider with a local model and get the open-source benefits without renting GPU time? A gives you enough runway to test Llama 3.3 70B or DeepSeek V3 on a real codebase for 2-3 months before deciding. Cheaper than 2 months of Claude Code Max, and you keep the infrastructure for inference workloads.</p><hr><h2 id=cost-efficiency-calculator-rough>Cost Efficiency Calculator (Rough)</h2><p>| Usage Pattern | Best Choice | Estimated Monthly Cost |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Open-source / self-host | 0/10 | 10/10 |</p>
+<p>→ Claude Code wins on agent autonomy and scale. Aider wins on git hygiene, cost transparency, and open-source freedom.</p>
+<hr>
+<h2 id="migration-tips">Migration Tips</h2>
+<h3 id="claude-code--aider">Claude Code → Aider</h3>
+<ul>
+<li>Install: <code>pip install aider-chat</code> or <code>pipx install aider-chat</code></li>
+<li>Set your API key: <code>export ANTHROPIC_API_KEY=sk-ant-...</code></li>
+<li>Run from your repo root: <code>aider --sonnet</code></li>
+<li>Use <code>/add file.py</code> to include files (Aider does NOT auto-discover like Claude Code)</li>
+<li>Enable auto-commit: it&rsquo;s on by default; review diffs before approving</li>
+<li>Lower your expectation of autonomy — Aider expects 1-2 turn loops, not 30-minute runs</li>
+</ul>
+<h3 id="aider--claude-code">Aider → Claude Code</h3>
+<ul>
+<li>Install: <code>npm install -g @anthropic-ai/claude-code</code> or use <code>claude</code> CLI from anthropic.com</li>
+<li>Authenticate: <code>claude login</code> (uses Anthropic account, not API key)</li>
+<li>Run from your repo root: <code>claude</code></li>
+<li>Don&rsquo;t manually ````/add``` files — Claude Code uses subagents to find what it needs</li>
+<li>Disable auto-commit if you want Aider-style git hygiene; otherwise let it batch</li>
+<li>Expect longer single turns (10-60 seconds) but fewer total turns per task</li>
+</ul>
+<h3 id="self-hosting-note">Self-Hosting Note</h3>
+<p>Want to run Aider with a local model and get the open-source benefits without renting GPU time? A  gives you enough runway to test Llama 3.3 70B or DeepSeek V3 on a real codebase for 2-3 months before deciding. Cheaper than 2 months of Claude Code Max, and you keep the infrastructure for inference workloads.</p>
+<hr>
+<h2 id="cost-efficiency-calculator-rough">Cost Efficiency Calculator (Rough)</h2>
+<p>| Usage Pattern | Best Choice | Estimated Monthly Cost |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 5 sessions/week, single-file edits | Aider + Gemini Flash | $3-$8 |
 | 15 sessions/week, multi-file | Aider + Sonnet w/cache | $15-$25 |
 | 30 sessions/week, mixed | Claude Code Pro | $20 |
 | 60+ sessions/week, long loops | Claude Code Max 5x | $100 |
 | Daily 8-hour autonomous work | Claude Code Max 20x | $200 |
-| Self-hosted / air-gapped | Aider + local Ollama | $0 (+ hardware) |</p><hr><h2 id=agent-style-difference-explained>Agent Style Difference Explained</h2><p><strong>Claude Code</strong> thinks like a senior engineer with a long attention span: it reads broadly, plans before editing, makes 5-15 file changes in one &ldquo;turn,&rdquo; runs tests, fixes failures, and only stops when the task is verifiably done. The downside: you watch a black box for minutes at a time and trust the final diff.</p><p><strong>Aider</strong> thinks like a careful pair programmer who shows you every line before committing: it asks &ldquo;should I edit these 2 files?&rdquo; → shows unified diff → asks for confirmation → commits with a clean message. The downside: 50-file refactors are exhausting because you&rsquo;re reviewing 50 mini-PRs.</p><p>For greenfield features: Claude Code is faster. For legacy code with regulatory scrutiny: Aider is safer.</p><hr><h2 id=alternatives-worth-trying>Alternatives Worth Trying</h2><p>If neither Claude Code nor Aider fits, consider: - <strong><a href=https://dibi8.com/vs/cursor-vs-windsurf/>Cursor</a></strong> — IDE-based, best for inline autocomplete</p><ul><li><strong><a href=https://dibi8.com/resources/llm-frameworks/continue/>Continue.dev</a></strong> — Free VS Code extension, BYO model</li><li><strong><a href=https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/>cc-switch</a></strong> — Route Claude Code through cheaper providers, cut costs 60-80%</li><li><strong><a href=https://dibi8.com/resources/llm-frameworks/cline-autonomous-coding-agent/>Cline (Claude Dev)</a></strong> — VS Code agent, similar to Aider but with more UI</li></ul><hr><h2 id=dibi8s-take>dibi8&rsquo;s Take</h2><p>For 2026, the CLI AI-coding market splits cleanly into commercial (Claude Code) and open-source (Aider), and the right pick depends on your trust model and usage volume.</p><p>If you want flat-fee predictability + maximum agent autonomy → <strong>Claude Code Pro ($20/mo)</strong> for normal use, <strong>Max ($100-$200/mo)</strong> for heavy use.
+| Self-hosted / air-gapped | Aider + local Ollama | $0 (+ hardware) |</p>
+<hr>
+<h2 id="agent-style-difference-explained">Agent Style Difference Explained</h2>
+<p><strong>Claude Code</strong> thinks like a senior engineer with a long attention span: it reads broadly, plans before editing, makes 5-15 file changes in one &ldquo;turn,&rdquo; runs tests, fixes failures, and only stops when the task is verifiably done. The downside: you watch a black box for minutes at a time and trust the final diff.</p>
+<p><strong>Aider</strong> thinks like a careful pair programmer who shows you every line before committing: it asks &ldquo;should I edit these 2 files?&rdquo; → shows unified diff → asks for confirmation → commits with a clean message. The downside: 50-file refactors are exhausting because you&rsquo;re reviewing 50 mini-PRs.</p>
+<p>For greenfield features: Claude Code is faster. For legacy code with regulatory scrutiny: Aider is safer.</p>
+<hr>
+<h2 id="alternatives-worth-trying">Alternatives Worth Trying</h2>
+<p>If neither Claude Code nor Aider fits, consider: - <strong><a href="https://dibi8.com/vs/cursor-vs-windsurf/">Cursor</a></strong> — IDE-based, best for inline autocomplete</p>
+<ul>
+<li><strong><a href="https://dibi8.com/resources/llm-frameworks/continue/">Continue.dev</a></strong> — Free VS Code extension, BYO model</li>
+<li><strong><a href="https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/">cc-switch</a></strong> — Route Claude Code through cheaper providers, cut costs 60-80%</li>
+<li><strong><a href="https://dibi8.com/resources/llm-frameworks/cline-autonomous-coding-agent/">Cline (Claude Dev)</a></strong> — VS Code agent, similar to Aider but with more UI</li>
+</ul>
+<hr>
+<h2 id="dibi8s-take">dibi8&rsquo;s Take</h2>
+<p>For 2026, the CLI AI-coding market splits cleanly into commercial (Claude Code) and open-source (Aider), and the right pick depends on your trust model and usage volume.</p>
+<p>If you want flat-fee predictability + maximum agent autonomy → <strong>Claude Code Pro ($20/mo)</strong> for normal use, <strong>Max ($100-$200/mo)</strong> for heavy use.
 If you want open-source + per-token cost control + git-disciplined edits → <strong>Aider + cached Sonnet (~$15/mo)</strong>.
-If you want both → <strong>Aider for surgical commits + Claude Code for refactors</strong> (~$35-$220/mo combined).</p><p>For an indie dev shipping a SaaS solo on a tight budget? <strong>Aider with Sonnet 1M and prompt caching</strong> is the best $/value in the CLI category. You&rsquo;ll spend $10-$20/month and get 80% of Claude Code"s capability with full transparency.</p><p>For a small team shipping fast with no time for diff review? <strong>Claude Code Max 5x at $100/month</strong> pays for itself in saved engineering hours within the first week.</p><hr><h2 id=faq>FAQ</h2><p>(rendered via faqs frontmatter — visible inline + JSON-LD for AIO)</p><hr><h2 id=further-reading>Further Reading</h2><ul><li><a href=https://dibi8.com/vs/cursor-vs-claude-code/>Cursor vs Claude Code 2026 Comparison</a></li><li><a href=https://dibi8.com/vs/cursor-vs-windsurf/>Cursor vs Windsurf 2026 Comparison</a></li><li><a href=https://dibi8.com/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/>Best AI Coding Tools 2026 — Cursor Alternatives</a></li><li><a href=https://dibi8.com/collections/cheap-llm-stack/>Cheap LLM Stack Under $20/month</a></li><li><a href=https://dibi8.com/resources/llm-frameworks/aider/>Aider AI Pair Programmer Deep Dive</a></li></ul><h2 id=recommended-tools>Recommended Tools</h2><p><strong>Need stable Claude or OpenAI API access?</strong> Most users picking between these tools end up needing the underlying API key.</p><ul><li>**** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.</li></ul><p><em>Affiliate link — supports dibi8.com at no extra cost to you.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+If you want both → <strong>Aider for surgical commits + Claude Code for refactors</strong> (~$35-$220/mo combined).</p>
+<p>For an indie dev shipping a SaaS solo on a tight budget? <strong>Aider with Sonnet 1M and prompt caching</strong> is the best $/value in the CLI category. You&rsquo;ll spend $10-$20/month and get 80% of Claude Code&quot;s capability with full transparency.</p>
+<p>For a small team shipping fast with no time for diff review? <strong>Claude Code Max 5x at $100/month</strong> pays for itself in saved engineering hours within the first week.</p>
+<hr>
+<h2 id="faq">FAQ</h2>
+<p>(rendered via faqs frontmatter — visible inline + JSON-LD for AIO)</p>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="https://dibi8.com/vs/cursor-vs-claude-code/">Cursor vs Claude Code 2026 Comparison</a></li>
+<li><a href="https://dibi8.com/vs/cursor-vs-windsurf/">Cursor vs Windsurf 2026 Comparison</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/">Best AI Coding Tools 2026 — Cursor Alternatives</a></li>
+<li><a href="https://dibi8.com/collections/cheap-llm-stack/">Cheap LLM Stack Under $20/month</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/aider/">Aider AI Pair Programmer Deep Dive</a></li>
+</ul>
+<h2 id="recommended-tools">Recommended Tools</h2>
+<p><strong>Need stable Claude or OpenAI API access?</strong> Most users picking between these tools end up needing the underlying API key.</p>
+<ul>
+<li>**** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.</li>
+</ul>
+<p><em>Affiliate link — supports dibi8.com at no extra cost to you.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-22&rdquo;,
@@ -66,20 +268,296 @@ If you want both → <strong>Aider for surgical commits + Claude Code for refact
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/claude-code-vs-aider%22>https://dibi8.com/resources/claude-code-vs-aider"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/claude-code-vs-aider%22">https://dibi8.com/resources/claude-code-vs-aider"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/claude-code-vs-aider/>claude-code-vs-cline</a></li><li><a href=/ai-coding-agents/claude-code-vs-aider/>gemini-cli-vs-claude-code</a></li><li><a href=/ai-coding-agents/claude-code-vs-aider/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/ai-coding-agents/claude-code-vs-aider/>cursor-vs-claude-code</a></li><li><a href=/ai-coding-agents/claude-code-vs-aider/>openai-codex-cli-vs-claude-code</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code-vs-aider%2f&text=Claude%20Code%20vs%20Aider%20in%202026%3a%20Commercial%20vs%20Open%20Source%20CLI%20Showdown" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code-vs-aider%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/claude-code-vs-aider/">claude-code-vs-cline</a></li>
+<li><a href="/ai-coding-agents/claude-code-vs-aider/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/ai-coding-agents/claude-code-vs-aider/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ai-coding-agents/claude-code-vs-aider/">cursor-vs-claude-code</a></li>
+<li><a href="/ai-coding-agents/claude-code-vs-aider/">openai-codex-cli-vs-claude-code</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code-vs-aider%2f&text=Claude%20Code%20vs%20Aider%20in%202026%3a%20Commercial%20vs%20Open%20Source%20CLI%20Showdown" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code-vs-aider%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

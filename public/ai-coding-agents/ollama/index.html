@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Using Homebrew (recommended) | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Using Homebrew (recommended) | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/ollama/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/ollama/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Using Homebrew (recommended)</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Using Homebrew (recommended)</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Using Homebrew (recommended)&rdquo;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Homebrew (recommended) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Using Homebrew (recommended) | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/ollama/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/ollama/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Using Homebrew (recommended)</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Using Homebrew (recommended)</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Using Homebrew (recommended)&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,7 +99,24 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;ollama&rdquo;, &ldquo;local-llm&rdquo;, &ldquo;llama.cpp&rdquo;, &ldquo;deepseek&rdquo;, &ldquo;mistral&rdquo;, &ldquo;docker&rdquo;, &ldquo;modelfile&rdquo;, &ldquo;open-source&rdquo;]
-aliases:</p><ul><li>/posts/ollama/</li><li>/resources/llm-frameworks/ollama-local-llm-guide/-</li></ul><hr><p>Running large language models used to mean wrestling with Python environments, CUDA drivers, and gigabytes of dependencies. In 2026, that friction is gone. <a href=https://ollama.com>Ollama</a> lets you pull, configure, and serve production-grade LLMs with a single command — no PyTorch installation, no manual GPU tuning, no Docker mandatory. With 137,000+ GitHub stars and a thriving ecosystem of integrations, Ollama has become the default runtime for developers who want local inference without operational headaches.</p><p>This guide walks through the complete Ollama setup: installation, Docker deployment, Modelfile customization, API integration with popular frameworks, production hardening, and honest benchmarks against alternatives. Whether you are building a coding assistant, a RAG pipeline, or a self-hosted ChatGPT alternative, this tutorial gives you the commands and configs to go from zero to running models in under five minutes.</p><p><img alt="Ollama running locally" loading=lazy src=https://ollama.com/public/assets/case.png></p><p><em>This Ollama tutorial covers the complete setup from installation to production deployment in a single guide.</em></p><h2 id=what-is-ollama>What Is Ollama?</h2><p><strong>Ollama</strong> is an open-source runtime for running large language models locally. It wraps the inference engines (llama.cpp for CPU/GPU, MLX on Apple Silicon, ROCm on AMD) behind a simple CLI and REST API, so developers can focus on building applications instead of managing model weights, quantization formats, and hardware acceleration. Think of it as Docker for LLMs: pull a model, run it, done.</p><p>Created by Jeffrey Morgan and the Ollama team in 2023, the project reached 137,000+ stars on GitHub by mid-2026. It supports hundreds of models including Llama 3, DeepSeek R1, Mistral, Qwen, Gemma, and CodeLlama — all available through the <a href=https://ollama.com/search>Ollama model library</a>.</p><p><img alt="Ollama official logo" loading=lazy src=https://raw.githubusercontent.com/ollama/ollama/main/docs/ollama.png></p><h2 id=how-ollama-works>How Ollama Works</h2><p>Ollama&rsquo;s architecture follows a client-server model. A background daemon (```ollama serve````) manages model downloads, memory allocation, and inference. The CLI and REST API are thin clients that communicate with this daemon over HTTP on port 11434.</p><h3 id=core-architecture>Core Architecture</h3><pre tabindex=0><code>┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
+aliases:</p>
+<ul>
+<li>/posts/ollama/</li>
+<li>/resources/llm-frameworks/ollama-local-llm-guide/-</li>
+</ul>
+<hr>
+<p>Running large language models used to mean wrestling with Python environments, CUDA drivers, and gigabytes of dependencies. In 2026, that friction is gone. <a href="https://ollama.com">Ollama</a> lets you pull, configure, and serve production-grade LLMs with a single command — no PyTorch installation, no manual GPU tuning, no Docker mandatory. With 137,000+ GitHub stars and a thriving ecosystem of integrations, Ollama has become the default runtime for developers who want local inference without operational headaches.</p>
+<p>This guide walks through the complete Ollama setup: installation, Docker deployment, Modelfile customization, API integration with popular frameworks, production hardening, and honest benchmarks against alternatives. Whether you are building a coding assistant, a RAG pipeline, or a self-hosted ChatGPT alternative, this tutorial gives you the commands and configs to go from zero to running models in under five minutes.</p>
+<p><img alt="Ollama running locally" loading="lazy" src="https://ollama.com/public/assets/case.png"></p>
+<p><em>This Ollama tutorial covers the complete setup from installation to production deployment in a single guide.</em></p>
+<h2 id="what-is-ollama">What Is Ollama?</h2>
+<p><strong>Ollama</strong> is an open-source runtime for running large language models locally. It wraps the inference engines (llama.cpp for CPU/GPU, MLX on Apple Silicon, ROCm on AMD) behind a simple CLI and REST API, so developers can focus on building applications instead of managing model weights, quantization formats, and hardware acceleration. Think of it as Docker for LLMs: pull a model, run it, done.</p>
+<p>Created by Jeffrey Morgan and the Ollama team in 2023, the project reached 137,000+ stars on GitHub by mid-2026. It supports hundreds of models including Llama 3, DeepSeek R1, Mistral, Qwen, Gemma, and CodeLlama — all available through the <a href="https://ollama.com/search">Ollama model library</a>.</p>
+<p><img alt="Ollama official logo" loading="lazy" src="https://raw.githubusercontent.com/ollama/ollama/main/docs/ollama.png"></p>
+<h2 id="how-ollama-works">How Ollama Works</h2>
+<p>Ollama&rsquo;s architecture follows a client-server model. A background daemon (```ollama serve````) manages model downloads, memory allocation, and inference. The CLI and REST API are thin clients that communicate with this daemon over HTTP on port 11434.</p>
+<h3 id="core-architecture">Core Architecture</h3>
+<pre tabindex="0"><code>┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
 │   Client    │────▶│ ollama serve │────▶│  llama.cpp/MLX  │
 │  (CLI/API)  │     │   (port     │     │  (inference     │
 │             │◄────│   11434)    │◄────│   backend)      │
@@ -40,54 +127,85 @@ aliases:</p><ul><li>/posts/ollama/</li><li>/resources/llm-frameworks/ollama-loca
                     │  (models,   │
                     │   blobs)    │
                     └─────────────┘
-</code></pre><p><strong>Key components:</strong></p><ul><li><strong>Model Hub</strong>: Curated GGUF models pulled from <code>ollama.com</code>. Each model is identified by a <code>name:tag</code> pair (e.g., <code>llama3.2:8b</code>).</li><li><strong>Modelfile</strong>: A declarative config (like Dockerfile) specifying base model, system prompt, parameters, and chat templates.</li><li><strong>Inference Backends</strong>: Automatic selection of llama.cpp (CUDA/ROCm/CPU), MLX (Apple Silicon), or Metal based on available hardware.</li><li><strong>REST API</strong>: OpenAI-compatible endpoints at <code>/api/generate</code>, <code>/api/chat</code>, <code>/api/embed</code>, and <code>/v1/chat/completions</code>.</li></ul><h3 id=model-storage>Model Storage</h3><p>Models are stored in <code>~/.ollama/models/</code> as content-addressable blobs (SHA-256 digests). A manifest file tracks which blobs belong to which model tag. This deduplication means two models sharing the same base weights only store one copy on disk.</p><h2 id=installation--setup>Installation & Setup</h2><h3 id=macos>macOS</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Using Homebrew (recommended)</span>
-</span></span><span style=display:flex><span>brew install ollama
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or download the native app from ollama.com/download</span>
-</span></span></code></pre></div><h3 id=linux-one-line-installer>Linux (One-Line Installer)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -fsSL https://ollama.com/install.sh | sh
-</span></span></code></pre></div><p>This installs the binary, registers a systemd service, and auto-detects GPU capabilities (NVIDIA CUDA, AMD ROCm, or CPU-only).</p><h3 id=windows>Windows</h3><p>Download the installer from <a href=https://ollama.com/download>ollama.com/download</a>. Windows 11/12 with WSL2 is recommended for full compatibility.</p><h3 id=verify-installation>Verify Installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>ollama --version
-</span></span><span style=display:flex><span><span style=color:#75715e># ollama version 0.6.7</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Start the daemon (if not already running)</span>
-</span></span><span style=display:flex><span>ollama serve
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Pull and run your first model</span>
-</span></span><span style=display:flex><span>ollama run llama3.2:8b
-</span></span></code></pre></div><p>The first time you run a model, Ollama downloads it. A quantized 8B parameter model like <code>llama3.2:8b</code> requires approximately 4.9 GB of disk space and runs comfortably on 8 GB VRAM.</p><h3 id=quick-model-selection-by-hardware>Quick Model Selection by Hardware</h3><p>| Hardware | Recommended Model | Command |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p><strong>Key components:</strong></p>
+<ul>
+<li><strong>Model Hub</strong>: Curated GGUF models pulled from <code>ollama.com</code>. Each model is identified by a <code>name:tag</code> pair (e.g., <code>llama3.2:8b</code>).</li>
+<li><strong>Modelfile</strong>: A declarative config (like Dockerfile) specifying base model, system prompt, parameters, and chat templates.</li>
+<li><strong>Inference Backends</strong>: Automatic selection of llama.cpp (CUDA/ROCm/CPU), MLX (Apple Silicon), or Metal based on available hardware.</li>
+<li><strong>REST API</strong>: OpenAI-compatible endpoints at <code>/api/generate</code>, <code>/api/chat</code>, <code>/api/embed</code>, and <code>/v1/chat/completions</code>.</li>
+</ul>
+<h3 id="model-storage">Model Storage</h3>
+<p>Models are stored in <code>~/.ollama/models/</code> as content-addressable blobs (SHA-256 digests). A manifest file tracks which blobs belong to which model tag. This deduplication means two models sharing the same base weights only store one copy on disk.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="macos">macOS</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Using Homebrew (recommended)</span>
+</span></span><span style="display:flex;"><span>brew install ollama
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or download the native app from ollama.com/download</span>
+</span></span></code></pre></div><h3 id="linux-one-line-installer">Linux (One-Line Installer)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh | sh
+</span></span></code></pre></div><p>This installs the binary, registers a systemd service, and auto-detects GPU capabilities (NVIDIA CUDA, AMD ROCm, or CPU-only).</p>
+<h3 id="windows">Windows</h3>
+<p>Download the installer from <a href="https://ollama.com/download">ollama.com/download</a>. Windows 11/12 with WSL2 is recommended for full compatibility.</p>
+<h3 id="verify-installation">Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama --version
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ollama version 0.6.7</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start the daemon (if not already running)</span>
+</span></span><span style="display:flex;"><span>ollama serve
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pull and run your first model</span>
+</span></span><span style="display:flex;"><span>ollama run llama3.2:8b
+</span></span></code></pre></div><p>The first time you run a model, Ollama downloads it. A quantized 8B parameter model like <code>llama3.2:8b</code> requires approximately 4.9 GB of disk space and runs comfortably on 8 GB VRAM.</p>
+<h3 id="quick-model-selection-by-hardware">Quick Model Selection by Hardware</h3>
+<p>| Hardware | Recommended Model | Command |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 6–8 GB VRAM | Qwen3 8B | <code>ollama run qwen3:8b</code> |
 | 10–12 GB VRAM | Llama 3.1 8B Q4 | <code>ollama run llama3.1:8b</code> |
 | 16+ GB VRAM | DeepSeek-R1 14B | <code>ollama run deepseek-r1:14b</code> |
 | CPU only, 16 GB RAM | Phi-4 Mini 3.8B | <code>ollama run phi4-mini</code> |
-| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | <code>ollama run llama3.1:70b</code> |</p><h2 id=integration-with-popular-tools>Integration with Popular Tools</h2><h3 id=open-webui-chatgpt-style-interface>Open WebUI (ChatGPT-Style Interface)</h3><p><a href=https://github.com/open-webui/open-webui>Open WebUI</a> is the most popular frontend for Ollama, providing a ChatGPT-like web interface with RAG, voice input, and multi-user support.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Run Open WebUI with Docker</span>
-</span></span><span style=display:flex><span>docker run -d -p 3000:8080 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --add-host<span style=color:#f92672>=</span>host.docker.internal:host-gateway <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v open-webui:/app/backend/data <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name open-webui <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --restart always <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  ghcr.io/open-webui/open-webui:main
-</span></span></code></pre></div><p>Access at <code>http://localhost:3000</code>. Open WebUI auto-discovers your Ollama instance at <code>http://host.docker.internal:11434</code>.</p><h3 id=langchain-python>LangChain (Python)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Install</span>
-</span></span><span style=display:flex><span>pip install langchain<span style=color:#f92672>-</span>ollama
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Chat model</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_ollama <span style=color:#f92672>import</span> ChatOllama
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>llm <span style=color:#f92672>=</span> ChatOllama(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;llama3.2:8b&#34;</span>,
-</span></span><span style=display:flex><span>    temperature<span style=color:#f92672>=</span><span style=color:#ae81ff>0.7</span>,
-</span></span><span style=display:flex><span>    base_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:11434&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> llm<span style=color:#f92672>.</span>invoke(<span style=color:#e6db74>&#34;Explain quantum computing in one paragraph.&#34;</span>)
-</span></span><span style=display:flex><span>print(response<span style=color:#f92672>.</span>content)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Embeddings</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_ollama <span style=color:#f92672>import</span> OllamaEmbeddings
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> OllamaEmbeddings(model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nomic-embed-text&#34;</span>)
-</span></span><span style=display:flex><span>vector <span style=color:#f92672>=</span> embeddings<span style=color:#f92672>.</span>embed_query(<span style=color:#e6db74>&#34;Hello world&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#75715e># Returns a 768-dimensional float vector</span>
-</span></span></code></pre></div><h3 id=continuedev-vs-codecursor-ai-coding-assistant>Continue.dev (VS Code/Cursor AI Coding Assistant)</h3><p>Add to <code>~/.continue/config.json</code>: `````json
+| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | <code>ollama run llama3.1:70b</code> |</p>
+<h2 id="integration-with-popular-tools">Integration with Popular Tools</h2>
+<h3 id="open-webui-chatgpt-style-interface">Open WebUI (ChatGPT-Style Interface)</h3>
+<p><a href="https://github.com/open-webui/open-webui">Open WebUI</a> is the most popular frontend for Ollama, providing a ChatGPT-like web interface with RAG, voice input, and multi-user support.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run Open WebUI with Docker</span>
+</span></span><span style="display:flex;"><span>docker run -d -p 3000:8080 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --add-host<span style="color:#f92672">=</span>host.docker.internal:host-gateway <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v open-webui:/app/backend/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name open-webui <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --restart always <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  ghcr.io/open-webui/open-webui:main
+</span></span></code></pre></div><p>Access at <code>http://localhost:3000</code>. Open WebUI auto-discovers your Ollama instance at <code>http://host.docker.internal:11434</code>.</p>
+<h3 id="langchain-python">LangChain (Python)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Install</span>
+</span></span><span style="display:flex;"><span>pip install langchain<span style="color:#f92672">-</span>ollama
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chat model</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_ollama <span style="color:#f92672">import</span> ChatOllama
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> ChatOllama(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;llama3.2:8b&#34;</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:11434&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> llm<span style="color:#f92672">.</span>invoke(<span style="color:#e6db74">&#34;Explain quantum computing in one paragraph.&#34;</span>)
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>content)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Embeddings</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_ollama <span style="color:#f92672">import</span> OllamaEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OllamaEmbeddings(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nomic-embed-text&#34;</span>)
+</span></span><span style="display:flex;"><span>vector <span style="color:#f92672">=</span> embeddings<span style="color:#f92672">.</span>embed_query(<span style="color:#e6db74">&#34;Hello world&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Returns a 768-dimensional float vector</span>
+</span></span></code></pre></div><h3 id="continuedev-vs-codecursor-ai-coding-assistant">Continue.dev (VS Code/Cursor AI Coding Assistant)</h3>
+<p>Add to <code>~/.continue/config.json</code>: `````json
 {
 &ldquo;models&rdquo;: [
 {
@@ -102,81 +220,88 @@ aliases:</p><ul><li>/posts/ollama/</li><li>/resources/llm-frameworks/ollama-loca
 &ldquo;provider&rdquo;: &ldquo;ollama&rdquo;,
 &ldquo;model&rdquo;: &ldquo;codeqwen:7b-code&rdquo;
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 ### Dify (Self-Hosted AI Workflow Platform)
 
 In Dify&#39;s **Settings &gt; Model Provider &gt; Ollama**, configure: `````
 Model Name: llama3.2:8b
 Base URL: http://host.docker.internal:11434
 Context Window: 8192
-</code></pre><h3 id=curl--rest-api-direct-usage>cURL / REST API Direct Usage</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Generate text</span>
-</span></span><span style=display:flex><span>curl http://localhost:11434/api/generate -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;model&#34;: &#34;llama3.2:8b&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;prompt&#34;: &#34;Why is the sky blue?&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;stream&#34;: false
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Chat completion (OpenAI-compatible)</span>
-</span></span><span style=display:flex><span>curl http://localhost:11434/v1/chat/completions -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;model&#34;: &#34;llama3.2:8b&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hello!&#34;}],
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;temperature&#34;: 0.7
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generate embeddings</span>
-</span></span><span style=display:flex><span>curl http://localhost:11434/api/embed -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;model&#34;: &#34;nomic-embed-text&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;input&#34;: [&#34;The sky is blue&#34;, &#34;Grass is green&#34;]
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>}&#39;</span>
-</span></span></code></pre></div><h2 id=docker-setup-for-production>Docker Setup for Production</h2><p><img alt="Ollama Docker deployment" loading=lazy src=https://raw.githubusercontent.com/ollama/ollama/main/docs/images/logo.png></p><h3 id=basic-docker-compose>Basic Docker Compose</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: ollama: image</span>: <span style=color:#ae81ff>ollama/ollama:0.6.7</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>ollama</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;11434:11434&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>ollama_data:/root/.ollama</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>OLLAMA_KEEP_ALIVE=24h</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>OLLAMA_NUM_PARALLEL=4</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>OLLAMA_MAX_LOADED_MODELS=2</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># NVIDIA GPU support</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: reservations: devices: - driver</span>: <span style=color:#ae81ff>nvidia</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>count</span>: <span style=color:#ae81ff>all</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>capabilities</span>: [<span style=color:#ae81ff>gpu]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>open-webui: image</span>: <span style=color:#ae81ff>ghcr.io/open-webui/open-webui:main</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>open-webui</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:8080&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>OLLAMA_BASE_URL=http://ollama:11434</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>openwebui_data:/app/backend/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>ollama</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: ollama_data: openwebui_data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>Start with ````docker compose up -d````.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### NVIDIA GPU Setup</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>`````bash</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install NVIDIA Container Toolkit</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey \</span>
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>| sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list \</span>
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>| sed &#39;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#39; \</span>
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>| sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>sudo apt-get update</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>sudo apt-get install -y nvidia-container-toolkit</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>sudo nvidia-ctk runtime configure --runtime=docker</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>sudo systemctl restart docker</span>
-</span></span></code></pre></div><h3 id=amd-rocm-gpu-setup>AMD ROCm GPU Setup</h3><p>Use the ROCm-specific image tag: `````yaml
+</code></pre><h3 id="curl--rest-api-direct-usage">cURL / REST API Direct Usage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Generate text</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:11434/api/generate -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;model&#34;: &#34;llama3.2:8b&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;prompt&#34;: &#34;Why is the sky blue?&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;stream&#34;: false
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chat completion (OpenAI-compatible)</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:11434/v1/chat/completions -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;model&#34;: &#34;llama3.2:8b&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hello!&#34;}],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;temperature&#34;: 0.7
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate embeddings</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:11434/api/embed -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;model&#34;: &#34;nomic-embed-text&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;input&#34;: [&#34;The sky is blue&#34;, &#34;Grass is green&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}&#39;</span>
+</span></span></code></pre></div><h2 id="docker-setup-for-production">Docker Setup for Production</h2>
+<p><img alt="Ollama Docker deployment" loading="lazy" src="https://raw.githubusercontent.com/ollama/ollama/main/docs/images/logo.png"></p>
+<h3 id="basic-docker-compose">Basic Docker Compose</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: ollama: image</span>: <span style="color:#ae81ff">ollama/ollama:0.6.7</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">ollama</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;11434:11434&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">ollama_data:/root/.ollama</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">OLLAMA_KEEP_ALIVE=24h</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">OLLAMA_NUM_PARALLEL=4</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">OLLAMA_MAX_LOADED_MODELS=2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># NVIDIA GPU support</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: resources: reservations: devices: - driver</span>: <span style="color:#ae81ff">nvidia</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">count</span>: <span style="color:#ae81ff">all</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">capabilities</span>: [<span style="color:#ae81ff">gpu]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">open-webui: image</span>: <span style="color:#ae81ff">ghcr.io/open-webui/open-webui:main</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">open-webui</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:8080&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">OLLAMA_BASE_URL=http://ollama:11434</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">openwebui_data:/app/backend/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">ollama</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: ollama_data: openwebui_data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Start with ````docker compose up -d````.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### NVIDIA GPU Setup</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install NVIDIA Container Toolkit</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey \</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">| sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list \</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">| sed &#39;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#39; \</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">| sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">sudo apt-get update</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">sudo apt-get install -y nvidia-container-toolkit</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">sudo nvidia-ctk runtime configure --runtime=docker</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">sudo systemctl restart docker</span>
+</span></span></code></pre></div><h3 id="amd-rocm-gpu-setup">AMD ROCm GPU Setup</h3>
+<p>Use the ROCm-specific image tag: `````yaml
 services: ollama: image: ollama/ollama:rocm
 devices: - /dev/kfd
 - /dev/dri
 group_add: - video
-environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0</p><pre tabindex=0><code>
+environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0</p>
+<pre tabindex="0"><code>
 ### Multi-Model Concurrent Serving
 
 `````yaml
@@ -187,29 +312,39 @@ services: ollama: image: ollama/ollama:0.6.7
     deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
-</code></pre><h2 id=modelfile-customizing-models>Modelfile: Customizing Models</h2><p>A Modelfile is Ollama&rsquo;s declarative configuration format. It defines how a model behaves: system prompt, sampling parameters, context window, and chat template.</p><h3 id=basic-modelfile-example>Basic Modelfile Example</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Modelfile</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>llama3.2:8b</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#75715e># System prompt defines personality</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>SYSTEM <span style=color:#e6db74>&#34;&#34;&#34;You are a senior software engineer. Be concise, </span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>practical, and always include working code examples.<span style=color:#e6db74>&#34;&#34;&#34;</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#75715e># Parameter tuning</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>PARAMETER temperature 0.3<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>PARAMETER num_ctx <span style=color:#ae81ff>16384</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>PARAMETER top_p 0.9<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>PARAMETER repeat_penalty 1.1<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>PARAMETER stop <span style=color:#e6db74>&#34;&lt;|eot_id|&gt;&#34;</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#75715e># Custom template (optional — inherits from base if omitted)</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>TEMPLATE <span style=color:#e6db74>&#34;&#34;&#34;&lt;|start_header_id|&gt;system&lt;|end_header_id|&gt;</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>&lt;|eot_id|&gt;&lt;|start_header_id|&gt;user&lt;|end_header_id|&gt;<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>&lt;|eot_id|&gt;&lt;|start_header_id|&gt;assistant&lt;|end_header_id|&gt;<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>&lt;|eot_id|&gt;<span style=color:#e6db74>&#34;&#34;&#34;</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><p>Build and run: `````bash</p><h1 id=create-the-custom-model>Create the custom model</h1><p>ollama create senior-dev -f Modelfile</p><h1 id=run-it>Run it</h1><p>ollama run senior-dev</p><h1 id=view-the-effective-modelfile>View the effective Modelfile</h1><p>ollama show senior-dev &ndash;modelfile</p><pre tabindex=0><code>
+</code></pre><h2 id="modelfile-customizing-models">Modelfile: Customizing Models</h2>
+<p>A Modelfile is Ollama&rsquo;s declarative configuration format. It defines how a model behaves: system prompt, sampling parameters, context window, and chat template.</p>
+<h3 id="basic-modelfile-example">Basic Modelfile Example</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Modelfile</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">llama3.2:8b</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># System prompt defines personality</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>SYSTEM <span style="color:#e6db74">&#34;&#34;&#34;You are a senior software engineer. Be concise, </span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>practical, and always include working code examples.<span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Parameter tuning</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>PARAMETER temperature 0.3<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>PARAMETER num_ctx <span style="color:#ae81ff">16384</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>PARAMETER top_p 0.9<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>PARAMETER repeat_penalty 1.1<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>PARAMETER stop <span style="color:#e6db74">&#34;&lt;|eot_id|&gt;&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Custom template (optional — inherits from base if omitted)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>TEMPLATE <span style="color:#e6db74">&#34;&#34;&#34;&lt;|start_header_id|&gt;system&lt;|end_header_id|&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>&lt;|eot_id|&gt;&lt;|start_header_id|&gt;user&lt;|end_header_id|&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>&lt;|eot_id|&gt;&lt;|start_header_id|&gt;assistant&lt;|end_header_id|&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>&lt;|eot_id|&gt;<span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Build and run: `````bash</p>
+<h1 id="create-the-custom-model">Create the custom model</h1>
+<p>ollama create senior-dev -f Modelfile</p>
+<h1 id="run-it">Run it</h1>
+<p>ollama run senior-dev</p>
+<h1 id="view-the-effective-modelfile">View the effective Modelfile</h1>
+<p>ollama show senior-dev &ndash;modelfile</p>
+<pre tabindex="0"><code>
 ### Advanced: Code Review Assistant
 
 `````dockerfile
@@ -230,85 +365,136 @@ Always suggest a fix for [CRITICAL] and [WARN] items.&#34;&#34;&#34;
 PARAMETER temperature 0.1
 PARAMETER num_ctx 8192
 PARAMETER num_predict 2048
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>ollama create code-reviewer -f Modelfile.code-review
-</span></span></code></pre></div><h3 id=creating-from-a-local-gguf-file>Creating from a Local GGUF File</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Modelfile.local</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>./my-fine-tuned-model-q4_k_m.gguf</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>PARAMETER temperature 0.7<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>PARAMETER num_ctx <span style=color:#ae81ff>4096</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span>SYSTEM <span style=color:#e6db74>&#34;You are a helpful assistant specialized in medical terminology.&#34;</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>ollama create med-assistant -f Modelfile.local
-</span></span></code></pre></div><h3 id=inspecting-existing-models>Inspecting Existing Models</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Show model details and Modelfile</span>
-</span></span><span style=display:flex><span>ollama show llama3.2:8b --modelfile
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Show parameters only</span>
-</span></span><span style=display:flex><span>ollama show llama3.2:8b --parameters
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Show system prompt</span>
-</span></span><span style=display:flex><span>ollama show llama3.2:8b --system
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># List all local models</span>
-</span></span><span style=display:flex><span>ollama list
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Show running models</span>
-</span></span><span style=display:flex><span>ollama ps
-</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks / Real-World Use Cases</h2><h3 id=single-user-throughput-rtx-4090-llama-31-8b>Single-User Throughput (RTX 4090, Llama 3.1 8B)</h3><p>| Tool | Format | Tokens/sec | Setup Time |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama create code-reviewer -f Modelfile.code-review
+</span></span></code></pre></div><h3 id="creating-from-a-local-gguf-file">Creating from a Local GGUF File</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Modelfile.local</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">./my-fine-tuned-model-q4_k_m.gguf</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>PARAMETER temperature 0.7<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>PARAMETER num_ctx <span style="color:#ae81ff">4096</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>SYSTEM <span style="color:#e6db74">&#34;You are a helpful assistant specialized in medical terminology.&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama create med-assistant -f Modelfile.local
+</span></span></code></pre></div><h3 id="inspecting-existing-models">Inspecting Existing Models</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Show model details and Modelfile</span>
+</span></span><span style="display:flex;"><span>ollama show llama3.2:8b --modelfile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show parameters only</span>
+</span></span><span style="display:flex;"><span>ollama show llama3.2:8b --parameters
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show system prompt</span>
+</span></span><span style="display:flex;"><span>ollama show llama3.2:8b --system
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># List all local models</span>
+</span></span><span style="display:flex;"><span>ollama list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show running models</span>
+</span></span><span style="display:flex;"><span>ollama ps
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="single-user-throughput-rtx-4090-llama-31-8b">Single-User Throughput (RTX 4090, Llama 3.1 8B)</h3>
+<p>| Tool | Format | Tokens/sec | Setup Time |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Ollama | Q4_K_M | ~62 tok/s | &lt; 2 min |
 | vLLM | FP16 | ~71 tok/s | ~10 min |
 | llama.cpp (CLI) | Q4_K_M | ~65 tok/s | ~5 min |
-| LocalAI | Q4_K_M | ~38 tok/s | ~15 min |</p><p><em>Source: SitePoint benchmark, March 2026. Single-stream generation, 256-token output.</em></p><h3 id=concurrent-load-50-users-rtx-4090>Concurrent Load (50 Users, RTX 4090)</h3><p>| Tool | Aggregate tok/s | p99 Latency | Architecture |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| LocalAI | Q4_K_M | ~38 tok/s | ~15 min |</p>
+<p><em>Source: SitePoint benchmark, March 2026. Single-stream generation, 256-token output.</em></p>
+<h3 id="concurrent-load-50-users-rtx-4090">Concurrent Load (50 Users, RTX 4090)</h3>
+<p>| Tool | Aggregate tok/s | p99 Latency | Architecture |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Ollama | ~155 tok/s | ~24.7s | FIFO queue |
 | vLLM | ~920 tok/s | ~2.8s | Continuous batching |
 | llama.cpp server | ~140 tok/s | ~26s | FIFO queue |
-| LocalAI | ~130 tok/s | ~28s | FIFO queue |</p><p><em>Ollama processes requests sequentially; vLLM&rsquo;s continuous batching provides 6x throughput under concurrent load. For single-user development, the gap is only ~13%.</em></p><h3 id=memory-footprint-7b-parameter-model>Memory Footprint (7B Parameter Model)</h3><p>| Tool | Idle RAM | Loaded RAM | Cold Start |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| LocalAI | ~130 tok/s | ~28s | FIFO queue |</p>
+<p><em>Ollama processes requests sequentially; vLLM&rsquo;s continuous batching provides 6x throughput under concurrent load. For single-user development, the gap is only ~13%.</em></p>
+<h3 id="memory-footprint-7b-parameter-model">Memory Footprint (7B Parameter Model)</h3>
+<p>| Tool | Idle RAM | Loaded RAM | Cold Start |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Ollama | 150 MB | 5.2 GB | 2s |
 | vLLM | 400 MB | 5.5 GB | 5s |
 | LocalAI | 400 MB | 5.5 GB | 8s |
-| LM Studio | 800 MB | 5.8 GB | 5s |</p><h3 id=real-world-deployment-patterns>Real-World Deployment Patterns</h3><ol><li><strong>Individual Developer</strong>: Ollama + Continue.dev for AI-assisted coding. Latency &lt; 50ms for autocomplete suggestions.</li><li><strong>Small Team (5–10 users)</strong>: Ollama on a shared GPU workstation + Open WebUI. Handles ~50 requests/hour comfortably.</li><li><strong>Edge/Raspberry Pi 5</strong>: Ollama CPU-only with Phi-4 Mini (3.8B). ~8 tok/s, runs entirely offline.</li><li><strong>CI/CD Pipeline</strong>: Ollama in Docker for automated code review. Pulls <code>code-reviewer</code> model, processes PR diffs via API.</li></ol><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><h3 id=environment-variables>Environment Variables</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Core settings</span>
-</span></span><span style=display:flex><span>OLLAMA_HOST<span style=color:#f92672>=</span>0.0.0.0:11434          <span style=color:#75715e># Bind to all interfaces</span>
-</span></span><span style=display:flex><span>OLLAMA_KEEP_ALIVE<span style=color:#f92672>=</span>24h               <span style=color:#75715e># Keep models loaded for 24 hours</span>
-</span></span><span style=display:flex><span>OLLAMA_NUM_PARALLEL<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span>               <span style=color:#75715e># Max concurrent requests</span>
-</span></span><span style=display:flex><span>OLLAMA_MAX_LOADED_MODELS<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>          <span style=color:#75715e># Max models in VRAM simultaneously</span>
-</span></span><span style=display:flex><span>OLLAMA_FLASH_ATTENTION<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>            <span style=color:#75715e># Enable Flash Attention (faster inference)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Performance tuning</span>
-</span></span><span style=display:flex><span>OLLAMA_GPU_OVERHEAD<span style=color:#f92672>=</span>200MB           <span style=color:#75715e># Reserve VRAM headroom</span>
-</span></span><span style=display:flex><span>OLLAMA_DEBUG<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>                      <span style=color:#75715e># Verbose logging</span>
-</span></span></code></pre></div><h3 id=reverse-proxy-with-nginx>Reverse Proxy with Nginx</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#66d9ef>server</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span> <span style=color:#e6db74>http2</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>ollama.yourdomain.com</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate</span> <span style=color:#e6db74>/etc/letsencrypt/live/ollama.yourdomain.com/fullchain.pem</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate_key</span> <span style=color:#e6db74>/etc/letsencrypt/live/ollama.yourdomain.com/privkey.pem</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://localhost:11434</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_http_version</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>.1</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Host</span> $host;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Real-IP</span> $remote_addr;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Forwarded-Proto</span> $scheme;
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#75715e># WebSocket support for streaming
-</span></span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Upgrade</span> $http_upgrade;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Connection</span> <span style=color:#e6db74>&#34;upgrade&#34;</span>;
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Timeouts for long-running inference
-</span></span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_read_timeout</span> <span style=color:#e6db74>600s</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_send_timeout</span> <span style=color:#e6db74>600s</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=api-key-authentication-no-native-support>API Key Authentication (No Native Support)</h3><p>Ollama does not include built-in API key authentication. Add it via a reverse proxy: `````python</p><h1 id=ollama-auth-proxypy-flask-example>ollama-auth-proxy.py (Flask example)</h1><p>from flask import Flask, request, Response
-import requests</p><p>app = Flask(<strong>name</strong>)
+| LM Studio | 800 MB | 5.8 GB | 5s |</p>
+<h3 id="real-world-deployment-patterns">Real-World Deployment Patterns</h3>
+<ol>
+<li><strong>Individual Developer</strong>: Ollama + Continue.dev for AI-assisted coding. Latency &lt; 50ms for autocomplete suggestions.</li>
+<li><strong>Small Team (5–10 users)</strong>: Ollama on a shared GPU workstation + Open WebUI. Handles ~50 requests/hour comfortably.</li>
+<li><strong>Edge/Raspberry Pi 5</strong>: Ollama CPU-only with Phi-4 Mini (3.8B). ~8 tok/s, runs entirely offline.</li>
+<li><strong>CI/CD Pipeline</strong>: Ollama in Docker for automated code review. Pulls <code>code-reviewer</code> model, processes PR diffs via API.</li>
+</ol>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="environment-variables">Environment Variables</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Core settings</span>
+</span></span><span style="display:flex;"><span>OLLAMA_HOST<span style="color:#f92672">=</span>0.0.0.0:11434          <span style="color:#75715e"># Bind to all interfaces</span>
+</span></span><span style="display:flex;"><span>OLLAMA_KEEP_ALIVE<span style="color:#f92672">=</span>24h               <span style="color:#75715e"># Keep models loaded for 24 hours</span>
+</span></span><span style="display:flex;"><span>OLLAMA_NUM_PARALLEL<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>               <span style="color:#75715e"># Max concurrent requests</span>
+</span></span><span style="display:flex;"><span>OLLAMA_MAX_LOADED_MODELS<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>          <span style="color:#75715e"># Max models in VRAM simultaneously</span>
+</span></span><span style="display:flex;"><span>OLLAMA_FLASH_ATTENTION<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>            <span style="color:#75715e"># Enable Flash Attention (faster inference)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Performance tuning</span>
+</span></span><span style="display:flex;"><span>OLLAMA_GPU_OVERHEAD<span style="color:#f92672">=</span>200MB           <span style="color:#75715e"># Reserve VRAM headroom</span>
+</span></span><span style="display:flex;"><span>OLLAMA_DEBUG<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>                      <span style="color:#75715e"># Verbose logging</span>
+</span></span></code></pre></div><h3 id="reverse-proxy-with-nginx">Reverse Proxy with Nginx</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">http2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">ollama.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/etc/letsencrypt/live/ollama.yourdomain.com/fullchain.pem</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/etc/letsencrypt/live/ollama.yourdomain.com/privkey.pem</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://localhost:11434</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># WebSocket support for streaming
+</span></span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Timeouts for long-running inference
+</span></span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#e6db74">600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_send_timeout</span> <span style="color:#e6db74">600s</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="api-key-authentication-no-native-support">API Key Authentication (No Native Support)</h3>
+<p>Ollama does not include built-in API key authentication. Add it via a reverse proxy: `````python</p>
+<h1 id="ollama-auth-proxypy-flask-example">ollama-auth-proxy.py (Flask example)</h1>
+<p>from flask import Flask, request, Response
+import requests</p>
+<p>app = Flask(<strong>name</strong>)
 OLLAMA_URL = &ldquo;http://localhost:11434&rdquo;
-VALID_KEYS = {&ldquo;sk-your-api-key-here&rdquo;}</p><p>@app.route(&rsquo;/&rsquo;, defaults={path: &lsquo;&rsquo;}, methods=[GET, POST, PUT, DELETE])
-@app.route(&rsquo;/<a href=#ZgotmplZ>path:path</a>&rsquo;, methods=[GET, POST, PUT, DELETE])
+VALID_KEYS = {&ldquo;sk-your-api-key-here&rdquo;}</p>
+<p>@app.route(&rsquo;/&rsquo;, defaults={path: &lsquo;&rsquo;}, methods=[GET, POST, PUT, DELETE])
+@app.route(&rsquo;/<a href="#ZgotmplZ">path:path</a>&rsquo;, methods=[GET, POST, PUT, DELETE])
 def proxy(path): api_key = request.headers.get(Authorization, &lsquo;&rsquo;).replace(&lsquo;Bearer &lsquo;, &lsquo;&rsquo;)
-if api_key not in VALID_KEYS: return {&ldquo;error&rdquo;: &ldquo;Invalid API key&rdquo;}, 401</p><pre><code>resp = requests.request(
+if api_key not in VALID_KEYS: return {&ldquo;error&rdquo;: &ldquo;Invalid API key&rdquo;}, 401</p>
+<pre><code>resp = requests.request(
     method=request.method,
     url=f&quot;{OLLAMA_URL}/{path}&quot;,
     headers={k: v for k, v in request.headers if k != Host},
@@ -317,7 +503,9 @@ if api_key not in VALID_KEYS: return {&ldquo;error&rdquo;: &ldquo;Invalid API ke
 )
 return Response(resp.iter_content(chunk_size=1024), status=resp.status_code,
                content_type=resp.headers.get('Content-Type'))
-</code></pre><p>if <strong>name</strong> == <strong>main</strong>: app.run(host=&lsquo;0.0.0.0&rsquo;, port=11435)</p><pre tabindex=0><code>
+</code></pre>
+<p>if <strong>name</strong> == <strong>main</strong>: app.run(host=&lsquo;0.0.0.0&rsquo;, port=11435)</p>
+<pre tabindex="0"><code>
 ### Monitoring with Prometheus
 
 Ollama exposes basic metrics via the API: `````bash
@@ -335,28 +523,41 @@ curl http://localhost:11434/api/ps
 #     }
 #   ]
 # }
-</code></pre><p>For production monitoring, wrap the <code>api/ps</code> endpoint with a Prometheus exporter or use the <a href=https://github.com/Chleba/ollamaMQ>ollamaMQ</a> proxy with built-in metrics.</p><h3 id=systemd-service-linux>Systemd Service (Linux)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#75715e># /etc/systemd/system/ollama.service</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>[Unit]</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>Description</span><span style=color:#f92672>=</span><span style=color:#e6db74>Ollama LLM Service</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>After</span><span style=color:#f92672>=</span><span style=color:#e6db74>network-online.target</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>[Service]</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>ExecStart</span><span style=color:#f92672>=</span><span style=color:#e6db74>/usr/local/bin/ollama serve</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>User</span><span style=color:#f92672>=</span><span style=color:#e6db74>ollama</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>Group</span><span style=color:#f92672>=</span><span style=color:#e6db74>ollama</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>Restart</span><span style=color:#f92672>=</span><span style=color:#e6db74>always</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>RestartSec</span><span style=color:#f92672>=</span><span style=color:#e6db74>3</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>Environment</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;OLLAMA_HOST=0.0.0.0:11434&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>Environment</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;OLLAMA_NUM_PARALLEL=4&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>Environment</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;OLLAMA_KEEP_ALIVE=24h&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>[Install]</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>WantedBy</span><span style=color:#f92672>=</span><span style=color:#e6db74>default.target</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl daemon-reload
-</span></span><span style=display:flex><span>sudo systemctl enable ollama
-</span></span><span style=display:flex><span>sudo systemctl start ollama
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | Ollama | llama.cpp | vLLM | LocalAI |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>For production monitoring, wrap the <code>api/ps</code> endpoint with a Prometheus exporter or use the <a href="https://github.com/Chleba/ollamaMQ">ollamaMQ</a> proxy with built-in metrics.</p>
+<h3 id="systemd-service-linux">Systemd Service (Linux)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#75715e"># /etc/systemd/system/ollama.service</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Unit]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">Ollama LLM Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">After</span><span style="color:#f92672">=</span><span style="color:#e6db74">network-online.target</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Service]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ExecStart</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/bin/ollama serve</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span><span style="color:#f92672">=</span><span style="color:#e6db74">ollama</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Group</span><span style="color:#f92672">=</span><span style="color:#e6db74">ollama</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Restart</span><span style="color:#f92672">=</span><span style="color:#e6db74">always</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">RestartSec</span><span style="color:#f92672">=</span><span style="color:#e6db74">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Environment</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;OLLAMA_HOST=0.0.0.0:11434&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Environment</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;OLLAMA_NUM_PARALLEL=4&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Environment</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;OLLAMA_KEEP_ALIVE=24h&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Install]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WantedBy</span><span style="color:#f92672">=</span><span style="color:#e6db74">default.target</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl daemon-reload
+</span></span><span style="display:flex;"><span>sudo systemctl enable ollama
+</span></span><span style="display:flex;"><span>sudo systemctl start ollama
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Ollama | llama.cpp | vLLM | LocalAI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>GitHub Stars</strong> | 137K+ | 75K+ | 45K+ | 35K+ |
 | <strong>Setup Time</strong> | &lt; 2 min | ~5 min | ~10 min | ~15 min |
 | <strong>Single-User tok/s</strong> | ~62 (Q4) | ~65 (Q4) | ~71 (FP16) | ~38 (Q4) |
@@ -367,15 +568,71 @@ curl http://localhost:11434/api/ps
 | <strong>OpenAI API Compatible</strong> | Yes (partial) | No | Yes (full) | Yes (full) |
 | <strong>Embeddings API</strong> | Yes | No | Yes | Yes |
 | <strong>Image Generation</strong> | No | No | No | Yes (Stable Diffusion) |
-| <strong>Best For</strong> | Dev/Prototyping | Power users | Production serving | Multi-modal APIs |</p><p><em>Benchmarks: Llama 3.1 8B on RTX 4090, March 2026. Sources: SitePoint, TowardsAI, LocalAI Master.</em></p><h3 id=when-to-choose-what>When to Choose What</h3><ul><li><strong>Ollama</strong>: Start here. Best developer experience, fastest setup, excellent single-user performance. Use for local development, small-team deployments, and edge devices.</li><li><strong>llama.cpp</strong>: Choose if you need maximum control over inference parameters, custom kernels, or low-level optimizations. Good for embedded systems where you compile from source.</li><li><strong>vLLM</strong>: Choose when serving 5+ concurrent users with SLA requirements. Continuous batching and PagedAttention deliver production-grade throughput that Ollama cannot match at scale.</li><li><strong>LocalAI</strong>: Choose if you need a drop-in OpenAI replacement supporting image generation (Stable Diffusion), speech-to-text (Whisper), and full API parity in a container.</li></ul><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p><strong>No built-in authentication.</strong> Ollama assumes a trusted local network. For internet-facing deployments, you must add an authentication layer (reverse proxy, API gateway, or VPN). This is the most common production oversight.</p><p><strong>No continuous batching.</strong> Under concurrent load, Ollama processes requests sequentially. At 50 concurrent users, p99 latency hits ~25 seconds compared to vLLM&rsquo;s ~3 seconds. Do not use Ollama as a multi-user production server without load testing.</p><p><strong>GGUF-only format.</strong> Ollama only supports GGUF-quantized models. If you need FP16 inference, AWQ, or GPTQ formats, use vLLM or Transformers directly.</p><p><strong>No built-in model quantization.</strong> You cannot quantize a model within Ollama. Convert models to GGUF externally (using <code>llama.cpp/convert_hf_to_gguf.py</code> or similar), then import via <code>ollama create</code>.</p><p><strong>Memory management is static.</strong> <code>OLLAMA_MAX_LOADED_MODELS</code> controls how many models stay resident, but there is no dynamic VRAM balancing. On a 12 GB GPU, loading a 70B model (even Q4) will OOM — Ollama does not automatically offload layers to CPU.</p><p><strong>Limited tool calling support.</strong> While tool calling is available for compatible models (Llama 3.1+, Mistral), the implementation is less robust than OpenAI&rsquo;s function calling. Complex multi-step tool workflows may require fallback handling.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><p><strong>Q: How much VRAM do I need to run a 7B parameter model?</strong>
-A: A Q4_K_M quantized 7B model requires approximately 4.5–5 GB of VRAM. For Q8 quantization, plan for 7–8 GB. CPU-only inference works with 16 GB system RAM but at roughly 3–5x slower token generation.</p><p><strong>Q: Can I run Ollama without a GPU?</strong>
-A: Yes. Ollama falls back to CPU inference via llama.cpp automatically. Performance depends on your CPU: an Intel i7-13700K generates ~8–12 tok/s with a 7B Q4 model. Apple Silicon M3 Pro achieves ~25 tok/s on CPU/Neural Engine.</p><p><strong>Q: How do I update Ollama to the latest version?</strong>
-A: On macOS, run <code>brew upgrade ollama</code>. On Linux, re-run the install script: <code>curl -fsSL https://ollama.com/install.sh | sh</code>. The script preserves your downloaded models in <code>~/.ollama/models/</code>.</p><p><strong>Q: Is Ollama suitable for production use?</strong>
-A: For single-purpose deployments (one model, one user, predictable load), yes. For multi-user production serving, consider adding a queuing proxy or switching to vLLM. Always add authentication and monitoring before exposing to a network.</p><p><strong>Q: Can I use my own fine-tuned models with Ollama?</strong>
-A: Yes. Convert your model to GGUF format, then create a Modelfile pointing to it with <code>FROM ./your-model.gguf</code>. Run <code>ollama create my-model -f Modelfile</code> and it becomes available through the standard API.</p><p><strong>Q: How does Ollama compare to OpenAI&rsquo;s API in terms of output quality?</strong>
-A: For equivalent base models (Llama 3.1 vs GPT-3.5), output quality is competitive on coding and reasoning tasks. The gap is larger on creative writing and multi-step reasoning where GPT-4 and Claude 3.5 Sonnet still lead. Local inference eliminates latency from network round-trips.</p><p><strong>Q: Does Ollama support vision models for image analysis?</strong>
-A: Yes. Vision models like LLaVA 1.7, Qwen2-VL, and InternVL2.5 are supported. Pass image data as base64 in the chat API request. Note that vision models require significantly more VRAM (add ~2–4 GB overhead).</p><h2 id=conclusion>Conclusion</h2><p>Ollama removes the friction from local LLM deployment. One command installs it, one command pulls a model, and one command runs it. The Modelfile system gives you reproducible model customization. The OpenAI-compatible API means your existing LangChain, Open WebUI, and Continue.dev integrations work with a single URL change.</p><p>For solo developers and small teams, Ollama is the pragmatic starting point. When concurrent load exceeds ~5 users, evaluate vLLM. When you need multi-modal support beyond text, evaluate LocalAI. But start with Ollama — the 137,000+ stars reflect a tool that genuinely delivers on its promise.</p><p><strong>Next steps:</strong></p><ol><li>Install Ollama: <code>curl -fsSL https://ollama.com/install.sh | sh</code></li><li>Run your first model: ````ollama run llama3.2:8b```</li><li>Deploy Open WebUI for a team chat interface</li><li>Join the <a href=https://t.me/dibi8dev>dibi8 developer community on Telegram</a> for local LLM deployment tips and troubleshooting</li></ol><p><em>For cloud GPU hosting when local hardware is insufficient, <a href=https://www.digitalocean.com>DigitalOcean GPU Droplets</a> provide NVIDIA A100/H100 instances that pair well with Ollama Docker deployments. For dedicated bare-metal GPU servers, <a href=https://htstack.com>HTStack</a> offers competitive pricing on RTX 4090 and A100 nodes.</em></p><p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8 may earn a commission at no additional cost to you.</em></p><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading</h2><ul><li>Ollama Official Documentation: <a href=https://docs.ollama.com>https://docs.ollama.com</a></li><li>Ollama GitHub Repository: <a href=https://github.com/ollama/ollama>https://github.com/ollama/ollama</a></li><li>Ollama Model Library: <a href=https://ollama.com/search>https://ollama.com/search</a></li><li>Ollama REST API Reference: <a href=https://docs.ollama.com/api>https://docs.ollama.com/api</a></li><li>Modelfile Reference: <a href=https://docs.ollama.com/modelfile>https://docs.ollama.com/modelfile</a></li><li>SitePoint — Ollama vs vLLM Benchmark 2026: <a href=https://www.sitepoint.com/ollama-vs-vllm-performance-benchmark-2026/>https://www.sitepoint.com/ollama-vs-vllm-performance-benchmark-2026/</a></li><li>TowardsAI — Ollama vs vLLM vs llama.cpp: <a href=https://pub.towardsai.net/i-tested-ollama-vs-vllm-vs-llama-cpp-the-easiest-one-collapses-at-5-concurrent-users-d4f8e0e84886>https://pub.towardsai.net/i-tested-ollama-vs-vllm-vs-llama-cpp-the-easiest-one-collapses-at-5-concurrent-users-d4f8e0e84886</a></li><li>LocalAI Master — Ollama vs LocalAI: <a href=https://zenvanriel.com/ai-engineer-blog/ollama-vs-localai-comparison-local-model-deployment/>https://zenvanriel.com/ai-engineer-blog/ollama-vs-localai-comparison-local-model-deployment/</a></li><li>Open WebUI GitHub: <a href=https://github.com/open-webui/open-webui>https://github.com/open-webui/open-webui</a></li><li>LangChain Ollama Integration: <a href=https://python.langchain.com/docs/integrations/chat/ollama>https://python.langchain.com/docs/integrations/chat/ollama</a></li><li>Continue.dev Documentation: <a href=https://docs.continue.dev>https://docs.continue.dev</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>Best For</strong> | Dev/Prototyping | Power users | Production serving | Multi-modal APIs |</p>
+<p><em>Benchmarks: Llama 3.1 8B on RTX 4090, March 2026. Sources: SitePoint, TowardsAI, LocalAI Master.</em></p>
+<h3 id="when-to-choose-what">When to Choose What</h3>
+<ul>
+<li><strong>Ollama</strong>: Start here. Best developer experience, fastest setup, excellent single-user performance. Use for local development, small-team deployments, and edge devices.</li>
+<li><strong>llama.cpp</strong>: Choose if you need maximum control over inference parameters, custom kernels, or low-level optimizations. Good for embedded systems where you compile from source.</li>
+<li><strong>vLLM</strong>: Choose when serving 5+ concurrent users with SLA requirements. Continuous batching and PagedAttention deliver production-grade throughput that Ollama cannot match at scale.</li>
+<li><strong>LocalAI</strong>: Choose if you need a drop-in OpenAI replacement supporting image generation (Stable Diffusion), speech-to-text (Whisper), and full API parity in a container.</li>
+</ul>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p><strong>No built-in authentication.</strong> Ollama assumes a trusted local network. For internet-facing deployments, you must add an authentication layer (reverse proxy, API gateway, or VPN). This is the most common production oversight.</p>
+<p><strong>No continuous batching.</strong> Under concurrent load, Ollama processes requests sequentially. At 50 concurrent users, p99 latency hits ~25 seconds compared to vLLM&rsquo;s ~3 seconds. Do not use Ollama as a multi-user production server without load testing.</p>
+<p><strong>GGUF-only format.</strong> Ollama only supports GGUF-quantized models. If you need FP16 inference, AWQ, or GPTQ formats, use vLLM or Transformers directly.</p>
+<p><strong>No built-in model quantization.</strong> You cannot quantize a model within Ollama. Convert models to GGUF externally (using <code>llama.cpp/convert_hf_to_gguf.py</code> or similar), then import via <code>ollama create</code>.</p>
+<p><strong>Memory management is static.</strong> <code>OLLAMA_MAX_LOADED_MODELS</code> controls how many models stay resident, but there is no dynamic VRAM balancing. On a 12 GB GPU, loading a 70B model (even Q4) will OOM — Ollama does not automatically offload layers to CPU.</p>
+<p><strong>Limited tool calling support.</strong> While tool calling is available for compatible models (Llama 3.1+, Mistral), the implementation is less robust than OpenAI&rsquo;s function calling. Complex multi-step tool workflows may require fallback handling.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: How much VRAM do I need to run a 7B parameter model?</strong>
+A: A Q4_K_M quantized 7B model requires approximately 4.5–5 GB of VRAM. For Q8 quantization, plan for 7–8 GB. CPU-only inference works with 16 GB system RAM but at roughly 3–5x slower token generation.</p>
+<p><strong>Q: Can I run Ollama without a GPU?</strong>
+A: Yes. Ollama falls back to CPU inference via llama.cpp automatically. Performance depends on your CPU: an Intel i7-13700K generates ~8–12 tok/s with a 7B Q4 model. Apple Silicon M3 Pro achieves ~25 tok/s on CPU/Neural Engine.</p>
+<p><strong>Q: How do I update Ollama to the latest version?</strong>
+A: On macOS, run <code>brew upgrade ollama</code>. On Linux, re-run the install script: <code>curl -fsSL https://ollama.com/install.sh | sh</code>. The script preserves your downloaded models in <code>~/.ollama/models/</code>.</p>
+<p><strong>Q: Is Ollama suitable for production use?</strong>
+A: For single-purpose deployments (one model, one user, predictable load), yes. For multi-user production serving, consider adding a queuing proxy or switching to vLLM. Always add authentication and monitoring before exposing to a network.</p>
+<p><strong>Q: Can I use my own fine-tuned models with Ollama?</strong>
+A: Yes. Convert your model to GGUF format, then create a Modelfile pointing to it with <code>FROM ./your-model.gguf</code>. Run <code>ollama create my-model -f Modelfile</code> and it becomes available through the standard API.</p>
+<p><strong>Q: How does Ollama compare to OpenAI&rsquo;s API in terms of output quality?</strong>
+A: For equivalent base models (Llama 3.1 vs GPT-3.5), output quality is competitive on coding and reasoning tasks. The gap is larger on creative writing and multi-step reasoning where GPT-4 and Claude 3.5 Sonnet still lead. Local inference eliminates latency from network round-trips.</p>
+<p><strong>Q: Does Ollama support vision models for image analysis?</strong>
+A: Yes. Vision models like LLaVA 1.7, Qwen2-VL, and InternVL2.5 are supported. Pass image data as base64 in the chat API request. Note that vision models require significantly more VRAM (add ~2–4 GB overhead).</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Ollama removes the friction from local LLM deployment. One command installs it, one command pulls a model, and one command runs it. The Modelfile system gives you reproducible model customization. The OpenAI-compatible API means your existing LangChain, Open WebUI, and Continue.dev integrations work with a single URL change.</p>
+<p>For solo developers and small teams, Ollama is the pragmatic starting point. When concurrent load exceeds ~5 users, evaluate vLLM. When you need multi-modal support beyond text, evaluate LocalAI. But start with Ollama — the 137,000+ stars reflect a tool that genuinely delivers on its promise.</p>
+<p><strong>Next steps:</strong></p>
+<ol>
+<li>Install Ollama: <code>curl -fsSL https://ollama.com/install.sh | sh</code></li>
+<li>Run your first model: ````ollama run llama3.2:8b```</li>
+<li>Deploy Open WebUI for a team chat interface</li>
+<li>Join the <a href="https://t.me/dibi8dev">dibi8 developer community on Telegram</a> for local LLM deployment tips and troubleshooting</li>
+</ol>
+<p><em>For cloud GPU hosting when local hardware is insufficient, <a href="https://www.digitalocean.com">DigitalOcean GPU Droplets</a> provide NVIDIA A100/H100 instances that pair well with Ollama Docker deployments. For dedicated bare-metal GPU servers, <a href="https://htstack.com">HTStack</a> offers competitive pricing on RTX 4090 and A100 nodes.</em></p>
+<p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8 may earn a commission at no additional cost to you.</em></p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li>Ollama Official Documentation: <a href="https://docs.ollama.com">https://docs.ollama.com</a></li>
+<li>Ollama GitHub Repository: <a href="https://github.com/ollama/ollama">https://github.com/ollama/ollama</a></li>
+<li>Ollama Model Library: <a href="https://ollama.com/search">https://ollama.com/search</a></li>
+<li>Ollama REST API Reference: <a href="https://docs.ollama.com/api">https://docs.ollama.com/api</a></li>
+<li>Modelfile Reference: <a href="https://docs.ollama.com/modelfile">https://docs.ollama.com/modelfile</a></li>
+<li>SitePoint — Ollama vs vLLM Benchmark 2026: <a href="https://www.sitepoint.com/ollama-vs-vllm-performance-benchmark-2026/">https://www.sitepoint.com/ollama-vs-vllm-performance-benchmark-2026/</a></li>
+<li>TowardsAI — Ollama vs vLLM vs llama.cpp: <a href="https://pub.towardsai.net/i-tested-ollama-vs-vllm-vs-llama-cpp-the-easiest-one-collapses-at-5-concurrent-users-d4f8e0e84886">https://pub.towardsai.net/i-tested-ollama-vs-vllm-vs-llama-cpp-the-easiest-one-collapses-at-5-concurrent-users-d4f8e0e84886</a></li>
+<li>LocalAI Master — Ollama vs LocalAI: <a href="https://zenvanriel.com/ai-engineer-blog/ollama-vs-localai-comparison-local-model-deployment/">https://zenvanriel.com/ai-engineer-blog/ollama-vs-localai-comparison-local-model-deployment/</a></li>
+<li>Open WebUI GitHub: <a href="https://github.com/open-webui/open-webui">https://github.com/open-webui/open-webui</a></li>
+<li>LangChain Ollama Integration: <a href="https://python.langchain.com/docs/integrations/chat/ollama">https://python.langchain.com/docs/integrations/chat/ollama</a></li>
+<li>Continue.dev Documentation: <a href="https://docs.continue.dev">https://docs.continue.dev</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Ollama: 137K+ Stars — Run LLMs Locally with One Command, Complete Setup Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -389,20 +646,296 @@ A: Yes. Vision models like LLaVA 1.7, Qwen2-VL, and InternVL2.5 are supported. P
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/ollama%22>https://dibi8.com/resources/ollama"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/ollama%22">https://dibi8.com/resources/ollama"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/ollama/>llm-inference-cost-optimization-guide-2026</a></li><li><a href=/ai-coding-agents/ollama/>llm-inference-cost-optimization-guide-2026</a></li><li><a href=/ai-coding-agents/ollama/>ollama-vs-lm-studio</a></li><li><a href=/ai-coding-agents/ollama/>ollama-vs-vllm</a></li><li><a href=/ai-coding-agents/ollama/>ollama-vs-vllm</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2follama%2f&text=Using%20Homebrew%20%28recommended%29" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2follama%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/ollama/">llm-inference-cost-optimization-guide-2026</a></li>
+<li><a href="/ai-coding-agents/ollama/">llm-inference-cost-optimization-guide-2026</a></li>
+<li><a href="/ai-coding-agents/ollama/">ollama-vs-lm-studio</a></li>
+<li><a href="/ai-coding-agents/ollama/">ollama-vs-vllm</a></li>
+<li><a href="/ai-coding-agents/ollama/">ollama-vs-vllm</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2follama%2f&text=Using%20Homebrew%20%28recommended%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2follama%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

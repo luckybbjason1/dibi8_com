@@ -2,6 +2,7 @@
 title: "隐私政策"
 description: "Dibi8隐私政策说明"
 date: 2026-09-26
+layout: single
 ---
 
 # Dibi8 - 隐私政策

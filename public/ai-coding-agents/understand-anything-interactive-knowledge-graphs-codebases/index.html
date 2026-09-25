@@ -1,47 +1,130 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Install via npm (TypeScript-based CLI) | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Install via npm (TypeScript-based CLI) | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Install via npm (TypeScript-based CLI)</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install via npm (TypeScript-based CLI)</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=introduction>Introduction</h2><p>You clone a new codebase. 50,000 lines of code across 200 files. You open VS Code and stare at the file tree. Where do you even start?</p><p>Most developers reach for ```grep<code>. Then </code>ripgrep````. Then they open the 10 most-referenced files and try to piece together the architecture mentally. It works — for small projects. For anything substantial, it&rsquo;s exhausting.</p><p>Understand-Anything does something fundamentally different. It transforms any codebase into an interactive knowledge graph — nodes for files, classes, and functions; edges for dependencies and relationships. You can explore, search, and ask questions about the code. Not with regex. With natural language.</p><p>60,339 GitHub stars in one month. 44,690 of those came this month alone. The AI agent community has found something they didn&rsquo;t know they needed.</p><p>This is how codebases should feel from day one.</p><p><img alt="Understand-Anything — Interactive knowledge graphs for any codebase" loading=lazy src=https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png></p><h2 id=what-is-understand-anything>What Is Understand-Anything?</h2><p>Understand-Anything is an open-source tool by Egonex-AI that converts any codebase, documentation, or knowledge base into an interactive knowledge graph. Unlike static analysis tools that produce flat dependency lists, Understand-Anything builds a semantic graph where nodes represent code entities (files, classes, functions, variables) and edges represent relationships (imports, calls, inheritance, composition).</p><p>The result is a visual + queryable representation of code that humans and AI agents can both navigate. Claude Code can traverse it. Codex can reason over it. Cursor can reference it. The graph serves as a shared understanding layer between developers and AI assistants.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install via npm (TypeScript-based CLI)</span>
-</span></span><span style=display:flex><span>npm install -g understand-anything
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or use via Docker</span>
-</span></span><span style=display:flex><span>docker run -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>:/code ghcr.io/egonex-ai/understand-anything:latest /code
-</span></span></code></pre></div><p>The tool works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, OpenCode, and other AI coding agents — making it a universal knowledge layer for the AI coding toolchain.</p><h2 id=how-understand-anything-works>How Understand-Anything Works</h2><p>The pipeline has three stages: parsing, graph construction, and indexing: `````
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install via npm (TypeScript-based CLI) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Install via npm (TypeScript-based CLI) | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install via npm (TypeScript-based CLI)</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install via npm (TypeScript-based CLI)</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="introduction">Introduction</h2>
+<p>You clone a new codebase. 50,000 lines of code across 200 files. You open VS Code and stare at the file tree. Where do you even start?</p>
+<p>Most developers reach for ```grep<code>. Then </code>ripgrep````. Then they open the 10 most-referenced files and try to piece together the architecture mentally. It works — for small projects. For anything substantial, it&rsquo;s exhausting.</p>
+<p>Understand-Anything does something fundamentally different. It transforms any codebase into an interactive knowledge graph — nodes for files, classes, and functions; edges for dependencies and relationships. You can explore, search, and ask questions about the code. Not with regex. With natural language.</p>
+<p>60,339 GitHub stars in one month. 44,690 of those came this month alone. The AI agent community has found something they didn&rsquo;t know they needed.</p>
+<p>This is how codebases should feel from day one.</p>
+<p><img alt="Understand-Anything — Interactive knowledge graphs for any codebase" loading="lazy" src="https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png"></p>
+<h2 id="what-is-understand-anything">What Is Understand-Anything?</h2>
+<p>Understand-Anything is an open-source tool by Egonex-AI that converts any codebase, documentation, or knowledge base into an interactive knowledge graph. Unlike static analysis tools that produce flat dependency lists, Understand-Anything builds a semantic graph where nodes represent code entities (files, classes, functions, variables) and edges represent relationships (imports, calls, inheritance, composition).</p>
+<p>The result is a visual + queryable representation of code that humans and AI agents can both navigate. Claude Code can traverse it. Codex can reason over it. Cursor can reference it. The graph serves as a shared understanding layer between developers and AI assistants.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install via npm (TypeScript-based CLI)</span>
+</span></span><span style="display:flex;"><span>npm install -g understand-anything
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or use via Docker</span>
+</span></span><span style="display:flex;"><span>docker run -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>:/code ghcr.io/egonex-ai/understand-anything:latest /code
+</span></span></code></pre></div><p>The tool works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, OpenCode, and other AI coding agents — making it a universal knowledge layer for the AI coding toolchain.</p>
+<h2 id="how-understand-anything-works">How Understand-Anything Works</h2>
+<p>The pipeline has three stages: parsing, graph construction, and indexing: `````
 Source Code (all languages)
 │
 ▼
 ┌─────────────────┐
-│ AST Parser │ Extract files, classes, functions,
-│ (multi-lang) │ imports, dependencies
+│  AST Parser      │  Extract files, classes, functions,
+│  (multi-lang)    │  imports, dependencies
 └────────┬────────┘
 │
 ▼
 ┌─────────────────┐
-│ Graph Builder │ Creates nodes + edges: │ │ Nodes: files, classes, funcs
-│ │ Edges: calls, imports, extends
+│  Graph Builder   │  Creates nodes + edges: │                  │  Nodes: files, classes, funcs
+│                  │  Edges: calls, imports, extends
 └────────┬────────┘
 │
 ▼
 ┌─────────────────┐
-│ Embedding + │ Vector indices for semantic
-│ Indexing │ search; graph indices for
-│ │ structural traversal
+│  Embedding +     │  Vector indices for semantic
+│  Indexing        │  search; graph indices for
+│                  │  structural traversal
 └────────┬────────┘
 │
 ▼
 Knowledge Graph
-(explore + query)</p><pre tabindex=0><code>
+(explore + query)</p>
+<pre tabindex="0"><code>
 Each language is parsed with its native AST (Python with ````ast````, TypeScript with ````typescript```` compiler API, etc.). The graph is stored in a compact format optimized for both visualization and fast queries.
 
 The indexing layer adds vector embeddings for semantic search — enabling &#34;find all functions that handle authentication&#34; type queries across the entire codebase.
@@ -56,63 +139,100 @@ npm install -g understand-anything
 
 # Verify
 understand-anything --version
-</code></pre><h3 id=docker-installation>Docker Installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Pull latest image</span>
-</span></span><span style=display:flex><span>docker pull ghcr.io/egonex-ai/understand-anything:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Analyze a codebase</span>
-</span></span><span style=display:flex><span>docker run --rm -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>:/code <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  ghcr.io/egonex-ai/understand-anything:latest <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  /code --output ./knowledge-graph.json
-</span></span></code></pre></div><h3 id=from-source>From Source</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/Egonex-AI/Understand-Anything.git
-</span></span><span style=display:flex><span>cd Understand-Anything
-</span></span><span style=display:flex><span>npm install
-</span></span><span style=display:flex><span>npm run build
-</span></span><span style=display:flex><span>npm link  <span style=color:#75715e># global install</span>
-</span></span></code></pre></div><h3 id=python-wrapper>Python Wrapper</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install understand-anything-python
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> understand_anything <span style=color:#f92672>import</span> CodebaseAnalyzer
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>analyzer <span style=color:#f92672>=</span> CodebaseAnalyzer(<span style=color:#e6db74>&#34;/path/to/codebase&#34;</span>)
-</span></span><span style=display:flex><span>analyzer<span style=color:#f92672>.</span>build_graph()
-</span></span><span style=display:flex><span>analyzer<span style=color:#f92672>.</span>export_graph(<span style=color:#e6db74>&#34;graph.json&#34;</span>)
-</span></span></code></pre></div><h3 id=configuration>Configuration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;include&#34;</span>: [<span style=color:#e6db74>&#34;src/**/*.{ts,tsx,js,jsx}&#34;</span>, <span style=color:#e6db74>&#34;tests/**/*&#34;</span>],
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;exclude&#34;</span>: [<span style=color:#e6db74>&#34;node_modules&#34;</span>, <span style=color:#e6db74>&#34;dist&#34;</span>, <span style=color:#e6db74>&#34;*.test.*&#34;</span>],
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;languages&#34;</span>: [<span style=color:#e6db74>&#34;typescript&#34;</span>, <span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;rust&#34;</span>, <span style=color:#e6db74>&#34;go&#34;</span>],
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;embedding_model&#34;</span>: <span style=color:#e6db74>&#34;all-MiniLM-L6-v2&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;max_file_size&#34;</span>: <span style=color:#ae81ff>50000</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;max_depth&#34;</span>: <span style=color:#ae81ff>5</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=integration-with-mainstream-tools>Integration with Mainstream Tools</h2><h3 id=claude-code-integration>Claude Code Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Add knowledge graph to Claude Code context</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --format claude-code
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Claude Code automatically loads the graph for context-aware responses</span>
-</span></span></code></pre></div><h3 id=cursor-ide-plugin>Cursor IDE Plugin</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install the Cursor extension</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Settings → Extensions → Understand-Anything</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Point to your project root</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cursor will show the knowledge graph sidebar</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Click any node to navigate to the source</span>
-</span></span></code></pre></div><h3 id=github-copilot-extension>GitHub Copilot Extension</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Generate a .copilot context file</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --format copilot
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Creates .github/copilot-instructions.md with</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># graph-derived context for Copilot</span>
-</span></span></code></pre></div><h3 id=vs-code-extension>VS Code Extension</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install from marketplace</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># vscode-marketplace: egonex.understand-anything</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or CLI install</span>
-</span></span><span style=display:flex><span>npx @egonex/vscode-extension install
-</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks & Real-World Use Cases</h2><h3 id=analysis-speed-by-codebase-size>Analysis Speed by Codebase Size</h3><p>| Codebase Size | Files | Analysis Time | Graph Nodes |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="docker-installation">Docker Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull latest image</span>
+</span></span><span style="display:flex;"><span>docker pull ghcr.io/egonex-ai/understand-anything:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Analyze a codebase</span>
+</span></span><span style="display:flex;"><span>docker run --rm -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>:/code <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  ghcr.io/egonex-ai/understand-anything:latest <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  /code --output ./knowledge-graph.json
+</span></span></code></pre></div><h3 id="from-source">From Source</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/Egonex-AI/Understand-Anything.git
+</span></span><span style="display:flex;"><span>cd Understand-Anything
+</span></span><span style="display:flex;"><span>npm install
+</span></span><span style="display:flex;"><span>npm run build
+</span></span><span style="display:flex;"><span>npm link  <span style="color:#75715e"># global install</span>
+</span></span></code></pre></div><h3 id="python-wrapper">Python Wrapper</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install understand-anything-python
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> understand_anything <span style="color:#f92672">import</span> CodebaseAnalyzer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>analyzer <span style="color:#f92672">=</span> CodebaseAnalyzer(<span style="color:#e6db74">&#34;/path/to/codebase&#34;</span>)
+</span></span><span style="display:flex;"><span>analyzer<span style="color:#f92672">.</span>build_graph()
+</span></span><span style="display:flex;"><span>analyzer<span style="color:#f92672">.</span>export_graph(<span style="color:#e6db74">&#34;graph.json&#34;</span>)
+</span></span></code></pre></div><h3 id="configuration">Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;include&#34;</span>: [<span style="color:#e6db74">&#34;src/**/*.{ts,tsx,js,jsx}&#34;</span>, <span style="color:#e6db74">&#34;tests/**/*&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;exclude&#34;</span>: [<span style="color:#e6db74">&#34;node_modules&#34;</span>, <span style="color:#e6db74">&#34;dist&#34;</span>, <span style="color:#e6db74">&#34;*.test.*&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;languages&#34;</span>: [<span style="color:#e6db74">&#34;typescript&#34;</span>, <span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;rust&#34;</span>, <span style="color:#e6db74">&#34;go&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;embedding_model&#34;</span>: <span style="color:#e6db74">&#34;all-MiniLM-L6-v2&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;max_file_size&#34;</span>: <span style="color:#ae81ff">50000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;max_depth&#34;</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="integration-with-mainstream-tools">Integration with Mainstream Tools</h2>
+<h3 id="claude-code-integration">Claude Code Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add knowledge graph to Claude Code context</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --format claude-code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Claude Code automatically loads the graph for context-aware responses</span>
+</span></span></code></pre></div><h3 id="cursor-ide-plugin">Cursor IDE Plugin</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install the Cursor extension</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Settings → Extensions → Understand-Anything</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Point to your project root</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cursor will show the knowledge graph sidebar</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Click any node to navigate to the source</span>
+</span></span></code></pre></div><h3 id="github-copilot-extension">GitHub Copilot Extension</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Generate a .copilot context file</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --format copilot
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Creates .github/copilot-instructions.md with</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># graph-derived context for Copilot</span>
+</span></span></code></pre></div><h3 id="vs-code-extension">VS Code Extension</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install from marketplace</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># vscode-marketplace: egonex.understand-anything</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or CLI install</span>
+</span></span><span style="display:flex;"><span>npx @egonex/vscode-extension install
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases</h2>
+<h3 id="analysis-speed-by-codebase-size">Analysis Speed by Codebase Size</h3>
+<p>| Codebase Size | Files | Analysis Time | Graph Nodes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Small (CLI tool) | 50 | 2 seconds | 120 |
 | Medium (library) | 500 | 15 seconds | 1,200 |
 | Large (full app) | 5,000 | 2 minutes | 12,000 |
-| Enterprise | 50,000 | 15 minutes | 120,000 |</p><p>Analysis time scales roughly linearly with file count. The graph construction is the dominant operation, followed by embedding computation.</p><h3 id=query-performance>Query Performance</h3><p>| Query Type | Response Time | Notes |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Enterprise | 50,000 | 15 minutes | 120,000 |</p>
+<p>Analysis time scales roughly linearly with file count. The graph construction is the dominant operation, followed by embedding computation.</p>
+<h3 id="query-performance">Query Performance</h3>
+<p>| Query Type | Response Time | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Structural (find imports) | &lt;10ms | Graph traversal |
 | Semantic (natural language) | 50-200ms | Vector search + graph |
 | Cross-language references | 100-500ms | Multi-AST join |
-| Full codebase summary | 1-3s | Aggregated graph stats |</p><h3 id=use-case-onboarding-new-developers>Use Case: Onboarding New Developers</h3><p>A team of 15 developers joined a 50,000-line TypeScript project. Before Understand-Anything, onboarding took 2 weeks of reading code. After: `````bash</p><h1 id=generate-onboarding-graph>Generate onboarding graph</h1><p>understand-anything analyze ./src &ndash;onboarding</p><h1 id=outputs----architecture-overview-hld--lld>Outputs: # - Architecture overview (HLD + LLD)</h1><h1 id=--key-entry-points>- Key entry points</h1><h1 id=--module-dependency-map>- Module dependency map</h1><h1 id=--common-patterns-and-anti-patterns>- Common patterns and anti-patterns</h1><pre tabindex=0><code>
+| Full codebase summary | 1-3s | Aggregated graph stats |</p>
+<h3 id="use-case-onboarding-new-developers">Use Case: Onboarding New Developers</h3>
+<p>A team of 15 developers joined a 50,000-line TypeScript project. Before Understand-Anything, onboarding took 2 weeks of reading code. After: `````bash</p>
+<h1 id="generate-onboarding-graph">Generate onboarding graph</h1>
+<p>understand-anything analyze ./src &ndash;onboarding</p>
+<h1 id="outputs----architecture-overview-hld--lld">Outputs: # - Architecture overview (HLD + LLD)</h1>
+<h1 id="--key-entry-points">- Key entry points</h1>
+<h1 id="--module-dependency-map">- Module dependency map</h1>
+<h1 id="--common-patterns-and-anti-patterns">- Common patterns and anti-patterns</h1>
+<pre tabindex="0"><code>
 New developer onboarding time reduced from 14 days to 3 days. The interactive graph lets them explore the codebase at their own pace.
 
 ### Use Case: Legacy Code Refactoring
@@ -123,76 +243,94 @@ understand-anything query &#34;deprecated authentication endpoints&#34;
 
 # Returns: 23 files, 47 references
 # With full dependency chains
-</code></pre><p>The graph reveals hidden coupling that spreadsheets and grep miss entirely.</p><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><h3 id=custom-language-support>Custom Language Support</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Add support for a new language
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>LanguagePlugin</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;understand-anything&#39;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyLangPlugin</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>LanguagePlugin</span> {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;mylang&#39;</span>;
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>source</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>ASTNode</span> {
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// Your language-specific parser
-</span></span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>parseMyLang</span>(<span style=color:#a6e22e>source</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>extractDependencies</span>(<span style=color:#a6e22e>node</span>: <span style=color:#66d9ef>ASTNode</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Dependency</span>[] {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>extractMyDeps</span>(<span style=color:#a6e22e>node</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// Register plugin
-</span></span></span><span style=display:flex><span><span style=color:#a6e22e>registerPlugin</span>(<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>MyLangPlugin</span>());
-</span></span></code></pre></div><h3 id=graph-query-language-gql>Graph Query Language (GQL)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Find all functions called by more than 5 other functions</span>
-</span></span><span style=display:flex><span>understand-anything gql <span style=color:#e6db74>&#34;func where call_count &gt; 5 order by call_count desc&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Find orphan files (no incoming references)</span>
-</span></span><span style=display:flex><span>understand-anything gql <span style=color:#e6db74>&#34;file where incoming_refs == 0&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Find circular dependencies</span>
-</span></span><span style=display:flex><span>understand-anything gql <span style=color:#e6db74>&#34;cycle where type == &#39;import&#39;&#34;</span>
-</span></span></code></pre></div><h3 id=cicd-integration>CI/CD Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/graph-check.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Knowledge Graph CI</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: [<span style=color:#ae81ff>pull_request]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs: analyze: runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps: - uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build knowledge graph</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          npx understand-anything analyze ./src --format ci</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Check for circular dependencies</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          npx understand-anything gql &#34;cycle&#34; \
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>            | tee graph-violations.json</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Upload violations</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>if</span>: <span style=color:#ae81ff>failure()</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/upload-artifact@v4</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>with: name</span>: <span style=color:#ae81ff>graph-violations</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>path</span>: <span style=color:#ae81ff>graph-violations.json</span>
-</span></span></code></pre></div><h3 id=performance-tuning>Performance Tuning</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Use incremental analysis (fastest for dev workflows)</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --incremental
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cache graph for repeated queries</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --cache ./graph-cache.db
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Parallel analysis for large codebases</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --workers <span style=color:#ae81ff>8</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Memory-efficient mode (for constrained environments)</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --low-memory
-</span></span></code></pre></div><h3 id=export-formats>Export Formats</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># JSON (programmatic access)</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --format json -o graph.json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># DOT (Graphviz visualization)</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --format dot -o graph.dot
-</span></span><span style=display:flex><span><span style=color:#75715e># Then: dot -Tpng graph.dot -o graph.png</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Mermaid (Markdown diagrams)</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --format mermaid -o graph.mmd
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># HTML (interactive viewer)</span>
-</span></span><span style=display:flex><span>understand-anything analyze ./src --format html -o graph.html
-</span></span><span style=display:flex><span><span style=color:#75715e># Opens in browser with zoom, pan, search</span>
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | Understand-Anything | Code2Prompt | Sourcery | SonarQube |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>The graph reveals hidden coupling that spreadsheets and grep miss entirely.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="custom-language-support">Custom Language Support</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Add support for a new language
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LanguagePlugin</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;understand-anything&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyLangPlugin</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">LanguagePlugin</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mylang&#39;</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ASTNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Your language-specific parser
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">parseMyLang</span>(<span style="color:#a6e22e">source</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">extractDependencies</span>(<span style="color:#a6e22e">node</span>: <span style="color:#66d9ef">ASTNode</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Dependency</span>[] {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">extractMyDeps</span>(<span style="color:#a6e22e">node</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Register plugin
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">registerPlugin</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MyLangPlugin</span>());
+</span></span></code></pre></div><h3 id="graph-query-language-gql">Graph Query Language (GQL)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Find all functions called by more than 5 other functions</span>
+</span></span><span style="display:flex;"><span>understand-anything gql <span style="color:#e6db74">&#34;func where call_count &gt; 5 order by call_count desc&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Find orphan files (no incoming references)</span>
+</span></span><span style="display:flex;"><span>understand-anything gql <span style="color:#e6db74">&#34;file where incoming_refs == 0&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Find circular dependencies</span>
+</span></span><span style="display:flex;"><span>understand-anything gql <span style="color:#e6db74">&#34;cycle where type == &#39;import&#39;&#34;</span>
+</span></span></code></pre></div><h3 id="cicd-integration">CI/CD Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/graph-check.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Knowledge Graph CI</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">pull_request]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: analyze: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build knowledge graph</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          npx understand-anything analyze ./src --format ci</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Check for circular dependencies</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          npx understand-anything gql &#34;cycle&#34; \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            | tee graph-violations.json</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Upload violations</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">if</span>: <span style="color:#ae81ff">failure()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/upload-artifact@v4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with: name</span>: <span style="color:#ae81ff">graph-violations</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">graph-violations.json</span>
+</span></span></code></pre></div><h3 id="performance-tuning">Performance Tuning</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use incremental analysis (fastest for dev workflows)</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --incremental
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cache graph for repeated queries</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --cache ./graph-cache.db
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Parallel analysis for large codebases</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --workers <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Memory-efficient mode (for constrained environments)</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --low-memory
+</span></span></code></pre></div><h3 id="export-formats">Export Formats</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># JSON (programmatic access)</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --format json -o graph.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># DOT (Graphviz visualization)</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --format dot -o graph.dot
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then: dot -Tpng graph.dot -o graph.png</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mermaid (Markdown diagrams)</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --format mermaid -o graph.mmd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># HTML (interactive viewer)</span>
+</span></span><span style="display:flex;"><span>understand-anything analyze ./src --format html -o graph.html
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Opens in browser with zoom, pan, search</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Understand-Anything | Code2Prompt | Sourcery | SonarQube |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Knowledge Graph | ✅ Interactive | ❌ Flat AST | ❌ | ❌ |
 | Natural Language Query | ✅ | ❌ | ❌ | ❌ |
 | AI Agent Integration | ✅ 10+ tools | ❌ | ❌ | ❌ |
@@ -202,8 +340,64 @@ understand-anything query &#34;deprecated authentication endpoints&#34;
 | Free Tier | ✅ Unlimited | ✅ | ❌ Paid | ❌ Paid |
 | Setup Complexity | Low | Medium | Low | High |
 | Query Speed | &lt;200ms | N/A | N/A | N/A |
-| Custom Plugins | ✅ | ❌ | ❌ | ✅ |</p><p>Understand-Anything is the only tool that combines interactive visualization, natural language querying, and broad AI agent integration in a single free package. SonarQube has more features but costs thousands per year. Code2Prompt focuses on prompt generation, not exploration.</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p>Understand-Anything is powerful but has honest limitations: 1. <strong>Generated code is not analyzed.</strong> Dynamic code (eval, exec, runtime-generated classes) won&rsquo;t appear in the graph. This is a fundamental limitation of static analysis — no tool solves this perfectly.</p><ol start=2><li><p><strong>Third-party libraries need separate analysis.</strong> The graph focuses on your codebase. To include dependencies, you need to analyze <code>node_modules</code>, <code>vendor/</code>, or equivalent separately.</p></li><li><p><strong>Large monorepos need tuning.</strong> 50,000+ files may require <code>--workers</code> and <code>--low-memory</code> flags for optimal performance. Default settings work well for projects up to 10,000 files.</p></li><li><p><strong>Non-standard file extensions.</strong> Files without recognized extensions may not be parsed correctly. Use the <code>include</code> config to specify patterns.</p></li><li><p><strong>Real-time collaboration.</strong> The graph is computed on-demand, not continuously updated. Changes require re-analysis (incremental mode minimizes this cost).</p></li></ol><p>These are tradeoffs inherent to the approach, not implementation flaws. For the vast majority of projects, these limitations don&rsquo;t impact usability.</p><p><img alt="Understand-Anything — Overview of the knowledge graph interface" loading=lazy src=https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/overview.png></p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><p><strong>Q: Which programming languages are supported?</strong></p><p>Currently supports TypeScript, JavaScript, Python, Go, Rust, Java, C#, Ruby, and PHP. New language plugins can be added via the plugin system. The graph builder uses each language&rsquo;s native AST parser for maximum accuracy.</p><p><strong>Q: Can I use Understand-Anything with private codebases?</strong></p><p>Yes. All analysis happens locally. No code is uploaded to any server. The Docker deployment option is ideal for air-gapped environments. Your code never leaves your machine.</p><p><strong>Q: How does it compare to AI-powered code search tools?</strong></p><p>Traditional code search (ripgrep, searchcode) uses keyword matching. Understand-Anything adds semantic understanding through embeddings and structural awareness through the graph. You can search by meaning (&ldquo;find authentication handlers&rdquo;) not just by name (&ldquo;auth&rdquo;).</p><p><strong>Q: Can I query the graph programmatically?</strong></p><p>Yes. The GQL (Graph Query Language) supports structural queries, semantic search, and custom filters. You can also export the graph to JSON and process it with any language.</p><p><strong>Q: Does it work with monorepos?</strong></p><p>Yes. Understand-Anything handles monorepos natively. Set the <code>--root</code> flag to the monorepo root and specify which packages to include. Cross-package dependency detection works automatically.</p><p><strong>Q: What&rsquo;s the maximum codebase size?</strong></p><p>Tested with codebases up to 500,000 files and 50 million lines of code. Performance depends on hardware — a modern laptop handles 10,000 files comfortably. For larger projects, use <code>--workers</code> and <code>--low-memory</code> flags.</p><p><strong>Q: Is there a web interface?</strong></p><p>Yes. The <code>--format html</code> export generates a fully interactive web viewer with zoom, pan, search, and click-to-navigate functionality. No server required — it&rsquo;s a static HTML file.</p><h2 id=conclusion>Conclusion</h2><p>Understanding a codebase shouldn&rsquo;t require memorizing file structures or grepping through thousands of lines. Understand-Anything changes that by turning your code into an interactive knowledge graph — something you can explore, query, and reason about.</p><p>The fact that it works with Claude Code, Codex, Cursor, Copilot, and Gemini CLI makes it a universal adapter for the AI coding ecosystem. Whatever tool you use, the graph layer sits underneath and makes everything smarter.</p><p>60,000+ stars in a month isn&rsquo;t just hype. It&rsquo;s developers realizing that navigating codebases should feel like exploring a map, not reading a phone book.</p><p>Try it on your next project. Clone a repo, run ````understand-anything analyze .```, and watch the graph appear. You&rsquo;ll wonder how you ever onboarded without it.</p><p><strong>行动号召</strong>: Try Understand-Anything today. Join the <a href=https://t.me/DIBI8_Group/2>dibi8 Telegram group</a> to discuss code visualization and AI-assisted development workflows.</p><p>For more on AI coding tools, check out our guides on <a href=dibi8-claude-code-mastery>Claude Code mastery</a> and <a href=dibi8-cursor-optimization>Cursor IDE optimization</a>.</p><hr><p><strong>Sources & Further Reading</strong>: - Official docs: <a href=https://github.com/Egonex-AI/Understand-Anything>https://github.com/Egonex-AI/Understand-Anything</a></p><ul><li>GitHub repository: <a href=https://github.com/Egonex-AI/Understand-Anything>https://github.com/Egonex-AI/Understand-Anything</a></li><li>Live demo: <a href=https://egonex.ai/understand-anything/demo>https://egonex.ai/understand-anything/demo</a></li><li>Community discussion: <a href=https://github.com/Egonex-AI/Understand-Anything/discussions>https://github.com/Egonex-AI/Understand-Anything/discussions</a></li></ul><p><strong>Affiliate Disclosure</strong>: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.</p><ul><li>Cloud hosting for your AI projects: <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></li><li>Alternative hosting: <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></li><li>Trading tools: <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a>, <a href=https://www.promoohubly.com/join/12190433>OKX</a></li><li>Proxy for web scraping: <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Custom Plugins | ✅ | ❌ | ❌ | ✅ |</p>
+<p>Understand-Anything is the only tool that combines interactive visualization, natural language querying, and broad AI agent integration in a single free package. SonarQube has more features but costs thousands per year. Code2Prompt focuses on prompt generation, not exploration.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>Understand-Anything is powerful but has honest limitations: 1. <strong>Generated code is not analyzed.</strong> Dynamic code (eval, exec, runtime-generated classes) won&rsquo;t appear in the graph. This is a fundamental limitation of static analysis — no tool solves this perfectly.</p>
+<ol start="2">
+<li>
+<p><strong>Third-party libraries need separate analysis.</strong> The graph focuses on your codebase. To include dependencies, you need to analyze <code>node_modules</code>, <code>vendor/</code>, or equivalent separately.</p>
+</li>
+<li>
+<p><strong>Large monorepos need tuning.</strong> 50,000+ files may require <code>--workers</code> and <code>--low-memory</code> flags for optimal performance. Default settings work well for projects up to 10,000 files.</p>
+</li>
+<li>
+<p><strong>Non-standard file extensions.</strong> Files without recognized extensions may not be parsed correctly. Use the <code>include</code> config to specify patterns.</p>
+</li>
+<li>
+<p><strong>Real-time collaboration.</strong> The graph is computed on-demand, not continuously updated. Changes require re-analysis (incremental mode minimizes this cost).</p>
+</li>
+</ol>
+<p>These are tradeoffs inherent to the approach, not implementation flaws. For the vast majority of projects, these limitations don&rsquo;t impact usability.</p>
+<p><img alt="Understand-Anything — Overview of the knowledge graph interface" loading="lazy" src="https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/overview.png"></p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Which programming languages are supported?</strong></p>
+<p>Currently supports TypeScript, JavaScript, Python, Go, Rust, Java, C#, Ruby, and PHP. New language plugins can be added via the plugin system. The graph builder uses each language&rsquo;s native AST parser for maximum accuracy.</p>
+<p><strong>Q: Can I use Understand-Anything with private codebases?</strong></p>
+<p>Yes. All analysis happens locally. No code is uploaded to any server. The Docker deployment option is ideal for air-gapped environments. Your code never leaves your machine.</p>
+<p><strong>Q: How does it compare to AI-powered code search tools?</strong></p>
+<p>Traditional code search (ripgrep, searchcode) uses keyword matching. Understand-Anything adds semantic understanding through embeddings and structural awareness through the graph. You can search by meaning (&ldquo;find authentication handlers&rdquo;) not just by name (&ldquo;auth&rdquo;).</p>
+<p><strong>Q: Can I query the graph programmatically?</strong></p>
+<p>Yes. The GQL (Graph Query Language) supports structural queries, semantic search, and custom filters. You can also export the graph to JSON and process it with any language.</p>
+<p><strong>Q: Does it work with monorepos?</strong></p>
+<p>Yes. Understand-Anything handles monorepos natively. Set the <code>--root</code> flag to the monorepo root and specify which packages to include. Cross-package dependency detection works automatically.</p>
+<p><strong>Q: What&rsquo;s the maximum codebase size?</strong></p>
+<p>Tested with codebases up to 500,000 files and 50 million lines of code. Performance depends on hardware — a modern laptop handles 10,000 files comfortably. For larger projects, use <code>--workers</code> and <code>--low-memory</code> flags.</p>
+<p><strong>Q: Is there a web interface?</strong></p>
+<p>Yes. The <code>--format html</code> export generates a fully interactive web viewer with zoom, pan, search, and click-to-navigate functionality. No server required — it&rsquo;s a static HTML file.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Understanding a codebase shouldn&rsquo;t require memorizing file structures or grepping through thousands of lines. Understand-Anything changes that by turning your code into an interactive knowledge graph — something you can explore, query, and reason about.</p>
+<p>The fact that it works with Claude Code, Codex, Cursor, Copilot, and Gemini CLI makes it a universal adapter for the AI coding ecosystem. Whatever tool you use, the graph layer sits underneath and makes everything smarter.</p>
+<p>60,000+ stars in a month isn&rsquo;t just hype. It&rsquo;s developers realizing that navigating codebases should feel like exploring a map, not reading a phone book.</p>
+<p>Try it on your next project. Clone a repo, run ````understand-anything analyze .```, and watch the graph appear. You&rsquo;ll wonder how you ever onboarded without it.</p>
+<p><strong>行动号召</strong>: Try Understand-Anything today. Join the <a href="https://t.me/DIBI8_Group/2">dibi8 Telegram group</a> to discuss code visualization and AI-assisted development workflows.</p>
+<p>For more on AI coding tools, check out our guides on <a href="dibi8-claude-code-mastery">Claude Code mastery</a> and <a href="dibi8-cursor-optimization">Cursor IDE optimization</a>.</p>
+<hr>
+<p><strong>Sources &amp; Further Reading</strong>: - Official docs: <a href="https://github.com/Egonex-AI/Understand-Anything">https://github.com/Egonex-AI/Understand-Anything</a></p>
+<ul>
+<li>GitHub repository: <a href="https://github.com/Egonex-AI/Understand-Anything">https://github.com/Egonex-AI/Understand-Anything</a></li>
+<li>Live demo: <a href="https://egonex.ai/understand-anything/demo">https://egonex.ai/understand-anything/demo</a></li>
+<li>Community discussion: <a href="https://github.com/Egonex-AI/Understand-Anything/discussions">https://github.com/Egonex-AI/Understand-Anything/discussions</a></li>
+</ul>
+<p><strong>Affiliate Disclosure</strong>: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.</p>
+<ul>
+<li>Cloud hosting for your AI projects: <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></li>
+<li>Alternative hosting: <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></li>
+<li>Trading tools: <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a>, <a href="https://www.promoohubly.com/join/12190433">OKX</a></li>
+<li>Proxy for web scraping: <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Understand-Anything: Interactive Knowledge Graphs for Codebases — 60K+ Stars 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-15&rdquo;,
@@ -217,20 +411,296 @@ understand-anything query &#34;deprecated authentication endpoints&#34;
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/understand-anything-interactive-knowledge-graphs-codebases%22>https://dibi8.com/resources/understand-anything-interactive-knowledge-graphs-codebases"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/understand-anything-interactive-knowledge-graphs-codebases%22">https://dibi8.com/resources/understand-anything-interactive-knowledge-graphs-codebases"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/>2026-05-25-trending-ai-agents</a></li><li><a href=/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/>2026-06-01-trending-ai-agents</a></li><li><a href=/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/>2026-06-08-trending-ai-agents</a></li><li><a href=/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/>2026-06-15-trending-ai-agents</a></li><li><a href=/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/>2026-06-22-trending-ai-agents</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2funderstand-anything-interactive-knowledge-graphs-codebases%2f&text=Install%20via%20npm%20%28TypeScript-based%20CLI%29" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2funderstand-anything-interactive-knowledge-graphs-codebases%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/">2026-06-08-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/">2026-06-15-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/">2026-06-22-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2funderstand-anything-interactive-knowledge-graphs-codebases%2f&text=Install%20via%20npm%20%28TypeScript-based%20CLI%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2funderstand-anything-interactive-knowledge-graphs-codebases%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

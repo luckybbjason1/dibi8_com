@@ -2,6 +2,7 @@
 title: "服务条款"
 description: "Dibi8服务条款"
 date: 2026-09-26
+layout: single
 ---
 
 # Dibi8 - 服务条款

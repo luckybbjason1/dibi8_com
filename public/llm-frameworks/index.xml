@@ -1,1 +1,376 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>LLM Frameworks - dibi8 on Dibi8 - AI工具目录</title><link>https://dibi8.com/llm-frameworks/</link><description>Recent content in LLM Frameworks - dibi8 on Dibi8 - AI工具目录</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate><atom:link href="https://dibi8.com/llm-frameworks/index.xml" rel="self" type="application/rss+xml"/><item><title>Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026</title><link>https://dibi8.com/llm-frameworks/kev-trainable-decision-models-qwen35-2026/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate><guid>https://dibi8.com/llm-frameworks/kev-trainable-decision-models-qwen35-2026/</guid><description>Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K+ params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars.</description></item><item><title>Laya-MLX: Native Apple Silicon Decision Engine — 13.4ms Typed Inference 2026</title><link>https://dibi8.com/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate><guid>https://dibi8.com/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/</guid><description>Laya-MLX brings Apple Silicon native inference to the Laya decision engine. 13.4ms latency on M3 Max, MLX framework optimization, Apache 2.0 licensed.</description></item><item><title>Laya: Non-Autoregressive System 1 Decision Engine — 33ms Typed Decisions Over 100 Languages 2026</title><link>https://dibi8.com/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate><guid>https://dibi8.com/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/</guid><description>Laya evaluates choice, score, and noul questions in a single forward pass at 33ms. 20K+ stars, Apache 2.0. Three checkpoints with Router auto-selection. Trained with RLCD against strictly proper scoring rules.</description></item><item><title>SoL-Pi: Scaling Auto-Research Loops for Efficient Agent Harnesses — NVlabs Open-Source Optimization Framework 2026</title><link>https://dibi8.com/llm-frameworks/nvlabs-sol-pi-agent-harness-efficiency-2026/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate><guid>https://dibi8.com/llm-frameworks/nvlabs-sol-pi-agent-harness-efficiency-2026/</guid><description>SoL-Pi by NVIDIA saves 13.50/hour vs Claude Code and 5.71/hour vs native Pi. Four mechanisms: Action Fusion, ObservationPack, Evidence-Preserving Reducer, Online Context Compact. Free, opt-in, no patches required.</description></item><item><title>Best AI Translation Tools 2025: Google Translate vs DeepL vs ChatGPT Compared</title><link>https://dibi8.com/llm-frameworks/ai-translation-tools-compared-2025/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/ai-translation-tools-compared-2025/</guid><description>Technical guide and comparison</description></item><item><title>Best AI Video Generation Tools 2025: Sora, Runway, Pika &amp; More Compared</title><link>https://dibi8.com/llm-frameworks/best-ai-video-generation-tools-2025/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/best-ai-video-generation-tools-2025/</guid><description>Technical guide and comparison</description></item><item><title>Best AI Voice Tools 2025: Text-to-Speech &amp; Speech-to-Text Comparison</title><link>https://dibi8.com/llm-frameworks/ai-voice-tools-text-to-speech-transcription/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/ai-voice-tools-text-to-speech-transcription/</guid><description>Technical guide and comparison</description></item><item><title>Best Knowledge Graph Tools &amp; Frameworks 2025: Neo4j, RDFlib, Amazon Neptune, Stardog Compared</title><link>https://dibi8.com/llm-frameworks/knowledge-graph-tools-frameworks/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/knowledge-graph-tools-frameworks/</guid><description>Technical guide and comparison</description></item><item><title>Code Quality Tools Guide: ESLint, Prettier, Black, Ruff &amp; More</title><link>https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/</guid><description>Technical guide and comparison</description></item><item><title>ComfyUI Workflow 2026: Setup + 5 Production Templates</title><link>https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/</guid><description>Technical guide and comparison</description></item><item><title>Conceptual solver auction flow</title><link>https://dibi8.com/llm-frameworks/cow-protocol-mev-protection/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/cow-protocol-mev-protection/</guid><description>Technical guide and comparison</description></item><item><title>Create a directory for Hummingbot files</title><link>https://dibi8.com/llm-frameworks/hummingbot-crypto-trading-bot/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/hummingbot-crypto-trading-bot/</guid><description>Technical guide and comparison</description></item><item><title>Create a virtual environment</title><link>https://dibi8.com/llm-frameworks/hyperliquid-perp-dex-trading/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/hyperliquid-perp-dex-trading/</guid><description>Technical guide and comparison</description></item><item><title>Create the user_data directory structure</title><link>https://dibi8.com/llm-frameworks/freqtrade-ai-trading-strategies/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/freqtrade-ai-trading-strategies/</guid><description>Technical guide and comparison</description></item><item><title>data/dataset.csv.dvc — tracked in Git (~100 bytes)</title><link>https://dibi8.com/llm-frameworks/dvc-data-version-control-ml/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/dvc-data-version-control-ml/</guid><description>Technical guide and comparison</description></item><item><title>Define a container image with PyTorch and CUDA pre-installed</title><link>https://dibi8.com/llm-frameworks/modal-serverless-gpu-compute/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/modal-serverless-gpu-compute/</guid><description>Technical guide and comparison</description></item><item><title>Download UVR v5.6 from the official release page</title><link>https://dibi8.com/llm-frameworks/ultimate-vocal-remover/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/ultimate-vocal-remover/</guid><description>Technical guide and comparison</description></item><item><title>etcd: metadata coordination</title><link>https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/</guid><description>Technical guide and comparison</description></item><item><title>Fetch data — VectorBT wraps yfinance for convenience</title><link>https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/</guid><description>Technical guide and comparison</description></item><item><title>For full features</title><link>https://dibi8.com/llm-frameworks/lightning-ai-lightning-complete-guide/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/lightning-ai-lightning-complete-guide/</guid><description>Technical guide and comparison</description></item><item><title>For GPU support</title><link>https://dibi8.com/llm-frameworks/google-jax-complete-guide/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/google-jax-complete-guide/</guid><description>Technical guide and comparison</description></item><item><title>For LLaMA-based models</title><link>https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/</guid><description>Technical guide and comparison</description></item><item><title>Get current running configuration</title><link>https://dibi8.com/llm-frameworks/caddy/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/caddy/</guid><description>Technical guide and comparison</description></item><item><title>High-level component view</title><link>https://dibi8.com/llm-frameworks/kubeflow-ml-pipeline-kubernetes/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/kubeflow-ml-pipeline-kubernetes/</guid><description>Technical guide and comparison</description></item><item><title>Ibis looks familiar to any pandas user</title><link>https://dibi8.com/llm-frameworks/ibis-dataframe-python-sql/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/ibis-dataframe-python-sql/</guid><description>Technical guide and comparison</description></item><item><title>Import supervision</title><link>https://dibi8.com/llm-frameworks/roboflow-supervision/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/roboflow-supervision/</guid><description>Technical guide and comparison</description></item><item><title>Initialize Ray cluster</title><link>https://dibi8.com/llm-frameworks/ray-distributed-ai-framework-complete-guide/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/ray-distributed-ai-framework-complete-guide/</guid><description>Technical guide and comparison</description></item><item><title>Inspect architecture</title><link>https://dibi8.com/llm-frameworks/stable-diffusion-complete-guide/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/stable-diffusion-complete-guide/</guid><description>Technical guide and comparison</description></item><item><title>Install CCXT for Python</title><link>https://dibi8.com/llm-frameworks/ccxt-crypto-exchange-api-unified/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/ccxt-crypto-exchange-api-unified/</guid><description>Technical guide and comparison</description></item><item><title>Install CUDA 12.8 toolkit first (Linux)</title><link>https://dibi8.com/llm-frameworks/whisperx/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/whisperx/</guid><description>Technical guide and comparison</description></item><item><title>Install dependencies (Ubuntu/Debian)</title><link>https://dibi8.com/llm-frameworks/stable-diffusion-webui/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/stable-diffusion-webui/</guid><description>Technical guide and comparison</description></item><item><title>Install the Python wrapper</title><link>https://dibi8.com/llm-frameworks/ta-lib-technical-analysis-trading/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/ta-lib-technical-analysis-trading/</guid><description>Technical guide and comparison</description></item><item><title>Install via npm</title><link>https://dibi8.com/llm-frameworks/1inch-dex-aggregator-routing/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/1inch-dex-aggregator-routing/</guid><description>Technical guide and comparison</description></item><item><title>Introduction: The $12 Trillion Edge AI Gap</title><link>https://dibi8.com/llm-frameworks/baetyl-edge-ai-computing-platform/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/baetyl-edge-ai-computing-platform/</guid><description>Technical guide and comparison</description></item><item><title>LLM Model Recommender 2026 — Pick the Right LLM by Use Case, Budget, Context Length, Privacy</title><link>https://dibi8.com/llm-frameworks/llm-recommender/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/llm-recommender/</guid><description>Technical guide and comparison</description></item><item><title>Ollama vs vLLM in 2026: Local Dev Simplicity vs Production Throughput</title><link>https://dibi8.com/llm-frameworks/ollama-vs-vllm/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/ollama-vs-vllm/</guid><description>Technical guide and comparison</description></item><item><title>PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost</title><link>https://dibi8.com/llm-frameworks/paddleocr-81k-star-ocr-engine/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/paddleocr-81k-star-ocr-engine/</guid><description>Technical guide and comparison</description></item><item><title>Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</title><link>https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/</guid><description>Technical guide and comparison</description></item><item><title>prefect-envScriptsactivate Windows</title><link>https://dibi8.com/llm-frameworks/prefect-workflow-orchestration/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/prefect-workflow-orchestration/</guid><description>Technical guide and comparison</description></item><item><title>Price of token A in terms of token B</title><link>https://dibi8.com/llm-frameworks/pancake-trading-bot-defi-bsc/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/pancake-trading-bot-defi-bsc/</guid><description>Technical guide and comparison</description></item><item><title>Pull the official CUDA 12 image</title><link>https://dibi8.com/llm-frameworks/hunyuan-video/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/hunyuan-video/</guid><description>Technical guide and comparison</description></item><item><title>Returns:</title><link>https://dibi8.com/llm-frameworks/weaviate-vector-search-enterprise/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/weaviate-vector-search-enterprise/</guid><description>Technical guide and comparison</description></item><item><title>Step 1: Ensure you own an ENS domain</title><link>https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/</guid><description>Technical guide and comparison</description></item><item><title>Step 1: Sign up at https://zapper.xyz and navigate to Developer Settings</title><link>https://dibi8.com/llm-frameworks/zapper-defi-dashboard-aggregator/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/zapper-defi-dashboard-aggregator/</guid><description>Technical guide and comparison</description></item><item><title>The complete MLflow architecture in one diagram: 1. Tracking Server (REST API + UI)</title><link>https://dibi8.com/llm-frameworks/mlflow-experiment-tracking-production/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/mlflow-experiment-tracking-production/</guid><description>Technical guide and comparison</description></item><item><title>Ubuntu/Debian</title><link>https://dibi8.com/llm-frameworks/lean-quantconnect-trading-engine/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/lean-quantconnect-trading-engine/</guid><description>Technical guide and comparison</description></item><item><title>Verify — should return</title><link>https://dibi8.com/llm-frameworks/qdrant-vector-database-rust/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/qdrant-vector-database-rust/</guid><description>Technical guide and comparison</description></item><item><title>Verify health</title><link>https://dibi8.com/llm-frameworks/meilisearch-fast-search-engine/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/meilisearch-fast-search-engine/</guid><description>Technical guide and comparison</description></item><item><title>What Is Moralis?</title><link>https://dibi8.com/llm-frameworks/moralis-web3-data-api/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/moralis-web3-data-api/</guid><description>Technical guide and comparison</description></item><item><title>whisper-envScriptsactivate Windows</title><link>https://dibi8.com/llm-frameworks/openai-whisper/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/openai-whisper/</guid><description>Technical guide and comparison</description></item><item><title>Why Feature Engineering is the Bottleneck in ML Pipelines</title><link>https://dibi8.com/llm-frameworks/feature-engineering-tools-automation/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/feature-engineering-tools-automation/</guid><description>Technical guide and comparison</description></item><item><title>zenml-envScriptsactivate Windows</title><link>https://dibi8.com/llm-frameworks/zenml-mlops-pipeline-framework/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/llm-frameworks/zenml-mlops-pipeline-framework/</guid><description>Technical guide and comparison</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LLM Frameworks - dibi8 on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/llm-frameworks/</link>
+    <description>Recent content in LLM Frameworks - dibi8 on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://dibi8.com/llm-frameworks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026</title>
+      <link>https://dibi8.com/llm-frameworks/kev-trainable-decision-models-qwen35-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/kev-trainable-decision-models-qwen35-2026/</guid>
+      <description>Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K&#43; params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars.</description>
+    </item>
+    <item>
+      <title>Laya-MLX: Native Apple Silicon Decision Engine — 13.4ms Typed Inference 2026</title>
+      <link>https://dibi8.com/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/</guid>
+      <description>Laya-MLX brings Apple Silicon native inference to the Laya decision engine. 13.4ms latency on M3 Max, MLX framework optimization, Apache 2.0 licensed.</description>
+    </item>
+    <item>
+      <title>Laya: Non-Autoregressive System 1 Decision Engine — 33ms Typed Decisions Over 100 Languages 2026</title>
+      <link>https://dibi8.com/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/</guid>
+      <description>Laya evaluates choice, score, and noul questions in a single forward pass at 33ms. 20K&#43; stars, Apache 2.0. Three checkpoints with Router auto-selection. Trained with RLCD against strictly proper scoring rules.</description>
+    </item>
+    <item>
+      <title>SoL-Pi: Scaling Auto-Research Loops for Efficient Agent Harnesses — NVlabs Open-Source Optimization Framework 2026</title>
+      <link>https://dibi8.com/llm-frameworks/nvlabs-sol-pi-agent-harness-efficiency-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/nvlabs-sol-pi-agent-harness-efficiency-2026/</guid>
+      <description>SoL-Pi by NVIDIA saves 13.50/hour vs Claude Code and 5.71/hour vs native Pi. Four mechanisms: Action Fusion, ObservationPack, Evidence-Preserving Reducer, Online Context Compact. Free, opt-in, no patches required.</description>
+    </item>
+    <item>
+      <title>Best AI Translation Tools 2025: Google Translate vs DeepL vs ChatGPT Compared</title>
+      <link>https://dibi8.com/llm-frameworks/ai-translation-tools-compared-2025/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/ai-translation-tools-compared-2025/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Best AI Video Generation Tools 2025: Sora, Runway, Pika &amp; More Compared</title>
+      <link>https://dibi8.com/llm-frameworks/best-ai-video-generation-tools-2025/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/best-ai-video-generation-tools-2025/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Best AI Voice Tools 2025: Text-to-Speech &amp; Speech-to-Text Comparison</title>
+      <link>https://dibi8.com/llm-frameworks/ai-voice-tools-text-to-speech-transcription/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/ai-voice-tools-text-to-speech-transcription/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Best Knowledge Graph Tools &amp; Frameworks 2025: Neo4j, RDFlib, Amazon Neptune, Stardog Compared</title>
+      <link>https://dibi8.com/llm-frameworks/knowledge-graph-tools-frameworks/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/knowledge-graph-tools-frameworks/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Code Quality Tools Guide: ESLint, Prettier, Black, Ruff &amp; More</title>
+      <link>https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>ComfyUI Workflow 2026: Setup &#43; 5 Production Templates</title>
+      <link>https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Conceptual solver auction flow</title>
+      <link>https://dibi8.com/llm-frameworks/cow-protocol-mev-protection/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/cow-protocol-mev-protection/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Create a directory for Hummingbot files</title>
+      <link>https://dibi8.com/llm-frameworks/hummingbot-crypto-trading-bot/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/hummingbot-crypto-trading-bot/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Create a virtual environment</title>
+      <link>https://dibi8.com/llm-frameworks/hyperliquid-perp-dex-trading/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/hyperliquid-perp-dex-trading/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Create the user_data directory structure</title>
+      <link>https://dibi8.com/llm-frameworks/freqtrade-ai-trading-strategies/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/freqtrade-ai-trading-strategies/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>data/dataset.csv.dvc — tracked in Git (~100 bytes)</title>
+      <link>https://dibi8.com/llm-frameworks/dvc-data-version-control-ml/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/dvc-data-version-control-ml/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Define a container image with PyTorch and CUDA pre-installed</title>
+      <link>https://dibi8.com/llm-frameworks/modal-serverless-gpu-compute/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/modal-serverless-gpu-compute/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Download UVR v5.6 from the official release page</title>
+      <link>https://dibi8.com/llm-frameworks/ultimate-vocal-remover/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/ultimate-vocal-remover/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>etcd: metadata coordination</title>
+      <link>https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Fetch data — VectorBT wraps yfinance for convenience</title>
+      <link>https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>For full features</title>
+      <link>https://dibi8.com/llm-frameworks/lightning-ai-lightning-complete-guide/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/lightning-ai-lightning-complete-guide/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>For GPU support</title>
+      <link>https://dibi8.com/llm-frameworks/google-jax-complete-guide/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/google-jax-complete-guide/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>For LLaMA-based models</title>
+      <link>https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Get current running configuration</title>
+      <link>https://dibi8.com/llm-frameworks/caddy/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/caddy/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>High-level component view</title>
+      <link>https://dibi8.com/llm-frameworks/kubeflow-ml-pipeline-kubernetes/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/kubeflow-ml-pipeline-kubernetes/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Ibis looks familiar to any pandas user</title>
+      <link>https://dibi8.com/llm-frameworks/ibis-dataframe-python-sql/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/ibis-dataframe-python-sql/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Import supervision</title>
+      <link>https://dibi8.com/llm-frameworks/roboflow-supervision/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/roboflow-supervision/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Initialize Ray cluster</title>
+      <link>https://dibi8.com/llm-frameworks/ray-distributed-ai-framework-complete-guide/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/ray-distributed-ai-framework-complete-guide/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Inspect architecture</title>
+      <link>https://dibi8.com/llm-frameworks/stable-diffusion-complete-guide/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/stable-diffusion-complete-guide/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Install CCXT for Python</title>
+      <link>https://dibi8.com/llm-frameworks/ccxt-crypto-exchange-api-unified/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/ccxt-crypto-exchange-api-unified/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Install CUDA 12.8 toolkit first (Linux)</title>
+      <link>https://dibi8.com/llm-frameworks/whisperx/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/whisperx/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Install dependencies (Ubuntu/Debian)</title>
+      <link>https://dibi8.com/llm-frameworks/stable-diffusion-webui/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/stable-diffusion-webui/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Install the Python wrapper</title>
+      <link>https://dibi8.com/llm-frameworks/ta-lib-technical-analysis-trading/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/ta-lib-technical-analysis-trading/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Install via npm</title>
+      <link>https://dibi8.com/llm-frameworks/1inch-dex-aggregator-routing/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/1inch-dex-aggregator-routing/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Introduction: The $12 Trillion Edge AI Gap</title>
+      <link>https://dibi8.com/llm-frameworks/baetyl-edge-ai-computing-platform/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/baetyl-edge-ai-computing-platform/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>LLM Model Recommender 2026 — Pick the Right LLM by Use Case, Budget, Context Length, Privacy</title>
+      <link>https://dibi8.com/llm-frameworks/llm-recommender/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/llm-recommender/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Ollama vs vLLM in 2026: Local Dev Simplicity vs Production Throughput</title>
+      <link>https://dibi8.com/llm-frameworks/ollama-vs-vllm/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/ollama-vs-vllm/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost</title>
+      <link>https://dibi8.com/llm-frameworks/paddleocr-81k-star-ocr-engine/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/paddleocr-81k-star-ocr-engine/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</title>
+      <link>https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>prefect-envScriptsactivate   Windows</title>
+      <link>https://dibi8.com/llm-frameworks/prefect-workflow-orchestration/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/prefect-workflow-orchestration/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Price of token A in terms of token B</title>
+      <link>https://dibi8.com/llm-frameworks/pancake-trading-bot-defi-bsc/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/pancake-trading-bot-defi-bsc/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Pull the official CUDA 12 image</title>
+      <link>https://dibi8.com/llm-frameworks/hunyuan-video/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/hunyuan-video/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Returns:</title>
+      <link>https://dibi8.com/llm-frameworks/weaviate-vector-search-enterprise/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/weaviate-vector-search-enterprise/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Step 1: Ensure you own an ENS domain</title>
+      <link>https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Step 1: Sign up at https://zapper.xyz and navigate to Developer Settings</title>
+      <link>https://dibi8.com/llm-frameworks/zapper-defi-dashboard-aggregator/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/zapper-defi-dashboard-aggregator/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>The complete MLflow architecture in one diagram:  1. Tracking Server (REST API &#43; UI)</title>
+      <link>https://dibi8.com/llm-frameworks/mlflow-experiment-tracking-production/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/mlflow-experiment-tracking-production/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Ubuntu/Debian</title>
+      <link>https://dibi8.com/llm-frameworks/lean-quantconnect-trading-engine/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/lean-quantconnect-trading-engine/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Verify — should return</title>
+      <link>https://dibi8.com/llm-frameworks/qdrant-vector-database-rust/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/qdrant-vector-database-rust/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Verify health</title>
+      <link>https://dibi8.com/llm-frameworks/meilisearch-fast-search-engine/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/meilisearch-fast-search-engine/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>What Is Moralis?</title>
+      <link>https://dibi8.com/llm-frameworks/moralis-web3-data-api/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/moralis-web3-data-api/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>whisper-envScriptsactivate   Windows</title>
+      <link>https://dibi8.com/llm-frameworks/openai-whisper/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/openai-whisper/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>Why Feature Engineering is the Bottleneck in ML Pipelines</title>
+      <link>https://dibi8.com/llm-frameworks/feature-engineering-tools-automation/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/feature-engineering-tools-automation/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+    <item>
+      <title>zenml-envScriptsactivate   Windows</title>
+      <link>https://dibi8.com/llm-frameworks/zenml-mlops-pipeline-framework/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/zenml-mlops-pipeline-framework/</guid>
+      <description>Technical guide and comparison</description>
+    </item>
+  </channel>
+</rss>

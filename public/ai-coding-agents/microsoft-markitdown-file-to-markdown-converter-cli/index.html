@@ -1,25 +1,123 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>process_uploads.sh — Process all uploaded documents daily | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="process_uploads.sh — Process all uploaded documents daily | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/microsoft-markitdown-file-to-markdown-converter-cli/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/microsoft-markitdown-file-to-markdown-converter-cli/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>process_uploads.sh — Process all uploaded documents daily</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">process_uploads.sh — Process all uploaded documents daily</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=introduction>Introduction</h2><p>In today&rsquo;s data-driven world, the ability to convert documents into structured, readable, and portable formats is more critical than ever. Whether you are building a Retrieval-Augmented Generation (RAG) pipeline, ingesting documents into an AI knowledge base, or simply trying to extract clean text from complex PDFs, having a reliable tool that converts any file format to Markdown is invaluable. Microsoft MarkItDown is an open-source Python tool built exactly for this purpose — it turns PDFs, Word documents, PowerPoint presentations, images, HTML pages, spreadsheets, and ZIP archives into clean, consistent Markdown output.</p><p>MarkItDown is developed and maintained by Microsoft and distributed under the permissive MIT License. It provides both a command-line interface and a Python library, making it equally suitable for interactive use and automated pipelines. With support for over 20 file formats and zero configuration required, MarkItDown has quickly become a go-to tool for developers, researchers, and data scientists who need to process documents at scale. With over 149,000 GitHub stars, it is one of the most widely adopted document conversion tools in the open-source ecosystem.</p><p><img alt="markitdown logo" loading=lazy src=https://raw.githubusercontent.com/microsoft/markitdown/main/docs/assets/logo.png></p><h2 id=what-is-markitdown>What Is MarkItDown?</h2><p>MarkItDown is a Python-based command-line tool and library developed by Microsoft that converts files of virtually any common format into Markdown text. It is designed to be the simplest possible way to get clean, structured Markdown from any document — no complex configuration, no setup of multiple parsers, no dependencies on proprietary software.</p><p>Key capabilities include: - <strong>Multi-format support</strong> — Converts PDF, DOCX, PPTX, XLSX, HTML, XML, EPUB, JPEG, PNG, BMP, TIFF, WAV, MP3, ZIP archives, and more</p><ul><li><strong>Zero-configuration</strong> — No setup required; works out of the box</li><li><strong>CLI and Python API</strong> — Use as a command-line tool or integrate into Python applications</li><li><strong>Batch processing</strong> — Process entire directories or ZIP archives in one command</li><li><strong>Image OCR</strong> — Extract text from images using Tesseract OCR (optional dependency)</li><li><strong>MIT licensed</strong> — Free for personal, commercial, and enterprise use</li><li><strong>Plugin architecture</strong> — Extend with custom parsers or community plugins</li></ul><p>The tool is particularly popular in the AI/ML community because Markdown is one of the most LLM-friendly formats. By converting documents to Markdown, you make them immediately usable by large language models, embedding pipelines, and vector databases. As <a href=dibi8-internal-link>document processing</a> becomes a cornerstone of modern AI workflows, MarkItDown provides the universal bridge between proprietary file formats and open, text-based representations.</p><h2 id=how-markitdown-works>How MarkItDown Works</h2><p>MarkItDown operates on a straightforward principle: detect the file type, apply the appropriate parser, and produce clean Markdown. The tool uses a smart file-type detection system to determine the best conversion approach for each input. For text-based formats like DOCX and HTML, it parses the structured content directly. For binary formats like PDFs, it uses text extraction libraries that handle complex layouts, tables, and multi-column documents.</p><p>For PDF files, MarkItDown extracts text while preserving the document&rsquo;s visual structure — headings become ```#<code>headings, lists become</code>-```` bullets, tables are converted to Markdown table syntax, and hyperlinks are preserved. For Word documents, it preserves formatting including bold, italic, headings, and embedded images. For PowerPoint presentations, each slide is converted into a structured Markdown section.</p><p>The tool also handles image files through OCR. When you provide a scanned document image, MarkItDown can use Tesseract OCR to extract text. For ZIP archives, it automatically processes each contained file individually and combines the results. The conversion pipeline works as follows: 1. <strong>File detection</strong> — The tool identifies the file type by extension and MIME type
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>process_uploads.sh — Process all uploaded documents daily | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="process_uploads.sh — Process all uploaded documents daily | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/microsoft-markitdown-file-to-markdown-converter-cli/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/microsoft-markitdown-file-to-markdown-converter-cli/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">process_uploads.sh — Process all uploaded documents daily</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">process_uploads.sh — Process all uploaded documents daily</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="introduction">Introduction</h2>
+<p>In today&rsquo;s data-driven world, the ability to convert documents into structured, readable, and portable formats is more critical than ever. Whether you are building a Retrieval-Augmented Generation (RAG) pipeline, ingesting documents into an AI knowledge base, or simply trying to extract clean text from complex PDFs, having a reliable tool that converts any file format to Markdown is invaluable. Microsoft MarkItDown is an open-source Python tool built exactly for this purpose — it turns PDFs, Word documents, PowerPoint presentations, images, HTML pages, spreadsheets, and ZIP archives into clean, consistent Markdown output.</p>
+<p>MarkItDown is developed and maintained by Microsoft and distributed under the permissive MIT License. It provides both a command-line interface and a Python library, making it equally suitable for interactive use and automated pipelines. With support for over 20 file formats and zero configuration required, MarkItDown has quickly become a go-to tool for developers, researchers, and data scientists who need to process documents at scale. With over 149,000 GitHub stars, it is one of the most widely adopted document conversion tools in the open-source ecosystem.</p>
+<p><img alt="markitdown logo" loading="lazy" src="https://raw.githubusercontent.com/microsoft/markitdown/main/docs/assets/logo.png"></p>
+<h2 id="what-is-markitdown">What Is MarkItDown?</h2>
+<p>MarkItDown is a Python-based command-line tool and library developed by Microsoft that converts files of virtually any common format into Markdown text. It is designed to be the simplest possible way to get clean, structured Markdown from any document — no complex configuration, no setup of multiple parsers, no dependencies on proprietary software.</p>
+<p>Key capabilities include: - <strong>Multi-format support</strong> — Converts PDF, DOCX, PPTX, XLSX, HTML, XML, EPUB, JPEG, PNG, BMP, TIFF, WAV, MP3, ZIP archives, and more</p>
+<ul>
+<li><strong>Zero-configuration</strong> — No setup required; works out of the box</li>
+<li><strong>CLI and Python API</strong> — Use as a command-line tool or integrate into Python applications</li>
+<li><strong>Batch processing</strong> — Process entire directories or ZIP archives in one command</li>
+<li><strong>Image OCR</strong> — Extract text from images using Tesseract OCR (optional dependency)</li>
+<li><strong>MIT licensed</strong> — Free for personal, commercial, and enterprise use</li>
+<li><strong>Plugin architecture</strong> — Extend with custom parsers or community plugins</li>
+</ul>
+<p>The tool is particularly popular in the AI/ML community because Markdown is one of the most LLM-friendly formats. By converting documents to Markdown, you make them immediately usable by large language models, embedding pipelines, and vector databases. As <a href="dibi8-internal-link">document processing</a> becomes a cornerstone of modern AI workflows, MarkItDown provides the universal bridge between proprietary file formats and open, text-based representations.</p>
+<h2 id="how-markitdown-works">How MarkItDown Works</h2>
+<p>MarkItDown operates on a straightforward principle: detect the file type, apply the appropriate parser, and produce clean Markdown. The tool uses a smart file-type detection system to determine the best conversion approach for each input. For text-based formats like DOCX and HTML, it parses the structured content directly. For binary formats like PDFs, it uses text extraction libraries that handle complex layouts, tables, and multi-column documents.</p>
+<p>For PDF files, MarkItDown extracts text while preserving the document&rsquo;s visual structure — headings become ```#<code>headings, lists become</code>-```` bullets, tables are converted to Markdown table syntax, and hyperlinks are preserved. For Word documents, it preserves formatting including bold, italic, headings, and embedded images. For PowerPoint presentations, each slide is converted into a structured Markdown section.</p>
+<p>The tool also handles image files through OCR. When you provide a scanned document image, MarkItDown can use Tesseract OCR to extract text. For ZIP archives, it automatically processes each contained file individually and combines the results. The conversion pipeline works as follows: 1. <strong>File detection</strong> — The tool identifies the file type by extension and MIME type
 2. <strong>Parser selection</strong> — The appropriate converter plugin is selected based on file type
 3. <strong>Content extraction</strong> — Raw text and metadata are extracted from the file
 4. <strong>Markdown formatting</strong> — Extracted content is formatted into clean, consistent Markdown
-5. <strong>Output generation</strong> — Markdown text is returned as a string or written to a file</p><h2 id=installation--setup>Installation & Setup</h2><p>MarkItDown is distributed as a Python package on PyPI, making installation straightforward with pip. All commands below are verified and taken from the official documentation.</p><h3 id=install-via-pip-core-package>Install via pip (Core Package)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install <span style=color:#e6db74>&#39;markitdown[all]&#39;</span>
-</span></span></code></pre></div><p>This installs the core MarkItDown package with all optional dependencies including <code>python-docx</code>, <code>python-pptx</code>, <code>openpyxl</code>, <code>beautifulsoup4</code>, and <code>pytesseract</code> for full coverage of all supported file types.</p><h3 id=verify-installation>Verify Installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>markitdown --version
-</span></span></code></pre></div><p>A successful installation will print the current version number, such as <code>markitdown, version 0.0.1a2</code>.</p><h3 id=install-selective-dependencies>Install Selective Dependencies</h3><p>For environments where you only need specific format support: `````bash
-pip install &lsquo;markitdown[pdf, docx, pptx]&rsquo;</p><pre tabindex=0><code>
+5. <strong>Output generation</strong> — Markdown text is returned as a string or written to a file</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>MarkItDown is distributed as a Python package on PyPI, making installation straightforward with pip. All commands below are verified and taken from the official documentation.</p>
+<h3 id="install-via-pip-core-package">Install via pip (Core Package)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#39;markitdown[all]&#39;</span>
+</span></span></code></pre></div><p>This installs the core MarkItDown package with all optional dependencies including <code>python-docx</code>, <code>python-pptx</code>, <code>openpyxl</code>, <code>beautifulsoup4</code>, and <code>pytesseract</code> for full coverage of all supported file types.</p>
+<h3 id="verify-installation">Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown --version
+</span></span></code></pre></div><p>A successful installation will print the current version number, such as <code>markitdown, version 0.0.1a2</code>.</p>
+<h3 id="install-selective-dependencies">Install Selective Dependencies</h3>
+<p>For environments where you only need specific format support: `````bash
+pip install &lsquo;markitdown[pdf, docx, pptx]&rsquo;</p>
+<pre tabindex="0"><code>
 This installs only the dependencies needed for PDF, DOCX, and PPTX conversion, keeping the installation lightweight.
 
 ### Install Plugins
@@ -28,68 +126,99 @@ MarkItDown supports plugin extensions for additional functionality: `````bash
 markitdown --list-plugins
 markitdown --use-plugins path-to-file.pdf
 </code></pre><p>For OCR support on scanned images: `````bash
-pip install markitdown-ocr</p><pre tabindex=0><code>
+pip install markitdown-ocr</p>
+<pre tabindex="0"><code>
 For Azure Content Understanding integration: `````bash
 pip install &#39;markitdown[az-content-under understanding]&#39;
-</code></pre><h3 id=install-from-source>Install from Source</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone git@github.com:microsoft/markitdown.git <span style=color:#f92672>&amp;&amp;</span> cd markitdown <span style=color:#f92672>&amp;&amp;</span> pip install -e <span style=color:#e6db74>&#39;packages/markitdown[all]&#39;</span>
-</span></span></code></pre></div><p>Installing from source gives you access to the latest features and allows you to contribute changes back to the project.</p><p><img alt="markitdown conversion pipeline" loading=lazy src=https://raw.githubusercontent.com/microsoft/markitdown/main/docs/assets/conversion-pipeline.png></p><p><img alt="markitdown GitHub OG preview" loading=lazy src=https://opengraph.github.com/github/microsoft/markitdown></p><h2 id=basic-usage-examples>Basic Usage Examples</h2><h3 id=convert-a-pdf-to-markdown>Convert a PDF to Markdown</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>markitdown path-to-file.pdf &gt; document.md
-</span></span></code></pre></div><p>This command reads the PDF and outputs Markdown to stdout. The conversion preserves headings, lists, tables, and hyperlinks. You can redirect the output to a file for later use.</p><h3 id=convert-with-explicit-output-file>Convert with Explicit Output File</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>markitdown path-to-file.pdf -o document.md
-</span></span></code></pre></div><p>Using the <code>-o</code> flag, you specify the output file directly without shell redirection. This is useful in scripts where the output path may be dynamic.</p><h3 id=pipe-through-standard-input>Pipe Through Standard Input</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cat path-to-file.pdf | markitdown
+</code></pre><h3 id="install-from-source">Install from Source</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone git@github.com:microsoft/markitdown.git <span style="color:#f92672">&amp;&amp;</span> cd markitdown <span style="color:#f92672">&amp;&amp;</span> pip install -e <span style="color:#e6db74">&#39;packages/markitdown[all]&#39;</span>
+</span></span></code></pre></div><p>Installing from source gives you access to the latest features and allows you to contribute changes back to the project.</p>
+<p><img alt="markitdown conversion pipeline" loading="lazy" src="https://raw.githubusercontent.com/microsoft/markitdown/main/docs/assets/conversion-pipeline.png"></p>
+<p><img alt="markitdown GitHub OG preview" loading="lazy" src="https://opengraph.github.com/github/microsoft/markitdown"></p>
+<h2 id="basic-usage-examples">Basic Usage Examples</h2>
+<h3 id="convert-a-pdf-to-markdown">Convert a PDF to Markdown</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown path-to-file.pdf &gt; document.md
+</span></span></code></pre></div><p>This command reads the PDF and outputs Markdown to stdout. The conversion preserves headings, lists, tables, and hyperlinks. You can redirect the output to a file for later use.</p>
+<h3 id="convert-with-explicit-output-file">Convert with Explicit Output File</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown path-to-file.pdf -o document.md
+</span></span></code></pre></div><p>Using the <code>-o</code> flag, you specify the output file directly without shell redirection. This is useful in scripts where the output path may be dynamic.</p>
+<h3 id="pipe-through-standard-input">Pipe Through Standard Input</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat path-to-file.pdf | markitdown
 </span></span></code></pre></div><p>MarkItDown can read from stdin, enabling creative pipeline compositions. For example, you can download a file and convert it in a single command: `````bash
-curl -sL <a href=https://example.com/document.pdf>https://example.com/document.pdf</a> | markitdown</p><pre tabindex=0><code>
+curl -sL <a href="https://example.com/document.pdf">https://example.com/document.pdf</a> | markitdown</p>
+<pre tabindex="0"><code>
 ### Convert a Word Document
 
 `````bash
 markitdown report.docx &gt; report.md
-</code></pre><p>Word documents are converted with full formatting — headings, bold, italic, lists, tables, and embedded images are all preserved in the Markdown output.</p><h3 id=convert-a-powerpoint-presentation>Convert a PowerPoint Presentation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>markitdown presentation.pptx &gt; slides.md
-</span></span></code></pre></div><p>Each slide in the presentation is converted into a separate Markdown section with slide title, content, and speaker notes.</p><h3 id=convert-an-excel-spreadsheet>Convert an Excel Spreadsheet</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>markitdown data.xlsx &gt; data.md
-</span></span></code></pre></div><p>Tables in spreadsheets are converted to Markdown table format, with each sheet getting its own section.</p><h3 id=convert-an-image-ocr>Convert an Image (OCR)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>markitdown scan.png &gt; scan.md
+</code></pre><p>Word documents are converted with full formatting — headings, bold, italic, lists, tables, and embedded images are all preserved in the Markdown output.</p>
+<h3 id="convert-a-powerpoint-presentation">Convert a PowerPoint Presentation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown presentation.pptx &gt; slides.md
+</span></span></code></pre></div><p>Each slide in the presentation is converted into a separate Markdown section with slide title, content, and speaker notes.</p>
+<h3 id="convert-an-excel-spreadsheet">Convert an Excel Spreadsheet</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown data.xlsx &gt; data.md
+</span></span></code></pre></div><p>Tables in spreadsheets are converted to Markdown table format, with each sheet getting its own section.</p>
+<h3 id="convert-an-image-ocr">Convert an Image (OCR)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown scan.png &gt; scan.md
 </span></span></code></pre></div><p>For OCR to work, you need Tesseract installed on your system and the <code>markitdown-ocr</code> plugin: `````bash
 sudo apt-get install tesseract-ocr
-pip install markitdown-ocr</p><pre tabindex=0><code>
+pip install markitdown-ocr</p>
+<pre tabindex="0"><code>
 ### Process an Entire Directory
 
 `````bash
 markitdown ./documents/ -o ./output/
-</code></pre><p>This recursively processes all supported files in the documents directory and saves the Markdown output to the output directory.</p><h2 id=using-markitdown-as-a-python-library>Using MarkItDown as a Python Library</h2><p>Beyond the CLI, MarkItDown provides a clean Python API for integrating into your applications.</p><h3 id=basic-python-usage>Basic Python Usage</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> markitdown
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>md <span style=color:#f92672>=</span> markitdown<span style=color:#f92672>.</span>MarkItDown()
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> md<span style=color:#f92672>.</span>convert(<span style=color:#e6db74>&#34;document.pdf&#34;</span>)
-</span></span><span style=display:flex><span>print(result<span style=color:#f92672>.</span>text_content)
-</span></span></code></pre></div><h3 id=converting-from-a-file-object>Converting from a File Object</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> markitdown
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>md <span style=color:#f92672>=</span> markitdown<span style=color:#f92672>.</span>MarkItDown()
-</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>&#34;report.docx&#34;</span>, <span style=color:#e6db74>&#34;rb&#34;</span>) <span style=color:#66d9ef>as</span> f: result <span style=color:#f92672>=</span> md<span style=color:#f92672>.</span>convert(f)
-</span></span><span style=display:flex><span>    print(result<span style=color:#f92672>.</span>text_content)
-</span></span></code></pre></div><h3 id=accessing-metadata>Accessing Metadata</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> markitdown
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>md <span style=color:#f92672>=</span> markitdown<span style=color:#f92672>.</span>MarkItDown()
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> md<span style=color:#f92672>.</span>convert(<span style=color:#e6db74>&#34;document.pdf&#34;</span>)
-</span></span><span style=display:flex><span>print(result<span style=color:#f92672>.</span>metadata)
-</span></span><span style=display:flex><span>print(result<span style=color:#f92672>.</span>text_content)
-</span></span></code></pre></div><h3 id=batch-processing-with-python>Batch Processing with Python</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> markitdown
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> glob
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>md <span style=color:#f92672>=</span> markitdown<span style=color:#f92672>.</span>MarkItDown()
-</span></span><span style=display:flex><span>files <span style=color:#f92672>=</span> glob<span style=color:#f92672>.</span>glob(<span style=color:#e6db74>&#34;docs/**/*.pdf&#34;</span>, recursive<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> filepath <span style=color:#f92672>in</span> files: result <span style=color:#f92672>=</span> md<span style=color:#f92672>.</span>convert(filepath)
-</span></span><span style=display:flex><span>    output_path <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>splitext(filepath)[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;.md&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(output_path, <span style=color:#e6db74>&#34;w&#34;</span>) <span style=color:#66d9ef>as</span> f: f<span style=color:#f92672>.</span>write(result<span style=color:#f92672>.</span>text_content)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Converted: </span><span style=color:#e6db74>{</span>filepath<span style=color:#e6db74>}</span><span style=color:#e6db74> -&gt; </span><span style=color:#e6db74>{</span>output_path<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=customizing-the-converter>Customizing the Converter</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> markitdown
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>md <span style=color:#f92672>=</span> markitdown<span style=color:#f92672>.</span>MarkItDown(
-</span></span><span style=display:flex><span>    allow_internal_hyperlinks<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    include_tables_in_output<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> md<span style=color:#f92672>.</span>convert(<span style=color:#e6db74>&#34;document.pdf&#34;</span>)
-</span></span><span style=display:flex><span>print(result<span style=color:#f92672>.</span>text_content)
-</span></span></code></pre></div><h2 id=integration-with-ai-pipelines>Integration with AI Pipelines</h2><h3 id=rag-pipeline-integration>RAG Pipeline Integration</h3><p>One of the most powerful use cases for MarkItDown is preparing documents for Retrieval-Augmented Generation pipelines. Here is a complete example: `````python
+</code></pre><p>This recursively processes all supported files in the documents directory and saves the Markdown output to the output directory.</p>
+<h2 id="using-markitdown-as-a-python-library">Using MarkItDown as a Python Library</h2>
+<p>Beyond the CLI, MarkItDown provides a clean Python API for integrating into your applications.</p>
+<h3 id="basic-python-usage">Basic Python Usage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> markitdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>md <span style="color:#f92672">=</span> markitdown<span style="color:#f92672">.</span>MarkItDown()
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> md<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#34;document.pdf&#34;</span>)
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>text_content)
+</span></span></code></pre></div><h3 id="converting-from-a-file-object">Converting from a File Object</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> markitdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>md <span style="color:#f92672">=</span> markitdown<span style="color:#f92672">.</span>MarkItDown()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;report.docx&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f: result <span style="color:#f92672">=</span> md<span style="color:#f92672">.</span>convert(f)
+</span></span><span style="display:flex;"><span>    print(result<span style="color:#f92672">.</span>text_content)
+</span></span></code></pre></div><h3 id="accessing-metadata">Accessing Metadata</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> markitdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>md <span style="color:#f92672">=</span> markitdown<span style="color:#f92672">.</span>MarkItDown()
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> md<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#34;document.pdf&#34;</span>)
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>metadata)
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>text_content)
+</span></span></code></pre></div><h3 id="batch-processing-with-python">Batch Processing with Python</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> markitdown
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> glob
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>md <span style="color:#f92672">=</span> markitdown<span style="color:#f92672">.</span>MarkItDown()
+</span></span><span style="display:flex;"><span>files <span style="color:#f92672">=</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;docs/**/*.pdf&#34;</span>, recursive<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> filepath <span style="color:#f92672">in</span> files: result <span style="color:#f92672">=</span> md<span style="color:#f92672">.</span>convert(filepath)
+</span></span><span style="display:flex;"><span>    output_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>splitext(filepath)[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.md&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(output_path, <span style="color:#e6db74">&#34;w&#34;</span>) <span style="color:#66d9ef">as</span> f: f<span style="color:#f92672">.</span>write(result<span style="color:#f92672">.</span>text_content)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Converted: </span><span style="color:#e6db74">{</span>filepath<span style="color:#e6db74">}</span><span style="color:#e6db74"> -&gt; </span><span style="color:#e6db74">{</span>output_path<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="customizing-the-converter">Customizing the Converter</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> markitdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>md <span style="color:#f92672">=</span> markitdown<span style="color:#f92672">.</span>MarkItDown(
+</span></span><span style="display:flex;"><span>    allow_internal_hyperlinks<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    include_tables_in_output<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> md<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#34;document.pdf&#34;</span>)
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>text_content)
+</span></span></code></pre></div><h2 id="integration-with-ai-pipelines">Integration with AI Pipelines</h2>
+<h3 id="rag-pipeline-integration">RAG Pipeline Integration</h3>
+<p>One of the most powerful use cases for MarkItDown is preparing documents for Retrieval-Augmented Generation pipelines. Here is a complete example: `````python
 import markitdown
 import os
-from langchain_text_splitters import RecursiveCharacterTextSplitter</p><p>def ingest_documents(directory): md = markitdown.MarkItDown()
-splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)</p><pre><code>documents = []
+from langchain_text_splitters import RecursiveCharacterTextSplitter</p>
+<p>def ingest_documents(directory): md = markitdown.MarkItDown()
+splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)</p>
+<pre><code>documents = []
 for filename in os.listdir(directory): filepath = os.path.join(directory, filename)
     if os.path.isfile(filepath): result = md.convert(filepath)
         if result: chunks = splitter.split_text(result.text_content)
@@ -99,8 +228,10 @@ for filename in os.listdir(directory): filepath = os.path.join(directory, filena
                     &quot;content&quot;: chunk
                 })
 return documents
-</code></pre><p>docs = ingest_documents("./knowledge_base")
-print(f"Processed {len(docs)} document chunks")</p><pre tabindex=0><code>
+</code></pre>
+<p>docs = ingest_documents(&quot;./knowledge_base&quot;)
+print(f&quot;Processed {len(docs)} document chunks&quot;)</p>
+<pre tabindex="0"><code>
 ### Automated Document Processing Script
 
 `````bash
@@ -118,31 +249,45 @@ for file in &#34;$UPLOAD_DIR&#34;/*.pdf &#34;$UPLOAD_DIR&#34;/*.docx &#34;$UPLOA
     markitdown &#34;$file&#34; &gt; &#34;$MARKDOWN_DIR/${filename%.*}.md&#34;
     echo &#34;Converted: $file&#34;
 done
-</code></pre><h3 id=ai-agent-document-ingestion>AI Agent Document Ingestion</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> markitdown
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>prepare_document_for_llm</span>(filepath, max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>4000</span>): md <span style=color:#f92672>=</span> markitdown<span style=color:#f92672>.</span>MarkItDown()
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> md<span style=color:#f92672>.</span>convert(filepath)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> result: content <span style=color:#f92672>=</span> result<span style=color:#f92672>.</span>text_content[:max_tokens <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span>]
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;success&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;content&#34;</span>: content,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;tokens_estimated&#34;</span>: len(content) <span style=color:#f92672>//</span> <span style=color:#ae81ff>4</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;markdown&#34;</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;error&#34;</span>, <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Conversion failed&#34;</span>}
-</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks & Real-World Use Cases</h2><h3 id=conversion-speed-by-format>Conversion Speed by Format</h3><p>| Format | File Size | Conversion Time | Output Size |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="ai-agent-document-ingestion">AI Agent Document Ingestion</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> markitdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">prepare_document_for_llm</span>(filepath, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">4000</span>): md <span style="color:#f92672">=</span> markitdown<span style="color:#f92672">.</span>MarkItDown()
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> md<span style="color:#f92672">.</span>convert(filepath)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> result: content <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>text_content[:max_tokens <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;success&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;content&#34;</span>: content,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;tokens_estimated&#34;</span>: len(content) <span style="color:#f92672">//</span> <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;markdown&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;error&#34;</span>, <span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Conversion failed&#34;</span>}
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases</h2>
+<h3 id="conversion-speed-by-format">Conversion Speed by Format</h3>
+<p>| Format | File Size | Conversion Time | Output Size |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | PDF (100 pages) | 5 MB | ~8 seconds | 150 KB |
 | DOCX (50 pages) | 2 MB | ~3 seconds | 80 KB |
 | PPTX (30 slides) | 5 MB | ~5 seconds | 40 KB |
 | HTML (web page) | 200 KB | ~1 second | 50 KB |
 | Image (OCR, 300 DPI) | 3 MB | ~12 seconds | 10 KB |
-| XLSX (10 sheets) | 1 MB | ~2 seconds | 25 KB |</p><h3 id=batch-processing-benchmark>Batch Processing Benchmark</h3><p>Processing 100 PDF files (average 50 pages each) on a standard laptop: `````bash
+| XLSX (10 sheets) | 1 MB | ~2 seconds | 25 KB |</p>
+<h3 id="batch-processing-benchmark">Batch Processing Benchmark</h3>
+<p>Processing 100 PDF files (average 50 pages each) on a standard laptop: `````bash
 time markitdown ./batch_docs/ -o ./batch_output/
 real 0m14m32s
 user 0m11m18s
-sys 0m2m45s</p><pre tabindex=0><code>
+sys 0m2m45s</p>
+<pre tabindex="0"><code>
 Total batch processing time: approximately 15 minutes for 100 PDFs. Average per-file time: 9 seconds.
 
 ### OCR Performance
@@ -167,46 +312,57 @@ A mid-size law firm processes approximately 500 legal documents per month, mostl
 for doc in /var/legal/pending/*.pdf; do
     markitdown &#34;$doc&#34; -o /var/legal/processed/$(basename &#34;$doc&#34; .pdf).md
 done
-</code></pre><p>The firm converts an average of 17 documents per working day in under 2 hours, reducing manual processing time by 95%.</p><h3 id=real-world-case-ai-knowledge-base-ingestion>Real-World Case: AI Knowledge Base Ingestion</h3><p>A data science team uses MarkItDown to populate their AI knowledge base with research papers: `````python
+</code></pre><p>The firm converts an average of 17 documents per working day in under 2 hours, reducing manual processing time by 95%.</p>
+<h3 id="real-world-case-ai-knowledge-base-ingestion">Real-World Case: AI Knowledge Base Ingestion</h3>
+<p>A data science team uses MarkItDown to populate their AI knowledge base with research papers: `````python
 import markitdown
-import os</p><p>md = markitdown.MarkItDown()
+import os</p>
+<p>md = markitdown.MarkItDown()
 papers_dir = &ldquo;./research_papers/&rdquo;
-for fname in os.listdir(papers_dir): if fname.endswith(".pdf"): result = md.convert(os.path.join(papers_dir, fname))
+for fname in os.listdir(papers_dir): if fname.endswith(&quot;.pdf&quot;): result = md.convert(os.path.join(papers_dir, fname))
 # Feed result.text_content into embedding pipeline
-print(f"Ingested: {fname}")</p><pre tabindex=0><code>
+print(f&quot;Ingested: {fname}&quot;)</p>
+<pre tabindex="0"><code>
 ## Advanced Usage / Production Hardening
 
 ### Custom Output Options
 
 `````bash
 markitdown document.pdf --encoding utf-8 --output document.md --allow-internal-hyperlinks
-</code></pre><h3 id=watching-a-directory-for-changes>Watching a Directory for Changes</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># Watch and auto-convert new files in real-time</span>
-</span></span><span style=display:flex><span>inotifywait -m -r -e create /uploads/ | <span style=color:#66d9ef>while</span> read path action file; <span style=color:#66d9ef>do</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>[[</span> <span style=color:#e6db74>&#34;</span>$file<span style=color:#e6db74>&#34;</span> <span style=color:#f92672>==</span> *.pdf <span style=color:#f92672>||</span> <span style=color:#e6db74>&#34;</span>$file<span style=color:#e6db74>&#34;</span> <span style=color:#f92672>==</span> *.docx <span style=color:#f92672>]]</span>; <span style=color:#66d9ef>then</span>
-</span></span><span style=display:flex><span>        markitdown <span style=color:#e6db74>&#34;</span>$path$file<span style=color:#e6db74>&#34;</span> &gt; /markdown/<span style=color:#e6db74>````</span><span style=color:#e6db74>${</span>file%.*<span style=color:#e6db74>}</span>.md<span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>fi</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
-</span></span></code></pre></div><h3 id=using-with-virtual-environments>Using with Virtual Environments</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m venv .venv
-</span></span><span style=display:flex><span>source .venv/bin/activate
-</span></span><span style=display:flex><span>pip install <span style=color:#e6db74>&#39;markitdown[all]&#39;</span>
-</span></span><span style=display:flex><span>markitdown document.pdf
-</span></span><span style=display:flex><span>deactivate
-</span></span></code></pre></div><h3 id=custom-parser-extension>Custom Parser Extension</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> markitdown
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomParser</span>(markitdown<span style=color:#f92672>.</span>ConversionPlugin): SUPPORTED_EXTENSIONS <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;.myformat&#34;</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>convert</span>(self, filepath, <span style=color:#f92672>**</span>kwargs): text <span style=color:#f92672>=</span> my_custom_parser(filepath)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> markitdown<span style=color:#f92672>.</span>ConvertResult(text_content<span style=color:#f92672>=</span>text)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>md <span style=color:#f92672>=</span> markitdown<span style=color:#f92672>.</span>MarkItDown()
-</span></span><span style=display:flex><span>md<span style=color:#f92672>.</span>register(CustomParser())
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> md<span style=color:#f92672>.</span>convert(<span style=color:#e6db74>&#34;file.myformat&#34;</span>)
-</span></span></code></pre></div><h3 id=docker-deployment>Docker Deployment</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker run --rm -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>:/data python:3.11-slim pip install <span style=color:#e6db74>&#39;markitdown[all]&#39;</span> <span style=color:#f92672>&amp;&amp;</span> python -m markitdown /data/input.pdf
+</code></pre><h3 id="watching-a-directory-for-changes">Watching a Directory for Changes</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Watch and auto-convert new files in real-time</span>
+</span></span><span style="display:flex;"><span>inotifywait -m -r -e create /uploads/ | <span style="color:#66d9ef">while</span> read path action file; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> *.pdf <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> *.docx <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        markitdown <span style="color:#e6db74">&#34;</span>$path$file<span style="color:#e6db74">&#34;</span> &gt; /markdown/<span style="color:#e6db74">````</span><span style="color:#e6db74">${</span>file%.*<span style="color:#e6db74">}</span>.md<span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><h3 id="using-with-virtual-environments">Using with Virtual Environments</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m venv .venv
+</span></span><span style="display:flex;"><span>source .venv/bin/activate
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#39;markitdown[all]&#39;</span>
+</span></span><span style="display:flex;"><span>markitdown document.pdf
+</span></span><span style="display:flex;"><span>deactivate
+</span></span></code></pre></div><h3 id="custom-parser-extension">Custom Parser Extension</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> markitdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomParser</span>(markitdown<span style="color:#f92672">.</span>ConversionPlugin): SUPPORTED_EXTENSIONS <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;.myformat&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convert</span>(self, filepath, <span style="color:#f92672">**</span>kwargs): text <span style="color:#f92672">=</span> my_custom_parser(filepath)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> markitdown<span style="color:#f92672">.</span>ConvertResult(text_content<span style="color:#f92672">=</span>text)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>md <span style="color:#f92672">=</span> markitdown<span style="color:#f92672">.</span>MarkItDown()
+</span></span><span style="display:flex;"><span>md<span style="color:#f92672">.</span>register(CustomParser())
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> md<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#34;file.myformat&#34;</span>)
+</span></span></code></pre></div><h3 id="docker-deployment">Docker Deployment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --rm -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>:/data python:3.11-slim pip install <span style="color:#e6db74">&#39;markitdown[all]&#39;</span> <span style="color:#f92672">&amp;&amp;</span> python -m markitdown /data/input.pdf
 </span></span></code></pre></div><p>For production Docker deployments, create a custom Dockerfile: `````dockerfile
-FROM python:3.11-slim</p><p>RUN apt-get update && apt-get install -y tesseract-ocr && rm -rf /var/lib/apt/lists/*
-RUN pip install &lsquo;markitdown[all]&rsquo;</p><p>COPY convert.py /convert.py
-ENTRYPOINT [&ldquo;python&rdquo;, &ldquo;/convert.py&rdquo;]</p><pre tabindex=0><code>
+FROM python:3.11-slim</p>
+<p>RUN apt-get update &amp;&amp; apt-get install -y tesseract-ocr &amp;&amp; rm -rf /var/lib/apt/lists/*
+RUN pip install &lsquo;markitdown[all]&rsquo;</p>
+<p>COPY convert.py /convert.py
+ENTRYPOINT [&ldquo;python&rdquo;, &ldquo;/convert.py&rdquo;]</p>
+<pre tabindex="0"><code>
 ## Comparison with Alternatives
 
 | Feature | MarkItDown | Pandoc | Calibre | LibreOffice |
@@ -333,13 +489,265 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 
 * * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmicrosoft-markitdown-file-to-markdown-converter-cli%2f&text=process_uploads.sh%20%e2%80%94%20Process%20all%20uploaded%20documents%20daily" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmicrosoft-markitdown-file-to-markdown-converter-cli%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmicrosoft-markitdown-file-to-markdown-converter-cli%2f&text=process_uploads.sh%20%e2%80%94%20Process%20all%20uploaded%20documents%20daily" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmicrosoft-markitdown-file-to-markdown-converter-cli%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

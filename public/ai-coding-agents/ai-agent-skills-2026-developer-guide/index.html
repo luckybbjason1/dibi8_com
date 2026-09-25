@@ -1,34 +1,195 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Install individual skills on demand (recommended) | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Install individual skills on demand (recommended) | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/ai-agent-skills-2026-developer-guide/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/ai-agent-skills-2026-developer-guide/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Install individual skills on demand (recommended)</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install individual skills on demand (recommended)</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>{&lt;/* resource-info */>}</p><p><strong>Meta Description:</strong> Master AI Agent Skills in 2026 with our comprehensive guide. Learn how mattpocock/skills, obra/superpowers, and agentmemory are transforming Claude Code, Cursor, and Codex CLI workflows. Step-by-step installation, usage, and custom skill authoring included.</p><p><strong>Published:</strong> May 16, 2026
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install individual skills on demand (recommended) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Install individual skills on demand (recommended) | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/ai-agent-skills-2026-developer-guide/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/ai-agent-skills-2026-developer-guide/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install individual skills on demand (recommended)</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install individual skills on demand (recommended)</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>{&lt;/* resource-info */&gt;}</p>
+<p><strong>Meta Description:</strong> Master AI Agent Skills in 2026 with our comprehensive guide. Learn how mattpocock/skills, obra/superpowers, and agentmemory are transforming Claude Code, Cursor, and Codex CLI workflows. Step-by-step installation, usage, and custom skill authoring included.</p>
+<p><strong>Published:</strong> May 16, 2026
 <strong>Reading Time:</strong> 12 minutes
-<strong>Keywords:</strong> AI agent skills, Claude Code skills tutorial, mattpocock skills guide, agent workflow 2026, AI coding agent skills, how to write agent skills, Cursor skills vs prompts, MCP vs skills, production AI agent workflows</p><hr><h2 id=tldr-why-agent-skills-are-the-defining-developer-tool-of-2026>TL;DR: Why Agent Skills Are the Defining Developer Tool of 2026</h2><p>For two consecutive weeks in May 2026, GitHub Trending has been dominated by a single concept: <strong>AI Agent Skills</strong>. mattpocock/skills sits at #1 with 75,000+ stars. obra/superpowers commands the largest community at 188,000 stars. And rohitg00/agentmemory solves the memory amnesia that plagues every AI coding agent.</p><p>Skills are not prompts. They are reusable, structured workflow definitions that turn inconsistent AI assistance into predictable, team-scalable engineering processes. If you are not using them yet, you are working with one hand tied behind your back.</p><hr><h2 id=what-are-ai-agent-skills-really>What Are AI Agent Skills, Really?</h2><p>The fastest way to understand Skills is to understand what they fix. Every developer who has used Claude Code, Cursor, or Codex CLI has experienced these failure modes: - <strong>The Agent does something completely different from what you wanted</strong> — because your instructions were interpreted through the model&rsquo;s general training, not your specific context.</p><ul><li><strong>The Agent forgets project conventions between sessions</strong> — because each conversation starts from a blank slate.</li><li><strong>The Agent skips critical steps</strong> — like writing tests before implementation, or reviewing the existing codebase before proposing changes.</li><li><strong>Different team members get different results from the same request</strong> — because each person phrases their prompts differently.</li></ul><p>Skills solve all four problems by replacing improvisation with procedure.</p><h3 id=skills-vs-prompts-vs-mcp-the-three-layer-stack>Skills vs Prompts vs MCP: The Three-Layer Stack</h3><p>| Layer | Analogy | Scope | What It Does |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+<strong>Keywords:</strong> AI agent skills, Claude Code skills tutorial, mattpocock skills guide, agent workflow 2026, AI coding agent skills, how to write agent skills, Cursor skills vs prompts, MCP vs skills, production AI agent workflows</p>
+<hr>
+<h2 id="tldr-why-agent-skills-are-the-defining-developer-tool-of-2026">TL;DR: Why Agent Skills Are the Defining Developer Tool of 2026</h2>
+<p>For two consecutive weeks in May 2026, GitHub Trending has been dominated by a single concept: <strong>AI Agent Skills</strong>. mattpocock/skills sits at #1 with 75,000+ stars. obra/superpowers commands the largest community at 188,000 stars. And rohitg00/agentmemory solves the memory amnesia that plagues every AI coding agent.</p>
+<p>Skills are not prompts. They are reusable, structured workflow definitions that turn inconsistent AI assistance into predictable, team-scalable engineering processes. If you are not using them yet, you are working with one hand tied behind your back.</p>
+<hr>
+<h2 id="what-are-ai-agent-skills-really">What Are AI Agent Skills, Really?</h2>
+<p>The fastest way to understand Skills is to understand what they fix. Every developer who has used Claude Code, Cursor, or Codex CLI has experienced these failure modes: - <strong>The Agent does something completely different from what you wanted</strong> — because your instructions were interpreted through the model&rsquo;s general training, not your specific context.</p>
+<ul>
+<li><strong>The Agent forgets project conventions between sessions</strong> — because each conversation starts from a blank slate.</li>
+<li><strong>The Agent skips critical steps</strong> — like writing tests before implementation, or reviewing the existing codebase before proposing changes.</li>
+<li><strong>Different team members get different results from the same request</strong> — because each person phrases their prompts differently.</li>
+</ul>
+<p>Skills solve all four problems by replacing improvisation with procedure.</p>
+<h3 id="skills-vs-prompts-vs-mcp-the-three-layer-stack">Skills vs Prompts vs MCP: The Three-Layer Stack</h3>
+<p>| Layer | Analogy | Scope | What It Does |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Prompts</strong> | Conversation | Single session | Expresses immediate intent |
 | <strong>Skills</strong> | Standard Operating Procedure | Project/team | Defines <em>how</em> work gets done |
-| <strong>MCP</strong> | API Integration | Cross-application | Connects agents to external systems |</p><p>A prompt says: <em>&ldquo;Build a login form.&rdquo;</em>
-A Skill says: <em>&ldquo;When asked to build authentication, first review existing user models, then write a failing test for the auth flow, then implement the minimal passing code, then add guardrails against SQL injection, then document the API contract.&rdquo;</em></p><p>MCP lets the Agent query your production database to check existing schema. Skills tell it what to do with that information. They are complementary, not competitive.</p><hr><h2 id=the-three-github-trending-repositories-you-should-inspect>The Three GitHub Trending Repositories You Should Inspect</h2><h3 id=mattpocockskills-real-engineer-skills-for-daily-use-75133-stars-3867-this-week>mattpocock/skills: Real-Engineer Skills for Daily Use (75,133 stars, +3,867 this week)</h3><p>Matt Pocock — the educator behind Total TypeScript and one of the most trusted voices in modern JavaScript — open-sourced his entire ```.claude```` directory. These are not tutorial examples. These are the exact workflows he runs daily.</p><p><strong>The 21 skills are organized into four domains:</strong></p><p><strong>Planning & Design</strong></p><ul><li><code>write-a-prd</code> — Conducts an interactive discovery session, explores your codebase, designs module boundaries, and produces a complete PRD filed as a GitHub Issue. Not a template fill-in exercise. A design session.</li><li><code>to-issues</code> — Decomposes any PRD, spec, or plan into independently actionable GitHub issues with acceptance criteria and dependency mapping.</li><li><code>grill-me</code> — Structured interrogation of your design decisions before a single line of code is written. Surfaces assumptions, edge cases, and interface risks.</li><li><code>design-an-interface</code> — API ergonomics and constraint exploration before implementation.</li></ul><p><strong>Development</strong></p><ul><li><code>tdd</code> — The most technically opinionated skill. Enforces Red-Green-Refactor at the agent level. The agent <em>cannot</em> skip writing the failing test first. For teams with existing test discipline, this is the highest-ROI skill in the entire collection.</li><li><code>triage</code> — Transforms vague bug reports into structured root-cause analyses through a state-machine investigation: reproduce → minimize → hypothesize → instrument → fix → regression-test.</li><li><code>improve-codebase-architecture</code> — Identifies deep modules, shallow interfaces, and simplification opportunities informed by your domain language and ADRs.</li></ul><p><strong>Tooling & Safety</strong></p><ul><li><code>setup-pre-commit</code> — Configures Husky, lint-staged, and Prettier with one command.</li><li><code>git-guardrails-claude-code</code> — Blocks dangerous git operations that would break CI, rewrite shared branch history, or delete work. Applies the same constraints a senior engineer places on a junior contributor.</li></ul><p><strong>Productivity</strong></p><ul><li><code>caveman</code> — Ultra-compressed communication mode that cuts token usage ~75% while preserving technical accuracy.</li><li><code>handoff</code> — Compacts the current conversation into a structured handoff document so another agent — or another human — can continue the work seamlessly.</li></ul><p><strong>Installation:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install individual skills on demand (recommended)</span>
-</span></span><span style=display:flex><span>npx skills@latest add mattpocock/skills/tdd
-</span></span><span style=display:flex><span>npx skills@latest add mattpocock/skills/write-a-prd
-</span></span><span style=display:flex><span>npx skills@latest add mattpocock/skills/git-guardrails-claude-code
-</span></span></code></pre></div><p>Claude Code auto-discovers <code>.claude/skills/</code> on next launch. Install only what your current project needs.</p><hr><h3 id=obrasuperpowers-the-largest-community-driven-skill-collection-188714-total-stars>obra/superpowers: The Largest Community-Driven Skill Collection (188,714 total stars)</h3><p>Where mattpocock/skills is a curated personal toolkit, obra/superpowers is a community commons. With nearly 189K stars, it represents the most battle-tested collective knowledge about agent workflows.</p><p><strong>What makes it distinct:</strong></p><ul><li><strong>Broader coverage</strong> — From brainstorming and parallel agent dispatch to systematic debugging and full TDD lifecycle.</li><li><strong>Composable architecture</strong> — Skills are designed to chain together. The brainstorming skill feeds into the planning skill, which feeds into the development skills.</li><li><strong>Community validation</strong> — High star counts correlate with sustained developer attention, not just launch-day buzz.</li></ul><p><strong>Even if you do not adopt the specific skill definitions</strong>, the structural patterns — how to decompose a workflow, how to define decision gates, how to specify output formats — are transferable to your own custom skills.</p><hr><h3 id=rohitg00agentmemory-solving-the-amnesia-problem-6513-stars-apache-20>rohitg00/agentmemory: Solving the Amnesia Problem (6,513 stars, Apache-2.0)</h3><p>Here is the most underappreciated repository on the May 2026 Trending list. Every AI coding agent loses context when you start a new session. That architectural decision you explained three hours ago? Gone. The database schema you walked it through yesterday? Forgotten. The naming convention your team agreed on? Vanished.</p><p><strong>agentmemory provides a four-tier memory consolidation pipeline:</strong></p><ol><li><strong>Working Memory</strong> — Current session context</li><li><strong>Short-Term Memory</strong> — Key decisions from recent sessions</li><li><strong>Long-Term Memory</strong> — Cross-project patterns, preferences, and architectural constraints</li><li><strong>Procedural Memory</strong> — Workflows codified as Skill files within the repository</li></ol><p><strong>Technical specifications:</strong></p><ul><li>50+ MCP tool integrations</li><li>Support for 15+ agent clients (Claude Code, Cursor, Codex CLI, Cline, and more)</li><li>Dual install paths: npm and Docker</li><li>Local-first storage model — no cloud dependency, no data exfiltration risk</li></ul><p><strong>Installation:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npm install agentmemory
-</span></span><span style=display:flex><span><span style=color:#75715e># or</span>
-</span></span><span style=display:flex><span>docker pull rohitg00/agentmemory
-</span></span></code></pre></div><p><strong>Why this might be the highest-productivity impact of the three:</strong> Skills make agents work <em>better</em>. agentmemory makes agents work <em>at all</em> across sessions. If your agent cannot remember what you told it yesterday, no amount of workflow sophistication matters.</p><hr><h2 id=hands-on-setting-up-mattpocockskills-in-your-project>Hands-On: Setting Up mattpocock/skills in Your Project</h2><h3 id=step-1--prerequisites>Step 1 — Prerequisites</h3><p>Ensure Claude Code is installed: `````bash
-curl -fsSL <a href=https://claude.ai/install.sh>https://claude.ai/install.sh</a> | bash
-claude &ndash;version</p><pre tabindex=0><code>
+| <strong>MCP</strong> | API Integration | Cross-application | Connects agents to external systems |</p>
+<p>A prompt says: <em>&ldquo;Build a login form.&rdquo;</em>
+A Skill says: <em>&ldquo;When asked to build authentication, first review existing user models, then write a failing test for the auth flow, then implement the minimal passing code, then add guardrails against SQL injection, then document the API contract.&rdquo;</em></p>
+<p>MCP lets the Agent query your production database to check existing schema. Skills tell it what to do with that information. They are complementary, not competitive.</p>
+<hr>
+<h2 id="the-three-github-trending-repositories-you-should-inspect">The Three GitHub Trending Repositories You Should Inspect</h2>
+<h3 id="mattpocockskills-real-engineer-skills-for-daily-use-75133-stars-3867-this-week">mattpocock/skills: Real-Engineer Skills for Daily Use (75,133 stars, +3,867 this week)</h3>
+<p>Matt Pocock — the educator behind Total TypeScript and one of the most trusted voices in modern JavaScript — open-sourced his entire ```.claude```` directory. These are not tutorial examples. These are the exact workflows he runs daily.</p>
+<p><strong>The 21 skills are organized into four domains:</strong></p>
+<p><strong>Planning &amp; Design</strong></p>
+<ul>
+<li><code>write-a-prd</code> — Conducts an interactive discovery session, explores your codebase, designs module boundaries, and produces a complete PRD filed as a GitHub Issue. Not a template fill-in exercise. A design session.</li>
+<li><code>to-issues</code> — Decomposes any PRD, spec, or plan into independently actionable GitHub issues with acceptance criteria and dependency mapping.</li>
+<li><code>grill-me</code> — Structured interrogation of your design decisions before a single line of code is written. Surfaces assumptions, edge cases, and interface risks.</li>
+<li><code>design-an-interface</code> — API ergonomics and constraint exploration before implementation.</li>
+</ul>
+<p><strong>Development</strong></p>
+<ul>
+<li><code>tdd</code> — The most technically opinionated skill. Enforces Red-Green-Refactor at the agent level. The agent <em>cannot</em> skip writing the failing test first. For teams with existing test discipline, this is the highest-ROI skill in the entire collection.</li>
+<li><code>triage</code> — Transforms vague bug reports into structured root-cause analyses through a state-machine investigation: reproduce → minimize → hypothesize → instrument → fix → regression-test.</li>
+<li><code>improve-codebase-architecture</code> — Identifies deep modules, shallow interfaces, and simplification opportunities informed by your domain language and ADRs.</li>
+</ul>
+<p><strong>Tooling &amp; Safety</strong></p>
+<ul>
+<li><code>setup-pre-commit</code> — Configures Husky, lint-staged, and Prettier with one command.</li>
+<li><code>git-guardrails-claude-code</code> — Blocks dangerous git operations that would break CI, rewrite shared branch history, or delete work. Applies the same constraints a senior engineer places on a junior contributor.</li>
+</ul>
+<p><strong>Productivity</strong></p>
+<ul>
+<li><code>caveman</code> — Ultra-compressed communication mode that cuts token usage ~75% while preserving technical accuracy.</li>
+<li><code>handoff</code> — Compacts the current conversation into a structured handoff document so another agent — or another human — can continue the work seamlessly.</li>
+</ul>
+<p><strong>Installation:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install individual skills on demand (recommended)</span>
+</span></span><span style="display:flex;"><span>npx skills@latest add mattpocock/skills/tdd
+</span></span><span style="display:flex;"><span>npx skills@latest add mattpocock/skills/write-a-prd
+</span></span><span style="display:flex;"><span>npx skills@latest add mattpocock/skills/git-guardrails-claude-code
+</span></span></code></pre></div><p>Claude Code auto-discovers <code>.claude/skills/</code> on next launch. Install only what your current project needs.</p>
+<hr>
+<h3 id="obrasuperpowers-the-largest-community-driven-skill-collection-188714-total-stars">obra/superpowers: The Largest Community-Driven Skill Collection (188,714 total stars)</h3>
+<p>Where mattpocock/skills is a curated personal toolkit, obra/superpowers is a community commons. With nearly 189K stars, it represents the most battle-tested collective knowledge about agent workflows.</p>
+<p><strong>What makes it distinct:</strong></p>
+<ul>
+<li><strong>Broader coverage</strong> — From brainstorming and parallel agent dispatch to systematic debugging and full TDD lifecycle.</li>
+<li><strong>Composable architecture</strong> — Skills are designed to chain together. The brainstorming skill feeds into the planning skill, which feeds into the development skills.</li>
+<li><strong>Community validation</strong> — High star counts correlate with sustained developer attention, not just launch-day buzz.</li>
+</ul>
+<p><strong>Even if you do not adopt the specific skill definitions</strong>, the structural patterns — how to decompose a workflow, how to define decision gates, how to specify output formats — are transferable to your own custom skills.</p>
+<hr>
+<h3 id="rohitg00agentmemory-solving-the-amnesia-problem-6513-stars-apache-20">rohitg00/agentmemory: Solving the Amnesia Problem (6,513 stars, Apache-2.0)</h3>
+<p>Here is the most underappreciated repository on the May 2026 Trending list. Every AI coding agent loses context when you start a new session. That architectural decision you explained three hours ago? Gone. The database schema you walked it through yesterday? Forgotten. The naming convention your team agreed on? Vanished.</p>
+<p><strong>agentmemory provides a four-tier memory consolidation pipeline:</strong></p>
+<ol>
+<li><strong>Working Memory</strong> — Current session context</li>
+<li><strong>Short-Term Memory</strong> — Key decisions from recent sessions</li>
+<li><strong>Long-Term Memory</strong> — Cross-project patterns, preferences, and architectural constraints</li>
+<li><strong>Procedural Memory</strong> — Workflows codified as Skill files within the repository</li>
+</ol>
+<p><strong>Technical specifications:</strong></p>
+<ul>
+<li>50+ MCP tool integrations</li>
+<li>Support for 15+ agent clients (Claude Code, Cursor, Codex CLI, Cline, and more)</li>
+<li>Dual install paths: npm and Docker</li>
+<li>Local-first storage model — no cloud dependency, no data exfiltration risk</li>
+</ul>
+<p><strong>Installation:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install agentmemory
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>docker pull rohitg00/agentmemory
+</span></span></code></pre></div><p><strong>Why this might be the highest-productivity impact of the three:</strong> Skills make agents work <em>better</em>. agentmemory makes agents work <em>at all</em> across sessions. If your agent cannot remember what you told it yesterday, no amount of workflow sophistication matters.</p>
+<hr>
+<h2 id="hands-on-setting-up-mattpocockskills-in-your-project">Hands-On: Setting Up mattpocock/skills in Your Project</h2>
+<h3 id="step-1--prerequisites">Step 1 — Prerequisites</h3>
+<p>Ensure Claude Code is installed: `````bash
+curl -fsSL <a href="https://claude.ai/install.sh">https://claude.ai/install.sh</a> | bash
+claude &ndash;version</p>
+<pre tabindex="0"><code>
 The same process works for Cursor and Codex CLI with path variations (````.cursor/skills/````, ````.codex/skills/````).
 
 ### Step 2 — Install Skills
@@ -43,34 +204,85 @@ npx skills@latest add mattpocock/skills/diagnose
 
 # Verify
 ls .claude/skills/
-</code></pre><h3 id=step-3--natural-invocation>Step 3 — Natural Invocation</h3><p>No special syntax required. Describe what you need in plain language, and the agent matches your intent to the skill: <strong>Scenario: Starting a feature with TDD</strong></p><pre tabindex=0><code>I need to implement JWT-based authentication for the API. Use test-driven development.
+</code></pre><h3 id="step-3--natural-invocation">Step 3 — Natural Invocation</h3>
+<p>No special syntax required. Describe what you need in plain language, and the agent matches your intent to the skill: <strong>Scenario: Starting a feature with TDD</strong></p>
+<pre tabindex="0"><code>I need to implement JWT-based authentication for the API. Use test-driven development.
 </code></pre><p>The <code>tdd</code> skill triggers automatically: 1. Analyzes existing codebase structure
 2. Writes the first failing authentication test
 3. Runs the test and confirms the failure is for the right reason
 4. Implements the minimal passing code
 5. Verifies green
-6. Refactors for clarity</p><p><strong>Scenario: Investigating a vague bug report</strong></p><pre tabindex=0><code>Users report intermittent 500 errors on the checkout page. Can you investigate?
+6. Refactors for clarity</p>
+<p><strong>Scenario: Investigating a vague bug report</strong></p>
+<pre tabindex="0"><code>Users report intermittent 500 errors on the checkout page. Can you investigate?
 </code></pre><p>The <code>triage</code> skill activates: 1. Searches for checkout-related code paths
 2. Attempts to reproduce the error
 3. Identifies root cause through instrumentation
 4. Documents findings in a structured report
-5. Proposes or implements a fix</p><p><strong>Scenario: Planning a major refactor</strong></p><pre tabindex=0><code>I want to migrate our state management from Redux to Zustand. Help me plan this.
+5. Proposes or implements a fix</p>
+<p><strong>Scenario: Planning a major refactor</strong></p>
+<pre tabindex="0"><code>I want to migrate our state management from Redux to Zustand. Help me plan this.
 </code></pre><p>The <code>to-prd</code> skill engages: 1. Explores current Redux implementation
 2. Maps state slices and dependencies
 3. Produces a migration PRD with phased rollout plan
-4. Files it as a GitHub Issue with linked sub-tasks</p><hr><h2 id=authoring-your-own-skills-a-production-ready-template>Authoring Your Own Skills: A Production-Ready Template</h2><h3 id=anatomy-of-a-high-quality-skill>Anatomy of a High-Quality Skill</h3><p>Create <code>.claude/skills/code-review/SKILL.md</code>: `````markdown</p><h1 id=code-review-skill>Code Review Skill</h1><h2 id=description>Description</h2><p>Systematic pull request review covering performance, security, maintainability,
+4. Files it as a GitHub Issue with linked sub-tasks</p>
+<hr>
+<h2 id="authoring-your-own-skills-a-production-ready-template">Authoring Your Own Skills: A Production-Ready Template</h2>
+<h3 id="anatomy-of-a-high-quality-skill">Anatomy of a High-Quality Skill</h3>
+<p>Create <code>.claude/skills/code-review/SKILL.md</code>: `````markdown</p>
+<h1 id="code-review-skill">Code Review Skill</h1>
+<h2 id="description">Description</h2>
+<p>Systematic pull request review covering performance, security, maintainability,
 and style consistency. Biases toward caution over speed for changes touching
-authentication, payment, or data integrity paths.</p><h2 id=triggers>Triggers</h2><ul><li>&ldquo;Review this PR&rdquo;</li><li>&ldquo;Check this code for issues&rdquo;</li><li>&ldquo;Can you code review this?&rdquo;</li><li>&ldquo;What problems do you see here?&rdquo;</li></ul><h2 id=workflow>Workflow</h2><h3 id=phase-1--understand-scope>Phase 1 — Understand Scope</h3><ol><li>Read PR description and linked issues</li><li>Identify the file change set</li><li>Distinguish core changes from incidental adjustments</li></ol><h3 id=phase-2--architecture-review>Phase 2 — Architecture Review</h3><ul><li><input disabled type=checkbox> Do changes align with established patterns?</li><li><input disabled type=checkbox> Are new dependencies justified?</li><li><input disabled type=checkbox> Is module boundary clarity maintained?</li><li><input disabled type=checkbox> Does this change affect the public API contract?</li></ul><h3 id=phase-3--implementation-review>Phase 3 — Implementation Review</h3><ul><li><input disabled type=checkbox> Boundary condition handling</li><li><input disabled type=checkbox> Error handling completeness</li><li><input disabled type=checkbox> Concurrency safety</li><li><input disabled type=checkbox> Performance impact (time and space complexity)</li><li><input disabled type=checkbox> Security surface area change</li></ul><h3 id=phase-4--output-structured-report>Phase 4 — Output Structured Report</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#75715e>## Code Review Results
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Blockers (must fix before merge)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span> Line 45: Unchecked user input flows directly to query construction — SQL injection risk
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Recommendations (should fix)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span> Line 78: Consider extracting this logic to a shared utility — duplicated in 3 files
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Affirmations (preserve these patterns)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span> Excellent test coverage for the edge case at line 120
-</span></span></code></pre></div><h2 id=constraints>Constraints</h2><ul><li>Never suggest style-only changes unless they materially impact readability</li><li>Prioritize correctness and security over performance micro-optimizations</li><li>Every issue must reference specific line numbers</li><li>If unsure about a security issue, flag it explicitly rather than staying silent</li></ul><pre tabindex=0><code>
+authentication, payment, or data integrity paths.</p>
+<h2 id="triggers">Triggers</h2>
+<ul>
+<li>&ldquo;Review this PR&rdquo;</li>
+<li>&ldquo;Check this code for issues&rdquo;</li>
+<li>&ldquo;Can you code review this?&rdquo;</li>
+<li>&ldquo;What problems do you see here?&rdquo;</li>
+</ul>
+<h2 id="workflow">Workflow</h2>
+<h3 id="phase-1--understand-scope">Phase 1 — Understand Scope</h3>
+<ol>
+<li>Read PR description and linked issues</li>
+<li>Identify the file change set</li>
+<li>Distinguish core changes from incidental adjustments</li>
+</ol>
+<h3 id="phase-2--architecture-review">Phase 2 — Architecture Review</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Do changes align with established patterns?</li>
+<li><input disabled="" type="checkbox"> Are new dependencies justified?</li>
+<li><input disabled="" type="checkbox"> Is module boundary clarity maintained?</li>
+<li><input disabled="" type="checkbox"> Does this change affect the public API contract?</li>
+</ul>
+<h3 id="phase-3--implementation-review">Phase 3 — Implementation Review</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Boundary condition handling</li>
+<li><input disabled="" type="checkbox"> Error handling completeness</li>
+<li><input disabled="" type="checkbox"> Concurrency safety</li>
+<li><input disabled="" type="checkbox"> Performance impact (time and space complexity)</li>
+<li><input disabled="" type="checkbox"> Security surface area change</li>
+</ul>
+<h3 id="phase-4--output-structured-report">Phase 4 — Output Structured Report</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## Code Review Results
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Blockers (must fix before merge)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Line 45: Unchecked user input flows directly to query construction — SQL injection risk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Recommendations (should fix)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Line 78: Consider extracting this logic to a shared utility — duplicated in 3 files
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Affirmations (preserve these patterns)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Excellent test coverage for the edge case at line 120
+</span></span></code></pre></div><h2 id="constraints">Constraints</h2>
+<ul>
+<li>Never suggest style-only changes unless they materially impact readability</li>
+<li>Prioritize correctness and security over performance micro-optimizations</li>
+<li>Every issue must reference specific line numbers</li>
+<li>If unsure about a security issue, flag it explicitly rather than staying silent</li>
+</ul>
+<pre tabindex="0"><code>
 ### Design Principles From the 75K-Star Repository
 
 Matt Pocock&#39;s skills follow rules that transfer to any custom skill: 1. **Include trigger phrases in descriptions** — Start with &#34;Use when...&#34; so the agent knows when to activate
@@ -87,7 +299,8 @@ npx skills@latest add mattpocock/skills/write-a-skill
 </code></pre><p>Then in Claude Code: `````
 I need a skill that automatically generates migration scripts when I modify
 database models. It should detect schema changes, produce rollback-capable
-migrations, and include test data seeding.</p><pre tabindex=0><code>
+migrations, and include test data seeding.</p>
+<pre tabindex="0"><code>
 The ````write-a-skill```` skill walks you through: 1. Defining purpose and triggers
 2. Structuring the workflow steps
 3. Deciding on companion scripts for deterministic operations
@@ -211,13 +424,265 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-agent-skills-2026-developer-guide%2f&text=Install%20individual%20skills%20on%20demand%20%28recommended%29" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-agent-skills-2026-developer-guide%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-agent-skills-2026-developer-guide%2f&text=Install%20individual%20skills%20on%20demand%20%28recommended%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-agent-skills-2026-developer-guide%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

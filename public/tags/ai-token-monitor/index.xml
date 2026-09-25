@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI Token Monitor on Dibi8 - AI工具目录</title><link>https://dibi8.com/tags/ai-token-monitor/</link><description>Recent content in AI Token Monitor on Dibi8 - AI工具目录</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Sat, 06 Jun 2026 00:00:00 +0800</lastBuildDate><atom:link href="https://dibi8.com/tags/ai-token-monitor/index.xml" rel="self" type="application/rss+xml"/><item><title>AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop</title><link>https://dibi8.com/ai-token-monitor-conky-linux/</link><pubDate>Sat, 06 Jun 2026 00:00:00 +0800</pubDate><guid>https://dibi8.com/ai-token-monitor-conky-linux/</guid><description>Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI Token Monitor on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/tags/ai-token-monitor/</link>
+    <description>Recent content in AI Token Monitor on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 06 Jun 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/ai-token-monitor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop</title>
+      <link>https://dibi8.com/ai-token-monitor-conky-linux/</link>
+      <pubDate>Sat, 06 Jun 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/ai-token-monitor-conky-linux/</guid>
+      <description>Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.</description>
+    </item>
+  </channel>
+</rss>

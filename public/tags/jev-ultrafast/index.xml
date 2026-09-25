@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Jev-Ultrafast on Dibi8 - AI工具目录</title><link>https://dibi8.com/tags/jev-ultrafast/</link><description>Recent content in Jev-Ultrafast on Dibi8 - AI工具目录</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate><atom:link href="https://dibi8.com/tags/jev-ultrafast/index.xml" rel="self" type="application/rss+xml"/><item><title>Jev Ultrafast: TypeSafe Browser Agents That Fly at 7.1 Seconds — browser-use 2026</title><link>https://dibi8.com/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate><guid>https://dibi8.com/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/</guid><description>browser-use&amp;#39;s Jev Ultrafast achieves 7.1s task completion using TypeSafe&amp;#39;s decision engine. Dynamic indexed action space, CLICK/TYPE_TEXT operations, real Google Flights demo. 19K+ stars, MIT license.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jev-Ultrafast on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/tags/jev-ultrafast/</link>
+    <description>Recent content in Jev-Ultrafast on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/jev-ultrafast/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jev Ultrafast: TypeSafe Browser Agents That Fly at 7.1 Seconds — browser-use 2026</title>
+      <link>https://dibi8.com/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/</guid>
+      <description>browser-use&amp;#39;s Jev Ultrafast achieves 7.1s task completion using TypeSafe&amp;#39;s decision engine. Dynamic indexed action space, CLICK/TYPE_TEXT operations, real Google Flights demo. 19K&#43; stars, MIT license.</description>
+    </item>
+  </channel>
+</rss>

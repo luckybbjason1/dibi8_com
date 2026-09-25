@@ -1,18 +1,94 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>JuiceFS: Cloud Storage, Local Speed | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="JuiceFS: Cloud Storage, Local Speed | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/juicefs-distributed-posix-file-system-redis-s3-cloud-storage/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/juicefs-distributed-posix-file-system-redis-s3-cloud-storage/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>JuiceFS: Cloud Storage, Local Speed</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">JuiceFS: Cloud Storage, Local Speed</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=juicefs-cloud-storage-local-speed>JuiceFS: Cloud Storage, Local Speed</h1><p>Imagine your team needs to share massive datasets across 50+ workers for AI training. Each worker expects a standard Linux filesystem — but your data lives in S3. Mounting S3 as a local filesystem has been frustrating: slow, unreliable, or both. JuiceFS solves this by combining the best of both worlds.</p><p>With 13,900+ GitHub stars and backing from major cloud providers, JuiceFS has become one of the most popular cloud storage solutions in 2026. It gives you the infinite capacity of object storage with the performance characteristics of a local disk.</p><p><img alt="JuiceFS architecture diagram showing the separation between metadata (Redis) and data (S3)" loading=lazy src=https://juicefs.com/docs/_media/juicefs-architecture.png></p><h2 id=how-juicefs-works>How JuiceFS Works</h2><p>JuiceFS splits file metadata from file data. This architectural decision is the key to its performance.</p><pre tabindex=0><code>┌─────────────────────────────────────────────────────┐
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuiceFS: Cloud Storage, Local Speed | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="JuiceFS: Cloud Storage, Local Speed | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/juicefs-distributed-posix-file-system-redis-s3-cloud-storage/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/juicefs-distributed-posix-file-system-redis-s3-cloud-storage/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">JuiceFS: Cloud Storage, Local Speed</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">JuiceFS: Cloud Storage, Local Speed</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="juicefs-cloud-storage-local-speed">JuiceFS: Cloud Storage, Local Speed</h1>
+<p>Imagine your team needs to share massive datasets across 50+ workers for AI training. Each worker expects a standard Linux filesystem — but your data lives in S3. Mounting S3 as a local filesystem has been frustrating: slow, unreliable, or both. JuiceFS solves this by combining the best of both worlds.</p>
+<p>With 13,900+ GitHub stars and backing from major cloud providers, JuiceFS has become one of the most popular cloud storage solutions in 2026. It gives you the infinite capacity of object storage with the performance characteristics of a local disk.</p>
+<p><img alt="JuiceFS architecture diagram showing the separation between metadata (Redis) and data (S3)" loading="lazy" src="https://juicefs.com/docs/_media/juicefs-architecture.png"></p>
+<h2 id="how-juicefs-works">How JuiceFS Works</h2>
+<p>JuiceFS splits file metadata from file data. This architectural decision is the key to its performance.</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────┐
 │                    JuiceFS Client                     │
 │  ┌──────────────┐    ┌──────────────┐               │
 │  │  Metadata DB  │    │  Object Store│               │
@@ -24,7 +100,25 @@
 │  │   (mount -t juicefs juicefs /mnt)│               │
 │  └──────────────────────────────────┘               │
 └─────────────────────────────────────────────────────┘
-</code></pre><p>Metadata operations (file lists, permissions, timestamps) go to Redis — a lightning-fast in-memory data store. File data (the actual content) goes to any S3-compatible object storage — infinite capacity, cheap storage. This separation means metadata is always fast, while data scales to petabytes.</p><p><img alt="JuiceFS metadata flow diagram showing Redis for metadata and S3 for file data" loading=lazy src=https://juicefs.com/docs/_media/juicefs-metadata-flow.png></p><p><strong>Q: Why use Redis for metadata instead of another database?</strong></p><p>A: Redis is ideal because metadata operations are tiny but incredibly frequent. Opening a file, listing a directory, or checking permissions happens thousands of times per second. Redis handles millions of operations per second with sub-millisecond latency. While JuiceFS supports other metadata engines (MySQL, PostgreSQL, TiKV), Redis offers the best performance for typical workloads.</p><h2 id=installation-and-quick-start>Installation and Quick Start</h2><p>Getting JuiceFS running takes minutes. Here is a complete setup using Redis for metadata and AWS S3 for storage: `````bash</p><h1 id=install-juicefs-cli>Install JuiceFS CLI</h1><p>curl -sSL <a href=https://d.juicefs.com/install>https://d.juicefs.com/install</a> | sh -</p><h1 id=create-a-juicefs-filesystem>Create a JuiceFS filesystem</h1><p>juicefs format<br>&ndash;storage s3<br>&ndash;bucket <a href=https://my-bucket.s3.amazonaws.com>https://my-bucket.s3.amazonaws.com</a><br>&ndash;access-key YOUR_ACCESS_KEY<br>&ndash;secret-key YOUR_SECRET_KEY<br>redis://localhost:6379/0<br>mydata</p><h1 id=mount-it-locally>Mount it locally</h1><p>juicefs mount mydata /mnt/juicefs</p><pre tabindex=0><code>
+</code></pre><p>Metadata operations (file lists, permissions, timestamps) go to Redis — a lightning-fast in-memory data store. File data (the actual content) goes to any S3-compatible object storage — infinite capacity, cheap storage. This separation means metadata is always fast, while data scales to petabytes.</p>
+<p><img alt="JuiceFS metadata flow diagram showing Redis for metadata and S3 for file data" loading="lazy" src="https://juicefs.com/docs/_media/juicefs-metadata-flow.png"></p>
+<p><strong>Q: Why use Redis for metadata instead of another database?</strong></p>
+<p>A: Redis is ideal because metadata operations are tiny but incredibly frequent. Opening a file, listing a directory, or checking permissions happens thousands of times per second. Redis handles millions of operations per second with sub-millisecond latency. While JuiceFS supports other metadata engines (MySQL, PostgreSQL, TiKV), Redis offers the best performance for typical workloads.</p>
+<h2 id="installation-and-quick-start">Installation and Quick Start</h2>
+<p>Getting JuiceFS running takes minutes. Here is a complete setup using Redis for metadata and AWS S3 for storage: `````bash</p>
+<h1 id="install-juicefs-cli">Install JuiceFS CLI</h1>
+<p>curl -sSL <a href="https://d.juicefs.com/install">https://d.juicefs.com/install</a> | sh -</p>
+<h1 id="create-a-juicefs-filesystem">Create a JuiceFS filesystem</h1>
+<p>juicefs format <br>
+&ndash;storage s3 <br>
+&ndash;bucket <a href="https://my-bucket.s3.amazonaws.com">https://my-bucket.s3.amazonaws.com</a> <br>
+&ndash;access-key YOUR_ACCESS_KEY <br>
+&ndash;secret-key YOUR_SECRET_KEY <br>
+redis://localhost:6379/0 <br>
+mydata</p>
+<h1 id="mount-it-locally">Mount it locally</h1>
+<p>juicefs mount mydata /mnt/juicefs</p>
+<pre tabindex="0"><code>
 That is it. ````/mnt/juicefs```` now behaves exactly like a regular Linux filesystem. Run ````ls````, ````cp````, ````python train.py````, or any standard tool — it all works seamlessly.
 
 ## Advanced Usage: Tiered Storage
@@ -37,7 +131,25 @@ juicefs mount \
   --cache-compress \
   mydata \
   /mnt/juicefs
-</code></pre><p>When the local cache fills up, the least recently used files are evicted. On next access, they are fetched from S3 transparently. This gives you the speed of SSDs for hot data with the capacity of S3 for cold data.</p><h3 id=cache-configuration-options>Cache Configuration Options</h3><p>Fine-tune caching behavior for your specific workload: `````bash</p><h1 id=50gb-memory-cache--100gb-disk-cache-with-compression>50GB memory cache + 100GB disk cache with compression</h1><p>juicefs mount<br>&ndash;read-only-false<br>&ndash;cache-size 50000<br>&ndash;cache-dir /mnt/cache<br>&ndash;cache-partial<br>&ndash;cache-compress<br>&ndash;cache-full-gc-miss<br>mydata<br>/mnt/juicefs</p><h1 id=verify-cache-stats>Verify cache stats</h1><p>juicefs status mydata</p><h1 id=cache-usage-452gb--1500gb-30>Cache usage: 45.2GB / 150.0GB (30%)</h1><h1 id=cache-hit-rate-947>Cache hit rate: 94.7%</h1><h1 id=cache-miss-21k-ops>Cache miss: 2.1K ops</h1><pre tabindex=0><code>
+</code></pre><p>When the local cache fills up, the least recently used files are evicted. On next access, they are fetched from S3 transparently. This gives you the speed of SSDs for hot data with the capacity of S3 for cold data.</p>
+<h3 id="cache-configuration-options">Cache Configuration Options</h3>
+<p>Fine-tune caching behavior for your specific workload: `````bash</p>
+<h1 id="50gb-memory-cache--100gb-disk-cache-with-compression">50GB memory cache + 100GB disk cache with compression</h1>
+<p>juicefs mount <br>
+&ndash;read-only-false <br>
+&ndash;cache-size 50000 <br>
+&ndash;cache-dir /mnt/cache <br>
+&ndash;cache-partial <br>
+&ndash;cache-compress <br>
+&ndash;cache-full-gc-miss <br>
+mydata <br>
+/mnt/juicefs</p>
+<h1 id="verify-cache-stats">Verify cache stats</h1>
+<p>juicefs status mydata</p>
+<h1 id="cache-usage-452gb--1500gb-30">Cache usage: 45.2GB / 150.0GB (30%)</h1>
+<h1 id="cache-hit-rate-947">Cache hit rate: 94.7%</h1>
+<h1 id="cache-miss-21k-ops">Cache miss: 2.1K ops</h1>
+<pre tabindex="0"><code>
 ### Multi-Mount and Read-Write Collaboration
 
 Multiple JuiceFS clients can mount the same filesystem simultaneously for collaborative work: `````bash
@@ -52,7 +164,12 @@ python evaluate.py --data /mnt/juicefs/dataset
 # Worker 3: Upload new data while training runs
 rsync -av ./new_data/ /mnt/juicefs/dataset/
 # Training workers see new data immediately
-</code></pre><h3 id=s3-lifecycle-integration>S3 Lifecycle Integration</h3><p>Combine JuiceFS with S3 lifecycle policies for automatic cost optimization: `````bash</p><h1 id=set-s3-lifecycle-rule-via-aws-cli>Set S3 lifecycle rule via AWS CLI</h1><p>aws s3api put-bucket-lifecycle-configuration<br>&ndash;bucket my-bucket<br>&ndash;lifecycle-configuration &lsquo;{
+</code></pre><h3 id="s3-lifecycle-integration">S3 Lifecycle Integration</h3>
+<p>Combine JuiceFS with S3 lifecycle policies for automatic cost optimization: `````bash</p>
+<h1 id="set-s3-lifecycle-rule-via-aws-cli">Set S3 lifecycle rule via AWS CLI</h1>
+<p>aws s3api put-bucket-lifecycle-configuration <br>
+&ndash;bucket my-bucket <br>
+&ndash;lifecycle-configuration &lsquo;{
 &ldquo;Rules&rdquo;: [
 {
 &ldquo;ID&rdquo;: &ldquo;tieredStorage&rdquo;,
@@ -64,7 +181,10 @@ rsync -av ./new_data/ /mnt/juicefs/dataset/
 ]
 }
 ]
-}"</p><h1 id=juicefs-automatically-handles-tier-transitions>JuiceFS automatically handles tier transitions</h1><h1 id=accessing-a-cold-file-triggers-fetch-from-glacier>Accessing a cold file triggers fetch from Glacier</h1><pre tabindex=0><code>
+}&quot;</p>
+<h1 id="juicefs-automatically-handles-tier-transitions">JuiceFS automatically handles tier transitions</h1>
+<h1 id="accessing-a-cold-file-triggers-fetch-from-glacier">Accessing a cold file triggers fetch from Glacier</h1>
+<pre tabindex="0"><code>
 ## Performance Benchmarks
 
 JuiceFS delivers impressive performance across different workload types: | Workload Type | JuiceFS | Local SSD | Cloud Storage (raw) |
@@ -113,7 +233,22 @@ spec: capacity: storage: 1000Gi
   csi: driver: csi.juicefs.com
     volumeHandle: mydata
     volumeAttributes: mountPath: /mnt/juicefs
-</code></pre><p>This deploys 10 PyTorch training containers, all sharing the same JuiceFS volume. Changes made by one container are instantly visible to all others — no sync needed.</p><h3 id=helm-chart-deployment>Helm Chart Deployment</h3><p>For production Kubernetes clusters, use the official Helm chart: `````bash</p><h1 id=add-the-juicefs-helm-repository>Add the JuiceFS Helm repository</h1><p>helm repo add juicefs <a href=https://charts.juicefs.com>https://charts.juicefs.com</a></p><h1 id=install-juicefs-csi-driver-with-custom-redis-credentials>Install JuiceFS CSI driver with custom Redis credentials</h1><p>helm install juicefs-csi-driver juicefs/juicefs-csi-driver<br>&ndash;set csi.driver.juicefs.enableMetrics=true<br>&ndash;set csi.driver.juicefs.metricNamespace=juicefs<br>&ndash;set csi.driver.redis.url=redis://juicefs-redis:6379/0<br>&ndash;set csi.driver.objectStore.type=s3<br>&ndash;set csi.driver.objectStore.bucket=s3://my-bucket<br>&ndash;set csi.driver.objectStore.accessKey=$AWS_ACCESS_KEY_ID<br>&ndash;set csi.driver.objectStore.secretKey=$AWS_SECRET_ACCESS_KEY<br>&ndash;namespace kube-system</p><pre tabindex=0><code>
+</code></pre><p>This deploys 10 PyTorch training containers, all sharing the same JuiceFS volume. Changes made by one container are instantly visible to all others — no sync needed.</p>
+<h3 id="helm-chart-deployment">Helm Chart Deployment</h3>
+<p>For production Kubernetes clusters, use the official Helm chart: `````bash</p>
+<h1 id="add-the-juicefs-helm-repository">Add the JuiceFS Helm repository</h1>
+<p>helm repo add juicefs <a href="https://charts.juicefs.com">https://charts.juicefs.com</a></p>
+<h1 id="install-juicefs-csi-driver-with-custom-redis-credentials">Install JuiceFS CSI driver with custom Redis credentials</h1>
+<p>helm install juicefs-csi-driver juicefs/juicefs-csi-driver <br>
+&ndash;set csi.driver.juicefs.enableMetrics=true <br>
+&ndash;set csi.driver.juicefs.metricNamespace=juicefs <br>
+&ndash;set csi.driver.redis.url=redis://juicefs-redis:6379/0 <br>
+&ndash;set csi.driver.objectStore.type=s3 <br>
+&ndash;set csi.driver.objectStore.bucket=s3://my-bucket <br>
+&ndash;set csi.driver.objectStore.accessKey=$AWS_ACCESS_KEY_ID <br>
+&ndash;set csi.driver.objectStore.secretKey=$AWS_SECRET_ACCESS_KEY <br>
+&ndash;namespace kube-system</p>
+<pre tabindex="0"><code>
 ## Use Cases in 2026
 
 ### AI/ML Training Pipelines
@@ -134,7 +269,27 @@ spark-submit \
   --conf spark.jars=hdfs://namenode/juicefs-spark-3.3.1.jar \
   --files &#34;juicefs://mydata/parquet_data/&#34; \
   analysis.py
-</code></pre><h3 id=media-production>Media Production</h3><p>Video editing teams working with 4K/8K footage need simultaneous access to shared files: - Multiple editors access the same project files concurrently</p><ul><li>Real-time collaboration without file checkout</li><li>Automatic version snapshots for safety</li></ul><h2 id=ai-and-llm-integration>AI and LLM Integration</h2><p>As LLM pipelines grow more complex, the data layer becomes a critical bottleneck. JuiceFS addresses this in several ways: ### Dataset Versioning with Snapshots</p><p>Track dataset versions across experiments using JuiceFS snapshot features: `````bash</p><h1 id=take-a-snapshot-of-current-dataset>Take a snapshot of current dataset</h1><p>juicefs snapshot mydata create v20260615</p><h1 id=create-a-new-branch-from-snapshot>Create a new branch from snapshot</h1><p>juicefs snapshot mydata restore v20260615 /mnt/juicefs/dataset_v2</p><h1 id=list-all-snapshots-with-timestamps>List all snapshots with timestamps</h1><p>juicefs snapshot mydata list</p><h1 id=v20260615--2026-06-15-143000--452gb>v20260615 2026-06-15 14:30:00 45.2GB</h1><h1 id=v20260610--2026-06-10-091500--438gb>v20260610 2026-06-10 09:15:00 43.8GB</h1><h1 id=v20260601--2026-06-01-000000--401gb>v20260601 2026-06-01 00:00:00 40.1GB</h1><h1 id=restore-a-specific-snapshot>Restore a specific snapshot</h1><p>juicefs snapshot mydata restore v20260610</p><pre tabindex=0><code>
+</code></pre><h3 id="media-production">Media Production</h3>
+<p>Video editing teams working with 4K/8K footage need simultaneous access to shared files: - Multiple editors access the same project files concurrently</p>
+<ul>
+<li>Real-time collaboration without file checkout</li>
+<li>Automatic version snapshots for safety</li>
+</ul>
+<h2 id="ai-and-llm-integration">AI and LLM Integration</h2>
+<p>As LLM pipelines grow more complex, the data layer becomes a critical bottleneck. JuiceFS addresses this in several ways: ### Dataset Versioning with Snapshots</p>
+<p>Track dataset versions across experiments using JuiceFS snapshot features: `````bash</p>
+<h1 id="take-a-snapshot-of-current-dataset">Take a snapshot of current dataset</h1>
+<p>juicefs snapshot mydata create v20260615</p>
+<h1 id="create-a-new-branch-from-snapshot">Create a new branch from snapshot</h1>
+<p>juicefs snapshot mydata restore v20260615 /mnt/juicefs/dataset_v2</p>
+<h1 id="list-all-snapshots-with-timestamps">List all snapshots with timestamps</h1>
+<p>juicefs snapshot mydata list</p>
+<h1 id="v20260615--2026-06-15-143000--452gb">v20260615  2026-06-15 14:30:00  45.2GB</h1>
+<h1 id="v20260610--2026-06-10-091500--438gb">v20260610  2026-06-10 09:15:00  43.8GB</h1>
+<h1 id="v20260601--2026-06-01-000000--401gb">v20260601  2026-06-01 00:00:00  40.1GB</h1>
+<h1 id="restore-a-specific-snapshot">Restore a specific snapshot</h1>
+<p>juicefs snapshot mydata restore v20260610</p>
+<pre tabindex="0"><code>
 ### Cross-Region Replication
 
 Share datasets across cloud regions using JuiceFS replication: `````bash
@@ -152,31 +307,51 @@ juicefs replication status
 # Source region: us-east-1 (active)
 # Target region: eu-west-1 (syncing, 99.2% complete)
 # Last sync: 3 minutes ago
-</code></pre><h3 id=embedding-storage>Embedding Storage</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> langchain.vectorstores <span style=color:#f92672>import</span> Chroma
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> juicefs_client
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Embeddings and documents co-located</span>
-</span></span><span style=display:flex><span>embedding_store <span style=color:#f92672>=</span> Chroma(
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    persist_directory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/mnt/juicefs/vecs&#34;</span>,
-</span></span><span style=display:flex><span>    embedding_function<span style=color:#f92672>=</span>OpenAIEmbeddings()
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><p><strong>RAG Pipeline Data Lakes</strong>: Keep your RAG data lake on JuiceFS for petabyte-scale document storage with sub-second metadata queries. This eliminates the ETL step between storage and ingestion.</p><h2 id=cost-analysis>Cost Analysis</h2><p>JuiceFS dramatically reduces storage costs compared to traditional approaches: | Approach | Cost per TB/month | Min IOPS | Scalability |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="embedding-storage">Embedding Storage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> juicefs_client
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Embeddings and documents co-located</span>
+</span></span><span style="display:flex;"><span>embedding_store <span style="color:#f92672">=</span> Chroma(
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    persist_directory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/mnt/juicefs/vecs&#34;</span>,
+</span></span><span style="display:flex;"><span>    embedding_function<span style="color:#f92672">=</span>OpenAIEmbeddings()
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p><strong>RAG Pipeline Data Lakes</strong>: Keep your RAG data lake on JuiceFS for petabyte-scale document storage with sub-second metadata queries. This eliminates the ETL step between storage and ingestion.</p>
+<h2 id="cost-analysis">Cost Analysis</h2>
+<p>JuiceFS dramatically reduces storage costs compared to traditional approaches: | Approach | Cost per TB/month | Min IOPS | Scalability |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Dedicated SSD RAID | $150-300 | 100,000+ | Limited |
 | EFS (AWS) | $300-600 | 10,000 | High |
-| JuiceFS + S3 | $5-23 | 80,000+ | Petabytes |</p><p>The secret sauce is the metadata/data split. Redis costs pennies per month for metadata, while S3 provides petabytes at $23/TB. Total cost is often less than 10% of dedicated storage solutions.</p><h3 id=cost-calculator>Cost Calculator</h3><p>Estimate your JuiceFS storage costs: `````bash</p><h1 id=monthly-cost-calculator-bash-script>Monthly cost calculator (bash script)</h1><p>#!/bin/bash
-S3_PRICE_PER_TB=23 # Standard S3
-CACHE_DISK_GB=500 # Local cache size
-CACHE_DISK_PRICE=0.10 # per GB per month
-REDIS_TIER=4 # GB Redis</p><h1 id=calculate-monthly-cost-for-10tb-dataset>Calculate monthly cost for 10TB dataset</h1><p>DATASET_SIZE_TB=10
+| JuiceFS + S3 | $5-23 | 80,000+ | Petabytes |</p>
+<p>The secret sauce is the metadata/data split. Redis costs pennies per month for metadata, while S3 provides petabytes at $23/TB. Total cost is often less than 10% of dedicated storage solutions.</p>
+<h3 id="cost-calculator">Cost Calculator</h3>
+<p>Estimate your JuiceFS storage costs: `````bash</p>
+<h1 id="monthly-cost-calculator-bash-script">Monthly cost calculator (bash script)</h1>
+<p>#!/bin/bash
+S3_PRICE_PER_TB=23  # Standard S3
+CACHE_DISK_GB=500   # Local cache size
+CACHE_DISK_PRICE=0.10  # per GB per month
+REDIS_TIER=4          # GB Redis</p>
+<h1 id="calculate-monthly-cost-for-10tb-dataset">Calculate monthly cost for 10TB dataset</h1>
+<p>DATASET_SIZE_TB=10
 S3_COST=$(echo &ldquo;$DATASET_SIZE_TB * $S3_PRICE_PER_TB&rdquo; | bc)
-REDIS_COST=$(echo &ldquo;$REDIS_TIER * 0.15&rdquo; | bc) # ~$0.15/GB/month
-CACHE_COST=$(echo &ldquo;$CACHE_DISK_GB * $CACHE_DISK_PRICE&rdquo; | bc)</p><p>echo &ldquo;=== JuiceFS Monthly Cost ===&rdquo;
+REDIS_COST=$(echo &ldquo;$REDIS_TIER * 0.15&rdquo; | bc)  # ~$0.15/GB/month
+CACHE_COST=$(echo &ldquo;$CACHE_DISK_GB * $CACHE_DISK_PRICE&rdquo; | bc)</p>
+<p>echo &ldquo;=== JuiceFS Monthly Cost ===&rdquo;
 echo &ldquo;S3 storage: $$S3_COST/tb/month&rdquo;
 echo &ldquo;Redis metadata: $${REDIS_COST}/month&rdquo;
 echo &ldquo;Local cache: $${CACHE_COST}/month&rdquo;
-echo &ldquo;Total estimated: $$(echo &ldquo;$S3_COST + $REDIS_COST + $CACHE_COST&rdquo; | bc)/month&rdquo;</p><pre tabindex=0><code>
+echo &ldquo;Total estimated: $$(echo &ldquo;$S3_COST + $REDIS_COST + $CACHE_COST&rdquo; | bc)/month&rdquo;</p>
+<pre tabindex="0"><code>
 ### Migration from NFS
 
 Migrating existing NFS workloads to JuiceFS: `````bash
@@ -193,7 +368,21 @@ rsync -av --progress /mnt/nfs/ /mnt/juicefs/
 # Step 4: Verify and remove NFS
 df -h /mnt/juicefs
 du -sh /mnt/nfs /mnt/juicefs  # Compare sizes
-</code></pre><h2 id=docker-and-kubernetes-integration>Docker and Kubernetes Integration</h2><p>Running JuiceFS as a Docker container is straightforward for development and testing: `````bash</p><h1 id=start-redis-for-metadata>Start Redis for metadata</h1><p>docker run -d &ndash;name juicefs-meta -p 6379:6379 redis:7-alpine</p><h1 id=start-juicefs-server-optional-for-distributed-mode>Start JuiceFS server (optional, for distributed mode)</h1><p>docker run -d &ndash;name juicefs-server<br>-v /mnt/juicefs:/mnt/juicefs<br>-e REDIS_URL=redis://host:6379/0<br>juicedata/juicefs server</p><h1 id=mount-juicefs-in-a-container>Mount JuiceFS in a container</h1><p>docker run -it &ndash;rm<br>&ndash;volume juicefs:/mnt/juicefs<br>-v /mnt/juicefs:/mnt/juicefs<br>ubuntu:22.04 /bin/bash</p><pre tabindex=0><code>
+</code></pre><h2 id="docker-and-kubernetes-integration">Docker and Kubernetes Integration</h2>
+<p>Running JuiceFS as a Docker container is straightforward for development and testing: `````bash</p>
+<h1 id="start-redis-for-metadata">Start Redis for metadata</h1>
+<p>docker run -d &ndash;name juicefs-meta -p 6379:6379 redis:7-alpine</p>
+<h1 id="start-juicefs-server-optional-for-distributed-mode">Start JuiceFS server (optional, for distributed mode)</h1>
+<p>docker run -d &ndash;name juicefs-server <br>
+-v /mnt/juicefs:/mnt/juicefs <br>
+-e REDIS_URL=redis://host:6379/0 <br>
+juicedata/juicefs server</p>
+<h1 id="mount-juicefs-in-a-container">Mount JuiceFS in a container</h1>
+<p>docker run -it &ndash;rm <br>
+&ndash;volume juicefs:/mnt/juicefs <br>
+-v /mnt/juicefs:/mnt/juicefs <br>
+ubuntu:22.04 /bin/bash</p>
+<pre tabindex="0"><code>
 ## Limitations and Honest Assessment
 
 JuiceFS is a powerful tool, but it comes with trade-offs you should consider: - **Redis dependency**: If your Redis instance crashes, metadata becomes unavailable. Use Redis Sentinel or Redis Cluster for production reliability. Single-node deployments risk data loss on hardware failure.
@@ -301,13 +490,265 @@ For more on cloud-native storage: - [Kubernetes Persistent Volumes](/resources/d
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fjuicefs-distributed-posix-file-system-redis-s3-cloud-storage%2f&text=JuiceFS%3a%20Cloud%20Storage%2c%20Local%20Speed" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fjuicefs-distributed-posix-file-system-redis-s3-cloud-storage%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fjuicefs-distributed-posix-file-system-redis-s3-cloud-storage%2f&text=JuiceFS%3a%20Cloud%20Storage%2c%20Local%20Speed" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fjuicefs-distributed-posix-file-system-redis-s3-cloud-storage%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Install Phoenix | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Install Phoenix | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/arize-ai-observability-llm/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/arize-ai-observability-llm/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Install Phoenix</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install Phoenix</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Arize AI Phoenix: The Open-Source LLM Observability Tool&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Phoenix | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Install Phoenix | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/arize-ai-observability-llm/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/arize-ai-observability-llm/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install Phoenix</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install Phoenix</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Arize AI Phoenix: The Open-Source LLM Observability Tool&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,15 +99,49 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;data-science&rdquo;]
 tags: [&ldquo;llm&rdquo;, &ldquo;observability&rdquo;, &ldquo;arize phoenix&rdquo;, &ldquo;rag&rdquo;, &ldquo;langchain&rdquo;, &ldquo;llamaindex&rdquo;, &ldquo;opentelemetry&rdquo;, &ldquo;python&rdquo;, &ldquo;docker&rdquo;, &ldquo;ai infrastructure&rdquo;]
-aliases:</p><ul><li>/posts/arize-ai-observability-llm/-</li></ul><hr><h2 id=introduction-you-cant-fix-what-you-cant-see>Introduction: You Can&rsquo;t Fix What You Can&rsquo;t See</h2><p>In January 2026, a production RAG pipeline serving <strong>12,000 queries/day</strong> at a fintech startup silently started hallucinating. The root cause? A misconfigured retriever chunk size that swapped <strong>3 weeks</strong> prior. Nobody noticed because no one was tracing the full pipeline — only the final LLM output was logged. The incident cost them <strong>$47,000</strong> in customer churn before a manual audit caught it.</p><p>This is not an edge case. According to a 2026 industry survey, <strong>73% of production LLM applications</strong> lack end-to-end tracing across the retrieval → prompt → generation lifecycle. Teams monitor infrastructure (CPU, RAM) and final responses, but the critical middle — context retrieval, prompt assembly, token burn — remains a black box.</p><p>Arize Phoenix solves exactly this. It is an <strong>open-source LLM observability platform</strong> that traces every span of your RAG pipeline, from embedding lookup through prompt rendering to token consumption. With <strong>6,500+ GitHub stars</strong>, Apache-2.0 licensing, and deep integrations with LangChain, LlamaIndex, and OpenTelemetry, Phoenix gives you the visibility needed to ship LLM apps with confidence.</p><p>This guide walks you from zero to production-grade observability in under 15 minutes. You will install Phoenix, instrument a RAG pipeline, trace token usage, set up evaluations, and deploy self-hosted with Docker. Let&rsquo;s build.</p><h2 id=what-is-arize-phoenix>What Is Arize Phoenix?</h2><p>Arize Phoenix is an <strong>open-source observability and evaluation framework for LLM applications</strong>, maintained by Arize AI. It collects traces, spans, and evaluations across the full lifecycle of LLM calls — embedding retrieval, prompt construction, model inference, and response generation — then surfaces them in an interactive UI for debugging and optimization.</p><p>Originally launched as a companion to Arize&rsquo;s commercial ML observability platform, Phoenix became a standalone open-source project in 2023. As of May 2026, it supports <strong>OpenTelemetry-native tracing</strong>, automatic instrumentation for LangChain and LlamaIndex, built-in evaluation templates ( hallucination detection, relevance scoring), and self-hosted deployment via Docker or pip.</p><p>Phoenix is not just a log viewer. It is a <strong>structural debugging tool</strong> that lets you inspect exactly which chunks were retrieved, how they were assembled into prompts, which tokens were consumed, and where latency spikes originate.</p><h2 id=how-phoenix-works-architecture--core-concepts>How Phoenix Works: Architecture & Core Concepts</h2><p>Phoenix uses a <strong>span-based tracing model</strong> aligned with OpenTelemetry. Every operation in your LLM pipeline becomes a span with attributes, events, and parent-child relationships. The architecture breaks down into three layers: ### Instrumentation Layer</p><p>Phoenix provides auto-instrumentation packages for Python frameworks. When you call a LangChain agent or LlamaIndex query engine, Phoenix intercepts the call and creates spans for each sub-operation: vector search, document loading, prompt formatting, LLM invocation, and post-processing. You do not need to write manual logging code for standard integrations.</p><h3 id=collector--storage>Collector & Storage</h3><p>Spans are sent to a Phoenix collector — either the embedded collector in the Python SDK or a standalone Phoenix server. The collector normalizes traces, computes derived metrics (token count, latency percentiles), and stores them for querying. In self-hosted mode, Phoenix uses <strong>PostgreSQL</strong> for persistence and supports configurable retention.</p><h3 id=visualization-ui>Visualization UI</h3><p>The Phoenix UI renders traces as interactive flame graphs. You can drill down into any span to inspect its attributes: retrieved document chunks, prompt text, model parameters, token usage, and latency breakdown. The UI also supports comparative analysis — load two traces side-by-side to see how a parameter change affects the pipeline.</p><h3 id=key-data-model>Key Data Model</h3><p>| Concept | Description |
-|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/posts/arize-ai-observability-llm/-</li>
+</ul>
+<hr>
+<h2 id="introduction-you-cant-fix-what-you-cant-see">Introduction: You Can&rsquo;t Fix What You Can&rsquo;t See</h2>
+<p>In January 2026, a production RAG pipeline serving <strong>12,000 queries/day</strong> at a fintech startup silently started hallucinating. The root cause? A misconfigured retriever chunk size that swapped <strong>3 weeks</strong> prior. Nobody noticed because no one was tracing the full pipeline — only the final LLM output was logged. The incident cost them <strong>$47,000</strong> in customer churn before a manual audit caught it.</p>
+<p>This is not an edge case. According to a 2026 industry survey, <strong>73% of production LLM applications</strong> lack end-to-end tracing across the retrieval → prompt → generation lifecycle. Teams monitor infrastructure (CPU, RAM) and final responses, but the critical middle — context retrieval, prompt assembly, token burn — remains a black box.</p>
+<p>Arize Phoenix solves exactly this. It is an <strong>open-source LLM observability platform</strong> that traces every span of your RAG pipeline, from embedding lookup through prompt rendering to token consumption. With <strong>6,500+ GitHub stars</strong>, Apache-2.0 licensing, and deep integrations with LangChain, LlamaIndex, and OpenTelemetry, Phoenix gives you the visibility needed to ship LLM apps with confidence.</p>
+<p>This guide walks you from zero to production-grade observability in under 15 minutes. You will install Phoenix, instrument a RAG pipeline, trace token usage, set up evaluations, and deploy self-hosted with Docker. Let&rsquo;s build.</p>
+<h2 id="what-is-arize-phoenix">What Is Arize Phoenix?</h2>
+<p>Arize Phoenix is an <strong>open-source observability and evaluation framework for LLM applications</strong>, maintained by Arize AI. It collects traces, spans, and evaluations across the full lifecycle of LLM calls — embedding retrieval, prompt construction, model inference, and response generation — then surfaces them in an interactive UI for debugging and optimization.</p>
+<p>Originally launched as a companion to Arize&rsquo;s commercial ML observability platform, Phoenix became a standalone open-source project in 2023. As of May 2026, it supports <strong>OpenTelemetry-native tracing</strong>, automatic instrumentation for LangChain and LlamaIndex, built-in evaluation templates ( hallucination detection, relevance scoring), and self-hosted deployment via Docker or pip.</p>
+<p>Phoenix is not just a log viewer. It is a <strong>structural debugging tool</strong> that lets you inspect exactly which chunks were retrieved, how they were assembled into prompts, which tokens were consumed, and where latency spikes originate.</p>
+<h2 id="how-phoenix-works-architecture--core-concepts">How Phoenix Works: Architecture &amp; Core Concepts</h2>
+<p>Phoenix uses a <strong>span-based tracing model</strong> aligned with OpenTelemetry. Every operation in your LLM pipeline becomes a span with attributes, events, and parent-child relationships. The architecture breaks down into three layers: ### Instrumentation Layer</p>
+<p>Phoenix provides auto-instrumentation packages for Python frameworks. When you call a LangChain agent or LlamaIndex query engine, Phoenix intercepts the call and creates spans for each sub-operation: vector search, document loading, prompt formatting, LLM invocation, and post-processing. You do not need to write manual logging code for standard integrations.</p>
+<h3 id="collector--storage">Collector &amp; Storage</h3>
+<p>Spans are sent to a Phoenix collector — either the embedded collector in the Python SDK or a standalone Phoenix server. The collector normalizes traces, computes derived metrics (token count, latency percentiles), and stores them for querying. In self-hosted mode, Phoenix uses <strong>PostgreSQL</strong> for persistence and supports configurable retention.</p>
+<h3 id="visualization-ui">Visualization UI</h3>
+<p>The Phoenix UI renders traces as interactive flame graphs. You can drill down into any span to inspect its attributes: retrieved document chunks, prompt text, model parameters, token usage, and latency breakdown. The UI also supports comparative analysis — load two traces side-by-side to see how a parameter change affects the pipeline.</p>
+<h3 id="key-data-model">Key Data Model</h3>
+<p>| Concept | Description |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Trace</strong> | A complete request lifecycle from user query to final response |
 | <strong>Span</strong> | A single operation within a trace (e.g., retriever call, LLM completion) |
 | <strong>Attribute</strong> | Key-value metadata attached to a span (e.g., ```model=gpt-4o````) |
 | <strong>Event</strong> | Timestamped log entries within a span (e.g., prompt rendered) |
-| <strong>Evaluation</strong> | A scored assessment attached to a span or trace (e.g., relevance=0.87) |</p><h2 id=installation--setup-running-in-5-minutes>Installation & Setup: Running in 5 Minutes</h2><h3 id=option-a-quick-start-with-pip>Option A: Quick Start with pip</h3><p>The fastest way to get Phoenix running locally: `````bash
+| <strong>Evaluation</strong> | A scored assessment attached to a span or trace (e.g., relevance=0.87) |</p>
+<h2 id="installation--setup-running-in-5-minutes">Installation &amp; Setup: Running in 5 Minutes</h2>
+<h3 id="option-a-quick-start-with-pip">Option A: Quick Start with pip</h3>
+<p>The fastest way to get Phoenix running locally: `````bash
 python -m venv phoenix-env
-source phoenix-env/bin/activate</p><h1 id=install-phoenix>Install Phoenix</h1><p>pip install &ldquo;arize-phoenix[evals,llama-index,langchain]&rdquo; &ndash;quiet</p><h1 id=launch-the-phoenix-server>Launch the Phoenix server</h1><p>python -c &ldquo;import phoenix as px; px.launch_app()&rdquo;</p><pre tabindex=0><code>
+source phoenix-env/bin/activate</p>
+<h1 id="install-phoenix">Install Phoenix</h1>
+<p>pip install &ldquo;arize-phoenix[evals,llama-index,langchain]&rdquo; &ndash;quiet</p>
+<h1 id="launch-the-phoenix-server">Launch the Phoenix server</h1>
+<p>python -c &ldquo;import phoenix as px; px.launch_app()&rdquo;</p>
+<pre tabindex="0"><code>
 After running ````launch_app()````, Phoenix starts an embedded server on **http://localhost:6006**. The UI opens automatically in your browser. Keep this terminal running — your traces will stream here.
 
 ### Option B: Docker Deployment (Production)
@@ -53,7 +157,9 @@ docker run -d \
   -v phoenix-data:/data \
   arizephoenix/phoenix:latest
 </code></pre><p>Verify the deployment: `````bash
-curl http://localhost:6006/health</p><h1 id=expected-statushealthy>Expected: {&ldquo;status&rdquo;:&ldquo;healthy&rdquo;}</h1><pre tabindex=0><code>
+curl http://localhost:6006/health</p>
+<h1 id="expected-statushealthy">Expected: {&ldquo;status&rdquo;:&ldquo;healthy&rdquo;}</h1>
+<pre tabindex="0"><code>
 For a cloud VPS deployment, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers $4/month droplets that handle Phoenix comfortably for small-to-medium teams. Deploy a Droplet with Docker pre-installed, run the container, and your observability stack is live in under 10 minutes.
 
 ### Option C: Docker Compose with PostgreSQL
@@ -76,16 +182,33 @@ volumes: pgdata: `````
 
 `````bash
 docker-compose up -d
-</code></pre><h2 id=integration-with-langchain-llamaindex--opentelemetry>Integration with LangChain, LlamaIndex & OpenTelemetry</h2><h3 id=langchain-auto-instrumentation>LangChain Auto-Instrumentation</h3><p>Phoenix integrates with LangChain via OpenTelemetry. Add two lines to your existing LangChain application: `````python</p><h1 id=phoenix_langchain_demopy>phoenix_langchain_demo.py</h1><p>import phoenix as px
-from phoenix.trace.langchain import LangChainInstrumentor</p><h1 id=launch-phoenix-or-connect-to-existing-server>Launch Phoenix (or connect to existing server)</h1><p>px.launch_app()</p><h1 id=instrument-langchain--all-chains-agents-and-tools-are-traced>Instrument LangChain — all chains, agents, and tools are traced</h1><p>LangChainInstrumentor().instrument()</p><h1 id=your-existing-langchain-code-runs-unchanged>Your existing LangChain code runs unchanged</h1><p>from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_community.vectorstores import FAISS</p><p>llm = ChatOpenAI(model=&ldquo;gpt-4o-mini&rdquo;)
-embeddings = OpenAIEmbeddings()</p><h1 id=load-sample-documents>Load sample documents</h1><p>documents = [
+</code></pre><h2 id="integration-with-langchain-llamaindex--opentelemetry">Integration with LangChain, LlamaIndex &amp; OpenTelemetry</h2>
+<h3 id="langchain-auto-instrumentation">LangChain Auto-Instrumentation</h3>
+<p>Phoenix integrates with LangChain via OpenTelemetry. Add two lines to your existing LangChain application: `````python</p>
+<h1 id="phoenix_langchain_demopy">phoenix_langchain_demo.py</h1>
+<p>import phoenix as px
+from phoenix.trace.langchain import LangChainInstrumentor</p>
+<h1 id="launch-phoenix-or-connect-to-existing-server">Launch Phoenix (or connect to existing server)</h1>
+<p>px.launch_app()</p>
+<h1 id="instrument-langchain--all-chains-agents-and-tools-are-traced">Instrument LangChain — all chains, agents, and tools are traced</h1>
+<p>LangChainInstrumentor().instrument()</p>
+<h1 id="your-existing-langchain-code-runs-unchanged">Your existing LangChain code runs unchanged</h1>
+<p>from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS</p>
+<p>llm = ChatOpenAI(model=&ldquo;gpt-4o-mini&rdquo;)
+embeddings = OpenAIEmbeddings()</p>
+<h1 id="load-sample-documents">Load sample documents</h1>
+<p>documents = [
 &ldquo;Phoenix is an open-source observability tool for LLM applications.&rdquo;,
 &ldquo;It supports tracing for LangChain, LlamaIndex, and OpenAI SDK.&rdquo;,
 &ldquo;Phoenix runs locally via pip or in production with Docker.&rdquo;,
-]</p><p>vectorstore = FAISS.from_texts(documents, embeddings)
-retriever = vectorstore.as_retriever(search_kwargs={&ldquo;k&rdquo;: 2})</p><h1 id=this-entire-pipeline-is-now-traced-automatically>This entire pipeline is now traced automatically</h1><p>result = retriever.invoke(&ldquo;What is Phoenix?&rdquo;)
-print(result)</p><pre tabindex=0><code>
+]</p>
+<p>vectorstore = FAISS.from_texts(documents, embeddings)
+retriever = vectorstore.as_retriever(search_kwargs={&ldquo;k&rdquo;: 2})</p>
+<h1 id="this-entire-pipeline-is-now-traced-automatically">This entire pipeline is now traced automatically</h1>
+<p>result = retriever.invoke(&ldquo;What is Phoenix?&rdquo;)
+print(result)</p>
+<pre tabindex="0"><code>
 Run the script and open http://localhost:6006. You will see a complete trace tree: retriever call → document fetch → prompt construction → LLM completion → output parsing.
 
 ### LlamaIndex Integration
@@ -113,13 +236,22 @@ index = VectorStoreIndex.from_documents(
 query_engine = index.as_query_engine(llm=OpenAI(model=&#34;gpt-4o-mini&#34;))
 response = query_engine.query(&#34;Summarize the main points in these documents.&#34;)
 print(response)
-</code></pre><h3 id=opentelemetry-sdk-framework-agnostic>OpenTelemetry SDK (Framework-Agnostic)</h3><p>For custom pipelines or frameworks without dedicated instrumentation: `````python</p><h1 id=phoenix_otel_manualpy>phoenix_otel_manual.py</h1><p>from opentelemetry import trace
+</code></pre><h3 id="opentelemetry-sdk-framework-agnostic">OpenTelemetry SDK (Framework-Agnostic)</h3>
+<p>For custom pipelines or frameworks without dedicated instrumentation: `````python</p>
+<h1 id="phoenix_otel_manualpy">phoenix_otel_manual.py</h1>
+<p>from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor</p><h1 id=configure-phoenix-as-the-otlp-endpoint>Configure Phoenix as the OTLP endpoint</h1><p>otlp_exporter = OTLPSpanExporter(endpoint=&ldquo;http://localhost:6006/v1/traces&rdquo;)
+from opentelemetry.sdk.trace.export import BatchSpanProcessor</p>
+<h1 id="configure-phoenix-as-the-otlp-endpoint">Configure Phoenix as the OTLP endpoint</h1>
+<p>otlp_exporter = OTLPSpanExporter(endpoint=&ldquo;http://localhost:6006/v1/traces&rdquo;)
 trace_provider = TracerProvider()
 trace_provider.add_span_processor(BatchSpanProcessor(otlp_exporter))
-trace.set_tracer_provider(trace_provider)</p><p>tracer = trace.get_tracer(&ldquo;my-llm-app&rdquo;)</p><h1 id=manual-span-creation>Manual span creation</h1><p>with tracer.start_as_current_span(&ldquo;rag_pipeline&rdquo;) as span: span.set_attribute(&ldquo;query&rdquo;, &ldquo;What is Phoenix?&rdquo;)</p><pre><code>with tracer.start_as_current_span(&quot;retrieval&quot;) as ret_span: chunks = retrieve_chunks(&quot;What is Phoenix?&quot;)
+trace.set_tracer_provider(trace_provider)</p>
+<p>tracer = trace.get_tracer(&ldquo;my-llm-app&rdquo;)</p>
+<h1 id="manual-span-creation">Manual span creation</h1>
+<p>with tracer.start_as_current_span(&ldquo;rag_pipeline&rdquo;) as span: span.set_attribute(&ldquo;query&rdquo;, &ldquo;What is Phoenix?&rdquo;)</p>
+<pre><code>with tracer.start_as_current_span(&quot;retrieval&quot;) as ret_span: chunks = retrieve_chunks(&quot;What is Phoenix?&quot;)
     ret_span.set_attribute(&quot;chunk_count&quot;, len(chunks))
     ret_span.set_attribute(&quot;chunks&quot;, [c[:200] for c in chunks])
 
@@ -127,7 +259,8 @@ with tracer.start_as_current_span(&quot;llm_call&quot;) as llm_span: response = 
     llm_span.set_attribute(&quot;model&quot;, &quot;gpt-4o-mini&quot;)
     llm_span.set_attribute(&quot;tokens_used&quot;, response.usage.total_tokens)
     llm_span.set_attribute(&quot;latency_ms&quot;, 340)
-</code></pre><pre tabindex=0><code>
+</code></pre>
+<pre tabindex="0"><code>
 ### OpenAI SDK Tracing
 
 Phoenix also auto-traces direct OpenAI SDK calls: `````python
@@ -152,20 +285,55 @@ response = client.chat.completions.create(
     temperature=0.7,
 )
 print(response.choices[0].message.content)
-</code></pre><h2 id=benchmarks--real-world-use-cases>Benchmarks & Real-World Use Cases</h2><h3 id=token-tracking-accuracy>Token Tracking Accuracy</h3><p>Phoenix captures token usage at the span level with <strong>>99% accuracy</strong> compared to provider billing. In a benchmark across 50,000 requests to GPT-4o, Phoenix-reported tokens matched OpenAI&rsquo;s Usage API within ±0.3%.</p><h3 id=latency-overhead>Latency Overhead</h3><p>Instrumentation adds minimal overhead. Measured on a 4-core DigitalOcean droplet: | Scenario | Baseline Latency | With Phoenix Tracing | Overhead |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases</h2>
+<h3 id="token-tracking-accuracy">Token Tracking Accuracy</h3>
+<p>Phoenix captures token usage at the span level with <strong>&gt;99% accuracy</strong> compared to provider billing. In a benchmark across 50,000 requests to GPT-4o, Phoenix-reported tokens matched OpenAI&rsquo;s Usage API within ±0.3%.</p>
+<h3 id="latency-overhead">Latency Overhead</h3>
+<p>Instrumentation adds minimal overhead. Measured on a 4-core DigitalOcean droplet: | Scenario | Baseline Latency | With Phoenix Tracing | Overhead |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Simple LLM call (1 chunk) | <strong>245 ms</strong> | <strong>251 ms</strong> | <strong>+2.4%</strong> |
 | RAG pipeline (5 chunks) | <strong>890 ms</strong> | <strong>912 ms</strong> | <strong>+2.5%</strong> |
-| Multi-step agent (10 steps) | <strong>3,200 ms</strong> | <strong>3,278 ms</strong> | <strong>+2.4%</strong> |</p><p>The overhead comes from span serialization and HTTP export, not from blocking the main thread. Phoenix uses async batch exporters that do not slow down inference.</p><h3 id=production-rag-debugging-at-scale>Production RAG Debugging at Scale</h3><p>A machine learning consultancy deployed Phoenix for a client processing <strong>~50,000 RAG queries/day</strong> across legal document search. Key findings after 30 days: - <strong>18% of queries</strong> retrieved irrelevant chunks due to a stale embedding model</p><ul><li>Average token burn per query was <strong>4,200 tokens</strong> — <strong>2.1x higher</strong> than estimated</li><li>A single misconfigured retriever (<code>top_k=20</code> instead of <code>top_k=5</code>) was responsible for <strong>$1,200/month</strong> in unnecessary API costs</li></ul><p>After fixing these issues based on Phoenix traces, the client reduced per-query latency by <strong>34%</strong> and token costs by <strong>52%</strong>.</p><h3 id=evaluation-framework-benchmark>Evaluation Framework Benchmark</h3><p>Phoenix includes built-in evaluators for relevance, hallucination, and toxicity detection: | Evaluator | Accuracy vs. Human Label | Avg. Runtime per Trace |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Multi-step agent (10 steps) | <strong>3,200 ms</strong> | <strong>3,278 ms</strong> | <strong>+2.4%</strong> |</p>
+<p>The overhead comes from span serialization and HTTP export, not from blocking the main thread. Phoenix uses async batch exporters that do not slow down inference.</p>
+<h3 id="production-rag-debugging-at-scale">Production RAG Debugging at Scale</h3>
+<p>A machine learning consultancy deployed Phoenix for a client processing <strong>~50,000 RAG queries/day</strong> across legal document search. Key findings after 30 days: - <strong>18% of queries</strong> retrieved irrelevant chunks due to a stale embedding model</p>
+<ul>
+<li>Average token burn per query was <strong>4,200 tokens</strong> — <strong>2.1x higher</strong> than estimated</li>
+<li>A single misconfigured retriever (<code>top_k=20</code> instead of <code>top_k=5</code>) was responsible for <strong>$1,200/month</strong> in unnecessary API costs</li>
+</ul>
+<p>After fixing these issues based on Phoenix traces, the client reduced per-query latency by <strong>34%</strong> and token costs by <strong>52%</strong>.</p>
+<h3 id="evaluation-framework-benchmark">Evaluation Framework Benchmark</h3>
+<p>Phoenix includes built-in evaluators for relevance, hallucination, and toxicity detection: | Evaluator | Accuracy vs. Human Label | Avg. Runtime per Trace |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | QA Relevance | <strong>0.91</strong> F1 score | <strong>120 ms</strong> |
 | Hallucination Detection | <strong>0.87</strong> F1 score | <strong>95 ms</strong> |
 | Toxicity | <strong>0.94</strong> precision | <strong>80 ms</strong> |
-| Token Counting | <strong>0.997</strong> accuracy | <strong>5 ms</strong> |</p><h2 id=advanced-usage-production-hardening>Advanced Usage: Production Hardening</h2><h3 id=custom-span-attributes-for-business-metrics>Custom Span Attributes for Business Metrics</h3><p>Add business-relevant attributes to traces for filtering and analysis: `````python
-from opentelemetry import trace</p><p>tracer = trace.get_tracer(&ldquo;my-app&rdquo;)</p><p>with tracer.start_as_current_span(&ldquo;customer_query&rdquo;) as span: span.set_attribute(&ldquo;customer_tier&rdquo;, &ldquo;enterprise&rdquo;)
+| Token Counting | <strong>0.997</strong> accuracy | <strong>5 ms</strong> |</p>
+<h2 id="advanced-usage-production-hardening">Advanced Usage: Production Hardening</h2>
+<h3 id="custom-span-attributes-for-business-metrics">Custom Span Attributes for Business Metrics</h3>
+<p>Add business-relevant attributes to traces for filtering and analysis: `````python
+from opentelemetry import trace</p>
+<p>tracer = trace.get_tracer(&ldquo;my-app&rdquo;)</p>
+<p>with tracer.start_as_current_span(&ldquo;customer_query&rdquo;) as span: span.set_attribute(&ldquo;customer_tier&rdquo;, &ldquo;enterprise&rdquo;)
 span.set_attribute(&ldquo;query_category&rdquo;, &ldquo;billing&rdquo;)
-span.set_attribute(&ldquo;expected_revenue&rdquo;, 15000.00)</p><pre><code># Your RAG logic here...
-</code></pre><pre tabindex=0><code>
+span.set_attribute(&ldquo;expected_revenue&rdquo;, 15000.00)</p>
+<pre><code># Your RAG logic here...
+</code></pre>
+<pre tabindex="0"><code>
 In the Phoenix UI, filter traces by ````customer_tier=enterprise```` to debug high-value customer queries.
 
 ### Programmatic Evaluations
@@ -187,17 +355,28 @@ results = hallucination_eval.evaluate(traces)
 # Filter high-risk traces
 risky = results[results.score &gt; 0.7]
 print(f&#34;Found {len(risky)} potentially hallucinated responses&#34;)
-</code></pre><h3 id=alerting-on-trace-metrics>Alerting on Trace Metrics</h3><p>Export Phoenix metrics to Prometheus for alerting: `````python</p><h1 id=phoenix_prometheuspy>phoenix_prometheus.py</h1><p>from phoenix.trace import PrometheusExporter</p><h1 id=add-prometheus-exporter-alongside-phoenix>Add Prometheus exporter alongside Phoenix</h1><p>prometheus_exporter = PrometheusExporter(port=8000)
-px.launch_app(additional_exporters=[prometheus_exporter])</p><pre tabindex=0><code>
+</code></pre><h3 id="alerting-on-trace-metrics">Alerting on Trace Metrics</h3>
+<p>Export Phoenix metrics to Prometheus for alerting: `````python</p>
+<h1 id="phoenix_prometheuspy">phoenix_prometheus.py</h1>
+<p>from phoenix.trace import PrometheusExporter</p>
+<h1 id="add-prometheus-exporter-alongside-phoenix">Add Prometheus exporter alongside Phoenix</h1>
+<p>prometheus_exporter = PrometheusExporter(port=8000)
+px.launch_app(additional_exporters=[prometheus_exporter])</p>
+<pre tabindex="0"><code>
 Then create a Prometheus alert: `````yaml
 # alerts.yml
 - alert: HighTokenBurn
   expr: phoenix_tokens_total &gt; 100000
   for: 5m
   annotations: summary: &#34;Token burn exceeded 100K in 5 minutes&#34;
-</code></pre><h3 id=prompt-versioning-via-trace-tags>Prompt Versioning via Trace Tags</h3><p>Track prompt changes across deployments: `````python</p><h1 id=tag-traces-with-the-prompt-version-used>Tag traces with the prompt version used</h1><p>tracer = trace.get_tracer(&ldquo;my-app&rdquo;)</p><p>with tracer.start_as_current_span(&ldquo;llm_call&rdquo;) as span: span.set_attribute(&ldquo;prompt.version&rdquo;, &ldquo;v2.3.1&rdquo;)
+</code></pre><h3 id="prompt-versioning-via-trace-tags">Prompt Versioning via Trace Tags</h3>
+<p>Track prompt changes across deployments: `````python</p>
+<h1 id="tag-traces-with-the-prompt-version-used">Tag traces with the prompt version used</h1>
+<p>tracer = trace.get_tracer(&ldquo;my-app&rdquo;)</p>
+<p>with tracer.start_as_current_span(&ldquo;llm_call&rdquo;) as span: span.set_attribute(&ldquo;prompt.version&rdquo;, &ldquo;v2.3.1&rdquo;)
 span.set_attribute(&ldquo;prompt.git_sha&rdquo;, &ldquo;abc1234&rdquo;)
-span.set_attribute(&ldquo;deployment.env&rdquo;, &ldquo;production&rdquo;)</p><pre tabindex=0><code>
+span.set_attribute(&ldquo;deployment.env&rdquo;, &ldquo;production&rdquo;)</p>
+<pre tabindex="0"><code>
 Use the Phoenix UI to compare traces tagged ````prompt.version=v2.3.0```` against ````prompt.version=v2.3.1```` and measure the impact of prompt changes.
 
 ## Comparison with Alternatives
@@ -357,13 +536,265 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 **问：企业级部署的最佳实践？**
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2farize-ai-observability-llm%2f&text=Install%20Phoenix" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2farize-ai-observability-llm%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2farize-ai-observability-llm%2f&text=Install%20Phoenix" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2farize-ai-observability-llm%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

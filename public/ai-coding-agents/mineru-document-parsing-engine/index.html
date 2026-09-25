@@ -1,25 +1,117 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Automatic OCR detection (recommended) | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Automatic OCR detection (recommended) | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/mineru-document-parsing-engine/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/mineru-document-parsing-engine/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Automatic OCR detection (recommended)</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Automatic OCR detection (recommended)</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p><img alt="MinerU logo" loading=lazy src=https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png></p><p><em>MinerU — the open-source document parsing engine that turned 70,600 GitHub stars in just over a year.</em></p><p>In the age of AI coding agents and RAG pipelines, the biggest bottleneck isn&rsquo;t model capability — it&rsquo;s <strong>data quality</strong>. You can have the most powerful LLM in the world, but if your input documents are messy PDFs with broken tables, unreadable formulas, and garbled headers, the output will be garbage.</p><p>Enter <strong>MinerU</strong>, a document parsing tool from OpenDataLab (the team behind InternLM) that converts PDF, DOCX, PPTX, XLSX, images, and web pages into <strong>clean, structured Markdown and JSON</strong> — specifically designed for downstream LLM, RAG, and Agent workflows.</p><p>With <strong>70,600+ GitHub stars</strong>, <strong>5,900 forks</strong>, and <strong>960 stars gained today alone</strong>, MinerU has quickly become the go-to open-source solution for document-to-LLM-pipeline conversion.</p><h2 id=what-is-mineru>What Is MinerU?</h2><p>MinerU was born during the pre-training process of <a href=https://github.com/InternLM/InternLM>InternLM</a>, a Chinese large language model. The team noticed that converting scientific papers and technical documents into machine-readable format was a massive pain point — especially for formulas, tables, and complex layouts.</p><p>So they built MinerU.</p><p>Unlike traditional PDF parsers that just extract raw text, MinerU understands document structure: - <strong>Removes</strong> headers, footers, footnotes, and page numbers that break semantic coherence</p><ul><li><strong>Preserves</strong> reading order for single-column, multi-column, and complex layouts</li><li><strong>Converts</strong> formulas to LaTeX, tables to HTML</li><li><strong>Detects</strong> scanned and garbled PDFs and automatically enables OCR</li><li><strong>Supports</strong> 109 languages for OCR recognition</li><li><strong>Outputs</strong> multimodal Markdown, NLP Markdown, and JSON sorted by reading order</li></ul><p>The result is document content that AI agents and LLMs can actually understand.</p><h2 id=installation-and-setup>Installation and Setup</h2><p>MinerU offers multiple installation paths depending on your needs: ### pip (Recommended for most users)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install mineru
-</span></span></code></pre></div><h3 id=docker>Docker</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker pull mineru/mineru:latest
-</span></span><span style=display:flex><span>docker run --gpus all -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>:/data mineru/mineru:latest
-</span></span></code></pre></div><h3 id=local-development>Local Development</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/opendatalab/MinerU.git
-</span></span><span style=display:flex><span>cd MinerU
-</span></span><span style=display:flex><span>pip install -e .
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic OCR detection (recommended) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Automatic OCR detection (recommended) | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/mineru-document-parsing-engine/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/mineru-document-parsing-engine/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Automatic OCR detection (recommended)</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Automatic OCR detection (recommended)</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p><img alt="MinerU logo" loading="lazy" src="https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png"></p>
+<p><em>MinerU — the open-source document parsing engine that turned 70,600 GitHub stars in just over a year.</em></p>
+<p>In the age of AI coding agents and RAG pipelines, the biggest bottleneck isn&rsquo;t model capability — it&rsquo;s <strong>data quality</strong>. You can have the most powerful LLM in the world, but if your input documents are messy PDFs with broken tables, unreadable formulas, and garbled headers, the output will be garbage.</p>
+<p>Enter <strong>MinerU</strong>, a document parsing tool from OpenDataLab (the team behind InternLM) that converts PDF, DOCX, PPTX, XLSX, images, and web pages into <strong>clean, structured Markdown and JSON</strong> — specifically designed for downstream LLM, RAG, and Agent workflows.</p>
+<p>With <strong>70,600+ GitHub stars</strong>, <strong>5,900 forks</strong>, and <strong>960 stars gained today alone</strong>, MinerU has quickly become the go-to open-source solution for document-to-LLM-pipeline conversion.</p>
+<h2 id="what-is-mineru">What Is MinerU?</h2>
+<p>MinerU was born during the pre-training process of <a href="https://github.com/InternLM/InternLM">InternLM</a>, a Chinese large language model. The team noticed that converting scientific papers and technical documents into machine-readable format was a massive pain point — especially for formulas, tables, and complex layouts.</p>
+<p>So they built MinerU.</p>
+<p>Unlike traditional PDF parsers that just extract raw text, MinerU understands document structure: - <strong>Removes</strong> headers, footers, footnotes, and page numbers that break semantic coherence</p>
+<ul>
+<li><strong>Preserves</strong> reading order for single-column, multi-column, and complex layouts</li>
+<li><strong>Converts</strong> formulas to LaTeX, tables to HTML</li>
+<li><strong>Detects</strong> scanned and garbled PDFs and automatically enables OCR</li>
+<li><strong>Supports</strong> 109 languages for OCR recognition</li>
+<li><strong>Outputs</strong> multimodal Markdown, NLP Markdown, and JSON sorted by reading order</li>
+</ul>
+<p>The result is document content that AI agents and LLMs can actually understand.</p>
+<h2 id="installation-and-setup">Installation and Setup</h2>
+<p>MinerU offers multiple installation paths depending on your needs: ### pip (Recommended for most users)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install mineru
+</span></span></code></pre></div><h3 id="docker">Docker</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull mineru/mineru:latest
+</span></span><span style="display:flex;"><span>docker run --gpus all -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>:/data mineru/mineru:latest
+</span></span></code></pre></div><h3 id="local-development">Local Development</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/opendatalab/MinerU.git
+</span></span><span style="display:flex;"><span>cd MinerU
+</span></span><span style="display:flex;"><span>pip install -e .
 </span></span></code></pre></div><p>MinerU supports both <strong>CPU-only</strong> and <strong>GPU-accelerated</strong> inference. For GPU acceleration, install with CUDA support: `````bash
-pip install mineru[cuda]</p><pre tabindex=0><code>
+pip install mineru[cuda]</p>
+<pre tabindex="0"><code>
 On macOS with Apple Silicon, MinerU leverages MPS (Metal Performance Shaders) for acceleration.
 
 ## Three Parsing Engines
@@ -30,137 +122,457 @@ The ````pipeline```` backend is the default choice for most users. It&#39;s fast
 
 `````bash
 mineru ./input.pdf -o ./output/
-</code></pre><p><strong>Best for:</strong> High-volume document processing, CI/CD pipelines, CPU-only environments.</p><h3 id=2-vlm-engine-high-accuracy>2. VLM Engine (High Accuracy)</h3><p>The VLM (Vision Language Model) engine uses MinerU&rsquo;s proprietary <code>MinerU2.5-Pro-2604-1.2B</code> model for state-of-the-art parsing accuracy. It excels on complex documents with mixed layouts, handwritten text, and dense formulas.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mineru ./complex.pdf -o ./output/ --engine vlm-engine
-</span></span></code></pre></div><p><strong>Best for:</strong> Complex scientific papers, scanned documents, handwritten content, multi-language OCR.</p><h3 id=3-hybrid-engine-balanced>3. Hybrid Engine (Balanced)</h3><p>The <code>hybrid</code> engine combines native text extraction with VLM-based analysis. Starting from version 3.3, it includes an <code>effort</code> parameter with <code>medium</code> and <code>high</code> levels: - <strong>Medium effort:</strong> 35-220% faster than high, with only 0.13-point accuracy drop on OmniDocBench</p><ul><li><strong>High effort:</strong> Maximum accuracy with image analysis support</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
-</span></span></code></pre></div><p><strong>Best for:</strong> Production workloads where you need to balance speed and accuracy.</p><h2 id=supported-formats>Supported Formats</h2><p>MinerU supports a comprehensive range of input formats: | Format | Support Level | Notes |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p><strong>Best for:</strong> High-volume document processing, CI/CD pipelines, CPU-only environments.</p>
+<h3 id="2-vlm-engine-high-accuracy">2. VLM Engine (High Accuracy)</h3>
+<p>The VLM (Vision Language Model) engine uses MinerU&rsquo;s proprietary <code>MinerU2.5-Pro-2604-1.2B</code> model for state-of-the-art parsing accuracy. It excels on complex documents with mixed layouts, handwritten text, and dense formulas.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mineru ./complex.pdf -o ./output/ --engine vlm-engine
+</span></span></code></pre></div><p><strong>Best for:</strong> Complex scientific papers, scanned documents, handwritten content, multi-language OCR.</p>
+<h3 id="3-hybrid-engine-balanced">3. Hybrid Engine (Balanced)</h3>
+<p>The <code>hybrid</code> engine combines native text extraction with VLM-based analysis. Starting from version 3.3, it includes an <code>effort</code> parameter with <code>medium</code> and <code>high</code> levels: - <strong>Medium effort:</strong> 35-220% faster than high, with only 0.13-point accuracy drop on OmniDocBench</p>
+<ul>
+<li><strong>High effort:</strong> Maximum accuracy with image analysis support</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
+</span></span></code></pre></div><p><strong>Best for:</strong> Production workloads where you need to balance speed and accuracy.</p>
+<h2 id="supported-formats">Supported Formats</h2>
+<p>MinerU supports a comprehensive range of input formats: | Format | Support Level | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | PDF | Native | Text PDFs, scanned PDFs, garbled PDFs |
 | DOCX | Native | Full structural preservation |
 | PPTX | Native | Slides, layouts, embedded content |
 | XLSX | Native | Tables, formulas, charts |
 | Images | OCR | JPEG, PNG, TIFF, BMP, and more |
-| Web Pages | Scraping | Full-page conversion to Markdown |</p><p>The native DOCX, PPTX, and XLSX support (added in version 3.1.0) means MinerU can parse these formats <strong>directly</strong> without converting to PDF first — a significant speed improvement over traditional workflows.</p><h2 id=ocr-109-languages>OCR: 109 Languages</h2><p>MinerU&rsquo;s OCR engine supports <strong>109 languages</strong> and was upgraded to PP-OCRv6 in version 3.4, improving accuracy by approximately 11% on the OmniDocBench v1.6 benchmark.</p><p>Starting from version 3.4, MinerU simplified the OCR language configuration. Instead of selecting individual languages (Japanese, Traditional Chinese, English, Latin), all scenarios now route through the optimized <code>ch</code> OCR model, reducing configuration complexity while improving accuracy.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Automatic OCR detection (recommended)</span>
-</span></span><span style=display:flex><span>mineru ./scanned.pdf -o ./output/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Force OCR on a specific document</span>
-</span></span><span style=display:flex><span>mineru ./document.pdf -o ./output/ --ocr
-</span></span></code></pre></div><h2 id=real-world-use-cases>Real-World Use Cases</h2><h3 id=rag-pipeline-data-preparation>RAG Pipeline Data Preparation</h3><p>MinerU is purpose-built for RAG (Retrieval-Augmented Generation) workflows. By converting documents into structured Markdown with preserved reading order, headings, and semantic structure, RAG systems can chunk and embed documents far more effectively.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> mineru <span style=color:#66d9ef>as</span> mu
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> mu<span style=color:#f92672>.</span>parse(<span style=color:#e6db74>&#34;./research_paper.pdf&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#75715e># result.markdown: Clean Markdown for embedding</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># result.json: Structured JSON for retrieval</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># result.layout: Visual layout for debugging</span>
-</span></span></code></pre></div><h3 id=ai-agent-knowledge-base>AI Agent Knowledge Base</h3><p>For AI agents that need to reason over documents, MinerU provides the cleanest possible input. The removal of headers, footers, and page numbers ensures agents don&rsquo;t get confused by repetitive page artifacts.</p><h3 id=training-data-production>Training Data Production</h3><p>MinerU was originally built to support InternLM&rsquo;s pre-training pipeline. Its ability to convert complex scientific papers into clean text makes it invaluable for producing high-quality training data for domain-specific LLMs.</p><h3 id=batch-document-processing>Batch Document Processing</h3><p>With support for multi-threaded concurrent inference and streaming writes to disk, MinerU can process thousands of documents without manual splitting. The sliding-window mechanism reduces peak memory usage in long-document scenarios.</p><h2 id=integration-ecosystem>Integration Ecosystem</h2><p>MinerU integrates with virtually every major AI framework: | Framework | Integration |
-|</p><hr><p>|</p><hr><p>|
+| Web Pages | Scraping | Full-page conversion to Markdown |</p>
+<p>The native DOCX, PPTX, and XLSX support (added in version 3.1.0) means MinerU can parse these formats <strong>directly</strong> without converting to PDF first — a significant speed improvement over traditional workflows.</p>
+<h2 id="ocr-109-languages">OCR: 109 Languages</h2>
+<p>MinerU&rsquo;s OCR engine supports <strong>109 languages</strong> and was upgraded to PP-OCRv6 in version 3.4, improving accuracy by approximately 11% on the OmniDocBench v1.6 benchmark.</p>
+<p>Starting from version 3.4, MinerU simplified the OCR language configuration. Instead of selecting individual languages (Japanese, Traditional Chinese, English, Latin), all scenarios now route through the optimized <code>ch</code> OCR model, reducing configuration complexity while improving accuracy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Automatic OCR detection (recommended)</span>
+</span></span><span style="display:flex;"><span>mineru ./scanned.pdf -o ./output/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Force OCR on a specific document</span>
+</span></span><span style="display:flex;"><span>mineru ./document.pdf -o ./output/ --ocr
+</span></span></code></pre></div><h2 id="real-world-use-cases">Real-World Use Cases</h2>
+<h3 id="rag-pipeline-data-preparation">RAG Pipeline Data Preparation</h3>
+<p>MinerU is purpose-built for RAG (Retrieval-Augmented Generation) workflows. By converting documents into structured Markdown with preserved reading order, headings, and semantic structure, RAG systems can chunk and embed documents far more effectively.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> mineru <span style="color:#66d9ef">as</span> mu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> mu<span style="color:#f92672">.</span>parse(<span style="color:#e6db74">&#34;./research_paper.pdf&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># result.markdown: Clean Markdown for embedding</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># result.json: Structured JSON for retrieval</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># result.layout: Visual layout for debugging</span>
+</span></span></code></pre></div><h3 id="ai-agent-knowledge-base">AI Agent Knowledge Base</h3>
+<p>For AI agents that need to reason over documents, MinerU provides the cleanest possible input. The removal of headers, footers, and page numbers ensures agents don&rsquo;t get confused by repetitive page artifacts.</p>
+<h3 id="training-data-production">Training Data Production</h3>
+<p>MinerU was originally built to support InternLM&rsquo;s pre-training pipeline. Its ability to convert complex scientific papers into clean text makes it invaluable for producing high-quality training data for domain-specific LLMs.</p>
+<h3 id="batch-document-processing">Batch Document Processing</h3>
+<p>With support for multi-threaded concurrent inference and streaming writes to disk, MinerU can process thousands of documents without manual splitting. The sliding-window mechanism reduces peak memory usage in long-document scenarios.</p>
+<h2 id="integration-ecosystem">Integration Ecosystem</h2>
+<p>MinerU integrates with virtually every major AI framework: | Framework | Integration |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | LangChain | Native document loader |
 | LlamaIndex | Document parser integration |
 | RAGFlow | Built-in parser |
 | RAG-Anything | Pipeline integration |
 | Flowise | Visual workflow support |
 | Dify | Document processing node |
-| FastGPT | Native support |</p><h3 id=mcp-server>MCP Server</h3><p>MinerU also provides an <strong>MCP Server</strong> for integration with AI coding tools like Cursor, Claude Desktop, and Windsurf. This allows you to parse documents directly within your coding agent&rsquo;s workflow.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Start the MCP server</span>
-</span></span><span style=display:flex><span>mineru-mcp-server
-</span></span></code></pre></div><h2 id=performance-benchmarks>Performance Benchmarks</h2><p>MinerU&rsquo;s <code>pipeline</code> backend achieves a score of <strong>86.2 on OmniDocBench v1.5</strong>, surpassing the accuracy of the previous-generation VLM model <code>MinerU2.0-2505-0.9B</code>.</p><p>The Hybrid engine with <code>effort=medium</code> delivers: - <strong>~80% faster</strong> for text PDF scenarios on Linux</p><ul><li><strong>~90% faster</strong> for text PDF scenarios on Windows</li><li><strong>~220% faster</strong> for text PDF scenarios on macOS</li><li>Only <strong>0.13-point accuracy drop</strong> compared to <code>effort=high</code></li></ul><h2 id=why-mineru-stands-out>Why MinerU Stands Out</h2><ol><li><p><strong>Built for AI, not humans.</strong> Unlike general-purpose PDF converters, MinerU&rsquo;s output is optimized for LLM consumption — preserving semantic structure while removing noise that confuses AI models.</p></li><li><p><strong>Multi-format native support.</strong> DOCX, PPTX, XLSX, PDF, images, and web pages — all parsed natively without format conversion intermediaries.</p></li><li><p><strong>Production-ready at scale.</strong> Multi-threaded concurrency, GPU/CPU flexibility, Docker deployment, and a robust API/CLI/router architecture make MinerU suitable for enterprise workloads.</p></li><li><p><strong>Open license.</strong> Moved from AGPLv3 to a custom Apache 2.0-based license in version 3.1.0, significantly reducing adoption barriers for both community and commercial use.</p></li><li><p><strong>Domestic AI chip support.</strong> Compatible with 10+ Chinese AI accelerators including Ascend, Cambricon, Enflame, Moore Threads, and others.</p></li></ol><h2 id=getting-started>Getting Started</h2><p>The easiest way to try MinerU is through the <a href="https://mineru.net/OpenSourceTools/Extractor?source=github">online web application</a>, which offers the same functionality as the desktop client with no installation required.</p><p>For developers, the <a href=https://colab.research.google.com/gist/myhloli/a3cb16570ab3cfeadf9d8f0ac91b4fca/mineru_demo.ipynb>Colab notebook</a> provides a quick interactive demo.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install and parse your first document</span>
-</span></span><span style=display:flex><span>pip install mineru
-</span></span><span style=display:flex><span>mineru ./my-document.pdf -o ./output/ --format markdown
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Limitations</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- **Complex layouts:** While MinerU handles most document types well, extremely complex layouts <span style=color:#f92672>(</span>multi-column scientific papers with interleaved figures and tables<span style=color:#f92672>)</span> may still require manual review.
-</span></span><span style=display:flex><span>- **GPU requirement <span style=color:#66d9ef>for</span> VLM:** The VLM engine requires significant VRAM <span style=color:#f92672>(</span>8GB+ recommended<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> optimal performance.
-</span></span><span style=display:flex><span>- **Learning curve:** The three-engine architecture and various configuration options can be overwhelming <span style=color:#66d9ef>for</span> beginners.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>MinerU represents a significant step forward in document-to-LLM conversion. By combining native multi-format parsing, 109-language OCR, and AI-optimized output formatting, it fills a critical gap in the modern AI data pipeline.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Whether you<span style=color:#960050;background-color:#1e0010>&#39;</span>re building a RAG system, training a domain-specific LLM, or creating a knowledge base <span style=color:#66d9ef>for</span> AI agents, MinerU provides the clean, structured input that makes these systems actually work.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>With 70,600+ stars, an active development team, and growing framework integrations, MinerU is positioned to become the de facto standard <span style=color:#66d9ef>for</span> open-source document parsing in the AI era.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Resources</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- GitHub repository: https://github.com/opendatalab/MinerU
-</span></span><span style=display:flex><span>- Documentation: https://opendatalab.github.io/MinerU/
-</span></span><span style=display:flex><span>- Online demo: https://mineru.net/OpenSourceTools/Extractor
-</span></span><span style=display:flex><span>- Technical report <span style=color:#f92672>(</span>v3.1<span style=color:#f92672>)</span>: https://arxiv.org/abs/2604.04771
-</span></span><span style=display:flex><span>- Technical report <span style=color:#f92672>(</span>v2.5<span style=color:#f92672>)</span>: https://arxiv.org/abs/2509.22186
-</span></span><span style=display:flex><span>- Technical report <span style=color:#f92672>(</span>v2.0<span style=color:#f92672>)</span>: https://arxiv.org/abs/2409.18839
-</span></span><span style=display:flex><span>- HuggingFace demo: https://huggingface.co/spaces/opendatalab/MinerU
-</span></span><span style=display:flex><span>- ModelScope demo: https://www.modelscope.cn/studios/OpenDataLab/MinerU
-</span></span><span style=display:flex><span>- Discord community: https://discord.gg/Tdedn9GTXq
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;MinerU: 70.6K Stars — Convert Any Document to LLM-Ready Markdown&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-27&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-27&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/resources/mineru-document-parsing-engine&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>paddleocr-81k-star-ocr-engine<span style=color:#f92672>](</span>mineru-document-parsing-engine<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>mineru-document-parsing-engine<span style=color:#f92672>](</span>mineru-document-parsing-engine<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>paddleocr-81k-star-ocr-engine<span style=color:#f92672>](</span>mineru-document-parsing-engine<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>mineru-document-parsing-engine<span style=color:#f92672>](</span>mineru-document-parsing-engine<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>paddleocr-81k-star-ocr-engine<span style=color:#f92672>](</span>mineru-document-parsing-engine<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></code></pre></div></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmineru-document-parsing-engine%2f&text=Automatic%20OCR%20detection%20%28recommended%29" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmineru-document-parsing-engine%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+| FastGPT | Native support |</p>
+<h3 id="mcp-server">MCP Server</h3>
+<p>MinerU also provides an <strong>MCP Server</strong> for integration with AI coding tools like Cursor, Claude Desktop, and Windsurf. This allows you to parse documents directly within your coding agent&rsquo;s workflow.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the MCP server</span>
+</span></span><span style="display:flex;"><span>mineru-mcp-server
+</span></span></code></pre></div><h2 id="performance-benchmarks">Performance Benchmarks</h2>
+<p>MinerU&rsquo;s <code>pipeline</code> backend achieves a score of <strong>86.2 on OmniDocBench v1.5</strong>, surpassing the accuracy of the previous-generation VLM model <code>MinerU2.0-2505-0.9B</code>.</p>
+<p>The Hybrid engine with <code>effort=medium</code> delivers: - <strong>~80% faster</strong> for text PDF scenarios on Linux</p>
+<ul>
+<li><strong>~90% faster</strong> for text PDF scenarios on Windows</li>
+<li><strong>~220% faster</strong> for text PDF scenarios on macOS</li>
+<li>Only <strong>0.13-point accuracy drop</strong> compared to <code>effort=high</code></li>
+</ul>
+<h2 id="why-mineru-stands-out">Why MinerU Stands Out</h2>
+<ol>
+<li>
+<p><strong>Built for AI, not humans.</strong> Unlike general-purpose PDF converters, MinerU&rsquo;s output is optimized for LLM consumption — preserving semantic structure while removing noise that confuses AI models.</p>
+</li>
+<li>
+<p><strong>Multi-format native support.</strong> DOCX, PPTX, XLSX, PDF, images, and web pages — all parsed natively without format conversion intermediaries.</p>
+</li>
+<li>
+<p><strong>Production-ready at scale.</strong> Multi-threaded concurrency, GPU/CPU flexibility, Docker deployment, and a robust API/CLI/router architecture make MinerU suitable for enterprise workloads.</p>
+</li>
+<li>
+<p><strong>Open license.</strong> Moved from AGPLv3 to a custom Apache 2.0-based license in version 3.1.0, significantly reducing adoption barriers for both community and commercial use.</p>
+</li>
+<li>
+<p><strong>Domestic AI chip support.</strong> Compatible with 10+ Chinese AI accelerators including Ascend, Cambricon, Enflame, Moore Threads, and others.</p>
+</li>
+</ol>
+<h2 id="getting-started">Getting Started</h2>
+<p>The easiest way to try MinerU is through the <a href="https://mineru.net/OpenSourceTools/Extractor?source=github">online web application</a>, which offers the same functionality as the desktop client with no installation required.</p>
+<p>For developers, the <a href="https://colab.research.google.com/gist/myhloli/a3cb16570ab3cfeadf9d8f0ac91b4fca/mineru_demo.ipynb">Colab notebook</a> provides a quick interactive demo.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install and parse your first document</span>
+</span></span><span style="display:flex;"><span>pip install mineru
+</span></span><span style="display:flex;"><span>mineru ./my-document.pdf -o ./output/ --format markdown
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Limitations</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- **Complex layouts:** While MinerU handles most document types well, extremely complex layouts <span style="color:#f92672">(</span>multi-column scientific papers with interleaved figures and tables<span style="color:#f92672">)</span> may still require manual review.
+</span></span><span style="display:flex;"><span>- **GPU requirement <span style="color:#66d9ef">for</span> VLM:** The VLM engine requires significant VRAM <span style="color:#f92672">(</span>8GB+ recommended<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> optimal performance.
+</span></span><span style="display:flex;"><span>- **Learning curve:** The three-engine architecture and various configuration options can be overwhelming <span style="color:#66d9ef">for</span> beginners.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MinerU represents a significant step forward in document-to-LLM conversion. By combining native multi-format parsing, 109-language OCR, and AI-optimized output formatting, it fills a critical gap in the modern AI data pipeline.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Whether you<span style="color:#960050;background-color:#1e0010">&#39;</span>re building a RAG system, training a domain-specific LLM, or creating a knowledge base <span style="color:#66d9ef">for</span> AI agents, MinerU provides the clean, structured input that makes these systems actually work.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>With 70,600+ stars, an active development team, and growing framework integrations, MinerU is positioned to become the de facto standard <span style="color:#66d9ef">for</span> open-source document parsing in the AI era.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Resources</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- GitHub repository: https://github.com/opendatalab/MinerU
+</span></span><span style="display:flex;"><span>- Documentation: https://opendatalab.github.io/MinerU/
+</span></span><span style="display:flex;"><span>- Online demo: https://mineru.net/OpenSourceTools/Extractor
+</span></span><span style="display:flex;"><span>- Technical report <span style="color:#f92672">(</span>v3.1<span style="color:#f92672">)</span>: https://arxiv.org/abs/2604.04771
+</span></span><span style="display:flex;"><span>- Technical report <span style="color:#f92672">(</span>v2.5<span style="color:#f92672">)</span>: https://arxiv.org/abs/2509.22186
+</span></span><span style="display:flex;"><span>- Technical report <span style="color:#f92672">(</span>v2.0<span style="color:#f92672">)</span>: https://arxiv.org/abs/2409.18839
+</span></span><span style="display:flex;"><span>- HuggingFace demo: https://huggingface.co/spaces/opendatalab/MinerU
+</span></span><span style="display:flex;"><span>- ModelScope demo: https://www.modelscope.cn/studios/OpenDataLab/MinerU
+</span></span><span style="display:flex;"><span>- Discord community: https://discord.gg/Tdedn9GTXq
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;MinerU: 70.6K Stars — Convert Any Document to LLM-Ready Markdown&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-27&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-27&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/mineru-document-parsing-engine&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>paddleocr-81k-star-ocr-engine<span style="color:#f92672">](</span>mineru-document-parsing-engine<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>mineru-document-parsing-engine<span style="color:#f92672">](</span>mineru-document-parsing-engine<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>paddleocr-81k-star-ocr-engine<span style="color:#f92672">](</span>mineru-document-parsing-engine<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>mineru-document-parsing-engine<span style="color:#f92672">](</span>mineru-document-parsing-engine<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>paddleocr-81k-star-ocr-engine<span style="color:#f92672">](</span>mineru-document-parsing-engine<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmineru-document-parsing-engine%2f&text=Automatic%20OCR%20detection%20%28recommended%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmineru-document-parsing-engine%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

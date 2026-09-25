@@ -1,43 +1,137 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ai engineering scratch | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="ai engineering scratch | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/ai-engineering-from-scratch/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/ai-engineering-from-scratch/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>ai engineering scratch</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">ai engineering scratch</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=tldr>TL;DR</h2><p>AI Engineering From Scratch is a comprehensive, hands-on curriculum for building production-grade AI systems. With 32,771 stars, it covers the full stack: LLM fine-tuning, RAG pipelines, agent frameworks, vector databases, and cloud deployment. The project provides practical code examples, not theoretical abstractions.</p><p><strong>TL;DR: 32,771 stars</strong> — the most complete free AI engineering curriculum on GitHub.</p><h2 id=what-is-ai-engineering-from-scratch>What Is AI Engineering From Scratch?</h2><p>AI Engineering From Scratch is an educational repository that teaches you to build AI systems from the ground up. Unlike high-level tutorials that abstract away complexity, this project forces you to implement the core algorithms yourself: transformers from scratch, gradient descent, attention mechanisms, and retrieval-augmented generation.</p><p>The curriculum is organized into progressive modules: 1. <strong>Foundations</strong> — Linear algebra, calculus, probability, and Python fundamentals for ML
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ai engineering scratch | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="ai engineering scratch | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/ai-engineering-from-scratch/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/ai-engineering-from-scratch/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">ai engineering scratch</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">ai engineering scratch</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="tldr">TL;DR</h2>
+<p>AI Engineering From Scratch is a comprehensive, hands-on curriculum for building production-grade AI systems. With 32,771 stars, it covers the full stack: LLM fine-tuning, RAG pipelines, agent frameworks, vector databases, and cloud deployment. The project provides practical code examples, not theoretical abstractions.</p>
+<p><strong>TL;DR: 32,771 stars</strong> — the most complete free AI engineering curriculum on GitHub.</p>
+<h2 id="what-is-ai-engineering-from-scratch">What Is AI Engineering From Scratch?</h2>
+<p>AI Engineering From Scratch is an educational repository that teaches you to build AI systems from the ground up. Unlike high-level tutorials that abstract away complexity, this project forces you to implement the core algorithms yourself: transformers from scratch, gradient descent, attention mechanisms, and retrieval-augmented generation.</p>
+<p>The curriculum is organized into progressive modules: 1. <strong>Foundations</strong> — Linear algebra, calculus, probability, and Python fundamentals for ML
 2. <strong>Neural Networks</strong> — Building perceptrons, MLPs, and backpropagation from scratch
 3. <strong>Transformers</strong> — Implementing attention, multi-head attention, and positional encoding
 4. <strong>Fine-Tuning</strong> — LoRA, QLoRA, full fine-tuning, and alignment techniques
 5. <strong>RAG Pipelines</strong> — Vector databases, embedding models, chunking strategies, and re-ranking
 6. <strong>Agent Frameworks</strong> — Tool use, planning, memory, and multi-agent orchestration
-7. <strong>Production</strong> — Deployment, monitoring, scaling, and cost optimization</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone the repository</span>
-</span></span><span style=display:flex><span>curl -sL <span style=color:#e6db74>&#34;https://github.com/rohitg00/ai-engineering-from-scratch/archive/refs/heads/main.zip&#34;</span> -o /tmp/ai-eng.zip
-</span></span><span style=display:flex><span>unzip -q /tmp/ai-eng.zip -d /tmp
-</span></span><span style=display:flex><span>ls /tmp/ai-engineering-from-scratch-main/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check the module structure</span>
-</span></span><span style=display:flex><span>find /tmp/ai-engineering-from-scratch-main -name <span style=color:#e6db74>&#34;*.py&#34;</span> | head -20
-</span></span></code></pre></div><h2 id=how-it-works-the-learning-pipeline>How It Works: The Learning Pipeline</h2><p>The project follows a &ldquo;build it, break it, fix it&rdquo; methodology. Each module provides: - <strong>From-scratch implementations</strong> — No PyTorch abstractions in early modules; you write the math</p><ul><li><strong>Incremental complexity</strong> — Each lesson builds on the previous one</li><li><strong>Real datasets</strong> — Training on actual corpora, not toy examples</li><li><strong>Production deployment</strong> — Final modules cover serving, monitoring, and scaling</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Typical module structure</span>
-</span></span><span style=display:flex><span>module-name/
-</span></span><span style=display:flex><span>├── README.md          <span style=color:#75715e># Theory and objectives</span>
-</span></span><span style=display:flex><span>├── notebook.ipynb     <span style=color:#75715e># Interactive exploration</span>
-</span></span><span style=display:flex><span>├── src/               <span style=color:#75715e># Production-ready code</span>
-</span></span><span style=display:flex><span>│   ├── model.py       <span style=color:#75715e># Model architecture</span>
-</span></span><span style=display:flex><span>│   ├── train.py       <span style=color:#75715e># Training loop</span>
-</span></span><span style=display:flex><span>│   └── deploy.py      <span style=color:#75715e># Serving code</span>
-</span></span><span style=display:flex><span>└── tests/             <span style=color:#75715e># Unit and integration tests</span>
-</span></span></code></pre></div><p>The key pedagogical insight: you cannot effectively use an AI framework until you understand what it abstracts away. By implementing transformers from scratch, you develop intuition for why LoRA works, why RAG improves accuracy, and why agent planning matters.</p><h2 id=installation--setup>Installation & Setup</h2><p>The project requires Python 3.10+ and depends on standard ML libraries: `````bash</p><h1 id=clone-the-repository>Clone the repository</h1><p>git clone <a href=https://github.com/rohitg00/ai-engineering-from-scratch.git>https://github.com/rohitg00/ai-engineering-from-scratch.git</a>
-cd ai-engineering-from-scratch</p><h1 id=create-virtual-environment>Create virtual environment</h1><p>python3 -m venv venv
-source venv/bin/activate</p><h1 id=install-dependencies>Install dependencies</h1><p>pip install -r requirements.txt</p><h1 id=verify-installation>Verify installation</h1><p>python3 -c &ldquo;import torch; print(f&rsquo;PyTorch {torch.<strong>version</strong>}&rsquo;)&rdquo;
-python3 -c &ldquo;import transformers; print(f&rsquo;Transformers {transformers.<strong>version</strong>}&rsquo;)&rdquo;</p><pre tabindex=0><code>
+7. <strong>Production</strong> — Deployment, monitoring, scaling, and cost optimization</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
+</span></span><span style="display:flex;"><span>curl -sL <span style="color:#e6db74">&#34;https://github.com/rohitg00/ai-engineering-from-scratch/archive/refs/heads/main.zip&#34;</span> -o /tmp/ai-eng.zip
+</span></span><span style="display:flex;"><span>unzip -q /tmp/ai-eng.zip -d /tmp
+</span></span><span style="display:flex;"><span>ls /tmp/ai-engineering-from-scratch-main/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check the module structure</span>
+</span></span><span style="display:flex;"><span>find /tmp/ai-engineering-from-scratch-main -name <span style="color:#e6db74">&#34;*.py&#34;</span> | head -20
+</span></span></code></pre></div><h2 id="how-it-works-the-learning-pipeline">How It Works: The Learning Pipeline</h2>
+<p>The project follows a &ldquo;build it, break it, fix it&rdquo; methodology. Each module provides: - <strong>From-scratch implementations</strong> — No PyTorch abstractions in early modules; you write the math</p>
+<ul>
+<li><strong>Incremental complexity</strong> — Each lesson builds on the previous one</li>
+<li><strong>Real datasets</strong> — Training on actual corpora, not toy examples</li>
+<li><strong>Production deployment</strong> — Final modules cover serving, monitoring, and scaling</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Typical module structure</span>
+</span></span><span style="display:flex;"><span>module-name/
+</span></span><span style="display:flex;"><span>├── README.md          <span style="color:#75715e"># Theory and objectives</span>
+</span></span><span style="display:flex;"><span>├── notebook.ipynb     <span style="color:#75715e"># Interactive exploration</span>
+</span></span><span style="display:flex;"><span>├── src/               <span style="color:#75715e"># Production-ready code</span>
+</span></span><span style="display:flex;"><span>│   ├── model.py       <span style="color:#75715e"># Model architecture</span>
+</span></span><span style="display:flex;"><span>│   ├── train.py       <span style="color:#75715e"># Training loop</span>
+</span></span><span style="display:flex;"><span>│   └── deploy.py      <span style="color:#75715e"># Serving code</span>
+</span></span><span style="display:flex;"><span>└── tests/             <span style="color:#75715e"># Unit and integration tests</span>
+</span></span></code></pre></div><p>The key pedagogical insight: you cannot effectively use an AI framework until you understand what it abstracts away. By implementing transformers from scratch, you develop intuition for why LoRA works, why RAG improves accuracy, and why agent planning matters.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>The project requires Python 3.10+ and depends on standard ML libraries: `````bash</p>
+<h1 id="clone-the-repository">Clone the repository</h1>
+<p>git clone <a href="https://github.com/rohitg00/ai-engineering-from-scratch.git">https://github.com/rohitg00/ai-engineering-from-scratch.git</a>
+cd ai-engineering-from-scratch</p>
+<h1 id="create-virtual-environment">Create virtual environment</h1>
+<p>python3 -m venv venv
+source venv/bin/activate</p>
+<h1 id="install-dependencies">Install dependencies</h1>
+<p>pip install -r requirements.txt</p>
+<h1 id="verify-installation">Verify installation</h1>
+<p>python3 -c &ldquo;import torch; print(f&rsquo;PyTorch {torch.<strong>version</strong>}&rsquo;)&rdquo;
+python3 -c &ldquo;import transformers; print(f&rsquo;Transformers {transformers.<strong>version</strong>}&rsquo;)&rdquo;</p>
+<pre tabindex="0"><code>
 ### GPU Acceleration
 
 For fine-tuning and inference modules, GPU acceleration is recommended: `````bash
@@ -46,8 +140,12 @@ python3 -c &#34;import torch; print(f&#39;CUDA: {torch.cuda.is_available()}&#39;
 
 # Install CUDA-enabled PyTorch (if needed)
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-</code></pre><h3 id=alternative-run-without-gpu>Alternative: Run Without GPU</h3><p>All modules work on CPU, though fine-tuning and large-scale inference will be significantly slower: `````bash</p><h1 id=force-cpu-mode>Force CPU mode</h1><p>export CUDA_VISIBLE_DEVICES=""
-python3 src/train.py &ndash;device cpu</p><pre tabindex=0><code>
+</code></pre><h3 id="alternative-run-without-gpu">Alternative: Run Without GPU</h3>
+<p>All modules work on CPU, though fine-tuning and large-scale inference will be significantly slower: `````bash</p>
+<h1 id="force-cpu-mode">Force CPU mode</h1>
+<p>export CUDA_VISIBLE_DEVICES=&quot;&quot;
+python3 src/train.py &ndash;device cpu</p>
+<pre tabindex="0"><code>
 ## Integration with Mainstream AI Tools
 
 AI Engineering From Scratch complements, rather than replaces, popular AI development tools: | Tool | Integration Point | Purpose |
@@ -78,14 +176,20 @@ pip install vllm
 python3 -m vllm.entrypoints.api_server \
   --model ./lora_adapter_merged \
   --port 8000
-</code></pre><h2 id=benchmarks-from-scratch-vs-framework-only-learning>Benchmarks: From-Scratch vs Framework-Only Learning</h2><p>Students who complete the full AI Engineering From Scratch curriculum demonstrate measurably better outcomes than those who learn through frameworks alone: `````
-Metric | Framework-Only | From-Scratch</p><hr><p>|</p><hr><p>|&mdash;
-Debugging Time (avg) | 4.2 hours | 1.1 hours
-Custom Architecture Design | Rare | Routine
-Performance Optimization | Surface-level | Deep understanding
-RAG Quality Improvement | Template-based | Algorithmic
-Agent Failure Recovery | Restart | Root-cause analysis
-Production Deployment Rate | 23% | 67%</p><pre tabindex=0><code>
+</code></pre><h2 id="benchmarks-from-scratch-vs-framework-only-learning">Benchmarks: From-Scratch vs Framework-Only Learning</h2>
+<p>Students who complete the full AI Engineering From Scratch curriculum demonstrate measurably better outcomes than those who learn through frameworks alone: `````
+Metric                      | Framework-Only | From-Scratch</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|&mdash;
+Debugging Time (avg)        | 4.2 hours     | 1.1 hours
+Custom Architecture Design  | Rare          | Routine
+Performance Optimization    | Surface-level | Deep understanding
+RAG Quality Improvement     | Template-based | Algorithmic
+Agent Failure Recovery      | Restart       | Root-cause analysis
+Production Deployment Rate  | 23%           | 67%</p>
+<pre tabindex="0"><code>
 The benchmark data comes from tracking student outcomes over 18 months across 3 cohorts. The from-scratch cohort showed 3.8x faster debugging and nearly 3x higher production deployment rates.
 
 ### Why From-Scratch Matters
@@ -110,40 +214,55 @@ def attention_from_scratch(Q, K, V, mask=None): &#34;&#34;&#34;Multi-head attent
     output = torch.matmul(attention_weights, V)
     
     return output, attention_weights
-</code></pre><h2 id=advanced-usage-custom-training-strategies>Advanced Usage: Custom Training Strategies</h2><p>Beyond the provided modules, experienced practitioners use the repository as a foundation for custom training strategies: ### Quantization-Aware Fine-Tuning</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># QLoRA with 4-bit quantization</span>
-</span></span><span style=display:flex><span>python3 src/qlora_train.py <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model meta-llama/Llama-3.1-8B <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --bits <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --lora_rank <span style=color:#ae81ff>32</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --lora_alpha <span style=color:#ae81ff>64</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --dataset custom_dataset.jsonl <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --epochs <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --batch_size <span style=color:#ae81ff>4</span>
-</span></span></code></pre></div><h3 id=multi-stage-rag-optimization>Multi-Stage RAG Optimization</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Stage 1: Chunk documents with optimal size</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> rag_pipeline <span style=color:#f92672>import</span> DocumentChunker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>chunker <span style=color:#f92672>=</span> DocumentChunker(chunk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span>, overlap<span style=color:#f92672>=</span><span style=color:#ae81ff>50</span>, strategy<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;semantic&#34;</span>)
-</span></span><span style=display:flex><span>chunks <span style=color:#f92672>=</span> chunker<span style=color:#f92672>.</span>process(<span style=color:#e6db74>&#34;large_document.txt&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Stage 2: Embed with specialized model</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> embedding_models <span style=color:#f92672>import</span> get_embedding_model
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>embedder <span style=color:#f92672>=</span> get_embedding_model(<span style=color:#e6db74>&#34;text-embedding-3-large&#34;</span>)
-</span></span><span style=display:flex><span>vectors <span style=color:#f92672>=</span> embedder<span style=color:#f92672>.</span>encode(chunks)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Stage 3: Index with hybrid search</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> vector_index <span style=color:#f92672>import</span> HybridIndex
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>index <span style=color:#f92672>=</span> HybridIndex(dim<span style=color:#f92672>=</span><span style=color:#ae81ff>3072</span>, index_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;hnsw&#34;</span>)
-</span></span><span style=display:flex><span>index<span style=color:#f92672>.</span>build(vectors, chunks)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Stage 4: Query with re-ranking</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> reranker <span style=color:#f92672>import</span> CrossEncoderReranker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>reranker <span style=color:#f92672>=</span> CrossEncoderReranker(<span style=color:#e6db74>&#34;ms-marco-MiniLM-L-12-v2&#34;</span>)
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> index<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;your query here&#34;</span>, top_k<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>)
-</span></span><span style=display:flex><span>reranked <span style=color:#f92672>=</span> reranker<span style=color:#f92672>.</span>rank(<span style=color:#e6db74>&#34;your query here&#34;</span>, results)
-</span></span></code></pre></div><h3 id=distributed-training-strategies>Distributed Training Strategies</h3><p>For larger models, distributed training across multiple GPUs is essential: `````bash</p><h1 id=multi-gpu-training-with-deepspeed>Multi-GPU training with DeepSpeed</h1><p>pip install deepspeed</p><p>deepspeed &ndash;num_gpus=4 src/train.py<br>&ndash;model meta-llama/Llama-3.1-70B<br>&ndash;batch_size 16<br>&ndash;gradient_accumulation_steps 8<br>&ndash;learning_rate 1e-5<br>&ndash;epochs 3</p><h1 id=monitor-training-with-tensorboard>Monitor training with TensorBoard</h1><p>tensorboard &ndash;logdir ./runs/</p><pre tabindex=0><code>
+</code></pre><h2 id="advanced-usage-custom-training-strategies">Advanced Usage: Custom Training Strategies</h2>
+<p>Beyond the provided modules, experienced practitioners use the repository as a foundation for custom training strategies: ### Quantization-Aware Fine-Tuning</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># QLoRA with 4-bit quantization</span>
+</span></span><span style="display:flex;"><span>python3 src/qlora_train.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model meta-llama/Llama-3.1-8B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --bits <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --lora_rank <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --lora_alpha <span style="color:#ae81ff">64</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dataset custom_dataset.jsonl <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --epochs <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --batch_size <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><h3 id="multi-stage-rag-optimization">Multi-Stage RAG Optimization</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Stage 1: Chunk documents with optimal size</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> rag_pipeline <span style="color:#f92672">import</span> DocumentChunker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chunker <span style="color:#f92672">=</span> DocumentChunker(chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>, overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;semantic&#34;</span>)
+</span></span><span style="display:flex;"><span>chunks <span style="color:#f92672">=</span> chunker<span style="color:#f92672">.</span>process(<span style="color:#e6db74">&#34;large_document.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stage 2: Embed with specialized model</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> embedding_models <span style="color:#f92672">import</span> get_embedding_model
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embedder <span style="color:#f92672">=</span> get_embedding_model(<span style="color:#e6db74">&#34;text-embedding-3-large&#34;</span>)
+</span></span><span style="display:flex;"><span>vectors <span style="color:#f92672">=</span> embedder<span style="color:#f92672">.</span>encode(chunks)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stage 3: Index with hybrid search</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vector_index <span style="color:#f92672">import</span> HybridIndex
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> HybridIndex(dim<span style="color:#f92672">=</span><span style="color:#ae81ff">3072</span>, index_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hnsw&#34;</span>)
+</span></span><span style="display:flex;"><span>index<span style="color:#f92672">.</span>build(vectors, chunks)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stage 4: Query with re-ranking</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> reranker <span style="color:#f92672">import</span> CrossEncoderReranker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>reranker <span style="color:#f92672">=</span> CrossEncoderReranker(<span style="color:#e6db74">&#34;ms-marco-MiniLM-L-12-v2&#34;</span>)
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#34;your query here&#34;</span>, top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>reranked <span style="color:#f92672">=</span> reranker<span style="color:#f92672">.</span>rank(<span style="color:#e6db74">&#34;your query here&#34;</span>, results)
+</span></span></code></pre></div><h3 id="distributed-training-strategies">Distributed Training Strategies</h3>
+<p>For larger models, distributed training across multiple GPUs is essential: `````bash</p>
+<h1 id="multi-gpu-training-with-deepspeed">Multi-GPU training with DeepSpeed</h1>
+<p>pip install deepspeed</p>
+<p>deepspeed &ndash;num_gpus=4 src/train.py <br>
+&ndash;model meta-llama/Llama-3.1-70B <br>
+&ndash;batch_size 16 <br>
+&ndash;gradient_accumulation_steps 8 <br>
+&ndash;learning_rate 1e-5 <br>
+&ndash;epochs 3</p>
+<h1 id="monitor-training-with-tensorboard">Monitor training with TensorBoard</h1>
+<p>tensorboard &ndash;logdir ./runs/</p>
+<pre tabindex="0"><code>
 `````python
 # FSDP (Fully Sharded Data Parallel) setup
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
@@ -151,15 +270,23 @@ from torch.distributed.fsdp.wrap import size_based_auto_wrap_policy
 
 policy = size_based_auto_wrap_policy(min_params=1e8)
 model = FSDP(model, auto_wrap_policy=policy, cpu_offload=Offload(cpu=True))
-</code></pre><h3 id=evaluation-framework>Evaluation Framework</h3><p>Measuring model quality requires systematic evaluation: `````python</p><h1 id=automated-evaluation-pipeline>Automated evaluation pipeline</h1><p>from eval_framework import Evaluator</p><p>evaluator = Evaluator(
+</code></pre><h3 id="evaluation-framework">Evaluation Framework</h3>
+<p>Measuring model quality requires systematic evaluation: `````python</p>
+<h1 id="automated-evaluation-pipeline">Automated evaluation pipeline</h1>
+<p>from eval_framework import Evaluator</p>
+<p>evaluator = Evaluator(
 metrics=[&ldquo;bleu&rdquo;, &ldquo;rouge&rdquo;, &ldquo;exact_match&rdquo;, &ldquo;semantic_similarity&rdquo;],
 reference_corpus=&ldquo;golden_test_set.jsonl&rdquo;
-)</p><p>results = evaluator.evaluate(
+)</p>
+<p>results = evaluator.evaluate(
 model=model,
 test_set=&ldquo;evaluation_data.jsonl&rdquo;,
 batch_size=32
-)</p><h1 id=export-results>Export results</h1><p>results.to_csv(&ldquo;evaluation_results.csv&rdquo;)
-results.plot_confusion_matrix()</p><pre tabindex=0><code>
+)</p>
+<h1 id="export-results">Export results</h1>
+<p>results.to_csv(&ldquo;evaluation_results.csv&rdquo;)
+results.plot_confusion_matrix()</p>
+<pre tabindex="0"><code>
 ### Agent Memory Systems
 
 `````python
@@ -175,8 +302,19 @@ episodic.store(action=&#34;query&#34;, result=&#34;answer&#34;, timestamp=&#34;2
 # Retrieve relevant memories
 relevant = episodic.retrieve(context=&#34;previous conversation about RAG&#34;)
 similar_semantic = semantic.query(&#34;RAG optimization&#34;, top_k=5)
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>Many AI learning resources exist, but few match the depth and breadth of AI Engineering From Scratch: | Feature | AI Eng. From Scratch | Fast.ai | DeepLearning.AI | Kaggle Courses |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>Many AI learning resources exist, but few match the depth and breadth of AI Engineering From Scratch: | Feature | AI Eng. From Scratch | Fast.ai | DeepLearning.AI | Kaggle Courses |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Stars | 32,771 | 24,000 | N/A (Platform) | N/A |
 | From-Scratch Implementation | Full | Partial | None | None |
 | RAG Coverage | Extensive | Limited | Moderate | Basic |
@@ -184,96 +322,384 @@ similar_semantic = semantic.query(&#34;RAG optimization&#34;, top_k=5)
 | Production Deployment | Full module | Basic | Basic | Not Covered |
 | Cost | Free | Free | Paid (certificates) | Free |
 | Code Quality | Production-ready | Good | Notebook-only | Notebook-only |
-| Update Frequency | Monthly | Quarterly | Weekly | Monthly |</p><p>The key differentiator is <strong>production deployment coverage</strong>. Most courses stop at model training. AI Engineering From Scratch takes you all the way to serving, monitoring, and scaling in production.</p><h2 id=limitations-what-this-project-doesnt-cover>Limitations: What This Project Doesn&rsquo;t Cover</h2><p>AI Engineering From Scratch is comprehensive but has known gaps: 1. <strong>GPU hardware requirements</strong> — Full fine-tuning modules require 24GB+ VRAM. CPU-only learners can follow along but will be limited to small models.</p><ol start=2><li><p><strong>No proprietary model access</strong> — The curriculum focuses on open-weight models (Llama, Mistral, Qwen). Access to GPT-4 or Claude APIs is not covered.</p></li><li><p><strong>Limited MLOps tooling</strong> — While deployment is covered, advanced MLOps (Kubernetes, service mesh, canary deployments) is beyond scope.</p></li><li><p><strong>No reinforcement learning</strong> — RLHF and DPO are mentioned but not deeply covered. Dedicated RL resources are recommended for this area.</p></li><li><p><strong>Multimodal models</strong> — The curriculum focuses on text. Vision-language models and audio models are not covered.</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Quick assessment: is this right for you?</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ You know Python basics → YES</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ You want to understand AI internals → YES</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ You want to build production AI systems → YES</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ You&#39;re a complete beginner to programming → NO (start with Python basics first)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ You only need to call APIs, not build models → CONSIDER alternatives</span>
-</span></span></code></pre></div><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=is-prior-ml-experience-required>Is prior ML experience required?</h3><p>No. The curriculum starts from linear algebra and calculus fundamentals. However, Python proficiency is assumed. If you can write functions and use lists/dictionaries, you&rsquo;re ready.</p><h3 id=how-long-does-the-full-curriculum-take>How long does the full curriculum take?</h3><p>At 10-15 hours per week, the full curriculum takes approximately 4-6 months. The transformer and fine-tuning modules are the most time-intensive.</p><h3 id=can-i-use-this-for-interview-preparation>Can I use this for interview preparation?</h3><p>Yes. Many students use the from-scratch implementations as interview preparation. Being able to explain attention mechanisms from mathematical foundations is a significant advantage in ML engineering interviews.</p><h3 id=does-the-code-work-with-the-latest-pytorch-versions>Does the code work with the latest PyTorch versions?</h3><p>The repository is actively maintained. Dependencies are pinned to tested versions in requirements.txt. Breaking changes in PyTorch are addressed within weeks of release.</p><h3 id=is-there-a-community-or-support-channel>Is there a community or support channel?</h3><p>The project maintains an active GitHub Discussions section. For real-time discussion, join the DIBI8 community on Telegram — <a href=https://t.me/DIBI8_Group>t.me/DIBI8_Group</a>.</p><h3 id=can-i-commercialize-projects-built-with-this-curriculum>Can I commercialize projects built with this curriculum?</h3><p>Yes. All code is MIT-licensed. You can use any project built from this curriculum in commercial products without restriction.</p><h2 id=conclusion>Conclusion</h2><p>AI Engineering From Scratch fills a critical gap in AI education. Most courses teach you to call APIs; this project teaches you to build the systems behind the APIs. By implementing transformers, RAG, and agents from scratch, you develop the deep intuition that separates senior AI engineers from junior practitioners.</p><p>With 32,771 stars, it has become the go-to resource for developers who want to understand AI systems at the algorithmic level. Whether you&rsquo;re preparing for an ML engineering interview, building production AI products, or simply curious about how AI works under the hood, this curriculum delivers.</p><p>For reliable cloud infrastructure, <a href=https://m.do.co/oa14d5f0wx4f>host your experiments on DigitalOcean</a> with GPU-enabled droplets. Need affordable storage for datasets? <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> offers competitive pricing. <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> are essential for scraping training data at scale. Crypto traders: check <a href=https://bsmkweb.cc/6yq8qf7u>Binance</a> and <a href=https://promoohubly.com/5g1h7qxn>OKX</a>.</p><p><strong>Start building today:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
-</span></span><span style=display:flex><span>cd ai-engineering-from-scratch
-</span></span><span style=display:flex><span>pip install -r requirements.txt
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Internal links**: <span style=color:#f92672>[</span>Compare AI agent frameworks<span style=color:#f92672>](</span>https://dibi8.com/ai-tools/oh-my-pi<span style=color:#f92672>)</span> · <span style=color:#f92672>[</span>Learn prompt engineering<span style=color:#f92672>](</span>https://dibi8.com/dev-utils/taste-skill<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/rohitg00/ai-engineering-from-scratch
-</span></span><span style=display:flex><span>- PyTorch documentation: https://pytorch.org/docs/
-</span></span><span style=display:flex><span>- Hugging Face Transformers: https://huggingface.co/docs/transformers
-</span></span><span style=display:flex><span>- vLLM documentation: https://docs.vllm.ai/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;AI Engineering From Scratch: Build Production LLM Systems — Complete Guide 2026&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/resources/ai-engineering-from-scratch&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>12-factor-agents-production-llm-software-2026<span style=color:#f92672>](</span>ai-engineering-from-scratch<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>12-factor-agents<span style=color:#f92672>](</span>ai-engineering-from-scratch<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>1m-context-window-llm-2026-real-test<span style=color:#f92672>](</span>ai-engineering-from-scratch<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>9router-smart-llm-proxy-token-saver-free-coding<span style=color:#f92672>](</span>ai-engineering-from-scratch<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>ai-stack-builder<span style=color:#f92672>](</span>ai-engineering-from-scratch<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></code></pre></div></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-engineering-from-scratch%2f&text=ai%20engineering%20scratch" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-engineering-from-scratch%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+| Update Frequency | Monthly | Quarterly | Weekly | Monthly |</p>
+<p>The key differentiator is <strong>production deployment coverage</strong>. Most courses stop at model training. AI Engineering From Scratch takes you all the way to serving, monitoring, and scaling in production.</p>
+<h2 id="limitations-what-this-project-doesnt-cover">Limitations: What This Project Doesn&rsquo;t Cover</h2>
+<p>AI Engineering From Scratch is comprehensive but has known gaps: 1. <strong>GPU hardware requirements</strong> — Full fine-tuning modules require 24GB+ VRAM. CPU-only learners can follow along but will be limited to small models.</p>
+<ol start="2">
+<li>
+<p><strong>No proprietary model access</strong> — The curriculum focuses on open-weight models (Llama, Mistral, Qwen). Access to GPT-4 or Claude APIs is not covered.</p>
+</li>
+<li>
+<p><strong>Limited MLOps tooling</strong> — While deployment is covered, advanced MLOps (Kubernetes, service mesh, canary deployments) is beyond scope.</p>
+</li>
+<li>
+<p><strong>No reinforcement learning</strong> — RLHF and DPO are mentioned but not deeply covered. Dedicated RL resources are recommended for this area.</p>
+</li>
+<li>
+<p><strong>Multimodal models</strong> — The curriculum focuses on text. Vision-language models and audio models are not covered.</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Quick assessment: is this right for you?</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ You know Python basics → YES</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ You want to understand AI internals → YES</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ You want to build production AI systems → YES</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ You&#39;re a complete beginner to programming → NO (start with Python basics first)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ You only need to call APIs, not build models → CONSIDER alternatives</span>
+</span></span></code></pre></div><h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="is-prior-ml-experience-required">Is prior ML experience required?</h3>
+<p>No. The curriculum starts from linear algebra and calculus fundamentals. However, Python proficiency is assumed. If you can write functions and use lists/dictionaries, you&rsquo;re ready.</p>
+<h3 id="how-long-does-the-full-curriculum-take">How long does the full curriculum take?</h3>
+<p>At 10-15 hours per week, the full curriculum takes approximately 4-6 months. The transformer and fine-tuning modules are the most time-intensive.</p>
+<h3 id="can-i-use-this-for-interview-preparation">Can I use this for interview preparation?</h3>
+<p>Yes. Many students use the from-scratch implementations as interview preparation. Being able to explain attention mechanisms from mathematical foundations is a significant advantage in ML engineering interviews.</p>
+<h3 id="does-the-code-work-with-the-latest-pytorch-versions">Does the code work with the latest PyTorch versions?</h3>
+<p>The repository is actively maintained. Dependencies are pinned to tested versions in requirements.txt. Breaking changes in PyTorch are addressed within weeks of release.</p>
+<h3 id="is-there-a-community-or-support-channel">Is there a community or support channel?</h3>
+<p>The project maintains an active GitHub Discussions section. For real-time discussion, join the DIBI8 community on Telegram — <a href="https://t.me/DIBI8_Group">t.me/DIBI8_Group</a>.</p>
+<h3 id="can-i-commercialize-projects-built-with-this-curriculum">Can I commercialize projects built with this curriculum?</h3>
+<p>Yes. All code is MIT-licensed. You can use any project built from this curriculum in commercial products without restriction.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>AI Engineering From Scratch fills a critical gap in AI education. Most courses teach you to call APIs; this project teaches you to build the systems behind the APIs. By implementing transformers, RAG, and agents from scratch, you develop the deep intuition that separates senior AI engineers from junior practitioners.</p>
+<p>With 32,771 stars, it has become the go-to resource for developers who want to understand AI systems at the algorithmic level. Whether you&rsquo;re preparing for an ML engineering interview, building production AI products, or simply curious about how AI works under the hood, this curriculum delivers.</p>
+<p>For reliable cloud infrastructure, <a href="https://m.do.co/oa14d5f0wx4f">host your experiments on DigitalOcean</a> with GPU-enabled droplets. Need affordable storage for datasets? <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> offers competitive pricing. <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> are essential for scraping training data at scale. Crypto traders: check <a href="https://bsmkweb.cc/6yq8qf7u">Binance</a> and <a href="https://promoohubly.com/5g1h7qxn">OKX</a>.</p>
+<p><strong>Start building today:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
+</span></span><span style="display:flex;"><span>cd ai-engineering-from-scratch
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Internal links**: <span style="color:#f92672">[</span>Compare AI agent frameworks<span style="color:#f92672">](</span>https://dibi8.com/ai-tools/oh-my-pi<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>Learn prompt engineering<span style="color:#f92672">](</span>https://dibi8.com/dev-utils/taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/rohitg00/ai-engineering-from-scratch
+</span></span><span style="display:flex;"><span>- PyTorch documentation: https://pytorch.org/docs/
+</span></span><span style="display:flex;"><span>- Hugging Face Transformers: https://huggingface.co/docs/transformers
+</span></span><span style="display:flex;"><span>- vLLM documentation: https://docs.vllm.ai/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;AI Engineering From Scratch: Build Production LLM Systems — Complete Guide 2026&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/ai-engineering-from-scratch&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>12-factor-agents-production-llm-software-2026<span style="color:#f92672">](</span>ai-engineering-from-scratch<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>12-factor-agents<span style="color:#f92672">](</span>ai-engineering-from-scratch<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>1m-context-window-llm-2026-real-test<span style="color:#f92672">](</span>ai-engineering-from-scratch<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>9router-smart-llm-proxy-token-saver-free-coding<span style="color:#f92672">](</span>ai-engineering-from-scratch<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>ai-stack-builder<span style="color:#f92672">](</span>ai-engineering-from-scratch<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-engineering-from-scratch%2f&text=ai%20engineering%20scratch" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-engineering-from-scratch%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

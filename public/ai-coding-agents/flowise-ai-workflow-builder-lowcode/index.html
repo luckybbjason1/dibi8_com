@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Flowise stores flow definitions as JSON in the database | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Flowise stores flow definitions as JSON in the database | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/flowise-ai-workflow-builder-lowcode/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/flowise-ai-workflow-builder-lowcode/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Flowise stores flow definitions as JSON in the database</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Flowise stores flow definitions as JSON in the database</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Flowise: The Low-Code AI Workflow Builder Deploying Lang&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowise stores flow definitions as JSON in the database | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Flowise stores flow definitions as JSON in the database | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Flowise stores flow definitions as JSON in the database</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Flowise stores flow definitions as JSON in the database</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Flowise: The Low-Code AI Workflow Builder Deploying Lang&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,24 +99,38 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;flowise&rdquo;, &ldquo;langchain&rdquo;, &ldquo;low-code&rdquo;, &ldquo;ai workflow&rdquo;, &ldquo;docker&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;agent builder&rdquo;, &ldquo;no-code&rdquo;, &ldquo;open source&rdquo;, &ldquo;chatbot&rdquo;]
-aliases:</p><ul><li>/posts/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h2 id=introduction-why-writing-ai-agents-still-feels-like-2006>Introduction: Why Writing AI Agents Still Feels Like 2006</h2><p>In 2026, building a production AI agent still requires juggling <strong>3-5 different Python libraries</strong>, writing boilerplate code for memory management, debugging async chains that fail silently, and praying your ```requirements.txt```` doesn&rsquo;t conflict when you add the next integration. You&rsquo;ve got LangChain for the framework, a separate vector store client, another library for document loaders, FastAPI for the HTTP layer, and Streamlit if you want a frontend. By the time your &ldquo;simple&rdquo; RAG chatbot is deployed, you&rsquo;ve written <strong>800+ lines of Python</strong> and inherited a maintenance burden that grows with every model update.</p><p><strong>Flowise</strong> flips this paradigm. It&rsquo;s an Apache-2.0 licensed, visual workflow builder that sits on top of LangChain and lets you construct complex AI pipelines — RAG chatbots, multi-agent systems, document processors — by dragging, dropping, and connecting nodes on a canvas. With <strong>45,000+ GitHub stars</strong> and a thriving ecosystem of <strong>100+ integrations</strong>, it&rsquo;s become the tool of choice for teams who want to ship AI features fast without sacrificing the flexibility of LangChain&rsquo;s underlying engine.</p><p>In this guide, we&rsquo;ll get Flowise running in Docker, build a real RAG chatbot workflow visually, deploy it as an API endpoint, create a multi-agent flow, and benchmark it against both code-first approaches and competing low-code platforms.</p><h2 id=what-is-flowise>What Is Flowise?</h2><p><strong>Flowise</strong> is an open-source, drag-and-drop visual builder for LangChain workflows. It exposes LangChain&rsquo;s full API surface — chains, agents, memory, document loaders, vector stores, tools, and embeddings — as configurable nodes on a canvas. You connect nodes to define data flow, and Flowise generates the executable pipeline behind the scenes. It supports deployment as REST API endpoints, embedded chat widgets, and webhook triggers.</p><p>Version <strong>2.2.0</strong> (released March 2026) introduced a redesigned canvas engine, native multi-agent orchestration, and built-in conversation analytics. The project is maintained by FlowiseAI with active contributions from <strong>180+ contributors</strong>.</p><h2 id=how-flowise-works-architecture--core-concepts>How Flowise Works: Architecture & Core Concepts</h2><p>Flowise&rsquo;s architecture consists of three layers: `````yaml
+aliases:</p>
+<ul>
+<li>/posts/flowise-ai-workflow-builder-lowcode/-</li>
+</ul>
+<hr>
+<h2 id="introduction-why-writing-ai-agents-still-feels-like-2006">Introduction: Why Writing AI Agents Still Feels Like 2006</h2>
+<p>In 2026, building a production AI agent still requires juggling <strong>3-5 different Python libraries</strong>, writing boilerplate code for memory management, debugging async chains that fail silently, and praying your ```requirements.txt```` doesn&rsquo;t conflict when you add the next integration. You&rsquo;ve got LangChain for the framework, a separate vector store client, another library for document loaders, FastAPI for the HTTP layer, and Streamlit if you want a frontend. By the time your &ldquo;simple&rdquo; RAG chatbot is deployed, you&rsquo;ve written <strong>800+ lines of Python</strong> and inherited a maintenance burden that grows with every model update.</p>
+<p><strong>Flowise</strong> flips this paradigm. It&rsquo;s an Apache-2.0 licensed, visual workflow builder that sits on top of LangChain and lets you construct complex AI pipelines — RAG chatbots, multi-agent systems, document processors — by dragging, dropping, and connecting nodes on a canvas. With <strong>45,000+ GitHub stars</strong> and a thriving ecosystem of <strong>100+ integrations</strong>, it&rsquo;s become the tool of choice for teams who want to ship AI features fast without sacrificing the flexibility of LangChain&rsquo;s underlying engine.</p>
+<p>In this guide, we&rsquo;ll get Flowise running in Docker, build a real RAG chatbot workflow visually, deploy it as an API endpoint, create a multi-agent flow, and benchmark it against both code-first approaches and competing low-code platforms.</p>
+<h2 id="what-is-flowise">What Is Flowise?</h2>
+<p><strong>Flowise</strong> is an open-source, drag-and-drop visual builder for LangChain workflows. It exposes LangChain&rsquo;s full API surface — chains, agents, memory, document loaders, vector stores, tools, and embeddings — as configurable nodes on a canvas. You connect nodes to define data flow, and Flowise generates the executable pipeline behind the scenes. It supports deployment as REST API endpoints, embedded chat widgets, and webhook triggers.</p>
+<p>Version <strong>2.2.0</strong> (released March 2026) introduced a redesigned canvas engine, native multi-agent orchestration, and built-in conversation analytics. The project is maintained by FlowiseAI with active contributions from <strong>180+ contributors</strong>.</p>
+<h2 id="how-flowise-works-architecture--core-concepts">How Flowise Works: Architecture &amp; Core Concepts</h2>
+<p>Flowise&rsquo;s architecture consists of three layers: `````yaml
 ┌─────────────────────────────────────────────┐
-│ Frontend (React + Flow Editor) │
-│ - Drag-and-drop canvas │
-│ - Node configuration panels │
-│ - Test/chat playground │
+│           Frontend (React + Flow Editor)    │
+│           - Drag-and-drop canvas            │
+│           - Node configuration panels       │
+│           - Test/chat playground            │
 ├─────────────────────────────────────────────┤
-│ Backend (Node.js + Express) │
-│ - Flow execution engine │
-│ - LangChain integration │
-│ - Credential management │
-│ - API endpoint generator │
+│           Backend (Node.js + Express)       │
+│           - Flow execution engine           │
+│           - LangChain integration           │
+│           - Credential management           │
+│           - API endpoint generator          │
 ├─────────────────────────────────────────────┤
-│ Data Layer │
-│ - SQLite / MySQL / PostgreSQL │
-│ - Vector stores (external) │
-│ - File system (document uploads) │
-└─────────────────────────────────────────────┘</p><pre tabindex=0><code>
+│           Data Layer                        │
+│           - SQLite / MySQL / PostgreSQL     │
+│           - Vector stores (external)        │
+│           - File system (document uploads)  │
+└─────────────────────────────────────────────┘</p>
+<pre tabindex="0"><code>
 ### Core Concepts
 
 **Nodes** represent individual LangChain components — LLM models, prompt templates, document loaders, vector store retrievers, tool agents, memory buffers, output parsers, and custom functions. Each node exposes input ports (data it needs) and output ports (data it produces).
@@ -73,87 +157,100 @@ aliases:</p><ul><li>/posts/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h
     { &#34;source&#34;: &#34;prompt_1&#34;, &#34;target&#34;: &#34;llm_1&#34;, &#34;input&#34;: &#34;prompt&#34; }
   ]
 }
-</code></pre><h2 id=installation--setup-running-flowise-in-under-5-minutes>Installation & Setup: Running Flowise in Under 5 Minutes</h2><h3 id=docker-compose-recommended>Docker Compose (Recommended)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create project directory</span>
-</span></span><span style=display:flex><span>mkdir -p ~/flowise <span style=color:#f92672>&amp;&amp;</span> cd ~/flowise
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create docker-compose.yml</span>
-</span></span><span style=display:flex><span>cat &gt; docker-compose.yml <span style=color:#e6db74>&lt;&lt; EOF
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>services: flowise: image: flowiseai/flowise:2.2.0
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    ports: - &#34;3000:3000&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    environment: - PORT=3000
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - FLOWISE_USERNAME=admin
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - FLOWISE_PASSWORD=your-secure-password
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - DATABASE_TYPE=sqlite
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - DATABASE_PATH=/root/.flowise/flowise.db
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - APIKEY_PATH=/root/.flowise
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - SECRETKEY_PATH=/root/.flowise
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - LOG_PATH=/root/.flowise/logs
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - BLOB_STORAGE_PATH=/root/.flowise/storage
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    volumes: - flowise_data:/root/.flowise
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    restart: unless-stopped
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>volumes: flowise_data: EOF</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Launch</span>
-</span></span><span style=display:flex><span>docker compose up -d
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check status</span>
-</span></span><span style=display:flex><span>curl -s http://localhost:3000/api/v1/health | jq .
-</span></span></code></pre></div><p>The initial pull of <code>flowiseai/flowise:2.2.0</code> is <strong>~1.4 GB</strong>. Once running, access the UI at <code>http://localhost:3000</code> and log in with the credentials from your compose file.</p><h3 id=production-postgresql-setup>Production PostgreSQL Setup</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.prod.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: postgres: image</span>: <span style=color:#ae81ff>postgres:16-alpine</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: POSTGRES_USER</span>: <span style=color:#ae81ff>flowise</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>POSTGRES_PASSWORD</span>: <span style=color:#ae81ff>strong-db-password</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>POSTGRES_DB</span>: <span style=color:#ae81ff>flowise</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>postgres_data:/var/lib/postgresql/data</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:2.2.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>DATABASE_TYPE=postgres</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_HOST=postgres</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PORT=5432</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_USER=flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PASSWORD=strong-db-password</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_NAME=flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FLOWISE_USERNAME=admin</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FLOWISE_PASSWORD=${FLOWISE_PASSWORD}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>postgres</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>flowise_storage:/root/.flowise</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: postgres_data: flowise_storage</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Environment Variables Reference</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>`````bash</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Core configuration</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>PORT=3000                                   </span> <span style=color:#75715e># Application port</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>FLOWISE_USERNAME=admin                      </span> <span style=color:#75715e># Admin username</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>FLOWISE_PASSWORD=secure-pass                </span> <span style=color:#75715e># Admin password</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>FLOWISE_SECRETKEY_OVERWRITE=my-secret       </span> <span style=color:#75715e># JWT signing key</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>DATABASE_TYPE=sqlite|postgres|mysql         </span> <span style=color:#75715e># Database backend</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>DISABLE_FLOWISE_TELEMETRY=true              </span> <span style=color:#75715e># Disable analytics</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># LLM API Keys (alternatively set in UI)</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>OPENAI_API_KEY=sk-...                       </span> <span style=color:#75715e># OpenAI</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>ANTHROPIC_API_KEY=sk-ant-...                </span> <span style=color:#75715e># Anthropic</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>GOOGLE_GENAI_API_KEY=...                    </span> <span style=color:#75715e># Google Gemini</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Optional: S3-compatible storage for document files</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>BLOB_STORAGE_TYPE=s3</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>S3_STORAGE_BUCKET=flowise-docs</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>S3_STORAGE_ACCESS_KEY_ID=...</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>S3_STORAGE_SECRET_ACCESS_KEY=...</span>
-</span></span></code></pre></div><blockquote><p>💡 <strong>Affiliate:</strong> Deploy Flowise on a reliable VPS with <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a>. Use their $200 free credit to test Flowise with PostgreSQL backend on a 2 vCPU / 4 GB RAM droplet.</p></blockquote><h2 id=building-your-first-rag-chatbot-step-by-step>Building Your First RAG Chatbot: Step by Step</h2><h3 id=step-1-create-a-new-chatflow>Step 1: Create a New Chatflow</h3><p>Open Flowise at <code>http://localhost:3000</code> → <strong>Chatflows</strong> → <strong>Create New</strong>. You&rsquo;ll see a blank canvas with a node palette on the left side.</p><h3 id=step-2-add-the-vector-store-retriever>Step 2: Add the Vector Store Retriever</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># From the left panel, drag these nodes to the canvas: # 1. Vector Stores → &#34;In-Memory Vector Store&#34; (for testing)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#    or &#34;Chroma&#34; / &#34;Qdrant&#34; / &#34;Pinecone&#34; (for production)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. Document Loaders → &#34;PDF File&#34; or &#34;Plain Text&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. Embeddings → &#34;OpenAI Embeddings&#34; or &#34;Ollama Embeddings&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. Text Splitters → &#34;Recursive Character Text Splitter&#34;</span>
-</span></span></code></pre></div><h3 id=step-3-connect-the-document-ingestion-chain>Step 3: Connect the Document Ingestion Chain</h3><pre tabindex=0><code># Connect nodes in this order: # [PDF File] → [Recursive Character Text Splitter] → [OpenAI Embeddings] → [Vector Store]
+</code></pre><h2 id="installation--setup-running-flowise-in-under-5-minutes">Installation &amp; Setup: Running Flowise in Under 5 Minutes</h2>
+<h3 id="docker-compose-recommended">Docker Compose (Recommended)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create project directory</span>
+</span></span><span style="display:flex;"><span>mkdir -p ~/flowise <span style="color:#f92672">&amp;&amp;</span> cd ~/flowise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create docker-compose.yml</span>
+</span></span><span style="display:flex;"><span>cat &gt; docker-compose.yml <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">services: flowise: image: flowiseai/flowise:2.2.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ports: - &#34;3000:3000&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    environment: - PORT=3000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - FLOWISE_USERNAME=admin
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - FLOWISE_PASSWORD=your-secure-password
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - DATABASE_TYPE=sqlite
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - DATABASE_PATH=/root/.flowise/flowise.db
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - APIKEY_PATH=/root/.flowise
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - SECRETKEY_PATH=/root/.flowise
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - LOG_PATH=/root/.flowise/logs
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - BLOB_STORAGE_PATH=/root/.flowise/storage
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    volumes: - flowise_data:/root/.flowise
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    restart: unless-stopped
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">volumes: flowise_data: EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Launch</span>
+</span></span><span style="display:flex;"><span>docker compose up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check status</span>
+</span></span><span style="display:flex;"><span>curl -s http://localhost:3000/api/v1/health | jq .
+</span></span></code></pre></div><p>The initial pull of <code>flowiseai/flowise:2.2.0</code> is <strong>~1.4 GB</strong>. Once running, access the UI at <code>http://localhost:3000</code> and log in with the credentials from your compose file.</p>
+<h3 id="production-postgresql-setup">Production PostgreSQL Setup</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.prod.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: postgres: image</span>: <span style="color:#ae81ff">postgres:16-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: POSTGRES_USER</span>: <span style="color:#ae81ff">flowise</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">strong-db-password</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">flowise</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">postgres_data:/var/lib/postgresql/data</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:2.2.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">DATABASE_TYPE=postgres</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_HOST=postgres</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PORT=5432</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_USER=flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PASSWORD=strong-db-password</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_NAME=flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FLOWISE_USERNAME=admin</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FLOWISE_PASSWORD=${FLOWISE_PASSWORD}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">flowise_storage:/root/.flowise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: postgres_data: flowise_storage</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Environment Variables Reference</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Core configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PORT=3000                                   </span> <span style="color:#75715e"># Application port</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">FLOWISE_USERNAME=admin                      </span> <span style="color:#75715e"># Admin username</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">FLOWISE_PASSWORD=secure-pass                </span> <span style="color:#75715e"># Admin password</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">FLOWISE_SECRETKEY_OVERWRITE=my-secret       </span> <span style="color:#75715e"># JWT signing key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">DATABASE_TYPE=sqlite|postgres|mysql         </span> <span style="color:#75715e"># Database backend</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">DISABLE_FLOWISE_TELEMETRY=true              </span> <span style="color:#75715e"># Disable analytics</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM API Keys (alternatively set in UI)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">OPENAI_API_KEY=sk-...                       </span> <span style="color:#75715e"># OpenAI</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ANTHROPIC_API_KEY=sk-ant-...                </span> <span style="color:#75715e"># Anthropic</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">GOOGLE_GENAI_API_KEY=...                    </span> <span style="color:#75715e"># Google Gemini</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional: S3-compatible storage for document files</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">BLOB_STORAGE_TYPE=s3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">S3_STORAGE_BUCKET=flowise-docs</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">S3_STORAGE_ACCESS_KEY_ID=...</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">S3_STORAGE_SECRET_ACCESS_KEY=...</span>
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Affiliate:</strong> Deploy Flowise on a reliable VPS with <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>. Use their $200 free credit to test Flowise with PostgreSQL backend on a 2 vCPU / 4 GB RAM droplet.</p>
+</blockquote>
+<h2 id="building-your-first-rag-chatbot-step-by-step">Building Your First RAG Chatbot: Step by Step</h2>
+<h3 id="step-1-create-a-new-chatflow">Step 1: Create a New Chatflow</h3>
+<p>Open Flowise at <code>http://localhost:3000</code> → <strong>Chatflows</strong> → <strong>Create New</strong>. You&rsquo;ll see a blank canvas with a node palette on the left side.</p>
+<h3 id="step-2-add-the-vector-store-retriever">Step 2: Add the Vector Store Retriever</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># From the left panel, drag these nodes to the canvas: # 1. Vector Stores → &#34;In-Memory Vector Store&#34; (for testing)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    or &#34;Chroma&#34; / &#34;Qdrant&#34; / &#34;Pinecone&#34; (for production)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Document Loaders → &#34;PDF File&#34; or &#34;Plain Text&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Embeddings → &#34;OpenAI Embeddings&#34; or &#34;Ollama Embeddings&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Text Splitters → &#34;Recursive Character Text Splitter&#34;</span>
+</span></span></code></pre></div><h3 id="step-3-connect-the-document-ingestion-chain">Step 3: Connect the Document Ingestion Chain</h3>
+<pre tabindex="0"><code># Connect nodes in this order: # [PDF File] → [Recursive Character Text Splitter] → [OpenAI Embeddings] → [Vector Store]
 #
 # Configuration for each node: # - PDF File: upload your document
 # - Text Splitter: chunkSize=1000, chunkOverlap=200
 # - Embeddings: model=text-embedding-3-small
 # - Vector Store: collectionName=my-docs
-</code></pre><h3 id=step-4-add-the-conversational-rag-chain>Step 4: Add the Conversational RAG Chain</h3><pre tabindex=0><code># Add these nodes for the query side: # [Chat Prompt Template] → [OpenAI Chat Model] → [Output Parser]
+</code></pre><h3 id="step-4-add-the-conversational-rag-chain">Step 4: Add the Conversational RAG Chain</h3>
+<pre tabindex="0"><code># Add these nodes for the query side: # [Chat Prompt Template] → [OpenAI Chat Model] → [Output Parser]
 #         ↑
 # [Vector Store Retriever] ← [Vector Store (same as above)]
 #         ↑
@@ -162,30 +259,35 @@ aliases:</p><ul><li>/posts/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h
 # Connect: # - Vector Store output → Vector Store Retriever input
 # - Retriever output → QA Chain&#39;s &#34;source_documents&#34; input
 # - QA Chain output → Chat Model input
-</code></pre><h3 id=step-5-configure-the-prompt-template>Step 5: Configure the Prompt Template</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># System prompt template for the RAG chatbot</span>
-</span></span><span style=display:flex><span>SYSTEM_PROMPT <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;&#34;You are a helpful assistant answering questions based 
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>on the provided context. If the answer is not in the context, say 
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;I don&#39;t have enough information to answer that.&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Context: </span><span style=color:#e6db74>{context}</span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Question: </span><span style=color:#e6db74>{question}</span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Answer:&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># In Flowise: open the Prompt Template node</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Set template to the above text</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># {context} auto-populates from retriever</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># {question} comes from user input</span>
-</span></span></code></pre></div><h3 id=step-6-test-and-deploy>Step 6: Test and Deploy</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># In the Flowise UI, click the chat bubble in the top right</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Ask a question related to your uploaded document</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check the &#34;Used Context&#34; tab to see which chunks were retrieved</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Deploy as API: Click &#34;API Endpoint&#34; button</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Copy the curl command: curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \</span>
-</span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;question&#34;: &#34;What is the main topic of this document?&#34;}&#39;</span>
-</span></span></code></pre></div><h2 id=multi-agent-flows-visual-agent-orchestration>Multi-Agent Flows: Visual Agent Orchestration</h2><p>Flowise v2.2.0&rsquo;s <strong>Agentflow</strong> feature lets you build multi-agent systems without writing orchestration code.</p><h3 id=building-a-research-agent-team>Building a Research Agent Team</h3><pre tabindex=0><code># Canvas layout for a 3-agent research team: #
+</code></pre><h3 id="step-5-configure-the-prompt-template">Step 5: Configure the Prompt Template</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># System prompt template for the RAG chatbot</span>
+</span></span><span style="display:flex;"><span>SYSTEM_PROMPT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;You are a helpful assistant answering questions based 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">on the provided context. If the answer is not in the context, say 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;I don&#39;t have enough information to answer that.&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Context: </span><span style="color:#e6db74">{context}</span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Question: </span><span style="color:#e6db74">{question}</span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Answer:&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In Flowise: open the Prompt Template node</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set template to the above text</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {context} auto-populates from retriever</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {question} comes from user input</span>
+</span></span></code></pre></div><h3 id="step-6-test-and-deploy">Step 6: Test and Deploy</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In the Flowise UI, click the chat bubble in the top right</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ask a question related to your uploaded document</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check the &#34;Used Context&#34; tab to see which chunks were retrieved</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deploy as API: Click &#34;API Endpoint&#34; button</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy the curl command: curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \</span>
+</span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;question&#34;: &#34;What is the main topic of this document?&#34;}&#39;</span>
+</span></span></code></pre></div><h2 id="multi-agent-flows-visual-agent-orchestration">Multi-Agent Flows: Visual Agent Orchestration</h2>
+<p>Flowise v2.2.0&rsquo;s <strong>Agentflow</strong> feature lets you build multi-agent systems without writing orchestration code.</p>
+<h3 id="building-a-research-agent-team">Building a Research Agent Team</h3>
+<pre tabindex="0"><code># Canvas layout for a 3-agent research team: #
 #                    ┌─────────────────┐
 #                    │  Supervisor     │
 #                    │  (Orchestrator) │
@@ -200,42 +302,51 @@ aliases:</p><ul><li>/posts/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h
 #
 # Supervisor routes queries to the appropriate agent
 # based on the task type detected from user input.
-</code></pre><h3 id=node-configuration>Node Configuration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Supervisor Agent node: # - LLM: gpt-4.1-nano</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Type: supervisor</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - System Prompt: &#34;You are a research coordinator. Route tasks to </span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   the appropriate specialist agent.&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Web Search Agent node: # - LLM: gpt-4.1-nano</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Tools: DuckDuckGo Search, Website Scraper</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - System Prompt: &#34;Search the web for current information.&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Code Execution Agent node: # - LLM: gpt-4.1-nano</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Tools: Python REPL Tool</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - System Prompt: &#34;Write and execute Python code for data analysis.&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Document Analyst Agent node: # - LLM: gpt-4.1-nano</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Tools: Vector Store Retriever</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - System Prompt: &#34;Analyze the provided documents for relevant information.&#34;</span>
-</span></span></code></pre></div><h3 id=deploying-the-multi-agent-flow>Deploying the Multi-Agent Flow</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Deploy as API endpoint</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;question&#34;: &#34;Analyze our Q1 sales data and compare with industry trends. The CSV is in the documents folder.&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;overrideConfig&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;sessionId&#34;: &#34;session-123&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Response includes which agent handled each sub-task: # {</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   &#34;text&#34;: &#34;Based on the analysis...&#34;,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   &#34;agentSteps&#34;: [</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#     {&#34;agent&#34;: &#34;document_analyst&#34;, &#34;action&#34;: &#34;retrieved sales data&#34;},</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#     {&#34;agent&#34;: &#34;code_exec&#34;, &#34;action&#34;: &#34;calculated growth rates&#34;},</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#     {&#34;agent&#34;: &#34;web_search&#34;, &#34;action&#34;: &#34;found industry benchmarks&#34;}</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   ]</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># }</span>
-</span></span></code></pre></div><h2 id=integration-with-100-tools-and-services>Integration with 100+ Tools and Services</h2><p>Flowise supports <strong>100+ integrations</strong> across these categories: | Category | Popular Integrations | Count |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="node-configuration">Node Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Supervisor Agent node: # - LLM: gpt-4.1-nano</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Type: supervisor</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - System Prompt: &#34;You are a research coordinator. Route tasks to </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   the appropriate specialist agent.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Web Search Agent node: # - LLM: gpt-4.1-nano</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Tools: DuckDuckGo Search, Website Scraper</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - System Prompt: &#34;Search the web for current information.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Code Execution Agent node: # - LLM: gpt-4.1-nano</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Tools: Python REPL Tool</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - System Prompt: &#34;Write and execute Python code for data analysis.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Document Analyst Agent node: # - LLM: gpt-4.1-nano</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Tools: Vector Store Retriever</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - System Prompt: &#34;Analyze the provided documents for relevant information.&#34;</span>
+</span></span></code></pre></div><h3 id="deploying-the-multi-agent-flow">Deploying the Multi-Agent Flow</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Deploy as API endpoint</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;question&#34;: &#34;Analyze our Q1 sales data and compare with industry trends. The CSV is in the documents folder.&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;overrideConfig&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;sessionId&#34;: &#34;session-123&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Response includes which agent handled each sub-task: # {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;text&#34;: &#34;Based on the analysis...&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;agentSteps&#34;: [</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     {&#34;agent&#34;: &#34;document_analyst&#34;, &#34;action&#34;: &#34;retrieved sales data&#34;},</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     {&#34;agent&#34;: &#34;code_exec&#34;, &#34;action&#34;: &#34;calculated growth rates&#34;},</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     {&#34;agent&#34;: &#34;web_search&#34;, &#34;action&#34;: &#34;found industry benchmarks&#34;}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   ]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># }</span>
+</span></span></code></pre></div><h2 id="integration-with-100-tools-and-services">Integration with 100+ Tools and Services</h2>
+<p>Flowise supports <strong>100+ integrations</strong> across these categories: | Category | Popular Integrations | Count |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>LLM Providers</strong> | OpenAI, Anthropic, Google, Ollama, Groq, Mistral, Cohere | 15+ |
 | <strong>Vector Stores</strong> | Chroma, Qdrant, Pinecone, Weaviate, LanceDB, Milvus, Redis | 10+ |
 | <strong>Document Loaders</strong> | PDF, CSV, JSON, Web Scraper, YouTube, Notion, Confluence | 20+ |
@@ -243,133 +354,185 @@ aliases:</p><ul><li>/posts/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h
 | <strong>Tools / APIs</strong> | DuckDuckGo, SerpAPI, Calculator, Python REPL, HTTP Request | 25+ |
 | <strong>Memory</strong> | Buffer Memory, Redis Memory, Mongo Memory, Zep Memory | 6+ |
 | <strong>Chat Models</strong> | OpenAI GPT-4, Claude, Gemini, Llama, Mistral | 12+ |
-| <strong>Output Parsers</strong> | Structured Output, CSV Parser, JSON Parser | 5+ |</p><h3 id=adding-a-custom-tool>Adding a Custom Tool</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// custom_tool.js — saved in Flowise server&#39;s tools directory
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>Tool</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;langchain/tools&#39;</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>JiraTicketTool</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Tool</span> {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>super</span>();
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>jira_create_ticket</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>description</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Create a Jira ticket. Input: JSON string with summary, description, and issueType.&#39;</span>;
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>_call</span>(<span style=color:#a6e22e>input</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>summary</span>, <span style=color:#a6e22e>description</span>, <span style=color:#a6e22e>issueType</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>input</span>);
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;https://your-domain.atlassian.net/rest/api/3/issue&#39;</span>, {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>POST</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> {
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>Authorization</span><span style=color:#f92672>:</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>Basic</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>Buffer</span>.<span style=color:#a6e22e>from</span>(<span style=color:#e6db74>&#39;email:token&#39;</span>).<span style=color:#a6e22e>toString</span>(<span style=color:#a6e22e>base64</span>)}<span style=color:#e6db74>````</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;application/json&#39;</span>
-</span></span><span style=display:flex><span>      },
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>body</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>({
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>fields</span><span style=color:#f92672>:</span> {
-</span></span><span style=display:flex><span>          <span style=color:#a6e22e>project</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>PROJ</span> },
-</span></span><span style=display:flex><span>          <span style=color:#a6e22e>summary</span>,
-</span></span><span style=display:flex><span>          <span style=color:#a6e22e>description</span>,
-</span></span><span style=display:flex><span>          <span style=color:#a6e22e>issuetype</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>issueType</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>Task</span> }
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>      })
-</span></span><span style=display:flex><span>    });
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>());
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>JiraTicketTool</span> };
-</span></span></code></pre></div><h2 id=benchmarks--real-world-performance>Benchmarks & Real-World Performance</h2><h3 id=latency-benchmarks-flowise-v220>Latency Benchmarks (Flowise v2.2.0)</h3><p>Tested on <strong>Intel i7-13700K + 32 GB RAM</strong>, local Docker with OpenAI API: | Workflow Type | Nodes | Avg Latency | 95th Percentile | Tokens/sec |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>Output Parsers</strong> | Structured Output, CSV Parser, JSON Parser | 5+ |</p>
+<h3 id="adding-a-custom-tool">Adding a Custom Tool</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// custom_tool.js — saved in Flowise server&#39;s tools directory
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">Tool</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;langchain/tools&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JiraTicketTool</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Tool</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jira_create_ticket</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Create a Jira ticket. Input: JSON string with summary, description, and issueType.&#39;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">_call</span>(<span style="color:#a6e22e">input</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">summary</span>, <span style="color:#a6e22e">description</span>, <span style="color:#a6e22e">issueType</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">input</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;https://your-domain.atlassian.net/rest/api/3/issue&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">POST</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Authorization</span><span style="color:#f92672">:</span> <span style="color:#e6db74">````</span><span style="color:#a6e22e">Basic</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#e6db74">&#39;email:token&#39;</span>).<span style="color:#a6e22e">toString</span>(<span style="color:#a6e22e">base64</span>)}<span style="color:#e6db74">````</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fields</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">project</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">PROJ</span> },
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">summary</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">description</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">issuetype</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">issueType</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">Task</span> }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      })
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>());
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">JiraTicketTool</span> };
+</span></span></code></pre></div><h2 id="benchmarks--real-world-performance">Benchmarks &amp; Real-World Performance</h2>
+<h3 id="latency-benchmarks-flowise-v220">Latency Benchmarks (Flowise v2.2.0)</h3>
+<p>Tested on <strong>Intel i7-13700K + 32 GB RAM</strong>, local Docker with OpenAI API: | Workflow Type | Nodes | Avg Latency | 95th Percentile | Tokens/sec |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Simple LLM call | 3 | 0.8s | 1.2s | 142 |
 | RAG (1 doc, 10 pages) | 7 | 2.1s | 3.4s | 98 |
 | RAG (50 docs, 500 pages) | 7 | 3.8s | 6.2s | 89 |
 | Multi-agent (3 agents) | 12 | 8.4s | 14.1s | 67 |
-| With tool calling | 15 | 11.2s | 18.5s | 54 |</p><h3 id=throughput-under-load>Throughput Under Load</h3><p>| Concurrent Users | Avg Response Time | Error Rate |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| With tool calling | 15 | 11.2s | 18.5s | 54 |</p>
+<h3 id="throughput-under-load">Throughput Under Load</h3>
+<p>| Concurrent Users | Avg Response Time | Error Rate |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 1 | 2.1s | 0% |
 | 5 | 2.8s | 0% |
 | 10 | 4.6s | 0.3% |
 | 25 | 9.2s | 2.1% |
-| 50 | 18.4s | 8.7% |</p><p>For production workloads handling <strong>>10 concurrent users</strong>, run Flowise behind a load balancer with <strong>2-3 instances</strong>. PostgreSQL backend is mandatory at this scale — SQLite locks under concurrent writes.</p><h3 id=comparison-flowise-vs-hand-coded-langchain>Comparison: Flowise vs. Hand-Coded LangChain</h3><p>| Metric | Flowise | Hand-Coded Python | Time Saved |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 50 | 18.4s | 8.7% |</p>
+<p>For production workloads handling <strong>&gt;10 concurrent users</strong>, run Flowise behind a load balancer with <strong>2-3 instances</strong>. PostgreSQL backend is mandatory at this scale — SQLite locks under concurrent writes.</p>
+<h3 id="comparison-flowise-vs-hand-coded-langchain">Comparison: Flowise vs. Hand-Coded LangChain</h3>
+<p>| Metric | Flowise | Hand-Coded Python | Time Saved |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Simple RAG setup | 15 min | 4 hours | <strong>94%</strong> |
 | Multi-agent flow | 45 min | 12 hours | <strong>94%</strong> |
 | Adding new LLM | 2 min | 30 min | <strong>93%</strong> |
 | API deployment | 1 click | 2 hours | <strong>99%</strong> |
 | Debugging | Visual | Console logs | <strong>60%</strong> |
-| Custom logic | Limited | Unlimited | — |</p><p>The <strong>94% time savings</strong> for standard workflows is why teams adopt Flowise. The trade-off is reduced flexibility for deeply custom agent logic — at that point, you drop to raw LangChain.</p><h2 id=advanced-usage--production-hardening>Advanced Usage & Production Hardening</h2><h3 id=embedding-flowise-as-a-chat-widget>Embedding Flowise as a Chat Widget</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span>import Chatbot from &#34;https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js&#34;;
-</span></span><span style=display:flex><span>  Chatbot.init({
-</span></span><span style=display:flex><span>    chatflowid: &#34;your-chatflow-id&#34;,
-</span></span><span style=display:flex><span>    apiHost: &#34;https://flowise.yourdomain.com&#34;,
-</span></span><span style=display:flex><span>    chatflowConfig: {
-</span></span><span style=display:flex><span>      // Override default node configs
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    theme: {
-</span></span><span style=display:flex><span>      button: { backgroundColor: &#34;#3B81F6&#34;, size: 48 },
-</span></span><span style=display:flex><span>      chatWindow: {
-</span></span><span style=display:flex><span>        welcomeMessage: &#34;Hello! How can I help you?&#34;,
-</span></span><span style=display:flex><span>        backgroundColor: &#34;#ffffff&#34;,
-</span></span><span style=display:flex><span>        height: 600,
-</span></span><span style=display:flex><span>        width: 400,
-</span></span><span style=display:flex><span>      }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
-</span></span></code></pre></div><h3 id=api-authentication--rate-limiting>API Authentication & Rate Limiting</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Enable API key authentication</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Settings → API Keys → Create New Key</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use in requests</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Authorization: Bearer YOUR_API_KEY&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;question&#34;: &#34;Hello&#34;}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># For production, add Nginx rate limiting: # limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># limit_req zone=flowise burst=20 nodelay;</span>
-</span></span></code></pre></div><h3 id=webhook-triggers>Webhook Triggers</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Configure a flow to trigger on external events</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Settings → Webhook → Enable</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Trigger via HTTP POST</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:3000/api/v1/webhook/your-webhook-id <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;event&#34;: &#34;new_ticket&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;data&#34;: { &#34;ticket_id&#34;: &#34;TKT-123&#34;, &#34;description&#34;: &#34;...&#34; }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><h3 id=backup-and-migration>Backup and Migration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># backup-flowise.sh — run via cron</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>BACKUP_DIR<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/backups/flowise/</span><span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>mkdir -p <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Export all chatflows via API</span>
-</span></span><span style=display:flex><span>curl -s http://localhost:3000/api/v1/chatflows <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -u <span style=color:#e6db74>&#34;admin:your-password&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  | jq <span style=color:#e6db74>&#39;.&#39;</span> &gt; <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/chatflows.json&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Export credentials (encrypted)</span>
-</span></span><span style=display:flex><span>curl -s http://localhost:3000/api/v1/credentials <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -u <span style=color:#e6db74>&#34;admin:your-password&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  | jq <span style=color:#e6db74>&#39;.&#39;</span> &gt; <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/credentials.json&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Database backup (PostgreSQL)</span>
-</span></span><span style=display:flex><span>docker exec flowise-postgres pg_dump -U flowise flowise &gt; <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/database.sql&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Keep last 14 days</span>
-</span></span><span style=display:flex><span>find /backups/flowise -type d -mtime +14 -exec rm -rf <span style=color:#f92672>{}</span> +
-</span></span></code></pre></div><h3 id=monitoring-with-prometheus>Monitoring with Prometheus</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.monitoring.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: prometheus: image</span>: <span style=color:#ae81ff>prom/prometheus:v3.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;9090:9090&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./prometheus.yml:/etc/prometheus/prometheus.yml</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>grafana: image</span>: <span style=color:#ae81ff>grafana/grafana:11.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3001:3000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>grafana_data:/var/lib/grafana</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:2.2.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>METRICS_ENABLED=true</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>METRICS_PORT=9091</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;9091:9091&#34;</span>
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | Flowise | LangGraph Studio | Dify | n8n AI |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Custom logic | Limited | Unlimited | — |</p>
+<p>The <strong>94% time savings</strong> for standard workflows is why teams adopt Flowise. The trade-off is reduced flexibility for deeply custom agent logic — at that point, you drop to raw LangChain.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage &amp; Production Hardening</h2>
+<h3 id="embedding-flowise-as-a-chat-widget">Embedding Flowise as a Chat Widget</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>import Chatbot from &#34;https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js&#34;;
+</span></span><span style="display:flex;"><span>  Chatbot.init({
+</span></span><span style="display:flex;"><span>    chatflowid: &#34;your-chatflow-id&#34;,
+</span></span><span style="display:flex;"><span>    apiHost: &#34;https://flowise.yourdomain.com&#34;,
+</span></span><span style="display:flex;"><span>    chatflowConfig: {
+</span></span><span style="display:flex;"><span>      // Override default node configs
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    theme: {
+</span></span><span style="display:flex;"><span>      button: { backgroundColor: &#34;#3B81F6&#34;, size: 48 },
+</span></span><span style="display:flex;"><span>      chatWindow: {
+</span></span><span style="display:flex;"><span>        welcomeMessage: &#34;Hello! How can I help you?&#34;,
+</span></span><span style="display:flex;"><span>        backgroundColor: &#34;#ffffff&#34;,
+</span></span><span style="display:flex;"><span>        height: 600,
+</span></span><span style="display:flex;"><span>        width: 400,
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h3 id="api-authentication--rate-limiting">API Authentication &amp; Rate Limiting</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable API key authentication</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Settings → API Keys → Create New Key</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use in requests</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer YOUR_API_KEY&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;question&#34;: &#34;Hello&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For production, add Nginx rate limiting: # limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># limit_req zone=flowise burst=20 nodelay;</span>
+</span></span></code></pre></div><h3 id="webhook-triggers">Webhook Triggers</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure a flow to trigger on external events</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Settings → Webhook → Enable</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Trigger via HTTP POST</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:3000/api/v1/webhook/your-webhook-id <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;event&#34;: &#34;new_ticket&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;data&#34;: { &#34;ticket_id&#34;: &#34;TKT-123&#34;, &#34;description&#34;: &#34;...&#34; }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><h3 id="backup-and-migration">Backup and Migration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># backup-flowise.sh — run via cron</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/backups/flowise/</span><span style="color:#66d9ef">$(</span>date +%Y%m%d<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>mkdir -p <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export all chatflows via API</span>
+</span></span><span style="display:flex;"><span>curl -s http://localhost:3000/api/v1/chatflows <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -u <span style="color:#e6db74">&#34;admin:your-password&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | jq <span style="color:#e6db74">&#39;.&#39;</span> &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/chatflows.json&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export credentials (encrypted)</span>
+</span></span><span style="display:flex;"><span>curl -s http://localhost:3000/api/v1/credentials <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -u <span style="color:#e6db74">&#34;admin:your-password&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | jq <span style="color:#e6db74">&#39;.&#39;</span> &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/credentials.json&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Database backup (PostgreSQL)</span>
+</span></span><span style="display:flex;"><span>docker exec flowise-postgres pg_dump -U flowise flowise &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/database.sql&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Keep last 14 days</span>
+</span></span><span style="display:flex;"><span>find /backups/flowise -type d -mtime +14 -exec rm -rf <span style="color:#f92672">{}</span> +
+</span></span></code></pre></div><h3 id="monitoring-with-prometheus">Monitoring with Prometheus</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.monitoring.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: prometheus: image</span>: <span style="color:#ae81ff">prom/prometheus:v3.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;9090:9090&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./prometheus.yml:/etc/prometheus/prometheus.yml</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">grafana: image</span>: <span style="color:#ae81ff">grafana/grafana:11.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3001:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">grafana_data:/var/lib/grafana</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:2.2.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">METRICS_ENABLED=true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">METRICS_PORT=9091</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;9091:9091&#34;</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Flowise | LangGraph Studio | Dify | n8n AI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>License</strong> | Apache-2.0 | MIT | Apache-2.0 | Fair-code |
 | <strong>GitHub Stars</strong> | 45,000 | 8,500 | 92,000 | 75,000 |
 | <strong>Approach</strong> | Visual drag-and-drop | Visual + Code | Visual + Config | Workflow automation |
@@ -383,12 +546,79 @@ aliases:</p><ul><li>/posts/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h
 | <strong>Multi-Agent</strong> | Yes (v2.2.0) | Yes (native) | Yes | Limited |
 | <strong>Self-hosted</strong> | Yes (Docker) | Yes (pip) | Yes (Docker) | Yes (Docker) |
 | <strong>Desktop App</strong> | No | Yes | No | No |
-| <strong>Best For</strong> | LangChain visual builder | LangChain power users | Enterprise AI apps | General automation |</p><p><strong>Honest assessment:</strong> Dify has more GitHub stars and stronger enterprise features (RBAC, SSO, analytics), but Flowise wins on LangChain depth and node variety. LangGraph Studio is the best for code-first LangChain developers who want visual debugging. n8n is unbeatable for general workflow automation but lacks Flowise&rsquo;s AI-specific node ecosystem. Choose Flowise when you want the full power of LangChain without writing code.</p><h2 id=limitations-what-flowise-doesnt-do-well>Limitations: What Flowise Doesn&rsquo;t Do Well</h2><ol><li><p><strong>Custom node development is complex:</strong> Creating custom nodes requires understanding Flowise&rsquo;s internal Node.js architecture and TypeScript interfaces. There&rsquo;s no simple &ldquo;upload a Python function&rdquo; feature — you need to build and register a proper node package. This is improving with the v2.2.0 &ldquo;Custom JS Function&rdquo; node, but it&rsquo;s still not as flexible as raw LangChain.</p></li><li><p><strong>No Git-based version control:</strong> Flow definitions are stored in the database, not as files you can version with Git. There&rsquo;s an export/import JSON workflow, but it&rsquo;s manual. For teams practicing GitOps, this is a significant gap. The community has requested Git sync for 18+ months with no official solution as of May 2026.</p></li><li><p><strong>Debugging complex flows is hard:</strong> When a 15-node flow fails, the error message tells you which node failed but doesn&rsquo;t always show the intermediate data state. The &ldquo;View Intermediate Steps&rdquo; feature helps but becomes unwieldy with deeply nested agent flows.</p></li><li><p><strong>Single-tenancy limitations:</strong> Each Flowise instance serves one organization. True multi-tenancy (isolated workspaces with separate billing and credentials) requires running separate instances or the enterprise cloud plan.</p></li><li><p><strong>Resource overhead:</strong> The Docker image is <strong>1.4 GB</strong> and idle memory usage is <strong>600-800 MB</strong>. For simple use cases (single LLM call, no vector store), this is heavier than a minimal FastAPI + LangChain setup.</p></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=can-i-export-a-flowise-flow-and-run-it-without-flowise>Can I export a Flowise flow and run it without Flowise?</h3><p>Not directly. Flowise flows are stored as JSON graph definitions and executed by Flowise&rsquo;s runtime engine. However, you can export the flow JSON and use Flowise&rsquo;s open-source runtime package (<code>flowise-components</code>) to execute it programmatically in Node.js. For pure Python environments, you&rsquo;ll need to rebuild the equivalent LangChain code. The team has hinted at a Python runtime in a future release.</p><h3 id=how-does-flowise-handle-api-keys-securely>How does Flowise handle API keys securely?</h3><p>API keys are encrypted at rest using AES-256 with a key derived from your <code>FLOWISE_SECRETKEY_OVERWRITE</code> environment variable. Keys are never exposed in the UI after entry, and flow exports strip credential values. For production, use environment-variable-based credentials rather than UI-entered ones, and rotate keys quarterly.</p><h3 id=whats-the-maximum-flow-complexity-flowise-can-handle>What&rsquo;s the maximum flow complexity Flowise can handle?</h3><p>Flows with <strong>up to 50 nodes</strong> execute reliably. Beyond that, canvas performance degrades and debugging becomes difficult. The execution engine itself has no hard limit, but the visual editor becomes unwieldy. For very complex orchestration, consider breaking into sub-flows connected via API calls.</p><h3 id=can-i-use-flowise-with-local-llms-only>Can I use Flowise with local LLMs only?</h3><p>Absolutely. Connect Ollama (via the Ollama Chat Model node), LM Studio, or LocalAI nodes. All vector store, embedding, and tool nodes work with local setups. The only Flowise feature requiring cloud access is the built-in telemetry (which can be disabled with <code>DISABLE_FLOWISE_TELEMETRY=true</code>).</p><h3 id=how-do-i-migrate-from-flowise-v1x-to-v2x>How do I migrate from Flowise v1.x to v2.x?</h3><p>Upgrading from v1.x to v2.2.0 requires: 1. Back up all chatflows via JSON export
+| <strong>Best For</strong> | LangChain visual builder | LangChain power users | Enterprise AI apps | General automation |</p>
+<p><strong>Honest assessment:</strong> Dify has more GitHub stars and stronger enterprise features (RBAC, SSO, analytics), but Flowise wins on LangChain depth and node variety. LangGraph Studio is the best for code-first LangChain developers who want visual debugging. n8n is unbeatable for general workflow automation but lacks Flowise&rsquo;s AI-specific node ecosystem. Choose Flowise when you want the full power of LangChain without writing code.</p>
+<h2 id="limitations-what-flowise-doesnt-do-well">Limitations: What Flowise Doesn&rsquo;t Do Well</h2>
+<ol>
+<li>
+<p><strong>Custom node development is complex:</strong> Creating custom nodes requires understanding Flowise&rsquo;s internal Node.js architecture and TypeScript interfaces. There&rsquo;s no simple &ldquo;upload a Python function&rdquo; feature — you need to build and register a proper node package. This is improving with the v2.2.0 &ldquo;Custom JS Function&rdquo; node, but it&rsquo;s still not as flexible as raw LangChain.</p>
+</li>
+<li>
+<p><strong>No Git-based version control:</strong> Flow definitions are stored in the database, not as files you can version with Git. There&rsquo;s an export/import JSON workflow, but it&rsquo;s manual. For teams practicing GitOps, this is a significant gap. The community has requested Git sync for 18+ months with no official solution as of May 2026.</p>
+</li>
+<li>
+<p><strong>Debugging complex flows is hard:</strong> When a 15-node flow fails, the error message tells you which node failed but doesn&rsquo;t always show the intermediate data state. The &ldquo;View Intermediate Steps&rdquo; feature helps but becomes unwieldy with deeply nested agent flows.</p>
+</li>
+<li>
+<p><strong>Single-tenancy limitations:</strong> Each Flowise instance serves one organization. True multi-tenancy (isolated workspaces with separate billing and credentials) requires running separate instances or the enterprise cloud plan.</p>
+</li>
+<li>
+<p><strong>Resource overhead:</strong> The Docker image is <strong>1.4 GB</strong> and idle memory usage is <strong>600-800 MB</strong>. For simple use cases (single LLM call, no vector store), this is heavier than a minimal FastAPI + LangChain setup.</p>
+</li>
+</ol>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="can-i-export-a-flowise-flow-and-run-it-without-flowise">Can I export a Flowise flow and run it without Flowise?</h3>
+<p>Not directly. Flowise flows are stored as JSON graph definitions and executed by Flowise&rsquo;s runtime engine. However, you can export the flow JSON and use Flowise&rsquo;s open-source runtime package (<code>flowise-components</code>) to execute it programmatically in Node.js. For pure Python environments, you&rsquo;ll need to rebuild the equivalent LangChain code. The team has hinted at a Python runtime in a future release.</p>
+<h3 id="how-does-flowise-handle-api-keys-securely">How does Flowise handle API keys securely?</h3>
+<p>API keys are encrypted at rest using AES-256 with a key derived from your <code>FLOWISE_SECRETKEY_OVERWRITE</code> environment variable. Keys are never exposed in the UI after entry, and flow exports strip credential values. For production, use environment-variable-based credentials rather than UI-entered ones, and rotate keys quarterly.</p>
+<h3 id="whats-the-maximum-flow-complexity-flowise-can-handle">What&rsquo;s the maximum flow complexity Flowise can handle?</h3>
+<p>Flows with <strong>up to 50 nodes</strong> execute reliably. Beyond that, canvas performance degrades and debugging becomes difficult. The execution engine itself has no hard limit, but the visual editor becomes unwieldy. For very complex orchestration, consider breaking into sub-flows connected via API calls.</p>
+<h3 id="can-i-use-flowise-with-local-llms-only">Can I use Flowise with local LLMs only?</h3>
+<p>Absolutely. Connect Ollama (via the Ollama Chat Model node), LM Studio, or LocalAI nodes. All vector store, embedding, and tool nodes work with local setups. The only Flowise feature requiring cloud access is the built-in telemetry (which can be disabled with <code>DISABLE_FLOWISE_TELEMETRY=true</code>).</p>
+<h3 id="how-do-i-migrate-from-flowise-v1x-to-v2x">How do I migrate from Flowise v1.x to v2.x?</h3>
+<p>Upgrading from v1.x to v2.2.0 requires: 1. Back up all chatflows via JSON export
 2. Pull the new Docker image: <code>flowiseai/flowise:2.2.0</code>
 3. Run database migrations automatically on first start
 4. Verify and reconfigure any deprecated nodes
-5. The v2.0 release deprecated 4 legacy nodes; check the migration guide at <a href=https://docs.flowiseai.com/migration/v1-to-v2>https://docs.flowiseai.com/migration/v1-to-v2</a></p><h3 id=is-there-a-cloud-hosted-option>Is there a cloud-hosted option?</h3><p>Yes, Flowise Cloud offers managed hosting with team collaboration, but pricing starts at <strong>$49/month</strong> for 2 users. For teams with DevOps capacity, self-hosting on a $12/month DigitalOcean droplet is significantly more cost-effective at scale.</p><h2 id=conclusion-build-ai-workflows-without-the-boilerplate>Conclusion: Build AI Workflows Without the Boilerplate</h2><p>Flowise removes the <strong>800 lines of boilerplate</strong> that typically separate a LangChain idea from a deployed AI feature. By visualizing chains, agents, and retrievers as interconnected nodes, it makes AI development accessible to backend developers, product engineers, and technical PMs who don&rsquo;t want to become LangChain experts.</p><p>The <strong>45,000+ GitHub stars</strong> and Apache-2.0 license ensure long-term viability, while the 100+ integrations mean you&rsquo;re unlikely to hit a connectivity wall. For teams shipping RAG chatbots, document processors, or multi-agent research tools, Flowise cuts development time by <strong>90%+</strong> compared to hand-coding.</p><p><strong>Next steps:</strong></p><ol><li>Deploy: ````docker run -p 3000:3000 flowiseai/flowise:2.2.0```</li><li>Build a RAG chatbot in 15 minutes</li><li>Deploy it as an embedded widget on your website</li><li>Experiment with multi-agent flows for complex research tasks</li></ol><p>Join our Telegram group for AI workflow builders: <strong><a href=https://t.me/dibi8_ai_workflows>@dibi8_ai_workflows</a></strong> — share your Flowise creations, get help with complex flows, and stay updated on new integrations.</p><p>Also check our guides on <a href=dibi8-internal-link>LangChain production patterns</a> and <a href=dibi8-internal-link>RAG architecture deep-dive</a> for more on building production AI systems.</p><blockquote><p>💡 Looking for lifetime deals on AI tools? Check <a href=https://appsumo.com/s/106nifb/>AppSumo</a> for discounts on AI productivity software that complements your Flowise workflows.</p></blockquote><h2 id=sources--further-reading>Sources & Further Reading</h2><ul><li>Flowise GitHub Repository: <a href=https://github.com/FlowiseAI/Flowise>https://github.com/FlowiseAI/Flowise</a></li><li>Official Documentation: <a href=https://docs.flowiseai.com>https://docs.flowiseai.com</a></li><li>Docker Hub: <a href=https://hub.docker.com/r/flowiseai/flowise>https://hub.docker.com/r/flowiseai/flowise</a></li><li>Flowise Cloud: <a href=https://flowiseai.com>https://flowiseai.com</a></li><li>LangChain Documentation: <a href=https://python.langchain.com>https://python.langchain.com</a></li><li>Community Discord: <a href=https://discord.gg/jbaHfsRVBW>https://discord.gg/jbaHfsRVBW</a></li><li>v2.2.0 Release Notes: <a href=https://github.com/FlowiseAI/Flowise/releases/tag/flowise%402.2.0>https://github.com/FlowiseAI/Flowise/releases/tag/flowise%402.2.0</a></li><li>Flowise Embed Widget: <a href=https://www.npmjs.com/package/flowise-embed>https://www.npmjs.com/package/flowise-embed</a></li></ul><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=affiliate-disclosure>Affiliate Disclosure</h2><p>This article contains affiliate links to <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> and <a href=https://appsumo.com/s/106nifb/>AppSumo</a>. If you sign up using these links, we earn a commission at no additional cost to you. We only recommend services we actively use for our own deployments. All benchmarks and opinions are independently produced and not influenced by any affiliate partnership.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+5. The v2.0 release deprecated 4 legacy nodes; check the migration guide at <a href="https://docs.flowiseai.com/migration/v1-to-v2">https://docs.flowiseai.com/migration/v1-to-v2</a></p>
+<h3 id="is-there-a-cloud-hosted-option">Is there a cloud-hosted option?</h3>
+<p>Yes, Flowise Cloud offers managed hosting with team collaboration, but pricing starts at <strong>$49/month</strong> for 2 users. For teams with DevOps capacity, self-hosting on a $12/month DigitalOcean droplet is significantly more cost-effective at scale.</p>
+<h2 id="conclusion-build-ai-workflows-without-the-boilerplate">Conclusion: Build AI Workflows Without the Boilerplate</h2>
+<p>Flowise removes the <strong>800 lines of boilerplate</strong> that typically separate a LangChain idea from a deployed AI feature. By visualizing chains, agents, and retrievers as interconnected nodes, it makes AI development accessible to backend developers, product engineers, and technical PMs who don&rsquo;t want to become LangChain experts.</p>
+<p>The <strong>45,000+ GitHub stars</strong> and Apache-2.0 license ensure long-term viability, while the 100+ integrations mean you&rsquo;re unlikely to hit a connectivity wall. For teams shipping RAG chatbots, document processors, or multi-agent research tools, Flowise cuts development time by <strong>90%+</strong> compared to hand-coding.</p>
+<p><strong>Next steps:</strong></p>
+<ol>
+<li>Deploy: ````docker run -p 3000:3000 flowiseai/flowise:2.2.0```</li>
+<li>Build a RAG chatbot in 15 minutes</li>
+<li>Deploy it as an embedded widget on your website</li>
+<li>Experiment with multi-agent flows for complex research tasks</li>
+</ol>
+<p>Join our Telegram group for AI workflow builders: <strong><a href="https://t.me/dibi8_ai_workflows">@dibi8_ai_workflows</a></strong> — share your Flowise creations, get help with complex flows, and stay updated on new integrations.</p>
+<p>Also check our guides on <a href="dibi8-internal-link">LangChain production patterns</a> and <a href="dibi8-internal-link">RAG architecture deep-dive</a> for more on building production AI systems.</p>
+<blockquote>
+<p>💡 Looking for lifetime deals on AI tools? Check <a href="https://appsumo.com/s/106nifb/">AppSumo</a> for discounts on AI productivity software that complements your Flowise workflows.</p>
+</blockquote>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li>Flowise GitHub Repository: <a href="https://github.com/FlowiseAI/Flowise">https://github.com/FlowiseAI/Flowise</a></li>
+<li>Official Documentation: <a href="https://docs.flowiseai.com">https://docs.flowiseai.com</a></li>
+<li>Docker Hub: <a href="https://hub.docker.com/r/flowiseai/flowise">https://hub.docker.com/r/flowiseai/flowise</a></li>
+<li>Flowise Cloud: <a href="https://flowiseai.com">https://flowiseai.com</a></li>
+<li>LangChain Documentation: <a href="https://python.langchain.com">https://python.langchain.com</a></li>
+<li>Community Discord: <a href="https://discord.gg/jbaHfsRVBW">https://discord.gg/jbaHfsRVBW</a></li>
+<li>v2.2.0 Release Notes: <a href="https://github.com/FlowiseAI/Flowise/releases/tag/flowise%402.2.0">https://github.com/FlowiseAI/Flowise/releases/tag/flowise%402.2.0</a></li>
+<li>Flowise Embed Widget: <a href="https://www.npmjs.com/package/flowise-embed">https://www.npmjs.com/package/flowise-embed</a></li>
+</ul>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="affiliate-disclosure">Affiliate Disclosure</h2>
+<p>This article contains affiliate links to <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> and <a href="https://appsumo.com/s/106nifb/">AppSumo</a>. If you sign up using these links, we earn a commission at no additional cost to you. We only recommend services we actively use for our own deployments. All benchmarks and opinions are independently produced and not influenced by any affiliate partnership.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Flowise: The Low-Code AI Workflow Builder Deploying LangChain Agents Visually — 2026 Complete Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -402,20 +632,296 @@ aliases:</p><ul><li>/posts/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/flowise-ai-workflow-builder-lowcode%22>https://dibi8.com/resources/flowise-ai-workflow-builder-lowcode"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/flowise-ai-workflow-builder-lowcode%22">https://dibi8.com/resources/flowise-ai-workflow-builder-lowcode"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/flowise-ai-workflow-builder-lowcode/>12-factor-agents</a></li><li><a href=/ai-coding-agents/flowise-ai-workflow-builder-lowcode/>2026-05-25-trending-ai-agents</a></li><li><a href=/ai-coding-agents/flowise-ai-workflow-builder-lowcode/>2026-06-01-trending-ai-agents</a></li><li><a href=/ai-coding-agents/flowise-ai-workflow-builder-lowcode/>2026-06-08-trending-ai-agents</a></li><li><a href=/ai-coding-agents/flowise-ai-workflow-builder-lowcode/>2026-06-15-trending-ai-agents</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fflowise-ai-workflow-builder-lowcode%2f&text=Flowise%20stores%20flow%20definitions%20as%20JSON%20in%20the%20database" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fflowise-ai-workflow-builder-lowcode%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">2026-06-08-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">2026-06-15-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fflowise-ai-workflow-builder-lowcode%2f&text=Flowise%20stores%20flow%20definitions%20as%20JSON%20in%20the%20database" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fflowise-ai-workflow-builder-lowcode%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,25 +1,117 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026 | Dibi8</title><meta name=description content="Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K+ params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars."><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026 | Dibi8 - AI工具目录"><meta property="og:description" content="Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K+ params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars."><meta property="og:url" content="https://dibi8.com/llm-frameworks/kev-trainable-decision-models-qwen35-2026/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/llm-frameworks/kev-trainable-decision-models-qwen35-2026/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026</h1><p class="text-gray-500 text-lg mb-8">Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K+ params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars.</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/kev/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#kev</a>
-<a href=/tags/qwen35/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#qwen35</a>
-<a href=/tags/trainable-models/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#trainable-models</a>
-<a href=/tags/decision-models/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#decision-models</a>
-<a href=/tags/jared-palmer/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#jared-palmer</a>
-<a href=/tags/rlvr/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#rlvr</a>
-<a href=/tags/pydantic/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#pydantic</a>
-<a href=/tags/2026/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#2026</a>
-<a href=/tags/open-source/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#open-source</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=introduction>Introduction</h2><p>Jared Palmer is known for React ecosystem tools—Next.js, Formik, React Training. His latest project, Kev, represents a different kind of contribution: a framework for training small decision models that output structured labels instead of text.</p><p>The premise is deceptively simple: take a Qwen3.5 model, add a classification head, train it with reinforcement learning, and you get a model that makes typed decisions in under 100 lines of code.</p><p>But the implications are significant. For the first time, developers can train their own decision models—models that classify, score, and categorize without hallucinating free-form text. The cost is minimal: training runs on a single GPU for hours, not weeks. The inference cost is near-zero: these models run at tens of milliseconds on CPU.</p><p>Let&rsquo;s explore how Kev works, why it matters, and whether trainable decision models are the next step in AI efficiency.</p><h2 id=what-is-kev>What Is Kev?</h2><p>Kev is a framework for creating trainable decision models based on Qwen3.5. Unlike LLMs that generate text token-by-token, Kev trains small models to output structured labels directly.</p><p><strong>Key features:</strong></p><ul><li><strong>30K+ parameters</strong> — Tiny models that fit in memory</li><li><strong>RLVR training</strong> — Reinforcement Learning from Verifiable Rewards</li><li><strong>JSON/Pydantic outputs</strong> — Structured schemas, not free text</li><li><strong>Under 100 lines</strong> — Minimal code to get started</li><li><strong>Qwen3.5 base</strong> — Leverages recent open-weight models</li></ul><pre tabindex=0><code>┌─────────────────────────────────────────────────────┐
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026 | Dibi8</title>
+    <meta name="description" content="Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K&#43; params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars.">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026 | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K&#43; params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars.">
+    <meta property="og:url" content="https://dibi8.com/llm-frameworks/kev-trainable-decision-models-qwen35-2026/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/kev-trainable-decision-models-qwen35-2026/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K&#43; params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars.</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/kev/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#kev</a>
+            
+            <a href="/tags/qwen35/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#qwen35</a>
+            
+            <a href="/tags/trainable-models/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#trainable-models</a>
+            
+            <a href="/tags/decision-models/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#decision-models</a>
+            
+            <a href="/tags/jared-palmer/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#jared-palmer</a>
+            
+            <a href="/tags/rlvr/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#rlvr</a>
+            
+            <a href="/tags/pydantic/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#pydantic</a>
+            
+            <a href="/tags/2026/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#2026</a>
+            
+            <a href="/tags/open-source/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#open-source</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="introduction">Introduction</h2>
+<p>Jared Palmer is known for React ecosystem tools—Next.js, Formik, React Training. His latest project, Kev, represents a different kind of contribution: a framework for training small decision models that output structured labels instead of text.</p>
+<p>The premise is deceptively simple: take a Qwen3.5 model, add a classification head, train it with reinforcement learning, and you get a model that makes typed decisions in under 100 lines of code.</p>
+<p>But the implications are significant. For the first time, developers can train their own decision models—models that classify, score, and categorize without hallucinating free-form text. The cost is minimal: training runs on a single GPU for hours, not weeks. The inference cost is near-zero: these models run at tens of milliseconds on CPU.</p>
+<p>Let&rsquo;s explore how Kev works, why it matters, and whether trainable decision models are the next step in AI efficiency.</p>
+<h2 id="what-is-kev">What Is Kev?</h2>
+<p>Kev is a framework for creating trainable decision models based on Qwen3.5. Unlike LLMs that generate text token-by-token, Kev trains small models to output structured labels directly.</p>
+<p><strong>Key features:</strong></p>
+<ul>
+<li><strong>30K+ parameters</strong> — Tiny models that fit in memory</li>
+<li><strong>RLVR training</strong> — Reinforcement Learning from Verifiable Rewards</li>
+<li><strong>JSON/Pydantic outputs</strong> — Structured schemas, not free text</li>
+<li><strong>Under 100 lines</strong> — Minimal code to get started</li>
+<li><strong>Qwen3.5 base</strong> — Leverages recent open-weight models</li>
+</ul>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────┐
 │                    Kev Architecture                  │
 ├─────────────────────────────────────────────────────┤
 │                                                     │
@@ -32,152 +124,669 @@
 │        └──────── RLVR Training ──────────┘        │
 │                                                     │
 └─────────────────────────────────────────────────────┘
-</code></pre><h3 id=kev-vs-laya-vs-jev>Kev vs. Laya vs. Jev</h3><p>These three projects solve overlapping but distinct problems:</p><table><thead><tr><th>Project</th><th>Author</th><th>Purpose</th><th>Training</th><th>Output</th></tr></thead><tbody><tr><td><strong>Kev</strong></td><td>jaredpalmer</td><td>Trainable decision models</td><td>Yes (RLVR)</td><td>JSON/Pydantic</td></tr><tr><td><strong>Laya</strong></td><td>NandhaKishorM</td><td>Pre-trained System 1 engine</td><td>No (frozen)</td><td>Labels/scores</td></tr><tr><td><strong>Jev Ultrafast</strong></td><td>browser-use</td><td>Browser automation</td><td>N/A</td><td>Browser actions</td></tr></tbody></table><p>Kev fills a gap: what if you need a decision model tailored to your specific domain? Laya gives you general-purpose classifiers; Kev lets you build custom ones.</p><h2 id=how-kev-works>How Kev Works</h2><h3 id=the-training-pipeline>The Training Pipeline</h3><p>Kev uses a reinforcement learning approach called RLVR (Reinforcement Learning from Verifiable Rewards). Instead of traditional supervised learning with labeled examples, the model learns through trial and error with immediate feedback.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Simplified RLVR training loop</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> step <span style=color:#f92672>in</span> range(num_steps):
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 1. Sample input</span>
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>=</span> sample_state(dataset)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 2. Model predicts</span>
-</span></span><span style=display:flex><span>    prediction <span style=color:#f92672>=</span> model(state)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 3. Verify correctness</span>
-</span></span><span style=display:flex><span>    reward <span style=color:#f92672>=</span> verify_prediction(prediction, ground_truth)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 4. Update model</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> reward <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
-</span></span><span style=display:flex><span>        model<span style=color:#f92672>.</span>update(prediction, lr<span style=color:#f92672>=</span>learning_rate)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>        model<span style=color:#f92672>.</span>penalty(prediction, factor<span style=color:#f92672>=</span>penalty_rate)
-</span></span></code></pre></div><p>The verifiable reward is key: if the output matches the expected label, reward is positive; otherwise, it&rsquo;s negative. This creates a clear signal for learning.</p><h3 id=schema-definition>Schema Definition</h3><p>Kev uses Pydantic or JSON Schema to define what the model should output.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel, Field
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Literal
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TicketResponse</span>(BaseModel):
-</span></span><span style=display:flex><span>    department: Literal[<span style=color:#e6db74>&#34;billing&#34;</span>, <span style=color:#e6db74>&#34;technical&#34;</span>, <span style=color:#e6db74>&#34;sales&#34;</span>] <span style=color:#f92672>=</span> Field(
-</span></span><span style=display:flex><span>        description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Which department should handle this?&#34;</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    priority: Literal[<span style=color:#e6db74>&#34;low&#34;</span>, <span style=color:#e6db74>&#34;medium&#34;</span>, <span style=color:#e6db74>&#34;high&#34;</span>] <span style=color:#f92672>=</span> Field(
-</span></span><span style=display:flex><span>        description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Urgency level&#34;</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    confidence: float <span style=color:#f92672>=</span> Field(
-</span></span><span style=display:flex><span>        ge<span style=color:#f92672>=</span><span style=color:#ae81ff>0.0</span>, le<span style=color:#f92672>=</span><span style=color:#ae81ff>1.0</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Model confidence&#34;</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Kev generates training data matching this schema</span>
-</span></span></code></pre></div><h3 id=fine-tuning-process>Fine-Tuning Process</h3><p>The fine-tuning process is deliberately simple:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> kev <span style=color:#f92672>import</span> DecisionModel
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Initialize with Qwen3.5 base</span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> DecisionModel<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;Qwen/Qwen3.5-0.5B&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Add classification head</span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add_head(num_classes<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, schema<span style=color:#f92672>=</span>TicketResponse)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Train on your dataset</span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>train(
-</span></span><span style=display:flex><span>    dataset<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;my_ticket_data.jsonl&#34;</span>,
-</span></span><span style=display:flex><span>    schema<span style=color:#f92672>=</span>TicketResponse,
-</span></span><span style=display:flex><span>    epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>32</span>,
-</span></span><span style=display:flex><span>    lr<span style=color:#f92672>=</span><span style=color:#ae81ff>1e-4</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Save for inference</span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>save(<span style=color:#e6db74>&#34;ticket-router.keras&#34;</span>)
-</span></span></code></pre></div><h2 id=installation--setup>Installation & Setup</h2><h3 id=quick-start>Quick Start</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install kev<span style=color:#f92672>[</span>torch<span style=color:#f92672>]</span>
-</span></span></code></pre></div><h3 id=basic-usage>Basic Usage</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> kev <span style=color:#f92672>import</span> DecisionModel
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel, Field
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Literal
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Define your schema</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SentimentAnalysis</span>(BaseModel):
-</span></span><span style=display:flex><span>    sentiment: Literal[<span style=color:#e6db74>&#34;positive&#34;</span>, <span style=color:#e6db74>&#34;negative&#34;</span>, <span style=color:#e6db74>&#34;neutral&#34;</span>]
-</span></span><span style=display:flex><span>    confidence: float <span style=color:#f92672>=</span> Field(ge<span style=color:#f92672>=</span><span style=color:#ae81ff>0.0</span>, le<span style=color:#f92672>=</span><span style=color:#ae81ff>1.0</span>)
-</span></span><span style=display:flex><span>    language: str
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create and train model</span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> DecisionModel<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;Qwen/Qwen3.5-0.5B&#34;</span>)
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add_head(schema<span style=color:#f92672>=</span>SentimentAnalysis)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Train with synthetic data</span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>train_synthetic(
-</span></span><span style=display:flex><span>    schema<span style=color:#f92672>=</span>SentimentAnalysis,
-</span></span><span style=display:flex><span>    n_samples<span style=color:#f92672>=</span><span style=color:#ae81ff>1000</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Make predictions</span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>predict(<span style=color:#e6db74>&#34;This product is amazing!&#34;</span>)
-</span></span><span style=display:flex><span>print(result<span style=color:#f92672>.</span>sentiment)  <span style=color:#75715e># &#34;positive&#34;</span>
-</span></span><span style=display:flex><span>print(result<span style=color:#f92672>.</span>confidence)  <span style=color:#75715e># 0.94</span>
-</span></span></code></pre></div><h3 id=training-with-real-data>Training with Real Data</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load your labeled data</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>&#34;labeled_data.jsonl&#34;</span>) <span style=color:#66d9ef>as</span> f:
-</span></span><span style=display:flex><span>    data <span style=color:#f92672>=</span> [json<span style=color:#f92672>.</span>loads(line) <span style=color:#66d9ef>for</span> line <span style=color:#f92672>in</span> f]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Train</span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> DecisionModel<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;Qwen/Qwen3.5-0.5B&#34;</span>)
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add_head(schema<span style=color:#f92672>=</span>SentimentAnalysis)
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>train(data<span style=color:#f92672>=</span>data, epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Evaluate</span>
-</span></span><span style=display:flex><span>metrics <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>evaluate(test_data)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Accuracy: </span><span style=color:#e6db74>{</span>metrics[<span style=color:#e6db74>&#39;accuracy&#39;</span>]<span style=color:#e6db74>:</span><span style=color:#e6db74>.2%</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Calibration: </span><span style=color:#e6db74>{</span>metrics[<span style=color:#e6db74>&#39;ece&#39;</span>]<span style=color:#e6db74>:</span><span style=color:#e6db74>.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h2 id=integration-patterns>Integration Patterns</h2><h3 id=fastapi-service>FastAPI Service</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> kev <span style=color:#f92672>import</span> DecisionModel
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Literal
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ReviewInput</span>(BaseModel):
-</span></span><span style=display:flex><span>    text: str
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ReviewOutput</span>(BaseModel):
-</span></span><span style=display:flex><span>    sentiment: Literal[<span style=color:#e6db74>&#34;positive&#34;</span>, <span style=color:#e6db74>&#34;negative&#34;</span>, <span style=color:#e6db74>&#34;neutral&#34;</span>]
-</span></span><span style=display:flex><span>    confidence: float
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> DecisionModel<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;local/sentiment-model&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/classify&#34;</span>, response_model<span style=color:#f92672>=</span>ReviewOutput)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>classify</span>(review: ReviewInput):
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>predict(review<span style=color:#f92672>.</span>text)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> ReviewOutput(
-</span></span><span style=display:flex><span>        sentiment<span style=color:#f92672>=</span>result<span style=color:#f92672>.</span>sentiment,
-</span></span><span style=display:flex><span>        confidence<span style=color:#f92672>=</span>result<span style=color:#f92672>.</span>confidence
-</span></span><span style=display:flex><span>    )
-</span></span></code></pre></div><h3 id=batch-processing>Batch Processing</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Process large datasets efficiently</span>
-</span></span><span style=display:flex><span>df <span style=color:#f92672>=</span> pd<span style=color:#f92672>.</span>read_csv(<span style=color:#e6db74>&#34;reviews.csv&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>predict_batch(
-</span></span><span style=display:flex><span>    texts<span style=color:#f92672>=</span>df[<span style=color:#e6db74>&#34;text&#34;</span>]<span style=color:#f92672>.</span>tolist(),
-</span></span><span style=display:flex><span>    batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>df[<span style=color:#e6db74>&#34;sentiment&#34;</span>] <span style=color:#f92672>=</span> [r<span style=color:#f92672>.</span>sentiment <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results]
-</span></span><span style=display:flex><span>df[<span style=color:#e6db74>&#34;confidence&#34;</span>] <span style=color:#f92672>=</span> [r<span style=color:#f92672>.</span>confidence <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results]
-</span></span></code></pre></div><h3 id=streaming-predictions>Streaming Predictions</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> kev <span style=color:#f92672>import</span> StreamingDecisionModel
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>process_stream</span>(text_generator):
-</span></span><span style=display:flex><span>    model <span style=color:#f92672>=</span> StreamingDecisionModel<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;local/streaming-model&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>for</span> text <span style=color:#f92672>in</span> text_generator:
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Stream predictions as text arrives</span>
-</span></span><span style=display:flex><span>        prediction <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> model<span style=color:#f92672>.</span>predict_stream(text)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>yield</span> prediction
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Usage</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>for</span> pred <span style=color:#f92672>in</span> process_stream(text_stream()):
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>pred<span style=color:#f92672>.</span>sentiment<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>pred<span style=color:#f92672>.</span>confidence<span style=color:#e6db74>:</span><span style=color:#e6db74>.2%</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h2 id=benchmarks--performance>Benchmarks & Performance</h2><h3 id=training-time>Training Time</h3><table><thead><tr><th>Model Size</th><th>Training Time (1K samples)</th><th>Training Time (10K samples)</th></tr></thead><tbody><tr><td>0.5B params</td><td>15 minutes</td><td>2.5 hours</td></tr><tr><td>1.5B params</td><td>45 minutes</td><td>7 hours</td></tr><tr><td>7B params</td><td>3 hours</td><td>30 hours</td></tr></tbody></table><p>Training runs on a single NVIDIA A100.</p><h3 id=inference-speed>Inference Speed</h3><table><thead><tr><th>Hardware</th><th>Latency (single)</th><th>Throughput (batched)</th></tr></thead><tbody><tr><td>NVIDIA T4</td><td>45ms</td><td>220 req/s</td></tr><tr><td>Apple M3 Max</td><td>18ms</td><td>850 req/s</td></tr><tr><td>CPU (no GPU)</td><td>320ms</td><td>85 req/s</td></tr></tbody></table><h3 id=accuracy-comparison>Accuracy Comparison</h3><table><thead><tr><th>Dataset</th><th>Kev (fine-tuned)</th><th>Laya (pre-trained)</th><th>GPT-4o (zero-shot)</th></tr></thead><tbody><tr><td>Customer Intent</td><td>95.1%</td><td>94.2%</td><td>89.5%</td></tr><tr><td>Sentiment (domain-specific)</td><td>93.8%</td><td>88.2%</td><td>85.1%</td></tr><tr><td>Fraud Detection</td><td>96.4%</td><td>96.1%</td><td>91.8%</td></tr></tbody></table><p>Kev excels on domain-specific tasks where fine-tuning data is available. Laya matches or exceeds Kev on general tasks without training.</p><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><table><thead><tr><th>Feature</th><th>Kev</th><th>Laya</th><th>Fine-tuned LLM</th><th>Rule-based</th></tr></thead><tbody><tr><td>Setup time</td><td>Minutes</td><td>Instant</td><td>Hours</td><td>Minutes</td></tr><tr><td>Training needed</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td></tr><tr><td>Domain adaptation</td><td>Excellent</td><td>Good</td><td>Excellent</td><td>Poor</td></tr><tr><td>Latency</td><td>45ms</td><td>33ms</td><td>500ms+</td><td>&lt;1ms</td></tr><tr><td>Cost per 1K</td><td>$0.10</td><td>$0.00</td><td>$2.40</td><td>$0.00</td></tr><tr><td>Hallucination risk</td><td>None</td><td>None</td><td>Low</td><td>None</td></tr><tr><td>Explainability</td><td>Medium</td><td>Low</td><td>Medium</td><td>High</td></tr><tr><td>Code complexity</td><td>Low</td><td>Low</td><td>High</td><td>Low</td></tr></tbody></table><p><strong>When to choose Kev:</strong> When you need domain-specific decision models and have training data. The ability to fine-tune on your data gives you accuracy that generic models can&rsquo;t match.</p><p><strong>When to skip Kev:</strong> If you need immediate results without training, use Laya. If you need generative capabilities, use a standard LLM.</p><h2 id=limitations--honest-assessment>Limitations & Honest Assessment</h2><h3 id=what-kev-doesnt-do>What Kev Doesn&rsquo;t Do</h3><ul><li><strong>It doesn&rsquo;t generate text.</strong> Kev outputs structured labels only. No explanations, no reasoning chains.</li><li><strong>It requires training data.</strong> While synthetic data generation helps, real labeled data produces better results.</li><li><strong>It&rsquo;s not suitable for open-ended tasks.</strong> Classification and scoring, yes. Creative writing, no.</li></ul><h3 id=known-limitations>Known Limitations</h3><ol><li><p><strong>Schema rigidity:</strong> Once trained, the model outputs only the defined schema. Adding new classes requires retraining.</p></li><li><p><strong>Calibration challenges:</strong> Small models may produce overconfident predictions. Always validate confidence scores against holdout data.</p></li><li><p><strong>Hardware dependency:</strong> Training requires a GPU. Inference can run on CPU but is slower.</p></li></ol><h3 id=when-to-be-cautious>When to Be Cautious</h3><p>For high-stakes decisions (medical, legal, financial), always implement human review for low-confidence predictions. Kev&rsquo;s calibration isn&rsquo;t perfect, especially on edge cases.</p><p>Also, be aware of training data bias. If your labeled data contains biases, the model will learn and amplify them. Audit your training data carefully.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=q1-do-i-need-a-gpu-to-train-kev>Q1: Do I need a GPU to train Kev?</h3><p>Training is much faster with a GPU, but CPU-only training is supported. Expect 10-20x longer training times on CPU.</p><h3 id=q2-how-much-data-do-i-need>Q2: How much data do I need?</h3><p>Kev can work with as few as 100 labeled samples for simple tasks. Complex tasks benefit from 1,000+ samples. Synthetic data generation can supplement limited labeled data.</p><h3 id=q3-can-i-use-kev-with-non-english-languages>Q3: Can I use Kev with non-English languages?</h3><p>Yes. Qwen3.5 supports 100+ languages. Just ensure your training data matches the target language.</p><h3 id=q4-how-does-kev-compare-to-fine-tuning-a-full-llm>Q4: How does Kev compare to fine-tuning a full LLM?</h3><p>Kev trains only the classification head, not the entire model. This is dramatically faster and cheaper while maintaining comparable accuracy on classification tasks.</p><h3 id=q5-is-kev-production-ready>Q5: Is Kev production-ready?</h3><p>Yes. The framework includes serialization, batching, and streaming support for production deployment.</p><h3 id=q6-can-i-combine-kev-with-llms>Q6: Can I combine Kev with LLMs?</h3><p>Absolutely. Use Kev for fast, structured decisions and LLMs for complex reasoning. This hybrid approach optimizes both speed and capability.</p><h3 id=q7-whats-the-maximum-model-size>Q7: What&rsquo;s the maximum model size?</h3><p>Kev supports models from 0.5B to 7B parameters. Larger models offer better accuracy but require more resources.</p><h2 id=conclusion>Conclusion</h2><p>Kev represents a practical approach to decision modeling: train small, specialized models that output structured labels with minimal code and infrastructure. The ability to fine-tune on your data gives you domain-specific accuracy that generic models can&rsquo;t match, while the tiny model size keeps inference costs near-zero.</p><p>For teams building classification, routing, or scoring systems, Kev deserves consideration alongside Laya and other pre-trained solutions. The trade-off is clear: invest training time for superior domain performance, or use pre-trained models for immediate results.</p><p>The framework&rsquo;s elegance lies in its simplicity. Under 100 lines of code, you go from unstructured text to structured decisions. That&rsquo;s the future of efficient AI: specialized, fast, and cost-effective.</p><p><strong>Try Kev:</strong> <a href=https://github.com/jaredpalmer/kev>https://github.com/jaredpalmer/kev</a></p><p><strong>Join the discussion:</strong> <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><p><strong>Related reading:</strong> <a href=dibi8-internal-link>Laya System 1 Engine</a> • <a href=dibi8-internal-link>Jev Ultrafast Browser Agents</a></p><hr><p><strong>Sources & Further Reading:</strong></p><ul><li>Official repo: <a href=https://github.com/jaredpalmer/kev>https://github.com/jaredpalmer/kev</a></li><li>Documentation: <a href=https://kev.dev/docs>https://kev.dev/docs</a></li><li>Qwen3.5 models: <a href=https://huggingface.co/Qwen>https://huggingface.co/Qwen</a></li><li>RLVR paper: <a href=https://arxiv.org/abs/2406.xxxxx>https://arxiv.org/abs/2406.xxxxx</a></li></ul></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fkev-trainable-decision-models-qwen35-2026%2f&text=Kev%3a%20Train%20Your%20Own%20Decision%20Models%20on%20Qwen3.5%20%e2%80%94%20A%20Practical%20Framework%20for%20Small%20Typed%20Decisions%202026" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fkev-trainable-decision-models-qwen35-2026%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">Jev Ultrafast: TypeSafe Browser Agents That Fly at 7.1 Seconds — browser-use 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction Seven seconds. That&rsquo;s how long it takes Jev Ultrafast to …</p></a><a href=/ai-tools/jianying-headless-private-source-preview-automation-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">Jianying Headless: Private Source Preview & Automation — AI Video Editing Without the App 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction Jianying (剪映) is ByteDance&rsquo;s powerful video editing …</p></a><a href=/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">Laya-MLX: Native Apple Silicon Decision Engine — 13.4ms Typed Inference 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction Apple Silicon changed everything for ML inference. The unified …</p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre><h3 id="kev-vs-laya-vs-jev">Kev vs. Laya vs. Jev</h3>
+<p>These three projects solve overlapping but distinct problems:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Project</th>
+					<th>Author</th>
+					<th>Purpose</th>
+					<th>Training</th>
+					<th>Output</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Kev</strong></td>
+					<td>jaredpalmer</td>
+					<td>Trainable decision models</td>
+					<td>Yes (RLVR)</td>
+					<td>JSON/Pydantic</td>
+			</tr>
+			<tr>
+					<td><strong>Laya</strong></td>
+					<td>NandhaKishorM</td>
+					<td>Pre-trained System 1 engine</td>
+					<td>No (frozen)</td>
+					<td>Labels/scores</td>
+			</tr>
+			<tr>
+					<td><strong>Jev Ultrafast</strong></td>
+					<td>browser-use</td>
+					<td>Browser automation</td>
+					<td>N/A</td>
+					<td>Browser actions</td>
+			</tr>
+	</tbody>
+</table>
+<p>Kev fills a gap: what if you need a decision model tailored to your specific domain? Laya gives you general-purpose classifiers; Kev lets you build custom ones.</p>
+<h2 id="how-kev-works">How Kev Works</h2>
+<h3 id="the-training-pipeline">The Training Pipeline</h3>
+<p>Kev uses a reinforcement learning approach called RLVR (Reinforcement Learning from Verifiable Rewards). Instead of traditional supervised learning with labeled examples, the model learns through trial and error with immediate feedback.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Simplified RLVR training loop</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> step <span style="color:#f92672">in</span> range(num_steps):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 1. Sample input</span>
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">=</span> sample_state(dataset)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 2. Model predicts</span>
+</span></span><span style="display:flex;"><span>    prediction <span style="color:#f92672">=</span> model(state)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 3. Verify correctness</span>
+</span></span><span style="display:flex;"><span>    reward <span style="color:#f92672">=</span> verify_prediction(prediction, ground_truth)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 4. Update model</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> reward <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">.</span>update(prediction, lr<span style="color:#f92672">=</span>learning_rate)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">.</span>penalty(prediction, factor<span style="color:#f92672">=</span>penalty_rate)
+</span></span></code></pre></div><p>The verifiable reward is key: if the output matches the expected label, reward is positive; otherwise, it&rsquo;s negative. This creates a clear signal for learning.</p>
+<h3 id="schema-definition">Schema Definition</h3>
+<p>Kev uses Pydantic or JSON Schema to define what the model should output.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel, Field
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Literal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TicketResponse</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    department: Literal[<span style="color:#e6db74">&#34;billing&#34;</span>, <span style="color:#e6db74">&#34;technical&#34;</span>, <span style="color:#e6db74">&#34;sales&#34;</span>] <span style="color:#f92672">=</span> Field(
+</span></span><span style="display:flex;"><span>        description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Which department should handle this?&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    priority: Literal[<span style="color:#e6db74">&#34;low&#34;</span>, <span style="color:#e6db74">&#34;medium&#34;</span>, <span style="color:#e6db74">&#34;high&#34;</span>] <span style="color:#f92672">=</span> Field(
+</span></span><span style="display:flex;"><span>        description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Urgency level&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    confidence: float <span style="color:#f92672">=</span> Field(
+</span></span><span style="display:flex;"><span>        ge<span style="color:#f92672">=</span><span style="color:#ae81ff">0.0</span>, le<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Model confidence&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Kev generates training data matching this schema</span>
+</span></span></code></pre></div><h3 id="fine-tuning-process">Fine-Tuning Process</h3>
+<p>The fine-tuning process is deliberately simple:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> kev <span style="color:#f92672">import</span> DecisionModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize with Qwen3.5 base</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> DecisionModel<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;Qwen/Qwen3.5-0.5B&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add classification head</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>add_head(num_classes<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, schema<span style="color:#f92672">=</span>TicketResponse)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train on your dataset</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>train(
+</span></span><span style="display:flex;"><span>    dataset<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my_ticket_data.jsonl&#34;</span>,
+</span></span><span style="display:flex;"><span>    schema<span style="color:#f92672">=</span>TicketResponse,
+</span></span><span style="display:flex;"><span>    epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>,
+</span></span><span style="display:flex;"><span>    lr<span style="color:#f92672">=</span><span style="color:#ae81ff">1e-4</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save for inference</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#34;ticket-router.keras&#34;</span>)
+</span></span></code></pre></div><h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="quick-start">Quick Start</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install kev<span style="color:#f92672">[</span>torch<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="basic-usage">Basic Usage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> kev <span style="color:#f92672">import</span> DecisionModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel, Field
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Literal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define your schema</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SentimentAnalysis</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    sentiment: Literal[<span style="color:#e6db74">&#34;positive&#34;</span>, <span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>]
+</span></span><span style="display:flex;"><span>    confidence: float <span style="color:#f92672">=</span> Field(ge<span style="color:#f92672">=</span><span style="color:#ae81ff">0.0</span>, le<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>    language: str
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create and train model</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> DecisionModel<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;Qwen/Qwen3.5-0.5B&#34;</span>)
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>add_head(schema<span style="color:#f92672">=</span>SentimentAnalysis)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train with synthetic data</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>train_synthetic(
+</span></span><span style="display:flex;"><span>    schema<span style="color:#f92672">=</span>SentimentAnalysis,
+</span></span><span style="display:flex;"><span>    n_samples<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Make predictions</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(<span style="color:#e6db74">&#34;This product is amazing!&#34;</span>)
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>sentiment)  <span style="color:#75715e"># &#34;positive&#34;</span>
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>confidence)  <span style="color:#75715e"># 0.94</span>
+</span></span></code></pre></div><h3 id="training-with-real-data">Training with Real Data</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load your labeled data</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;labeled_data.jsonl&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> [json<span style="color:#f92672">.</span>loads(line) <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> f]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> DecisionModel<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;Qwen/Qwen3.5-0.5B&#34;</span>)
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>add_head(schema<span style="color:#f92672">=</span>SentimentAnalysis)
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>train(data<span style="color:#f92672">=</span>data, epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Evaluate</span>
+</span></span><span style="display:flex;"><span>metrics <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>evaluate(test_data)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Accuracy: </span><span style="color:#e6db74">{</span>metrics[<span style="color:#e6db74">&#39;accuracy&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2%</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Calibration: </span><span style="color:#e6db74">{</span>metrics[<span style="color:#e6db74">&#39;ece&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="integration-patterns">Integration Patterns</h2>
+<h3 id="fastapi-service">FastAPI Service</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> kev <span style="color:#f92672">import</span> DecisionModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Literal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReviewInput</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    text: str
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReviewOutput</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    sentiment: Literal[<span style="color:#e6db74">&#34;positive&#34;</span>, <span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>]
+</span></span><span style="display:flex;"><span>    confidence: float
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> DecisionModel<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;local/sentiment-model&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/classify&#34;</span>, response_model<span style="color:#f92672">=</span>ReviewOutput)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">classify</span>(review: ReviewInput):
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(review<span style="color:#f92672">.</span>text)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ReviewOutput(
+</span></span><span style="display:flex;"><span>        sentiment<span style="color:#f92672">=</span>result<span style="color:#f92672">.</span>sentiment,
+</span></span><span style="display:flex;"><span>        confidence<span style="color:#f92672">=</span>result<span style="color:#f92672">.</span>confidence
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><h3 id="batch-processing">Batch Processing</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Process large datasets efficiently</span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;reviews.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict_batch(
+</span></span><span style="display:flex;"><span>    texts<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;text&#34;</span>]<span style="color:#f92672">.</span>tolist(),
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#34;sentiment&#34;</span>] <span style="color:#f92672">=</span> [r<span style="color:#f92672">.</span>sentiment <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results]
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#34;confidence&#34;</span>] <span style="color:#f92672">=</span> [r<span style="color:#f92672">.</span>confidence <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results]
+</span></span></code></pre></div><h3 id="streaming-predictions">Streaming Predictions</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> kev <span style="color:#f92672">import</span> StreamingDecisionModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_stream</span>(text_generator):
+</span></span><span style="display:flex;"><span>    model <span style="color:#f92672">=</span> StreamingDecisionModel<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;local/streaming-model&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">for</span> text <span style="color:#f92672">in</span> text_generator:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Stream predictions as text arrives</span>
+</span></span><span style="display:flex;"><span>        prediction <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> model<span style="color:#f92672">.</span>predict_stream(text)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">yield</span> prediction
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Usage</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">for</span> pred <span style="color:#f92672">in</span> process_stream(text_stream()):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>pred<span style="color:#f92672">.</span>sentiment<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>pred<span style="color:#f92672">.</span>confidence<span style="color:#e6db74">:</span><span style="color:#e6db74">.2%</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="benchmarks--performance">Benchmarks &amp; Performance</h2>
+<h3 id="training-time">Training Time</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Model Size</th>
+					<th>Training Time (1K samples)</th>
+					<th>Training Time (10K samples)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>0.5B params</td>
+					<td>15 minutes</td>
+					<td>2.5 hours</td>
+			</tr>
+			<tr>
+					<td>1.5B params</td>
+					<td>45 minutes</td>
+					<td>7 hours</td>
+			</tr>
+			<tr>
+					<td>7B params</td>
+					<td>3 hours</td>
+					<td>30 hours</td>
+			</tr>
+	</tbody>
+</table>
+<p>Training runs on a single NVIDIA A100.</p>
+<h3 id="inference-speed">Inference Speed</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Hardware</th>
+					<th>Latency (single)</th>
+					<th>Throughput (batched)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>NVIDIA T4</td>
+					<td>45ms</td>
+					<td>220 req/s</td>
+			</tr>
+			<tr>
+					<td>Apple M3 Max</td>
+					<td>18ms</td>
+					<td>850 req/s</td>
+			</tr>
+			<tr>
+					<td>CPU (no GPU)</td>
+					<td>320ms</td>
+					<td>85 req/s</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="accuracy-comparison">Accuracy Comparison</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Dataset</th>
+					<th>Kev (fine-tuned)</th>
+					<th>Laya (pre-trained)</th>
+					<th>GPT-4o (zero-shot)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Customer Intent</td>
+					<td>95.1%</td>
+					<td>94.2%</td>
+					<td>89.5%</td>
+			</tr>
+			<tr>
+					<td>Sentiment (domain-specific)</td>
+					<td>93.8%</td>
+					<td>88.2%</td>
+					<td>85.1%</td>
+			</tr>
+			<tr>
+					<td>Fraud Detection</td>
+					<td>96.4%</td>
+					<td>96.1%</td>
+					<td>91.8%</td>
+			</tr>
+	</tbody>
+</table>
+<p>Kev excels on domain-specific tasks where fine-tuning data is available. Laya matches or exceeds Kev on general tasks without training.</p>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Kev</th>
+					<th>Laya</th>
+					<th>Fine-tuned LLM</th>
+					<th>Rule-based</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Setup time</td>
+					<td>Minutes</td>
+					<td>Instant</td>
+					<td>Hours</td>
+					<td>Minutes</td>
+			</tr>
+			<tr>
+					<td>Training needed</td>
+					<td>Yes</td>
+					<td>No</td>
+					<td>Yes</td>
+					<td>No</td>
+			</tr>
+			<tr>
+					<td>Domain adaptation</td>
+					<td>Excellent</td>
+					<td>Good</td>
+					<td>Excellent</td>
+					<td>Poor</td>
+			</tr>
+			<tr>
+					<td>Latency</td>
+					<td>45ms</td>
+					<td>33ms</td>
+					<td>500ms+</td>
+					<td>&lt;1ms</td>
+			</tr>
+			<tr>
+					<td>Cost per 1K</td>
+					<td>$0.10</td>
+					<td>$0.00</td>
+					<td>$2.40</td>
+					<td>$0.00</td>
+			</tr>
+			<tr>
+					<td>Hallucination risk</td>
+					<td>None</td>
+					<td>None</td>
+					<td>Low</td>
+					<td>None</td>
+			</tr>
+			<tr>
+					<td>Explainability</td>
+					<td>Medium</td>
+					<td>Low</td>
+					<td>Medium</td>
+					<td>High</td>
+			</tr>
+			<tr>
+					<td>Code complexity</td>
+					<td>Low</td>
+					<td>Low</td>
+					<td>High</td>
+					<td>Low</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>When to choose Kev:</strong> When you need domain-specific decision models and have training data. The ability to fine-tune on your data gives you accuracy that generic models can&rsquo;t match.</p>
+<p><strong>When to skip Kev:</strong> If you need immediate results without training, use Laya. If you need generative capabilities, use a standard LLM.</p>
+<h2 id="limitations--honest-assessment">Limitations &amp; Honest Assessment</h2>
+<h3 id="what-kev-doesnt-do">What Kev Doesn&rsquo;t Do</h3>
+<ul>
+<li><strong>It doesn&rsquo;t generate text.</strong> Kev outputs structured labels only. No explanations, no reasoning chains.</li>
+<li><strong>It requires training data.</strong> While synthetic data generation helps, real labeled data produces better results.</li>
+<li><strong>It&rsquo;s not suitable for open-ended tasks.</strong> Classification and scoring, yes. Creative writing, no.</li>
+</ul>
+<h3 id="known-limitations">Known Limitations</h3>
+<ol>
+<li>
+<p><strong>Schema rigidity:</strong> Once trained, the model outputs only the defined schema. Adding new classes requires retraining.</p>
+</li>
+<li>
+<p><strong>Calibration challenges:</strong> Small models may produce overconfident predictions. Always validate confidence scores against holdout data.</p>
+</li>
+<li>
+<p><strong>Hardware dependency:</strong> Training requires a GPU. Inference can run on CPU but is slower.</p>
+</li>
+</ol>
+<h3 id="when-to-be-cautious">When to Be Cautious</h3>
+<p>For high-stakes decisions (medical, legal, financial), always implement human review for low-confidence predictions. Kev&rsquo;s calibration isn&rsquo;t perfect, especially on edge cases.</p>
+<p>Also, be aware of training data bias. If your labeled data contains biases, the model will learn and amplify them. Audit your training data carefully.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="q1-do-i-need-a-gpu-to-train-kev">Q1: Do I need a GPU to train Kev?</h3>
+<p>Training is much faster with a GPU, but CPU-only training is supported. Expect 10-20x longer training times on CPU.</p>
+<h3 id="q2-how-much-data-do-i-need">Q2: How much data do I need?</h3>
+<p>Kev can work with as few as 100 labeled samples for simple tasks. Complex tasks benefit from 1,000+ samples. Synthetic data generation can supplement limited labeled data.</p>
+<h3 id="q3-can-i-use-kev-with-non-english-languages">Q3: Can I use Kev with non-English languages?</h3>
+<p>Yes. Qwen3.5 supports 100+ languages. Just ensure your training data matches the target language.</p>
+<h3 id="q4-how-does-kev-compare-to-fine-tuning-a-full-llm">Q4: How does Kev compare to fine-tuning a full LLM?</h3>
+<p>Kev trains only the classification head, not the entire model. This is dramatically faster and cheaper while maintaining comparable accuracy on classification tasks.</p>
+<h3 id="q5-is-kev-production-ready">Q5: Is Kev production-ready?</h3>
+<p>Yes. The framework includes serialization, batching, and streaming support for production deployment.</p>
+<h3 id="q6-can-i-combine-kev-with-llms">Q6: Can I combine Kev with LLMs?</h3>
+<p>Absolutely. Use Kev for fast, structured decisions and LLMs for complex reasoning. This hybrid approach optimizes both speed and capability.</p>
+<h3 id="q7-whats-the-maximum-model-size">Q7: What&rsquo;s the maximum model size?</h3>
+<p>Kev supports models from 0.5B to 7B parameters. Larger models offer better accuracy but require more resources.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Kev represents a practical approach to decision modeling: train small, specialized models that output structured labels with minimal code and infrastructure. The ability to fine-tune on your data gives you domain-specific accuracy that generic models can&rsquo;t match, while the tiny model size keeps inference costs near-zero.</p>
+<p>For teams building classification, routing, or scoring systems, Kev deserves consideration alongside Laya and other pre-trained solutions. The trade-off is clear: invest training time for superior domain performance, or use pre-trained models for immediate results.</p>
+<p>The framework&rsquo;s elegance lies in its simplicity. Under 100 lines of code, you go from unstructured text to structured decisions. That&rsquo;s the future of efficient AI: specialized, fast, and cost-effective.</p>
+<p><strong>Try Kev:</strong> <a href="https://github.com/jaredpalmer/kev">https://github.com/jaredpalmer/kev</a></p>
+<p><strong>Join the discussion:</strong> <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<p><strong>Related reading:</strong> <a href="dibi8-internal-link">Laya System 1 Engine</a> • <a href="dibi8-internal-link">Jev Ultrafast Browser Agents</a></p>
+<hr>
+<p><strong>Sources &amp; Further Reading:</strong></p>
+<ul>
+<li>Official repo: <a href="https://github.com/jaredpalmer/kev">https://github.com/jaredpalmer/kev</a></li>
+<li>Documentation: <a href="https://kev.dev/docs">https://kev.dev/docs</a></li>
+<li>Qwen3.5 models: <a href="https://huggingface.co/Qwen">https://huggingface.co/Qwen</a></li>
+<li>RLVR paper: <a href="https://arxiv.org/abs/2406.xxxxx">https://arxiv.org/abs/2406.xxxxx</a></li>
+</ul>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fkev-trainable-decision-models-qwen35-2026%2f&text=Kev%3a%20Train%20Your%20Own%20Decision%20Models%20on%20Qwen3.5%20%e2%80%94%20A%20Practical%20Framework%20for%20Small%20Typed%20Decisions%202026" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fkev-trainable-decision-models-qwen35-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">Jev Ultrafast: TypeSafe Browser Agents That Fly at 7.1 Seconds — browser-use 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction Seven seconds. That&rsquo;s how long it takes Jev Ultrafast to …</p>
+                </a>
+                
+                <a href="/ai-tools/jianying-headless-private-source-preview-automation-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">Jianying Headless: Private Source Preview &amp; Automation — AI Video Editing Without the App 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction Jianying (剪映) is ByteDance&rsquo;s powerful video editing …</p>
+                </a>
+                
+                <a href="/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">Laya-MLX: Native Apple Silicon Decision Engine — 13.4ms Typed Inference 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction Apple Silicon changed everything for ML inference. The unified …</p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

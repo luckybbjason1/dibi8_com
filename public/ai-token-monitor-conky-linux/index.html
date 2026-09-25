@@ -1,71 +1,474 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop | Dibi8</title><meta name=description content="Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns."><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop | Dibi8 - AI工具目录"><meta property="og:description" content="Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns."><meta property="og:url" content="https://dibi8.com/ai-token-monitor-conky-linux/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-token-monitor-conky-linux/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop</h1><p class="text-gray-500 text-lg mb-8">Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai-token-monitor/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#AI token monitor</a>
-<a href=/tags/claude-quota/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Claude quota</a>
-<a href=/tags/gemini-quota-tracker/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Gemini quota tracker</a>
-<a href=/tags/grok-token/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Grok token</a>
-<a href=/tags/kimi-api/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Kimi API</a>
-<a href=/tags/conky-widget/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Conky widget</a>
-<a href=/tags/linux-desktop/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Linux desktop</a>
-<a href=/tags/open-source/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#open source</a>
-<a href=/tags/python/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Python</a>
-<a href=/tags/developer-tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#developer tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=the-problem-juggling-six-ai-services-and-never-knowing-which-one-is-out>The Problem: Juggling Six AI Services and Never Knowing Which One Is Out</h2><p>Modern developers use four to eight AI services simultaneously — Claude for complex reasoning, Gemini for long-context analysis, Grok for real-time web data, Kimi for large document processing. Each service has its own quota dashboard, reset schedule, and billing page.</p><p>The result: you hit a rate limit mid-task, spend five minutes switching browser tabs, discover Gemini&rsquo;s free quota reset at midnight UTC (not your local midnight), and waste another ten minutes debugging why your Kimi call returned 429.</p><p><strong>AI Token Monitor</strong> solves this with a persistent desktop widget that shows every service&rsquo;s status at a glance — without leaving your editor.</p><pre tabindex=0><code>● Claude  ░░░░░░░░░  无余额
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop | Dibi8</title>
+    <meta name="description" content="Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.">
+    <meta property="og:url" content="https://dibi8.com/ai-token-monitor-conky-linux/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-token-monitor-conky-linux/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai-token-monitor/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#AI token monitor</a>
+            
+            <a href="/tags/claude-quota/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Claude quota</a>
+            
+            <a href="/tags/gemini-quota-tracker/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Gemini quota tracker</a>
+            
+            <a href="/tags/grok-token/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Grok token</a>
+            
+            <a href="/tags/kimi-api/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Kimi API</a>
+            
+            <a href="/tags/conky-widget/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Conky widget</a>
+            
+            <a href="/tags/linux-desktop/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Linux desktop</a>
+            
+            <a href="/tags/open-source/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#open source</a>
+            
+            <a href="/tags/python/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#Python</a>
+            
+            <a href="/tags/developer-tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#developer tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="the-problem-juggling-six-ai-services-and-never-knowing-which-one-is-out">The Problem: Juggling Six AI Services and Never Knowing Which One Is Out</h2>
+<p>Modern developers use four to eight AI services simultaneously — Claude for complex reasoning, Gemini for long-context analysis, Grok for real-time web data, Kimi for large document processing. Each service has its own quota dashboard, reset schedule, and billing page.</p>
+<p>The result: you hit a rate limit mid-task, spend five minutes switching browser tabs, discover Gemini&rsquo;s free quota reset at midnight UTC (not your local midnight), and waste another ten minutes debugging why your Kimi call returned 429.</p>
+<p><strong>AI Token Monitor</strong> solves this with a persistent desktop widget that shows every service&rsquo;s status at a glance — without leaving your editor.</p>
+<pre tabindex="0"><code>● Claude  ░░░░░░░░░  无余额
 ● Gemini  ░░░░░░░░░  配额用完
 ● Grok    ░░░░░░░░░  耗尽
 ● Kimi    █████████  22.4M剩
 ● Codex   ─────────  18:42:01
 ● Kilo    ─────────  18:42:01
-</code></pre><h2 id=how-it-works>How It Works</h2><p>The monitor has two components:</p><p><strong><code>api_fetcher.py</code></strong> — a background script (cron every 5 min) that polls each service API and writes results to <code>~/token-monitor/api_cache.json</code>.</p><p><strong><code>conky_ai.py</code></strong> — reads the cache every 30 seconds and outputs Conky-formatted text with inline <code>${color}</code> tags. Conky renders this as the desktop widget.</p><pre tabindex=0><code>api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky display
+</code></pre><h2 id="how-it-works">How It Works</h2>
+<p>The monitor has two components:</p>
+<p><strong><code>api_fetcher.py</code></strong> — a background script (cron every 5 min) that polls each service API and writes results to <code>~/token-monitor/api_cache.json</code>.</p>
+<p><strong><code>conky_ai.py</code></strong> — reads the cache every 30 seconds and outputs Conky-formatted text with inline <code>${color}</code> tags. Conky renders this as the desktop widget.</p>
+<pre tabindex="0"><code>api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky display
    (cron/5m)         (JSON cache)        (30s poll)       (always on)
-</code></pre><p>This architecture means API failures never freeze your desktop. The cache always has the last known state.</p><h2 id=hp-bar-progress-visualization>HP-Bar Progress Visualization</h2><p>The key feature is the <strong>blood-bar style quota display</strong> — a row of Unicode block characters that visually represent remaining quota:</p><table><thead><tr><th>Color</th><th>State</th></tr></thead><tbody><tr><td><code>█████████</code> green</td><td>Above 50% quota</td></tr><tr><td><code>████░░░░░</code> orange</td><td>20–50% remaining</td></tr><tr><td><code>█░░░░░░░░</code> red</td><td>Below 20%</td></tr><tr><td><code>░░░░░░░░░</code> red</td><td>Exhausted / no balance</td></tr><tr><td><code>─────────</code> gray</td><td>No API key configured</td></tr></tbody></table><p>The bar is 9 characters wide. Each <code>█</code> represents ~11% of quota.</p><h2 id=installation>Installation</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 1. Clone</span>
-</span></span><span style=display:flex><span>git clone https://github.com/luckybbjason1/ai-token-monitor
-</span></span><span style=display:flex><span>cd ai-token-monitor
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. Install</span>
-</span></span><span style=display:flex><span>bash install.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. Add API keys</span>
-</span></span><span style=display:flex><span>nano ~/.config/.ai_monitor_keys
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. Restart Conky</span>
-</span></span><span style=display:flex><span>pkill conky <span style=color:#f92672>&amp;&amp;</span> conky --daemonize --pause<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
-</span></span></code></pre></div><p>The installer automatically:</p><ul><li>Copies scripts to <code>~/token-monitor/</code></li><li>Adds <code>${execpi 30 python3 ~/token-monitor/conky_ai.py}</code> to your Conky config</li><li>Sets up the cron job for <code>api_fetcher.py</code></li></ul><h2 id=supported-services-and-api-methods>Supported Services and API Methods</h2><table><thead><tr><th>Service</th><th>API Endpoint</th><th>What We Detect</th></tr></thead><tbody><tr><td><strong>Kimi</strong> (Moonshot)</td><td><code>GET /v1/users/me</code></td><td>Exact token quota remaining</td></tr><tr><td><strong>Claude</strong> (Anthropic)</td><td><code>POST /v1/messages</code></td><td>Rate-limit headers per window</td></tr><tr><td><strong>Gemini</strong> (Google)</td><td><code>POST .../generateContent</code></td><td>429 = quota exceeded</td></tr><tr><td><strong>Grok</strong> (xAI)</td><td><code>GET /v1/models</code></td><td>403 = balance exhausted</td></tr><tr><td>Codex / Kilo</td><td>—</td><td>Countdown to midnight UTC+8</td></tr></tbody></table><p>For services without quota APIs (Codex, Kilo), the monitor shows a countdown to the standard daily reset at midnight UTC+8.</p><h2 id=security-design>Security Design</h2><p>API keys are stored in <code>~/.config/.ai_monitor_keys</code> with <code>chmod 600</code>. The file is excluded from git. Keys are never echoed to terminal or written to log files — the fetcher reads them once at startup and they stay in memory only for the duration of the HTTP call.</p><p>For the cautious: review <code>api_fetcher.py</code> before installing. It makes only GET/POST requests to official API endpoints with your own keys. No data is sent anywhere except the respective AI service.</p><h2 id=adding-custom-services>Adding Custom Services</h2><p>Open <code>api_fetcher.py</code> and add a block after the existing services:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># ── Your Service ─────────────────────────────────</span>
-</span></span><span style=display:flex><span>key <span style=color:#f92672>=</span> keys<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#39;yourservice&#39;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> key:
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>:
-</span></span><span style=display:flex><span>        r <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#39;https://api.yourservice.com/v1/usage&#39;</span>,
-</span></span><span style=display:flex><span>                         headers<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#39;Authorization&#39;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;Bearer </span><span style=color:#e6db74>{</span>key<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;</span>}, timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>8</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> r<span style=color:#f92672>.</span>status_code <span style=color:#f92672>==</span> <span style=color:#ae81ff>200</span>:
-</span></span><span style=display:flex><span>            data <span style=color:#f92672>=</span> r<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>            remain <span style=color:#f92672>=</span> data[<span style=color:#e6db74>&#39;quota_remaining&#39;</span>]
-</span></span><span style=display:flex><span>            total  <span style=color:#f92672>=</span> data[<span style=color:#e6db74>&#39;quota_total&#39;</span>]
-</span></span><span style=display:flex><span>            cache[<span style=color:#e6db74>&#39;YourService&#39;</span>] <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#39;ok&#39;</span>: <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#39;label&#39;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;</span><span style=color:#e6db74>{</span>remain<span style=color:#f92672>//</span><span style=color:#ae81ff>1000</span><span style=color:#e6db74>}</span><span style=color:#e6db74>K剩&#39;</span>,
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#39;pct&#39;</span>: remain <span style=color:#f92672>/</span> total
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>            cache[<span style=color:#e6db74>&#39;YourService&#39;</span>] <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#39;ok&#39;</span>: <span style=color:#66d9ef>False</span>, <span style=color:#e6db74>&#39;label&#39;</span>: <span style=color:#e6db74>&#39;API Error&#39;</span>}
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span>:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>pass</span>
-</span></span></code></pre></div><p>Then add <code>{'name': 'YourService', 'reset_h': 24}</code> to the <code>SERVICES</code> list in <code>conky_ai.py</code>.</p><h2 id=related-tools-on-dibi8>Related Tools on dibi8</h2><p>If you are managing multiple AI API costs, also check:</p><ul><li><a href=/en/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/>AI Coding 2026 Q2 Shootout — Claude Code vs Cursor vs Codex</a> — real usage cost comparison for dev workflows</li><li><a href=/en/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/>RTK Rust CLI Proxy — 80% AI Cost Savings</a> — automatically routes prompts to cut AI API costs by up to 80%</li><li><a href=/en/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/>AI Coding Monthly Bill 2026</a> — actual receipts from six months of production AI usage</li></ul><h2 id=get-the-code>Get the Code</h2><p>The tool is fully open source under MIT license.</p><p><strong>GitHub:</strong> <a href=https://github.com/luckybbjason1/ai-token-monitor>github.com/luckybbjason1/ai-token-monitor</a></p><p>Star the repo if it saved you from a mid-task rate-limit surprise. Issues and PRs welcome — especially for adding macOS support or new service integrations.</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-token-monitor-conky-linux%2f&text=AI%20Token%20Monitor%3a%20Track%20Claude%2c%20Gemini%2c%20Grok%2c%20Kimi%20Quota%20Live%20on%20Your%20Linux%20Desktop" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-token-monitor-conky-linux%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre><p>This architecture means API failures never freeze your desktop. The cache always has the last known state.</p>
+<h2 id="hp-bar-progress-visualization">HP-Bar Progress Visualization</h2>
+<p>The key feature is the <strong>blood-bar style quota display</strong> — a row of Unicode block characters that visually represent remaining quota:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Color</th>
+					<th>State</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>█████████</code> green</td>
+					<td>Above 50% quota</td>
+			</tr>
+			<tr>
+					<td><code>████░░░░░</code> orange</td>
+					<td>20–50% remaining</td>
+			</tr>
+			<tr>
+					<td><code>█░░░░░░░░</code> red</td>
+					<td>Below 20%</td>
+			</tr>
+			<tr>
+					<td><code>░░░░░░░░░</code> red</td>
+					<td>Exhausted / no balance</td>
+			</tr>
+			<tr>
+					<td><code>─────────</code> gray</td>
+					<td>No API key configured</td>
+			</tr>
+	</tbody>
+</table>
+<p>The bar is 9 characters wide. Each <code>█</code> represents ~11% of quota.</p>
+<h2 id="installation">Installation</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. Clone</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/luckybbjason1/ai-token-monitor
+</span></span><span style="display:flex;"><span>cd ai-token-monitor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Install</span>
+</span></span><span style="display:flex;"><span>bash install.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Add API keys</span>
+</span></span><span style="display:flex;"><span>nano ~/.config/.ai_monitor_keys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Restart Conky</span>
+</span></span><span style="display:flex;"><span>pkill conky <span style="color:#f92672">&amp;&amp;</span> conky --daemonize --pause<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>The installer automatically:</p>
+<ul>
+<li>Copies scripts to <code>~/token-monitor/</code></li>
+<li>Adds <code>${execpi 30 python3 ~/token-monitor/conky_ai.py}</code> to your Conky config</li>
+<li>Sets up the cron job for <code>api_fetcher.py</code></li>
+</ul>
+<h2 id="supported-services-and-api-methods">Supported Services and API Methods</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Service</th>
+					<th>API Endpoint</th>
+					<th>What We Detect</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Kimi</strong> (Moonshot)</td>
+					<td><code>GET /v1/users/me</code></td>
+					<td>Exact token quota remaining</td>
+			</tr>
+			<tr>
+					<td><strong>Claude</strong> (Anthropic)</td>
+					<td><code>POST /v1/messages</code></td>
+					<td>Rate-limit headers per window</td>
+			</tr>
+			<tr>
+					<td><strong>Gemini</strong> (Google)</td>
+					<td><code>POST .../generateContent</code></td>
+					<td>429 = quota exceeded</td>
+			</tr>
+			<tr>
+					<td><strong>Grok</strong> (xAI)</td>
+					<td><code>GET /v1/models</code></td>
+					<td>403 = balance exhausted</td>
+			</tr>
+			<tr>
+					<td>Codex / Kilo</td>
+					<td>—</td>
+					<td>Countdown to midnight UTC+8</td>
+			</tr>
+	</tbody>
+</table>
+<p>For services without quota APIs (Codex, Kilo), the monitor shows a countdown to the standard daily reset at midnight UTC+8.</p>
+<h2 id="security-design">Security Design</h2>
+<p>API keys are stored in <code>~/.config/.ai_monitor_keys</code> with <code>chmod 600</code>. The file is excluded from git. Keys are never echoed to terminal or written to log files — the fetcher reads them once at startup and they stay in memory only for the duration of the HTTP call.</p>
+<p>For the cautious: review <code>api_fetcher.py</code> before installing. It makes only GET/POST requests to official API endpoints with your own keys. No data is sent anywhere except the respective AI service.</p>
+<h2 id="adding-custom-services">Adding Custom Services</h2>
+<p>Open <code>api_fetcher.py</code> and add a block after the existing services:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># ── Your Service ─────────────────────────────────</span>
+</span></span><span style="display:flex;"><span>key <span style="color:#f92672">=</span> keys<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;yourservice&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> key:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;https://api.yourservice.com/v1/usage&#39;</span>,
+</span></span><span style="display:flex;"><span>                         headers<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;Authorization&#39;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Bearer </span><span style="color:#e6db74">{</span>key<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>}, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> r<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">200</span>:
+</span></span><span style="display:flex;"><span>            data <span style="color:#f92672">=</span> r<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>            remain <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;quota_remaining&#39;</span>]
+</span></span><span style="display:flex;"><span>            total  <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;quota_total&#39;</span>]
+</span></span><span style="display:flex;"><span>            cache[<span style="color:#e6db74">&#39;YourService&#39;</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;ok&#39;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;label&#39;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>remain<span style="color:#f92672">//</span><span style="color:#ae81ff">1000</span><span style="color:#e6db74">}</span><span style="color:#e6db74">K剩&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;pct&#39;</span>: remain <span style="color:#f92672">/</span> total
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            cache[<span style="color:#e6db74">&#39;YourService&#39;</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;ok&#39;</span>: <span style="color:#66d9ef">False</span>, <span style="color:#e6db74">&#39;label&#39;</span>: <span style="color:#e6db74">&#39;API Error&#39;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><p>Then add <code>{'name': 'YourService', 'reset_h': 24}</code> to the <code>SERVICES</code> list in <code>conky_ai.py</code>.</p>
+<h2 id="related-tools-on-dibi8">Related Tools on dibi8</h2>
+<p>If you are managing multiple AI API costs, also check:</p>
+<ul>
+<li><a href="/en/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/">AI Coding 2026 Q2 Shootout — Claude Code vs Cursor vs Codex</a> — real usage cost comparison for dev workflows</li>
+<li><a href="/en/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">RTK Rust CLI Proxy — 80% AI Cost Savings</a> — automatically routes prompts to cut AI API costs by up to 80%</li>
+<li><a href="/en/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/">AI Coding Monthly Bill 2026</a> — actual receipts from six months of production AI usage</li>
+</ul>
+<h2 id="get-the-code">Get the Code</h2>
+<p>The tool is fully open source under MIT license.</p>
+<p><strong>GitHub:</strong> <a href="https://github.com/luckybbjason1/ai-token-monitor">github.com/luckybbjason1/ai-token-monitor</a></p>
+<p>Star the repo if it saved you from a mid-task rate-limit surprise. Issues and PRs welcome — especially for adding macOS support or new service integrations.</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-token-monitor-conky-linux%2f&text=AI%20Token%20Monitor%3a%20Track%20Claude%2c%20Gemini%2c%20Grok%2c%20Kimi%20Quota%20Live%20on%20Your%20Linux%20Desktop" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-token-monitor-conky-linux%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

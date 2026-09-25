@@ -1,155 +1,530 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>RAG Systems 2026: Advanced Techniques for Production Deployment | Dibi8</title><meta name=description content="Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks."><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="RAG Systems 2026: Advanced Techniques for Production Deployment | Dibi8 - AI工具目录"><meta property="og:description" content="Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks."><meta property="og:url" content="https://dibi8.com/rag-systems-2026/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/rag-systems-2026/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>RAG Systems 2026: Advanced Techniques for Production Deployment</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">RAG Systems 2026: Advanced Techniques for Production Deployment</h1><p class="text-gray-500 text-lg mb-8">Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks.</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/rag/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#rag</a>
-<a href=/tags/retrieval-augmented-generation/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#retrieval-augmented-generation</a>
-<a href=/tags/llm/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#llm</a>
-<a href=/tags/production/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#production</a>
-<a href=/tags/2026/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#2026</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=rag-systems-2026-advanced-techniques-for-production-deployment>RAG Systems 2026: Advanced Techniques for Production Deployment</h1><p>Retrieval-Augmented Generation (RAG) has matured from simple vector search to sophisticated multi-stage pipelines. In 2026, production systems combine retrieval, re-ranking, query expansion, and multimodal capabilities to achieve high accuracy and low latency.</p><p>This guide covers advanced RAG techniques that separate toy projects from production-grade systems.</p><h2 id=the-modern-rag-pipeline-architecture>The Modern RAG Pipeline Architecture</h2><p>A production RAG system in 2026 typically includes:</p><ol><li><strong>Query Understanding</strong>: Intent classification, entity extraction</li><li><strong>Hybrid Retrieval</strong>: Dense vector + sparse keyword + knowledge graph</li><li><strong>Cross-Encoder Re-ranking</strong>: Precision re-ranking of top candidates</li><li><strong>Context Compression</strong>: Extract only relevant passages</li><li><strong>Multi-Modal Retrieval</strong>: Search across text, images, tables, charts</li><li><strong>Feedback Loop</strong>: User corrections improve retrieval over time</li></ol><h2 id=advanced-retrieval-techniques>Advanced Retrieval Techniques</h2><h3 id=query-expansion-with-sub-question-decomposition>Query Expansion with Sub-Question Decomposition</h3><p>Instead of searching once, decompose the query into sub-questions:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> langchain_core.prompts <span style=color:#f92672>import</span> ChatPromptTemplate
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_core.output_parsers <span style=color:#f92672>import</span> StrOutputParser
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> ChatOpenAI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>query_expansion_prompt <span style=color:#f92672>=</span> ChatPromptTemplate<span style=color:#f92672>.</span>from_template(<span style=color:#e6db74>&#34;&#34;&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Given a user question, break it down into 2-3 sub-questions that would help answer the original question.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Question: &#34;</span><span style=color:#e6db74>{question}</span><span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Sub-questions:
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>1.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>2.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>3.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>llm <span style=color:#f92672>=</span> ChatOpenAI(model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o-mini&#34;</span>)
-</span></span><span style=display:flex><span>chain <span style=color:#f92672>=</span> query_expansion_prompt <span style=color:#f92672>|</span> llm <span style=color:#f92672>|</span> StrOutputParser()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sub_questions <span style=color:#f92672>=</span> chain<span style=color:#f92672>.</span>invoke({<span style=color:#e6db74>&#34;question&#34;</span>: <span style=color:#e6db74>&#34;What are the best RAG frameworks for production?&#34;</span>})
-</span></span><span style=display:flex><span><span style=color:#75715e># Result: [&#34;What is RAG?&#34;, &#34;Which frameworks are popular in 2026?&#34;, &#34;What are production requirements?&#34;]</span>
-</span></span></code></pre></div><h3 id=hybrid-retrieval-dense--sparse--knowledge-graph>Hybrid Retrieval: Dense + Sparse + Knowledge Graph</h3><p>Combine multiple retrieval methods for better recall:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, KeywordTableIndex, TreeIndex
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core.retrievers <span style=color:#f92672>import</span> RecursiveRetriever, HybridRetriever
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core.query_engine <span style=color:#f92672>import</span> RetrieverQueryEngine
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create different indexes</span>
-</span></span><span style=display:flex><span>vector_index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(documents)
-</span></span><span style=display:flex><span>keyword_index <span style=color:#f92672>=</span> KeywordTableIndex<span style=color:#f92672>.</span>from_documents(documents)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hybrid retriever combines both</span>
-</span></span><span style=display:flex><span>retriever <span style=color:#f92672>=</span> HybridRetriever(
-</span></span><span style=display:flex><span>    vector_retriever<span style=color:#f92672>=</span>vector_index<span style=color:#f92672>.</span>as_retriever(similarity_top_k<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>),
-</span></span><span style=display:flex><span>    keyword_retriever<span style=color:#f92672>=</span>keyword_index<span style=color:#f92672>.</span>as_retriever(keyword_top_k<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>)
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Query engine with recursive retrieval</span>
-</span></span><span style=display:flex><span>query_engine <span style=color:#f92672>=</span> RetrieverQueryEngine(retriever<span style=color:#f92672>=</span>retriever)
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> query_engine<span style=color:#f92672>.</span>query(<span style=color:#e6db74>&#34;Explain RAG architecture&#34;</span>)
-</span></span></code></pre></div><h3 id=cross-encoder-re-ranking>Cross-Encoder Re-ranking</h3><p>First pass: retrieve 50 candidates with fast dense search
-Second pass: re-rank top 20 with slower but more accurate cross-encoder</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core.postprocessor <span style=color:#f92672>import</span> SentenceTransformerRerank
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>reranker <span style=color:#f92672>=</span> SentenceTransformerRerank(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cross-encoder/ms-marco-MiniLM-L-6-v2&#34;</span>,
-</span></span><span style=display:flex><span>    top_n<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>  <span style=color:#75715e># Keep top 10 from 50 candidates</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use in query pipeline</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> ResponseSynthesizer
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>synthesizer <span style=color:#f92672>=</span> ResponseSynthesizer(
-</span></span><span style=display:flex><span>    retriever<span style=color:#f92672>=</span>retriever,
-</span></span><span style=display:flex><span>    postprocessors<span style=color:#f92672>=</span>[reranker]
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=multi-modal-rag>Multi-Modal RAG</h2><p>Search across text, images, tables, and charts:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> Document
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core.retrievers <span style=color:#f92672>import</span> ImageRetriever
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load multimodal documents</span>
-</span></span><span style=display:flex><span>image_docs <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    Document(text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Figure 1: RAG architecture diagram&#34;</span>, image_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;diagram.png&#34;</span>),
-</span></span><span style=display:flex><span>    Document(text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Table 1: Framework comparison&#34;</span>, image_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;table.png&#34;</span>)
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Query with multimodal retrieval</span>
-</span></span><span style=display:flex><span>query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Show me the RAG architecture comparison table&#34;</span>
-</span></span></code></pre></div><h2 id=production-optimizations>Production Optimizations</h2><h3 id=caching-strategies>Caching Strategies</h3><p>Implement smart caching to reduce latency and costs:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core.indices.base <span style=color:#f92672>import</span> BaseIndex
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cache retrieval results</span>
-</span></span><span style=display:flex><span>cache_config <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;cache_type&#34;</span>: <span style=color:#e6db74>&#34;simple&#34;</span>,  <span style=color:#75715e># or &#34;redis&#34;, &#34;memcached&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;ttl&#34;</span>: <span style=color:#ae81ff>3600</span>,  <span style=color:#75715e># 1 hour TTL</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;max_size&#34;</span>: <span style=color:#ae81ff>10000</span>  <span style=color:#75715e># Max cached entries</span>
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(
-</span></span><span style=display:flex><span>    documents,
-</span></span><span style=display:flex><span>    embed_model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;local:babbage-002&#34;</span>,
-</span></span><span style=display:flex><span>    cache_config<span style=color:#f92672>=</span>cache_config
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=streaming-responses>Streaming Responses</h3><p>Provide immediate feedback to users:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core.query_engine <span style=color:#f92672>import</span> RetrieverQueryEngine
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>stream_response</span>(query: str):
-</span></span><span style=display:flex><span>    query_engine <span style=color:#f92672>=</span> RetrieverQueryEngine<span style=color:#f92672>.</span>from_args(index)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> query_engine<span style=color:#f92672>.</span>aquery(query)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>for</span> delta <span style=color:#f92672>in</span> response<span style=color:#f92672>.</span>async_streaming():
-</span></span><span style=display:flex><span>        print(delta, end<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>, flush<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>await</span> stream_response(<span style=color:#e6db74>&#34;Explain RAG optimization techniques&#34;</span>)
-</span></span></code></pre></div><h3 id=context-compression>Context Compression</h3><p>Extract only relevant information from retrieved chunks:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core.postprocessor <span style=color:#f92672>import</span> SentenceTransformerRerank
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core.query_engine <span style=color:#f92672>import</span> CitationQueryEngine
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Compress context before sending to LLM</span>
-</span></span><span style=display:flex><span>compressor <span style=color:#f92672>=</span> SentenceTransformerRerank(top_n<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>query_engine <span style=color:#f92672>=</span> CitationQueryEngine(
-</span></span><span style=display:flex><span>    retriever<span style=color:#f92672>=</span>retriever,
-</span></span><span style=display:flex><span>    postprocessors<span style=color:#f92672>=</span>[compressor]
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=evaluation-framework>Evaluation Framework</h2><p>Measure RAG performance objectively:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> ragas <span style=color:#f92672>import</span> evaluate
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> ragas.metrics <span style=color:#f92672>import</span> faithfulness, answer_relevance, context_precision
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Define test dataset</span>
-</span></span><span style=display:flex><span>test_data <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;question&#34;</span>: [<span style=color:#f92672>...</span>],
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;ground_truth&#34;</span>: [<span style=color:#f92672>...</span>],
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;answer&#34;</span>: [<span style=color:#f92672>...</span>],
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;contexts&#34;</span>: [<span style=color:#f92672>...</span>]
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Evaluate</span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> evaluate(
-</span></span><span style=display:flex><span>    dataset,
-</span></span><span style=display:flex><span>    metrics<span style=color:#f92672>=</span>[faithfulness, answer_relevance, context_precision]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Faithfulness: </span><span style=color:#e6db74>{</span>result[<span style=color:#e6db74>&#39;faithfulness&#39;</span>]<span style=color:#e6db74>:</span><span style=color:#e6db74>.3f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Answer Relevance: </span><span style=color:#e6db74>{</span>result[<span style=color:#e6db74>&#39;answer_relevance&#39;</span>]<span style=color:#e6db74>:</span><span style=color:#e6db74>.3f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Context Precision: </span><span style=color:#e6db74>{</span>result[<span style=color:#e6db74>&#39;context_precision&#39;</span>]<span style=color:#e6db74>:</span><span style=color:#e6db74>.3f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h2 id=common-pitfalls-and-solutions>Common Pitfalls and Solutions</h2><h3 id=problem-1-retrieval-hallucination>Problem 1: Retrieval Hallucination</h3><p><strong>Symptom</strong>: Retrieved documents contain incorrect information
-<strong>Solution</strong>: Add source verification and confidence scoring</p><h3 id=problem-2-lost-in-the-middle>Problem 2: Lost in the Middle</h3><p><strong>Symptom</strong>: Important information in middle of long context gets ignored
-<strong>Solution</strong>: Use chunking strategies and position-aware prompting</p><h3 id=problem-3-slow-response-times>Problem 3: Slow Response Times</h3><p><strong>Symptom</strong>: Users wait >5 seconds for answers
-<strong>Solution</strong>: Implement async retrieval, caching, and streaming</p><h2 id=conclusion>Conclusion</h2><p>Production RAG in 2026 requires a multi-stage pipeline combining hybrid retrieval, intelligent re-ranking, and continuous optimization. The key is starting simple and adding complexity only when needed.</p><p><strong>Start with</strong>: Basic vector search + LLM
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Systems 2026: Advanced Techniques for Production Deployment | Dibi8</title>
+    <meta name="description" content="Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks.">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="RAG Systems 2026: Advanced Techniques for Production Deployment | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks.">
+    <meta property="og:url" content="https://dibi8.com/rag-systems-2026/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/rag-systems-2026/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">RAG Systems 2026: Advanced Techniques for Production Deployment</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">RAG Systems 2026: Advanced Techniques for Production Deployment</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks.</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/rag/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#rag</a>
+            
+            <a href="/tags/retrieval-augmented-generation/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#retrieval-augmented-generation</a>
+            
+            <a href="/tags/llm/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#llm</a>
+            
+            <a href="/tags/production/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#production</a>
+            
+            <a href="/tags/2026/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#2026</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="rag-systems-2026-advanced-techniques-for-production-deployment">RAG Systems 2026: Advanced Techniques for Production Deployment</h1>
+<p>Retrieval-Augmented Generation (RAG) has matured from simple vector search to sophisticated multi-stage pipelines. In 2026, production systems combine retrieval, re-ranking, query expansion, and multimodal capabilities to achieve high accuracy and low latency.</p>
+<p>This guide covers advanced RAG techniques that separate toy projects from production-grade systems.</p>
+<h2 id="the-modern-rag-pipeline-architecture">The Modern RAG Pipeline Architecture</h2>
+<p>A production RAG system in 2026 typically includes:</p>
+<ol>
+<li><strong>Query Understanding</strong>: Intent classification, entity extraction</li>
+<li><strong>Hybrid Retrieval</strong>: Dense vector + sparse keyword + knowledge graph</li>
+<li><strong>Cross-Encoder Re-ranking</strong>: Precision re-ranking of top candidates</li>
+<li><strong>Context Compression</strong>: Extract only relevant passages</li>
+<li><strong>Multi-Modal Retrieval</strong>: Search across text, images, tables, charts</li>
+<li><strong>Feedback Loop</strong>: User corrections improve retrieval over time</li>
+</ol>
+<h2 id="advanced-retrieval-techniques">Advanced Retrieval Techniques</h2>
+<h3 id="query-expansion-with-sub-question-decomposition">Query Expansion with Sub-Question Decomposition</h3>
+<p>Instead of searching once, decompose the query into sub-questions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.output_parsers <span style="color:#f92672">import</span> StrOutputParser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>query_expansion_prompt <span style="color:#f92672">=</span> ChatPromptTemplate<span style="color:#f92672">.</span>from_template(<span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Given a user question, break it down into 2-3 sub-questions that would help answer the original question.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Question: &#34;</span><span style="color:#e6db74">{question}</span><span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Sub-questions:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>)
+</span></span><span style="display:flex;"><span>chain <span style="color:#f92672">=</span> query_expansion_prompt <span style="color:#f92672">|</span> llm <span style="color:#f92672">|</span> StrOutputParser()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sub_questions <span style="color:#f92672">=</span> chain<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;What are the best RAG frameworks for production?&#34;</span>})
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Result: [&#34;What is RAG?&#34;, &#34;Which frameworks are popular in 2026?&#34;, &#34;What are production requirements?&#34;]</span>
+</span></span></code></pre></div><h3 id="hybrid-retrieval-dense--sparse--knowledge-graph">Hybrid Retrieval: Dense + Sparse + Knowledge Graph</h3>
+<p>Combine multiple retrieval methods for better recall:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, KeywordTableIndex, TreeIndex
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core.retrievers <span style="color:#f92672">import</span> RecursiveRetriever, HybridRetriever
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core.query_engine <span style="color:#f92672">import</span> RetrieverQueryEngine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create different indexes</span>
+</span></span><span style="display:flex;"><span>vector_index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents)
+</span></span><span style="display:flex;"><span>keyword_index <span style="color:#f92672">=</span> KeywordTableIndex<span style="color:#f92672">.</span>from_documents(documents)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hybrid retriever combines both</span>
+</span></span><span style="display:flex;"><span>retriever <span style="color:#f92672">=</span> HybridRetriever(
+</span></span><span style="display:flex;"><span>    vector_retriever<span style="color:#f92672">=</span>vector_index<span style="color:#f92672">.</span>as_retriever(similarity_top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>    keyword_retriever<span style="color:#f92672">=</span>keyword_index<span style="color:#f92672">.</span>as_retriever(keyword_top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query engine with recursive retrieval</span>
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> RetrieverQueryEngine(retriever<span style="color:#f92672">=</span>retriever)
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> query_engine<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;Explain RAG architecture&#34;</span>)
+</span></span></code></pre></div><h3 id="cross-encoder-re-ranking">Cross-Encoder Re-ranking</h3>
+<p>First pass: retrieve 50 candidates with fast dense search
+Second pass: re-rank top 20 with slower but more accurate cross-encoder</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core.postprocessor <span style="color:#f92672">import</span> SentenceTransformerRerank
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>reranker <span style="color:#f92672">=</span> SentenceTransformerRerank(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cross-encoder/ms-marco-MiniLM-L-6-v2&#34;</span>,
+</span></span><span style="display:flex;"><span>    top_n<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>  <span style="color:#75715e"># Keep top 10 from 50 candidates</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use in query pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> ResponseSynthesizer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>synthesizer <span style="color:#f92672">=</span> ResponseSynthesizer(
+</span></span><span style="display:flex;"><span>    retriever<span style="color:#f92672">=</span>retriever,
+</span></span><span style="display:flex;"><span>    postprocessors<span style="color:#f92672">=</span>[reranker]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="multi-modal-rag">Multi-Modal RAG</h2>
+<p>Search across text, images, tables, and charts:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> Document
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core.retrievers <span style="color:#f92672">import</span> ImageRetriever
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load multimodal documents</span>
+</span></span><span style="display:flex;"><span>image_docs <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    Document(text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Figure 1: RAG architecture diagram&#34;</span>, image_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;diagram.png&#34;</span>),
+</span></span><span style="display:flex;"><span>    Document(text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Table 1: Framework comparison&#34;</span>, image_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table.png&#34;</span>)
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query with multimodal retrieval</span>
+</span></span><span style="display:flex;"><span>query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Show me the RAG architecture comparison table&#34;</span>
+</span></span></code></pre></div><h2 id="production-optimizations">Production Optimizations</h2>
+<h3 id="caching-strategies">Caching Strategies</h3>
+<p>Implement smart caching to reduce latency and costs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core.indices.base <span style="color:#f92672">import</span> BaseIndex
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cache retrieval results</span>
+</span></span><span style="display:flex;"><span>cache_config <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;cache_type&#34;</span>: <span style="color:#e6db74">&#34;simple&#34;</span>,  <span style="color:#75715e"># or &#34;redis&#34;, &#34;memcached&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ttl&#34;</span>: <span style="color:#ae81ff">3600</span>,  <span style="color:#75715e"># 1 hour TTL</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;max_size&#34;</span>: <span style="color:#ae81ff">10000</span>  <span style="color:#75715e"># Max cached entries</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(
+</span></span><span style="display:flex;"><span>    documents,
+</span></span><span style="display:flex;"><span>    embed_model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local:babbage-002&#34;</span>,
+</span></span><span style="display:flex;"><span>    cache_config<span style="color:#f92672">=</span>cache_config
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="streaming-responses">Streaming Responses</h3>
+<p>Provide immediate feedback to users:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core.query_engine <span style="color:#f92672">import</span> RetrieverQueryEngine
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">stream_response</span>(query: str):
+</span></span><span style="display:flex;"><span>    query_engine <span style="color:#f92672">=</span> RetrieverQueryEngine<span style="color:#f92672">.</span>from_args(index)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> query_engine<span style="color:#f92672">.</span>aquery(query)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">for</span> delta <span style="color:#f92672">in</span> response<span style="color:#f92672">.</span>async_streaming():
+</span></span><span style="display:flex;"><span>        print(delta, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, flush<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> stream_response(<span style="color:#e6db74">&#34;Explain RAG optimization techniques&#34;</span>)
+</span></span></code></pre></div><h3 id="context-compression">Context Compression</h3>
+<p>Extract only relevant information from retrieved chunks:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core.postprocessor <span style="color:#f92672">import</span> SentenceTransformerRerank
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core.query_engine <span style="color:#f92672">import</span> CitationQueryEngine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compress context before sending to LLM</span>
+</span></span><span style="display:flex;"><span>compressor <span style="color:#f92672">=</span> SentenceTransformerRerank(top_n<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> CitationQueryEngine(
+</span></span><span style="display:flex;"><span>    retriever<span style="color:#f92672">=</span>retriever,
+</span></span><span style="display:flex;"><span>    postprocessors<span style="color:#f92672">=</span>[compressor]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="evaluation-framework">Evaluation Framework</h2>
+<p>Measure RAG performance objectively:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> ragas <span style="color:#f92672">import</span> evaluate
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> ragas.metrics <span style="color:#f92672">import</span> faithfulness, answer_relevance, context_precision
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define test dataset</span>
+</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;question&#34;</span>: [<span style="color:#f92672">...</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ground_truth&#34;</span>: [<span style="color:#f92672">...</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;answer&#34;</span>: [<span style="color:#f92672">...</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;contexts&#34;</span>: [<span style="color:#f92672">...</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Evaluate</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> evaluate(
+</span></span><span style="display:flex;"><span>    dataset,
+</span></span><span style="display:flex;"><span>    metrics<span style="color:#f92672">=</span>[faithfulness, answer_relevance, context_precision]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Faithfulness: </span><span style="color:#e6db74">{</span>result[<span style="color:#e6db74">&#39;faithfulness&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Answer Relevance: </span><span style="color:#e6db74">{</span>result[<span style="color:#e6db74">&#39;answer_relevance&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Context Precision: </span><span style="color:#e6db74">{</span>result[<span style="color:#e6db74">&#39;context_precision&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="common-pitfalls-and-solutions">Common Pitfalls and Solutions</h2>
+<h3 id="problem-1-retrieval-hallucination">Problem 1: Retrieval Hallucination</h3>
+<p><strong>Symptom</strong>: Retrieved documents contain incorrect information
+<strong>Solution</strong>: Add source verification and confidence scoring</p>
+<h3 id="problem-2-lost-in-the-middle">Problem 2: Lost in the Middle</h3>
+<p><strong>Symptom</strong>: Important information in middle of long context gets ignored
+<strong>Solution</strong>: Use chunking strategies and position-aware prompting</p>
+<h3 id="problem-3-slow-response-times">Problem 3: Slow Response Times</h3>
+<p><strong>Symptom</strong>: Users wait &gt;5 seconds for answers
+<strong>Solution</strong>: Implement async retrieval, caching, and streaming</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Production RAG in 2026 requires a multi-stage pipeline combining hybrid retrieval, intelligent re-ranking, and continuous optimization. The key is starting simple and adding complexity only when needed.</p>
+<p><strong>Start with</strong>: Basic vector search + LLM
 <strong>Add gradually</strong>: Query expansion, re-ranking, caching
-<strong>Production-ready</strong>: Full pipeline with evaluation and monitoring</p><p>The goal isn&rsquo;t the most sophisticated system—it&rsquo;s the system that delivers accurate answers at the right speed for your users.</p><hr><p><strong>Q:</strong> Do I need all these components for a production RAG system?
-<strong>A:</strong> No. Start with basic retrieval and add components based on your accuracy and latency requirements. Most systems work well with just hybrid retrieval and re-ranking.</p><p><strong>Q:</strong> What&rsquo;s the best embedding model for production?
-<strong>A:</strong> For 2026, consider BGE-M3 (multilingual), text-embedding-3-large (OpenAI), or Jina embeddings (open source). Benchmark on your specific data.</p><p><strong>Q:</strong> How do I handle very large document collections?
-<strong>A:</strong> Use hierarchical indexing (tree index + vector index), parent-child document linking, and metadata filtering to reduce search space.</p><p><strong>Q:</strong> Should I fine-tune my embedding model?
-<strong>A:</strong> Only if off-the-shelf models don&rsquo;t achieve acceptable accuracy. Fine-tuning helps when your domain has specialized terminology.</p><p><strong>Q:</strong> What&rsquo;s the ideal chunk size for documents?
-<strong>A:</strong> 500-1000 tokens is usually optimal. Use semantic chunking when possible, and overlap chunks by 10-20% to avoid losing context.</p><hr><p><em>Found this helpful? Join our Telegram community for daily AI tool updates: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2frag-systems-2026%2f&text=RAG%20Systems%202026%3a%20Advanced%20Techniques%20for%20Production%20Deployment" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2frag-systems-2026%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/langchain-vs-llamaindex-vs-langgraph/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南 2026年，AI编码工具生态系统发生了巨大变化。最初简单的自 …</p></a><a href=/ai-coding-agents-comparison/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison The …</p></a><a href=/ai-coding-agents-full-comparison/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex Introduction …</p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+<strong>Production-ready</strong>: Full pipeline with evaluation and monitoring</p>
+<p>The goal isn&rsquo;t the most sophisticated system—it&rsquo;s the system that delivers accurate answers at the right speed for your users.</p>
+<hr>
+<p><strong>Q:</strong> Do I need all these components for a production RAG system?
+<strong>A:</strong> No. Start with basic retrieval and add components based on your accuracy and latency requirements. Most systems work well with just hybrid retrieval and re-ranking.</p>
+<p><strong>Q:</strong> What&rsquo;s the best embedding model for production?
+<strong>A:</strong> For 2026, consider BGE-M3 (multilingual), text-embedding-3-large (OpenAI), or Jina embeddings (open source). Benchmark on your specific data.</p>
+<p><strong>Q:</strong> How do I handle very large document collections?
+<strong>A:</strong> Use hierarchical indexing (tree index + vector index), parent-child document linking, and metadata filtering to reduce search space.</p>
+<p><strong>Q:</strong> Should I fine-tune my embedding model?
+<strong>A:</strong> Only if off-the-shelf models don&rsquo;t achieve acceptable accuracy. Fine-tuning helps when your domain has specialized terminology.</p>
+<p><strong>Q:</strong> What&rsquo;s the ideal chunk size for documents?
+<strong>A:</strong> 500-1000 tokens is usually optimal. Use semantic chunking when possible, and overlap chunks by 10-20% to avoid losing context.</p>
+<hr>
+<p><em>Found this helpful? Join our Telegram community for daily AI tool updates: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2frag-systems-2026%2f&text=RAG%20Systems%202026%3a%20Advanced%20Techniques%20for%20Production%20Deployment" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2frag-systems-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/langchain-vs-llamaindex-vs-langgraph/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南 2026年，AI编码工具生态系统发生了巨大变化。最初简单的自 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents-comparison/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison The …</p>
+                </a>
+                
+                <a href="/ai-coding-agents-full-comparison/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex Introduction …</p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

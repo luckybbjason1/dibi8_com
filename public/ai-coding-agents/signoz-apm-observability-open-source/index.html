@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>No vendor-specific SDK needed — standard OTel only | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="No vendor-specific SDK needed — standard OTel only | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/signoz-apm-observability-open-source/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/signoz-apm-observability-open-source/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>No vendor-specific SDK needed — standard OTel only</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">No vendor-specific SDK needed — standard OTel only</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;SigNoz: The Open-Source APM Replacing Datadog at 10% Cos&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No vendor-specific SDK needed — standard OTel only | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="No vendor-specific SDK needed — standard OTel only | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/signoz-apm-observability-open-source/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/signoz-apm-observability-open-source/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">No vendor-specific SDK needed — standard OTel only</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">No vendor-specific SDK needed — standard OTel only</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;SigNoz: The Open-Source APM Replacing Datadog at 10% Cos&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,34 +99,73 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;signoz&rdquo;, &ldquo;apm&rdquo;, &ldquo;observability&rdquo;, &ldquo;distributed tracing&rdquo;, &ldquo;opentelemetry&rdquo;, &ldquo;datadog alternative&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;docker&rdquo;, &ldquo;kubernetes&rdquo;, &ldquo;metrics&rdquo;, &ldquo;logs&rdquo;, &ldquo;monitoring&rdquo;]
-aliases:</p><ul><li>/posts/signoz-apm-observability-open-source/-</li></ul><hr><h2 id=introduction-the-65000year-observability-bill-nobody-talks-about>Introduction: The $65,000/Year Observability Bill Nobody Talks About</h2><p>A mid-sized engineering team running 50 microservices on Kubernetes was paying Datadog <strong>$5,400/month</strong> ($65,000/year) for APM, distributed tracing, infrastructure monitoring, and log management. That number included per-host fees, per-span ingestion costs, and premium support. When they asked Datadog for a breakdown, the sales rep sent them a pricing calculator and said, &ldquo;This is industry standard.&rdquo;</p><p>It is not.</p><p>SigNoz, an MIT-licensed open-source observability platform built natively on OpenTelemetry, provides the same core capabilities — distributed traces, metrics, logs, custom dashboards, and alerting — at <strong>roughly 10% of Datadog&rsquo;s cost</strong> when self-hosted. With <strong>22,000+ GitHub stars</strong> and a growing enterprise customer base, SigNoz has matured from a promising side project into a production-grade APM that teams are actually switching to.</p><p>This guide covers installing SigNoz in under 5 minutes, instrumenting a real application, building dashboards, setting up alerts, and running it in production at scale.</p><h2 id=what-is-signoz>What Is SigNoz?</h2><p><strong>SigNoz is an open-source Application Performance Monitoring (APM) and observability platform that provides distributed tracing, metrics, and log management — all built on OpenTelemetry standards.</strong></p><p>Launched in 2021 by SigNoz Inc., it is written in Go (backend) and React (frontend). It uses ClickHouse as its columnar storage engine for traces and logs, and Kafka + Druid for long-term metrics aggregation. Because it is OpenTelemetry-native, it works with any language or framework that emits OTel data — no vendor lock-in, no proprietary agents.</p><p>Key facts as of May 2026: - <strong>GitHub stars</strong>: 22,000+</p><ul><li><strong>License</strong>: MIT</li><li><strong>Latest stable version</strong>: v0.76.0 (released 2026-04-22)</li><li><strong>Storage engine</strong>: ClickHouse (traces/logs), Kafka + Druid (metrics)</li><li><strong>Backend language</strong>: Go</li><li><strong>Supported telemetry</strong>: OpenTelemetry traces, metrics, logs</li><li><strong>Deployment</strong>: Docker Compose, Kubernetes Helm chart, cloud-hosted</li></ul><h2 id=how-signoz-works>How SigNoz Works</h2><h3 id=architecture-overview>Architecture Overview</h3><p>SigNoz follows a modern observability pipeline architecture: 1. <strong>OpenTelemetry Collector</strong>: Receives telemetry data (traces, metrics, logs) from instrumented applications via OTLP/gRPC or OTLP/HTTP
+aliases:</p>
+<ul>
+<li>/posts/signoz-apm-observability-open-source/-</li>
+</ul>
+<hr>
+<h2 id="introduction-the-65000year-observability-bill-nobody-talks-about">Introduction: The $65,000/Year Observability Bill Nobody Talks About</h2>
+<p>A mid-sized engineering team running 50 microservices on Kubernetes was paying Datadog <strong>$5,400/month</strong> ($65,000/year) for APM, distributed tracing, infrastructure monitoring, and log management. That number included per-host fees, per-span ingestion costs, and premium support. When they asked Datadog for a breakdown, the sales rep sent them a pricing calculator and said, &ldquo;This is industry standard.&rdquo;</p>
+<p>It is not.</p>
+<p>SigNoz, an MIT-licensed open-source observability platform built natively on OpenTelemetry, provides the same core capabilities — distributed traces, metrics, logs, custom dashboards, and alerting — at <strong>roughly 10% of Datadog&rsquo;s cost</strong> when self-hosted. With <strong>22,000+ GitHub stars</strong> and a growing enterprise customer base, SigNoz has matured from a promising side project into a production-grade APM that teams are actually switching to.</p>
+<p>This guide covers installing SigNoz in under 5 minutes, instrumenting a real application, building dashboards, setting up alerts, and running it in production at scale.</p>
+<h2 id="what-is-signoz">What Is SigNoz?</h2>
+<p><strong>SigNoz is an open-source Application Performance Monitoring (APM) and observability platform that provides distributed tracing, metrics, and log management — all built on OpenTelemetry standards.</strong></p>
+<p>Launched in 2021 by SigNoz Inc., it is written in Go (backend) and React (frontend). It uses ClickHouse as its columnar storage engine for traces and logs, and Kafka + Druid for long-term metrics aggregation. Because it is OpenTelemetry-native, it works with any language or framework that emits OTel data — no vendor lock-in, no proprietary agents.</p>
+<p>Key facts as of May 2026: - <strong>GitHub stars</strong>: 22,000+</p>
+<ul>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Latest stable version</strong>: v0.76.0 (released 2026-04-22)</li>
+<li><strong>Storage engine</strong>: ClickHouse (traces/logs), Kafka + Druid (metrics)</li>
+<li><strong>Backend language</strong>: Go</li>
+<li><strong>Supported telemetry</strong>: OpenTelemetry traces, metrics, logs</li>
+<li><strong>Deployment</strong>: Docker Compose, Kubernetes Helm chart, cloud-hosted</li>
+</ul>
+<h2 id="how-signoz-works">How SigNoz Works</h2>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>SigNoz follows a modern observability pipeline architecture: 1. <strong>OpenTelemetry Collector</strong>: Receives telemetry data (traces, metrics, logs) from instrumented applications via OTLP/gRPC or OTLP/HTTP
 2. <strong>Kafka</strong>: Buffers incoming data for durability and backpressure handling
 3. <strong>ClickHouse</strong>: Columnar database storing traces and logs with efficient compression (~10x vs. Elasticsearch)
 4. <strong>Druid</strong>: Time-series database for metrics aggregation and long-term retention
 5. <strong>Query Service (Go)</strong>: Processes API requests, runs queries against ClickHouse and Druid
-6. <strong>Frontend (React)</strong>: Web UI for trace exploration, metrics dashboards, log search, and alert configuration</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#ae81ff>Application (OTel SDK) → OTLP/gRPC → SigNoz Otel Collector</span>
-</span></span><span style=display:flex><span>                                        <span style=color:#ae81ff>↓</span>
-</span></span><span style=display:flex><span>                              <span style=color:#ae81ff>┌──────────────────┐</span>
-</span></span><span style=display:flex><span>                              <span style=color:#ae81ff>│      Kafka       │</span>
-</span></span><span style=display:flex><span>                              <span style=color:#ae81ff>└──────┬─────┬─────┘</span>
-</span></span><span style=display:flex><span>                                     <span style=color:#ae81ff>↓     ↓</span>
-</span></span><span style=display:flex><span>                               <span style=color:#ae81ff>ClickHouse  Druid</span>
-</span></span><span style=display:flex><span>                               <span style=color:#ae81ff>(traces/    (metrics)</span>
-</span></span><span style=display:flex><span>                                <span style=color:#ae81ff>logs)</span>
-</span></span><span style=display:flex><span>                                     <span style=color:#ae81ff>↓     ↓</span>
-</span></span><span style=display:flex><span>                              <span style=color:#ae81ff>Query Service (Go)</span>
-</span></span><span style=display:flex><span>                                     <span style=color:#ae81ff>↓</span>
-</span></span><span style=display:flex><span>                                <span style=color:#ae81ff>React Frontend</span>
-</span></span></code></pre></div><h3 id=why-clickhouse-for-traces-and-logs>Why ClickHouse for Traces and Logs?</h3><p>ClickHouse is a columnar OLAP database optimized for analytical queries on large datasets. For observability workloads, it provides: - <strong>10x better compression</strong> than Elasticsearch for trace data</p><ul><li><strong>Sub-second query latency</strong> on billions of spans</li><li><strong>Efficient filtering</strong> on high-cardinality tags (user_id, request_path, status_code)</li><li><strong>Lower resource usage</strong>: A single ClickHouse node handles what would require a 3-node Elasticsearch cluster</li></ul><h3 id=opentelemetry-native-design>OpenTelemetry-Native Design</h3><p>Unlike Datadog or New Relic, which require proprietary agents, SigNoz consumes standard OpenTelemetry data: `````python</p><h1 id=no-vendor-specific-sdk-needed--standard-otel-only>No vendor-specific SDK needed — standard OTel only</h1><p>from opentelemetry import trace
+6. <strong>Frontend (React)</strong>: Web UI for trace exploration, metrics dashboards, log search, and alert configuration</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">Application (OTel SDK) → OTLP/gRPC → SigNoz Otel Collector</span>
+</span></span><span style="display:flex;"><span>                                        <span style="color:#ae81ff">↓</span>
+</span></span><span style="display:flex;"><span>                              <span style="color:#ae81ff">┌──────────────────┐</span>
+</span></span><span style="display:flex;"><span>                              <span style="color:#ae81ff">│      Kafka       │</span>
+</span></span><span style="display:flex;"><span>                              <span style="color:#ae81ff">└──────┬─────┬─────┘</span>
+</span></span><span style="display:flex;"><span>                                     <span style="color:#ae81ff">↓     ↓</span>
+</span></span><span style="display:flex;"><span>                               <span style="color:#ae81ff">ClickHouse  Druid</span>
+</span></span><span style="display:flex;"><span>                               <span style="color:#ae81ff">(traces/    (metrics)</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#ae81ff">logs)</span>
+</span></span><span style="display:flex;"><span>                                     <span style="color:#ae81ff">↓     ↓</span>
+</span></span><span style="display:flex;"><span>                              <span style="color:#ae81ff">Query Service (Go)</span>
+</span></span><span style="display:flex;"><span>                                     <span style="color:#ae81ff">↓</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#ae81ff">React Frontend</span>
+</span></span></code></pre></div><h3 id="why-clickhouse-for-traces-and-logs">Why ClickHouse for Traces and Logs?</h3>
+<p>ClickHouse is a columnar OLAP database optimized for analytical queries on large datasets. For observability workloads, it provides: - <strong>10x better compression</strong> than Elasticsearch for trace data</p>
+<ul>
+<li><strong>Sub-second query latency</strong> on billions of spans</li>
+<li><strong>Efficient filtering</strong> on high-cardinality tags (user_id, request_path, status_code)</li>
+<li><strong>Lower resource usage</strong>: A single ClickHouse node handles what would require a 3-node Elasticsearch cluster</li>
+</ul>
+<h3 id="opentelemetry-native-design">OpenTelemetry-Native Design</h3>
+<p>Unlike Datadog or New Relic, which require proprietary agents, SigNoz consumes standard OpenTelemetry data: `````python</p>
+<h1 id="no-vendor-specific-sdk-needed--standard-otel-only">No vendor-specific SDK needed — standard OTel only</h1>
+<p>from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor</p><h1 id=configure-otlp-exporter-pointing-to-signoz-collector>Configure OTLP exporter pointing to SigNoz collector</h1><p>otlp_exporter = OTLPSpanExporter(
+from opentelemetry.sdk.trace.export import BatchSpanProcessor</p>
+<h1 id="configure-otlp-exporter-pointing-to-signoz-collector">Configure OTLP exporter pointing to SigNoz collector</h1>
+<p>otlp_exporter = OTLPSpanExporter(
 endpoint=&ldquo;http://signoz-otel-collector:4317&rdquo;,
 insecure=True
-)</p><p>provider = TracerProvider()
+)</p>
+<p>provider = TracerProvider()
 processor = BatchSpanProcessor(otlp_exporter)
 provider.add_span_processor(processor)
-trace.set_tracer_provider(provider)</p><pre tabindex=0><code>
+trace.set_tracer_provider(provider)</p>
+<pre tabindex="0"><code>
 If you ever migrate away from SigNoz, simply point the same OTLP exporter at a different backend. No code changes required.
 
 ## Installation &amp; Setup: Running in Under 5 Minutes
@@ -82,68 +191,102 @@ cd signoz/deploy/docker
 # - Pull all required images (ClickHouse, Kafka, Query Service, Frontend)
 # - Start all services
 # - Print the access URL
-</code></pre><p>After installation completes, access SigNoz at <code>http://localhost:3301</code>.</p><h3 id=option-b-kubernetes-via-helm>Option B: Kubernetes via Helm</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 1. Add the SigNoz Helm repository</span>
-</span></span><span style=display:flex><span>helm repo add signoz https://charts.signoz.io
-</span></span><span style=display:flex><span>helm repo update
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. Install SigNoz into your cluster</span>
-</span></span><span style=display:flex><span>kubectl create namespace signoz
-</span></span><span style=display:flex><span>helm install signoz signoz/signoz <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --namespace signoz <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set otelCollector.endpoint.host<span style=color:#f92672>=</span>signoz-otel-collector.signoz.svc.cluster.local <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set clickhouse.persistence.size<span style=color:#f92672>=</span>100Gi
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. Wait for all pods to be ready</span>
-</span></span><span style=display:flex><span>kubectl wait --for<span style=color:#f92672>=</span>condition<span style=color:#f92672>=</span>ready pod -l app.kubernetes.io/name<span style=color:#f92672>=</span>signoz -n signoz --timeout<span style=color:#f92672>=</span>300s
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. Port-forward the frontend</span>
-</span></span><span style=display:flex><span>kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
-</span></span></code></pre></div><h3 id=option-c-production-vps-deployment>Option C: Production VPS Deployment</h3><p>For a production deployment on <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> or <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>: `````bash</p><h1 id=docker-composeproductionyml>docker-compose.production.yml</h1><p>version: &ldquo;3.8&rdquo;
+</code></pre><p>After installation completes, access SigNoz at <code>http://localhost:3301</code>.</p>
+<h3 id="option-b-kubernetes-via-helm">Option B: Kubernetes via Helm</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. Add the SigNoz Helm repository</span>
+</span></span><span style="display:flex;"><span>helm repo add signoz https://charts.signoz.io
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Install SigNoz into your cluster</span>
+</span></span><span style="display:flex;"><span>kubectl create namespace signoz
+</span></span><span style="display:flex;"><span>helm install signoz signoz/signoz <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --namespace signoz <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set otelCollector.endpoint.host<span style="color:#f92672">=</span>signoz-otel-collector.signoz.svc.cluster.local <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set clickhouse.persistence.size<span style="color:#f92672">=</span>100Gi
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Wait for all pods to be ready</span>
+</span></span><span style="display:flex;"><span>kubectl wait --for<span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>ready pod -l app.kubernetes.io/name<span style="color:#f92672">=</span>signoz -n signoz --timeout<span style="color:#f92672">=</span>300s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Port-forward the frontend</span>
+</span></span><span style="display:flex;"><span>kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
+</span></span></code></pre></div><h3 id="option-c-production-vps-deployment">Option C: Production VPS Deployment</h3>
+<p>For a production deployment on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> or <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>: `````bash</p>
+<h1 id="docker-composeproductionyml">docker-compose.production.yml</h1>
+<p>version: &ldquo;3.8&rdquo;
 services: signoz-frontend: image: signoz/frontend:0.76.0
 restart: unless-stopped
 ports: - &ldquo;3301:3301&rdquo;
-depends_on: - signoz-query-service</p><p>signoz-query-service: image: signoz/query-service:0.76.0
+depends_on: - signoz-query-service</p>
+<p>signoz-query-service: image: signoz/query-service:0.76.0
 restart: unless-stopped
 environment: - ClickHouseUrl=tcp://clickhouse:9000
 - DruidUrl=http://druid-router:8888
 - STORAGE=clickhouse
 depends_on: - clickhouse
-- druid</p><p>signoz-otel-collector: image: signoz/signoz-otel-collector:0.76.0
+- druid</p>
+<p>signoz-otel-collector: image: signoz/signoz-otel-collector:0.76.0
 restart: unless-stopped
-ports: - &ldquo;4317:4317&rdquo; # OTLP gRPC
-- &ldquo;4318:4318&rdquo; # OTLP HTTP
-- &ldquo;8889:8889&rdquo; # Prometheus metrics
+ports: - &ldquo;4317:4317&rdquo;    # OTLP gRPC
+- &ldquo;4318:4318&rdquo;    # OTLP HTTP
+- &ldquo;8889:8889&rdquo;    # Prometheus metrics
 volumes: - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
-command: [&rdquo;&ndash;config", &ldquo;/etc/otel-collector-config.yaml&rdquo;]</p><p>clickhouse: image: clickhouse/clickhouse-server:24.3-alpine
+command: [&rdquo;&ndash;config&quot;, &ldquo;/etc/otel-collector-config.yaml&rdquo;]</p>
+<p>clickhouse: image: clickhouse/clickhouse-server:24.3-alpine
 restart: unless-stopped
 ulimits: nofile: soft: 262144
 hard: 262144
 volumes: - clickhouse-data:/var/lib/clickhouse
 environment: - CLICKHOUSE_DB=signoz_metrics
 - CLICKHOUSE_USER=admin
-- CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}</p><p>zookeeper: image: zookeeper:3.9
+- CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}</p>
+<p>zookeeper: image: zookeeper:3.9
 restart: unless-stopped
 volumes: - zookeeper-data:/data
-- zookeeper-logs:/datalog</p><p>kafka: image: bitnami/kafka:3.7
+- zookeeper-logs:/datalog</p>
+<p>kafka: image: bitnami/kafka:3.7
 restart: unless-stopped
 environment: - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
 - ALLOW_PLAINTEXT_LISTENER=yes
 volumes: - kafka-data:/bitnami/kafka
-depends_on: - zookeeper</p><p>volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: `````</p><p>Deploy with <code>docker compose -f docker-compose.production.yml up -d</code>.</p><h3 id=verifying-the-installation>Verifying the Installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Check all containers are running</span>
-</span></span><span style=display:flex><span>docker ps --format <span style=color:#e6db74>&#34;table \t&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Expected output: # NAMES                        STATUS</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># docker-clickhouse-1          Up 2 minutes (healthy)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># docker-kafka-1               Up 2 minutes</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># docker-signoz-frontend-1     Up 2 minutes</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># docker-signoz-query-service-1 Up 2 minutes</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># docker-zookeeper-1           Up 2 minutes</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># docker-signoz-otel-collector-1 Up 2 minutes</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Test the health endpoint</span>
-</span></span><span style=display:flex><span>curl http://localhost:3301/api/v1/health
-</span></span><span style=display:flex><span><span style=color:#75715e># Output: {&#34;status&#34;:&#34;ok&#34;}</span>
-</span></span></code></pre></div><h2 id=instrumenting-your-application>Instrumenting Your Application</h2><h3 id=auto-instrumentation-recommended-for-quick-start>Auto-Instrumentation (Recommended for Quick Start)</h3><p>SigNoz supports auto-instrumentation for most languages without code changes: `````bash</p><h1 id=nodejs--zero-code-changes>Node.js — zero code changes</h1><p>OTEL_EXPORTER_OTLP_ENDPOINT=&ldquo;http://localhost:4317&rdquo;<br>OTEL_RESOURCE_ATTRIBUTES=&ldquo;service.name=payment-service&rdquo;<br>npx @opentelemetry/auto-instrumentations-node ./server.js</p><h1 id=python--zero-code-changes>Python — zero code changes</h1><p>OTEL_EXPORTER_OTLP_ENDPOINT=&ldquo;http://localhost:4317&rdquo;<br>OTEL_RESOURCE_ATTRIBUTES=&ldquo;service.name=order-service&rdquo;<br>opentelemetry-instrument python manage.py runserver</p><h1 id=java--add-the-agent-jvm-flag>Java — add the agent JVM flag</h1><p>java -javaagent:opentelemetry-javaagent.jar<br>-Dotel.exporter.otlp.endpoint=http://localhost:4317<br>-Dotel.resource.attributes=service.name=inventory-service<br>-jar application.jar</p><h1 id=go--add-the-auto-instrumentation-package>Go — add the auto-instrumentation package</h1><p>OTEL_EXPORTER_OTLP_ENDPOINT=&ldquo;http://localhost:4317&rdquo;<br>OTEL_RESOURCE_ATTRIBUTES=&ldquo;service.name=api-gateway&rdquo;<br>go run main.go</p><pre tabindex=0><code>
+depends_on: - zookeeper</p>
+<p>volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: `````</p>
+<p>Deploy with <code>docker compose -f docker-compose.production.yml up -d</code>.</p>
+<h3 id="verifying-the-installation">Verifying the Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check all containers are running</span>
+</span></span><span style="display:flex;"><span>docker ps --format <span style="color:#e6db74">&#34;table \t&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected output: # NAMES                        STATUS</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># docker-clickhouse-1          Up 2 minutes (healthy)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># docker-kafka-1               Up 2 minutes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># docker-signoz-frontend-1     Up 2 minutes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># docker-signoz-query-service-1 Up 2 minutes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># docker-zookeeper-1           Up 2 minutes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># docker-signoz-otel-collector-1 Up 2 minutes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test the health endpoint</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:3301/api/v1/health
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: {&#34;status&#34;:&#34;ok&#34;}</span>
+</span></span></code></pre></div><h2 id="instrumenting-your-application">Instrumenting Your Application</h2>
+<h3 id="auto-instrumentation-recommended-for-quick-start">Auto-Instrumentation (Recommended for Quick Start)</h3>
+<p>SigNoz supports auto-instrumentation for most languages without code changes: `````bash</p>
+<h1 id="nodejs--zero-code-changes">Node.js — zero code changes</h1>
+<p>OTEL_EXPORTER_OTLP_ENDPOINT=&ldquo;http://localhost:4317&rdquo; <br>
+OTEL_RESOURCE_ATTRIBUTES=&ldquo;service.name=payment-service&rdquo; <br>
+npx @opentelemetry/auto-instrumentations-node ./server.js</p>
+<h1 id="python--zero-code-changes">Python — zero code changes</h1>
+<p>OTEL_EXPORTER_OTLP_ENDPOINT=&ldquo;http://localhost:4317&rdquo; <br>
+OTEL_RESOURCE_ATTRIBUTES=&ldquo;service.name=order-service&rdquo; <br>
+opentelemetry-instrument python manage.py runserver</p>
+<h1 id="java--add-the-agent-jvm-flag">Java — add the agent JVM flag</h1>
+<p>java -javaagent:opentelemetry-javaagent.jar <br>
+-Dotel.exporter.otlp.endpoint=http://localhost:4317 <br>
+-Dotel.resource.attributes=service.name=inventory-service <br>
+-jar application.jar</p>
+<h1 id="go--add-the-auto-instrumentation-package">Go — add the auto-instrumentation package</h1>
+<p>OTEL_EXPORTER_OTLP_ENDPOINT=&ldquo;http://localhost:4317&rdquo; <br>
+OTEL_RESOURCE_ATTRIBUTES=&ldquo;service.name=api-gateway&rdquo; <br>
+go run main.go</p>
+<pre tabindex="0"><code>
 ### Manual Instrumentation (Production-Grade)
 
 For production services, manual instrumentation provides better control: `````python
@@ -177,7 +320,12 @@ def process_payment(): with tracer.start_as_current_span(&#34;process_payment&#3
             pass
 
         return {&#34;status&#34;: &#34;success&#34;}
-</code></pre><h3 id=custom-dashboards-and-metrics>Custom Dashboards and Metrics</h3><p>Once data is flowing, create dashboards in the SigNoz UI or via API: `````bash</p><h1 id=create-a-custom-dashboard-via-api>Create a custom dashboard via API</h1><p>curl -X POST http://localhost:3301/api/v1/dashboards<br>-H &ldquo;Content-Type: application/json&rdquo;<br>-d &lsquo;{
+</code></pre><h3 id="custom-dashboards-and-metrics">Custom Dashboards and Metrics</h3>
+<p>Once data is flowing, create dashboards in the SigNoz UI or via API: `````bash</p>
+<h1 id="create-a-custom-dashboard-via-api">Create a custom dashboard via API</h1>
+<p>curl -X POST http://localhost:3301/api/v1/dashboards <br>
+-H &ldquo;Content-Type: application/json&rdquo; <br>
+-d &lsquo;{
 &ldquo;title&rdquo;: &ldquo;Payment Service Health&rdquo;,
 &ldquo;description&rdquo;: &ldquo;Key metrics for payment processing&rdquo;,
 &ldquo;panels&rdquo;: [
@@ -199,7 +347,8 @@ def process_payment(): with tracer.start_as_current_span(&#34;process_payment&#3
 &ldquo;widgetType&rdquo;: &ldquo;gauge&rdquo;
 }
 ]
-}&rsquo;</p><pre tabindex=0><code>
+}&rsquo;</p>
+<pre tabindex="0"><code>
 ## Benchmarks &amp; Real-World Use Cases
 
 ### Cost Comparison: SigNoz vs. Datadog vs. New Relic
@@ -276,93 +425,99 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
     ports: - &#34;8123:8123&#34;
       - &#34;9000:9000&#34;
-</code></pre><h3 id=long-term-storage-with-s3>Long-Term Storage with S3</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># ClickHouse S3 backup configuration</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>&lt;clickhouse&gt;</span>
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>&lt;storage_configuration&gt;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>&lt;disks&gt;</span>
-</span></span><span style=display:flex><span>      <span style=color:#ae81ff>&lt;s3_disk&gt;</span>
-</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;type&gt;s3&lt;/type&gt;</span>
-</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;endpoint&gt;https://s3.amazonaws.com/my-bucket/signoz/&lt;/endpoint&gt;</span>
-</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;access_key_id&gt;${AWS_ACCESS_KEY}&lt;/access_key_id&gt;</span>
-</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;secret_access_key&gt;${AWS_SECRET_KEY}&lt;/secret_access_key&gt;</span>
-</span></span><span style=display:flex><span>      <span style=color:#ae81ff>&lt;/s3_disk&gt;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>&lt;/disks&gt;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>&lt;policies&gt;</span>
-</span></span><span style=display:flex><span>      <span style=color:#ae81ff>&lt;tiered_storage&gt;</span>
-</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;volumes&gt;</span>
-</span></span><span style=display:flex><span>          <span style=color:#ae81ff>&lt;hot&gt;</span>
-</span></span><span style=display:flex><span>            <span style=color:#ae81ff>&lt;disk&gt;default&lt;/disk&gt;</span>
-</span></span><span style=display:flex><span>            <span style=color:#ae81ff>&lt;max_data_part_size_bytes&gt;1073741824&lt;/max_data_part_size_bytes&gt;</span>
-</span></span><span style=display:flex><span>          <span style=color:#ae81ff>&lt;/hot&gt;</span>
-</span></span><span style=display:flex><span>          <span style=color:#ae81ff>&lt;cold&gt;</span>
-</span></span><span style=display:flex><span>            <span style=color:#ae81ff>&lt;disk&gt;s3_disk&lt;/disk&gt;</span>
-</span></span><span style=display:flex><span>          <span style=color:#ae81ff>&lt;/cold&gt;</span>
-</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;/volumes&gt;</span>
-</span></span><span style=display:flex><span>      <span style=color:#ae81ff>&lt;/tiered_storage&gt;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>&lt;/policies&gt;</span>
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>&lt;/storage_configuration&gt;</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>&lt;/clickhouse&gt;</span>
-</span></span></code></pre></div><h3 id=alert-configuration>Alert Configuration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># alert-rules.yml — SigNoz alert manager rules</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>groups: - name</span>: <span style=color:#ae81ff>payment_service_alerts</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>rules: - alert</span>: <span style=color:#ae81ff>HighErrorRate</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>expr</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          (
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>            sum(rate(signoz_calls_total{service_name=&#34;payment-service&#34;,status_code=&#34;STATUS_CODE_ERROR&#34;}[5m]))
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>            /
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>            sum(rate(signoz_calls_total{service_name=&#34;payment-service&#34;}[5m]))
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          ) &gt; 0.05</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>for</span>: <span style=color:#ae81ff>2m</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>labels: severity</span>: <span style=color:#ae81ff>critical</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>annotations: summary</span>: <span style=color:#e6db74>&#34;Payment service error rate &gt; 5%&#34;</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>alert</span>: <span style=color:#ae81ff>HighP95Latency</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>expr</span>: <span style=color:#ae81ff>histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name=&#34;payment-service&#34;}[5m])) &gt; 500000000</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>for</span>: <span style=color:#ae81ff>5m</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>labels: severity</span>: <span style=color:#ae81ff>warning</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>annotations: summary</span>: <span style=color:#e6db74>&#34;Payment service P95 latency &gt; 500ms&#34;</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>alert</span>: <span style=color:#ae81ff>LogErrorSpike</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>expr</span>: <span style=color:#ae81ff>rate(signoz_logs_total{severity=&#34;ERROR&#34;}[5m]) &gt; 100</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>for</span>: <span style=color:#ae81ff>2m</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>labels: severity</span>: <span style=color:#ae81ff>warning</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>annotations: summary</span>: <span style=color:#e6db74>&#34;Log error spike detected&#34;</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>Configure alert channels (Slack, PagerDuty, email) in the SigNoz UI under Settings → Alert Channels.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Kubernetes Auto-Instrumentation</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>`````yaml</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># signoz-otel-collector-service.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>signoz-otel-collector</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>signoz</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: ports: - name</span>: <span style=color:#ae81ff>otlp-grpc</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>port</span>: <span style=color:#ae81ff>4317</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>protocol</span>: <span style=color:#ae81ff>TCP</span>
-</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>otlp-http</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>port</span>: <span style=color:#ae81ff>4318</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>protocol</span>: <span style=color:#ae81ff>TCP</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>selector: app.kubernetes.io/name</span>: <span style=color:#ae81ff>otel-collector</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#75715e># Instrument a deployment by adding OTel env vars</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>payment-service</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: template: spec: containers: - name</span>: <span style=color:#ae81ff>payment-service</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>payment-service:1.2.3</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>env: - name</span>: <span style=color:#ae81ff>OTEL_EXPORTER_OTLP_ENDPOINT</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;http://signoz-otel-collector.signoz.svc.cluster.local:4317&#34;</span>
-</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>OTEL_RESOURCE_ATTRIBUTES</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;service.name=payment-service,service.namespace=production&#34;</span>
-</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>OTEL_TRACES_SAMPLER</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;parentbased_traceidratio&#34;</span>
-</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>OTEL_TRACES_SAMPLER_ARG</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;0.1&#34;</span>  <span style=color:#75715e># Sample 10% of traces</span>
-</span></span></code></pre></div><h3 id=sampling-strategy-for-high-traffic-services>Sampling Strategy for High-Traffic Services</h3><p>For services handling >10,000 requests/second, implement head-based sampling: `````yaml</p><h1 id=otel-collector-configyaml>otel-collector-config.yaml</h1><p>receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
-http: endpoint: 0.0.0.0:4318</p><p>processors: tail_sampling: decision_wait: 10s
+</code></pre><h3 id="long-term-storage-with-s3">Long-Term Storage with S3</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ClickHouse S3 backup configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">&lt;clickhouse&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">&lt;storage_configuration&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">&lt;disks&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">&lt;s3_disk&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">&lt;type&gt;s3&lt;/type&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">&lt;endpoint&gt;https://s3.amazonaws.com/my-bucket/signoz/&lt;/endpoint&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">&lt;access_key_id&gt;${AWS_ACCESS_KEY}&lt;/access_key_id&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">&lt;secret_access_key&gt;${AWS_SECRET_KEY}&lt;/secret_access_key&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">&lt;/s3_disk&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">&lt;/disks&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">&lt;policies&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">&lt;tiered_storage&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">&lt;volumes&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ae81ff">&lt;hot&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">&lt;disk&gt;default&lt;/disk&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">&lt;max_data_part_size_bytes&gt;1073741824&lt;/max_data_part_size_bytes&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ae81ff">&lt;/hot&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ae81ff">&lt;cold&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">&lt;disk&gt;s3_disk&lt;/disk&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ae81ff">&lt;/cold&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">&lt;/volumes&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">&lt;/tiered_storage&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">&lt;/policies&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">&lt;/storage_configuration&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">&lt;/clickhouse&gt;</span>
+</span></span></code></pre></div><h3 id="alert-configuration">Alert Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># alert-rules.yml — SigNoz alert manager rules</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">groups: - name</span>: <span style="color:#ae81ff">payment_service_alerts</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rules: - alert</span>: <span style="color:#ae81ff">HighErrorRate</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">expr</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          (
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            sum(rate(signoz_calls_total{service_name=&#34;payment-service&#34;,status_code=&#34;STATUS_CODE_ERROR&#34;}[5m]))
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            /
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            sum(rate(signoz_calls_total{service_name=&#34;payment-service&#34;}[5m]))
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          ) &gt; 0.05</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">for</span>: <span style="color:#ae81ff">2m</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">labels: severity</span>: <span style="color:#ae81ff">critical</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">annotations: summary</span>: <span style="color:#e6db74">&#34;Payment service error rate &gt; 5%&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">HighP95Latency</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name=&#34;payment-service&#34;}[5m])) &gt; 500000000</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">for</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">labels: severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">annotations: summary</span>: <span style="color:#e6db74">&#34;Payment service P95 latency &gt; 500ms&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">LogErrorSpike</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">rate(signoz_logs_total{severity=&#34;ERROR&#34;}[5m]) &gt; 100</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">for</span>: <span style="color:#ae81ff">2m</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">labels: severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">annotations: summary</span>: <span style="color:#e6db74">&#34;Log error spike detected&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Configure alert channels (Slack, PagerDuty, email) in the SigNoz UI under Settings → Alert Channels.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Kubernetes Auto-Instrumentation</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># signoz-otel-collector-service.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">signoz-otel-collector</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">signoz</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: ports: - name</span>: <span style="color:#ae81ff">otlp-grpc</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">4317</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">otlp-http</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">4318</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector: app.kubernetes.io/name</span>: <span style="color:#ae81ff">otel-collector</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Instrument a deployment by adding OTel env vars</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">payment-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: template: spec: containers: - name</span>: <span style="color:#ae81ff">payment-service</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">payment-service:1.2.3</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env: - name</span>: <span style="color:#ae81ff">OTEL_EXPORTER_OTLP_ENDPOINT</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;http://signoz-otel-collector.signoz.svc.cluster.local:4317&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">OTEL_RESOURCE_ATTRIBUTES</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;service.name=payment-service,service.namespace=production&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">OTEL_TRACES_SAMPLER</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;parentbased_traceidratio&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">OTEL_TRACES_SAMPLER_ARG</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;0.1&#34;</span>  <span style="color:#75715e"># Sample 10% of traces</span>
+</span></span></code></pre></div><h3 id="sampling-strategy-for-high-traffic-services">Sampling Strategy for High-Traffic Services</h3>
+<p>For services handling &gt;10,000 requests/second, implement head-based sampling: `````yaml</p>
+<h1 id="otel-collector-configyaml">otel-collector-config.yaml</h1>
+<p>receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
+http: endpoint: 0.0.0.0:4318</p>
+<p>processors: tail_sampling: decision_wait: 10s
 num_traces: 100000
 expected_new_traces_per_sec: 1000
 policies: - name: errors
@@ -373,10 +528,13 @@ type: latency
 latency: {threshold_ms: 500}
 - name: probabilistic
 type: probabilistic
-probabilistic: {sampling_percentage: 10}</p><p>exporters: clickhousetraces: datasource: tcp://clickhouse:9000
-database: signoz_traces</p><p>service: pipelines: traces: receivers: [otlp]
+probabilistic: {sampling_percentage: 10}</p>
+<p>exporters: clickhousetraces: datasource: tcp://clickhouse:9000
+database: signoz_traces</p>
+<p>service: pipelines: traces: receivers: [otlp]
 processors: [tail_sampling]
-exporters: [clickhousetraces]</p><pre tabindex=0><code>
+exporters: [clickhousetraces]</p>
+<pre tabindex="0"><code>
 This configuration samples 100% of error traces, 100% of slow requests (&gt;500ms), and 10% of normal traffic — giving you complete error visibility while controlling storage costs.
 
 ## Comparison with Alternatives
@@ -439,8 +597,38 @@ For 1 million spans/day ingestion with 7-day hot retention: 4 vCPU, 8 GB RAM, 10
 Yes. SigNoz&#39;s OTel Collector includes a Prometheus receiver. Configure it in ``otel-collector-config.yaml``: `````yaml
 receivers: prometheus: config: scrape_configs: - job_name: &#39;my-app&#39;
           static_configs: - targets: [my-app:9090]
-</code></pre><p>Existing Prometheus scrape configs can be imported directly. SigNoz will store the metrics in Druid for long-term querying.</p><p><strong>Q: How do I migrate from Datadog to SigNoz?</strong></p><p>The migration has two phases. Phase 1: Deploy SigNoz alongside Datadog in &ldquo;shadow mode&rdquo; — send 10% of traffic to SigNoz while keeping Datadog as primary. Validate dashboards and alerts. Phase 2: Switch OTel exporters to point 100% to SigNoz, then decommission Datadog. Typical migration timeline: 2–4 weeks for a 30-service stack. The OpenTelemetry Collector can route to both backends simultaneously during transition.</p><p><strong>Q: Is my data safe with SigNoz self-hosted?</strong></p><p>All telemetry data stays on your infrastructure. SigNoz does not phone home with your data. Telemetry data (usage analytics, not your traces) is sent only if you explicitly opt in. The codebase is fully open-source and auditable. For regulated industries (healthcare, finance), this is often a requirement that cloud APMs cannot satisfy.</p><p><strong>Q: How does log management compare to the ELK stack?</strong></p><p>SigNoz uses ClickHouse for log storage, which provides 5–10x better compression than Elasticsearch and faster analytical queries on high-cardinality fields. However, Elasticsearch still offers superior full-text search relevance ranking. If your primary use case is log search (not correlation with traces), ELK may be a better fit. SigNoz excels at trace-log correlation — clicking a trace span shows the associated logs automatically.</p><h2 id=conclusion-take-back-your-observability-budget>Conclusion: Take Back Your Observability Budget</h2><p>SigNoz delivers what engineering teams at scale actually need: <strong>a production-grade APM with distributed tracing, metrics, and logs that costs 90–98% less than Datadog</strong> — all while keeping your telemetry data on your infrastructure and adhering to OpenTelemetry standards.</p><p>With a 5-minute Docker setup, ClickHouse-powered sub-second queries on billions of spans, and zero vendor lock-in, the case for spending $50,000+/year on cloud APM becomes difficult to justify.</p><p><strong>Deploy today</strong>: Spin up a VPS on <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> ($48/month for 8 GB) or <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>, run ````./install.sh```, and start instrumenting your first service in under 10 minutes.</p><p><strong>Join the community</strong>: <a href=https://t.me/dibi8en>Telegram group</a> for English-speaking developers | <a href=https://github.com/SigNoz/signoz/discussions>GitHub Discussions</a> | <a href=https://signoz.io/slack>Slack</a></p><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading</h2><ul><li>SigNoz GitHub Repository: <a href=https://github.com/SigNoz/signoz>https://github.com/SigNoz/signoz</a></li><li>Official Documentation: <a href=https://signoz.io/docs/>https://signoz.io/docs/</a></li><li>OpenTelemetry Collector Configuration: <a href=https://signoz.io/docs/tutorial/opentelemetry-binary-usage-in-virtual-machine/>https://signoz.io/docs/tutorial/opentelemetry-binary-usage-in-virtual-machine/</a></li><li>ClickHouse Performance Tuning: <a href=https://signoz.io/docs/operate/clickhouse/>https://signoz.io/docs/operate/clickhouse/</a></li><li>Kubernetes Deployment Guide: <a href=https://signoz.io/docs/install/kubernetes/>https://signoz.io/docs/install/kubernetes/</a></li><li><a href=dibi8-internal-link>Grafana Stack</a> — Alternative open-source observability stack</li><li><a href=dibi8-internal-link>Self-hosting guide</a> — General self-hosting best practices on dibi8.com</li></ul><hr><p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8.com receives a commission at no additional cost to you. All recommendations are based on hands-on testing, not affiliate availability.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><p>Existing Prometheus scrape configs can be imported directly. SigNoz will store the metrics in Druid for long-term querying.</p>
+<p><strong>Q: How do I migrate from Datadog to SigNoz?</strong></p>
+<p>The migration has two phases. Phase 1: Deploy SigNoz alongside Datadog in &ldquo;shadow mode&rdquo; — send 10% of traffic to SigNoz while keeping Datadog as primary. Validate dashboards and alerts. Phase 2: Switch OTel exporters to point 100% to SigNoz, then decommission Datadog. Typical migration timeline: 2–4 weeks for a 30-service stack. The OpenTelemetry Collector can route to both backends simultaneously during transition.</p>
+<p><strong>Q: Is my data safe with SigNoz self-hosted?</strong></p>
+<p>All telemetry data stays on your infrastructure. SigNoz does not phone home with your data. Telemetry data (usage analytics, not your traces) is sent only if you explicitly opt in. The codebase is fully open-source and auditable. For regulated industries (healthcare, finance), this is often a requirement that cloud APMs cannot satisfy.</p>
+<p><strong>Q: How does log management compare to the ELK stack?</strong></p>
+<p>SigNoz uses ClickHouse for log storage, which provides 5–10x better compression than Elasticsearch and faster analytical queries on high-cardinality fields. However, Elasticsearch still offers superior full-text search relevance ranking. If your primary use case is log search (not correlation with traces), ELK may be a better fit. SigNoz excels at trace-log correlation — clicking a trace span shows the associated logs automatically.</p>
+<h2 id="conclusion-take-back-your-observability-budget">Conclusion: Take Back Your Observability Budget</h2>
+<p>SigNoz delivers what engineering teams at scale actually need: <strong>a production-grade APM with distributed tracing, metrics, and logs that costs 90–98% less than Datadog</strong> — all while keeping your telemetry data on your infrastructure and adhering to OpenTelemetry standards.</p>
+<p>With a 5-minute Docker setup, ClickHouse-powered sub-second queries on billions of spans, and zero vendor lock-in, the case for spending $50,000+/year on cloud APM becomes difficult to justify.</p>
+<p><strong>Deploy today</strong>: Spin up a VPS on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> ($48/month for 8 GB) or <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>, run ````./install.sh```, and start instrumenting your first service in under 10 minutes.</p>
+<p><strong>Join the community</strong>: <a href="https://t.me/dibi8en">Telegram group</a> for English-speaking developers | <a href="https://github.com/SigNoz/signoz/discussions">GitHub Discussions</a> | <a href="https://signoz.io/slack">Slack</a></p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li>SigNoz GitHub Repository: <a href="https://github.com/SigNoz/signoz">https://github.com/SigNoz/signoz</a></li>
+<li>Official Documentation: <a href="https://signoz.io/docs/">https://signoz.io/docs/</a></li>
+<li>OpenTelemetry Collector Configuration: <a href="https://signoz.io/docs/tutorial/opentelemetry-binary-usage-in-virtual-machine/">https://signoz.io/docs/tutorial/opentelemetry-binary-usage-in-virtual-machine/</a></li>
+<li>ClickHouse Performance Tuning: <a href="https://signoz.io/docs/operate/clickhouse/">https://signoz.io/docs/operate/clickhouse/</a></li>
+<li>Kubernetes Deployment Guide: <a href="https://signoz.io/docs/install/kubernetes/">https://signoz.io/docs/install/kubernetes/</a></li>
+<li><a href="dibi8-internal-link">Grafana Stack</a> — Alternative open-source observability stack</li>
+<li><a href="dibi8-internal-link">Self-hosting guide</a> — General self-hosting best practices on dibi8.com</li>
+</ul>
+<hr>
+<p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8.com receives a commission at no additional cost to you. All recommendations are based on hands-on testing, not affiliate availability.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;SigNoz: The Open-Source APM Replacing Datadog at 10% Cost — Distributed Tracing Setup Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -454,20 +642,285 @@ receivers: prometheus: config: scrape_configs: - job_name: &#39;my-app&#39;
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/signoz-apm-observability-open-source%22>https://dibi8.com/resources/signoz-apm-observability-open-source"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/signoz-apm-observability-open-source%22">https://dibi8.com/resources/signoz-apm-observability-open-source"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/signoz-apm-observability-open-source/>trivy-production-security-scanner-2026</a></li><li><a href=/ai-coding-agents/signoz-apm-observability-open-source/>trivy-production-security-scanner-2026</a></li><li><a href=/ai-coding-agents/signoz-apm-observability-open-source/>2026-06-15-trending-ai-agents</a></li><li><a href=/ai-coding-agents/signoz-apm-observability-open-source/>2026-06-22-trending-ai-agents</a></li><li><a href=/ai-coding-agents/signoz-apm-observability-open-source/>prompts-chat</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fsignoz-apm-observability-open-source%2f&text=No%20vendor-specific%20SDK%20needed%20%e2%80%94%20standard%20OTel%20only" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fsignoz-apm-observability-open-source%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/signoz-apm-observability-open-source/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/ai-coding-agents/signoz-apm-observability-open-source/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/ai-coding-agents/signoz-apm-observability-open-source/">2026-06-15-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/signoz-apm-observability-open-source/">2026-06-22-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/signoz-apm-observability-open-source/">prompts-chat</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fsignoz-apm-observability-open-source%2f&text=No%20vendor-specific%20SDK%20needed%20%e2%80%94%20standard%20OTel%20only" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fsignoz-apm-observability-open-source%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

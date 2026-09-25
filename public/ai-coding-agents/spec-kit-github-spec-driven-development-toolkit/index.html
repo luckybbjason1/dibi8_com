@@ -1,45 +1,159 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=spec-kit-githubs-revolutionary-spec-driven-development-toolkit>Spec Kit: GitHub&rsquo;s Revolutionary Spec-Driven Development Toolkit</h1><p>Software development has always been plagued by a fundamental disconnect: <strong>what we specify</strong> rarely matches <strong>what we build</strong>. Requirements documents gather dust, PRDs become outdated within days, and the final product often diverges significantly from the original vision.</p><p>Enter <strong><a href=https://github.com/github/spec-kit>Spec Kit</a></strong> - GitHub&rsquo;s groundbreaking open-source toolkit that flips this script entirely. With <strong>114,000+ GitHub stars</strong> and rapid adoption, Spec Kit introduces <strong>Spec-Driven Development (SDD)</strong>, a paradigm where specifications become executable artifacts that directly generate working implementations.</p><p>In this comprehensive guide, we&rsquo;ll explore how Spec Kit works, why it matters, how to get started, and real-world examples that demonstrate its transformative potential.</p><h2 id=what-is-spec-kit>What is Spec Kit?</h2><p>Spec Kit is an <strong>open-source toolkit</strong> developed by GitHub that enables <strong>Spec-Driven Development</strong> - a methodology where specifications are not just documentation, but executable artifacts that guide and generate code.</p><p>Traditional development workflows look like this: ````
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spec Kit: GitHub&#39;s Revolutionary Spec-Driven Development Toolkit | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Spec Kit: GitHub&#39;s Revolutionary Spec-Driven Development Toolkit | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Spec Kit: GitHub&#39;s Revolutionary Spec-Driven Development Toolkit</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Spec Kit: GitHub&#39;s Revolutionary Spec-Driven Development Toolkit</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="spec-kit-githubs-revolutionary-spec-driven-development-toolkit">Spec Kit: GitHub&rsquo;s Revolutionary Spec-Driven Development Toolkit</h1>
+<p>Software development has always been plagued by a fundamental disconnect: <strong>what we specify</strong> rarely matches <strong>what we build</strong>. Requirements documents gather dust, PRDs become outdated within days, and the final product often diverges significantly from the original vision.</p>
+<p>Enter <strong><a href="https://github.com/github/spec-kit">Spec Kit</a></strong> - GitHub&rsquo;s groundbreaking open-source toolkit that flips this script entirely. With <strong>114,000+ GitHub stars</strong> and rapid adoption, Spec Kit introduces <strong>Spec-Driven Development (SDD)</strong>, a paradigm where specifications become executable artifacts that directly generate working implementations.</p>
+<p>In this comprehensive guide, we&rsquo;ll explore how Spec Kit works, why it matters, how to get started, and real-world examples that demonstrate its transformative potential.</p>
+<h2 id="what-is-spec-kit">What is Spec Kit?</h2>
+<p>Spec Kit is an <strong>open-source toolkit</strong> developed by GitHub that enables <strong>Spec-Driven Development</strong> - a methodology where specifications are not just documentation, but executable artifacts that guide and generate code.</p>
+<p>Traditional development workflows look like this: ````
 Requirements → Design → Implementation → Testing → Deployment
-(docs) (docs) (code) (tests) (prod)</p><pre tabindex=0><code>
+(docs)       (docs)    (code)       (tests)    (prod)</p>
+<pre tabindex="0"><code>
 Spec Kit changes it to: `````
 Spec → Implementation → Testing → Deployment
    (executable)  (code)    (tests)    (prod)
-</code></pre><p>The spec becomes the <strong>source of truth</strong> - living, breathing, and directly connected to the codebase.</p><h2 id=core-philosophy>Core Philosophy</h2><h3 id=specifications-as-executable-artifacts>Specifications as Executable Artifacts</h3><p>Unlike traditional requirements documents, Spec Kit specifications are: <img alt="Spec Kit Architecture" loading=lazy src=https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg></p><ul><li><strong>Version-controlled</strong> alongside code</li><li><strong>Machine-readable</strong> for AI agent consumption</li><li><strong>Automatically validated</strong> against implementation</li><li><strong>Tracked for drift</strong> between spec and code</li></ul><h3 id=ai-native-development>AI-Native Development</h3><p>Spec Kit is designed for the age of AI coding agents. It provides structured prompts and templates that AI agents can consume directly, ensuring: - Consistent output across agents</p><ul><li>Traceable decisions from spec to code</li><li>Automated quality gates</li><li>Multi-agent collaboration support</li></ul><h3 id=predictable-outcomes-over-vibe-coding>Predictable Outcomes Over Vibe Coding</h3><p>Instead of &ldquo;vibe coding&rdquo; - throwing prompts at an AI and hoping for the best - Spec Kit enforces a disciplined approach: 1. <strong>Define</strong> what you want (spec)
+</code></pre><p>The spec becomes the <strong>source of truth</strong> - living, breathing, and directly connected to the codebase.</p>
+<h2 id="core-philosophy">Core Philosophy</h2>
+<h3 id="specifications-as-executable-artifacts">Specifications as Executable Artifacts</h3>
+<p>Unlike traditional requirements documents, Spec Kit specifications are: <img alt="Spec Kit Architecture" loading="lazy" src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg"></p>
+<ul>
+<li><strong>Version-controlled</strong> alongside code</li>
+<li><strong>Machine-readable</strong> for AI agent consumption</li>
+<li><strong>Automatically validated</strong> against implementation</li>
+<li><strong>Tracked for drift</strong> between spec and code</li>
+</ul>
+<h3 id="ai-native-development">AI-Native Development</h3>
+<p>Spec Kit is designed for the age of AI coding agents. It provides structured prompts and templates that AI agents can consume directly, ensuring: - Consistent output across agents</p>
+<ul>
+<li>Traceable decisions from spec to code</li>
+<li>Automated quality gates</li>
+<li>Multi-agent collaboration support</li>
+</ul>
+<h3 id="predictable-outcomes-over-vibe-coding">Predictable Outcomes Over Vibe Coding</h3>
+<p>Instead of &ldquo;vibe coding&rdquo; - throwing prompts at an AI and hoping for the best - Spec Kit enforces a disciplined approach: 1. <strong>Define</strong> what you want (spec)
 2. <strong>Validate</strong> it makes sense (constitution)
 3. <strong>Generate</strong> implementation (code)
-4. <strong>Verify</strong> it matches the spec (tests)</p><h2 id=getting-started>Getting Started</h2><h3 id=prerequisites>Prerequisites</h3><ul><li><strong><a href=https://docs.astral.sh/uv/>uv</a></strong> - Python package manager</li><li>An AI coding agent (Copilot, Claude Code, Codex CLI, etc.)</li><li>Git installed</li></ul><h3 id=step-1-install-specify-cli>Step 1: Install Specify CLI</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install using uv</span>
-</span></span><span style=display:flex><span>uv tool install specify-cli <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --from git+https://github.com/github/spec-kit.git@latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify installation</span>
-</span></span><span style=display:flex><span>specify --version
-</span></span></code></pre></div><h3 id=step-2-initialize-a-project>Step 2: Initialize a Project</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create a new project with spec-kit</span>
-</span></span><span style=display:flex><span>specify init my-awesome-app --integration copilot
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Navigate into the project</span>
-</span></span><span style=display:flex><span>cd my-awesome-app
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Project structure created: # ├── .spec-kit/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># │   ├── constitution.md</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># │   ├── specs/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># │   └── templates/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ├── SPEC.md</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># └── README.md</span>
-</span></span></code></pre></div><h3 id=step-3-establish-project-principles>Step 3: Establish Project Principles</h3><p>Launch your coding agent in the project directory and use the <code>/speckit.constitution</code> command: `````bash</p><h1 id=in-your-ai-coding-agent-speckitconstitution-create-principles-focused-on---code-quality-standards>In your AI coding agent: /speckit.constitution Create principles focused on: - Code quality standards</h1><ul><li>Testing requirements</li><li>Performance benchmarks</li><li>Security guidelines</li><li>Documentation expectations</li></ul><pre tabindex=0><code>
+4. <strong>Verify</strong> it matches the spec (tests)</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li><strong><a href="https://docs.astral.sh/uv/">uv</a></strong> - Python package manager</li>
+<li>An AI coding agent (Copilot, Claude Code, Codex CLI, etc.)</li>
+<li>Git installed</li>
+</ul>
+<h3 id="step-1-install-specify-cli">Step 1: Install Specify CLI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install using uv</span>
+</span></span><span style="display:flex;"><span>uv tool install specify-cli <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --from git+https://github.com/github/spec-kit.git@latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify installation</span>
+</span></span><span style="display:flex;"><span>specify --version
+</span></span></code></pre></div><h3 id="step-2-initialize-a-project">Step 2: Initialize a Project</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a new project with spec-kit</span>
+</span></span><span style="display:flex;"><span>specify init my-awesome-app --integration copilot
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Navigate into the project</span>
+</span></span><span style="display:flex;"><span>cd my-awesome-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Project structure created: # ├── .spec-kit/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │   ├── constitution.md</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │   ├── specs/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │   └── templates/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ├── SPEC.md</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># └── README.md</span>
+</span></span></code></pre></div><h3 id="step-3-establish-project-principles">Step 3: Establish Project Principles</h3>
+<p>Launch your coding agent in the project directory and use the <code>/speckit.constitution</code> command: `````bash</p>
+<h1 id="in-your-ai-coding-agent-speckitconstitution-create-principles-focused-on---code-quality-standards">In your AI coding agent: /speckit.constitution Create principles focused on: - Code quality standards</h1>
+<ul>
+<li>Testing requirements</li>
+<li>Performance benchmarks</li>
+<li>Security guidelines</li>
+<li>Documentation expectations</li>
+</ul>
+<pre tabindex="0"><code>
 This creates a ````constitution.md```` file that governs all subsequent development decisions.
 
 ### Step 4: Write Your First Spec
@@ -49,7 +163,10 @@ Use the ``/speckit.specify`` command to describe what you want to build: `````ba
 - Albums can be reorganized by drag and drop
 - Photos support metadata editing
 - Shared albums with collaboration
-</code></pre><p>The spec is saved as a structured document that AI agents can consume.</p><h2 id=how-spec-kit-works>How Spec Kit Works</h2><h3 id=the-spec-driven-development-workflow>The Spec-Driven Development Workflow</h3><pre tabindex=0><code>┌─────────────────────────────────────────────────────────────┐
+</code></pre><p>The spec is saved as a structured document that AI agents can consume.</p>
+<h2 id="how-spec-kit-works">How Spec Kit Works</h2>
+<h3 id="the-spec-driven-development-workflow">The Spec-Driven Development Workflow</h3>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
 │                    Spec Kit Workflow                         │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
@@ -72,7 +189,32 @@ Use the ``/speckit.specify`` command to describe what you want to build: `````ba
 │     └─ Ship to production                                   │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
-</code></pre><h3 id=spec-format>Spec Format</h3><p>Specifications follow a structured format: `````markdown</p><h1 id=spec-photo-album-manager>Spec: Photo Album Manager</h1><h2 id=summary>Summary</h2><p>A web application for organizing photos into date-based albums.</p><h2 id=user-stories>User Stories</h2><ol><li>As a user, I want to create albums grouped by date</li><li>As a user, I want to drag and drop photos between albums</li><li>As a user, I want to share albums with collaborators</li></ol><h2 id=technical-requirements>Technical Requirements</h2><ul><li>Framework: React + TypeScript</li><li>State management: Zustand</li><li>Storage: IndexedDB with cloud sync</li><li>Testing: Vitest + Playwright</li></ul><h2 id=success-criteria>Success Criteria</h2><ul><li><input disabled type=checkbox> Albums can be created, renamed, deleted</li><li><input disabled type=checkbox> Drag and drop works on desktop and mobile</li><li><input disabled type=checkbox> Shared albums sync across devices</li><li><input disabled type=checkbox> Performance: &lt;100ms for 1000 photos</li></ul><pre tabindex=0><code>
+</code></pre><h3 id="spec-format">Spec Format</h3>
+<p>Specifications follow a structured format: `````markdown</p>
+<h1 id="spec-photo-album-manager">Spec: Photo Album Manager</h1>
+<h2 id="summary">Summary</h2>
+<p>A web application for organizing photos into date-based albums.</p>
+<h2 id="user-stories">User Stories</h2>
+<ol>
+<li>As a user, I want to create albums grouped by date</li>
+<li>As a user, I want to drag and drop photos between albums</li>
+<li>As a user, I want to share albums with collaborators</li>
+</ol>
+<h2 id="technical-requirements">Technical Requirements</h2>
+<ul>
+<li>Framework: React + TypeScript</li>
+<li>State management: Zustand</li>
+<li>Storage: IndexedDB with cloud sync</li>
+<li>Testing: Vitest + Playwright</li>
+</ul>
+<h2 id="success-criteria">Success Criteria</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Albums can be created, renamed, deleted</li>
+<li><input disabled="" type="checkbox"> Drag and drop works on desktop and mobile</li>
+<li><input disabled="" type="checkbox"> Shared albums sync across devices</li>
+<li><input disabled="" type="checkbox"> Performance: &lt;100ms for 1000 photos</li>
+</ul>
+<pre tabindex="0"><code>
 ### AI Agent Integration
 
 Spec Kit works with multiple AI coding agents: | Agent | Integration Method |
@@ -104,27 +246,32 @@ Spec Kit works with multiple AI coding agents: | Agent | Integration Method |
 
 # Validate against spec
 /speckit.validate
-</code></pre><h3 id=example-2-creating-a-mobile-app>Example 2: Creating a Mobile App</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Define the spec</span>
-</span></span><span style=display:flex><span>/speckit.specify Build a fitness tracking mobile app with: - Workout logging with exercise library
-</span></span><span style=display:flex><span>- Progress charts and statistics
-</span></span><span style=display:flex><span>- Social features <span style=color:#f92672>(</span>share workouts<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- Offline support
-</span></span><span style=display:flex><span>- HealthKit/Google Fit integration
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generate implementation</span>
-</span></span><span style=display:flex><span>/speckit.create --framework flutter
-</span></span></code></pre></div><h3 id=example-3-microservices-architecture>Example 3: Microservices Architecture</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Define the spec</span>
-</span></span><span style=display:flex><span>/speckit.specify Design a microservices architecture <span style=color:#66d9ef>for</span>: - User service <span style=color:#f92672>(</span>authentication, profiles<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- Order service <span style=color:#f92672>(</span>orders, payments<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- Inventory service <span style=color:#f92672>(</span>stock, warehouse<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- Notification service <span style=color:#f92672>(</span>email, SMS, push<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- API gateway <span style=color:#66d9ef>for</span> routing
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generate implementation</span>
-</span></span><span style=display:flex><span>/speckit.plan --architecture microservices
-</span></span><span style=display:flex><span>/speckit.create --framework kubernetes
-</span></span></code></pre></div><h2 id=bundles-role-based-setups>Bundles: Role-Based Setups</h2><p>Spec Kit includes pre-configured bundles for different team roles: ### Developer Bundle</p><p>Optimized for individual developers: `````bash
-specify init &ndash;bundle developer</p><pre tabindex=0><code>
+</code></pre><h3 id="example-2-creating-a-mobile-app">Example 2: Creating a Mobile App</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Define the spec</span>
+</span></span><span style="display:flex;"><span>/speckit.specify Build a fitness tracking mobile app with: - Workout logging with exercise library
+</span></span><span style="display:flex;"><span>- Progress charts and statistics
+</span></span><span style="display:flex;"><span>- Social features <span style="color:#f92672">(</span>share workouts<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- Offline support
+</span></span><span style="display:flex;"><span>- HealthKit/Google Fit integration
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate implementation</span>
+</span></span><span style="display:flex;"><span>/speckit.create --framework flutter
+</span></span></code></pre></div><h3 id="example-3-microservices-architecture">Example 3: Microservices Architecture</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Define the spec</span>
+</span></span><span style="display:flex;"><span>/speckit.specify Design a microservices architecture <span style="color:#66d9ef">for</span>: - User service <span style="color:#f92672">(</span>authentication, profiles<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- Order service <span style="color:#f92672">(</span>orders, payments<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- Inventory service <span style="color:#f92672">(</span>stock, warehouse<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- Notification service <span style="color:#f92672">(</span>email, SMS, push<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- API gateway <span style="color:#66d9ef">for</span> routing
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate implementation</span>
+</span></span><span style="display:flex;"><span>/speckit.plan --architecture microservices
+</span></span><span style="display:flex;"><span>/speckit.create --framework kubernetes
+</span></span></code></pre></div><h2 id="bundles-role-based-setups">Bundles: Role-Based Setups</h2>
+<p>Spec Kit includes pre-configured bundles for different team roles: ### Developer Bundle</p>
+<p>Optimized for individual developers: `````bash
+specify init &ndash;bundle developer</p>
+<pre tabindex="0"><code>
 Includes: - Simplified workflow
 - Fast feedback loops
 - Local-first development
@@ -133,8 +280,15 @@ Includes: - Simplified workflow
 
 Designed for collaborative development: `````bash
 specify init --bundle team
-</code></pre><p>Includes: - Code review gates</p><ul><li>Branch protection rules</li><li>Shared constitution templates</li></ul><h3 id=enterprise-bundle>Enterprise Bundle</h3><p>For large organizations: `````bash
-specify init &ndash;bundle enterprise</p><pre tabindex=0><code>
+</code></pre><p>Includes: - Code review gates</p>
+<ul>
+<li>Branch protection rules</li>
+<li>Shared constitution templates</li>
+</ul>
+<h3 id="enterprise-bundle">Enterprise Bundle</h3>
+<p>For large organizations: `````bash
+specify init &ndash;bundle enterprise</p>
+<pre tabindex="0"><code>
 Includes: - Compliance templates
 - Audit trails
 - Multi-environment support
@@ -150,7 +304,10 @@ specify extension install github/spec-kit-extension-ci
 
 # Create custom templates
 specify template create my-custom-spec
-</code></pre><h3 id=custom-presets>Custom Presets</h3><p>Define your own specification presets: `````yaml</p><h1 id=spec-kitpresetsyaml>.spec-kit/presets.yaml</h1><p>presets: web-app: framework: react
+</code></pre><h3 id="custom-presets">Custom Presets</h3>
+<p>Define your own specification presets: `````yaml</p>
+<h1 id="spec-kitpresetsyaml">.spec-kit/presets.yaml</h1>
+<p>presets: web-app: framework: react
 state: zustand
 testing: vitest
 api-service: framework: fastapi
@@ -158,7 +315,8 @@ database: postgresql
 cache: redis
 mobile-app: framework: flutter
 state: riverpod
-testing: integration_test</p><pre tabindex=0><code>
+testing: integration_test</p>
+<pre tabindex="0"><code>
 ### Drift Detection
 
 Spec Kit automatically detects when implementation drifts from specification: `````bash
@@ -167,151 +325,436 @@ specify drift check
 
 # View drift report
 specify drift report --output html
-</code></pre><p>Reports include: - Missing features from spec</p><ul><li>Deprecated features not in spec</li><li>Test coverage gaps</li><li>Documentation inconsistencies</li></ul><h2 id=comparison-with-traditional-methods>Comparison with Traditional Methods</h2><h3 id=spec-kit-vs-traditional-prds>Spec Kit vs. Traditional PRDs</h3><p>| Aspect | Traditional PRD | Spec Kit |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>Reports include: - Missing features from spec</p>
+<ul>
+<li>Deprecated features not in spec</li>
+<li>Test coverage gaps</li>
+<li>Documentation inconsistencies</li>
+</ul>
+<h2 id="comparison-with-traditional-methods">Comparison with Traditional Methods</h2>
+<h3 id="spec-kit-vs-traditional-prds">Spec Kit vs. Traditional PRDs</h3>
+<p>| Aspect | Traditional PRD | Spec Kit |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Format | Free-form document | Structured spec |
 | Living status | Becomes outdated | Always in sync |
 | AI consumable | No | Yes |
 | Validation | Manual | Automated |
 | Version control | Separate wiki | Git-tracked |
-| Drift detection | None | Built-in |</p><h3 id=spec-kit-vs-agile-user-stories>Spec Kit vs. Agile User Stories</h3><p>| Aspect | User Stories | Spec Kit |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Drift detection | None | Built-in |</p>
+<h3 id="spec-kit-vs-agile-user-stories">Spec Kit vs. Agile User Stories</h3>
+<p>| Aspect | User Stories | Spec Kit |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Granularity | High level | Detailed |
 | Technical specs | Separate | Included |
 | Test criteria | Implicit | Explicit |
 | AI readiness | Poor | Excellent |
-| Traceability | Manual | Automated |</p><h2 id=best-practices>Best Practices</h2><h3 id=writing-effective-specs>Writing Effective Specs</h3><ol><li><strong>Focus on what, not how</strong> - Describe the desired outcome, not the implementation</li><li><strong>Be specific about constraints</strong> - Performance, security, compatibility requirements</li><li><strong>Include acceptance criteria</strong> - Clear pass/fail conditions</li><li><strong>Version your specs</strong> - Track changes over time</li><li><strong>Keep specs living</strong> - Update specs as requirements evolve</li></ol><h3 id=integrating-with-cicd>Integrating with CI/CD</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/spec-validate.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Validate Specs</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: [<span style=color:#ae81ff>pull_request]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs: validate: runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps: - uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install Specify CLI</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>uv tool install specify-cli</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Validate spec drift</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>specify drift check</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run spec-based tests</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>specify test --from-spec</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Team Collaboration</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Share constitution templates across projects</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Use spec libraries for common patterns</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Review specs before implementation</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Track spec-to-code traceability</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: Is Spec Kit free to use?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>Yes</span>! <span style=color:#ae81ff>Spec Kit is **open-source under the MIT license**. It&#39;s completely free for personal and commercial use.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: Which AI agents are supported?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Spec Kit officially supports</span>: - <span style=color:#75715e>**GitHub</span> <span style=color:#ae81ff>Copilot** (native integration)</span>
-</span></span><span style=display:flex><span>- <span style=color:#75715e>**Claude</span> <span style=color:#ae81ff>Code** (via templates)</span>
-</span></span><span style=display:flex><span>- <span style=color:#75715e>**Codex</span> <span style=color:#ae81ff>CLI** (via commands)</span>
-</span></span><span style=display:flex><span>- <span style=color:#75715e>**Gemini</span> <span style=color:#ae81ff>CLI** (via function calls)</span>
-</span></span><span style=display:flex><span>- <span style=color:#75715e>**OpenCode**</span> <span style=color:#ae81ff>(via skills)</span>
-</span></span><span style=display:flex><span>- <span style=color:#75715e>**Any</span> <span style=color:#ae81ff>agent** that can consume structured specs</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: Do I need to use Spec Kit with AI agents?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>No</span><span style=color:#ae81ff>. While Spec Kit is designed with AI agents in mind, it can be used for traditional human-led development as well. The structured spec format improves clarity regardless of who implements it.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: How does Spec Kit handle complex projects?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Spec Kit scales through</span>: - <span style=color:#75715e>**Modular</span> <span style=color:#ae81ff>specs** - Break large specs into smaller, manageable pieces</span>
-</span></span><span style=display:flex><span>- <span style=color:#75715e>**Composition**</span> - <span style=color:#ae81ff>Combine multiple specs for complex systems</span>
-</span></span><span style=display:flex><span>- <span style=color:#75715e>**Hierarchical</span> <span style=color:#ae81ff>organization** - Parent-child spec relationships</span>
-</span></span><span style=display:flex><span>- <span style=color:#75715e>**Dependency</span> <span style=color:#ae81ff>management** - Track spec interdependencies</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: Can I migrate from existing documentation?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Yes! Spec Kit provides migration tools</span>: - <span style=color:#ae81ff>Convert Markdown docs to specs</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Extract requirements from Jira/Linear</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Transform PRDs into structured specs</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Import user stories into spec format</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: What about agile ceremonies?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Spec Kit integrates with agile workflows</span>: - <span style=color:#ae81ff>Specs become living user stories</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Constitution replaces team working agreements</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Drift detection supports sprint reviews</span>
-</span></span><span style=display:flex><span>- <span style=color:#ae81ff>Spec validation aids definition of done</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>Spec Kit represents a fundamental shift in how we approach software development. By making specifications executable, version-controlled, and AI-consumable, it bridges the gap between what we intend to build and what actually gets built.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>Whether you&#39;re an individual developer seeking more predictable outcomes or a team looking to standardize your development process, Spec Kit provides the structure, flexibility, and AI-native capabilities you need.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>With backing from GitHub and rapid adoption by the developer community, Spec Kit is poised to become an essential tool in the modern developer&#39;s toolkit.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Resources</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>GitHub Repository](https://github.com/github/spec-kit)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>Documentation](https://github.github.io/spec-kit/)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>Getting Started Guide](https://github.com/github/spec-kit#getting-started)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>Extension Marketplace](https://github.com/github/spec-kit/extensions)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>Community Discord](https://discord.gg/speckit)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>**Sources:**</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>Spec Kit GitHub Repository](https://github.com/github/spec-kit)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>Spec Kit Official Documentation](https://github.github.io/spec-kit/)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>Spec-Driven Development Manifesto](https://github.com/github/spec-kit/blob/main/docs/manifesto.md)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#f92672>💬 Join our Telegram group for discussions</span>: [<span style=color:#ae81ff>t.me/DIBI8_Group](https://t.me/DIBI8_Group)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;@context&#34;: </span><span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;@type&#34;: </span><span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;headline&#34;: </span><span style=color:#e6db74>&#34;Spec Kit: GitHub&#39;s Revolutionary Spec-Driven Development Toolkit&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;datePublished&#34;: </span><span style=color:#e6db74>&#34;2026-06-20&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dateModified&#34;: </span><span style=color:#e6db74>&#34;2026-06-20&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;author&#34;: </span>{
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;: </span><span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;name&#34;: </span><span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  },
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;publisher&#34;: </span>{
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;: </span><span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;name&#34;: </span><span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;logo&#34;: </span>{
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;: </span><span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;url&#34;: </span><span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  },
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mainEntityOfPage&#34;: </span>{
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;: </span><span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@id&#34;: </span><span style=color:#e6db74>&#34;https://dibi8.com/resources/spec-kit-github-spec-driven-development-toolkit&#34;</span>
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#ae81ff>&lt;/script&gt;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>codebase-memory-mcp-high-performance-code-intelligence](spec-kit-github-spec-driven-development-toolkit)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](spec-kit-github-spec-driven-development-toolkit)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#ae81ff>12</span>-<span style=color:#ae81ff>factor-agents](spec-kit-github-spec-driven-development-toolkit)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#e6db74>2026-05-25</span>-<span style=color:#ae81ff>trending-ai-agents](spec-kit-github-spec-driven-development-toolkit)</span>
-</span></span><span style=display:flex><span>- [<span style=color:#e6db74>2026-06-01</span>-<span style=color:#ae81ff>trending-ai-agents](spec-kit-github-spec-driven-development-toolkit)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>*Found</span> <span style=color:#ae81ff>this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*</span>
-</span></span></code></pre></div></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fspec-kit-github-spec-driven-development-toolkit%2f&text=Spec%20Kit%3a%20GitHub%27s%20Revolutionary%20Spec-Driven%20Development%20Toolkit" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fspec-kit-github-spec-driven-development-toolkit%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+| Traceability | Manual | Automated |</p>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="writing-effective-specs">Writing Effective Specs</h3>
+<ol>
+<li><strong>Focus on what, not how</strong> - Describe the desired outcome, not the implementation</li>
+<li><strong>Be specific about constraints</strong> - Performance, security, compatibility requirements</li>
+<li><strong>Include acceptance criteria</strong> - Clear pass/fail conditions</li>
+<li><strong>Version your specs</strong> - Track changes over time</li>
+<li><strong>Keep specs living</strong> - Update specs as requirements evolve</li>
+</ol>
+<h3 id="integrating-with-cicd">Integrating with CI/CD</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/spec-validate.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Validate Specs</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">pull_request]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: validate: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install Specify CLI</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">uv tool install specify-cli</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Validate spec drift</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">specify drift check</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run spec-based tests</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">specify test --from-spec</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Team Collaboration</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Share constitution templates across projects</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Use spec libraries for common patterns</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Review specs before implementation</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Track spec-to-code traceability</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Is Spec Kit free to use?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Yes</span>! <span style="color:#ae81ff">Spec Kit is **open-source under the MIT license**. It&#39;s completely free for personal and commercial use.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Which AI agents are supported?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Spec Kit officially supports</span>: - <span style="color:#75715e">**GitHub</span> <span style="color:#ae81ff">Copilot** (native integration)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#75715e">**Claude</span> <span style="color:#ae81ff">Code** (via templates)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#75715e">**Codex</span> <span style="color:#ae81ff">CLI** (via commands)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#75715e">**Gemini</span> <span style="color:#ae81ff">CLI** (via function calls)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#75715e">**OpenCode**</span> <span style="color:#ae81ff">(via skills)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#75715e">**Any</span> <span style="color:#ae81ff">agent** that can consume structured specs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Do I need to use Spec Kit with AI agents?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">No</span><span style="color:#ae81ff">. While Spec Kit is designed with AI agents in mind, it can be used for traditional human-led development as well. The structured spec format improves clarity regardless of who implements it.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: How does Spec Kit handle complex projects?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Spec Kit scales through</span>: - <span style="color:#75715e">**Modular</span> <span style="color:#ae81ff">specs** - Break large specs into smaller, manageable pieces</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#75715e">**Composition**</span> - <span style="color:#ae81ff">Combine multiple specs for complex systems</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#75715e">**Hierarchical</span> <span style="color:#ae81ff">organization** - Parent-child spec relationships</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#75715e">**Dependency</span> <span style="color:#ae81ff">management** - Track spec interdependencies</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Can I migrate from existing documentation?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Yes! Spec Kit provides migration tools</span>: - <span style="color:#ae81ff">Convert Markdown docs to specs</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Extract requirements from Jira/Linear</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Transform PRDs into structured specs</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Import user stories into spec format</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: What about agile ceremonies?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Spec Kit integrates with agile workflows</span>: - <span style="color:#ae81ff">Specs become living user stories</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Constitution replaces team working agreements</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Drift detection supports sprint reviews</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">Spec validation aids definition of done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Spec Kit represents a fundamental shift in how we approach software development. By making specifications executable, version-controlled, and AI-consumable, it bridges the gap between what we intend to build and what actually gets built.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Whether you&#39;re an individual developer seeking more predictable outcomes or a team looking to standardize your development process, Spec Kit provides the structure, flexibility, and AI-native capabilities you need.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">With backing from GitHub and rapid adoption by the developer community, Spec Kit is poised to become an essential tool in the modern developer&#39;s toolkit.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Resources</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">GitHub Repository](https://github.com/github/spec-kit)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">Documentation](https://github.github.io/spec-kit/)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">Getting Started Guide](https://github.com/github/spec-kit#getting-started)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">Extension Marketplace](https://github.com/github/spec-kit/extensions)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">Community Discord](https://discord.gg/speckit)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**Sources:**</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">Spec Kit GitHub Repository](https://github.com/github/spec-kit)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">Spec Kit Official Documentation](https://github.github.io/spec-kit/)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">Spec-Driven Development Manifesto](https://github.com/github/spec-kit/blob/main/docs/manifesto.md)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#f92672">💬 Join our Telegram group for discussions</span>: [<span style="color:#ae81ff">t.me/DIBI8_Group](https://t.me/DIBI8_Group)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;@context&#34;: </span><span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;headline&#34;: </span><span style="color:#e6db74">&#34;Spec Kit: GitHub&#39;s Revolutionary Spec-Driven Development Toolkit&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;datePublished&#34;: </span><span style="color:#e6db74">&#34;2026-06-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;dateModified&#34;: </span><span style="color:#e6db74">&#34;2026-06-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;author&#34;: </span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;publisher&#34;: </span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;logo&#34;: </span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;url&#34;: </span><span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mainEntityOfPage&#34;: </span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@id&#34;: </span><span style="color:#e6db74">&#34;https://dibi8.com/resources/spec-kit-github-spec-driven-development-toolkit&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">&lt;/script&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">codebase-memory-mcp-high-performance-code-intelligence](spec-kit-github-spec-driven-development-toolkit)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](spec-kit-github-spec-driven-development-toolkit)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">12</span>-<span style="color:#ae81ff">factor-agents](spec-kit-github-spec-driven-development-toolkit)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#e6db74">2026-05-25</span>-<span style="color:#ae81ff">trending-ai-agents](spec-kit-github-spec-driven-development-toolkit)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#e6db74">2026-06-01</span>-<span style="color:#ae81ff">trending-ai-agents](spec-kit-github-spec-driven-development-toolkit)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">*Found</span> <span style="color:#ae81ff">this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*</span>
+</span></span></code></pre></div>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fspec-kit-github-spec-driven-development-toolkit%2f&text=Spec%20Kit%3a%20GitHub%27s%20Revolutionary%20Spec-Driven%20Development%20Toolkit" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fspec-kit-github-spec-driven-development-toolkit%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

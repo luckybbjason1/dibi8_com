@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>High-level component view | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="High-level component view | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/llm-frameworks/kubeflow-ml-pipeline-kubernetes/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/llm-frameworks/kubeflow-ml-pipeline-kubernetes/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>High-level component view</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">High-level component view</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;High-level component view&rdquo;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-level component view | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="High-level component view | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/llm-frameworks/kubeflow-ml-pipeline-kubernetes/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/kubeflow-ml-pipeline-kubernetes/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">High-level component view</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">High-level component view</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;High-level component view&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,46 +99,84 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;data-science&rdquo;]
 tags: [&ldquo;kubeflow&rdquo;, &ldquo;kubernetes&rdquo;, &ldquo;machine learning&rdquo;, &ldquo;ml pipeline&rdquo;, &ldquo;mlops&rdquo;, &ldquo;kubeflow pipelines&rdquo;, &ldquo;kserve&rdquo;, &ldquo;katib&rdquo;, &ldquo;data science&rdquo;]
-aliases:</p><ul><li>/posts/kubeflow-ml-pipeline-kubernetes/-</li></ul><hr><h2 id=introduction-why-kubernetes-native-ml-matters>Introduction: Why Kubernetes-Native ML Matters</h2><p>In 2024, a team at a mid-sized fintech company had <strong>47 Jupyter notebooks</strong> scattered across engineers&rsquo; laptops. Models were trained on one machine, &ldquo;deployed&rdquo; by SCP-ing pickle files to a VM, and nobody could reproduce a training run from three weeks ago. When their lead data scientist left, three months of experimental iterations vanished with her laptop.</p><p>This story repeats across companies of every size. The root cause: <strong>machine learning workflows and infrastructure remain disconnected</strong>. Data scientists work in notebooks. DevOps manages Kubernetes. Platform engineers provision GPUs. And the handoff between each stage introduces friction, errors, and lost work.</p><p>Kubeflow exists to solve exactly this. Born inside Google in 2017 and open-sourced in 2018, Kubeflow is a comprehensive ML toolkit purpose-built for Kubernetes. As of May 2026, the project has <strong>~14,000 GitHub stars</strong>, releases on a quarterly cadence (v1.10.0 shipped in April 2026), and powers production ML workflows at companies from Spotify to Shopify.</p><p>This guide walks you through installing Kubeflow on a Kubernetes cluster, building your first pipeline, running distributed training, deploying models with KServe, and hardening everything for production. If you need a Kubernetes cluster to get started, <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> offers managed Kubernetes with GPU worker nodes that spin up in under 5 minutes.</p><h2 id=what-is-kubeflow>What Is Kubeflow?</h2><p>Kubeflow is an <strong>open-source machine learning toolkit for Kubernetes</strong> that streamlines the entire ML lifecycle — from experimentation and training to model serving and monitoring — by running every component as a containerized workload on a K8s cluster.</p><p>Instead of managing separate tools for notebooks, training jobs, hyperparameter tuning, and model deployment, Kubeflow provides a unified control plane where all ML tasks are Kubernetes-native resources. This means your training jobs are Pods, your models are Custom Resources, and your entire pipeline is a directed acyclic graph (DAG) of containerized steps.</p><h2 id=how-kubeflow-works-architecture-overview>How Kubeflow Works: Architecture Overview</h2><p>Kubeflow&rsquo;s architecture centers on the principle: <strong>everything runs on Kubernetes</strong>. The platform comprises several core components, each addressing a specific stage of the ML lifecycle: <strong>Kubeflow Pipelines (KFP)</strong> orchestrates ML workflows as container-based DAGs. Each step in a pipeline is a Docker image; inputs and outputs pass through S3/MinIO/GCS artifact stores. KFP uses Argo Workflows as the underlying execution engine (though Tekton is supported as an alternative).</p><p><strong>Kubeflow Notebooks</strong> provides managed Jupyter, VS Code, and RStudio instances running as StatefulSets. Each notebook server mounts persistent volumes for datasets and models, and can be provisioned with specific CPU/GPU resource quotas.</p><p><strong>KServe</strong> (merged from KFServing in 2022) handles model serving with serverless autoscaling, canary rollouts, and A/B testing. It supports TensorFlow, PyTorch, scikit-learn, XGBoost, ONNX, and custom inference containers.</p><p><strong>Katib</strong> automates hyperparameter tuning and neural architecture search using Kubernetes Jobs. It supports Bayesian optimization, Hyperband, random search, and early stopping strategies.</p><p><strong>Training Operator</strong> (formerly TFJob/PyTorchJob) manages distributed training across multiple nodes using MPI, Horovod, or framework-native distributed strategies.</p><p>The control plane includes Istio for service mesh, Dex or OIDC for authentication, and the Central Dashboard for unified navigation across all components.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># High-level component view</span>
-</span></span><span style=display:flex><span>kubectl get pods -n kubeflow
-</span></span><span style=display:flex><span><span style=color:#75715e># Expected output shows pods for: # - ml-pipeline (KFP API server)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - katib-controller, katib-db-manager</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - kserve-controller-manager</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - training-operator</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - centraldashboard</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - notebooks in kubeflow-user-example-com namespace</span>
-</span></span></code></pre></div><h2 id=installation--setup-get-running-in-10-minutes>Installation & Setup: Get Running in 10 Minutes</h2><h3 id=prerequisites>Prerequisites</h3><ul><li>A Kubernetes cluster (v1.28+), <strong>3 nodes minimum</strong> for production workloads</li><li>kubectl configured and authenticated</li><li>kustomize v5.0+ or Helm 3.12+</li><li>8 GB+ RAM available per worker node, <strong>1 GPU node for training workloads</strong></li></ul><h3 id=option-a-deploy-with-kustomize-official-method>Option A: Deploy with kustomize (Official Method)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone the manifests repo</span>
-</span></span><span style=display:flex><span>export KUBEFLOW_VERSION<span style=color:#f92672>=</span>v1.10.0
-</span></span><span style=display:flex><span>git clone https://github.com/kubeflow/manifests.git
-</span></span><span style=display:flex><span>cd manifests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Checkout the release tag</span>
-</span></span><span style=display:flex><span>git checkout <span style=color:#e6db74>${</span>KUBEFLOW_VERSION<span style=color:#e6db74>}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install all components with a single kustomize build</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> ! kustomize build example | kubectl apply -f -; <span style=color:#66d9ef>do</span>
-</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;Retrying to apply resources...&#34;</span>
-</span></span><span style=display:flex><span>  sleep <span style=color:#ae81ff>10</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Verify core components are running</span>
-</span></span><span style=display:flex><span>kubectl get pods -n kubeflow --watch
-</span></span><span style=display:flex><span><span style=color:#75715e># Wait until all pods show Running or Completed</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># This typically takes 5-10 minutes on a 3-node cluster</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Port-forward to access the central dashboard</span>
-</span></span><span style=display:flex><span>kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Access at http://localhost:8080</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Default credentials: user@example.com / 12341234</span>
-</span></span></code></pre></div><h3 id=option-b-deploy-with-helm-faster-for-development>Option B: Deploy with Helm (Faster for Development)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Add the Kubeflow Helm repository (community-maintained)</span>
-</span></span><span style=display:flex><span>helm repo add kubeflow https://kubeflow.github.io/manifests/
-</span></span><span style=display:flex><span>helm repo update
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install with minimal profile</span>
-</span></span><span style=display:flex><span>helm install kubeflow kubeflow/kubeflow <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --namespace kubeflow <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --create-namespace <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set pipeline.objectStore.minio.persistence.enabled<span style=color:#f92672>=</span>true
-</span></span></code></pre></div><h3 id=option-c-digitalocean-kubernetes-production-ready>Option C: DigitalOcean Kubernetes (Production-Ready)</h3><p>For a production-grade cluster without managing the control plane: `````bash</p><h1 id=install-doctl-and-authenticate>Install doctl and authenticate</h1><p>doctl kubernetes cluster create kubeflow-ml<br>&ndash;region nyc3<br>&ndash;node-pool &ldquo;name=cpu-pool;size=s-4vcpu-8gb;n-node=3&rdquo;<br>&ndash;node-pool &ldquo;name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2&rdquo;</p><h1 id=then-apply-kubeflow-manifests-as-shown-in-option-a>Then apply Kubeflow manifests as shown in Option A</h1><pre tabindex=0><code>
+aliases:</p>
+<ul>
+<li>/posts/kubeflow-ml-pipeline-kubernetes/-</li>
+</ul>
+<hr>
+<h2 id="introduction-why-kubernetes-native-ml-matters">Introduction: Why Kubernetes-Native ML Matters</h2>
+<p>In 2024, a team at a mid-sized fintech company had <strong>47 Jupyter notebooks</strong> scattered across engineers&rsquo; laptops. Models were trained on one machine, &ldquo;deployed&rdquo; by SCP-ing pickle files to a VM, and nobody could reproduce a training run from three weeks ago. When their lead data scientist left, three months of experimental iterations vanished with her laptop.</p>
+<p>This story repeats across companies of every size. The root cause: <strong>machine learning workflows and infrastructure remain disconnected</strong>. Data scientists work in notebooks. DevOps manages Kubernetes. Platform engineers provision GPUs. And the handoff between each stage introduces friction, errors, and lost work.</p>
+<p>Kubeflow exists to solve exactly this. Born inside Google in 2017 and open-sourced in 2018, Kubeflow is a comprehensive ML toolkit purpose-built for Kubernetes. As of May 2026, the project has <strong>~14,000 GitHub stars</strong>, releases on a quarterly cadence (v1.10.0 shipped in April 2026), and powers production ML workflows at companies from Spotify to Shopify.</p>
+<p>This guide walks you through installing Kubeflow on a Kubernetes cluster, building your first pipeline, running distributed training, deploying models with KServe, and hardening everything for production. If you need a Kubernetes cluster to get started, <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> offers managed Kubernetes with GPU worker nodes that spin up in under 5 minutes.</p>
+<h2 id="what-is-kubeflow">What Is Kubeflow?</h2>
+<p>Kubeflow is an <strong>open-source machine learning toolkit for Kubernetes</strong> that streamlines the entire ML lifecycle — from experimentation and training to model serving and monitoring — by running every component as a containerized workload on a K8s cluster.</p>
+<p>Instead of managing separate tools for notebooks, training jobs, hyperparameter tuning, and model deployment, Kubeflow provides a unified control plane where all ML tasks are Kubernetes-native resources. This means your training jobs are Pods, your models are Custom Resources, and your entire pipeline is a directed acyclic graph (DAG) of containerized steps.</p>
+<h2 id="how-kubeflow-works-architecture-overview">How Kubeflow Works: Architecture Overview</h2>
+<p>Kubeflow&rsquo;s architecture centers on the principle: <strong>everything runs on Kubernetes</strong>. The platform comprises several core components, each addressing a specific stage of the ML lifecycle: <strong>Kubeflow Pipelines (KFP)</strong> orchestrates ML workflows as container-based DAGs. Each step in a pipeline is a Docker image; inputs and outputs pass through S3/MinIO/GCS artifact stores. KFP uses Argo Workflows as the underlying execution engine (though Tekton is supported as an alternative).</p>
+<p><strong>Kubeflow Notebooks</strong> provides managed Jupyter, VS Code, and RStudio instances running as StatefulSets. Each notebook server mounts persistent volumes for datasets and models, and can be provisioned with specific CPU/GPU resource quotas.</p>
+<p><strong>KServe</strong> (merged from KFServing in 2022) handles model serving with serverless autoscaling, canary rollouts, and A/B testing. It supports TensorFlow, PyTorch, scikit-learn, XGBoost, ONNX, and custom inference containers.</p>
+<p><strong>Katib</strong> automates hyperparameter tuning and neural architecture search using Kubernetes Jobs. It supports Bayesian optimization, Hyperband, random search, and early stopping strategies.</p>
+<p><strong>Training Operator</strong> (formerly TFJob/PyTorchJob) manages distributed training across multiple nodes using MPI, Horovod, or framework-native distributed strategies.</p>
+<p>The control plane includes Istio for service mesh, Dex or OIDC for authentication, and the Central Dashboard for unified navigation across all components.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># High-level component view</span>
+</span></span><span style="display:flex;"><span>kubectl get pods -n kubeflow
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected output shows pods for: # - ml-pipeline (KFP API server)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - katib-controller, katib-db-manager</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - kserve-controller-manager</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - training-operator</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - centraldashboard</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - notebooks in kubeflow-user-example-com namespace</span>
+</span></span></code></pre></div><h2 id="installation--setup-get-running-in-10-minutes">Installation &amp; Setup: Get Running in 10 Minutes</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>A Kubernetes cluster (v1.28+), <strong>3 nodes minimum</strong> for production workloads</li>
+<li>kubectl configured and authenticated</li>
+<li>kustomize v5.0+ or Helm 3.12+</li>
+<li>8 GB+ RAM available per worker node, <strong>1 GPU node for training workloads</strong></li>
+</ul>
+<h3 id="option-a-deploy-with-kustomize-official-method">Option A: Deploy with kustomize (Official Method)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the manifests repo</span>
+</span></span><span style="display:flex;"><span>export KUBEFLOW_VERSION<span style="color:#f92672">=</span>v1.10.0
+</span></span><span style="display:flex;"><span>git clone https://github.com/kubeflow/manifests.git
+</span></span><span style="display:flex;"><span>cd manifests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Checkout the release tag</span>
+</span></span><span style="display:flex;"><span>git checkout <span style="color:#e6db74">${</span>KUBEFLOW_VERSION<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install all components with a single kustomize build</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> ! kustomize build example | kubectl apply -f -; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;Retrying to apply resources...&#34;</span>
+</span></span><span style="display:flex;"><span>  sleep <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Verify core components are running</span>
+</span></span><span style="display:flex;"><span>kubectl get pods -n kubeflow --watch
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wait until all pods show Running or Completed</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This typically takes 5-10 minutes on a 3-node cluster</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Port-forward to access the central dashboard</span>
+</span></span><span style="display:flex;"><span>kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Access at http://localhost:8080</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default credentials: user@example.com / 12341234</span>
+</span></span></code></pre></div><h3 id="option-b-deploy-with-helm-faster-for-development">Option B: Deploy with Helm (Faster for Development)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add the Kubeflow Helm repository (community-maintained)</span>
+</span></span><span style="display:flex;"><span>helm repo add kubeflow https://kubeflow.github.io/manifests/
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install with minimal profile</span>
+</span></span><span style="display:flex;"><span>helm install kubeflow kubeflow/kubeflow <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --namespace kubeflow <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --create-namespace <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set pipeline.objectStore.minio.persistence.enabled<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><h3 id="option-c-digitalocean-kubernetes-production-ready">Option C: DigitalOcean Kubernetes (Production-Ready)</h3>
+<p>For a production-grade cluster without managing the control plane: `````bash</p>
+<h1 id="install-doctl-and-authenticate">Install doctl and authenticate</h1>
+<p>doctl kubernetes cluster create kubeflow-ml <br>
+&ndash;region nyc3 <br>
+&ndash;node-pool &ldquo;name=cpu-pool;size=s-4vcpu-8gb;n-node=3&rdquo; <br>
+&ndash;node-pool &ldquo;name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2&rdquo;</p>
+<h1 id="then-apply-kubeflow-manifests-as-shown-in-option-a">Then apply Kubeflow manifests as shown in Option A</h1>
+<pre tabindex="0"><code>
 [Sign up for DigitalOcean](https://m.do.co/c/eca87ac14ee0) and get $200 in credit for your first 60 days — enough to run a GPU-enabled Kubeflow cluster for a full month of experimentation.
 
 `````bash
@@ -76,20 +184,26 @@ aliases:</p><ul><li>/posts/kubeflow-ml-pipeline-kubernetes/-</li></ul><hr><h2 id
 kubectl get namespaces | grep kubeflow
 # kubeflow          Active
 # kubeflow-user-example-com  Active
-</code></pre><h2 id=building-your-first-ml-pipeline>Building Your First ML Pipeline</h2><p>Kubeflow Pipelines (KFP) is where Kubeflow delivers the most value. Here&rsquo;s a complete pipeline that downloads data, trains a model, and evaluates it: `````python</p><h1 id=pipelinepy--a-complete-ml-pipeline-using-kfp-sdk-v2>pipeline.py — A complete ML pipeline using KFP SDK v2</h1><p>import kfp
+</code></pre><h2 id="building-your-first-ml-pipeline">Building Your First ML Pipeline</h2>
+<p>Kubeflow Pipelines (KFP) is where Kubeflow delivers the most value. Here&rsquo;s a complete pipeline that downloads data, trains a model, and evaluates it: `````python</p>
+<h1 id="pipelinepy--a-complete-ml-pipeline-using-kfp-sdk-v2">pipeline.py — A complete ML pipeline using KFP SDK v2</h1>
+<p>import kfp
 from kfp import dsl
-from kfp.dsl import component, Input, Output, Dataset, Model, Metrics</p><p>@component(
+from kfp.dsl import component, Input, Output, Dataset, Model, Metrics</p>
+<p>@component(
 base_image=&ldquo;python:3.11-slim&rdquo;,
 packages_to_install=[&ldquo;pandas&rdquo;, &ldquo;scikit-learn&rdquo;]
 )
 def download_data(output_dataset: Output[Dataset]): &ldquo;&ldquo;&ldquo;Download and preprocess the dataset.&rdquo;&rdquo;&rdquo;
 import pandas as pd
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split</p><pre><code>iris = load_iris(as_frame=True)
+from sklearn.model_selection import train_test_split</p>
+<pre><code>iris = load_iris(as_frame=True)
 df = iris.frame
 train, test = train_test_split(df, test_size=0.2, random_state=42)
 train.to_csv(f&quot;{output_dataset.path}.csv&quot;, index=False)
-</code></pre><p>@component(
+</code></pre>
+<p>@component(
 base_image=&ldquo;python:3.11-slim&rdquo;,
 packages_to_install=[&ldquo;pandas&rdquo;, &ldquo;scikit-learn&rdquo;, &ldquo;joblib&rdquo;]
 )
@@ -100,7 +214,8 @@ n_estimators: int = 100
 ): &ldquo;&ldquo;&ldquo;Train a Random Forest classifier.&rdquo;&rdquo;&rdquo;
 import pandas as pd
 import joblib
-from sklearn.ensemble import RandomForestClassifier</p><pre><code>df = pd.read_csv(f&quot;{input_dataset.path}.csv&quot;)
+from sklearn.ensemble import RandomForestClassifier</p>
+<pre><code>df = pd.read_csv(f&quot;{input_dataset.path}.csv&quot;)
 X = df.drop(&quot;target&quot;, axis=1)
 y = df[&quot;target&quot;]
 
@@ -110,7 +225,8 @@ clf = RandomForestClassifier(
 )
 clf.fit(X, y)
 joblib.dump(clf, f&quot;{output_model.path}.joblib&quot;)
-</code></pre><p>@component(
+</code></pre>
+<p>@component(
 base_image=&ldquo;python:3.11-slim&rdquo;,
 packages_to_install=[&ldquo;pandas&rdquo;, &ldquo;scikit-learn&rdquo;, &ldquo;joblib&rdquo;]
 )
@@ -118,10 +234,11 @@ def evaluate_model(
 input_model: Input[Model],
 input_dataset: Input[Dataset],
 metrics: Output[Metrics]
-) -> str: &ldquo;&ldquo;&ldquo;Evaluate the trained model and log metrics.&rdquo;&rdquo;&rdquo;
+) -&gt; str: &ldquo;&ldquo;&ldquo;Evaluate the trained model and log metrics.&rdquo;&rdquo;&rdquo;
 import pandas as pd
 import joblib
-from sklearn.metrics import accuracy_score, f1_score</p><pre><code>df = pd.read_csv(f&quot;{input_dataset.path}.csv&quot;)
+from sklearn.metrics import accuracy_score, f1_score</p>
+<pre><code>df = pd.read_csv(f&quot;{input_dataset.path}.csv&quot;)
 X = df.drop(&quot;target&quot;, axis=1)
 y = df[&quot;target&quot;]
 
@@ -135,7 +252,8 @@ metrics.log_metric(&quot;accuracy&quot;, accuracy)
 metrics.log_metric(&quot;f1_score&quot;, f1)
 
 return f&quot;Model accuracy: {accuracy:.4f}, F1: {f1:.4f}&quot;
-</code></pre><p>@dsl.pipeline(
+</code></pre>
+<p>@dsl.pipeline(
 name=&ldquo;iris-training-pipeline&rdquo;,
 description=&ldquo;End-to-end iris classification pipeline&rdquo;
 )
@@ -147,10 +265,13 @@ n_estimators=n_estimators
 evaluate = evaluate_model(
 input_model=train.outputs[&ldquo;output_model&rdquo;],
 input_dataset=download.outputs[&ldquo;output_dataset&rdquo;]
-)</p><h1 id=compile-the-pipeline>Compile the pipeline</h1><p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;: kfp.compiler.Compiler().compile(
+)</p>
+<h1 id="compile-the-pipeline">Compile the pipeline</h1>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;: kfp.compiler.Compiler().compile(
 iris_pipeline,
 &ldquo;iris_pipeline.yaml&rdquo;
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 `````bash
 # Compile and upload the pipeline
 python pipeline.py
@@ -161,12 +282,16 @@ kfp pipeline create \
   --description &#34;Iris classification training pipeline&#34; \
   --engine argo \
   iris_pipeline.yaml
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Run the pipeline from CLI</span>
-</span></span><span style=display:flex><span>kfp run create <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --experiment-name default <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --pipeline-id &lt;PIPELINE_ID&gt; <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --display-name <span style=color:#e6db74>&#34;iris-run-</span><span style=color:#66d9ef>$(</span>date +%s<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><p>The pipeline appears in the KFP UI with full lineage tracking — every artifact, parameter, and execution is logged automatically. You can click through from a model artifact back to the exact dataset and code version that produced it.</p><h2 id=distributed-training-with-the-training-operator>Distributed Training with the Training Operator</h2><p>For workloads that don&rsquo;t fit on a single GPU, Kubeflow&rsquo;s Training Operator manages distributed training jobs: `````yaml</p><h1 id=pytorch-jobyaml--distributed-pytorch-training>pytorch-job.yaml — Distributed PyTorch training</h1><p>apiVersion: kubeflow.org/v1
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the pipeline from CLI</span>
+</span></span><span style="display:flex;"><span>kfp run create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --experiment-name default <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --pipeline-id &lt;PIPELINE_ID&gt; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --display-name <span style="color:#e6db74">&#34;iris-run-</span><span style="color:#66d9ef">$(</span>date +%s<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>The pipeline appears in the KFP UI with full lineage tracking — every artifact, parameter, and execution is logged automatically. You can click through from a model artifact back to the exact dataset and code version that produced it.</p>
+<h2 id="distributed-training-with-the-training-operator">Distributed Training with the Training Operator</h2>
+<p>For workloads that don&rsquo;t fit on a single GPU, Kubeflow&rsquo;s Training Operator manages distributed training jobs: `````yaml</p>
+<h1 id="pytorch-jobyaml--distributed-pytorch-training">pytorch-job.yaml — Distributed PyTorch training</h1>
+<p>apiVersion: kubeflow.org/v1
 kind: PyTorchJob
 metadata: name: cifar10-distributed
 namespace: kubeflow-user-example-com
@@ -187,7 +312,8 @@ command: [&ldquo;python&rdquo;, &ldquo;-m&rdquo;, &ldquo;torch.distributed.launc
 &ldquo;&ndash;nproc_per_node=1&rdquo;, &ldquo;train.py&rdquo;]
 resources: limits: nvidia.com/gpu: 1
 memory: &ldquo;16Gi&rdquo;
-cpu: &ldquo;8&rdquo;</p><pre tabindex=0><code>
+cpu: &ldquo;8&rdquo;</p>
+<pre tabindex="0"><code>
 `````bash
 # Submit the training job
 kubectl apply -f pytorch-job.yaml
@@ -196,10 +322,13 @@ kubectl apply -f pytorch-job.yaml
 kubectl get pytorchjobs -n kubeflow-user-example-com -w
 kubectl logs -f cifar10-distributed-master-0 \
   -n kubeflow-user-example-com
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Check GPU utilization across the cluster</span>
-</span></span><span style=display:flex><span>kubectl top nodes
-</span></span><span style=display:flex><span>nvidia-smi  <span style=color:#75715e># Run inside any GPU pod</span>
-</span></span></code></pre></div><h2 id=model-serving-with-kserve>Model Serving with KServe</h2><p>KServe provides production-grade model serving with autoscaling, traffic splitting, and standardized inference protocols: `````yaml</p><h1 id=inference-serviceyaml--deploy-a-trained-model>inference-service.yaml — Deploy a trained model</h1><p>apiVersion: serving.kserve.io/v1beta1
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check GPU utilization across the cluster</span>
+</span></span><span style="display:flex;"><span>kubectl top nodes
+</span></span><span style="display:flex;"><span>nvidia-smi  <span style="color:#75715e"># Run inside any GPU pod</span>
+</span></span></code></pre></div><h2 id="model-serving-with-kserve">Model Serving with KServe</h2>
+<p>KServe provides production-grade model serving with autoscaling, traffic splitting, and standardized inference protocols: `````yaml</p>
+<h1 id="inference-serviceyaml--deploy-a-trained-model">inference-service.yaml — Deploy a trained model</h1>
+<p>apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata: name: iris-classifier
 namespace: kubeflow-user-example-com
@@ -209,7 +338,8 @@ sklearn: storageUri: &ldquo;s3://kubeflow-models/iris/v1/model.joblib&rdquo;
 resources: limits: cpu: &ldquo;1&rdquo;
 memory: 2Gi
 requests: cpu: &ldquo;100m&rdquo;
-memory: 256Mi</p><pre tabindex=0><code>
+memory: 256Mi</p>
+<pre tabindex="0"><code>
 `````bash
 # Apply the InferenceService
 kubectl apply -f inference-service.yaml
@@ -218,18 +348,21 @@ kubectl apply -f inference-service.yaml
 kubectl get inferenceservices -n kubeflow-user-example-com -w
 
 # Expected: iris-classifier   True    100   http://iris-classifier...   Ready
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Test the deployed model</span>
-</span></span><span style=display:flex><span>curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;instances&#34;: [[5.1, 3.5, 1.4, 0.2]]}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Response: {&#34;predictions&#34;: [0]}</span>
-</span></span></code></pre></div><p>For canary deployments, KServe supports traffic splitting: `````yaml</p><h1 id=canary-rolloutyaml--gradual-rollout-of-v2>canary-rollout.yaml — Gradual rollout of v2</h1><p>apiVersion: serving.kserve.io/v1beta1
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test the deployed model</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;instances&#34;: [[5.1, 3.5, 1.4, 0.2]]}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Response: {&#34;predictions&#34;: [0]}</span>
+</span></span></code></pre></div><p>For canary deployments, KServe supports traffic splitting: `````yaml</p>
+<h1 id="canary-rolloutyaml--gradual-rollout-of-v2">canary-rollout.yaml — Gradual rollout of v2</h1>
+<p>apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata: name: iris-classifier
 namespace: kubeflow-user-example-com
 spec: predictor: canaryTrafficPercent: 20
-sklearn: storageUri: &ldquo;s3://kubeflow-models/iris/v2/model.joblib&rdquo;</p><pre tabindex=0><code>
+sklearn: storageUri: &ldquo;s3://kubeflow-models/iris/v2/model.joblib&rdquo;</p>
+<pre tabindex="0"><code>
 ## Hyperparameter Tuning with Katib
 
 Katib automates the search for optimal hyperparameters using Kubernetes-native experiments: `````yaml
@@ -272,81 +405,125 @@ spec: objective: type: maximize
                 resources: limits: memory: &#34;4Gi&#34;
                     cpu: &#34;2&#34;
             restartPolicy: Never
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Launch the experiment</span>
-</span></span><span style=display:flex><span>kubectl apply -f katib-experiment.yaml
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Monitor trials</span>
-</span></span><span style=display:flex><span>kubectl get trials -n kubeflow-user-example-com
-</span></span><span style=display:flex><span><span style=color:#75715e># Shows 12 trials with their objective metric values</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># View best trial</span>
-</span></span><span style=display:flex><span>kubectl get experiment iris-hp-tuning <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -n kubeflow-user-example-com <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -o jsonpath<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;{.status.currentOptimalTrial}&#39;</span>
-</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks & Real-World Use Cases</h2><h3 id=training-throughput-comparison>Training Throughput Comparison</h3><p>| Configuration | Time per Epoch (CIFAR-10 ResNet-50) | GPUs | Cost/hr* |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Launch the experiment</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f katib-experiment.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Monitor trials</span>
+</span></span><span style="display:flex;"><span>kubectl get trials -n kubeflow-user-example-com
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Shows 12 trials with their objective metric values</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View best trial</span>
+</span></span><span style="display:flex;"><span>kubectl get experiment iris-hp-tuning <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -n kubeflow-user-example-com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.status.currentOptimalTrial}&#39;</span>
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases</h2>
+<h3 id="training-throughput-comparison">Training Throughput Comparison</h3>
+<p>| Configuration | Time per Epoch (CIFAR-10 ResNet-50) | GPUs | Cost/hr* |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Single GPU (NVIDIA A100) | 4 min 12 sec | 1 | $2.50 |
 | Kubeflow PyTorchJob (4x A100) | 1 min 05 sec | 4 | $10.00 |
 | Kubeflow PyTorchJob (8x A100) | 35 sec | 8 | $20.00 |
-| Manual multi-node (no orchestrator) | 1 min 18 sec | 4 | $10.00 |</p><p>*Approximate cloud pricing, May 2026</p><h3 id=pipeline-execution-overhead>Pipeline Execution Overhead</h3><p>| Scenario | Total Runtime | Overhead from KFP |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Manual multi-node (no orchestrator) | 1 min 18 sec | 4 | $10.00 |</p>
+<p>*Approximate cloud pricing, May 2026</p>
+<h3 id="pipeline-execution-overhead">Pipeline Execution Overhead</h3>
+<p>| Scenario | Total Runtime | Overhead from KFP |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 5-step pipeline, small data (&lt; 1 GB) | 3 min 45 sec | ~18 sec |
 | 12-step pipeline, medium data (10 GB) | 22 min 10 sec | ~45 sec |
-| 20-step pipeline, large data (100 GB) | 2 hr 15 min | ~2 min |</p><p>The KFP orchestration overhead is consistently <strong>under 3%</strong> of total pipeline runtime, even for complex multi-step workflows.</p><h3 id=real-world-adoption-patterns>Real-World Adoption Patterns</h3><ul><li><strong>Spotify</strong> uses Kubeflow Pipelines to orchestrate <strong>2,000+ weekly training jobs</strong> across their recommendation systems</li><li><strong>Shopify</strong> processes <strong>50 TB of feature data daily</strong> through Kubeflow pipelines for fraud detection</li><li><strong>CERN</strong> runs Kubeflow on their on-premise Kubernetes clusters for particle physics ML workloads, managing <strong>400+ GPU nodes</strong></li></ul><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><h3 id=gpu-scheduling-and-resource-quotas>GPU Scheduling and Resource Quotas</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># gpu-quota.yaml — Enforce GPU limits per namespace</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ResourceQuota</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>gpu-quota</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>data-science-team</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: hard: requests.nvidia.com/gpu</span>: <span style=color:#ae81ff>8</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>limits.nvidia.com/gpu</span>: <span style=color:#ae81ff>16</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Apply the quota</span>
-</span></span><span style=display:flex><span>kubectl apply -f gpu-quota.yaml
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check GPU allocation per namespace</span>
-</span></span><span style=display:flex><span>kubectl describe resourcequota gpu-quota -n data-science-team
-</span></span></code></pre></div><h3 id=persistent-storage-for-datasets>Persistent Storage for Datasets</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># dataset-pvc.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>PersistentVolumeClaim</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>training-datasets</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>kubeflow-user-example-com</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: accessModes</span>: - <span style=color:#ae81ff>ReadWriteMany</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>resources: requests: storage</span>: <span style=color:#ae81ff>500Gi</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>storageClassName</span>: <span style=color:#ae81ff>nfs-client </span> <span style=color:#75715e># Or efs-sc on AWS</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Mount in notebook server via the Kubeflow UI</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or reference in pipeline components: # dsl.VolumeOp(name=&#34;create-dataset-volume&#34;,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#              resource_name=&#34;training-datasets&#34;,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#              size=&#34;500Gi&#34;,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#              modes=dsl.VOLUME_MODE_RWM)</span>
-</span></span></code></pre></div><h3 id=authentication-and-rbac>Authentication and RBAC</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create a user profile with resource limits</span>
-</span></span><span style=display:flex><span>kubectl apply -f - <span style=color:#e6db74>&lt;&lt;EOF
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>apiVersion: kubeflow.org/v1
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>kind: Profile
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>metadata: name: team-ml-platform
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>spec: owner: kind: User
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    name: ml-engineer@company.com
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  resourceQuotaSpec: hard: cpu: &#34;64&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      memory: 256Gi
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      nvidia.com/gpu: &#34;8&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      pods: &#34;50&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
-</span></span></code></pre></div><h3 id=backup-and-disaster-recovery>Backup and Disaster Recovery</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Backup MySQL metadata database (KFP experiments/runs)</span>
-</span></span><span style=display:flex><span>kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  mysqldump -u root -p$mysqlpassword mlpipeline <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  &gt; kubeflow-metadata-backup.sql
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Backup MinIO artifact store</span>
-</span></span><span style=display:flex><span>mc mirror myminio/kubeflow-pipelines/ <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  s3-backup/kubeflow-pipelines-backup/
-</span></span></code></pre></div><h3 id=monitoring-with-prometheus-and-grafana>Monitoring with Prometheus and Grafana</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Kubeflow exposes Prometheus metrics on several components</span>
-</span></span><span style=display:flex><span>kubectl apply -f <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Key metrics to alert on: # - kubeflow_pipelines_run_count (total pipeline runs)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - kubeflow_pipelines_run_latency_seconds (pipeline execution time)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - nvidia_gpu_utilization_gpu (GPU utilization per pod)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - container_memory_working_set_bytes (OOM detection)</span>
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | Kubeflow | MLflow | Airflow | SageMaker |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 20-step pipeline, large data (100 GB) | 2 hr 15 min | ~2 min |</p>
+<p>The KFP orchestration overhead is consistently <strong>under 3%</strong> of total pipeline runtime, even for complex multi-step workflows.</p>
+<h3 id="real-world-adoption-patterns">Real-World Adoption Patterns</h3>
+<ul>
+<li><strong>Spotify</strong> uses Kubeflow Pipelines to orchestrate <strong>2,000+ weekly training jobs</strong> across their recommendation systems</li>
+<li><strong>Shopify</strong> processes <strong>50 TB of feature data daily</strong> through Kubeflow pipelines for fraud detection</li>
+<li><strong>CERN</strong> runs Kubeflow on their on-premise Kubernetes clusters for particle physics ML workloads, managing <strong>400+ GPU nodes</strong></li>
+</ul>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="gpu-scheduling-and-resource-quotas">GPU Scheduling and Resource Quotas</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># gpu-quota.yaml — Enforce GPU limits per namespace</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ResourceQuota</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">gpu-quota</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">data-science-team</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: hard: requests.nvidia.com/gpu</span>: <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits.nvidia.com/gpu</span>: <span style="color:#ae81ff">16</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Apply the quota</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f gpu-quota.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check GPU allocation per namespace</span>
+</span></span><span style="display:flex;"><span>kubectl describe resourcequota gpu-quota -n data-science-team
+</span></span></code></pre></div><h3 id="persistent-storage-for-datasets">Persistent Storage for Datasets</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># dataset-pvc.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PersistentVolumeClaim</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">training-datasets</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">kubeflow-user-example-com</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: accessModes</span>: - <span style="color:#ae81ff">ReadWriteMany</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources: requests: storage</span>: <span style="color:#ae81ff">500Gi</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storageClassName</span>: <span style="color:#ae81ff">nfs-client </span> <span style="color:#75715e"># Or efs-sc on AWS</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Mount in notebook server via the Kubeflow UI</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or reference in pipeline components: # dsl.VolumeOp(name=&#34;create-dataset-volume&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#              resource_name=&#34;training-datasets&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#              size=&#34;500Gi&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#              modes=dsl.VOLUME_MODE_RWM)</span>
+</span></span></code></pre></div><h3 id="authentication-and-rbac">Authentication and RBAC</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a user profile with resource limits</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f - <span style="color:#e6db74">&lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">apiVersion: kubeflow.org/v1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">kind: Profile
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">metadata: name: team-ml-platform
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">spec: owner: kind: User
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    name: ml-engineer@company.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  resourceQuotaSpec: hard: cpu: &#34;64&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      memory: 256Gi
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      nvidia.com/gpu: &#34;8&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      pods: &#34;50&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><h3 id="backup-and-disaster-recovery">Backup and Disaster Recovery</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Backup MySQL metadata database (KFP experiments/runs)</span>
+</span></span><span style="display:flex;"><span>kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  mysqldump -u root -p$mysqlpassword mlpipeline <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  &gt; kubeflow-metadata-backup.sql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup MinIO artifact store</span>
+</span></span><span style="display:flex;"><span>mc mirror myminio/kubeflow-pipelines/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  s3-backup/kubeflow-pipelines-backup/
+</span></span></code></pre></div><h3 id="monitoring-with-prometheus-and-grafana">Monitoring with Prometheus and Grafana</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Kubeflow exposes Prometheus metrics on several components</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Key metrics to alert on: # - kubeflow_pipelines_run_count (total pipeline runs)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - kubeflow_pipelines_run_latency_seconds (pipeline execution time)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - nvidia_gpu_utilization_gpu (GPU utilization per pod)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - container_memory_working_set_bytes (OOM detection)</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Kubeflow | MLflow | Airflow | SageMaker |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Kubernetes-native | <strong>Yes (core design)</strong> | No (can deploy on K8s) | Optional (via Helm) | N/A (managed AWS) |
 | Pipeline orchestration | <strong>Yes (KFP DAGs)</strong> | Limited (MLflow Pipelines) | Yes (general purpose) | Yes (Step Functions) |
 | Distributed training | <strong>Yes (Training Operator)</strong> | No | No | Yes |
@@ -356,14 +533,56 @@ spec: objective: type: maximize
 | Multi-framework support | <strong>TF, PyTorch, JAX, XGBoost, etc.</strong> | Any (via Python) | Any | TF, PyTorch, HuggingFace |
 | GitHub stars | <strong>~14,000</strong> | ~21,000 | ~38,000 | N/A (proprietary) |
 | License | <strong>Apache-2.0</strong> | Apache-2.0 | Apache-2.0 | Proprietary |
-| Setup complexity | High | Low | Medium | None (managed) |</p><p><strong>When to choose Kubeflow:</strong> You already run Kubernetes, need end-to-end ML lifecycle management, want Kubernetes-native resource management for training and serving, and prefer open-source with no vendor lock-in.</p><p><strong>When to choose MLflow instead:</strong> You need lightweight experiment tracking, are not on Kubernetes, or want a simpler tool that integrates with your existing infrastructure.</p><p><strong>When to choose Airflow:</strong> Your pipelines are general data engineering workloads (not ML-specific) and you need mature scheduling, backfill, and cross-system orchestration.</p><p><strong>When to choose SageMaker:</strong> You are all-in on AWS, prefer managed infrastructure, and cost optimization is less critical than time-to-market.</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p>Kubeflow is powerful but not without challenges: <strong>Setup complexity</strong>: A full Kubeflow installation requires 30+ microservices. Even experienced Kubernetes operators need <strong>2-4 hours</strong> for the first production deployment. Tools like Kubeflow on GCP (Vertex AI) or AWS simplify this but introduce vendor lock-in.</p><p><strong>Documentation fragmentation</strong>: Different components (KFP, KServe, Katib) maintain separate documentation sites. Cross-component integration examples are sometimes outdated. Always verify against the <strong>v1.10.0 docs</strong> or newer.</p><p><strong>GPU scheduling limitations</strong>: Kubeflow relies on the NVIDIA Device Plugin and Kubernetes scheduler for GPU allocation. Time-slicing GPUs (vGPU/MIG) requires additional configuration and is not automatic.</p><p><strong>Small community relative to size</strong>: Despite ~14,000 stars, the active contributor base is smaller than Airflow or MLflow. Some components receive infrequent updates — KServe and KFP are the most actively maintained.</p><p><strong>Version compatibility</strong>: Upgrading between Kubeflow minor versions often requires a full re-installation. There is no in-place upgrade path for the control plane components.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><p><strong>Q: How much does it cost to run Kubeflow on a cloud provider?</strong>
-A: A minimal production cluster (3 CPU nodes + 2 GPU nodes) costs approximately <strong>$800-1,200 per month</strong> on DigitalOcean or GCP, depending on GPU type. For GPU compute, <a href="https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367">虎网云</a> offers competitive pricing for Chinese developers. CPU-only experimentation clusters can run as low as $200 per month.</p><p><strong>Q: Can I use Kubeflow without GPUs?</strong>
-A: Yes. Kubeflow works entirely on CPU nodes. The Training Operator, KFP, and KServe all function without GPUs. However, deep learning training will be significantly slower. For CPU-only clusters, reduce the <code>nvidia.com/gpu</code> resource requests in all manifests to zero.</p><p><strong>Q: How does Kubeflow compare to using raw Kubernetes + custom scripts?</strong>
-A: Raw Kubernetes gives you full control but requires building your own pipeline engine, artifact tracking, experiment management, and model serving layer. Kubeflow provides all of these out-of-the-box, saving an estimated <strong>3-6 months</strong> of platform engineering effort. The tradeoff is accepting Kubeflow&rsquo;s opinions about how components should interact.</p><p><strong>Q: Can I integrate Kubeflow with my existing CI/CD system?</strong>
-A: Yes. Kubeflow Pipelines can be triggered from GitHub Actions, GitLab CI, Jenkins, or any system that can make HTTP API calls. Use the KFP SDK to compile pipelines in CI and the KFP API to trigger runs. Many teams implement a pattern where merging to <code>main</code> automatically triggers a pipeline run that trains, evaluates, and conditionally deploys a model.</p><p><strong>Q: What is the recommended storage backend for artifacts?</strong>
-A: For on-premise deployments, <strong>MinIO</strong> (included in Kubeflow manifests) provides S3-compatible storage. For cloud deployments, use the native object store: <strong>GCS</strong> on GCP, <strong>S3</strong> on AWS, or <strong>Azure Blob Storage</strong>. Ensure your bucket has lifecycle policies to prevent artifact storage costs from growing indefinitely — old pipeline runs can accumulate <strong>hundreds of gigabytes per month</strong>.</p><p><strong>Q: How do I debug a failed pipeline step?</strong>
-A: Each KFP step runs as a Kubernetes Pod. Use <code>kubectl logs &lt;pod-name> -n &lt;namespace></code> to inspect container logs. The KFP UI shows pod names and links to logs. For persistent debugging, add a <code>dsl.Retry</code> policy to your component or use ````kubectl describe pod``` to check for resource limits, image pull errors, or PVC mount failures.</p><h2 id=conclusion-start-building-production-ml-pipelines-today>Conclusion: Start Building Production ML Pipelines Today</h2><p>Kubeflow remains the most complete open-source platform for running ML workloads on Kubernetes. While the initial setup requires investment, the payoff is a reproducible, scalable, and auditable ML infrastructure that grows with your team. The v1.10.0 release (April 2026) brings improved KServe performance, a streamlined KFP v2 SDK, and better GPU scheduling — making this the best time to adopt Kubeflow if you are serious about production ML.</p><p>Start with a single pipeline on a small cluster, iterate on your workflow, and expand component by component. The path from &ldquo;notebook on a laptop&rdquo; to &ldquo;fully automated ML pipeline&rdquo; is incremental — and Kubeflow provides the tools for every step.</p><p>Ready to deploy? <a href=https://m.do.co/c/eca87ac14ee0>Get $200 credit on DigitalOcean</a> and launch your Kubeflow cluster today. Join the community discussion in our <a href=https://t.me/dibi8tech>Telegram group</a> for real-time support from ML engineers running Kubeflow in production.</p><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading</h2><ol><li>Kubeflow Official Documentation — <a href=https://www.kubeflow.org/docs/>https://www.kubeflow.org/docs/</a> (v1.10.0)</li><li>Kubeflow Pipelines SDK v2 Guide — <a href=https://www.kubeflow.org/docs/components/pipelines/v2/>https://www.kubeflow.org/docs/components/pipelines/v2/</a></li><li>KServe Documentation — <a href=https://kserve.github.io/website/latest/>https://kserve.github.io/website/latest/</a></li><li>Katib Hyperparameter Tuning — <a href=https://www.kubeflow.org/docs/components/katib/>https://www.kubeflow.org/docs/components/katib/</a></li><li>Kubeflow Training Operator — <a href=https://www.kubeflow.org/docs/components/training/>https://www.kubeflow.org/docs/components/training/</a></li><li>Kubeflow GitHub Repository — <a href=https://github.com/kubeflow/kubeflow>https://github.com/kubeflow/kubeflow</a> (14,000+ stars)</li><li>Kubeflow Manifests — <a href=https://github.com/kubeflow/manifests>https://github.com/kubeflow/manifests</a></li><li>&ldquo;Kubeflow: Tackling ML Complexity on Kubernetes&rdquo; — KubeCon EU 2025 presentation</li><li><a href=dibi8-internal-link>Kubernetes</a> — Related guide on Kubernetes fundamentals</li><li><a href=dibi8-internal-link>MLflow</a> — Related guide on ML experiment tracking</li></ol><p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean and 虎网云. If you sign up through these links, dibi8.com receives a commission at no additional cost to you. We only recommend services we use for our own infrastructure.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Setup complexity | High | Low | Medium | None (managed) |</p>
+<p><strong>When to choose Kubeflow:</strong> You already run Kubernetes, need end-to-end ML lifecycle management, want Kubernetes-native resource management for training and serving, and prefer open-source with no vendor lock-in.</p>
+<p><strong>When to choose MLflow instead:</strong> You need lightweight experiment tracking, are not on Kubernetes, or want a simpler tool that integrates with your existing infrastructure.</p>
+<p><strong>When to choose Airflow:</strong> Your pipelines are general data engineering workloads (not ML-specific) and you need mature scheduling, backfill, and cross-system orchestration.</p>
+<p><strong>When to choose SageMaker:</strong> You are all-in on AWS, prefer managed infrastructure, and cost optimization is less critical than time-to-market.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>Kubeflow is powerful but not without challenges: <strong>Setup complexity</strong>: A full Kubeflow installation requires 30+ microservices. Even experienced Kubernetes operators need <strong>2-4 hours</strong> for the first production deployment. Tools like Kubeflow on GCP (Vertex AI) or AWS simplify this but introduce vendor lock-in.</p>
+<p><strong>Documentation fragmentation</strong>: Different components (KFP, KServe, Katib) maintain separate documentation sites. Cross-component integration examples are sometimes outdated. Always verify against the <strong>v1.10.0 docs</strong> or newer.</p>
+<p><strong>GPU scheduling limitations</strong>: Kubeflow relies on the NVIDIA Device Plugin and Kubernetes scheduler for GPU allocation. Time-slicing GPUs (vGPU/MIG) requires additional configuration and is not automatic.</p>
+<p><strong>Small community relative to size</strong>: Despite ~14,000 stars, the active contributor base is smaller than Airflow or MLflow. Some components receive infrequent updates — KServe and KFP are the most actively maintained.</p>
+<p><strong>Version compatibility</strong>: Upgrading between Kubeflow minor versions often requires a full re-installation. There is no in-place upgrade path for the control plane components.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: How much does it cost to run Kubeflow on a cloud provider?</strong>
+A: A minimal production cluster (3 CPU nodes + 2 GPU nodes) costs approximately <strong>$800-1,200 per month</strong> on DigitalOcean or GCP, depending on GPU type. For GPU compute, <a href="https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367">虎网云</a> offers competitive pricing for Chinese developers. CPU-only experimentation clusters can run as low as $200 per month.</p>
+<p><strong>Q: Can I use Kubeflow without GPUs?</strong>
+A: Yes. Kubeflow works entirely on CPU nodes. The Training Operator, KFP, and KServe all function without GPUs. However, deep learning training will be significantly slower. For CPU-only clusters, reduce the <code>nvidia.com/gpu</code> resource requests in all manifests to zero.</p>
+<p><strong>Q: How does Kubeflow compare to using raw Kubernetes + custom scripts?</strong>
+A: Raw Kubernetes gives you full control but requires building your own pipeline engine, artifact tracking, experiment management, and model serving layer. Kubeflow provides all of these out-of-the-box, saving an estimated <strong>3-6 months</strong> of platform engineering effort. The tradeoff is accepting Kubeflow&rsquo;s opinions about how components should interact.</p>
+<p><strong>Q: Can I integrate Kubeflow with my existing CI/CD system?</strong>
+A: Yes. Kubeflow Pipelines can be triggered from GitHub Actions, GitLab CI, Jenkins, or any system that can make HTTP API calls. Use the KFP SDK to compile pipelines in CI and the KFP API to trigger runs. Many teams implement a pattern where merging to <code>main</code> automatically triggers a pipeline run that trains, evaluates, and conditionally deploys a model.</p>
+<p><strong>Q: What is the recommended storage backend for artifacts?</strong>
+A: For on-premise deployments, <strong>MinIO</strong> (included in Kubeflow manifests) provides S3-compatible storage. For cloud deployments, use the native object store: <strong>GCS</strong> on GCP, <strong>S3</strong> on AWS, or <strong>Azure Blob Storage</strong>. Ensure your bucket has lifecycle policies to prevent artifact storage costs from growing indefinitely — old pipeline runs can accumulate <strong>hundreds of gigabytes per month</strong>.</p>
+<p><strong>Q: How do I debug a failed pipeline step?</strong>
+A: Each KFP step runs as a Kubernetes Pod. Use <code>kubectl logs &lt;pod-name&gt; -n &lt;namespace&gt;</code> to inspect container logs. The KFP UI shows pod names and links to logs. For persistent debugging, add a <code>dsl.Retry</code> policy to your component or use ````kubectl describe pod``` to check for resource limits, image pull errors, or PVC mount failures.</p>
+<h2 id="conclusion-start-building-production-ml-pipelines-today">Conclusion: Start Building Production ML Pipelines Today</h2>
+<p>Kubeflow remains the most complete open-source platform for running ML workloads on Kubernetes. While the initial setup requires investment, the payoff is a reproducible, scalable, and auditable ML infrastructure that grows with your team. The v1.10.0 release (April 2026) brings improved KServe performance, a streamlined KFP v2 SDK, and better GPU scheduling — making this the best time to adopt Kubeflow if you are serious about production ML.</p>
+<p>Start with a single pipeline on a small cluster, iterate on your workflow, and expand component by component. The path from &ldquo;notebook on a laptop&rdquo; to &ldquo;fully automated ML pipeline&rdquo; is incremental — and Kubeflow provides the tools for every step.</p>
+<p>Ready to deploy? <a href="https://m.do.co/c/eca87ac14ee0">Get $200 credit on DigitalOcean</a> and launch your Kubeflow cluster today. Join the community discussion in our <a href="https://t.me/dibi8tech">Telegram group</a> for real-time support from ML engineers running Kubeflow in production.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ol>
+<li>Kubeflow Official Documentation — <a href="https://www.kubeflow.org/docs/">https://www.kubeflow.org/docs/</a> (v1.10.0)</li>
+<li>Kubeflow Pipelines SDK v2 Guide — <a href="https://www.kubeflow.org/docs/components/pipelines/v2/">https://www.kubeflow.org/docs/components/pipelines/v2/</a></li>
+<li>KServe Documentation — <a href="https://kserve.github.io/website/latest/">https://kserve.github.io/website/latest/</a></li>
+<li>Katib Hyperparameter Tuning — <a href="https://www.kubeflow.org/docs/components/katib/">https://www.kubeflow.org/docs/components/katib/</a></li>
+<li>Kubeflow Training Operator — <a href="https://www.kubeflow.org/docs/components/training/">https://www.kubeflow.org/docs/components/training/</a></li>
+<li>Kubeflow GitHub Repository — <a href="https://github.com/kubeflow/kubeflow">https://github.com/kubeflow/kubeflow</a> (14,000+ stars)</li>
+<li>Kubeflow Manifests — <a href="https://github.com/kubeflow/manifests">https://github.com/kubeflow/manifests</a></li>
+<li>&ldquo;Kubeflow: Tackling ML Complexity on Kubernetes&rdquo; — KubeCon EU 2025 presentation</li>
+<li><a href="dibi8-internal-link">Kubernetes</a> — Related guide on Kubernetes fundamentals</li>
+<li><a href="dibi8-internal-link">MLflow</a> — Related guide on ML experiment tracking</li>
+</ol>
+<p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean and 虎网云. If you sign up through these links, dibi8.com receives a commission at no additional cost to you. We only recommend services we use for our own infrastructure.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Kubeflow 2026: Run Complete ML Pipelines on Kubernetes — From Training to Production Deployment Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -377,20 +596,284 @@ A: Each KFP step runs as a Kubernetes Pod. Use <code>kubectl logs &lt;pod-name> 
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/kubeflow-ml-pipeline-kubernetes%22>https://dibi8.com/resources/kubeflow-ml-pipeline-kubernetes"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/kubeflow-ml-pipeline-kubernetes%22">https://dibi8.com/resources/kubeflow-ml-pipeline-kubernetes"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/llm-frameworks/kubeflow-ml-pipeline-kubernetes/>trivy-production-security-scanner-2026</a></li><li><a href=/llm-frameworks/kubeflow-ml-pipeline-kubernetes/>trivy-production-security-scanner-2026</a></li><li><a href=/llm-frameworks/kubeflow-ml-pipeline-kubernetes/>wandb-ml-experiment-tracking-platform-2026</a></li><li><a href=/llm-frameworks/kubeflow-ml-pipeline-kubernetes/>wandb-ml-experiment-tracking-platform-2026</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fkubeflow-ml-pipeline-kubernetes%2f&text=High-level%20component%20view" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fkubeflow-ml-pipeline-kubernetes%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/llm-frameworks/kubeflow-ml-pipeline-kubernetes/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/llm-frameworks/kubeflow-ml-pipeline-kubernetes/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/llm-frameworks/kubeflow-ml-pipeline-kubernetes/">wandb-ml-experiment-tracking-platform-2026</a></li>
+<li><a href="/llm-frameworks/kubeflow-ml-pipeline-kubernetes/">wandb-ml-experiment-tracking-platform-2026</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fkubeflow-ml-pipeline-kubernetes%2f&text=High-level%20component%20view" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fkubeflow-ml-pipeline-kubernetes%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

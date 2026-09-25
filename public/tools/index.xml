@@ -1,1 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Tools on Dibi8 - AI工具目录</title><link>https://dibi8.com/tools/</link><description>Recent content in Tools on Dibi8 - AI工具目录</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 19 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Cron Generator &amp; Tester — Bidirectional Cron Expression Translator + Next 5 Run Times + Multi-Platform Syntax</title><link>https://dibi8.com/tools/cron-generator/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/tools/cron-generator/</guid><description>Free online cron expression generator and tester. Convert cron to human-readable description, see the next 5 upcoming run times, generate ready-to-paste syntax for Linux crontab / GitHub Actions / Vercel / Kubernetes CronJob / AWS EventBridge / node-cron. Also converts natural language (&amp;#39;every 5 minutes&amp;#39;, &amp;#39;weekdays at 9am&amp;#39;) to valid cron. 100% client-side.</description></item><item><title>JWT Decoder &amp; Validator — Decode Header/Payload + Verify HS256/RS256 Signatures Client-Side</title><link>https://dibi8.com/tools/jwt-decoder/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/tools/jwt-decoder/</guid><description>Free online JWT decoder and signature validator. Decode header and payload, highlight registered claims (iss/sub/aud/exp/iat/nbf/jti), check expiration in real-time, verify HS256/HS384/HS512 signatures with a shared secret, or RS256/384/512 with a PEM public key. 100% client-side — your tokens never leave the browser. Uses Web Crypto API.</description></item><item><title>LLM Model Recommender 2026 — Pick the Right LLM by Use Case, Budget, Context Length, Privacy</title><link>https://dibi8.com/tools/llm-recommender/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/tools/llm-recommender/</guid><description>Free decision engine for choosing the right LLM in 2026. Answers 5 questions (use case / budget / context / privacy / priority) and ranks the top 5 from 12 mainstream models — GPT-5, Claude Sonnet 4.6, Gemini 3 Pro, DeepSeek V4, Llama 4, Mistral, Qwen 3, Kimi K2 — with real pricing, strengths, and trade-offs. Client-side, no API calls.</description></item><item><title>MCP Tool Builder — Generate Model Context Protocol Tool Definitions from Python / TypeScript</title><link>https://dibi8.com/tools/mcp-tool-builder/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/tools/mcp-tool-builder/</guid><description>Free online MCP Tool Definition Generator. Paste a Python or TypeScript function signature and get spec-compliant MCP tool JSON, full Python (FastMCP) and TypeScript (@modelcontextprotocol/sdk) server boilerplate, plus a ready-to-use cURL test command. Fully client-side.</description></item><item><title>Prompt Optimizer — Restructure, Trim Fillers, Save Tokens (GPT / Claude / Gemini / DeepSeek)</title><link>https://dibi8.com/tools/prompt-optimizer/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/tools/prompt-optimizer/</guid><description>Free online Prompt Optimizer for AI coding agents and LLM workflows. Detects filler words, restructures into the 5-section framework (Role / Task / Context / Constraints / Examples / Output), and compares token counts across GPT-4o, Claude Sonnet, Gemini, and DeepSeek V4 — fully client-side.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tools on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/tools/</link>
+    <description>Recent content in Tools on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 19 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cron Generator &amp; Tester — Bidirectional Cron Expression Translator &#43; Next 5 Run Times &#43; Multi-Platform Syntax</title>
+      <link>https://dibi8.com/tools/cron-generator/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/tools/cron-generator/</guid>
+      <description>Free online cron expression generator and tester. Convert cron to human-readable description, see the next 5 upcoming run times, generate ready-to-paste syntax for Linux crontab / GitHub Actions / Vercel / Kubernetes CronJob / AWS EventBridge / node-cron. Also converts natural language (&amp;#39;every 5 minutes&amp;#39;, &amp;#39;weekdays at 9am&amp;#39;) to valid cron. 100% client-side.</description>
+    </item>
+    <item>
+      <title>JWT Decoder &amp; Validator — Decode Header/Payload &#43; Verify HS256/RS256 Signatures Client-Side</title>
+      <link>https://dibi8.com/tools/jwt-decoder/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/tools/jwt-decoder/</guid>
+      <description>Free online JWT decoder and signature validator. Decode header and payload, highlight registered claims (iss/sub/aud/exp/iat/nbf/jti), check expiration in real-time, verify HS256/HS384/HS512 signatures with a shared secret, or RS256/384/512 with a PEM public key. 100% client-side — your tokens never leave the browser. Uses Web Crypto API.</description>
+    </item>
+    <item>
+      <title>LLM Model Recommender 2026 — Pick the Right LLM by Use Case, Budget, Context Length, Privacy</title>
+      <link>https://dibi8.com/tools/llm-recommender/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/tools/llm-recommender/</guid>
+      <description>Free decision engine for choosing the right LLM in 2026. Answers 5 questions (use case / budget / context / privacy / priority) and ranks the top 5 from 12 mainstream models — GPT-5, Claude Sonnet 4.6, Gemini 3 Pro, DeepSeek V4, Llama 4, Mistral, Qwen 3, Kimi K2 — with real pricing, strengths, and trade-offs. Client-side, no API calls.</description>
+    </item>
+    <item>
+      <title>MCP Tool Builder — Generate Model Context Protocol Tool Definitions from Python / TypeScript</title>
+      <link>https://dibi8.com/tools/mcp-tool-builder/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/tools/mcp-tool-builder/</guid>
+      <description>Free online MCP Tool Definition Generator. Paste a Python or TypeScript function signature and get spec-compliant MCP tool JSON, full Python (FastMCP) and TypeScript (@modelcontextprotocol/sdk) server boilerplate, plus a ready-to-use cURL test command. Fully client-side.</description>
+    </item>
+    <item>
+      <title>Prompt Optimizer — Restructure, Trim Fillers, Save Tokens (GPT / Claude / Gemini / DeepSeek)</title>
+      <link>https://dibi8.com/tools/prompt-optimizer/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/tools/prompt-optimizer/</guid>
+      <description>Free online Prompt Optimizer for AI coding agents and LLM workflows. Detects filler words, restructures into the 5-section framework (Role / Task / Context / Constraints / Examples / Output), and compares token counts across GPT-4o, Claude Sonnet, Gemini, and DeepSeek V4 — fully client-side.</description>
+    </item>
+  </channel>
+</rss>

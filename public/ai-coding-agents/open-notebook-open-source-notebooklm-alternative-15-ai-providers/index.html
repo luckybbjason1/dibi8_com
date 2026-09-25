@@ -1,21 +1,129 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026 | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026 | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=open-notebook-the-open-source-notebook-lm-alternative-that-supports-15-ai-providers--self-hosted-28000-stars--setup-guide-2026>open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026</h1><p><img alt="open-notebook logo" loading=lazy src=https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png></p><p><em>open-notebook — your self-hosted RAG knowledge base with multimodal audio</em></p><h2 id=introduction>Introduction</h2><p>Google NotebookLM jumped to 1 million weekly active users within months of launch, proving that everyone needs a personal AI research assistant. But what if your documents are sensitive? What if you want to run it on your own infrastructure? open-notebook (28,200 GitHub stars) is the open-source answer — a self-hosted RAG knowledge base that ingests documents, answers questions with citations, and generates AI-powered audio &ldquo;podcast&rdquo; episodes from your sources. Unlike NotebookLM, it supports 15+ AI providers including Claude, GPT-4, local models via Ollama, and OpenRouter. In an era where document AI is critical but privacy matters, open-notebook gives you both.</p><h2 id=what-is-open-notebook>What Is open-notebook?</h2><p>open-notebook is <strong>a self-hosted RAG (Retrieval-Augmented Generation) knowledge base</strong> that transforms your documents into an interactive AI-powered research workspace. Think of it as the intersection between a document question-answering system and an AI podcast generator.</p><p>Key capabilities: - <strong>Document ingestion</strong> — Upload PDFs, markdown, text files, URLs, and more</p><ul><li><strong>RAG-based Q&amp;A</strong> — Ask questions about your documents; get answers with source citations</li><li><strong>Audio episodes</strong> — Generate AI-powered audio summaries that sound like a conversation between two hosts</li><li><strong>15+ AI providers</strong> — Claude, GPT-4, Gemini, local models via Ollama/vLLM, OpenRouter, and more</li><li><strong>Self-hosted</strong> — Run on your own server, your own GPU, your own privacy</li></ul><p>The project is built with Next.js (frontend) and Python FastAPI (backend). It uses vector databases for document embedding and retrieval, with a modern web interface for document management and conversation.</p><h2 id=how-open-notebook-works>How open-notebook Works</h2><p>open-notebook operates through a three-stage pipeline: ### Stage 1: Document Ingestion</p><pre tabindex=0><code>Raw Documents → Chunking → Embedding → Vector Storage
-</code></pre><ol><li><strong>Upload</strong> — Import documents in multiple formats (PDF, MD, TXT, DOCX, URL)</li><li><strong>Chunking</strong> — Split documents into semantic chunks using configurable strategies</li><li><strong>Embedding</strong> — Generate vector embeddings for each chunk using a configured AI provider</li><li><strong>Storage</strong> — Store embeddings in a vector database (Qdrant, Weaviate, or Supabase/pgvector)</li></ol><h3 id=stage-2-question-answering>Stage 2: Question Answering</h3><pre tabindex=0><code>User Question → Embedding → Vector Search → Context Assembly → LLM Response
-</code></pre><ol><li><strong>Query</strong> — User asks a question about their documents</li><li><strong>Embedding</strong> — The question is embedded using the same model</li><li><strong>Search</strong> — Vector similarity search finds the most relevant document chunks</li><li><strong>Context assembly</strong> — Relevant chunks are assembled into a prompt context</li><li><strong>LLM response</strong> — The configured AI provider generates an answer with source citations</li></ol><h3 id=stage-3-audio-episode-generation>Stage 3: Audio Episode Generation</h3><pre tabindex=0><code>Documents → Script Generation → Multi-host TTS → Audio Episode
-</code></pre><ol><li><strong>Document analysis</strong> — The system analyzes connected documents to identify key topics</li><li><strong>Script generation</strong> — An LLM generates a dialogue script between two &ldquo;hosts&rdquo;</li><li><strong>TTS synthesis</strong> — Text-to-speech converts each host&rsquo;s lines into audio</li><li><strong>Episode assembly</strong> — Audio clips are stitched together into a polished episode</li></ol><pre tabindex=0><code>┌──────────────────────────────────────────────────┐
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>open-notebook: The Open-Source Notebook LM Alternative That Supports 15&#43; AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026 | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="open-notebook: The Open-Source Notebook LM Alternative That Supports 15&#43; AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026 | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">open-notebook: The Open-Source Notebook LM Alternative That Supports 15&#43; AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">open-notebook: The Open-Source Notebook LM Alternative That Supports 15&#43; AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="open-notebook-the-open-source-notebook-lm-alternative-that-supports-15-ai-providers--self-hosted-28000-stars--setup-guide-2026">open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026</h1>
+<p><img alt="open-notebook logo" loading="lazy" src="https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png"></p>
+<p><em>open-notebook — your self-hosted RAG knowledge base with multimodal audio</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>Google NotebookLM jumped to 1 million weekly active users within months of launch, proving that everyone needs a personal AI research assistant. But what if your documents are sensitive? What if you want to run it on your own infrastructure? open-notebook (28,200 GitHub stars) is the open-source answer — a self-hosted RAG knowledge base that ingests documents, answers questions with citations, and generates AI-powered audio &ldquo;podcast&rdquo; episodes from your sources. Unlike NotebookLM, it supports 15+ AI providers including Claude, GPT-4, local models via Ollama, and OpenRouter. In an era where document AI is critical but privacy matters, open-notebook gives you both.</p>
+<h2 id="what-is-open-notebook">What Is open-notebook?</h2>
+<p>open-notebook is <strong>a self-hosted RAG (Retrieval-Augmented Generation) knowledge base</strong> that transforms your documents into an interactive AI-powered research workspace. Think of it as the intersection between a document question-answering system and an AI podcast generator.</p>
+<p>Key capabilities: - <strong>Document ingestion</strong> — Upload PDFs, markdown, text files, URLs, and more</p>
+<ul>
+<li><strong>RAG-based Q&amp;A</strong> — Ask questions about your documents; get answers with source citations</li>
+<li><strong>Audio episodes</strong> — Generate AI-powered audio summaries that sound like a conversation between two hosts</li>
+<li><strong>15+ AI providers</strong> — Claude, GPT-4, Gemini, local models via Ollama/vLLM, OpenRouter, and more</li>
+<li><strong>Self-hosted</strong> — Run on your own server, your own GPU, your own privacy</li>
+</ul>
+<p>The project is built with Next.js (frontend) and Python FastAPI (backend). It uses vector databases for document embedding and retrieval, with a modern web interface for document management and conversation.</p>
+<h2 id="how-open-notebook-works">How open-notebook Works</h2>
+<p>open-notebook operates through a three-stage pipeline: ### Stage 1: Document Ingestion</p>
+<pre tabindex="0"><code>Raw Documents → Chunking → Embedding → Vector Storage
+</code></pre><ol>
+<li><strong>Upload</strong> — Import documents in multiple formats (PDF, MD, TXT, DOCX, URL)</li>
+<li><strong>Chunking</strong> — Split documents into semantic chunks using configurable strategies</li>
+<li><strong>Embedding</strong> — Generate vector embeddings for each chunk using a configured AI provider</li>
+<li><strong>Storage</strong> — Store embeddings in a vector database (Qdrant, Weaviate, or Supabase/pgvector)</li>
+</ol>
+<h3 id="stage-2-question-answering">Stage 2: Question Answering</h3>
+<pre tabindex="0"><code>User Question → Embedding → Vector Search → Context Assembly → LLM Response
+</code></pre><ol>
+<li><strong>Query</strong> — User asks a question about their documents</li>
+<li><strong>Embedding</strong> — The question is embedded using the same model</li>
+<li><strong>Search</strong> — Vector similarity search finds the most relevant document chunks</li>
+<li><strong>Context assembly</strong> — Relevant chunks are assembled into a prompt context</li>
+<li><strong>LLM response</strong> — The configured AI provider generates an answer with source citations</li>
+</ol>
+<h3 id="stage-3-audio-episode-generation">Stage 3: Audio Episode Generation</h3>
+<pre tabindex="0"><code>Documents → Script Generation → Multi-host TTS → Audio Episode
+</code></pre><ol>
+<li><strong>Document analysis</strong> — The system analyzes connected documents to identify key topics</li>
+<li><strong>Script generation</strong> — An LLM generates a dialogue script between two &ldquo;hosts&rdquo;</li>
+<li><strong>TTS synthesis</strong> — Text-to-speech converts each host&rsquo;s lines into audio</li>
+<li><strong>Episode assembly</strong> — Audio clips are stitched together into a polished episode</li>
+</ol>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────┐
 │              open-notebook UI                     │
 │  ┌──────────┐  ┌──────────┐  ┌──────────────┐   │
 │  │ Documents│  │  Chat    │  │  Audio Episodes│   │
@@ -28,11 +136,27 @@
 ├──────────────────────────────────────────────────┤
 │  AI Providers: Claude | GPT-4 | Ollama | OpenRouter│
 └──────────────────────────────────────────────────┘
-</code></pre><p><em>open-notebook architecture: three pipelines, one unified interface</em></p><h2 id=installation--setup>Installation & Setup</h2><h3 id=docker-compose-recommended>Docker Compose (Recommended)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -o docker-compose.yml https://raw.githubusercontent.com/lfnovo/open-notebook/main/docker-compose.yml
-</span></span><span style=display:flex><span>docker compose up -d
-</span></span></code></pre></div><p>Access the UI at <code>http://localhost:3000</code>.</p><h3 id=environment-configuration>Environment Configuration</h3><p>Edit the <code>.env</code> file with your API keys and provider configuration: - Minimum: one of <code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, or <code>OLLAMA_HOST</code></p><h3 id=self-hosted-with-gpu-acceleration>Self-Hosted with GPU Acceleration</h3><p>For faster embedding and generation, run with GPU support: `````bash</p><h1 id=ollama-with-gpu>Ollama with GPU</h1><p>curl -fsSL <a href=https://ollama.com/install.sh>https://ollama.com/install.sh</a> | sh
+</code></pre><p><em>open-notebook architecture: three pipelines, one unified interface</em></p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="docker-compose-recommended">Docker Compose (Recommended)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -o docker-compose.yml https://raw.githubusercontent.com/lfnovo/open-notebook/main/docker-compose.yml
+</span></span><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><p>Access the UI at <code>http://localhost:3000</code>.</p>
+<h3 id="environment-configuration">Environment Configuration</h3>
+<p>Edit the <code>.env</code> file with your API keys and provider configuration: - Minimum: one of <code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, or <code>OLLAMA_HOST</code></p>
+<h3 id="self-hosted-with-gpu-acceleration">Self-Hosted with GPU Acceleration</h3>
+<p>For faster embedding and generation, run with GPU support: `````bash</p>
+<h1 id="ollama-with-gpu">Ollama with GPU</h1>
+<p>curl -fsSL <a href="https://ollama.com/install.sh">https://ollama.com/install.sh</a> | sh
 ollama pull nomic-embed-text:latest
-ollama pull llama3.2:3b</p><h1 id=open-notebook-with-ollama-backend>open-notebook with Ollama backend</h1><h1 id=in-env--ai_providerollama>In .env: # AI_PROVIDER=ollama</h1><h1 id=ollama_hosthttplocalhost11434>OLLAMA_HOST=http://localhost:11434</h1><h1 id=embedding_modelnomic-embed-text>EMBEDDING_MODEL=nomic-embed-text</h1><h1 id=completion_modelllama323b>COMPLETION_MODEL=llama3.2:3b</h1><p>docker compose up -d</p><pre tabindex=0><code>
+ollama pull llama3.2:3b</p>
+<h1 id="open-notebook-with-ollama-backend">open-notebook with Ollama backend</h1>
+<h1 id="in-env--ai_providerollama">In .env: # AI_PROVIDER=ollama</h1>
+<h1 id="ollama_hosthttplocalhost11434">OLLAMA_HOST=http://localhost:11434</h1>
+<h1 id="embedding_modelnomic-embed-text">EMBEDDING_MODEL=nomic-embed-text</h1>
+<h1 id="completion_modelllama323b">COMPLETION_MODEL=llama3.2:3b</h1>
+<p>docker compose up -d</p>
+<pre tabindex="0"><code>
 ### Importing Existing Notes
 
 Open-notebook can import from popular note formats: `````bash
@@ -47,8 +171,22 @@ open-notebook import --source markdown --path /path/to/md-files
 
 # Import PDFs for RAG (extracts text + generates embeddings)
 open-notebook import --source pdf --path /path/to/papers/*.pdf
-</code></pre><h2 id=integration-with-15-ai-providers>Integration with 15+ AI Providers</h2><p>open-notebook supports a wide range of AI providers through a unified configuration interface: ### Supported Providers</p><p>| Provider | Type | Embedding | Chat | Audio | Cost |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="integration-with-15-ai-providers">Integration with 15+ AI Providers</h2>
+<p>open-notebook supports a wide range of AI providers through a unified configuration interface: ### Supported Providers</p>
+<p>| Provider | Type | Embedding | Chat | Audio | Cost |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | OpenAI | Cloud | GPT-4o embedding | GPT-4o | GPT-4o Realtime | $20-50/mo |
 | Anthropic | Cloud | N/A | Claude Sonnet 4 | N/A | $15-40/mo |
 | Google Gemini | Cloud | text-embedding-004 | Gemini 2.0 Pro | Cloud TTS | $5-25/mo |
@@ -56,25 +194,37 @@ open-notebook import --source pdf --path /path/to/papers/*.pdf
 | vLLM | Local | N/A | Qwen2.5-7B | N/A | Free |
 | OpenRouter | Aggregator | Various | 50+ models | Various | $5-30/mo |
 | Mistral | Cloud | mistral-embed | mistral-large | N/A | $10-25/mo |
-| Deepseek | Cloud | N/A | deepseek-v3 | N/A | $1-5/mo |</p><h3 id=configuration-example>Configuration Example</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># config.yaml — Provider configuration</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>providers: default_chat</span>: <span style=color:#ae81ff>anthropic</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>default_embedding</span>: <span style=color:#ae81ff>openai</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>default_tts</span>: <span style=color:#ae81ff>openai</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>anthropic: api_key</span>: <span style=color:#e6db74>&#34;${ANTHROPIC_API_KEY}&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>models: chat</span>: - <span style=color:#ae81ff>claude-sonnet-4-20250514</span>
-</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>claude-opus-4-20250514</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>openai: api_key</span>: <span style=color:#e6db74>&#34;${OPENAI_API_KEY}&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>models: embedding</span>: <span style=color:#ae81ff>gpt-4o-embedding</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>chat</span>: <span style=color:#ae81ff>gpt-4o</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>tts</span>: <span style=color:#ae81ff>gpt-4o-realtime</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>ollama: host</span>: <span style=color:#e6db74>&#34;${OLLAMA_HOST:-http://localhost:11434}&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>models: embedding</span>: <span style=color:#ae81ff>nomic-embed-text</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>chat</span>: - <span style=color:#ae81ff>llama3.2:3b</span>
-</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>qwen2.5:7b</span>
-</span></span></code></pre></div><h3 id=switching-providers-on-the-fly>Switching Providers On the Fly</h3><p>You can switch between providers without editing config files: `````bash</p><h1 id=switch-default-chat-provider>Switch default chat provider</h1><p>open-notebook provider set &ndash;default-chat anthropic</p><h1 id=switch-embedding-provider>Switch embedding provider</h1><p>open-notebook provider set &ndash;default-embedding openai</p><h1 id=use-local-model-for-a-specific-document-collection>Use local model for a specific document collection</h1><p>open-notebook collection set-model &ndash;collection research &ndash;model ollama:llama3.2:3b</p><h1 id=list-available-providers>List available providers</h1><p>open-notebook provider list</p><pre tabindex=0><code>
+| Deepseek | Cloud | N/A | deepseek-v3 | N/A | $1-5/mo |</p>
+<h3 id="configuration-example">Configuration Example</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># config.yaml — Provider configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">providers: default_chat</span>: <span style="color:#ae81ff">anthropic</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">default_embedding</span>: <span style="color:#ae81ff">openai</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">default_tts</span>: <span style="color:#ae81ff">openai</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">anthropic: api_key</span>: <span style="color:#e6db74">&#34;${ANTHROPIC_API_KEY}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">models: chat</span>: - <span style="color:#ae81ff">claude-sonnet-4-20250514</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">claude-opus-4-20250514</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">openai: api_key</span>: <span style="color:#e6db74">&#34;${OPENAI_API_KEY}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">models: embedding</span>: <span style="color:#ae81ff">gpt-4o-embedding</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chat</span>: <span style="color:#ae81ff">gpt-4o</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tts</span>: <span style="color:#ae81ff">gpt-4o-realtime</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ollama: host</span>: <span style="color:#e6db74">&#34;${OLLAMA_HOST:-http://localhost:11434}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">models: embedding</span>: <span style="color:#ae81ff">nomic-embed-text</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chat</span>: - <span style="color:#ae81ff">llama3.2:3b</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">qwen2.5:7b</span>
+</span></span></code></pre></div><h3 id="switching-providers-on-the-fly">Switching Providers On the Fly</h3>
+<p>You can switch between providers without editing config files: `````bash</p>
+<h1 id="switch-default-chat-provider">Switch default chat provider</h1>
+<p>open-notebook provider set &ndash;default-chat anthropic</p>
+<h1 id="switch-embedding-provider">Switch embedding provider</h1>
+<p>open-notebook provider set &ndash;default-embedding openai</p>
+<h1 id="use-local-model-for-a-specific-document-collection">Use local model for a specific document collection</h1>
+<p>open-notebook collection set-model &ndash;collection research &ndash;model ollama:llama3.2:3b</p>
+<h1 id="list-available-providers">List available providers</h1>
+<p>open-notebook provider list</p>
+<pre tabindex="0"><code>
 For self-hosted deployment on reliable infrastructure, I recommend [DigitalOcean](https://m.do.co/c/eca87ac14ee0) GPU droplets or [HTStack](https://my.htstack.com/aff.php?aff=27187) for low-latency model serving.
 
 ## Benchmarks / Real-World Use Cases
@@ -125,7 +275,16 @@ done
 curl -X POST http://localhost:3000/api/chat \
   -H &#34;Authorization: Bearer $TOKEN&#34; \
   -d &#39;{&#34;question&#34;: &#34;What are the common methodologies across these papers?&#34;, &#34;docs&#34;: &#34;all&#34;}&#39;
-</code></pre><p>Result: Literature review completed in hours instead of weeks, with proper citations.</p><h3 id=real-world-use-case-2-technical-documentation-knowledge-base>Real-World Use Case 2: Technical Documentation Knowledge Base</h3><p>A startup creates an internal knowledge base from engineering docs: `````bash</p><h1 id=ingest-confluence-style-markdown-docs>Ingest Confluence-style markdown docs</h1><p>open-notebook ingest &ndash;source ./docs/ &ndash;provider ollama</p><h1 id=query-via-web-ui-or-api>Query via web UI or API</h1><h1 id=how-does-the-auth-system-work>&ldquo;How does the auth system work?&rdquo;</h1><h1 id=whats-the-deployment-pipeline>&ldquo;What&rsquo;s the deployment pipeline?&rdquo;</h1><h1 id=explain-the-rate-limiting-strategy>&ldquo;Explain the rate limiting strategy&rdquo;</h1><pre tabindex=0><code>
+</code></pre><p>Result: Literature review completed in hours instead of weeks, with proper citations.</p>
+<h3 id="real-world-use-case-2-technical-documentation-knowledge-base">Real-World Use Case 2: Technical Documentation Knowledge Base</h3>
+<p>A startup creates an internal knowledge base from engineering docs: `````bash</p>
+<h1 id="ingest-confluence-style-markdown-docs">Ingest Confluence-style markdown docs</h1>
+<p>open-notebook ingest &ndash;source ./docs/ &ndash;provider ollama</p>
+<h1 id="query-via-web-ui-or-api">Query via web UI or API</h1>
+<h1 id="how-does-the-auth-system-work">&ldquo;How does the auth system work?&rdquo;</h1>
+<h1 id="whats-the-deployment-pipeline">&ldquo;What&rsquo;s the deployment pipeline?&rdquo;</h1>
+<h1 id="explain-the-rate-limiting-strategy">&ldquo;Explain the rate limiting strategy&rdquo;</h1>
+<pre tabindex="0"><code>
 Result: New team members find answers 3x faster than searching Slack.
 
 ## Advanced Usage / Production Hardening
@@ -152,7 +311,17 @@ chunking_strategies = {
         &#34;overlap&#34;: 50,
     },
 }
-</code></pre><h3 id=vector-database-scaling>Vector Database Scaling</h3><p>For large document collections (10K+ documents): `````bash</p><h1 id=deploy-qdrant-on-a-separate-server>Deploy Qdrant on a separate server</h1><p>docker run -p 6333:6333 -p 6334:6334<br>-v $(pwd)/qdrant_storage:/qdrant/storage<br>qdrant/qdrant:latest</p><h1 id=connect-open-notebook-to-remote-qdrant>Connect open-notebook to remote Qdrant</h1><h1 id=in-env--vector_dbqdrant>In .env: # VECTOR_DB=qdrant</h1><h1 id=qdrant_hostqdrantinternal>QDRANT_HOST=qdrant.internal</h1><h1 id=qdrant_port6333>QDRANT_PORT=6333</h1><pre tabindex=0><code>
+</code></pre><h3 id="vector-database-scaling">Vector Database Scaling</h3>
+<p>For large document collections (10K+ documents): `````bash</p>
+<h1 id="deploy-qdrant-on-a-separate-server">Deploy Qdrant on a separate server</h1>
+<p>docker run -p 6333:6333 -p 6334:6334 <br>
+-v $(pwd)/qdrant_storage:/qdrant/storage <br>
+qdrant/qdrant:latest</p>
+<h1 id="connect-open-notebook-to-remote-qdrant">Connect open-notebook to remote Qdrant</h1>
+<h1 id="in-env--vector_dbqdrant">In .env: # VECTOR_DB=qdrant</h1>
+<h1 id="qdrant_hostqdrantinternal">QDRANT_HOST=qdrant.internal</h1>
+<h1 id="qdrant_port6333">QDRANT_PORT=6333</h1>
+<pre tabindex="0"><code>
 ### Multi-User Setup
 
 `````bash
@@ -164,8 +333,19 @@ chunking_strategies = {
 curl -X POST http://localhost:3000/api/users \
   -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34; \
   -d &#39;{&#34;username&#34;: &#34;researcher1&#34;, &#34;role&#34;: &#34;user&#34;}&#39;
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | open-notebook | NotebookLM | RAGflow | LangChain Chat |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | open-notebook | NotebookLM | RAGflow | LangChain Chat |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Self-hosted | Yes | No | Yes | Yes |
 | AI providers | 15+ | Google only | Multiple | Multiple |
 | Audio episodes | Yes | Yes | No | No |
@@ -175,14 +355,57 @@ curl -X POST http://localhost:3000/api/users \
 | Multi-user | Yes | Yes | Yes | Manual |
 | API access | Yes | No | Yes | Yes |
 | Audio quality | Configurable | Fixed | N/A | N/A |
-| Setup time | 10 min (Docker) | 0 min | 30 min | 1 hour |</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p>open-notebook is not for everyone. Here&rsquo;s when it&rsquo;s NOT a good fit: 1. <strong>Zero-setup requirement</strong> — If you want something that works instantly with no configuration, use Google NotebookLM. open-notebook requires Docker setup and API key configuration.</p><ol start=2><li><p><strong>Non-English documents</strong> — The embedding models and LLMs are optimized for English. Non-English documents (especially CJK) may have reduced retrieval quality. You can improve this by using multilingual embedding models like <code>text-embedding-3-large</code>.</p></li><li><p><strong>Very large collections</strong> — While the system handles thousands of documents well, collections exceeding 50K documents may experience slowdowns without a dedicated vector database server. Use Qdrant or Weaviate on a separate machine for large-scale deployments.</p></li><li><p><strong>Real-time document updates</strong> — Documents are processed in batch mode. New documents are not indexed until you explicitly trigger ingestion. For real-time document streaming, consider integrating with a message queue.</p></li><li><p><strong>Audio TTS quality depends on provider</strong> — The audio episode feature quality varies significantly based on which TTS provider you use. OpenAI&rsquo;s GPT-4o Realtime produces the best quality; local TTS options like Piper sound robotic.</p></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><p><strong>Q: Does open-notebook support local/offline AI models?</strong></p><p>A: Yes. By setting <code>AI_PROVIDER=ollama</code> in your <code>.env</code> file and configuring <code>OLLAMA_HOST</code>, you can run everything locally with models like llama3.2, qwen2.5, or nomic-embed-text. No API keys or internet connection required.</p><p><strong>Q: What vector databases are supported?</strong></p><p>A: open-notebook supports Qdrant (recommended), Weaviate, and Supabase/pgvector. Qdrant offers the best performance for document collections; pgvector is ideal if you already have a PostgreSQL instance.</p><p><strong>Q: Can I use open-notebook with OpenRouter?</strong></p><p>A: Yes. Set <code>AI_PROVIDER=openrouter</code> and provide your OpenRouter API key. This gives access to 50+ models from different providers through a single API, which is great for cost optimization.</p><p><strong>Q: How secure is self-hosted open-notebook?</strong></p><p>A: Very secure. All documents, embeddings, and conversations are stored on your own server. No data leaves your infrastructure unless explicitly sent to an external AI provider for processing. You can even run it completely air-gapped with local models.</p><p><strong>Q: Can I generate audio episodes with my own voice?</strong></p><p>A: Not directly with the current version. Audio episodes use configurable TTS providers (OpenAI, Piper, Edge TTS, etc.). Voice cloning is not currently supported, but this is on the roadmap for future releases.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml additional configuration</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: open-notebook: environment</span>: - <span style=color:#ae81ff>MAX_UPLOAD_SIZE=100MB</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>ENABLE_TRANSCRIPTION=true</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>TRANSCRIPTION_PROVIDER=whisper</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>EMBEDDING_MODEL=snowflake-arctic-embed</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>VECTOR_STORE=chroma</span>
-</span></span></code></pre></div><h2></h2><p>For reliable hosting infrastructure, <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> provides affordable droplets for development and testing. <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> offers competitive pricing for production deployments. For proxy and scraping needs, <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> provides reliable datacenter and residential proxies.</p><p>Sources & Further Reading</p><ul><li>Official docs: <a href=https://github.com/lfnovo/open-notebook>https://github.com/lfnovo/open-notebook</a></li><li>GitHub repository: <a href=https://github.com/lfnovo/open-notebook>https://github.com/lfnovo/open-notebook</a></li><li>Vector database comparison: <a href=https://qdrant.tech/documentation/>https://qdrant.tech/documentation/</a></li><li>RAG architecture guide: <a href=https://langchain.com/blog/>https://langchain.com/blog/</a></li><li>Community discussion: <a href=https://github.com/lfnovo/open-notebook/discussions>https://github.com/lfnovo/open-notebook/discussions</a></li></ul><h2 id=conclusion-your-documents-your-infrastructure-your-ai>Conclusion: Your Documents, Your Infrastructure, Your AI</h2><p>open-notebook proves that a personal AI research assistant doesn&rsquo;t need to live on Google&rsquo;s servers. With 28,200 stars and a growing community, it&rsquo;s clear developers want a self-hosted alternative to NotebookLM that supports multiple AI providers and keeps their data private.</p><p>Whether you"re a researcher managing hundreds of papers, an engineer building an internal knowledge base, or just someone who values document privacy, open-notebook gives you the tools to build a RAG-powered knowledge base that runs on your infrastructure.</p><p>Join the <a href=https://t.me/DIBI8_Group/2>dibi8 English Telegram group</a> to discuss open-notebook setups and configurations. Check out our guides on [Agent记忆系统](<a href=https://dibi8.com/agentmemory-persistent-m[>https://dibi8.com/agentmemory-persistent-m[</a>知识图谱](<a href=https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents%29arison]%28[agentmemory>https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents)arison]([agentmemory</a> guide](<a href=https://dibi8.com/agentmemory->https://dibi8.com/agentmemory-</a>*) for complementary knowledge. Try open-notebook today — ````docker compose up```, upload a PDF, and ask it a question.</p><p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Setup time | 10 min (Docker) | 0 min | 30 min | 1 hour |</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>open-notebook is not for everyone. Here&rsquo;s when it&rsquo;s NOT a good fit: 1. <strong>Zero-setup requirement</strong> — If you want something that works instantly with no configuration, use Google NotebookLM. open-notebook requires Docker setup and API key configuration.</p>
+<ol start="2">
+<li>
+<p><strong>Non-English documents</strong> — The embedding models and LLMs are optimized for English. Non-English documents (especially CJK) may have reduced retrieval quality. You can improve this by using multilingual embedding models like <code>text-embedding-3-large</code>.</p>
+</li>
+<li>
+<p><strong>Very large collections</strong> — While the system handles thousands of documents well, collections exceeding 50K documents may experience slowdowns without a dedicated vector database server. Use Qdrant or Weaviate on a separate machine for large-scale deployments.</p>
+</li>
+<li>
+<p><strong>Real-time document updates</strong> — Documents are processed in batch mode. New documents are not indexed until you explicitly trigger ingestion. For real-time document streaming, consider integrating with a message queue.</p>
+</li>
+<li>
+<p><strong>Audio TTS quality depends on provider</strong> — The audio episode feature quality varies significantly based on which TTS provider you use. OpenAI&rsquo;s GPT-4o Realtime produces the best quality; local TTS options like Piper sound robotic.</p>
+</li>
+</ol>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Does open-notebook support local/offline AI models?</strong></p>
+<p>A: Yes. By setting <code>AI_PROVIDER=ollama</code> in your <code>.env</code> file and configuring <code>OLLAMA_HOST</code>, you can run everything locally with models like llama3.2, qwen2.5, or nomic-embed-text. No API keys or internet connection required.</p>
+<p><strong>Q: What vector databases are supported?</strong></p>
+<p>A: open-notebook supports Qdrant (recommended), Weaviate, and Supabase/pgvector. Qdrant offers the best performance for document collections; pgvector is ideal if you already have a PostgreSQL instance.</p>
+<p><strong>Q: Can I use open-notebook with OpenRouter?</strong></p>
+<p>A: Yes. Set <code>AI_PROVIDER=openrouter</code> and provide your OpenRouter API key. This gives access to 50+ models from different providers through a single API, which is great for cost optimization.</p>
+<p><strong>Q: How secure is self-hosted open-notebook?</strong></p>
+<p>A: Very secure. All documents, embeddings, and conversations are stored on your own server. No data leaves your infrastructure unless explicitly sent to an external AI provider for processing. You can even run it completely air-gapped with local models.</p>
+<p><strong>Q: Can I generate audio episodes with my own voice?</strong></p>
+<p>A: Not directly with the current version. Audio episodes use configurable TTS providers (OpenAI, Piper, Edge TTS, etc.). Voice cloning is not currently supported, but this is on the roadmap for future releases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml additional configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: open-notebook: environment</span>: - <span style="color:#ae81ff">MAX_UPLOAD_SIZE=100MB</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">ENABLE_TRANSCRIPTION=true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TRANSCRIPTION_PROVIDER=whisper</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">EMBEDDING_MODEL=snowflake-arctic-embed</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">VECTOR_STORE=chroma</span>
+</span></span></code></pre></div><h2></h2>
+<p>For reliable hosting infrastructure, <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> provides affordable droplets for development and testing. <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> offers competitive pricing for production deployments. For proxy and scraping needs, <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> provides reliable datacenter and residential proxies.</p>
+<p>Sources &amp; Further Reading</p>
+<ul>
+<li>Official docs: <a href="https://github.com/lfnovo/open-notebook">https://github.com/lfnovo/open-notebook</a></li>
+<li>GitHub repository: <a href="https://github.com/lfnovo/open-notebook">https://github.com/lfnovo/open-notebook</a></li>
+<li>Vector database comparison: <a href="https://qdrant.tech/documentation/">https://qdrant.tech/documentation/</a></li>
+<li>RAG architecture guide: <a href="https://langchain.com/blog/">https://langchain.com/blog/</a></li>
+<li>Community discussion: <a href="https://github.com/lfnovo/open-notebook/discussions">https://github.com/lfnovo/open-notebook/discussions</a></li>
+</ul>
+<h2 id="conclusion-your-documents-your-infrastructure-your-ai">Conclusion: Your Documents, Your Infrastructure, Your AI</h2>
+<p>open-notebook proves that a personal AI research assistant doesn&rsquo;t need to live on Google&rsquo;s servers. With 28,200 stars and a growing community, it&rsquo;s clear developers want a self-hosted alternative to NotebookLM that supports multiple AI providers and keeps their data private.</p>
+<p>Whether you&quot;re a researcher managing hundreds of papers, an engineer building an internal knowledge base, or just someone who values document privacy, open-notebook gives you the tools to build a RAG-powered knowledge base that runs on your infrastructure.</p>
+<p>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> to discuss open-notebook setups and configurations. Check out our guides on [Agent记忆系统](<a href="https://dibi8.com/agentmemory-persistent-m[">https://dibi8.com/agentmemory-persistent-m[</a>知识图谱](<a href="https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents%29arison]%28[agentmemory">https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents)arison]([agentmemory</a> guide](<a href="https://dibi8.com/agentmemory-">https://dibi8.com/agentmemory-</a>*) for complementary knowledge. Try open-notebook today — ````docker compose up```, upload a PDF, and ask it a question.</p>
+<p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-08&rdquo;,
@@ -196,20 +419,285 @@ curl -X POST http://localhost:3000/api/users \
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers%22>https://dibi8.com/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers%22">https://dibi8.com/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/>moneyprinterturbo-one-click-ai-video-generator</a></li><li><a href=/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/>open-notebook-open-source-notebooklm-alternative-15-ai-providers</a></li><li><a href=/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/>open-notebook-open-source-notebooklm-alternative-15-ai-providers</a></li><li><a href=/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/>nvidia-cosmos-world-models-platform-2026</a></li><li><a href=/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/>12-factor-agents</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopen-notebook-open-source-notebooklm-alternative-15-ai-providers%2f&text=open-notebook%3a%20The%20Open-Source%20Notebook%20LM%20Alternative%20That%20Supports%2015%2b%20AI%20Providers%20%e2%80%94%20Self-Hosted%2c%2028%2c000%20Stars%20%e2%80%94%20Setup%20Guide%202026" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopen-notebook-open-source-notebooklm-alternative-15-ai-providers%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+<li><a href="/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">open-notebook-open-source-notebooklm-alternative-15-ai-providers</a></li>
+<li><a href="/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">open-notebook-open-source-notebooklm-alternative-15-ai-providers</a></li>
+<li><a href="/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">nvidia-cosmos-world-models-platform-2026</a></li>
+<li><a href="/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">12-factor-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopen-notebook-open-source-notebooklm-alternative-15-ai-providers%2f&text=open-notebook%3a%20The%20Open-Source%20Notebook%20LM%20Alternative%20That%20Supports%2015%2b%20AI%20Providers%20%e2%80%94%20Self-Hosted%2c%2028%2c000%20Stars%20%e2%80%94%20Setup%20Guide%202026" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopen-notebook-open-source-notebooklm-alternative-15-ai-providers%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,42 +1,166 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025 | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025 | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=postman-vs-insomnia-vs-bruno-best-api-testing-tool-in-2025>Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</h1><p>{&lt;/* resource-info */>}</p><p>API testing is no longer an afterthought in software development. It is a core practice embedded in CI/CD pipelines, code reviews, and daily developer workflows. Choosing the right API client affects how quickly you debug endpoints, how well your team collaborates, and whether your API collections survive employee turnover.</p><p>In 2025, three tools dominate the conversation: <a href=https://www.postman.com>Postman</a>, the established market leader; <a href=https://insomnia.rest>Insomnia</a>, the developer-friendly alternative; and <a href=https://www.usebruno.com>Bruno</a>, the Git-native challenger that has gained remarkable traction among teams who treat APIs as code.</p><p>This comparison examines each tool across dimensions that matter to working developers: features, pricing, protocol support, Git integration, CLI capabilities, and workflow fit.</p><h2 id=the-api-testing-tool-landscape-in-2025>The API Testing Tool Landscape in 2025</h2><h3 id=why-api-testing-matters-in-modern-development>Why API Testing Matters in Modern Development</h3><p>Microservices architectures mean a typical application communicates with 10-50 internal and external APIs. Each endpoint is a contract that can break silently. API testing catches these breaks before they reach production, where they impact users and revenue.</p><p>Beyond correctness, API testing documents behavior. A well-maintained collection serves as living documentation that stays current because it executes against real endpoints. New developers understand the system by reading and running existing API tests rather than digging through scattered documentation.</p><h3 id=the-shift-from-postman-dominance-to-diverse-alternatives>The Shift From Postman Dominance to Diverse Alternatives</h3><p>Postman held uncontested market leadership through the late 2010s. Its collection format became the de facto standard. However, several factors opened space for alternatives in 2023-2025: 1. <strong>Cloud-only mandates</strong> — Postman pushed users toward cloud-synced workspaces, creating concerns for teams working with sensitive APIs
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025 | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025 | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="postman-vs-insomnia-vs-bruno-best-api-testing-tool-in-2025">Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>API testing is no longer an afterthought in software development. It is a core practice embedded in CI/CD pipelines, code reviews, and daily developer workflows. Choosing the right API client affects how quickly you debug endpoints, how well your team collaborates, and whether your API collections survive employee turnover.</p>
+<p>In 2025, three tools dominate the conversation: <a href="https://www.postman.com">Postman</a>, the established market leader; <a href="https://insomnia.rest">Insomnia</a>, the developer-friendly alternative; and <a href="https://www.usebruno.com">Bruno</a>, the Git-native challenger that has gained remarkable traction among teams who treat APIs as code.</p>
+<p>This comparison examines each tool across dimensions that matter to working developers: features, pricing, protocol support, Git integration, CLI capabilities, and workflow fit.</p>
+<h2 id="the-api-testing-tool-landscape-in-2025">The API Testing Tool Landscape in 2025</h2>
+<h3 id="why-api-testing-matters-in-modern-development">Why API Testing Matters in Modern Development</h3>
+<p>Microservices architectures mean a typical application communicates with 10-50 internal and external APIs. Each endpoint is a contract that can break silently. API testing catches these breaks before they reach production, where they impact users and revenue.</p>
+<p>Beyond correctness, API testing documents behavior. A well-maintained collection serves as living documentation that stays current because it executes against real endpoints. New developers understand the system by reading and running existing API tests rather than digging through scattered documentation.</p>
+<h3 id="the-shift-from-postman-dominance-to-diverse-alternatives">The Shift From Postman Dominance to Diverse Alternatives</h3>
+<p>Postman held uncontested market leadership through the late 2010s. Its collection format became the de facto standard. However, several factors opened space for alternatives in 2023-2025: 1. <strong>Cloud-only mandates</strong> — Postman pushed users toward cloud-synced workspaces, creating concerns for teams working with sensitive APIs
 2. <strong>Pricing changes</strong> — The free tier became increasingly restricted, pushing team features behind paywalls
 3. <strong>Performance issues</strong> — The Electron-based application grew heavier with each release
-4. <strong>Developer preference shift</strong> — A movement toward Git-friendly, offline-capable tools gained momentum</p><p>These pressures created the market conditions that allowed Insomnia to grow and Bruno to launch successfully.</p><h2 id=postman-the-established-leader>Postman: The Established Leader</h2><h3 id=core-features-collections-environments-and-tests>Core Features: Collections, Environments, and Tests</h3><p>Postman&rsquo;s feature set remains the deepest in the industry. Collections organize API requests into folders with variables, pre-request scripts, and test assertions. Environments manage variable sets for development, staging, and production. The testing framework supports Chai.js assertions and can validate response status, headers, body content, and schema compliance.</p><p>Postman also includes: - <strong>Mock servers</strong> — Simulate API responses before the backend exists</p><ul><li><strong>Monitors</strong> — Schedule collection runs and alert on failures</li><li><strong>API documentation</strong> — Auto-generated docs from collections with custom domains</li><li><strong>Postman Flows</strong> — Visual programming for chaining requests and building workflows</li><li><strong>Forking and versioning</strong> — Collection version control within Postman&rsquo;s ecosystem</li></ul><h3 id=collaboration-and-team-workspaces>Collaboration and Team Workspaces</h3><p>Postman&rsquo;s team workspaces enable real-time collaboration on collections. Comments, change history, and role-based access control support team workflows. However, collaboration requires cloud synchronization — there is no first-class offline team mode. This is the primary pain point driving teams to evaluate alternatives.</p><h3 id=pricing-changes-and-cloud-only-concerns>Pricing Changes and Cloud-Only Concerns</h3><p>Postman&rsquo;s pricing has evolved significantly: | Plan | Price | Key Limitations |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+4. <strong>Developer preference shift</strong> — A movement toward Git-friendly, offline-capable tools gained momentum</p>
+<p>These pressures created the market conditions that allowed Insomnia to grow and Bruno to launch successfully.</p>
+<h2 id="postman-the-established-leader">Postman: The Established Leader</h2>
+<h3 id="core-features-collections-environments-and-tests">Core Features: Collections, Environments, and Tests</h3>
+<p>Postman&rsquo;s feature set remains the deepest in the industry. Collections organize API requests into folders with variables, pre-request scripts, and test assertions. Environments manage variable sets for development, staging, and production. The testing framework supports Chai.js assertions and can validate response status, headers, body content, and schema compliance.</p>
+<p>Postman also includes: - <strong>Mock servers</strong> — Simulate API responses before the backend exists</p>
+<ul>
+<li><strong>Monitors</strong> — Schedule collection runs and alert on failures</li>
+<li><strong>API documentation</strong> — Auto-generated docs from collections with custom domains</li>
+<li><strong>Postman Flows</strong> — Visual programming for chaining requests and building workflows</li>
+<li><strong>Forking and versioning</strong> — Collection version control within Postman&rsquo;s ecosystem</li>
+</ul>
+<h3 id="collaboration-and-team-workspaces">Collaboration and Team Workspaces</h3>
+<p>Postman&rsquo;s team workspaces enable real-time collaboration on collections. Comments, change history, and role-based access control support team workflows. However, collaboration requires cloud synchronization — there is no first-class offline team mode. This is the primary pain point driving teams to evaluate alternatives.</p>
+<h3 id="pricing-changes-and-cloud-only-concerns">Pricing Changes and Cloud-Only Concerns</h3>
+<p>Postman&rsquo;s pricing has evolved significantly: | Plan | Price | Key Limitations |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Free | $0 | 3 team members, limited shared requests, no SAML |
 | Basic | $14/user/month | Up to 10 team members, basic collaboration |
 | Professional | $29/user/month | Unlimited team, advanced reporting, extended history |
-| Enterprise | Contact sales | SAML, governance, priority support |</p><p>The Free plan&rsquo;s three-member limit makes it impractical for real teams. The mandatory cloud sync for collaboration raises concerns when testing internal APIs that should not leave your network.</p><h3 id=strengths-ecosystem-integrations-enterprise-support>Strengths: Ecosystem, Integrations, Enterprise Support</h3><p>Postman&rsquo;s biggest advantage is its ecosystem. Thousands of public API collections are available in the Postman API Network. Enterprise support includes dedicated customer success managers, SLA guarantees, and training programs. For large organizations with established Postman workflows, switching costs are high.</p><h2 id=insomnia-the-developer-friendly-alternative>Insomnia: The Developer-Friendly Alternative</h2><h3 id=clean-ui-and-streamlined-workflow>Clean UI and Streamlined Workflow</h3><p>Insomnia&rsquo;s interface prioritizes speed. The request builder loads quickly, keyboard shortcuts are intuitive, and the layout minimizes clicks to execute a request. Developers switching from Postman consistently praise Insomnia&rsquo;s snappier performance and cleaner visual design.</p><h3 id=support-for-rest-graphql-grpc-and-websocket>Support for REST, GraphQL, gRPC, and WebSocket</h3><p>Insomnia natively supports multiple protocols in a single application. You can test REST endpoints, execute GraphQL queries with schema introspection, send gRPC requests with protobuf definitions, and open WebSocket connections. This multi-protocol support eliminates the need for separate tools when your stack uses multiple communication patterns.</p><h3 id=kong-acquisition-and-product-evolution>Kong Acquisition and Product Evolution</h3><p>Kong acquired Insomnia in 2019 and has invested in deeper integration with Kong Gateway. Insomnia now includes Kong-specific features like plugin configuration and gateway connectivity. While this benefits Kong users, developers using other gateway products may find these additions irrelevant.</p><h3 id=plugin-ecosystem-and-extensibility>Plugin Ecosystem and Extensibility</h3><p>Insomnia supports plugins through a JavaScript-based extension API. The plugin directory includes tools for JWT generation, data import/export, and custom themes. The ecosystem is smaller than Postman&rsquo;s but growing steadily.</p><h2 id=bruno-the-git-native-revolution>Bruno: The Git-Native Revolution</h2><h3 id=what-is-bruno-and-why-it-is-different>What Is Bruno and Why It Is Different</h3><p>Bruno launched in 2022 as a deliberate reaction against cloud-locked API clients. Its core innovation is storing API collections as plain text files using a custom format called Bru. These files live in your repository alongside your code, diff cleanly in pull requests, and require no cloud service to share across a team.</p><p>This approach treats API collections as code. Reviewers see API changes in Git diffs. CI pipelines execute collections using the Bruno CLI. There is no separate account to manage, no workspace to configure, and no vendor lock-in.</p><h3 id=git-friendly-collection-format-bru-files>Git-Friendly Collection Format (Bru Files)</h3><p>A Bru file is human-readable plain text. Here is a simple example: ````
+| Enterprise | Contact sales | SAML, governance, priority support |</p>
+<p>The Free plan&rsquo;s three-member limit makes it impractical for real teams. The mandatory cloud sync for collaboration raises concerns when testing internal APIs that should not leave your network.</p>
+<h3 id="strengths-ecosystem-integrations-enterprise-support">Strengths: Ecosystem, Integrations, Enterprise Support</h3>
+<p>Postman&rsquo;s biggest advantage is its ecosystem. Thousands of public API collections are available in the Postman API Network. Enterprise support includes dedicated customer success managers, SLA guarantees, and training programs. For large organizations with established Postman workflows, switching costs are high.</p>
+<h2 id="insomnia-the-developer-friendly-alternative">Insomnia: The Developer-Friendly Alternative</h2>
+<h3 id="clean-ui-and-streamlined-workflow">Clean UI and Streamlined Workflow</h3>
+<p>Insomnia&rsquo;s interface prioritizes speed. The request builder loads quickly, keyboard shortcuts are intuitive, and the layout minimizes clicks to execute a request. Developers switching from Postman consistently praise Insomnia&rsquo;s snappier performance and cleaner visual design.</p>
+<h3 id="support-for-rest-graphql-grpc-and-websocket">Support for REST, GraphQL, gRPC, and WebSocket</h3>
+<p>Insomnia natively supports multiple protocols in a single application. You can test REST endpoints, execute GraphQL queries with schema introspection, send gRPC requests with protobuf definitions, and open WebSocket connections. This multi-protocol support eliminates the need for separate tools when your stack uses multiple communication patterns.</p>
+<h3 id="kong-acquisition-and-product-evolution">Kong Acquisition and Product Evolution</h3>
+<p>Kong acquired Insomnia in 2019 and has invested in deeper integration with Kong Gateway. Insomnia now includes Kong-specific features like plugin configuration and gateway connectivity. While this benefits Kong users, developers using other gateway products may find these additions irrelevant.</p>
+<h3 id="plugin-ecosystem-and-extensibility">Plugin Ecosystem and Extensibility</h3>
+<p>Insomnia supports plugins through a JavaScript-based extension API. The plugin directory includes tools for JWT generation, data import/export, and custom themes. The ecosystem is smaller than Postman&rsquo;s but growing steadily.</p>
+<h2 id="bruno-the-git-native-revolution">Bruno: The Git-Native Revolution</h2>
+<h3 id="what-is-bruno-and-why-it-is-different">What Is Bruno and Why It Is Different</h3>
+<p>Bruno launched in 2022 as a deliberate reaction against cloud-locked API clients. Its core innovation is storing API collections as plain text files using a custom format called Bru. These files live in your repository alongside your code, diff cleanly in pull requests, and require no cloud service to share across a team.</p>
+<p>This approach treats API collections as code. Reviewers see API changes in Git diffs. CI pipelines execute collections using the Bruno CLI. There is no separate account to manage, no workspace to configure, and no vendor lock-in.</p>
+<h3 id="git-friendly-collection-format-bru-files">Git-Friendly Collection Format (Bru Files)</h3>
+<p>A Bru file is human-readable plain text. Here is a simple example: ````
 meta {
 name: Get User
 type: http
 seq: 1
-}</p><p>get {
+}</p>
+<p>get {
 url: /users/
 body: none
 auth: bearer
-}</p><p>headers {
+}</p>
+<p>headers {
 Content-Type: application/json
-}</p><p>vars:pre-request {
+}</p>
+<p>vars:pre-request {
 userId: 123
-}</p><p>tests {
+}</p>
+<p>tests {
 expect(res.status).to.equal(200);
 expect(res.body).to.have.property(&lsquo;id&rsquo;);
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 This format is simple enough to edit by hand, structured enough to parse programmatically, and readable enough to review in GitHub&#39;s diff view.
 
 ### Offline-First, No Cloud Lock-In
@@ -144,10 +268,14 @@ With Bruno, API changes appear in Git diffs as readable text. Reviewers see exac
 
 The Bruno CLI installs via npm (``npm install -g @usebruno/cli``) and runs collections with a single command: `````bash
 bru run collection-name --env production
-</code></pre><p>Output formats include JUnit XML and HTML reports, integrating directly with CI dashboards. A GitHub Actions example: `````yaml</p><ul><li>name: Run API Tests
+</code></pre><p>Output formats include JUnit XML and HTML reports, integrating directly with CI dashboards. A GitHub Actions example: `````yaml</p>
+<ul>
+<li>name: Run API Tests
 run: |
 npm install -g @usebruno/cli
-bru run collections/ &ndash;env staging &ndash;output results.xml</li></ul><pre tabindex=0><code>
+bru run collections/ &ndash;env staging &ndash;output results.xml</li>
+</ul>
+<pre tabindex="0"><code>
 ### Newman (Postman CLI) for Test Automation
 
 Postman&#39;s Newman CLI has been the standard for API test automation for years. It runs exported Postman collections and supports HTML, JUnit, and JSON reporters. The limitation is the export step — collections must be manually exported from Postman before CI can run them.
@@ -184,14 +312,38 @@ If you rarely test APIs and want minimal context switching, the Thunder Client o
 
 Bruno includes a Postman collection importer. Export your Postman collection as JSON v2.1, then use Bruno&#39;s import dialog or CLI command: `````bash
 bru import collection postman-export.json
-</code></pre><p>The importer handles requests, headers, environment variables, and basic test scripts. Complex Postman-specific scripts may need manual adjustment.</p><h3 id=converting-collections-and-environments>Converting Collections and Environments</h3><p>Environment variables export from Postman as JSON and can be converted to Bruno&rsquo;s environment format using the CLI or manual editing. The variable substitution syntax (````````) is identical between both tools, so no changes are needed in request definitions.</p><h3 id=maintaining-test-scripts-during-migration>Maintaining Test Scripts During Migration</h3><p>Postman&rsquo;s test scripts use the <code>pm.*</code> API for assertions and variable access. Bruno uses standard JavaScript with Chai assertions. A typical Postman test: `````javascript
-pm.test(&ldquo;Status is 200&rdquo;, () => {
+</code></pre><p>The importer handles requests, headers, environment variables, and basic test scripts. Complex Postman-specific scripts may need manual adjustment.</p>
+<h3 id="converting-collections-and-environments">Converting Collections and Environments</h3>
+<p>Environment variables export from Postman as JSON and can be converted to Bruno&rsquo;s environment format using the CLI or manual editing. The variable substitution syntax (````````) is identical between both tools, so no changes are needed in request definitions.</p>
+<h3 id="maintaining-test-scripts-during-migration">Maintaining Test Scripts During Migration</h3>
+<p>Postman&rsquo;s test scripts use the <code>pm.*</code> API for assertions and variable access. Bruno uses standard JavaScript with Chai assertions. A typical Postman test: `````javascript
+pm.test(&ldquo;Status is 200&rdquo;, () =&gt; {
 pm.response.to.have.status(200);
-});</p><pre tabindex=0><code>
+});</p>
+<pre tabindex="0"><code>
 Becomes in Bruno: `````javascript
 expect(res.status).to.equal(200);
-</code></pre><p>The conversion is mechanical and can be automated with a simple script for large collections.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=is-bruno-better-than-postman>Is Bruno better than Postman?</h3><p>Bruno is better than Postman for teams who prioritize Git integration, offline usage, and open-source tooling. Postman remains superior for teams that need collaboration features, mock servers, API documentation generation, and enterprise support. The right choice depends on your workflow priorities.</p><h3 id=what-is-the-best-free-api-testing-tool>What is the best free API testing tool?</h3><p>For completely free, unlimited API testing with no account required, Bruno is the best option. For multi-protocol support (GraphQL, gRPC) in a free tool, Insomnia&rsquo;s personal tier is excellent. For access to the largest API collection network, Postman&rsquo;s free tier works for individuals or very small teams.</p><h3 id=can-i-use-api-testing-tools-offline>Can I use API testing tools offline?</h3><p>Bruno works fully offline with no account creation required. Insomnia works offline but requires a free account for some features. Postman&rsquo;s desktop application works offline for local collections, but cloud features and team collaboration require internet access.</p><h3 id=how-do-i-migrate-from-postman-to-bruno>How do I migrate from Postman to Bruno?</h3><p>Export your Postman collections as JSON v2.1, then use Bruno&rsquo;s import feature or the CLI <code>bru import</code> command. Environment variables export separately and convert to Bruno"s format. Review test scripts and convert ````pm.*``` syntax to standard JavaScript assertions.</p><h3 id=which-api-client-supports-graphql-and-grpc>Which API client supports GraphQL and gRPC?</h3><p>Postman and Insomnia both support GraphQL and gRPC natively. Bruno currently focuses on REST API testing with GraphQL support planned. For WebSocket testing, Postman and Insomnia both offer native support. If multi-protocol testing is essential, Insomnia provides the best balance of features and performance.</p><hr><h2 id=recommended-infrastructure>Recommended Infrastructure</h2><p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li></ul><p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><p>The conversion is mechanical and can be automated with a simple script for large collections.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="is-bruno-better-than-postman">Is Bruno better than Postman?</h3>
+<p>Bruno is better than Postman for teams who prioritize Git integration, offline usage, and open-source tooling. Postman remains superior for teams that need collaboration features, mock servers, API documentation generation, and enterprise support. The right choice depends on your workflow priorities.</p>
+<h3 id="what-is-the-best-free-api-testing-tool">What is the best free API testing tool?</h3>
+<p>For completely free, unlimited API testing with no account required, Bruno is the best option. For multi-protocol support (GraphQL, gRPC) in a free tool, Insomnia&rsquo;s personal tier is excellent. For access to the largest API collection network, Postman&rsquo;s free tier works for individuals or very small teams.</p>
+<h3 id="can-i-use-api-testing-tools-offline">Can I use API testing tools offline?</h3>
+<p>Bruno works fully offline with no account creation required. Insomnia works offline but requires a free account for some features. Postman&rsquo;s desktop application works offline for local collections, but cloud features and team collaboration require internet access.</p>
+<h3 id="how-do-i-migrate-from-postman-to-bruno">How do I migrate from Postman to Bruno?</h3>
+<p>Export your Postman collections as JSON v2.1, then use Bruno&rsquo;s import feature or the CLI <code>bru import</code> command. Environment variables export separately and convert to Bruno&quot;s format. Review test scripts and convert ````pm.*``` syntax to standard JavaScript assertions.</p>
+<h3 id="which-api-client-supports-graphql-and-grpc">Which API client supports GraphQL and gRPC?</h3>
+<p>Postman and Insomnia both support GraphQL and gRPC natively. Bruno currently focuses on REST API testing with GraphQL support planned. For WebSocket testing, Postman and Insomnia both offer native support. If multi-protocol testing is essential, Insomnia provides the best balance of features and performance.</p>
+<hr>
+<h2 id="recommended-infrastructure">Recommended Infrastructure</h2>
+<p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li>
+</ul>
+<p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
@@ -205,20 +357,275 @@ expect(res.status).to.equal(200);
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/api-testing-tools-postman-vs-insomnia-vs-bruno%22>https://dibi8.com/resources/api-testing-tools-postman-vs-insomnia-vs-bruno"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/api-testing-tools-postman-vs-insomnia-vs-bruno%22">https://dibi8.com/resources/api-testing-tools-postman-vs-insomnia-vs-bruno"</a>
 }
-}</script></p><hr></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fapi-testing-tools-postman-vs-insomnia-vs-bruno%2f&text=Postman%20vs%20Insomnia%20vs%20Bruno%3a%20Best%20API%20Testing%20Tool%20in%202025" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fapi-testing-tools-postman-vs-insomnia-vs-bruno%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fapi-testing-tools-postman-vs-insomnia-vs-bruno%2f&text=Postman%20vs%20Insomnia%20vs%20Bruno%3a%20Best%20API%20Testing%20Tool%20in%202025" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fapi-testing-tools-postman-vs-insomnia-vs-bruno%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

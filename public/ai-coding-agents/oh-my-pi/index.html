@@ -1,62 +1,169 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Install Oh My Pi on a fresh Raspberry Pi OS | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Install Oh My Pi on a fresh Raspberry Pi OS | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/oh-my-pi/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/oh-my-pi/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Install Oh My Pi on a fresh Raspberry Pi OS</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install Oh My Pi on a fresh Raspberry Pi OS</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=tldr>TL;DR</h2><p>Oh My Pi turns any Raspberry Pi into a fully configured smart device with automated setup, pre-configured dashboards, and one-click service deployment. With 12,554 stars, it&rsquo;s the most popular Raspberry Pi automation framework on GitHub.</p><p><strong>TL;DR: 12,554 stars</strong> — the #1 Raspberry Pi automation project.</p><h2 id=what-is-oh-my-pi>What Is Oh My Pi?</h2><p>Oh My Pi is an automated setup framework for Raspberry Pi devices. Instead of manually configuring networking, installing services, and wiring them together, Oh My Pi handles the entire process from bare SD card to fully operational smart device in under 30 minutes.</p><p>The project provides a modular service catalog that includes: - <strong>Home Assistant</strong> — Full home automation hub with 2,000+ integrations</p><ul><li><strong>AdGuard Home</strong> — Network-wide ad blocking and DNS filtering</li><li><strong>Pi-hole</strong> — Lightweight DNS-based ad blocker</li><li><strong>Grafana + Prometheus</strong> — Infrastructure monitoring dashboards</li><li><strong>Jellyfin</strong> — Free media server for streaming</li><li><strong>Gitea</strong> — Self-hosted Git service</li><li><strong>Vaultwarden</strong> — Bitwarden-compatible password manager</li><li><strong>Minecraft Server</strong> — One-click Minecraft server deployment</li><li><strong>Network Scanner</strong> — Automatic device discovery and monitoring</li><li><strong>Backup Manager</strong> — Scheduled backups with encrypted storage</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install Oh My Pi on a fresh Raspberry Pi OS</span>
-</span></span><span style=display:flex><span>curl -sSL https://ohmypi.sh/install | sudo bash
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or clone and run manually</span>
-</span></span><span style=display:flex><span>git clone https://github.com/can1357/oh-my-pi.git
-</span></span><span style=display:flex><span>cd oh-my-pi
-</span></span><span style=display:flex><span>sudo ./install.sh
-</span></span></code></pre></div><h2 id=how-oh-my-pi-works>How Oh My Pi Works</h2><p>Oh My Pi follows a three-phase deployment model: 1. <strong>System Provisioning</strong> — Configures OS, networking, users, and security hardening
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Oh My Pi on a fresh Raspberry Pi OS | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Install Oh My Pi on a fresh Raspberry Pi OS | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/oh-my-pi/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/oh-my-pi/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install Oh My Pi on a fresh Raspberry Pi OS</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install Oh My Pi on a fresh Raspberry Pi OS</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="tldr">TL;DR</h2>
+<p>Oh My Pi turns any Raspberry Pi into a fully configured smart device with automated setup, pre-configured dashboards, and one-click service deployment. With 12,554 stars, it&rsquo;s the most popular Raspberry Pi automation framework on GitHub.</p>
+<p><strong>TL;DR: 12,554 stars</strong> — the #1 Raspberry Pi automation project.</p>
+<h2 id="what-is-oh-my-pi">What Is Oh My Pi?</h2>
+<p>Oh My Pi is an automated setup framework for Raspberry Pi devices. Instead of manually configuring networking, installing services, and wiring them together, Oh My Pi handles the entire process from bare SD card to fully operational smart device in under 30 minutes.</p>
+<p>The project provides a modular service catalog that includes: - <strong>Home Assistant</strong> — Full home automation hub with 2,000+ integrations</p>
+<ul>
+<li><strong>AdGuard Home</strong> — Network-wide ad blocking and DNS filtering</li>
+<li><strong>Pi-hole</strong> — Lightweight DNS-based ad blocker</li>
+<li><strong>Grafana + Prometheus</strong> — Infrastructure monitoring dashboards</li>
+<li><strong>Jellyfin</strong> — Free media server for streaming</li>
+<li><strong>Gitea</strong> — Self-hosted Git service</li>
+<li><strong>Vaultwarden</strong> — Bitwarden-compatible password manager</li>
+<li><strong>Minecraft Server</strong> — One-click Minecraft server deployment</li>
+<li><strong>Network Scanner</strong> — Automatic device discovery and monitoring</li>
+<li><strong>Backup Manager</strong> — Scheduled backups with encrypted storage</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Oh My Pi on a fresh Raspberry Pi OS</span>
+</span></span><span style="display:flex;"><span>curl -sSL https://ohmypi.sh/install | sudo bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or clone and run manually</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/can1357/oh-my-pi.git
+</span></span><span style="display:flex;"><span>cd oh-my-pi
+</span></span><span style="display:flex;"><span>sudo ./install.sh
+</span></span></code></pre></div><h2 id="how-oh-my-pi-works">How Oh My Pi Works</h2>
+<p>Oh My Pi follows a three-phase deployment model: 1. <strong>System Provisioning</strong> — Configures OS, networking, users, and security hardening
 2. <strong>Service Installation</strong> — Deploys selected services via Docker Compose with sensible defaults
-3. <strong>Dashboard Assembly</strong> — Creates a unified web dashboard to manage all services</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Phase 1: System provisioning</span>
-</span></span><span style=display:flex><span>sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Phase 2: Install services</span>
-</span></span><span style=display:flex><span>sudo omp install homeassistant grafana vaultwarden
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Phase 3: Generate dashboard</span>
-</span></span><span style=display:flex><span>sudo omp dashboard --title <span style=color:#e6db74>&#34;My Smart Pi&#34;</span> --theme dark
-</span></span></code></pre></div><p>The provisioning phase handles everything that typically takes hours: static IP configuration, SSH key setup, firewall rules, log rotation, and automatic updates. Services are deployed as isolated Docker containers with persistent volumes for data.</p><h2 id=installation--setup>Installation & Setup</h2><p>Requirements: Raspberry Pi 3B+ or newer (Pi 4 recommended), 8GB+ microSD card, Raspberry Pi OS Lite (64-bit).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Step 1: Flash Raspberry Pi OS Lite</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Download from https://www.raspberrypi.com/software/</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Step 2: Enable SSH and WiFi</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Add ssh file and wpa_supplicant.conf to boot partition</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Step 3: Boot the Pi and find its IP</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Scan your network with: nmap -sn 192.168.1.0/24</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Step 4: SSH in and install Oh My Pi</span>
-</span></span><span style=display:flex><span>ssh pi@&lt;pi-ip&gt;
-</span></span><span style=display:flex><span>curl -sSL https://ohmypi.sh/install | sudo bash
-</span></span></code></pre></div><h3 id=docker-configuration>Docker Configuration</h3><p>Oh My Pi uses Docker Compose for all service deployments: `````yaml</p><h1 id=generated-docker-composeyaml-after-installing-services>Generated docker-compose.yaml after installing services</h1><p>version: &ldquo;3.9&rdquo;
+3. <strong>Dashboard Assembly</strong> — Creates a unified web dashboard to manage all services</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Phase 1: System provisioning</span>
+</span></span><span style="display:flex;"><span>sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Phase 2: Install services</span>
+</span></span><span style="display:flex;"><span>sudo omp install homeassistant grafana vaultwarden
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Phase 3: Generate dashboard</span>
+</span></span><span style="display:flex;"><span>sudo omp dashboard --title <span style="color:#e6db74">&#34;My Smart Pi&#34;</span> --theme dark
+</span></span></code></pre></div><p>The provisioning phase handles everything that typically takes hours: static IP configuration, SSH key setup, firewall rules, log rotation, and automatic updates. Services are deployed as isolated Docker containers with persistent volumes for data.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>Requirements: Raspberry Pi 3B+ or newer (Pi 4 recommended), 8GB+ microSD card, Raspberry Pi OS Lite (64-bit).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Step 1: Flash Raspberry Pi OS Lite</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download from https://www.raspberrypi.com/software/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 2: Enable SSH and WiFi</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add ssh file and wpa_supplicant.conf to boot partition</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 3: Boot the Pi and find its IP</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Scan your network with: nmap -sn 192.168.1.0/24</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 4: SSH in and install Oh My Pi</span>
+</span></span><span style="display:flex;"><span>ssh pi@&lt;pi-ip&gt;
+</span></span><span style="display:flex;"><span>curl -sSL https://ohmypi.sh/install | sudo bash
+</span></span></code></pre></div><h3 id="docker-configuration">Docker Configuration</h3>
+<p>Oh My Pi uses Docker Compose for all service deployments: `````yaml</p>
+<h1 id="generated-docker-composeyaml-after-installing-services">Generated docker-compose.yaml after installing services</h1>
+<p>version: &ldquo;3.9&rdquo;
 services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
 volumes: - ha-data:/config
 - /etc/localtime:/etc/localtime:ro
 ports: - &ldquo;8123:8123&rdquo;
-restart: unless-stopped</p><p>adguard: image: adguard/adguardhome:latest
+restart: unless-stopped</p>
+<p>adguard: image: adguard/adguardhome:latest
 volumes: - adguard-conf:/opt/adguardhome/conf
 - adguard-work:/opt/adguardhome/work
 ports: - &ldquo;53:53/tcp&rdquo;
 - &ldquo;53:53/udp&rdquo;
 - &ldquo;3000:3000&rdquo;
 - &ldquo;80:80/tcp&rdquo;
-restart: unless-stopped</p><p>vaultwarden: image: vaultwarden/server:latest
+restart: unless-stopped</p>
+<p>vaultwarden: image: vaultwarden/server:latest
 volumes: - vw-data:/data
 environment: SIGNUPS_ALLOWED: &ldquo;false&rdquo;
-restart: unless-stopped</p><p>volumes: ha-data: adguard-conf: adguard-work: vw-data: `````</p><h3 id=network-configuration>Network Configuration</h3><p>Automatic network setup handles DHCP reservations, DNS forwarding, and firewall rules: `````bash</p><h1 id=configure-static-ip>Configure static IP</h1><p>sudo omp network static &ndash;ip 192.168.1.100 &ndash;gateway 192.168.1.1 &ndash;dns 8.8.8.8</p><h1 id=set-up-dns-forwarding>Set up DNS forwarding</h1><p>sudo omp network dns &ndash;upstream 1.1.1.1 &ndash;local 127.0.0.1</p><h1 id=configure-firewall>Configure firewall</h1><p>sudo omp firewall enable &ndash;allow 22 &ndash;allow 80 &ndash;allow 443 &ndash;allow 8123</p><pre tabindex=0><code>
+restart: unless-stopped</p>
+<p>volumes: ha-data: adguard-conf: adguard-work: vw-data: `````</p>
+<h3 id="network-configuration">Network Configuration</h3>
+<p>Automatic network setup handles DHCP reservations, DNS forwarding, and firewall rules: `````bash</p>
+<h1 id="configure-static-ip">Configure static IP</h1>
+<p>sudo omp network static &ndash;ip 192.168.1.100 &ndash;gateway 192.168.1.1 &ndash;dns 8.8.8.8</p>
+<h1 id="set-up-dns-forwarding">Set up DNS forwarding</h1>
+<p>sudo omp network dns &ndash;upstream 1.1.1.1 &ndash;local 127.0.0.1</p>
+<h1 id="configure-firewall">Configure firewall</h1>
+<p>sudo omp firewall enable &ndash;allow 22 &ndash;allow 80 &ndash;allow 443 &ndash;allow 8123</p>
+<pre tabindex="0"><code>
 ## Service Catalog: Detailed Breakdown
 
 Oh My Pi supports 20+ services across 6 categories: | Category | Services | Install Time | Resource Usage |
@@ -83,8 +190,19 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 # All services deploy with coordinated startup ordering
 # Home Assistant starts first, then Zigbee2MQTT connects,
 # AdGuard handles DNS, Grafana monitors everything
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>Several Raspberry Pi automation projects exist, but Oh My Pi stands out: | Feature | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>Several Raspberry Pi automation projects exist, but Oh My Pi stands out: | Feature | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Stars | 12,554 | 18K+ | N/A | 3.2K |
 | Service Count | 20+ | 15+ | N/A | 1 (media only) |
 | One-Click Install | Yes | Yes | No | No |
@@ -92,27 +210,41 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 | Backup System | Built-in | Yes | No | No |
 | Custom Service Support | Yes | Yes | No | No |
 | Headless Setup | Yes | Yes | No | No |
-| Docker-First | Yes | Yes | N/A | No |</p><p>The key differentiator is <strong>service diversity and orchestration</strong>. Unlike CasaOS which focuses on app store simplicity, Oh My Pi gives granular control over service configuration while maintaining one-click convenience.</p><h2 id=advanced-usage-custom-service-deployment>Advanced Usage: Custom Service Deployment</h2><p>Deploy custom services with Oh My Pi&rsquo;s extension system: ### Writing a Custom Service Definition</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># my-service.yaml — custom service definition</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>service: name</span>: <span style=color:#ae81ff>my-custom-app</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;1.0&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>docker: image</span>: <span style=color:#e6db74>&#34;myapp:latest&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8080:8080&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>myapp-data:/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: APP_ENV</span>: <span style=color:#ae81ff>production</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>LOG_LEVEL</span>: <span style=color:#ae81ff>info</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>health_check: url</span>: <span style=color:#e6db74>&#34;http://localhost:8080/health&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>interval</span>: <span style=color:#e6db74>&#34;30s&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>retries</span>: <span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>resources: cpu_limit</span>: <span style=color:#e6db74>&#34;0.5&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>memory_limit</span>: <span style=color:#e6db74>&#34;256M&#34;</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>backup: enabled</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>schedule</span>: <span style=color:#e6db74>&#34;0 2 * * *&#34;</span>  <span style=color:#75715e># daily at 2 AM</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>myapp-data</span>
-</span></span></code></pre></div><h3 id=automated-backups>Automated Backups</h3><p>Oh My Pi includes a built-in backup system with encrypted storage: `````bash</p><h1 id=configure-backup-destination>Configure backup destination</h1><p>sudo omp backup configure &ndash;remote s3 &ndash;bucket ohmypi-backups &ndash;region us-east-1</p><h1 id=run-backup-immediately>Run backup immediately</h1><p>sudo omp backup run</p><h1 id=restore-from-backup>Restore from backup</h1><p>sudo omp backup restore &ndash;date 2026-06-14 &ndash;verify</p><h1 id=schedule-daily-backups>Schedule daily backups</h1><p>sudo omp backup schedule &ndash;frequency daily &ndash;retention 30</p><pre tabindex=0><code>
+| Docker-First | Yes | Yes | N/A | No |</p>
+<p>The key differentiator is <strong>service diversity and orchestration</strong>. Unlike CasaOS which focuses on app store simplicity, Oh My Pi gives granular control over service configuration while maintaining one-click convenience.</p>
+<h2 id="advanced-usage-custom-service-deployment">Advanced Usage: Custom Service Deployment</h2>
+<p>Deploy custom services with Oh My Pi&rsquo;s extension system: ### Writing a Custom Service Definition</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># my-service.yaml — custom service definition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">service: name</span>: <span style="color:#ae81ff">my-custom-app</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">docker: image</span>: <span style="color:#e6db74">&#34;myapp:latest&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">myapp-data:/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: APP_ENV</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">LOG_LEVEL</span>: <span style="color:#ae81ff">info</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">health_check: url</span>: <span style="color:#e6db74">&#34;http://localhost:8080/health&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">interval</span>: <span style="color:#e6db74">&#34;30s&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources: cpu_limit</span>: <span style="color:#e6db74">&#34;0.5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">memory_limit</span>: <span style="color:#e6db74">&#34;256M&#34;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup: enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schedule</span>: <span style="color:#e6db74">&#34;0 2 * * *&#34;</span>  <span style="color:#75715e"># daily at 2 AM</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">myapp-data</span>
+</span></span></code></pre></div><h3 id="automated-backups">Automated Backups</h3>
+<p>Oh My Pi includes a built-in backup system with encrypted storage: `````bash</p>
+<h1 id="configure-backup-destination">Configure backup destination</h1>
+<p>sudo omp backup configure &ndash;remote s3 &ndash;bucket ohmypi-backups &ndash;region us-east-1</p>
+<h1 id="run-backup-immediately">Run backup immediately</h1>
+<p>sudo omp backup run</p>
+<h1 id="restore-from-backup">Restore from backup</h1>
+<p>sudo omp backup restore &ndash;date 2026-06-14 &ndash;verify</p>
+<h1 id="schedule-daily-backups">Schedule daily backups</h1>
+<p>sudo omp backup schedule &ndash;frequency daily &ndash;retention 30</p>
+<pre tabindex="0"><code>
 ### Remote Access and Tunneling
 
 Access your Pi services from anywhere with automatic HTTPS tunneling: `````bash
@@ -124,7 +256,15 @@ sudo omp tunnel ngrok --authtoken &lt;ngrok-token&gt;
 
 # Configure reverse proxy with Caddy (auto HTTPS)
 sudo omp proxy caddy --domain mypi.local --ssl auto
-</code></pre><h3 id=multi-pi-cluster-management>Multi-Pi Cluster Management</h3><p>Manage multiple Pis from a single dashboard: `````bash</p><h1 id=add-a-second-pi-to-the-cluster>Add a second Pi to the cluster</h1><p>sudo omp cluster add &ndash;host pi2.local &ndash;user pi &ndash;key ~/.ssh/id_ed25519</p><h1 id=deploy-services-across-all-nodes>Deploy services across all nodes</h1><p>sudo omp cluster deploy &ndash;services homeassistant,grafana &ndash;nodes all</p><h1 id=view-cluster-health>View cluster health</h1><p>sudo omp cluster health</p><pre tabindex=0><code>
+</code></pre><h3 id="multi-pi-cluster-management">Multi-Pi Cluster Management</h3>
+<p>Manage multiple Pis from a single dashboard: `````bash</p>
+<h1 id="add-a-second-pi-to-the-cluster">Add a second Pi to the cluster</h1>
+<p>sudo omp cluster add &ndash;host pi2.local &ndash;user pi &ndash;key ~/.ssh/id_ed25519</p>
+<h1 id="deploy-services-across-all-nodes">Deploy services across all nodes</h1>
+<p>sudo omp cluster deploy &ndash;services homeassistant,grafana &ndash;nodes all</p>
+<h1 id="view-cluster-health">View cluster health</h1>
+<p>sudo omp cluster health</p>
+<pre tabindex="0"><code>
 ### SD Card Health Monitoring
 
 Raspberry Pi SD cards can fail without warning. Oh My Pi includes built-in SMART-like monitoring: `````bash
@@ -136,7 +276,15 @@ sudo omp storage alerts --enable --threshold 70
 
 # Schedule automatic health checks
 sudo omp storage schedule --interval hourly
-</code></pre><h3 id=power-monitoring-and-ups-integration>Power Monitoring and UPS Integration</h3><p>For uninterrupted operation, Oh My Pi supports UPS hardware monitoring and graceful shutdown: `````bash</p><h1 id=configure-ups-monitoring>Configure UPS monitoring</h1><p>sudo omp ups configure &ndash;driver usb &ndash;shutdown-delay 300</p><h1 id=set-battery-threshold-for-graceful-shutdown>Set battery threshold for graceful shutdown</h1><p>sudo omp ups threshold &ndash;battery 20 &ndash;action shutdown</p><h1 id=monitor-power-events>Monitor power events</h1><p>sudo omp ups logs &ndash;tail 50</p><pre tabindex=0><code>
+</code></pre><h3 id="power-monitoring-and-ups-integration">Power Monitoring and UPS Integration</h3>
+<p>For uninterrupted operation, Oh My Pi supports UPS hardware monitoring and graceful shutdown: `````bash</p>
+<h1 id="configure-ups-monitoring">Configure UPS monitoring</h1>
+<p>sudo omp ups configure &ndash;driver usb &ndash;shutdown-delay 300</p>
+<h1 id="set-battery-threshold-for-graceful-shutdown">Set battery threshold for graceful shutdown</h1>
+<p>sudo omp ups threshold &ndash;battery 20 &ndash;action shutdown</p>
+<h1 id="monitor-power-events">Monitor power events</h1>
+<p>sudo omp ups logs &ndash;tail 50</p>
+<pre tabindex="0"><code>
 ### Resource Monitoring and Alerts
 
 `````bash
@@ -148,73 +296,367 @@ sudo omp monitor alerts --channel telegram --token &lt;bot-token&gt; --chat &lt;
 
 # View resource history
 sudo omp monitor history --period 7d --graph
-</code></pre><h2 id=limitations-when-oh-my-pi-may-not-fit>Limitations: When Oh My Pi May Not Fit</h2><ol><li><p><strong>Pi Zero and older models</strong> — Oh My Pi requires at least 1GB RAM. Pi Zero (256MB/512MB) cannot run the full service stack. Pi Zero 2 W (512MB) can run minimal configurations with only networking services.</p></li><li><p><strong>High-performance needs</strong> — For CPU-intensive workloads like 4K video transcoding, large-scale machine learning inference, or compiling large codebases, a more powerful single-board computer (like the Orange Pi 5 with 16GB RAM) or a dedicated x86 machine is recommended.</p></li><li><p><strong>Production-grade services</strong> — Oh My Pi is designed for hobbyist and small-team use cases. Mission-critical production deployments with SLA requirements should use dedicated servers with redundant power and network connections.</p></li><li><p><strong>Non-Docker services</strong> — All services run in Docker containers. Bare-metal installations and direct hardware access are not supported by the framework.</p></li><li><p><strong>Custom hardware</strong> — HATs, GPIO projects, sensor-based deployments, and robotics projects are outside the scope of Oh My Pi. The project focuses exclusively on network services and containerized applications, not hardware interfacing.</p></li><li><p><strong>Limited ARM-specific optimizations</strong> — While the Docker images are multi-architecture, some x86-optimized images may have reduced performance on ARM processors. Always verify image compatibility before deployment.</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Quick suitability check</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Home automation hub → YES</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Media server → YES</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Development workstation → YES</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Production database server → NO (use dedicated hardware)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ IoT sensor project → NO (focus on network services only)</span>
-</span></span></code></pre></div><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=which-raspberry-pi-model-is-recommended>Which Raspberry Pi model is recommended?</h3><p>Pi 4 with 4GB+ RAM or Pi 5. Pi 3B+ works for basic services but may struggle with multiple containers.</p><h3 id=can-i-use-oh-my-pi-on-non-raspberry-pi-boards>Can I use Oh My Pi on non-Raspberry Pi boards?</h3><p>Yes. The framework supports any ARM64 or x86_64 Linux machine with Docker installed.</p><h3 id=how-much-storage-do-i-need>How much storage do I need?</h3><p>Basic setup (2-3 services) needs about 8GB. Full setup (all 20+ services) uses approximately 15-20GB.</p><h3 id=is-there-a-mobile-app-for-managing-services>Is there a mobile app for managing services?</h3><p>The web dashboard is responsive and works on mobile browsers. Dedicated apps are not yet available.</p><h3 id=can-i-run-oh-my-pi-without-internet-access>Can I run Oh My Pi without internet access?</h3><p>Yes. All Docker images can be pre-pulled and the system supports offline service deployment.</p><h3 id=how-do-i-update-installed-services>How do I update installed services?</h3><p>Run <code>sudo omp update</code> to check for service updates and apply them with zero downtime where possible. The update system supports rolling updates for most services and can rollback automatically if a service fails to start after updating.</p><h3 id=can-i-use-oh-my-pi-on-non-raspberry-pi-boards-1>Can I use Oh My Pi on non-Raspberry Pi boards?</h3><p>Yes. The framework supports any ARM64 or x86_64 Linux machine with Docker installed. The <code>omp provision</code> command auto-detects the hardware and adjusts resource limits accordingly.</p><h3 id=is-there-a-web-dashboard-for-managing-services>Is there a web dashboard for managing services?</h3><p>Yes. Oh My Pi generates a unified web dashboard at <code>http://&lt;pi-ip>:3001</code> after installation. The dashboard shows all running services, resource usage, and provides one-click access to each service&rsquo;s admin panel.</p><h2 id=conclusion>Conclusion</h2><p>Oh My Pi eliminates the most frustrating parts of Raspberry Pi ownership: configuration, service wiring, and ongoing maintenance. With 12,554 stars, it has proven that a well-designed automation framework can make complex home infrastructure accessible to everyone, from first-time Pi owners to experienced system administrators managing fleet deployments across multiple locations and geographies. The project roadmap includes ARM-specific performance optimizations, native iOS/Android companion apps, and a community plugin marketplace.</p><p>For reliable SD card storage, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> offers backup solutions for Pi configurations. Cloud redundancy with <a href=https://m.do.co/oa14d5f0wx4f>DigitalOcean</a> objects is affordable. Crypto holders: <a href=https://bsmkweb.cc/6yq8qf7u>Binance</a>, <a href=https://promoohubly.com/5g1h7qxn>OKX</a>. <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> for remote Pi management. For secure remote access, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> encrypted storage protects your Pi configuration backups.</p><p><strong>Get started:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -sSL https://ohmypi.sh/install | sudo bash
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Internal links**: <span style=color:#f92672>[</span>Smart home guide<span style=color:#f92672>](</span>https://dibi8.com/<span style=color:#f92672>)</span> · <span style=color:#f92672>[</span>Edge computing with Pi<span style=color:#f92672>](</span>https://dibi8.com/ai-tools/<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/can1357/oh-my-pi
-</span></span><span style=display:flex><span>- Raspberry Pi documentation: https://www.raspberrypi.com/documentation/
-</span></span><span style=display:flex><span>- Docker documentation: https://docs.docker.com/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**CTA**: Join the DIBI8 IoT community on Telegram — <span style=color:#f92672>[</span>t.me/DIBI8_Group<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;Oh My Pi: Turn Any Raspberry Pi Into a Smart Device — 12K Star Project 2026&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/resources/oh-my-pi&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-05-25-trending-ai-agents<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-01-trending-ai-agents<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-08-trending-ai-agents<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-15-trending-ai-agents<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-22-trending-ai-agents<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span></code></pre></div></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2foh-my-pi%2f&text=Install%20Oh%20My%20Pi%20on%20a%20fresh%20Raspberry%20Pi%20OS" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2foh-my-pi%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre><h2 id="limitations-when-oh-my-pi-may-not-fit">Limitations: When Oh My Pi May Not Fit</h2>
+<ol>
+<li>
+<p><strong>Pi Zero and older models</strong> — Oh My Pi requires at least 1GB RAM. Pi Zero (256MB/512MB) cannot run the full service stack. Pi Zero 2 W (512MB) can run minimal configurations with only networking services.</p>
+</li>
+<li>
+<p><strong>High-performance needs</strong> — For CPU-intensive workloads like 4K video transcoding, large-scale machine learning inference, or compiling large codebases, a more powerful single-board computer (like the Orange Pi 5 with 16GB RAM) or a dedicated x86 machine is recommended.</p>
+</li>
+<li>
+<p><strong>Production-grade services</strong> — Oh My Pi is designed for hobbyist and small-team use cases. Mission-critical production deployments with SLA requirements should use dedicated servers with redundant power and network connections.</p>
+</li>
+<li>
+<p><strong>Non-Docker services</strong> — All services run in Docker containers. Bare-metal installations and direct hardware access are not supported by the framework.</p>
+</li>
+<li>
+<p><strong>Custom hardware</strong> — HATs, GPIO projects, sensor-based deployments, and robotics projects are outside the scope of Oh My Pi. The project focuses exclusively on network services and containerized applications, not hardware interfacing.</p>
+</li>
+<li>
+<p><strong>Limited ARM-specific optimizations</strong> — While the Docker images are multi-architecture, some x86-optimized images may have reduced performance on ARM processors. Always verify image compatibility before deployment.</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Quick suitability check</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Home automation hub → YES</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Media server → YES</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Development workstation → YES</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Production database server → NO (use dedicated hardware)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ IoT sensor project → NO (focus on network services only)</span>
+</span></span></code></pre></div><h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="which-raspberry-pi-model-is-recommended">Which Raspberry Pi model is recommended?</h3>
+<p>Pi 4 with 4GB+ RAM or Pi 5. Pi 3B+ works for basic services but may struggle with multiple containers.</p>
+<h3 id="can-i-use-oh-my-pi-on-non-raspberry-pi-boards">Can I use Oh My Pi on non-Raspberry Pi boards?</h3>
+<p>Yes. The framework supports any ARM64 or x86_64 Linux machine with Docker installed.</p>
+<h3 id="how-much-storage-do-i-need">How much storage do I need?</h3>
+<p>Basic setup (2-3 services) needs about 8GB. Full setup (all 20+ services) uses approximately 15-20GB.</p>
+<h3 id="is-there-a-mobile-app-for-managing-services">Is there a mobile app for managing services?</h3>
+<p>The web dashboard is responsive and works on mobile browsers. Dedicated apps are not yet available.</p>
+<h3 id="can-i-run-oh-my-pi-without-internet-access">Can I run Oh My Pi without internet access?</h3>
+<p>Yes. All Docker images can be pre-pulled and the system supports offline service deployment.</p>
+<h3 id="how-do-i-update-installed-services">How do I update installed services?</h3>
+<p>Run <code>sudo omp update</code> to check for service updates and apply them with zero downtime where possible. The update system supports rolling updates for most services and can rollback automatically if a service fails to start after updating.</p>
+<h3 id="can-i-use-oh-my-pi-on-non-raspberry-pi-boards-1">Can I use Oh My Pi on non-Raspberry Pi boards?</h3>
+<p>Yes. The framework supports any ARM64 or x86_64 Linux machine with Docker installed. The <code>omp provision</code> command auto-detects the hardware and adjusts resource limits accordingly.</p>
+<h3 id="is-there-a-web-dashboard-for-managing-services">Is there a web dashboard for managing services?</h3>
+<p>Yes. Oh My Pi generates a unified web dashboard at <code>http://&lt;pi-ip&gt;:3001</code> after installation. The dashboard shows all running services, resource usage, and provides one-click access to each service&rsquo;s admin panel.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Oh My Pi eliminates the most frustrating parts of Raspberry Pi ownership: configuration, service wiring, and ongoing maintenance. With 12,554 stars, it has proven that a well-designed automation framework can make complex home infrastructure accessible to everyone, from first-time Pi owners to experienced system administrators managing fleet deployments across multiple locations and geographies. The project roadmap includes ARM-specific performance optimizations, native iOS/Android companion apps, and a community plugin marketplace.</p>
+<p>For reliable SD card storage, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> offers backup solutions for Pi configurations. Cloud redundancy with <a href="https://m.do.co/oa14d5f0wx4f">DigitalOcean</a> objects is affordable. Crypto holders: <a href="https://bsmkweb.cc/6yq8qf7u">Binance</a>, <a href="https://promoohubly.com/5g1h7qxn">OKX</a>. <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> for remote Pi management. For secure remote access, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> encrypted storage protects your Pi configuration backups.</p>
+<p><strong>Get started:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -sSL https://ohmypi.sh/install | sudo bash
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Internal links**: <span style="color:#f92672">[</span>Smart home guide<span style="color:#f92672">](</span>https://dibi8.com/<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>Edge computing with Pi<span style="color:#f92672">](</span>https://dibi8.com/ai-tools/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/can1357/oh-my-pi
+</span></span><span style="display:flex;"><span>- Raspberry Pi documentation: https://www.raspberrypi.com/documentation/
+</span></span><span style="display:flex;"><span>- Docker documentation: https://docs.docker.com/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**CTA**: Join the DIBI8 IoT community on Telegram — <span style="color:#f92672">[</span>t.me/DIBI8_Group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Oh My Pi: Turn Any Raspberry Pi Into a Smart Device — 12K Star Project 2026&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/oh-my-pi&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-05-25-trending-ai-agents<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-01-trending-ai-agents<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-08-trending-ai-agents<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-15-trending-ai-agents<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-22-trending-ai-agents<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span></code></pre></div>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2foh-my-pi%2f&text=Install%20Oh%20My%20Pi%20on%20a%20fresh%20Raspberry%20Pi%20OS" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2foh-my-pi%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Introduction: The 47-Second Query That Killed a Demo | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Introduction: The 47-Second Query That Killed a Demo | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/pgvector-postgres-vector-extension/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/pgvector-postgres-vector-extension/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Introduction: The 47-Second Query That Killed a Demo</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Introduction: The 47-Second Query That Killed a Demo</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;pgvector 2026: Turn PostgreSQL into a High-Performance V&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction: The 47-Second Query That Killed a Demo | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Introduction: The 47-Second Query That Killed a Demo | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/pgvector-postgres-vector-extension/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/pgvector-postgres-vector-extension/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Introduction: The 47-Second Query That Killed a Demo</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Introduction: The 47-Second Query That Killed a Demo</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;pgvector 2026: Turn PostgreSQL into a High-Performance V&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,190 +99,244 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;data-science&rdquo;]
 tags: [&ldquo;pgvector&rdquo;, &ldquo;postgresql&rdquo;, &ldquo;vector-database&rdquo;, &ldquo;hnsw&rdquo;, &ldquo;ann&rdquo;, &ldquo;rag&rdquo;, &ldquo;similarity-search&rdquo;, &ldquo;full-text-search&rdquo;]
-aliases:</p><ul><li>/posts/pgvector-postgres-vector-extension/-</li></ul><hr><h2 id=introduction-the-47-second-query-that-killed-a-demo>Introduction: The 47-Second Query That Killed a Demo</h2><p>It was March 2025. An AI startup founder stood in front of a potential enterprise client, running a RAG demo. The question was simple: <em>&ldquo;What does our product do?&rdquo;</em> The vector search against 2 million documents in their PostgreSQL database took <strong>47 seconds</strong> to return. The client left the room before the first result appeared.</p><p>The problem wasn&rsquo;t PostgreSQL. It was a missing <strong>HNSW index</strong> on the ```vector<code>column. After adding</code>CREATE INDEX &mldr; USING hnsw````, the same query dropped to <strong>3.2 milliseconds</strong> — a <strong>14,000x improvement</strong>. No database migration, no new infrastructure, just one SQL statement.</p><p>This is the power of <strong>pgvector 0.8.2</strong>, the open-source PostgreSQL extension that transforms the world&rsquo;s most trusted relational database into a high-performance vector database. With <strong>15,000+ GitHub stars</strong> and native support on Supabase, Neon, AWS RDS, and Google Cloud SQL, pgvector is the pragmatic choice for the <strong>70% of AI-agent workloads</strong> that stay under 10 million vectors.</p><p>This guide covers everything: installation on PostgreSQL 18, HNSW tuning, <code>halfvec</code> quantization, filtered hybrid search, and production RAG integration.</p><h2 id=what-is-pgvector--vectors-inside-postgresql>What Is pgvector? — Vectors Inside PostgreSQL</h2><p><strong>pgvector</strong> is an open-source extension for PostgreSQL that adds vector data types, approximate nearest neighbor (ANN) indexes, and distance functions directly inside the database. Instead of running a separate vector database alongside PostgreSQL, you store embeddings in the same tables as your relational data and query them with standard SQL.</p><p><strong>Key stats (May 2026):</strong></p><p>| Metric | Value |
-|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/posts/pgvector-postgres-vector-extension/-</li>
+</ul>
+<hr>
+<h2 id="introduction-the-47-second-query-that-killed-a-demo">Introduction: The 47-Second Query That Killed a Demo</h2>
+<p>It was March 2025. An AI startup founder stood in front of a potential enterprise client, running a RAG demo. The question was simple: <em>&ldquo;What does our product do?&rdquo;</em> The vector search against 2 million documents in their PostgreSQL database took <strong>47 seconds</strong> to return. The client left the room before the first result appeared.</p>
+<p>The problem wasn&rsquo;t PostgreSQL. It was a missing <strong>HNSW index</strong> on the ```vector<code>column. After adding</code>CREATE INDEX &hellip; USING hnsw````, the same query dropped to <strong>3.2 milliseconds</strong> — a <strong>14,000x improvement</strong>. No database migration, no new infrastructure, just one SQL statement.</p>
+<p>This is the power of <strong>pgvector 0.8.2</strong>, the open-source PostgreSQL extension that transforms the world&rsquo;s most trusted relational database into a high-performance vector database. With <strong>15,000+ GitHub stars</strong> and native support on Supabase, Neon, AWS RDS, and Google Cloud SQL, pgvector is the pragmatic choice for the <strong>70% of AI-agent workloads</strong> that stay under 10 million vectors.</p>
+<p>This guide covers everything: installation on PostgreSQL 18, HNSW tuning, <code>halfvec</code> quantization, filtered hybrid search, and production RAG integration.</p>
+<h2 id="what-is-pgvector--vectors-inside-postgresql">What Is pgvector? — Vectors Inside PostgreSQL</h2>
+<p><strong>pgvector</strong> is an open-source extension for PostgreSQL that adds vector data types, approximate nearest neighbor (ANN) indexes, and distance functions directly inside the database. Instead of running a separate vector database alongside PostgreSQL, you store embeddings in the same tables as your relational data and query them with standard SQL.</p>
+<p><strong>Key stats (May 2026):</strong></p>
+<p>| Metric | Value |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Current version | <strong>0.8.2</strong> |
 | PostgreSQL compatibility | <strong>14 through 18</strong> |
 | GitHub stars | <strong>15,000+</strong> |
 | Max vector dimensions | <strong>16,000</strong> |
 | ANN recall (HNSW) | <strong>~95%</strong> |
 | Index types | <strong>HNSW, IVFFlat</strong> |
-| License | PostgreSQL (open source) |</p><p>Unlike standalone vector databases, pgvector inherits everything PostgreSQL offers: <strong>ACID transactions</strong>, <strong>row-level security</strong>, <strong>JSONB metadata</strong>, <strong>full-text search</strong>, and decades of operational tooling. When your documents, user permissions, audit logs, and vector embeddings all live in one database, you eliminate the dual-write problem entirely.</p><h2 id=how-pgvector-works-index-types-and-query-planning>How pgvector Works: Index Types and Query Planning</h2><p>pgvector supports two ANN index types, each with distinct trade-offs: ### HNSW (Hierarchical Navigable Small World)</p><p>The default choice for most workloads. HNSW builds a multi-layer graph where each layer is a subset of the previous one. Query traversal starts at the top layer and greedily navigates down until reaching the densest graph at the bottom.</p><p><strong>Best for:</strong> High-recall, low-latency queries on datasets up to ~50M vectors.
+| License | PostgreSQL (open source) |</p>
+<p>Unlike standalone vector databases, pgvector inherits everything PostgreSQL offers: <strong>ACID transactions</strong>, <strong>row-level security</strong>, <strong>JSONB metadata</strong>, <strong>full-text search</strong>, and decades of operational tooling. When your documents, user permissions, audit logs, and vector embeddings all live in one database, you eliminate the dual-write problem entirely.</p>
+<h2 id="how-pgvector-works-index-types-and-query-planning">How pgvector Works: Index Types and Query Planning</h2>
+<p>pgvector supports two ANN index types, each with distinct trade-offs: ### HNSW (Hierarchical Navigable Small World)</p>
+<p>The default choice for most workloads. HNSW builds a multi-layer graph where each layer is a subset of the previous one. Query traversal starts at the top layer and greedily navigates down until reaching the densest graph at the bottom.</p>
+<p><strong>Best for:</strong> High-recall, low-latency queries on datasets up to ~50M vectors.
 <strong>Build time:</strong> Slower than IVFFlat (single-threaded in pgvector 0.8.2).
-<strong>Query parameters:</strong> <code>hnsw.ef_search</code> controls recall vs. latency trade-off.</p><h3 id=ivfflat-inverted-file-with-flat-index>IVFFlat (Inverted File with Flat Index)</h3><p>Partitions vectors into clusters (lists) using k-means. At query time, only the closest clusters are scanned.</p><p><strong>Best for:</strong> Faster index builds, memory-constrained environments.
+<strong>Query parameters:</strong> <code>hnsw.ef_search</code> controls recall vs. latency trade-off.</p>
+<h3 id="ivfflat-inverted-file-with-flat-index">IVFFlat (Inverted File with Flat Index)</h3>
+<p>Partitions vectors into clusters (lists) using k-means. At query time, only the closest clusters are scanned.</p>
+<p><strong>Best for:</strong> Faster index builds, memory-constrained environments.
 <strong>Trade-off:</strong> Lower recall than HNSW at the same latency budget.
-<strong>Query parameters:</strong> <code>ivfflat.probes</code> controls how many clusters to scan.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- HNSW index (recommended for most workloads)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>INDEX</span> <span style=color:#66d9ef>ON</span> documents
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>USING</span> hnsw (embedding vector_l2_ops)
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>WITH</span> (m <span style=color:#f92672>=</span> <span style=color:#ae81ff>16</span>, ef_construction <span style=color:#f92672>=</span> <span style=color:#ae81ff>64</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- IVFFlat index (faster builds, lower recall)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>INDEX</span> <span style=color:#66d9ef>ON</span> documents
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>USING</span> ivfflat (embedding vector_l2_ops)
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>WITH</span> (lists <span style=color:#f92672>=</span> <span style=color:#ae81ff>100</span>);
-</span></span></code></pre></div><h3 id=distance-operators>Distance Operators</h3><p>pgvector provides three distance operators: | Operator | Description | Use case |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <code>&lt;-></code> | Euclidean (L2) distance | General similarity (default) |
-| <code>&lt;#></code> | Negative inner product | OpenAI embeddings |
-| <code>&lt;=></code> | Cosine distance | Semantic similarity (normalized vectors) |</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- L2 distance (smaller = more similar)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> id, embedding <span style=color:#f92672>&lt;-&gt;</span> query_vec <span style=color:#66d9ef>AS</span> distance
-</span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> documents <span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span> distance <span style=color:#66d9ef>LIMIT</span> <span style=color:#ae81ff>10</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Cosine distance (for normalized embeddings)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> id, embedding <span style=color:#f92672>&lt;=&gt;</span> query_vec <span style=color:#66d9ef>AS</span> distance
-</span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> documents <span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span> distance <span style=color:#66d9ef>LIMIT</span> <span style=color:#ae81ff>10</span>;
-</span></span></code></pre></div><h2 id=installation--setup-under-5-minutes>Installation & Setup: Under 5 Minutes</h2><h3 id=option-a-docker-fastest>Option A: Docker (Fastest)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker run -d <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name pgvector-demo <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -e POSTGRES_PASSWORD<span style=color:#f92672>=</span>mysecretpassword <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -e POSTGRES_DB<span style=color:#f92672>=</span>vectordb <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -p 5432:5432 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  pgvector/pgvector:0.8.2-pg18
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify</span>
-</span></span><span style=display:flex><span>docker exec pgvector-demo psql -U postgres -d vectordb -c <span style=color:#e6db74>&#34;SELECT * FROM pg_extension WHERE extname = vector;&#34;</span>
-</span></span></code></pre></div><h3 id=option-b-existing-postgresql>Option B: Existing PostgreSQL</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install build dependencies (Ubuntu/Debian)</span>
-</span></span><span style=display:flex><span>sudo apt-get install postgresql-server-dev-18 build-essential git
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Clone and build pgvector</span>
-</span></span><span style=display:flex><span>git clone --branch v0.8.2 https://github.com/pgvector/pgvector.git
-</span></span><span style=display:flex><span>cd pgvector
-</span></span><span style=display:flex><span>make
-</span></span><span style=display:flex><span>sudo make install
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Enable extension in database</span>
-</span></span><span style=display:flex><span>psql -U postgres -d mydb -c <span style=color:#e6db74>&#34;CREATE EXTENSION IF NOT EXISTS vector;&#34;</span>
-</span></span></code></pre></div><h3 id=option-c-supabase-managed>Option C: Supabase (Managed)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- pgvector is pre-installed on Supabase. Just enable it: CREATE EXTENSION IF NOT EXISTS vector;
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Verify version
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> extversion <span style=color:#66d9ef>FROM</span> pg_extension <span style=color:#66d9ef>WHERE</span> extname <span style=color:#f92672>=</span> vector;
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Returns: 0.8.2
-</span></span></span></code></pre></div><h3 id=option-d-aws-rds--google-cloud-sql>Option D: AWS RDS / Google Cloud SQL</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- On RDS PostgreSQL 18, pgvector is available as an extension
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> EXTENSION <span style=color:#66d9ef>IF</span> <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>EXISTS</span> vector;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Check available extensions if needed
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>FROM</span> pg_available_extensions <span style=color:#66d9ef>WHERE</span> name <span style=color:#f92672>=</span> vector;
-</span></span></code></pre></div><h3 id=verify-installation>Verify Installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Check pgvector version
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> extversion <span style=color:#66d9ef>FROM</span> pg_extension <span style=color:#66d9ef>WHERE</span> extname <span style=color:#f92672>=</span> vector;
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Expected: 0.8.2
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Test vector type
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> <span style=color:#e6db74>&#39;[1,2,3]&#39;</span>::vector(<span style=color:#ae81ff>3</span>) <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#e6db74>&#39;[4,5,6]&#39;</span>::vector(<span style=color:#ae81ff>3</span>) <span style=color:#66d9ef>AS</span> l2_distance;
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Expected: ~5.196
-</span></span></span></code></pre></div><h2 id=core-operations-creating-tables-inserting-and-querying>Core Operations: Creating Tables, Inserting, and Querying</h2><h3 id=creating-a-vector-table>Creating a Vector Table</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Create table with vector column (1536 dimensions = OpenAI embeddings)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> documents (
-</span></span><span style=display:flex><span>    id          BIGSERIAL <span style=color:#66d9ef>PRIMARY</span> <span style=color:#66d9ef>KEY</span>,
-</span></span><span style=display:flex><span>    title       VARCHAR(<span style=color:#ae81ff>512</span>) <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span>,
-</span></span><span style=display:flex><span>    content     TEXT,
-</span></span><span style=display:flex><span>    embedding   vector(<span style=color:#ae81ff>1536</span>),
-</span></span><span style=display:flex><span>    metadata    JSONB <span style=color:#66d9ef>DEFAULT</span> <span style=color:#e6db74>&#39;{}&#39;</span>,
-</span></span><span style=display:flex><span>    created_at  TIMESTAMPTZ <span style=color:#66d9ef>DEFAULT</span> NOW(),
-</span></span><span style=display:flex><span>    tenant_id   INTEGER <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span> <span style=color:#66d9ef>DEFAULT</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Add index for common filter columns
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>INDEX</span> idx_docs_tenant <span style=color:#66d9ef>ON</span> documents(tenant_id);
-</span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>INDEX</span> idx_docs_created <span style=color:#66d9ef>ON</span> documents(created_at);
-</span></span></code></pre></div><h3 id=inserting-vectors>Inserting Vectors</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Insert a single document with embedding
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> documents (title, content, embedding, metadata, tenant_id)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>VALUES</span> (
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;Introduction to pgvector&#39;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;pgvector adds vector support to PostgreSQL...&#39;</span>,
-</span></span><span style=display:flex><span>    ARRAY_FILL(<span style=color:#ae81ff>0</span>.<span style=color:#ae81ff>0</span>::real, ARRAY[<span style=color:#ae81ff>1536</span>])::vector(<span style=color:#ae81ff>1536</span>),  <span style=color:#75715e>-- placeholder
-</span></span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;{&#34;author&#34;: &#34;dibi8&#34;, &#34;category&#34;: &#34;database&#34;}&#39;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Insert with actual OpenAI embedding (from Python)
-</span></span></span><span style=display:flex><span><span style=color:#75715e>-- See RAG Integration section below for full example
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Batch insert vectors from Python</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> psycopg2
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>conn <span style=color:#f92672>=</span> psycopg2<span style=color:#f92672>.</span>connect(<span style=color:#e6db74>&#34;dbname=vectordb user=postgres password=mysecretpassword host=localhost&#34;</span>)
-</span></span><span style=display:flex><span>cur <span style=color:#f92672>=</span> conn<span style=color:#f92672>.</span>cursor()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generate 10K random vectors as sample</span>
-</span></span><span style=display:flex><span>batch_size <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>
-</span></span><span style=display:flex><span>titles <span style=color:#f92672>=</span> [<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;document_</span><span style=color:#e6db74>{</span>i<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(batch_size)]
-</span></span><span style=display:flex><span>contents <span style=color:#f92672>=</span> [<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Content for document </span><span style=color:#e6db74>{</span>i<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(batch_size)]
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(batch_size, <span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>astype(np<span style=color:#f92672>.</span>float32)
-</span></span><span style=display:flex><span>tenant_ids <span style=color:#f92672>=</span> [i <span style=color:#f92672>%</span> <span style=color:#ae81ff>10</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(batch_size)]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use executemany for batch insert</span>
-</span></span><span style=display:flex><span>args <span style=color:#f92672>=</span> [(titles[i], contents[i], embeddings[i]<span style=color:#f92672>.</span>tolist(), tenant_ids[i]) <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(batch_size)]
-</span></span><span style=display:flex><span>cur<span style=color:#f92672>.</span>executemany(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;INSERT INTO documents (title, content, embedding, tenant_id) VALUES (</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>, </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>, </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>::vector, </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>)&#34;</span>,
-</span></span><span style=display:flex><span>    args
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>conn<span style=color:#f92672>.</span>commit()
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Inserted </span><span style=color:#e6db74>{</span>batch_size<span style=color:#e6db74>}</span><span style=color:#e6db74> documents&#34;</span>)
-</span></span></code></pre></div><h3 id=building-the-hnsw-index-production-tuning>Building the HNSW Index (Production Tuning)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Set parameters for parallel index build
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SET</span> maintenance_work_mem <span style=color:#f92672>=</span> <span style=color:#ae81ff>8</span>GB;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>SET</span> max_parallel_maintenance_workers <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Build HNSW index with tuned parameters
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>INDEX</span> idx_docs_embedding_hnsw <span style=color:#66d9ef>ON</span> documents
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>USING</span> hnsw (embedding vector_l2_ops)
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>WITH</span> (
-</span></span><span style=display:flex><span>    m <span style=color:#f92672>=</span> <span style=color:#ae81ff>16</span>,              <span style=color:#75715e>-- Number of connections per layer (default: 16)
-</span></span></span><span style=display:flex><span>    ef_construction <span style=color:#f92672>=</span> <span style=color:#ae81ff>128</span>  <span style=color:#75715e>-- Size of dynamic candidate list (default: 64)
-</span></span></span><span style=display:flex><span>  );
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Check index size
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Typical: ~450 MB for 100K vectors of 1536 dimensions
-</span></span></span></code></pre></div><h3 id=vector-similarity-search>Vector Similarity Search</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Basic ANN search
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> id, title, embedding <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>::vector <span style=color:#66d9ef>AS</span> distance
-</span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> documents
-</span></span><span style=display:flex><span><span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span> embedding <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>::vector
-</span></span><span style=display:flex><span><span style=color:#66d9ef>LIMIT</span> <span style=color:#ae81ff>10</span>;
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Filtered vector search (most common production pattern)
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> id, title, embedding <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>::vector <span style=color:#66d9ef>AS</span> distance
-</span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> documents
-</span></span><span style=display:flex><span><span style=color:#66d9ef>WHERE</span> tenant_id <span style=color:#f92672>=</span> <span style=color:#ae81ff>42</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>AND</span> created_at <span style=color:#f92672>&gt;</span> NOW() <span style=color:#f92672>-</span> INTERVAL <span style=color:#e6db74>&#39;30 days&#39;</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>AND</span> metadata<span style=color:#f92672>-&gt;&gt;</span>category <span style=color:#f92672>=</span> tech
-</span></span><span style=display:flex><span><span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span> embedding <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>::vector
-</span></span><span style=display:flex><span><span style=color:#66d9ef>LIMIT</span> <span style=color:#ae81ff>20</span>;
-</span></span></code></pre></div><h3 id=hybrid-search-vector--full-text>Hybrid Search: Vector + Full-Text</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- First, enable pg_trgm for text search
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> EXTENSION <span style=color:#66d9ef>IF</span> <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>EXISTS</span> pg_trgm;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Combined vector similarity + text relevance
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span>
-</span></span><span style=display:flex><span>    d.id,
-</span></span><span style=display:flex><span>    d.title,
-</span></span><span style=display:flex><span>    d.embedding <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>::vector <span style=color:#66d9ef>AS</span> vec_distance,
-</span></span><span style=display:flex><span>    similarity(d.title, <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>2</span>) <span style=color:#66d9ef>AS</span> text_similarity
-</span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> documents d
-</span></span><span style=display:flex><span><span style=color:#66d9ef>WHERE</span> d.title <span style=color:#f92672>%</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>2</span>  <span style=color:#75715e>-- trigram similarity filter
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span>
-</span></span><span style=display:flex><span>    (d.embedding <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>::vector) <span style=color:#f92672>*</span> <span style=color:#ae81ff>0</span>.<span style=color:#ae81ff>7</span> <span style=color:#f92672>+</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>-</span> similarity(d.title, <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>2</span>)) <span style=color:#f92672>*</span> <span style=color:#ae81ff>0</span>.<span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>LIMIT</span> <span style=color:#ae81ff>10</span>;
-</span></span></code></pre></div><h2 id=performance-tuning-from-47-seconds-to-3-milliseconds>Performance Tuning: From 47 Seconds to 3 Milliseconds</h2><h3 id=guc-parameters-for-hnsw>GUC Parameters for HNSW</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Tune ef_search for recall vs. latency
-</span></span></span><span style=display:flex><span><span style=color:#75715e>-- Higher = better recall, slower queries
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SET</span> hnsw.ef_search <span style=color:#f92672>=</span> <span style=color:#ae81ff>100</span>;  <span style=color:#75715e>-- Default is 40; 64-128 is typical for production
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Check actual query plan
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>EXPLAIN</span> (<span style=color:#66d9ef>ANALYZE</span>, BUFFERS)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> id, title, embedding <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>::vector <span style=color:#66d9ef>AS</span> distance
-</span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> documents
-</span></span><span style=display:flex><span><span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span> embedding <span style=color:#f92672>&lt;-&gt;</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>::vector
-</span></span><span style=display:flex><span><span style=color:#66d9ef>LIMIT</span> <span style=color:#ae81ff>10</span>;
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Look for: Index Scan using idx_docs_embedding_hnsw
-</span></span></span></code></pre></div><h3 id=half-precision-quantization-halfvec>Half-Precision Quantization (halfvec)</h3><p>pgvector 0.8.2 supports <code>halfvec</code> type for <strong>50% storage reduction</strong> with minimal recall loss: `````sql
+<strong>Query parameters:</strong> <code>ivfflat.probes</code> controls how many clusters to scan.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- HNSW index (recommended for most workloads)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#66d9ef">ON</span> documents
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">USING</span> hnsw (embedding vector_l2_ops)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">WITH</span> (m <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>, ef_construction <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- IVFFlat index (faster builds, lower recall)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#66d9ef">ON</span> documents
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">USING</span> ivfflat (embedding vector_l2_ops)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">WITH</span> (lists <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>);
+</span></span></code></pre></div><h3 id="distance-operators">Distance Operators</h3>
+<p>pgvector provides three distance operators: | Operator | Description | Use case |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <code>&lt;-&gt;</code> | Euclidean (L2) distance | General similarity (default) |
+| <code>&lt;#&gt;</code> | Negative inner product | OpenAI embeddings |
+| <code>&lt;=&gt;</code> | Cosine distance | Semantic similarity (normalized vectors) |</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- L2 distance (smaller = more similar)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, embedding <span style="color:#f92672">&lt;-&gt;</span> query_vec <span style="color:#66d9ef">AS</span> distance
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> distance <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Cosine distance (for normalized embeddings)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, embedding <span style="color:#f92672">&lt;=&gt;</span> query_vec <span style="color:#66d9ef">AS</span> distance
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> distance <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><h2 id="installation--setup-under-5-minutes">Installation &amp; Setup: Under 5 Minutes</h2>
+<h3 id="option-a-docker-fastest">Option A: Docker (Fastest)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name pgvector-demo <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>mysecretpassword <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e POSTGRES_DB<span style="color:#f92672">=</span>vectordb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 5432:5432 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  pgvector/pgvector:0.8.2-pg18
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify</span>
+</span></span><span style="display:flex;"><span>docker exec pgvector-demo psql -U postgres -d vectordb -c <span style="color:#e6db74">&#34;SELECT * FROM pg_extension WHERE extname = vector;&#34;</span>
+</span></span></code></pre></div><h3 id="option-b-existing-postgresql">Option B: Existing PostgreSQL</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install build dependencies (Ubuntu/Debian)</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install postgresql-server-dev-18 build-essential git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clone and build pgvector</span>
+</span></span><span style="display:flex;"><span>git clone --branch v0.8.2 https://github.com/pgvector/pgvector.git
+</span></span><span style="display:flex;"><span>cd pgvector
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable extension in database</span>
+</span></span><span style="display:flex;"><span>psql -U postgres -d mydb -c <span style="color:#e6db74">&#34;CREATE EXTENSION IF NOT EXISTS vector;&#34;</span>
+</span></span></code></pre></div><h3 id="option-c-supabase-managed">Option C: Supabase (Managed)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- pgvector is pre-installed on Supabase. Just enable it: CREATE EXTENSION IF NOT EXISTS vector;
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Verify version
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> extversion <span style="color:#66d9ef">FROM</span> pg_extension <span style="color:#66d9ef">WHERE</span> extname <span style="color:#f92672">=</span> vector;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Returns: 0.8.2
+</span></span></span></code></pre></div><h3 id="option-d-aws-rds--google-cloud-sql">Option D: AWS RDS / Google Cloud SQL</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- On RDS PostgreSQL 18, pgvector is available as an extension
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> EXTENSION <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> vector;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Check available extensions if needed
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> pg_available_extensions <span style="color:#66d9ef">WHERE</span> name <span style="color:#f92672">=</span> vector;
+</span></span></code></pre></div><h3 id="verify-installation">Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Check pgvector version
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> extversion <span style="color:#66d9ef">FROM</span> pg_extension <span style="color:#66d9ef">WHERE</span> extname <span style="color:#f92672">=</span> vector;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Expected: 0.8.2
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Test vector type
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;[1,2,3]&#39;</span>::vector(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#e6db74">&#39;[4,5,6]&#39;</span>::vector(<span style="color:#ae81ff">3</span>) <span style="color:#66d9ef">AS</span> l2_distance;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Expected: ~5.196
+</span></span></span></code></pre></div><h2 id="core-operations-creating-tables-inserting-and-querying">Core Operations: Creating Tables, Inserting, and Querying</h2>
+<h3 id="creating-a-vector-table">Creating a Vector Table</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Create table with vector column (1536 dimensions = OpenAI embeddings)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> documents (
+</span></span><span style="display:flex;"><span>    id          BIGSERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    title       VARCHAR(<span style="color:#ae81ff">512</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    content     TEXT,
+</span></span><span style="display:flex;"><span>    embedding   vector(<span style="color:#ae81ff">1536</span>),
+</span></span><span style="display:flex;"><span>    metadata    JSONB <span style="color:#66d9ef">DEFAULT</span> <span style="color:#e6db74">&#39;{}&#39;</span>,
+</span></span><span style="display:flex;"><span>    created_at  TIMESTAMPTZ <span style="color:#66d9ef">DEFAULT</span> NOW(),
+</span></span><span style="display:flex;"><span>    tenant_id   INTEGER <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Add index for common filter columns
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_docs_tenant <span style="color:#66d9ef">ON</span> documents(tenant_id);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_docs_created <span style="color:#66d9ef">ON</span> documents(created_at);
+</span></span></code></pre></div><h3 id="inserting-vectors">Inserting Vectors</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Insert a single document with embedding
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> documents (title, content, embedding, metadata, tenant_id)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">VALUES</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Introduction to pgvector&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;pgvector adds vector support to PostgreSQL...&#39;</span>,
+</span></span><span style="display:flex;"><span>    ARRAY_FILL(<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>::real, ARRAY[<span style="color:#ae81ff">1536</span>])::vector(<span style="color:#ae81ff">1536</span>),  <span style="color:#75715e">-- placeholder
+</span></span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;{&#34;author&#34;: &#34;dibi8&#34;, &#34;category&#34;: &#34;database&#34;}&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Insert with actual OpenAI embedding (from Python)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- See RAG Integration section below for full example
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Batch insert vectors from Python</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> psycopg2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conn <span style="color:#f92672">=</span> psycopg2<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;dbname=vectordb user=postgres password=mysecretpassword host=localhost&#34;</span>)
+</span></span><span style="display:flex;"><span>cur <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>cursor()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate 10K random vectors as sample</span>
+</span></span><span style="display:flex;"><span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>titles <span style="color:#f92672">=</span> [<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;document_</span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(batch_size)]
+</span></span><span style="display:flex;"><span>contents <span style="color:#f92672">=</span> [<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Content for document </span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(batch_size)]
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(batch_size, <span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>tenant_ids <span style="color:#f92672">=</span> [i <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(batch_size)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use executemany for batch insert</span>
+</span></span><span style="display:flex;"><span>args <span style="color:#f92672">=</span> [(titles[i], contents[i], embeddings[i]<span style="color:#f92672">.</span>tolist(), tenant_ids[i]) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(batch_size)]
+</span></span><span style="display:flex;"><span>cur<span style="color:#f92672">.</span>executemany(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;INSERT INTO documents (title, content, embedding, tenant_id) VALUES (</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">::vector, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">)&#34;</span>,
+</span></span><span style="display:flex;"><span>    args
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>conn<span style="color:#f92672">.</span>commit()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Inserted </span><span style="color:#e6db74">{</span>batch_size<span style="color:#e6db74">}</span><span style="color:#e6db74"> documents&#34;</span>)
+</span></span></code></pre></div><h3 id="building-the-hnsw-index-production-tuning">Building the HNSW Index (Production Tuning)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Set parameters for parallel index build
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> maintenance_work_mem <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>GB;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> max_parallel_maintenance_workers <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Build HNSW index with tuned parameters
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_docs_embedding_hnsw <span style="color:#66d9ef">ON</span> documents
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">USING</span> hnsw (embedding vector_l2_ops)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">WITH</span> (
+</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>,              <span style="color:#75715e">-- Number of connections per layer (default: 16)
+</span></span></span><span style="display:flex;"><span>    ef_construction <span style="color:#f92672">=</span> <span style="color:#ae81ff">128</span>  <span style="color:#75715e">-- Size of dynamic candidate list (default: 64)
+</span></span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Check index size
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Typical: ~450 MB for 100K vectors of 1536 dimensions
+</span></span></span></code></pre></div><h3 id="vector-similarity-search">Vector Similarity Search</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Basic ANN search
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, title, embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector <span style="color:#66d9ef">AS</span> distance
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Filtered vector search (most common production pattern)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, title, embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector <span style="color:#66d9ef">AS</span> distance
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> tenant_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> created_at <span style="color:#f92672">&gt;</span> NOW() <span style="color:#f92672">-</span> INTERVAL <span style="color:#e6db74">&#39;30 days&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> metadata<span style="color:#f92672">-&gt;&gt;</span>category <span style="color:#f92672">=</span> tech
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">20</span>;
+</span></span></code></pre></div><h3 id="hybrid-search-vector--full-text">Hybrid Search: Vector + Full-Text</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- First, enable pg_trgm for text search
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> EXTENSION <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> pg_trgm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Combined vector similarity + text relevance
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>    d.id,
+</span></span><span style="display:flex;"><span>    d.title,
+</span></span><span style="display:flex;"><span>    d.embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector <span style="color:#66d9ef">AS</span> vec_distance,
+</span></span><span style="display:flex;"><span>    similarity(d.title, <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">AS</span> text_similarity
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents d
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> d.title <span style="color:#f92672">%</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>  <span style="color:#75715e">-- trigram similarity filter
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span>
+</span></span><span style="display:flex;"><span>    (d.embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> similarity(d.title, <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><h2 id="performance-tuning-from-47-seconds-to-3-milliseconds">Performance Tuning: From 47 Seconds to 3 Milliseconds</h2>
+<h3 id="guc-parameters-for-hnsw">GUC Parameters for HNSW</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Tune ef_search for recall vs. latency
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- Higher = better recall, slower queries
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> hnsw.ef_search <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;  <span style="color:#75715e">-- Default is 40; 64-128 is typical for production
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Check actual query plan
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPLAIN</span> (<span style="color:#66d9ef">ANALYZE</span>, BUFFERS)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, title, embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector <span style="color:#66d9ef">AS</span> distance
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Look for: Index Scan using idx_docs_embedding_hnsw
+</span></span></span></code></pre></div><h3 id="half-precision-quantization-halfvec">Half-Precision Quantization (halfvec)</h3>
+<p>pgvector 0.8.2 supports <code>halfvec</code> type for <strong>50% storage reduction</strong> with minimal recall loss: `````sql
 &ndash; Add halfvec column for quantized storage
-ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);</p><p>&ndash; Convert from full-precision
-UPDATE documents SET embedding_half = embedding::halfvec;</p><p>&ndash; Create HNSW index on halfvec
+ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);</p>
+<p>&ndash; Convert from full-precision
+UPDATE documents SET embedding_half = embedding::halfvec;</p>
+<p>&ndash; Create HNSW index on halfvec
 CREATE INDEX idx_docs_embedding_half_hnsw ON documents
-USING hnsw (embedding_half halfvec_l2_ops);</p><p>&ndash; Query using halfvec (nearly identical results)
-SELECT id, title, embedding_half &lt;-> $1::halfvec AS distance
+USING hnsw (embedding_half halfvec_l2_ops);</p>
+<p>&ndash; Query using halfvec (nearly identical results)
+SELECT id, title, embedding_half &lt;-&gt; $1::halfvec AS distance
 FROM documents
-ORDER BY embedding_half &lt;-> $1::halfvec
-LIMIT 10;</p><p>&ndash; Check space savings
+ORDER BY embedding_half &lt;-&gt; $1::halfvec
+LIMIT 10;</p>
+<p>&ndash; Check space savings
 SELECT
 pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
 pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
-&ndash; half_size is typically ~45-50% of full_size</p><pre tabindex=0><code>
+&ndash; half_size is typically ~45-50% of full_size</p>
+<pre tabindex="0"><code>
 ### Connection Pooling (Pgbouncer)
 
 `````ini
@@ -225,160 +349,194 @@ pool_mode = transaction
 max_client_conn = 10000
 default_pool_size = 50
 reserve_pool_size = 10
-</code></pre><h3 id=benchmark-comparison-before-and-after-tuning>Benchmark Comparison: Before and After Tuning</h3><p>| Configuration | Query Latency (p99) | Recall@10 | Index Size | Build Time |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="benchmark-comparison-before-and-after-tuning">Benchmark Comparison: Before and After Tuning</h3>
+<p>| Configuration | Query Latency (p99) | Recall@10 | Index Size | Build Time |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | No index (seq scan) | 47,000 ms | 1.00 | N/A | N/A |
 | HNSW defaults (m=16, ef_construction=64) | 4.2 ms | 0.91 | 450 MB | 45s |
 | HNSW tuned (m=24, ef_construction=128) | 3.8 ms | 0.95 | 680 MB | 82s |
 | HNSW + halfvec | 3.2 ms | 0.94 | 310 MB | 38s |
-| IVFFlat (lists=100) | 8.1 ms | 0.87 | 220 MB | 12s |</p><h2 id=rag-integration-with-langchain-and-llamaindex>RAG Integration with LangChain and LlamaIndex</h2><h3 id=langchain--pgvector>LangChain + pgvector</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install langchain-postgres<span style=color:#f92672>==</span>0.0.13 langchain-openai<span style=color:#f92672>==</span>0.3.0
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> langchain_postgres <span style=color:#f92672>import</span> PGVector
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> OpenAIEmbeddings
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> OpenAIEmbeddings(model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-embedding-3-large&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>vector_store <span style=color:#f92672>=</span> PGVector(
-</span></span><span style=display:flex><span>    connection<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;postgresql://postgres:mysecretpassword@localhost:5432/vectordb&#34;</span>,
-</span></span><span style=display:flex><span>    embeddings<span style=color:#f92672>=</span>embeddings,
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>,
-</span></span><span style=display:flex><span>    use_jsonb<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Add documents</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_core.documents <span style=color:#f92672>import</span> Document
-</span></span><span style=display:flex><span>docs <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    Document(page_content<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pgvector turns PostgreSQL into a vector database&#34;</span>, metadata<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;blog&#34;</span>}),
-</span></span><span style=display:flex><span>    Document(page_content<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;HNSW indexes provide fast ANN search&#34;</span>, metadata<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;docs&#34;</span>}),
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>vector_store<span style=color:#f92672>.</span>add_documents(docs)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Similarity search with filter</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> vector_store<span style=color:#f92672>.</span>similarity_search(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;vector database for RAG&#34;</span>,
-</span></span><span style=display:flex><span>    k<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>,
-</span></span><span style=display:flex><span>    filter<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;blog&#34;</span>}
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> doc <span style=color:#f92672>in</span> results: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Content: </span><span style=color:#e6db74>{</span>doc<span style=color:#f92672>.</span>page_content<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=llamaindex--pgvector>LlamaIndex + pgvector</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install llama-index-vector-stores-postgres<span style=color:#f92672>==</span>0.4.2
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.vector_stores.postgres <span style=color:#f92672>import</span> PGVectorStore
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, SimpleDirectoryReader
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.embeddings.openai <span style=color:#f92672>import</span> OpenAIEmbedding
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>vector_store <span style=color:#f92672>=</span> PGVectorStore<span style=color:#f92672>.</span>from_params(
-</span></span><span style=display:flex><span>    host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;localhost&#34;</span>,
-</span></span><span style=display:flex><span>    port<span style=color:#f92672>=</span><span style=color:#ae81ff>5432</span>,
-</span></span><span style=display:flex><span>    database<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;vectordb&#34;</span>,
-</span></span><span style=display:flex><span>    user<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;postgres&#34;</span>,
-</span></span><span style=display:flex><span>    password<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mysecretpassword&#34;</span>,
-</span></span><span style=display:flex><span>    table_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;llama_index_docs&#34;</span>,
-</span></span><span style=display:flex><span>    embed_dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>,
-</span></span><span style=display:flex><span>    hnsw_kwargs<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;hnsw_m&#34;</span>: <span style=color:#ae81ff>16</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;hnsw_ef_construction&#34;</span>: <span style=color:#ae81ff>128</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;hnsw_ef_search&#34;</span>: <span style=color:#ae81ff>100</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;hnsw_dist_method&#34;</span>: <span style=color:#e6db74>&#34;vector_l2_ops&#34;</span>,
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load documents</span>
-</span></span><span style=display:flex><span>documents <span style=color:#f92672>=</span> SimpleDirectoryReader(<span style=color:#e6db74>&#34;./data&#34;</span>)<span style=color:#f92672>.</span>load_data()
-</span></span><span style=display:flex><span>index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(documents, vector_store<span style=color:#f92672>=</span>vector_store)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Query</span>
-</span></span><span style=display:flex><span>query_engine <span style=color:#f92672>=</span> index<span style=color:#f92672>.</span>as_query_engine()
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> query_engine<span style=color:#f92672>.</span>query(<span style=color:#e6db74>&#34;How does pgvector work?&#34;</span>)
-</span></span><span style=display:flex><span>print(response)
-</span></span></code></pre></div><h3 id=direct-rag-pipeline-no-framework>Direct RAG Pipeline (No Framework)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> psycopg2
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> openai <span style=color:#f92672>import</span> OpenAI
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> OpenAI()
-</span></span><span style=display:flex><span>conn <span style=color:#f92672>=</span> psycopg2<span style=color:#f92672>.</span>connect(<span style=color:#e6db74>&#34;dbname=vectordb user=postgres password=mysecretpassword host=localhost&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_embedding</span>(text: str) <span style=color:#f92672>-&gt;</span> list[float]: resp <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>embeddings<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>        model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-embedding-3-large&#34;</span>, input<span style=color:#f92672>=</span>text, dimensions<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> resp<span style=color:#f92672>.</span>data[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>embedding
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>retrieve_documents</span>(query: str, top_k: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>, tenant_id: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>): query_vec <span style=color:#f92672>=</span> get_embedding(query)
-</span></span><span style=display:flex><span>    cur <span style=color:#f92672>=</span> conn<span style=color:#f92672>.</span>cursor()
-</span></span><span style=display:flex><span>    cur<span style=color:#f92672>.</span>execute(<span style=color:#e6db74>&#34;&#34;&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        SELECT title, content, embedding &lt;=&gt; </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>::vector AS distance
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        FROM documents
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        WHERE tenant_id = </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        ORDER BY embedding &lt;=&gt; </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>::vector
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        LIMIT </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;&#34;&#34;</span>, (query_vec, tenant_id, query_vec, top_k))
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> cur<span style=color:#f92672>.</span>fetchall()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Full RAG pipeline</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>rag_query</span>(user_question: str) <span style=color:#f92672>-&gt;</span> str: docs <span style=color:#f92672>=</span> retrieve_documents(user_question, top_k<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>)
-</span></span><span style=display:flex><span>    context <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n\n</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>join([<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Title: </span><span style=color:#e6db74>{</span>d[<span style=color:#ae81ff>0</span>]<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>{</span>d[<span style=color:#ae81ff>1</span>]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>for</span> d <span style=color:#f92672>in</span> docs])
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>        model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>        messages<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>            {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Answer based on the provided context.&#34;</span>},
-</span></span><span style=display:flex><span>            {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Context:</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>{</span>context<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n\n</span><span style=color:#e6db74>Question: </span><span style=color:#e6db74>{</span>user_question<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>}
-</span></span><span style=display:flex><span>        ]
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> response<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>content
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(rag_query(<span style=color:#e6db74>&#34;What is pgvector used for?&#34;</span>))
-</span></span></code></pre></div><h2 id=production-hardening>Production Hardening</h2><h3 id=row-level-security-for-multi-tenancy>Row-Level Security for Multi-Tenancy</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Enable RLS
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>ALTER</span> <span style=color:#66d9ef>TABLE</span> documents ENABLE <span style=color:#66d9ef>ROW</span> <span style=color:#66d9ef>LEVEL</span> <span style=color:#66d9ef>SECURITY</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Policy: tenants can only see their own documents
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> POLICY tenant_isolation <span style=color:#66d9ef>ON</span> documents
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>USING</span> (tenant_id <span style=color:#f92672>=</span> current_setting(<span style=color:#e6db74>&#39;app.current_tenant&#39;</span>)::INTEGER);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Set tenant per session
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SET</span> app.current_tenant <span style=color:#f92672>=</span> <span style=color:#ae81ff>42</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Now all queries automatically filter by tenant
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>FROM</span> documents;  <span style=color:#75715e>-- Only tenant 42&#39;s documents visible
-</span></span></span></code></pre></div><h3 id=monitoring-query-performance>Monitoring Query Performance</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- Track slow vector queries
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> EXTENSION <span style=color:#66d9ef>IF</span> <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>EXISTS</span> pg_stat_statements;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Find top vector queries by latency
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> query, mean_exec_time, calls
-</span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> pg_stat_statements
-</span></span><span style=display:flex><span><span style=color:#66d9ef>WHERE</span> query <span style=color:#66d9ef>LIKE</span> <span style=color:#e6db74>&#39;%&lt;-&gt;%&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span> mean_exec_time <span style=color:#66d9ef>DESC</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>LIMIT</span> <span style=color:#ae81ff>10</span>;
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Enable pg_stat_statements in postgresql.conf</span>
-</span></span><span style=display:flex><span>shared_preload_libraries <span style=color:#f92672>=</span> pg_stat_statements
-</span></span><span style=display:flex><span>pg_stat_statements.track <span style=color:#f92672>=</span> all
-</span></span><span style=display:flex><span>pg_stat_statements.max <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>
-</span></span></code></pre></div><h3 id=backup-with-pg_dump-vectors-included>Backup with pg_dump (Vectors Included)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Full backup including vector data</span>
-</span></span><span style=display:flex><span>pg_dump -h localhost -U postgres -d vectordb -Fc &gt; vectordb_backup.dump
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Restore</span>
-</span></span><span style=display:flex><span>pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Vectors are backed up as text arrays and restored correctly</span>
-</span></span></code></pre></div><h3 id=connection-best-practices-for-high-qps>Connection Best Practices for High QPS</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Use connection pooling for production workloads</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> psycopg2 <span style=color:#f92672>import</span> pool
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>conn_pool <span style=color:#f92672>=</span> pool<span style=color:#f92672>.</span>ThreadedConnectionPool(
-</span></span><span style=display:flex><span>    minconn<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>,
-</span></span><span style=display:flex><span>    maxconn<span style=color:#f92672>=</span><span style=color:#ae81ff>50</span>,
-</span></span><span style=display:flex><span>    host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;localhost&#34;</span>,
-</span></span><span style=display:flex><span>    database<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;vectordb&#34;</span>,
-</span></span><span style=display:flex><span>    user<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;postgres&#34;</span>,
-</span></span><span style=display:flex><span>    password<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mysecretpassword&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search_with_pool</span>(query_vec, limit<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>): conn <span style=color:#f92672>=</span> conn_pool<span style=color:#f92672>.</span>getconn()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>: cur <span style=color:#f92672>=</span> conn<span style=color:#f92672>.</span>cursor()
-</span></span><span style=display:flex><span>        cur<span style=color:#f92672>.</span>execute(
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;SELECT id, title FROM documents ORDER BY embedding &lt;-&gt; </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>::vector LIMIT </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#34;</span>,
-</span></span><span style=display:flex><span>            (query_vec, limit)
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> cur<span style=color:#f92672>.</span>fetchall()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>finally</span>: conn_pool<span style=color:#f92672>.</span>putconn(conn)
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | pgvector 0.8.2 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | Milvus 2.5 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| IVFFlat (lists=100) | 8.1 ms | 0.87 | 220 MB | 12s |</p>
+<h2 id="rag-integration-with-langchain-and-llamaindex">RAG Integration with LangChain and LlamaIndex</h2>
+<h3 id="langchain--pgvector">LangChain + pgvector</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install langchain-postgres<span style="color:#f92672">==</span>0.0.13 langchain-openai<span style="color:#f92672">==</span>0.3.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_postgres <span style="color:#f92672">import</span> PGVector
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-large&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> PGVector(
+</span></span><span style="display:flex;"><span>    connection<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;postgresql://postgres:mysecretpassword@localhost:5432/vectordb&#34;</span>,
+</span></span><span style="display:flex;"><span>    embeddings<span style="color:#f92672">=</span>embeddings,
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>,
+</span></span><span style="display:flex;"><span>    use_jsonb<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add documents</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.documents <span style="color:#f92672">import</span> Document
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    Document(page_content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pgvector turns PostgreSQL into a vector database&#34;</span>, metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;blog&#34;</span>}),
+</span></span><span style="display:flex;"><span>    Document(page_content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;HNSW indexes provide fast ANN search&#34;</span>, metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;docs&#34;</span>}),
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>vector_store<span style="color:#f92672">.</span>add_documents(docs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Similarity search with filter</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> vector_store<span style="color:#f92672">.</span>similarity_search(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;vector database for RAG&#34;</span>,
+</span></span><span style="display:flex;"><span>    k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    filter<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;blog&#34;</span>}
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> results: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Content: </span><span style="color:#e6db74">{</span>doc<span style="color:#f92672">.</span>page_content<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="llamaindex--pgvector">LlamaIndex + pgvector</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install llama-index-vector-stores-postgres<span style="color:#f92672">==</span>0.4.2
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.vector_stores.postgres <span style="color:#f92672">import</span> PGVectorStore
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, SimpleDirectoryReader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.embeddings.openai <span style="color:#f92672">import</span> OpenAIEmbedding
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> PGVectorStore<span style="color:#f92672">.</span>from_params(
+</span></span><span style="display:flex;"><span>    host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>,
+</span></span><span style="display:flex;"><span>    port<span style="color:#f92672">=</span><span style="color:#ae81ff">5432</span>,
+</span></span><span style="display:flex;"><span>    database<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vectordb&#34;</span>,
+</span></span><span style="display:flex;"><span>    user<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;postgres&#34;</span>,
+</span></span><span style="display:flex;"><span>    password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mysecretpassword&#34;</span>,
+</span></span><span style="display:flex;"><span>    table_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;llama_index_docs&#34;</span>,
+</span></span><span style="display:flex;"><span>    embed_dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,
+</span></span><span style="display:flex;"><span>    hnsw_kwargs<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;hnsw_m&#34;</span>: <span style="color:#ae81ff">16</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;hnsw_ef_construction&#34;</span>: <span style="color:#ae81ff">128</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;hnsw_ef_search&#34;</span>: <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;hnsw_dist_method&#34;</span>: <span style="color:#e6db74">&#34;vector_l2_ops&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load documents</span>
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> SimpleDirectoryReader(<span style="color:#e6db74">&#34;./data&#34;</span>)<span style="color:#f92672">.</span>load_data()
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents, vector_store<span style="color:#f92672">=</span>vector_store)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query</span>
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> query_engine<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;How does pgvector work?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(response)
+</span></span></code></pre></div><h3 id="direct-rag-pipeline-no-framework">Direct RAG Pipeline (No Framework)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> psycopg2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI()
+</span></span><span style="display:flex;"><span>conn <span style="color:#f92672">=</span> psycopg2<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;dbname=vectordb user=postgres password=mysecretpassword host=localhost&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_embedding</span>(text: str) <span style="color:#f92672">-&gt;</span> list[float]: resp <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>embeddings<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-large&#34;</span>, input<span style="color:#f92672">=</span>text, dimensions<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> resp<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>embedding
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">retrieve_documents</span>(query: str, top_k: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, tenant_id: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>): query_vec <span style="color:#f92672">=</span> get_embedding(query)
+</span></span><span style="display:flex;"><span>    cur <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>cursor()
+</span></span><span style="display:flex;"><span>    cur<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        SELECT title, content, embedding &lt;=&gt; </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">::vector AS distance
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        FROM documents
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        WHERE tenant_id = </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        ORDER BY embedding &lt;=&gt; </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">::vector
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        LIMIT </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>, (query_vec, tenant_id, query_vec, top_k))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> cur<span style="color:#f92672">.</span>fetchall()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Full RAG pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rag_query</span>(user_question: str) <span style="color:#f92672">-&gt;</span> str: docs <span style="color:#f92672">=</span> retrieve_documents(user_question, top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    context <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join([<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Title: </span><span style="color:#e6db74">{</span>d[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span>d[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> docs])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Answer based on the provided context.&#34;</span>},
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Context:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span>context<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">Question: </span><span style="color:#e6db74">{</span>user_question<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(rag_query(<span style="color:#e6db74">&#34;What is pgvector used for?&#34;</span>))
+</span></span></code></pre></div><h2 id="production-hardening">Production Hardening</h2>
+<h3 id="row-level-security-for-multi-tenancy">Row-Level Security for Multi-Tenancy</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Enable RLS
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> documents ENABLE <span style="color:#66d9ef">ROW</span> <span style="color:#66d9ef">LEVEL</span> <span style="color:#66d9ef">SECURITY</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Policy: tenants can only see their own documents
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> POLICY tenant_isolation <span style="color:#66d9ef">ON</span> documents
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">USING</span> (tenant_id <span style="color:#f92672">=</span> current_setting(<span style="color:#e6db74">&#39;app.current_tenant&#39;</span>)::INTEGER);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Set tenant per session
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> app.current_tenant <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Now all queries automatically filter by tenant
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> documents;  <span style="color:#75715e">-- Only tenant 42&#39;s documents visible
+</span></span></span></code></pre></div><h3 id="monitoring-query-performance">Monitoring Query Performance</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Track slow vector queries
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> EXTENSION <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> pg_stat_statements;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Find top vector queries by latency
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> query, mean_exec_time, calls
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> pg_stat_statements
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> query <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%&lt;-&gt;%&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> mean_exec_time <span style="color:#66d9ef">DESC</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable pg_stat_statements in postgresql.conf</span>
+</span></span><span style="display:flex;"><span>shared_preload_libraries <span style="color:#f92672">=</span> pg_stat_statements
+</span></span><span style="display:flex;"><span>pg_stat_statements.track <span style="color:#f92672">=</span> all
+</span></span><span style="display:flex;"><span>pg_stat_statements.max <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+</span></span></code></pre></div><h3 id="backup-with-pg_dump-vectors-included">Backup with pg_dump (Vectors Included)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Full backup including vector data</span>
+</span></span><span style="display:flex;"><span>pg_dump -h localhost -U postgres -d vectordb -Fc &gt; vectordb_backup.dump
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restore</span>
+</span></span><span style="display:flex;"><span>pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Vectors are backed up as text arrays and restored correctly</span>
+</span></span></code></pre></div><h3 id="connection-best-practices-for-high-qps">Connection Best Practices for High QPS</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Use connection pooling for production workloads</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> psycopg2 <span style="color:#f92672">import</span> pool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conn_pool <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span>ThreadedConnectionPool(
+</span></span><span style="display:flex;"><span>    minconn<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    maxconn<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>,
+</span></span><span style="display:flex;"><span>    host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>,
+</span></span><span style="display:flex;"><span>    database<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vectordb&#34;</span>,
+</span></span><span style="display:flex;"><span>    user<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;postgres&#34;</span>,
+</span></span><span style="display:flex;"><span>    password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mysecretpassword&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search_with_pool</span>(query_vec, limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>): conn <span style="color:#f92672">=</span> conn_pool<span style="color:#f92672">.</span>getconn()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: cur <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>cursor()
+</span></span><span style="display:flex;"><span>        cur<span style="color:#f92672">.</span>execute(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;SELECT id, title FROM documents ORDER BY embedding &lt;-&gt; </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">::vector LIMIT </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>            (query_vec, limit)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cur<span style="color:#f92672">.</span>fetchall()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">finally</span>: conn_pool<span style="color:#f92672">.</span>putconn(conn)
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | pgvector 0.8.2 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | Milvus 2.5 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Open Source</strong> | PostgreSQL License | No | BSD-3 | Apache-2.0 | Apache-2.0 |
 | <strong>Max Scale</strong> | ~50M vectors | Unlimited | 200M/node | 500M/node | <strong>10B+</strong> |
 | <strong>p99 Latency</strong> | 25-40 ms | 28 ms | 19 ms | <strong>12 ms</strong> | 8 ms (GPU) |
@@ -388,14 +546,54 @@ reserve_pool_size = 10
 | <strong>Hybrid Search</strong> | FTS + vector | Native | <strong>Best</strong> | BM42 | Native |
 | <strong>Self-Host Cost</strong> | <strong>$0 (use existing PG)</strong> | N/A | $320/M/mo | $280/M/mo | $400/M/mo |
 | <strong>Setup Complexity</strong> | <strong>Extension install</strong> | API key | Cluster | Binary | Kubernetes |
-| <strong>GPU Indexing</strong> | No | No | No | No (1.12 soon) | <strong>Yes</strong> |</p><p><strong>When to choose pgvector:</strong></p><ul><li>You already run PostgreSQL for your application data.</li><li>Your vector dataset stays under <strong>50 million vectors</strong>.</li><li>ACID transactions and vector search in a single system is a hard requirement.</li><li>Your team knows SQL and doesn&rsquo;t want to learn a new query language.</li><li>You want the lowest possible infrastructure cost (no separate database).</li></ul><p><strong>When to choose a dedicated vector database:</strong></p><ul><li><strong>Pinecone</strong>: Zero-ops, managed-only preference.</li><li><strong>Weaviate</strong>: Native hybrid search (BM25 + vector) is critical.</li><li><strong>Qdrant</strong>: Raw latency is paramount, &lt;12ms p99 required.</li><li><strong><a href=dibi8-internal-link>Milvus</a></strong>: Billion-scale, GPU-accelerated, Kubernetes-native.</li></ul><h2 id=limitations-honest-assessment>Limitations: Honest Assessment</h2><p><strong>Single-node only:</strong> pgvector runs inside a single PostgreSQL instance. There is no native distributed mode. For datasets exceeding available RAM, performance degrades significantly. At >50M vectors, consider a dedicated vector database.</p><p><strong>HNSW build is single-threaded:</strong> As of pgvector 0.8.2, HNSW index builds use only one CPU core. For 10M vectors, this can take <strong>20-30 minutes</strong>. The <code>max_parallel_maintenance_workers</code> setting does not accelerate HNSW builds.</p><p><strong>Query latency is higher:</strong> p99 latency of 25-40ms is acceptable for most RAG applications (where LLM inference dominates at 1-5 seconds), but it is slower than dedicated vector databases like Qdrant (~12ms) or Milvus GPU (~8ms).</p><p><strong>No native sparse vectors:</strong> Unlike Weaviate or Qdrant, pgvector does not have first-class sparse vector support for hybrid keyword+semantic search. You must combine with PostgreSQL&rsquo;s full-text search manually.</p><p><strong>Memory pressure on shared resources:</strong> Vector indexes consume significant RAM that could otherwise serve OLTP queries. On a shared PostgreSQL instance, plan for <strong>2-3x the index size</strong> in available memory.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=how-many-vectors-can-pgvector-handle>How many vectors can pgvector handle?</h3><p>pgvector comfortably handles up to <strong>50 million vectors</strong> on a properly sized PostgreSQL instance (64GB+ RAM, fast NVMe storage). At 100M vectors, operational friction increases — queries slow and index maintenance becomes expensive. For datasets beyond 100M, <a href=dibi8-internal-link>Milvus</a> or Qdrant are better choices. A single HNSW index of 10M vectors (1536 dimensions) occupies approximately <strong>45 GB</strong> on disk.</p><h3 id=what-postgresql-version-do-i-need-for-pgvector>What PostgreSQL version do I need for pgvector?</h3><p>pgvector 0.8.2 supports <strong>PostgreSQL 14 through 18</strong>. For production deployments, use <strong>PostgreSQL 18</strong> — it includes optimizations for parallel query execution that benefit vector workloads. On managed platforms, Supabase, Neon, AWS RDS, and Google Cloud SQL all support pgvector on their latest PostgreSQL versions.</p><h3 id=how-do-i-choose-between-hnsw-and-ivfflat-indexes>How do I choose between HNSW and IVFFlat indexes?</h3><p>Use <strong>HNSW</strong> as the default. It provides better recall (~95%) and lower query latency. Use <strong>IVFFlat</strong> only when: (a) index build time is critical, (b) you have severe memory constraints, or (c) your vectors rarely change. For most RAG applications, HNSW with <code>m=16</code> and <code>ef_construction=64</code> is the right starting point.</p><h3 id=can-i-use-pgvector-with-managed-postgresql-services>Can I use pgvector with managed PostgreSQL services?</h3><p>Yes. pgvector is available on: - <strong>Supabase</strong> — pre-installed, just run <code>CREATE EXTENSION vector;</code></p><ul><li><strong>Neon</strong> — supported on all plans, including free tier</li><li><strong>AWS RDS</strong> — available on PostgreSQL 15+</li><li><strong>Google Cloud SQL</strong> — available on PostgreSQL 15+</li><li><strong>Azure Database for PostgreSQL</strong> — supported with vector extension</li></ul><p>No infrastructure changes are needed — it is a standard PostgreSQL extension.</p><h3 id=does-pgvector-support-filtered-vector-search>Does pgvector support filtered vector search?</h3><p>Yes, and this is where pgvector excels over dedicated vector databases. Because vector data lives in PostgreSQL, you can apply any SQL <code>WHERE</code> clause alongside vector similarity: `````sql
-SELECT title, embedding &lt;-> $1::vector AS distance
+| <strong>GPU Indexing</strong> | No | No | No | No (1.12 soon) | <strong>Yes</strong> |</p>
+<p><strong>When to choose pgvector:</strong></p>
+<ul>
+<li>You already run PostgreSQL for your application data.</li>
+<li>Your vector dataset stays under <strong>50 million vectors</strong>.</li>
+<li>ACID transactions and vector search in a single system is a hard requirement.</li>
+<li>Your team knows SQL and doesn&rsquo;t want to learn a new query language.</li>
+<li>You want the lowest possible infrastructure cost (no separate database).</li>
+</ul>
+<p><strong>When to choose a dedicated vector database:</strong></p>
+<ul>
+<li><strong>Pinecone</strong>: Zero-ops, managed-only preference.</li>
+<li><strong>Weaviate</strong>: Native hybrid search (BM25 + vector) is critical.</li>
+<li><strong>Qdrant</strong>: Raw latency is paramount, &lt;12ms p99 required.</li>
+<li><strong><a href="dibi8-internal-link">Milvus</a></strong>: Billion-scale, GPU-accelerated, Kubernetes-native.</li>
+</ul>
+<h2 id="limitations-honest-assessment">Limitations: Honest Assessment</h2>
+<p><strong>Single-node only:</strong> pgvector runs inside a single PostgreSQL instance. There is no native distributed mode. For datasets exceeding available RAM, performance degrades significantly. At &gt;50M vectors, consider a dedicated vector database.</p>
+<p><strong>HNSW build is single-threaded:</strong> As of pgvector 0.8.2, HNSW index builds use only one CPU core. For 10M vectors, this can take <strong>20-30 minutes</strong>. The <code>max_parallel_maintenance_workers</code> setting does not accelerate HNSW builds.</p>
+<p><strong>Query latency is higher:</strong> p99 latency of 25-40ms is acceptable for most RAG applications (where LLM inference dominates at 1-5 seconds), but it is slower than dedicated vector databases like Qdrant (~12ms) or Milvus GPU (~8ms).</p>
+<p><strong>No native sparse vectors:</strong> Unlike Weaviate or Qdrant, pgvector does not have first-class sparse vector support for hybrid keyword+semantic search. You must combine with PostgreSQL&rsquo;s full-text search manually.</p>
+<p><strong>Memory pressure on shared resources:</strong> Vector indexes consume significant RAM that could otherwise serve OLTP queries. On a shared PostgreSQL instance, plan for <strong>2-3x the index size</strong> in available memory.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="how-many-vectors-can-pgvector-handle">How many vectors can pgvector handle?</h3>
+<p>pgvector comfortably handles up to <strong>50 million vectors</strong> on a properly sized PostgreSQL instance (64GB+ RAM, fast NVMe storage). At 100M vectors, operational friction increases — queries slow and index maintenance becomes expensive. For datasets beyond 100M, <a href="dibi8-internal-link">Milvus</a> or Qdrant are better choices. A single HNSW index of 10M vectors (1536 dimensions) occupies approximately <strong>45 GB</strong> on disk.</p>
+<h3 id="what-postgresql-version-do-i-need-for-pgvector">What PostgreSQL version do I need for pgvector?</h3>
+<p>pgvector 0.8.2 supports <strong>PostgreSQL 14 through 18</strong>. For production deployments, use <strong>PostgreSQL 18</strong> — it includes optimizations for parallel query execution that benefit vector workloads. On managed platforms, Supabase, Neon, AWS RDS, and Google Cloud SQL all support pgvector on their latest PostgreSQL versions.</p>
+<h3 id="how-do-i-choose-between-hnsw-and-ivfflat-indexes">How do I choose between HNSW and IVFFlat indexes?</h3>
+<p>Use <strong>HNSW</strong> as the default. It provides better recall (~95%) and lower query latency. Use <strong>IVFFlat</strong> only when: (a) index build time is critical, (b) you have severe memory constraints, or (c) your vectors rarely change. For most RAG applications, HNSW with <code>m=16</code> and <code>ef_construction=64</code> is the right starting point.</p>
+<h3 id="can-i-use-pgvector-with-managed-postgresql-services">Can I use pgvector with managed PostgreSQL services?</h3>
+<p>Yes. pgvector is available on: - <strong>Supabase</strong> — pre-installed, just run <code>CREATE EXTENSION vector;</code></p>
+<ul>
+<li><strong>Neon</strong> — supported on all plans, including free tier</li>
+<li><strong>AWS RDS</strong> — available on PostgreSQL 15+</li>
+<li><strong>Google Cloud SQL</strong> — available on PostgreSQL 15+</li>
+<li><strong>Azure Database for PostgreSQL</strong> — supported with vector extension</li>
+</ul>
+<p>No infrastructure changes are needed — it is a standard PostgreSQL extension.</p>
+<h3 id="does-pgvector-support-filtered-vector-search">Does pgvector support filtered vector search?</h3>
+<p>Yes, and this is where pgvector excels over dedicated vector databases. Because vector data lives in PostgreSQL, you can apply any SQL <code>WHERE</code> clause alongside vector similarity: `````sql
+SELECT title, embedding &lt;-&gt; $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
-AND created_at > NOW() - INTERVAL &lsquo;7 days&rsquo;
-AND metadata @> &lsquo;{&ldquo;status&rdquo;: &ldquo;published&rdquo;}&rsquo;
-ORDER BY embedding &lt;-> $1::vector
-LIMIT 10;</p><pre tabindex=0><code>
+AND created_at &gt; NOW() - INTERVAL &lsquo;7 days&rsquo;
+AND metadata @&gt; &lsquo;{&ldquo;status&rdquo;: &ldquo;published&rdquo;}&rsquo;
+ORDER BY embedding &lt;-&gt; $1::vector
+LIMIT 10;</p>
+<pre tabindex="0"><code>
 PostgreSQL&#39;s planner optimizes this by pushing down the ````WHERE```` predicates during HNSW traversal.
 
 ### How do I tune HNSW for my workload?
@@ -410,10 +608,38 @@ EXPLAIN ANALYZE SELECT ... ORDER BY embedding &lt;-&gt; $1 LIMIT 10;
 
 SET hnsw.ef_search = 128;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding &lt;-&gt; $1 LIMIT 10;
-</code></pre><h2 id=conclusion-the-pragmatic-choice>Conclusion: The Pragmatic Choice</h2><p>pgvector 0.8.2 is the most pragmatic vector database for teams already running PostgreSQL. It eliminates infrastructure complexity by turning the database you already operate into a vector search engine. For the <strong>70% of AI workloads</strong> that stay under 10 million vectors, pgvector with a tuned HNSW index delivers sub-10ms queries, ACID compliance, and the full power of SQL — all without adding a new system to your stack.</p><p><strong>Next steps:</strong></p><ol><li>Enable pgvector on your existing PostgreSQL instance (````CREATE EXTENSION vector;```).</li><li>Add a vector column and HNSW index to your documents table.</li><li>Load your embeddings and run the tuning benchmarks from this guide.</li><li>Integrate with LangChain or LlamaIndex for production RAG.</li></ol><p>Join our <a href=https://t.me/dibi8en>Telegram community</a> to share your pgvector performance numbers and get help from fellow engineers.</p><h2 id=sources--further-reading>Sources & Further Reading</h2><ol><li>pgvector GitHub Repository — <a href=https://github.com/pgvector/pgvector>https://github.com/pgvector/pgvector</a> (15,000+ stars)</li><li>pgvector Documentation — <a href="https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector">https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector</a></li><li>PostgreSQL 18 Release Notes — <a href=https://www.postgresql.org/docs/18/release-18.html>https://www.postgresql.org/docs/18/release-18.html</a></li><li>Supabase Vector Docs — <a href=https://supabase.com/docs/guides/ai>https://supabase.com/docs/guides/ai</a></li><li>HNSW Paper (Malkov & Yashunin, 2018) — <a href=https://arxiv.org/abs/1603.09320>https://arxiv.org/abs/1603.09320</a></li><li>pgvector HNSW Production Tuning Tutorial 2026 — <a href=https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial>https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial</a></li><li>Vector Database Benchmarks 2026 — <a href=https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/>https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/</a></li></ol><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=affiliate-disclosure>Affiliate Disclosure</h2><p>This article contains affiliate links to <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> for cloud hosting and <a href=https://supabase.com>Supabase</a> for managed PostgreSQL. If you sign up through our links, we receive a commission at no extra cost to you. We only recommend services we use in our own production environments.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h2 id="conclusion-the-pragmatic-choice">Conclusion: The Pragmatic Choice</h2>
+<p>pgvector 0.8.2 is the most pragmatic vector database for teams already running PostgreSQL. It eliminates infrastructure complexity by turning the database you already operate into a vector search engine. For the <strong>70% of AI workloads</strong> that stay under 10 million vectors, pgvector with a tuned HNSW index delivers sub-10ms queries, ACID compliance, and the full power of SQL — all without adding a new system to your stack.</p>
+<p><strong>Next steps:</strong></p>
+<ol>
+<li>Enable pgvector on your existing PostgreSQL instance (````CREATE EXTENSION vector;```).</li>
+<li>Add a vector column and HNSW index to your documents table.</li>
+<li>Load your embeddings and run the tuning benchmarks from this guide.</li>
+<li>Integrate with LangChain or LlamaIndex for production RAG.</li>
+</ol>
+<p>Join our <a href="https://t.me/dibi8en">Telegram community</a> to share your pgvector performance numbers and get help from fellow engineers.</p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ol>
+<li>pgvector GitHub Repository — <a href="https://github.com/pgvector/pgvector">https://github.com/pgvector/pgvector</a> (15,000+ stars)</li>
+<li>pgvector Documentation — <a href="https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector">https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector</a></li>
+<li>PostgreSQL 18 Release Notes — <a href="https://www.postgresql.org/docs/18/release-18.html">https://www.postgresql.org/docs/18/release-18.html</a></li>
+<li>Supabase Vector Docs — <a href="https://supabase.com/docs/guides/ai">https://supabase.com/docs/guides/ai</a></li>
+<li>HNSW Paper (Malkov &amp; Yashunin, 2018) — <a href="https://arxiv.org/abs/1603.09320">https://arxiv.org/abs/1603.09320</a></li>
+<li>pgvector HNSW Production Tuning Tutorial 2026 — <a href="https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial">https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial</a></li>
+<li>Vector Database Benchmarks 2026 — <a href="https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/">https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/</a></li>
+</ol>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="affiliate-disclosure">Affiliate Disclosure</h2>
+<p>This article contains affiliate links to <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> for cloud hosting and <a href="https://supabase.com">Supabase</a> for managed PostgreSQL. If you sign up through our links, we receive a commission at no extra cost to you. We only recommend services we use in our own production environments.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;pgvector 2026: Turn PostgreSQL into a High-Performance Vector Database — Setup, Tuning & RAG Integration Guide&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;pgvector 2026: Turn PostgreSQL into a High-Performance Vector Database — Setup, Tuning &amp; RAG Integration Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -425,20 +651,296 @@ EXPLAIN ANALYZE SELECT ... ORDER BY embedding &lt;-&gt; $1 LIMIT 10;
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/pgvector-postgres-vector-extension%22>https://dibi8.com/resources/pgvector-postgres-vector-extension"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/pgvector-postgres-vector-extension%22">https://dibi8.com/resources/pgvector-postgres-vector-extension"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/pgvector-postgres-vector-extension/>alpaca-trading-api-stock-broker</a></li><li><a href=/ai-coding-agents/pgvector-postgres-vector-extension/>appwrite-backend-as-service</a></li><li><a href=/ai-coding-agents/pgvector-postgres-vector-extension/>arize-ai-observability-llm</a></li><li><a href=/ai-coding-agents/pgvector-postgres-vector-extension/>cognee-ai-memory-platform</a></li><li><a href=/ai-coding-agents/pgvector-postgres-vector-extension/>flowise</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)</h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpgvector-postgres-vector-extension%2f&text=Introduction%3a%20The%2047-Second%20Query%20That%20Killed%20a%20Demo" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpgvector-postgres-vector-extension%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/pgvector-postgres-vector-extension/">alpaca-trading-api-stock-broker</a></li>
+<li><a href="/ai-coding-agents/pgvector-postgres-vector-extension/">appwrite-backend-as-service</a></li>
+<li><a href="/ai-coding-agents/pgvector-postgres-vector-extension/">arize-ai-observability-llm</a></li>
+<li><a href="/ai-coding-agents/pgvector-postgres-vector-extension/">cognee-ai-memory-platform</a></li>
+<li><a href="/ai-coding-agents/pgvector-postgres-vector-extension/">flowise</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpgvector-postgres-vector-extension%2f&text=Introduction%3a%20The%2047-Second%20Query%20That%20Killed%20a%20Demo" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpgvector-postgres-vector-extension%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,33 +1,170 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Call OpenAI | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Call OpenAI | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/litellm-unified-api-tutorial/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/litellm-unified-api-tutorial/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Call OpenAI</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Call OpenAI</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>{&lt;/* resource-info */>}</p><p>Managing multiple LLM providers in production is a nightmare most developers know too well. Each provider has its own API format, authentication method, error handling, and rate limits. Switching from GPT-4 to Claude 3.5 Sonnet means rewriting API calls. Adding a fallback to Gemini means more boilerplate. This fragmentation burns engineering time and introduces brittle code paths.</p><p>Enter LiteLLM. This open-source project provides a single, unified interface to call over 100 LLM providers using the familiar OpenAI API format. Whether you need OpenAI, Anthropic, Google Gemini, Azure OpenAI, AWS Bedrock, or self-hosted models via Ollama and vLLM, LiteLLM handles the translation layer so you focus on building features.</p><p>In this guide, you will learn how to install LiteLLM, make your first unified API call, set up the production-grade proxy server, configure intelligent routing, and deploy at enterprise scale. Let us dive in.</p><h2 id=what-is-litellm>What is LiteLLM?</h2><h3 id=the-universal-llm-api-gateway>The Universal LLM API Gateway</h3><p>LiteLLM, maintained by Berri AI on <a href=https://github.com/BerriAI/litellm>GitHub</a>, is an open-source LLM gateway that translates API calls between the OpenAI format and 100+ different LLM providers. It functions as a drop-in compatibility layer, meaning code written for OpenAI&rsquo;s ```/chat/completions```` endpoint works seamlessly with Anthropic Claude, Google Gemini, Cohere Command, and dozens more without modification.</p><p>The project started in early 2023 and has grown to become one of the most popular LLM infrastructure tools, with over 10,000 GitHub stars and active daily releases. Companies like Cloudflare, Postman, and Shopify use LiteLLM in production to manage multi-provider LLM access.</p><h3 id=why-use-litellm>Why Use LiteLLM?</h3><p>Building direct integrations for each LLM provider requires maintaining separate SDKs, handling different authentication headers, parsing unique response formats, and managing provider-specific error codes. LiteLLM eliminates this overhead entirely.</p><p>Key benefits include: - <strong>Single API format</strong>: Write once, call any provider using the OpenAI SDK structure</p><ul><li><strong>Automatic fallbacks</strong>: If OpenAI&rsquo;s API is down, route to Anthropic or Gemini instantly</li><li><strong>Load balancing</strong>: Distribute traffic across multiple providers to reduce latency and cost</li><li><strong>Unified logging</strong>: Track all LLM calls across providers in one place</li><li><strong>Budget controls</strong>: Set spend limits per API key, user, or team</li><li><strong>Caching</strong>: Reduce costs by caching identical requests across providers</li></ul><h3 id=key-features-overview>Key Features Overview</h3><p>LiteLLM offers two main components. The <strong>Python SDK</strong> (<code>litellm</code> pip package) provides a programmatic interface for making unified LLM calls in Python applications. The <strong>Proxy Server</strong> (deployed via Docker or pip) exposes an OpenAI-compatible HTTP API that any application can call, complete with virtual key management, rate limiting, and spend tracking.</p><p>Additional enterprise features include role-based access control (RBAC), SSO integration via OAuth/SAML, detailed spend dashboards, and support for embedding models, image generation, and function calling across providers.</p><h2 id=supported-providers-and-models-100>Supported Providers and Models (100+)</h2><h3 id=openai-anthropic-google-gemini>OpenAI, Anthropic, Google (Gemini)</h3><p>LiteLLM supports all major commercial LLM providers with full feature parity: - <strong>OpenAI</strong>: GPT-4o, GPT-4 Turbo, GPT-4, GPT-3.5 Turbo, DALL-E, Whisper, text-embedding-3-large</p><ul><li><strong>Anthropic</strong>: Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku</li><li><strong>Google</strong>: Gemini 1.5 Pro, Gemini 1.5 Flash, Gemini Pro, Gemini Ultra</li></ul><p>Each provider supports streaming responses, function calling, multi-modal inputs, and tool use where available.</p><h3 id=azure-openai>Azure OpenAI</h3><p>Azure OpenAI Service receives dedicated support in LiteLLM. You can configure multiple Azure deployments (e.g., <code>gpt-4</code> in East US and <code>gpt-4</code> in West Europe) and let LiteLLM automatically route requests to the deployment with the lowest latency or highest token availability. This is critical for applications requiring regional failover or compliance with data residency requirements.</p><h3 id=open-source-models-via-hugging-face>Open-Source Models via Hugging Face</h3><p>LiteLLM connects to any model hosted on <a href=https://huggingface.co>Hugging Face</a> through the Inference API or by calling TGI (Text Generation Inference) endpoints. This includes models like Llama 3, Mistral, Qwen, and over 500,000 others. You can deploy models on Hugging Face Inference Endpoints or self-host with TGI and point LiteLLM to your endpoint.</p><h3 id=local-models-via-ollama-vllm>Local Models via Ollama, vLLM</h3><p>For privacy-sensitive applications or cost reduction, LiteLLM integrates with local model servers: - <strong>Ollama</strong>: Run Llama 3, Mistral, or Gemma locally and expose them through LiteLLM&rsquo;s unified API</p><ul><li><strong>vLLM</strong>: High-throughput serving of open-source models with PagedAttention</li><li><strong>LM Studio</strong>: Local model management with LiteLLM-compatible endpoints</li></ul><p>This means your development environment can use local models while production uses GPT-4, all with the same code.</p><h3 id=cloud-providers-aws-bedrock-vertex-ai>Cloud Providers: AWS Bedrock, Vertex AI</h3><p>Enterprise cloud deployments are fully supported: - <strong>AWS Bedrock</strong>: Access Claude, Llama 3, Titan, and Command models through your AWS account</p><ul><li><strong>Google Vertex AI</strong>: Use Gemini and PaLM models via Google Cloud</li><li><strong>Azure AI</strong>: Native integration with Azure&rsquo;s model catalog</li></ul><p>LiteLLM handles the IAM authentication, region selection, and model ID translation automatically.</p><h3 id=specialized-providers-cohere-groq-together-ai>Specialized Providers: Cohere, Groq, Together AI</h3><p>Niche providers with unique strengths are also covered: - <strong>Groq</strong>: Extremely fast inference (500+ tokens/second) for Llama 3 and Mixtral</p><ul><li><strong>Together AI</strong>: Optimized inference for open-source models at competitive pricing</li><li><strong>Cohere</strong>: Command models and Embed v3 embeddings</li><li><strong>Mistral AI</strong>: Direct API access to Mistral models</li><li><strong>AI21 Labs</strong>: Jurassic models for enterprise use</li></ul><h2 id=installation-and-quick-start>Installation and Quick Start</h2><h3 id=installing-litellm-pip-install-litellm>Installing LiteLLM (pip install litellm)</h3><p>Getting started takes under 60 seconds. Install the LiteLLM Python SDK via pip: `````bash
-pip install litellm</p><pre tabindex=0><code>
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call OpenAI | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Call OpenAI | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/litellm-unified-api-tutorial/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/litellm-unified-api-tutorial/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Call OpenAI</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Call OpenAI</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>{&lt;/* resource-info */&gt;}</p>
+<p>Managing multiple LLM providers in production is a nightmare most developers know too well. Each provider has its own API format, authentication method, error handling, and rate limits. Switching from GPT-4 to Claude 3.5 Sonnet means rewriting API calls. Adding a fallback to Gemini means more boilerplate. This fragmentation burns engineering time and introduces brittle code paths.</p>
+<p>Enter LiteLLM. This open-source project provides a single, unified interface to call over 100 LLM providers using the familiar OpenAI API format. Whether you need OpenAI, Anthropic, Google Gemini, Azure OpenAI, AWS Bedrock, or self-hosted models via Ollama and vLLM, LiteLLM handles the translation layer so you focus on building features.</p>
+<p>In this guide, you will learn how to install LiteLLM, make your first unified API call, set up the production-grade proxy server, configure intelligent routing, and deploy at enterprise scale. Let us dive in.</p>
+<h2 id="what-is-litellm">What is LiteLLM?</h2>
+<h3 id="the-universal-llm-api-gateway">The Universal LLM API Gateway</h3>
+<p>LiteLLM, maintained by Berri AI on <a href="https://github.com/BerriAI/litellm">GitHub</a>, is an open-source LLM gateway that translates API calls between the OpenAI format and 100+ different LLM providers. It functions as a drop-in compatibility layer, meaning code written for OpenAI&rsquo;s ```/chat/completions```` endpoint works seamlessly with Anthropic Claude, Google Gemini, Cohere Command, and dozens more without modification.</p>
+<p>The project started in early 2023 and has grown to become one of the most popular LLM infrastructure tools, with over 10,000 GitHub stars and active daily releases. Companies like Cloudflare, Postman, and Shopify use LiteLLM in production to manage multi-provider LLM access.</p>
+<h3 id="why-use-litellm">Why Use LiteLLM?</h3>
+<p>Building direct integrations for each LLM provider requires maintaining separate SDKs, handling different authentication headers, parsing unique response formats, and managing provider-specific error codes. LiteLLM eliminates this overhead entirely.</p>
+<p>Key benefits include: - <strong>Single API format</strong>: Write once, call any provider using the OpenAI SDK structure</p>
+<ul>
+<li><strong>Automatic fallbacks</strong>: If OpenAI&rsquo;s API is down, route to Anthropic or Gemini instantly</li>
+<li><strong>Load balancing</strong>: Distribute traffic across multiple providers to reduce latency and cost</li>
+<li><strong>Unified logging</strong>: Track all LLM calls across providers in one place</li>
+<li><strong>Budget controls</strong>: Set spend limits per API key, user, or team</li>
+<li><strong>Caching</strong>: Reduce costs by caching identical requests across providers</li>
+</ul>
+<h3 id="key-features-overview">Key Features Overview</h3>
+<p>LiteLLM offers two main components. The <strong>Python SDK</strong> (<code>litellm</code> pip package) provides a programmatic interface for making unified LLM calls in Python applications. The <strong>Proxy Server</strong> (deployed via Docker or pip) exposes an OpenAI-compatible HTTP API that any application can call, complete with virtual key management, rate limiting, and spend tracking.</p>
+<p>Additional enterprise features include role-based access control (RBAC), SSO integration via OAuth/SAML, detailed spend dashboards, and support for embedding models, image generation, and function calling across providers.</p>
+<h2 id="supported-providers-and-models-100">Supported Providers and Models (100+)</h2>
+<h3 id="openai-anthropic-google-gemini">OpenAI, Anthropic, Google (Gemini)</h3>
+<p>LiteLLM supports all major commercial LLM providers with full feature parity: - <strong>OpenAI</strong>: GPT-4o, GPT-4 Turbo, GPT-4, GPT-3.5 Turbo, DALL-E, Whisper, text-embedding-3-large</p>
+<ul>
+<li><strong>Anthropic</strong>: Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku</li>
+<li><strong>Google</strong>: Gemini 1.5 Pro, Gemini 1.5 Flash, Gemini Pro, Gemini Ultra</li>
+</ul>
+<p>Each provider supports streaming responses, function calling, multi-modal inputs, and tool use where available.</p>
+<h3 id="azure-openai">Azure OpenAI</h3>
+<p>Azure OpenAI Service receives dedicated support in LiteLLM. You can configure multiple Azure deployments (e.g., <code>gpt-4</code> in East US and <code>gpt-4</code> in West Europe) and let LiteLLM automatically route requests to the deployment with the lowest latency or highest token availability. This is critical for applications requiring regional failover or compliance with data residency requirements.</p>
+<h3 id="open-source-models-via-hugging-face">Open-Source Models via Hugging Face</h3>
+<p>LiteLLM connects to any model hosted on <a href="https://huggingface.co">Hugging Face</a> through the Inference API or by calling TGI (Text Generation Inference) endpoints. This includes models like Llama 3, Mistral, Qwen, and over 500,000 others. You can deploy models on Hugging Face Inference Endpoints or self-host with TGI and point LiteLLM to your endpoint.</p>
+<h3 id="local-models-via-ollama-vllm">Local Models via Ollama, vLLM</h3>
+<p>For privacy-sensitive applications or cost reduction, LiteLLM integrates with local model servers: - <strong>Ollama</strong>: Run Llama 3, Mistral, or Gemma locally and expose them through LiteLLM&rsquo;s unified API</p>
+<ul>
+<li><strong>vLLM</strong>: High-throughput serving of open-source models with PagedAttention</li>
+<li><strong>LM Studio</strong>: Local model management with LiteLLM-compatible endpoints</li>
+</ul>
+<p>This means your development environment can use local models while production uses GPT-4, all with the same code.</p>
+<h3 id="cloud-providers-aws-bedrock-vertex-ai">Cloud Providers: AWS Bedrock, Vertex AI</h3>
+<p>Enterprise cloud deployments are fully supported: - <strong>AWS Bedrock</strong>: Access Claude, Llama 3, Titan, and Command models through your AWS account</p>
+<ul>
+<li><strong>Google Vertex AI</strong>: Use Gemini and PaLM models via Google Cloud</li>
+<li><strong>Azure AI</strong>: Native integration with Azure&rsquo;s model catalog</li>
+</ul>
+<p>LiteLLM handles the IAM authentication, region selection, and model ID translation automatically.</p>
+<h3 id="specialized-providers-cohere-groq-together-ai">Specialized Providers: Cohere, Groq, Together AI</h3>
+<p>Niche providers with unique strengths are also covered: - <strong>Groq</strong>: Extremely fast inference (500+ tokens/second) for Llama 3 and Mixtral</p>
+<ul>
+<li><strong>Together AI</strong>: Optimized inference for open-source models at competitive pricing</li>
+<li><strong>Cohere</strong>: Command models and Embed v3 embeddings</li>
+<li><strong>Mistral AI</strong>: Direct API access to Mistral models</li>
+<li><strong>AI21 Labs</strong>: Jurassic models for enterprise use</li>
+</ul>
+<h2 id="installation-and-quick-start">Installation and Quick Start</h2>
+<h3 id="installing-litellm-pip-install-litellm">Installing LiteLLM (pip install litellm)</h3>
+<p>Getting started takes under 60 seconds. Install the LiteLLM Python SDK via pip: `````bash
+pip install litellm</p>
+<pre tabindex="0"><code>
 For the proxy server with all enterprise features, install the full package: `````bash
 pip install &#39;litellm[proxy]&#39;
-</code></pre><p>Both options require Python 3.8 or higher. LiteLLM has minimal dependencies and installs cleanly in virtual environments, Docker containers, and Jupyter notebooks.</p><h3 id=making-your-first-unified-api-call>Making Your First Unified API Call</h3><p>Here is a basic completion call that works with any supported provider: `````python
+</code></pre><p>Both options require Python 3.8 or higher. LiteLLM has minimal dependencies and installs cleanly in virtual environments, Docker containers, and Jupyter notebooks.</p>
+<h3 id="making-your-first-unified-api-call">Making Your First Unified API Call</h3>
+<p>Here is a basic completion call that works with any supported provider: `````python
 import litellm
-from litellm import completion</p><h1 id=call-openai>Call OpenAI</h1><p>response = completion(
+from litellm import completion</p>
+<h1 id="call-openai">Call OpenAI</h1>
+<p>response = completion(
 model=&ldquo;gpt-4o&rdquo;,
 messages=[{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: &ldquo;Hello, how are you?&rdquo;}]
-)</p><h1 id=call-anthropic-claude---same-function-different-model-string>Call Anthropic Claude - same function, different model string</h1><p>response = completion(
+)</p>
+<h1 id="call-anthropic-claude---same-function-different-model-string">Call Anthropic Claude - same function, different model string</h1>
+<p>response = completion(
 model=&ldquo;claude-3-5-sonnet-20241022&rdquo;,
 messages=[{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: &ldquo;Hello, how are you?&rdquo;}]
-)</p><h1 id=call-gemini---same-function-again>Call Gemini - same function again</h1><p>response = completion(
+)</p>
+<h1 id="call-gemini---same-function-again">Call Gemini - same function again</h1>
+<p>response = completion(
 model=&ldquo;gemini/gemini-1.5-pro&rdquo;,
 messages=[{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: &ldquo;Hello, how are you?&rdquo;}]
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 Notice that the ````completion()```` function and message format stay identical. Only the ````model```` parameter changes, using LiteLLM&#39;s provider-prefixed naming convention where needed.
 
 ### Understanding the completion() Function
@@ -51,24 +188,42 @@ async def call_llm(): response = await acompletion(
 # Handle multiple concurrent calls
 tasks = [call_llm() for _ in range(10)]
 results = await asyncio.gather(*tasks)
-</code></pre><p>Async mode is essential for high-throughput applications and integrates seamlessly with FastAPI, Sanic, and other async Python frameworks.</p><h2 id=the-litellm-proxy-server>The LiteLLM Proxy Server</h2><h3 id=setting-up-the-proxy-server>Setting Up the Proxy Server</h3><p>The LiteLLM Proxy Server transforms LiteLLM from a Python library into a production-grade API gateway. Any application that speaks OpenAI&rsquo;s API can connect to the proxy without code changes.</p><p>Start the proxy server with a configuration file: `````bash
-litellm &ndash;config /path/to/config.yaml</p><pre tabindex=0><code>
+</code></pre><p>Async mode is essential for high-throughput applications and integrates seamlessly with FastAPI, Sanic, and other async Python frameworks.</p>
+<h2 id="the-litellm-proxy-server">The LiteLLM Proxy Server</h2>
+<h3 id="setting-up-the-proxy-server">Setting Up the Proxy Server</h3>
+<p>The LiteLLM Proxy Server transforms LiteLLM from a Python library into a production-grade API gateway. Any application that speaks OpenAI&rsquo;s API can connect to the proxy without code changes.</p>
+<p>Start the proxy server with a configuration file: `````bash
+litellm &ndash;config /path/to/config.yaml</p>
+<pre tabindex="0"><code>
 Or deploy via Docker: `````bash
 docker run -p 4000:4000 \
   -v $(pwd)/config.yaml:/app/config.yaml \
   ghcr.io/berriai/litellm:main-latest \
   --config /app/config.yaml
-</code></pre><p>The proxy exposes the standard OpenAI endpoints: <code>/chat/completions</code>, <code>/completions</code>, <code>/embeddings</code>, <code>/models</code>, and <code>/images/generations</code>.</p><h3 id=configuration-file-configyaml-deep-dive>Configuration File (config.yaml) Deep Dive</h3><p>The <code>config.yaml</code> file defines your model inventory, routing rules, and enterprise settings. Here is a production-ready example: `````yaml
+</code></pre><p>The proxy exposes the standard OpenAI endpoints: <code>/chat/completions</code>, <code>/completions</code>, <code>/embeddings</code>, <code>/models</code>, and <code>/images/generations</code>.</p>
+<h3 id="configuration-file-configyaml-deep-dive">Configuration File (config.yaml) Deep Dive</h3>
+<p>The <code>config.yaml</code> file defines your model inventory, routing rules, and enterprise settings. Here is a production-ready example: `````yaml
 model_list: - model_name: gpt-4
 litellm_params: model: gpt-4o
-api_key: os.environ/OPENAI_API_KEY</p><ul><li><p>model_name: claude-3-5
+api_key: os.environ/OPENAI_API_KEY</p>
+<ul>
+<li>
+<p>model_name: claude-3-5
 litellm_params: model: claude-3-5-sonnet-20241022
-api_key: os.environ/ANTHROPIC_API_KEY</p></li><li><p>model_name: llama-3
+api_key: os.environ/ANTHROPIC_API_KEY</p>
+</li>
+<li>
+<p>model_name: llama-3
 litellm_params: model: ollama/llama3
-api_base: http://localhost:11434</p></li></ul><p>router_settings: routing_strategy: simple-shuffle
+api_base: http://localhost:11434</p>
+</li>
+</ul>
+<p>router_settings: routing_strategy: simple-shuffle
 fallbacks: [{&ldquo;gpt-4&rdquo;: [&ldquo;claude-3-5&rdquo;]}]
-cooldown_time: 30</p><p>general_settings: master_key: sk-litellm-master-key
-database_url: os.environ/DATABASE_URL</p><pre tabindex=0><code>
+cooldown_time: 30</p>
+<p>general_settings: master_key: sk-litellm-master-key
+database_url: os.environ/DATABASE_URL</p>
+<pre tabindex="0"><code>
 This configuration defines three model aliases (````gpt-4````, ````claude-3-5````, ````llama-3````), sets Claude as a fallback for OpenAI, and configures master key authentication.
 
 ### Virtual Key Management
@@ -83,10 +238,22 @@ curl -X POST http://localhost:4000/key/generate \
     &#34;tpm_limit&#34;: 100000,
     &#34;rpm_limit&#34;: 1000
   }&#39;
-</code></pre><p>Each virtual key tracks its own spend, enforces its own rate limits, and can be revoked independently. This is ideal for multi-tenant SaaS applications.</p><h3 id=rate-limiting-and-budget-controls>Rate Limiting and Budget Controls</h3><p>LiteLLM enforces rate limits at multiple levels. Per-key limits include requests per minute (RPM), tokens per minute (TPM), and maximum budget in USD. Per-user limits track consumption across multiple keys. Global limits protect the entire deployment from unexpected spikes.</p><p>Budget alerts trigger webhooks when spend thresholds are reached. Teams can configure Slack, email, or custom webhook notifications to stay informed about LLM spending patterns.</p><h3 id=load-balancing-across-providers>Load Balancing Across Providers</h3><p>The proxy supports multiple routing strategies: - <strong>Simple shuffle</strong>: Round-robin across healthy providers</p><ul><li><strong>Latency-based</strong>: Route to the provider with the lowest response time</li><li><strong>Cost-based</strong>: Send requests to the cheapest available model</li><li><strong>Rate-limit aware</strong>: Avoid providers approaching their rate limits</li></ul><p>Configure routing in <code>config.yaml</code>: `````yaml
+</code></pre><p>Each virtual key tracks its own spend, enforces its own rate limits, and can be revoked independently. This is ideal for multi-tenant SaaS applications.</p>
+<h3 id="rate-limiting-and-budget-controls">Rate Limiting and Budget Controls</h3>
+<p>LiteLLM enforces rate limits at multiple levels. Per-key limits include requests per minute (RPM), tokens per minute (TPM), and maximum budget in USD. Per-user limits track consumption across multiple keys. Global limits protect the entire deployment from unexpected spikes.</p>
+<p>Budget alerts trigger webhooks when spend thresholds are reached. Teams can configure Slack, email, or custom webhook notifications to stay informed about LLM spending patterns.</p>
+<h3 id="load-balancing-across-providers">Load Balancing Across Providers</h3>
+<p>The proxy supports multiple routing strategies: - <strong>Simple shuffle</strong>: Round-robin across healthy providers</p>
+<ul>
+<li><strong>Latency-based</strong>: Route to the provider with the lowest response time</li>
+<li><strong>Cost-based</strong>: Send requests to the cheapest available model</li>
+<li><strong>Rate-limit aware</strong>: Avoid providers approaching their rate limits</li>
+</ul>
+<p>Configure routing in <code>config.yaml</code>: `````yaml
 router_settings: routing_strategy: latency-based-routing
 timeout: 30
-num_retries: 3</p><pre tabindex=0><code>
+num_retries: 3</p>
+<pre tabindex="0"><code>
 ## Advanced Features
 
 ### Router: Intelligent Model Selection
@@ -107,13 +274,16 @@ response = await router.acompletion(
     model=&#34;gpt-4&#34;,
     messages=[{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hello&#34;}]
 )
-</code></pre><p>The router automatically tracks latency per deployment and routes requests to the fastest option.</p><h3 id=fallbacks-and-retries>Fallbacks and Retries</h3><p>When a provider returns an error (rate limit, timeout, server error), LiteLLM can automatically retry with the same provider or fall back to a different one: `````python
+</code></pre><p>The router automatically tracks latency per deployment and routes requests to the fastest option.</p>
+<h3 id="fallbacks-and-retries">Fallbacks and Retries</h3>
+<p>When a provider returns an error (rate limit, timeout, server error), LiteLLM can automatically retry with the same provider or fall back to a different one: `````python
 response = completion(
 model=&ldquo;gpt-4o&rdquo;,
 messages=messages,
 fallback_dict={&ldquo;gpt-4o&rdquo;: [&ldquo;claude-3-5-sonnet&rdquo;, &ldquo;gemini-1.5-pro&rdquo;]},
 num_retries=3
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 This ensures 99.9%+ uptime even when individual providers experience outages.
 
 ### Caching Responses
@@ -126,12 +296,16 @@ response = completion(model=&#34;gpt-4o&#34;, messages=messages)
 
 # Second identical call returns cached result instantly
 response = completion(model=&#34;gpt-4o&#34;, messages=messages)
-</code></pre><p>Caching supports TTL configuration, cache-key customization, and cache invalidation via API.</p><h3 id=streaming-support>Streaming Support</h3><p>All providers support streaming responses through a unified interface: `````python
+</code></pre><p>Caching supports TTL configuration, cache-key customization, and cache invalidation via API.</p>
+<h3 id="streaming-support">Streaming Support</h3>
+<p>All providers support streaming responses through a unified interface: `````python
 response = completion(
 model=&ldquo;gpt-4o&rdquo;,
 messages=messages,
 stream=True
-)</p><p>for chunk in response: print(chunk.choices[0].delta.content, end="")</p><pre tabindex=0><code>
+)</p>
+<p>for chunk in response: print(chunk.choices[0].delta.content, end=&quot;&quot;)</p>
+<pre tabindex="0"><code>
 The streaming format is normalized across all providers, so your frontend code works identically regardless of which LLM serves the request.
 
 ### Function Calling Across Providers
@@ -147,8 +321,16 @@ tools = [{
 
 # Works with OpenAI, Anthropic, Gemini, and more
 response = completion(model=&#34;gpt-4o&#34;, messages=messages, tools=tools)
-</code></pre><h3 id=embedding-models-unified-api>Embedding Models Unified API</h3><p>LiteLLM unifies embedding APIs across providers: `````python
-from litellm import embedding</p><h1 id=openai-embeddings>OpenAI embeddings</h1><p>response = embedding(model=&ldquo;text-embedding-3-large&rdquo;, input=[&ldquo;Hello world&rdquo;])</p><h1 id=cohere-embeddings>Cohere embeddings</h1><p>response = embedding(model=&ldquo;cohere/embed-english-v3.0&rdquo;, input=[&ldquo;Hello world&rdquo;])</p><h1 id=local-embeddings-via-ollama>Local embeddings via Ollama</h1><p>response = embedding(model=&ldquo;ollama/nomic-embed-text&rdquo;, input=[&ldquo;Hello world&rdquo;])</p><pre tabindex=0><code>
+</code></pre><h3 id="embedding-models-unified-api">Embedding Models Unified API</h3>
+<p>LiteLLM unifies embedding APIs across providers: `````python
+from litellm import embedding</p>
+<h1 id="openai-embeddings">OpenAI embeddings</h1>
+<p>response = embedding(model=&ldquo;text-embedding-3-large&rdquo;, input=[&ldquo;Hello world&rdquo;])</p>
+<h1 id="cohere-embeddings">Cohere embeddings</h1>
+<p>response = embedding(model=&ldquo;cohere/embed-english-v3.0&rdquo;, input=[&ldquo;Hello world&rdquo;])</p>
+<h1 id="local-embeddings-via-ollama">Local embeddings via Ollama</h1>
+<p>response = embedding(model=&ldquo;ollama/nomic-embed-text&rdquo;, input=[&ldquo;Hello world&rdquo;])</p>
+<pre tabindex="0"><code>
 ## LiteLLM + LangChain/LlamaIndex Integration
 
 ### Using LiteLLM with LangChain
@@ -158,8 +340,12 @@ from langchain_community.chat_models import ChatLiteLLM
 
 llm = ChatLiteLLM(model=&#34;gpt-4o&#34;)
 response = llm.invoke(&#34;What is the capital of France?&#34;)
-</code></pre><p>LangChain&rsquo;s chains, agents, and RAG pipelines work transparently with any LiteLLM-supported model. Switching from GPT-4 to Claude requires only changing the model string.</p><h3 id=using-litellm-with-llamaindex>Using LiteLLM with LlamaIndex</h3><p><a href=https://docs.llamaindex.ai>LlamaIndex</a> supports LiteLLM as a drop-in LLM backend: `````python
-from llama_index.llms.litellm import LiteLLM</p><p>llm = LiteLLM(model=&ldquo;claude-3-5-sonnet-20241022&rdquo;)</p><pre tabindex=0><code>
+</code></pre><p>LangChain&rsquo;s chains, agents, and RAG pipelines work transparently with any LiteLLM-supported model. Switching from GPT-4 to Claude requires only changing the model string.</p>
+<h3 id="using-litellm-with-llamaindex">Using LiteLLM with LlamaIndex</h3>
+<p><a href="https://docs.llamaindex.ai">LlamaIndex</a> supports LiteLLM as a drop-in LLM backend: `````python
+from llama_index.llms.litellm import LiteLLM</p>
+<p>llm = LiteLLM(model=&ldquo;claude-3-5-sonnet-20241022&rdquo;)</p>
+<pre tabindex="0"><code>
 LlamaIndex&#39;s query engines, chat engines, and agent frameworks work seamlessly with LiteLLM-powered models for RAG applications.
 
 ### Drop-in Replacement Patterns
@@ -174,10 +360,34 @@ client = openai.OpenAI(
 
 # All calls now go through LiteLLM proxy with routing, caching, and logging
 response = client.chat.completions.create(model=&#34;gpt-4&#34;, messages=messages)
-</code></pre><p>This works with LangChain, LlamaIndex, AutoGen, CrewAI, and any other OpenAI-compatible tool.</p><h2 id=enterprise-features>Enterprise Features</h2><h3 id=user-management-and-rbac>User Management and RBAC</h3><p>LiteLLM supports role-based access control with three built-in roles: Admin (full access), Internal User (specific model access), and Proxy User (API key access only). Teams can define custom roles with granular permissions per model and endpoint.</p><h3 id=spend-tracking-and-budget-alerts>Spend Tracking and Budget Alerts</h3><p>The admin dashboard provides real-time spend tracking with breakdowns by user, model, provider, and time period. Budget alerts trigger at configurable thresholds, preventing bill shock from unexpected API usage.</p><h3 id=logging-and-observability>Logging and Observability</h3><p>LiteLLM integrates with popular observability platforms: - <strong>LangSmith</strong>: Trace requests through complex chains</p><ul><li><strong>Langfuse</strong>: Open-source LLM observability</li><li><strong>PromptLayer</strong>: Prompt management and analytics</li><li><strong>Weights & Biases</strong>: Experiment tracking</li><li><strong>OpenTelemetry</strong>: Vendor-neutral observability</li></ul><h3 id=self-hosted-deployment>Self-Hosted Deployment</h3><p>The proxy deploys via Docker, Kubernetes, or cloud platforms. The database backend supports PostgreSQL for production workloads. SSO integration supports Google OAuth, Microsoft Entra ID, Okta, and generic SAML providers.</p><h3 id=sso-integration>SSO Integration</h3><p>Enterprise deployments can require SSO authentication for proxy access. LiteLLM supports OIDC and SAML 2.0, integrating with existing identity providers for seamless team onboarding.</p><h2 id=cost-optimization-strategies>Cost Optimization Strategies</h2><h3 id=routing-to-cheapest-provider>Routing to Cheapest Provider</h3><p>Configure the proxy to route non-critical requests to the cheapest available model: `````yaml
+</code></pre><p>This works with LangChain, LlamaIndex, AutoGen, CrewAI, and any other OpenAI-compatible tool.</p>
+<h2 id="enterprise-features">Enterprise Features</h2>
+<h3 id="user-management-and-rbac">User Management and RBAC</h3>
+<p>LiteLLM supports role-based access control with three built-in roles: Admin (full access), Internal User (specific model access), and Proxy User (API key access only). Teams can define custom roles with granular permissions per model and endpoint.</p>
+<h3 id="spend-tracking-and-budget-alerts">Spend Tracking and Budget Alerts</h3>
+<p>The admin dashboard provides real-time spend tracking with breakdowns by user, model, provider, and time period. Budget alerts trigger at configurable thresholds, preventing bill shock from unexpected API usage.</p>
+<h3 id="logging-and-observability">Logging and Observability</h3>
+<p>LiteLLM integrates with popular observability platforms: - <strong>LangSmith</strong>: Trace requests through complex chains</p>
+<ul>
+<li><strong>Langfuse</strong>: Open-source LLM observability</li>
+<li><strong>PromptLayer</strong>: Prompt management and analytics</li>
+<li><strong>Weights &amp; Biases</strong>: Experiment tracking</li>
+<li><strong>OpenTelemetry</strong>: Vendor-neutral observability</li>
+</ul>
+<h3 id="self-hosted-deployment">Self-Hosted Deployment</h3>
+<p>The proxy deploys via Docker, Kubernetes, or cloud platforms. The database backend supports PostgreSQL for production workloads. SSO integration supports Google OAuth, Microsoft Entra ID, Okta, and generic SAML providers.</p>
+<h3 id="sso-integration">SSO Integration</h3>
+<p>Enterprise deployments can require SSO authentication for proxy access. LiteLLM supports OIDC and SAML 2.0, integrating with existing identity providers for seamless team onboarding.</p>
+<h2 id="cost-optimization-strategies">Cost Optimization Strategies</h2>
+<h3 id="routing-to-cheapest-provider">Routing to Cheapest Provider</h3>
+<p>Configure the proxy to route non-critical requests to the cheapest available model: `````yaml
 model_list: - model_name: &ldquo;cheap-llm&rdquo;
-litellm_params: model: &ldquo;together_ai/llama-3-8b&rdquo;</p><ul><li>model_name: &ldquo;cheap-llm&rdquo;
-litellm_params: model: &ldquo;groq/llama-3-8b&rdquo;</li></ul><pre tabindex=0><code>
+litellm_params: model: &ldquo;together_ai/llama-3-8b&rdquo;</p>
+<ul>
+<li>model_name: &ldquo;cheap-llm&rdquo;
+litellm_params: model: &ldquo;groq/llama-3-8b&rdquo;</li>
+</ul>
+<pre tabindex="0"><code>
 With ````routing_strategy: cost-based````, requests automatically go to the lowest-cost option.
 
 ### Using Open-Source Models
@@ -227,9 +437,11 @@ The recommended production deployment uses the official Docker image: `````docke
 FROM ghcr.io/berriai/litellm:main-latest
 COPY config.yaml /app/config.yaml
 CMD [&#34;--config&#34;, &#34;/app/config.yaml&#34;, &#34;--port&#34;, &#34;4000&#34;]
-</code></pre><h3 id=kubernetes-helm-chart>Kubernetes Helm Chart</h3><p>LiteLLM provides an official Helm chart for Kubernetes deployment: `````bash
-helm repo add litellm <a href=https://berriai.github.io/litellm>https://berriai.github.io/litellm</a>
-helm install litellm litellm/litellm -f values.yaml</p><pre tabindex=0><code>
+</code></pre><h3 id="kubernetes-helm-chart">Kubernetes Helm Chart</h3>
+<p>LiteLLM provides an official Helm chart for Kubernetes deployment: `````bash
+helm repo add litellm <a href="https://berriai.github.io/litellm">https://berriai.github.io/litellm</a>
+helm install litellm litellm/litellm -f values.yaml</p>
+<pre tabindex="0"><code>
 Configure replicas, resource limits, and ingress rules through ````values.yaml````.
 
 ### Monitoring and Alerting
@@ -333,13 +545,265 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 
 * * *
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flitellm-unified-api-tutorial%2f&text=Call%20OpenAI" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flitellm-unified-api-tutorial%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flitellm-unified-api-tutorial%2f&text=Call%20OpenAI" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flitellm-unified-api-tutorial%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

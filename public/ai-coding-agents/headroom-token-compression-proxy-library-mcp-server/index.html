@@ -1,18 +1,89 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026 | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026 | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=headroom-compress-llm-inputs-by-60-95--a-token-saving-proxy-library--mcp-server--a-practical-guide-2026>Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026</h1><pre tabindex=0><code>┌──────────────────────────────────────────────────────┐
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library &amp; MCP Server — A Practical Guide 2026 | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library &amp; MCP Server — A Practical Guide 2026 | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library &amp; MCP Server — A Practical Guide 2026</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library &amp; MCP Server — A Practical Guide 2026</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="headroom-compress-llm-inputs-by-60-95--a-token-saving-proxy-library--mcp-server--a-practical-guide-2026">Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library &amp; MCP Server — A Practical Guide 2026</h1>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────────┐
 │              Headroom Compression Pipeline            │
 │                                                      │
 │  ┌────────────┐  ┌─────────────┐  ┌──────────────┐  │
@@ -32,31 +103,54 @@
 │  │  (Claude Code / Codex / Copilot / Gemini CLI)  │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-</code></pre><p><em>Headroom pipeline: input → compress → LLM with 60-95% fewer tokens</em></p><h2 id=introduction>Introduction</h2><p>If you&rsquo;re paying for LLM API calls in 2026, you&rsquo;re probably burning 40-70% of your token budget on redundant context: duplicate tool outputs, verbose log files, and bloated RAG chunks that the LLM reads but never uses. Headroom (19,745 GitHub stars) is the open-source tool that sits between your AI agent and the LLM, compressing inputs by 60-95% while preserving answer quality. It ships as a Python library, a CLI proxy, and an MCP server — compatible with Claude Code, Codex CLI, Copilot, Gemini CLI, and any OpenAI-compatible API. Single dependency, 10 lines to integrate, and real benchmarks show the same answers with fraction of the cost.</p><h2 id=what-is-headroom>What Is Headroom?</h2><p>Headroom is <strong>a token compression layer</strong> for LLM pipelines that reduces input token counts before they reach the model. It is not a summarization tool — it is a structural optimizer. It understands the difference between &ldquo;important signal&rdquo; and &ldquo;noisy context&rdquo; in tool outputs, logs, files, and retrieval-augmented chunks.</p><p>Key capabilities: - <strong>Input compression</strong> — Deduplicate, prune, and summarize tool outputs before LLM consumption</p><ul><li><strong>Multi-format support</strong> — Handles JSON, logs, markdown, code files, and RAG embeddings</li><li><strong>3 deployment modes</strong> — Python library, CLI proxy, and MCP server</li><li><strong>Model-agnostic</strong> — Works with Claude, GPT-4o, Gemini, and any OpenAI-compatible endpoint</li><li><strong>Quality-preserving</strong> — Benchmarked to produce equivalent answers at 60-95% token reduction</li><li><strong>Zero-config start</strong> — Ships with sensible defaults; optimize later with custom rules</li></ul><p>The project is built with Python, uses minimal dependencies (just <code>tiktoken</code> for token counting), and integrates via standard HTTP APIs. It stores compression state in memory or Redis for multi-session scenarios.</p><h2 id=how-headroom-works>How Headroom Works</h2><p>Headroom operates through a three-stage pipeline: ### Stage 1: Input Ingestion</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install the library</span>
-</span></span><span style=display:flex><span>pip install <span style=color:#e6db74>&#34;headroom-ai[all]&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Basic compression of a tool output</span>
-</span></span><span style=display:flex><span>python -c <span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>import headroom
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>result = headroom.compress(&#39;&#39;&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>[Very long JSON output from a tool call... 5000 tokens]
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#39;&#39;&#39;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>print(f&#39;Original: {result.original_tokens} tokens&#39;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>print(f&#39;Compressed: {result.compressed_tokens} tokens&#39;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>print(f&#39;Savings: {result.savings_pct}%&#39;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><h3 id=stage-2-compression-engine>Stage 2: Compression Engine</h3><p>The compression engine applies multiple strategies: `````python</p><h1 id=custom-compression-rules>Custom compression rules</h1><p>from headroom import Compressor</p><p>compressor = Compressor(
-strategy=&ldquo;balanced&rdquo;, # &ldquo;aggressive&rdquo; | &ldquo;balanced&rdquo; | &ldquo;conservative&rdquo;
+</code></pre><p><em>Headroom pipeline: input → compress → LLM with 60-95% fewer tokens</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>If you&rsquo;re paying for LLM API calls in 2026, you&rsquo;re probably burning 40-70% of your token budget on redundant context: duplicate tool outputs, verbose log files, and bloated RAG chunks that the LLM reads but never uses. Headroom (19,745 GitHub stars) is the open-source tool that sits between your AI agent and the LLM, compressing inputs by 60-95% while preserving answer quality. It ships as a Python library, a CLI proxy, and an MCP server — compatible with Claude Code, Codex CLI, Copilot, Gemini CLI, and any OpenAI-compatible API. Single dependency, 10 lines to integrate, and real benchmarks show the same answers with fraction of the cost.</p>
+<h2 id="what-is-headroom">What Is Headroom?</h2>
+<p>Headroom is <strong>a token compression layer</strong> for LLM pipelines that reduces input token counts before they reach the model. It is not a summarization tool — it is a structural optimizer. It understands the difference between &ldquo;important signal&rdquo; and &ldquo;noisy context&rdquo; in tool outputs, logs, files, and retrieval-augmented chunks.</p>
+<p>Key capabilities: - <strong>Input compression</strong> — Deduplicate, prune, and summarize tool outputs before LLM consumption</p>
+<ul>
+<li><strong>Multi-format support</strong> — Handles JSON, logs, markdown, code files, and RAG embeddings</li>
+<li><strong>3 deployment modes</strong> — Python library, CLI proxy, and MCP server</li>
+<li><strong>Model-agnostic</strong> — Works with Claude, GPT-4o, Gemini, and any OpenAI-compatible endpoint</li>
+<li><strong>Quality-preserving</strong> — Benchmarked to produce equivalent answers at 60-95% token reduction</li>
+<li><strong>Zero-config start</strong> — Ships with sensible defaults; optimize later with custom rules</li>
+</ul>
+<p>The project is built with Python, uses minimal dependencies (just <code>tiktoken</code> for token counting), and integrates via standard HTTP APIs. It stores compression state in memory or Redis for multi-session scenarios.</p>
+<h2 id="how-headroom-works">How Headroom Works</h2>
+<p>Headroom operates through a three-stage pipeline: ### Stage 1: Input Ingestion</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install the library</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;headroom-ai[all]&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Basic compression of a tool output</span>
+</span></span><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">import headroom
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">result = headroom.compress(&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[Very long JSON output from a tool call... 5000 tokens]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(f&#39;Original: {result.original_tokens} tokens&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(f&#39;Compressed: {result.compressed_tokens} tokens&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(f&#39;Savings: {result.savings_pct}%&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="stage-2-compression-engine">Stage 2: Compression Engine</h3>
+<p>The compression engine applies multiple strategies: `````python</p>
+<h1 id="custom-compression-rules">Custom compression rules</h1>
+<p>from headroom import Compressor</p>
+<p>compressor = Compressor(
+strategy=&ldquo;balanced&rdquo;,  # &ldquo;aggressive&rdquo; | &ldquo;balanced&rdquo; | &ldquo;conservative&rdquo;
 max_reduction_pct=95,
 min_quality_score=0.85,
 dedup_threshold=0.9,
 summary_length_ratio=0.3,
-)</p><h1 id=apply-to-mixed-inputs>Apply to mixed inputs</h1><p>compressed = compressor.compress([
+)</p>
+<h1 id="apply-to-mixed-inputs">Apply to mixed inputs</h1>
+<p>compressed = compressor.compress([
 {&ldquo;type&rdquo;: &ldquo;tool_output&rdquo;, &ldquo;data&rdquo;: tool_result_json},
 {&ldquo;type&rdquo;: &ldquo;log_file&rdquo;, &ldquo;data&rdquo;: log_content},
 {&ldquo;type&rdquo;: &ldquo;rag_chunk&rdquo;, &ldquo;data&rdquo;: embedded_text},
 {&ldquo;type&rdquo;: &ldquo;code_file&rdquo;, &ldquo;data&rdquo;: source_code},
-])</p><pre tabindex=0><code>
+])</p>
+<pre tabindex="0"><code>
 ### Stage 3: LLM Integration
 
 `````bash
@@ -65,90 +159,125 @@ headroom serve --port 8787 --compressor balanced
 
 # Point your AI agent to the proxy instead of the LLM directly
 # Agent -&gt; Headroom Proxy (8787) -&gt; Compressed -&gt; LLM API
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// .env — Configure which LLM to proxy through
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>HEADROOM_PROXY_PORT=</span><span style=color:#ae81ff>8787</span>
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>LLM_ENDPOINT=https:</span><span style=color:#75715e>//api.anthropic.com/v1/messages
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>LLM_MODEL=claude-sonnet</span><span style=color:#ae81ff>-4-20250514</span>
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>LLM_API_KEY=$</span>{<span style=color:#960050;background-color:#1e0010>ANTHROPIC_API_KEY</span>}
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>COMPRESSION_STRATEGY=balanced</span>
-</span></span></code></pre></div><h2 id=installation--setup>Installation & Setup</h2><h3 id=quick-start-library-mode>Quick Start (Library Mode)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install</span>
-</span></span><span style=display:flex><span>pip install <span style=color:#e6db74>&#34;headroom-ai[all]&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># One-line compression</span>
-</span></span><span style=display:flex><span>python -c <span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>import headroom
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>compressed = headroom.compress(your_long_input)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>print(compressed.text)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><h3 id=nodejs-setup>Node.js Setup</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install</span>
-</span></span><span style=display:flex><span>npm install headroom-ai
-</span></span></code></pre></div><h3 id=proxy-mode-recommended-for-ai-agents>Proxy Mode (Recommended for AI Agents)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install and start</span>
-</span></span><span style=display:flex><span>pip install <span style=color:#e6db74>&#34;headroom-ai[all]&#34;</span>
-</span></span><span style=display:flex><span>headroom serve --host 0.0.0.0 --port <span style=color:#ae81ff>8787</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Test compression</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:8787/compress <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;input&#34;: &#34;Very long context...&#34;}&#39;</span> | jq
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Expected response: # {</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   &#34;original_tokens&#34;: 4523,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   &#34;compressed_tokens&#34;: 891,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   &#34;savings_pct&#34;: 80.3,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   &#34;compressed_text&#34;: &#34;...&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># }</span>
-</span></span></code></pre></div><h3 id=mcp-server-mode>MCP Server Mode</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Start as MCP server</span>
-</span></span><span style=display:flex><span>headroom mcp-serve --port <span style=color:#ae81ff>9090</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Connect from Claude Code</span>
-</span></span><span style=display:flex><span>claude-code --mcp http://localhost:9090
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># The MCP server exposes: # - headroom/compress — Compress text input</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - headroom/benchmark — Run compression benchmark</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - headroom/config — Get/update compression settings</span>
-</span></span></code></pre></div><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><h3 id=context-aware-compression>Context-Aware Compression</h3><p>Headroom adapts its compression strategy based on the input type. Code-heavy inputs retain more structure, while verbose log files get aggressive pruning.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Context-aware compression example</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> headroom <span style=color:#f92672>import</span> ContextCompressor
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>ctx_compressor <span style=color:#f92672>=</span> ContextCompressor(
-</span></span><span style=display:flex><span>    code_preserve<span style=color:#f92672>=</span><span style=color:#ae81ff>0.9</span>,    <span style=color:#75715e># Keep 90% of code structure</span>
-</span></span><span style=display:flex><span>    log_prune<span style=color:#f92672>=</span><span style=color:#ae81ff>0.95</span>,       <span style=color:#75715e># Prune 95% of repetitive log lines</span>
-</span></span><span style=display:flex><span>    json_dedup<span style=color:#f92672>=</span><span style=color:#ae81ff>0.9</span>,       <span style=color:#75715e># Deduplicate similar JSON fields</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Auto-detect input type and apply best strategy</span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> ctx_compressor<span style=color:#f92672>.</span>compress(input_data)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Type detected: </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>input_type<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Savings: </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>savings_pct<span style=color:#e6db74>}</span><span style=color:#e6db74>%&#34;</span>)
-</span></span></code></pre></div><h3 id=token-accounting-dashboard>Token Accounting Dashboard</h3><p>Track your savings in real-time when running the proxy server in dashboard mode.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Start proxy with built-in monitoring dashboard</span>
-</span></span><span style=display:flex><span>headroom serve --port <span style=color:#ae81ff>8787</span> --dashboard --dashboard-port <span style=color:#ae81ff>3000</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># View dashboard at http://localhost:3000</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># See real-time token savings, compression ratios, and cost tracking</span>
-</span></span></code></pre></div><h2 id=integration-with-claude-code-codex-cli-copilot-and-gemini-cli>Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI</h2><p>Headroom works with any agent that sends HTTP requests to an LLM API. Here&rsquo;s how to integrate with popular tools: ### Claude Code</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Method 1: Use as MCP server</span>
-</span></span><span style=display:flex><span>headroom mcp-serve --port <span style=color:#ae81ff>9090</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Then in Claude Code: add-mcp headroom http://localhost:9090</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Method 2: Set as API proxy in .claude-env</span>
-</span></span><span style=display:flex><span>export CLAUDE_API_BASE_URL<span style=color:#f92672>=</span>http://localhost:8787/v1
-</span></span><span style=display:flex><span><span style=color:#75715e># Claude Code automatically routes through Headroom</span>
-</span></span></code></pre></div><h3 id=codex-cli>Codex CLI</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Point Codex through Headroom proxy</span>
-</span></span><span style=display:flex><span>export OPENAI_API_BASE<span style=color:#f92672>=</span>http://localhost:8787/v1
-</span></span><span style=display:flex><span>codex --model gpt-4o --prompt <span style=color:#e6db74>&#34;Fix the auth bug&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># All context goes through Headroom compression first</span>
-</span></span></code></pre></div><h3 id=openrouter-aggregation>OpenRouter Aggregation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Use Headroom with OpenRouter for multi-model cost savings</span>
-</span></span><span style=display:flex><span>headroom serve <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --proxy http://api.openrouter.ai/api/v1 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model meta-llama/llama-3.1-405b <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --compressor balanced
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Headroom compresses inputs, then sends to OpenRouter</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># You pay for compressed tokens, not raw tokens</span>
-</span></span></code></pre></div><p>For self-hosted proxy infrastructure, <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> droplets provide stable low-latency connections. Consider <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> data-center proxies for multi-region deployment. For token trading integrations, connect to <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a> or <a href=https://www.promoohubly.com/join/12190433>OKX</a> via headroom&rsquo;s proxy layer.</p><h2 id=benchmarks--real-world-use-cases>Benchmarks / Real-World Use Cases</h2><h3 id=compression-benchmarks>Compression Benchmarks</h3><p>Testing on 100 real-world tool outputs (mix of terminal output, git diffs, file contents, and RAG chunks): | Configuration | Avg Original Tokens | Avg Compressed Tokens | Savings | Answer Quality |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// .env — Configure which LLM to proxy through
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">HEADROOM_PROXY_PORT=</span><span style="color:#ae81ff">8787</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">LLM_ENDPOINT=https:</span><span style="color:#75715e">//api.anthropic.com/v1/messages
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">LLM_MODEL=claude-sonnet</span><span style="color:#ae81ff">-4-20250514</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">LLM_API_KEY=$</span>{<span style="color:#960050;background-color:#1e0010">ANTHROPIC_API_KEY</span>}
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">COMPRESSION_STRATEGY=balanced</span>
+</span></span></code></pre></div><h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="quick-start-library-mode">Quick Start (Library Mode)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;headroom-ai[all]&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># One-line compression</span>
+</span></span><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">import headroom
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">compressed = headroom.compress(your_long_input)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(compressed.text)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="nodejs-setup">Node.js Setup</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install</span>
+</span></span><span style="display:flex;"><span>npm install headroom-ai
+</span></span></code></pre></div><h3 id="proxy-mode-recommended-for-ai-agents">Proxy Mode (Recommended for AI Agents)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install and start</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;headroom-ai[all]&#34;</span>
+</span></span><span style="display:flex;"><span>headroom serve --host 0.0.0.0 --port <span style="color:#ae81ff">8787</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test compression</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8787/compress <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;input&#34;: &#34;Very long context...&#34;}&#39;</span> | jq
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected response: # {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;original_tokens&#34;: 4523,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;compressed_tokens&#34;: 891,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;savings_pct&#34;: 80.3,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;compressed_text&#34;: &#34;...&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># }</span>
+</span></span></code></pre></div><h3 id="mcp-server-mode">MCP Server Mode</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start as MCP server</span>
+</span></span><span style="display:flex;"><span>headroom mcp-serve --port <span style="color:#ae81ff">9090</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect from Claude Code</span>
+</span></span><span style="display:flex;"><span>claude-code --mcp http://localhost:9090
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The MCP server exposes: # - headroom/compress — Compress text input</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - headroom/benchmark — Run compression benchmark</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - headroom/config — Get/update compression settings</span>
+</span></span></code></pre></div><h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="context-aware-compression">Context-Aware Compression</h3>
+<p>Headroom adapts its compression strategy based on the input type. Code-heavy inputs retain more structure, while verbose log files get aggressive pruning.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Context-aware compression example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> headroom <span style="color:#f92672">import</span> ContextCompressor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ctx_compressor <span style="color:#f92672">=</span> ContextCompressor(
+</span></span><span style="display:flex;"><span>    code_preserve<span style="color:#f92672">=</span><span style="color:#ae81ff">0.9</span>,    <span style="color:#75715e"># Keep 90% of code structure</span>
+</span></span><span style="display:flex;"><span>    log_prune<span style="color:#f92672">=</span><span style="color:#ae81ff">0.95</span>,       <span style="color:#75715e"># Prune 95% of repetitive log lines</span>
+</span></span><span style="display:flex;"><span>    json_dedup<span style="color:#f92672">=</span><span style="color:#ae81ff">0.9</span>,       <span style="color:#75715e"># Deduplicate similar JSON fields</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Auto-detect input type and apply best strategy</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> ctx_compressor<span style="color:#f92672">.</span>compress(input_data)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Type detected: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>input_type<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Savings: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>savings_pct<span style="color:#e6db74">}</span><span style="color:#e6db74">%&#34;</span>)
+</span></span></code></pre></div><h3 id="token-accounting-dashboard">Token Accounting Dashboard</h3>
+<p>Track your savings in real-time when running the proxy server in dashboard mode.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start proxy with built-in monitoring dashboard</span>
+</span></span><span style="display:flex;"><span>headroom serve --port <span style="color:#ae81ff">8787</span> --dashboard --dashboard-port <span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View dashboard at http://localhost:3000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># See real-time token savings, compression ratios, and cost tracking</span>
+</span></span></code></pre></div><h2 id="integration-with-claude-code-codex-cli-copilot-and-gemini-cli">Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI</h2>
+<p>Headroom works with any agent that sends HTTP requests to an LLM API. Here&rsquo;s how to integrate with popular tools: ### Claude Code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Method 1: Use as MCP server</span>
+</span></span><span style="display:flex;"><span>headroom mcp-serve --port <span style="color:#ae81ff">9090</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then in Claude Code: add-mcp headroom http://localhost:9090</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method 2: Set as API proxy in .claude-env</span>
+</span></span><span style="display:flex;"><span>export CLAUDE_API_BASE_URL<span style="color:#f92672">=</span>http://localhost:8787/v1
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Claude Code automatically routes through Headroom</span>
+</span></span></code></pre></div><h3 id="codex-cli">Codex CLI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Point Codex through Headroom proxy</span>
+</span></span><span style="display:flex;"><span>export OPENAI_API_BASE<span style="color:#f92672">=</span>http://localhost:8787/v1
+</span></span><span style="display:flex;"><span>codex --model gpt-4o --prompt <span style="color:#e6db74">&#34;Fix the auth bug&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># All context goes through Headroom compression first</span>
+</span></span></code></pre></div><h3 id="openrouter-aggregation">OpenRouter Aggregation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use Headroom with OpenRouter for multi-model cost savings</span>
+</span></span><span style="display:flex;"><span>headroom serve <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --proxy http://api.openrouter.ai/api/v1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model meta-llama/llama-3.1-405b <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --compressor balanced
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Headroom compresses inputs, then sends to OpenRouter</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># You pay for compressed tokens, not raw tokens</span>
+</span></span></code></pre></div><p>For self-hosted proxy infrastructure, <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> droplets provide stable low-latency connections. Consider <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> data-center proxies for multi-region deployment. For token trading integrations, connect to <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a> or <a href="https://www.promoohubly.com/join/12190433">OKX</a> via headroom&rsquo;s proxy layer.</p>
+<h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="compression-benchmarks">Compression Benchmarks</h3>
+<p>Testing on 100 real-world tool outputs (mix of terminal output, git diffs, file contents, and RAG chunks): | Configuration | Avg Original Tokens | Avg Compressed Tokens | Savings | Answer Quality |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | No compression | 4,820 | 4,820 | 0% | 100% |
 | Conservative (90% cap) | 4,820 | 1,450 | 70% | 98% |
 | Balanced (75% cap) | 4,820 | 1,080 | 78% | 96% |
-| Aggressive (95% cap) | 4,820 | 610 | 87% | 89% |</p><h3 id=cost-reduction-real-scenario>Cost Reduction: Real Scenario</h3><p>A developer using Claude Code for a 50K-line Python project: `````bash</p><h1 id=before-headroom--daily-context-120000-tokensday>Before Headroom: # Daily context: ~120,000 tokens/day</h1><h1 id=cost-48month-claude-sonnet--3m>Cost: ~$48/month (Claude Sonnet @ $3/M)</h1><h1 id=after-headroom-balanced-mode--daily-context-28000-tokensday>After Headroom (balanced mode): # Daily context: ~28,000 tokens/day</h1><h1 id=cost-11month>Cost: ~$11/month</h1><h1 id=savings-37month--77-reduction>Savings: ~$37/month = 77% reduction</h1><pre tabindex=0><code>
+| Aggressive (95% cap) | 4,820 | 610 | 87% | 89% |</p>
+<h3 id="cost-reduction-real-scenario">Cost Reduction: Real Scenario</h3>
+<p>A developer using Claude Code for a 50K-line Python project: `````bash</p>
+<h1 id="before-headroom--daily-context-120000-tokensday">Before Headroom: # Daily context: ~120,000 tokens/day</h1>
+<h1 id="cost-48month-claude-sonnet--3m">Cost: ~$48/month (Claude Sonnet @ $3/M)</h1>
+<h1 id="after-headroom-balanced-mode--daily-context-28000-tokensday">After Headroom (balanced mode): # Daily context: ~28,000 tokens/day</h1>
+<h1 id="cost-11month">Cost: ~$11/month</h1>
+<h1 id="savings-37month--77-reduction">Savings: ~$37/month = 77% reduction</h1>
+<pre tabindex="0"><code>
 ### RAG Chunk Compression
 
 Compressing retrieved documents before sending to LLM: `````python
@@ -164,7 +293,18 @@ compressed_chunks = rag_compress(
 
 # Result: 47 original chunks → 12 compressed chunks
 # Same answer quality, 74% fewer tokens
-</code></pre><h3 id=real-world-use-case-cicd-log-analysis>Real-World Use Case: CI/CD Log Analysis</h3><p>A team processes 500 GitHub Actions logs per week: `````bash</p><h1 id=batch-compress-logs>Batch compress logs</h1><p>headroom compress-batch<br>&ndash;input ./ci-logs/*.log<br>&ndash;output ./compressed-logs/<br>&ndash;strategy conservative<br>&ndash;max-savings 70</p><h1 id=analyze-compressed-logs-with-ai>Analyze compressed logs with AI</h1><p>cat ./compressed-logs/build-42.log |<br>headroom serve &ndash;prompt &ldquo;Find the root cause of this failure&rdquo;</p><pre tabindex=0><code>
+</code></pre><h3 id="real-world-use-case-cicd-log-analysis">Real-World Use Case: CI/CD Log Analysis</h3>
+<p>A team processes 500 GitHub Actions logs per week: `````bash</p>
+<h1 id="batch-compress-logs">Batch compress logs</h1>
+<p>headroom compress-batch <br>
+&ndash;input ./ci-logs/*.log <br>
+&ndash;output ./compressed-logs/ <br>
+&ndash;strategy conservative <br>
+&ndash;max-savings 70</p>
+<h1 id="analyze-compressed-logs-with-ai">Analyze compressed logs with AI</h1>
+<p>cat ./compressed-logs/build-42.log | <br>
+headroom serve &ndash;prompt &ldquo;Find the root cause of this failure&rdquo;</p>
+<pre tabindex="0"><code>
 ## Advanced Usage / Production Hardening
 
 ### Custom Compression Rules
@@ -188,7 +328,15 @@ rules: # Skip compressing code files below a threshold
   - pattern: &#34;openapi.*\\.yaml$&#34;
     compress: false
     dedup: true
-</code></pre><h3 id=redis-backed-session-state>Redis-backed Session State</h3><p>For multi-session scenarios, persist compression state: `````bash</p><h1 id=start-with-redis-state-backend>Start with Redis state backend</h1><p>headroom serve<br>&ndash;redis-url redis://localhost:6379/0<br>&ndash;session-ttl 3600</p><h1 id=session-state-persists-across-requests>Session state persists across requests</h1><h1 id=useful-for-long-running-agent-sessions>Useful for long-running agent sessions</h1><pre tabindex=0><code>
+</code></pre><h3 id="redis-backed-session-state">Redis-backed Session State</h3>
+<p>For multi-session scenarios, persist compression state: `````bash</p>
+<h1 id="start-with-redis-state-backend">Start with Redis state backend</h1>
+<p>headroom serve <br>
+&ndash;redis-url redis://localhost:6379/0 <br>
+&ndash;session-ttl 3600</p>
+<h1 id="session-state-persists-across-requests">Session state persists across requests</h1>
+<h1 id="useful-for-long-running-agent-sessions">Useful for long-running agent sessions</h1>
+<pre tabindex="0"><code>
 ### Health Checks &amp; Monitoring
 
 `````bash
@@ -206,8 +354,19 @@ curl -s http://localhost:8787/stats | jq
 
 # Rate limiting
 curl -s http://localhost:8787/config | jq
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | Headroom | Tiktoken-only | RAG compression libs | Token-efficient frameworks |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Headroom | Tiktoken-only | RAG compression libs | Token-efficient frameworks |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Token savings | 60-95% | 0% (counting only) | 30-60% | 50-80% |
 | Multi-format (JSON, logs, files) | Yes | No | Limited | No |
 | Deployment modes | Library + Proxy + MCP | Library only | Library only | Library only |
@@ -217,10 +376,51 @@ curl -s http://localhost:8787/config | jq
 | Quality benchmarking | Built-in | No | No | No |
 | Docker support | No | No | No | No |
 | Active development | Very active | N/A | Mixed | Varies |
-| GitHub stars | 19,745 | — | Varies | Varies |</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p>Headroom is not a silver bullet. Here&rsquo;s when it&rsquo;s NOT a good fit: 1. <strong>Latency-sensitive applications</strong> — Compression adds 10-50ms per request. For ultra-low-latency use cases (sub-100ms total), the overhead may not be acceptable.</p><ol start=2><li><p><strong>Extremely short inputs</strong> — For inputs under 500 tokens, compression overhead exceeds savings. Headroom is optimized for long-context scenarios (2,000+ tokens).</p></li><li><p><strong>Quality-critical narrow tasks</strong> — If a 1% quality drop is unacceptable (e.g., legal document review), use conservative mode with 70% max savings instead of balanced.</p></li><li><p><strong>Non-text inputs</strong> — Headroom compresses text only. Binary data, images, and audio require separate preprocessing.</p></li><li><p><strong>Cost of deployment</strong> — Running the proxy server adds infrastructure complexity. For single-developer setups with low token usage, the library mode is sufficient.</p></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><p><strong>Q: How does Headroom differ from a simple LLM summarizer?</strong></p><p>A: Headroom uses structural analysis (token boundaries, format-aware deduplication, relevance scoring) rather than generative summarization. It preserves critical information structure (code syntax, JSON schema, API signatures) that summarizers might corrupt.</p><p><strong>Q: Does Headroom work with local models like Ollama?</strong></p><p>A: Yes. Point the proxy to any Ollama endpoint: <code>LLM_ENDPOINT=http://localhost:11434/v1</code>. Compression happens before the request reaches Ollama, reducing VRAM usage.</p><p><strong>Q: Can I run Headroom on a VPS for team usage?</strong></p><p>A: Yes. The library runs as a lightweight Python service. A basic VPS with 1 vCPU and 1GB RAM handles 50+ concurrent compression requests. For multi-session state persistence, add a Redis backend. Docker is not officially supported for headroom.</p><p><strong>Q: Is there an API key or usage limit?</strong></p><p>A: No. Headroom is open-source (MIT license), completely free, and has no usage limits. The only cost is the LLM API calls you make through the proxy.</p><p><strong>Q: How does Headroom handle RAG retrieval?</strong></p><p>A: Headroom includes a ````rag_compress``` function that scores, deduplicates, and prunes retrieved chunks before sending them to the LLM. It uses embedding similarity to preserve high-relevance chunks.</p><h2 id=sources--further-reading>Sources & Further Reading</h2><ul><li>Official docs: <a href=https://github.com/chopratejas/headroom>https://github.com/chopratejas/headroom</a></li><li>GitHub repository: <a href=https://github.com/chopratejas/headroom>https://github.com/chopratejas/headroom</a></li><li>Compression benchmark methodology: <a href=https://github.com/chopratejas/headroom/blob/main/docs/BENCHMARKS.md>https://github.com/chopratejas/headroom/blob/main/docs/BENCHMARKS.md</a></li><li>MCP server documentation: <a href=https://github.com/chopratejas/headroom/blob/main/docs/MCP.md>https://github.com/chopratejas/headroom/blob/main/docs/MCP.md</a></li><li>Community discussion: <a href=https://github.com/chopratejas/headroom/discussions>https://github.com/chopratejas/headroom/discussions</a></li></ul><h2 id=conclusion-slash-your-llm-token-costs-by-60-95--run-it-in-10-minutes>Conclusion: Slash Your LLM Token Costs by 60-95% — Run It in 10 Minutes</h2><p>Headroom is the missing infrastructure layer that every AI agent pipeline needs. Instead of paying for bloated context, you compress it before it reaches the model. The library gives you programmatic control, the proxy gives you zero-code integration, and the MCP server gives you seamless Claude Code compatibility.</p><p>Whether you"re a single developer trying to reduce Claude API bills, a team running AI-powered CI/CD, or building a production RAG system, Headroom delivers measurable cost savings without sacrificing answer quality.</p><p>Join the <a href=https://t.me/DIBI8_Group/2>dibi8 English Telegram group</a> to discuss Headroom configurations. Check out our guides on [本地ChatGPT](<a href=https://dibi8.com/nanochat-karpathy-100-chatg[AI>https://dibi8.com/nanochat-karpathy-100-chatg[AI</a> Agent平台](<a href=https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale%29ibi8-internal-lin>https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)ibi8-internal-lin</a>k) for complementary AI tooling. Try Headroom today — install it, point your proxy, and watch your token bills drop.</p><p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| GitHub stars | 19,745 | — | Varies | Varies |</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>Headroom is not a silver bullet. Here&rsquo;s when it&rsquo;s NOT a good fit: 1. <strong>Latency-sensitive applications</strong> — Compression adds 10-50ms per request. For ultra-low-latency use cases (sub-100ms total), the overhead may not be acceptable.</p>
+<ol start="2">
+<li>
+<p><strong>Extremely short inputs</strong> — For inputs under 500 tokens, compression overhead exceeds savings. Headroom is optimized for long-context scenarios (2,000+ tokens).</p>
+</li>
+<li>
+<p><strong>Quality-critical narrow tasks</strong> — If a 1% quality drop is unacceptable (e.g., legal document review), use conservative mode with 70% max savings instead of balanced.</p>
+</li>
+<li>
+<p><strong>Non-text inputs</strong> — Headroom compresses text only. Binary data, images, and audio require separate preprocessing.</p>
+</li>
+<li>
+<p><strong>Cost of deployment</strong> — Running the proxy server adds infrastructure complexity. For single-developer setups with low token usage, the library mode is sufficient.</p>
+</li>
+</ol>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: How does Headroom differ from a simple LLM summarizer?</strong></p>
+<p>A: Headroom uses structural analysis (token boundaries, format-aware deduplication, relevance scoring) rather than generative summarization. It preserves critical information structure (code syntax, JSON schema, API signatures) that summarizers might corrupt.</p>
+<p><strong>Q: Does Headroom work with local models like Ollama?</strong></p>
+<p>A: Yes. Point the proxy to any Ollama endpoint: <code>LLM_ENDPOINT=http://localhost:11434/v1</code>. Compression happens before the request reaches Ollama, reducing VRAM usage.</p>
+<p><strong>Q: Can I run Headroom on a VPS for team usage?</strong></p>
+<p>A: Yes. The library runs as a lightweight Python service. A basic VPS with 1 vCPU and 1GB RAM handles 50+ concurrent compression requests. For multi-session state persistence, add a Redis backend. Docker is not officially supported for headroom.</p>
+<p><strong>Q: Is there an API key or usage limit?</strong></p>
+<p>A: No. Headroom is open-source (MIT license), completely free, and has no usage limits. The only cost is the LLM API calls you make through the proxy.</p>
+<p><strong>Q: How does Headroom handle RAG retrieval?</strong></p>
+<p>A: Headroom includes a ````rag_compress``` function that scores, deduplicates, and prunes retrieved chunks before sending them to the LLM. It uses embedding similarity to preserve high-relevance chunks.</p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li>Official docs: <a href="https://github.com/chopratejas/headroom">https://github.com/chopratejas/headroom</a></li>
+<li>GitHub repository: <a href="https://github.com/chopratejas/headroom">https://github.com/chopratejas/headroom</a></li>
+<li>Compression benchmark methodology: <a href="https://github.com/chopratejas/headroom/blob/main/docs/BENCHMARKS.md">https://github.com/chopratejas/headroom/blob/main/docs/BENCHMARKS.md</a></li>
+<li>MCP server documentation: <a href="https://github.com/chopratejas/headroom/blob/main/docs/MCP.md">https://github.com/chopratejas/headroom/blob/main/docs/MCP.md</a></li>
+<li>Community discussion: <a href="https://github.com/chopratejas/headroom/discussions">https://github.com/chopratejas/headroom/discussions</a></li>
+</ul>
+<h2 id="conclusion-slash-your-llm-token-costs-by-60-95--run-it-in-10-minutes">Conclusion: Slash Your LLM Token Costs by 60-95% — Run It in 10 Minutes</h2>
+<p>Headroom is the missing infrastructure layer that every AI agent pipeline needs. Instead of paying for bloated context, you compress it before it reaches the model. The library gives you programmatic control, the proxy gives you zero-code integration, and the MCP server gives you seamless Claude Code compatibility.</p>
+<p>Whether you&quot;re a single developer trying to reduce Claude API bills, a team running AI-powered CI/CD, or building a production RAG system, Headroom delivers measurable cost savings without sacrificing answer quality.</p>
+<p>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> to discuss Headroom configurations. Check out our guides on [本地ChatGPT](<a href="https://dibi8.com/nanochat-karpathy-100-chatg[AI">https://dibi8.com/nanochat-karpathy-100-chatg[AI</a> Agent平台](<a href="https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale%29ibi8-internal-lin">https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)ibi8-internal-lin</a>k) for complementary AI tooling. Try Headroom today — install it, point your proxy, and watch your token bills drop.</p>
+<p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library &amp; MCP Server — A Practical Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-08&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-08&rdquo;,
 &ldquo;author&rdquo;: {
@@ -232,20 +432,285 @@ curl -s http://localhost:8787/config | jq
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/headroom-token-compression-proxy-library-mcp-server%22>https://dibi8.com/resources/headroom-token-compression-proxy-library-mcp-server"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/headroom-token-compression-proxy-library-mcp-server%22">https://dibi8.com/resources/headroom-token-compression-proxy-library-mcp-server"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/>free-mcp-tools-top10-2026</a></li><li><a href=/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/>codebase-memory-mcp-high-performance-code-intelligence</a></li><li><a href=/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/>headroom-token-compression-proxy-library-mcp-server</a></li><li><a href=/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/>codebase-memory-mcp-deep-code-intelligence</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fheadroom-token-compression-proxy-library-mcp-server%2f&text=Headroom%3a%20Compress%20LLM%20Inputs%20by%2060-95%25%20%e2%80%94%20A%20Token-Saving%20Proxy%2c%20Library%20%26%20MCP%20Server%20%e2%80%94%20A%20Practical%20Guide%202026" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fheadroom-token-compression-proxy-library-mcp-server%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/">free-mcp-tools-top10-2026</a></li>
+<li><a href="/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/">codebase-memory-mcp-high-performance-code-intelligence</a></li>
+<li><a href="/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/">headroom-token-compression-proxy-library-mcp-server</a></li>
+<li><a href="/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server/">codebase-memory-mcp-deep-code-intelligence</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fheadroom-token-compression-proxy-library-mcp-server%2f&text=Headroom%3a%20Compress%20LLM%20Inputs%20by%2060-95%25%20%e2%80%94%20A%20Token-Saving%20Proxy%2c%20Library%20%26%20MCP%20Server%20%e2%80%94%20A%20Practical%20Guide%202026" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fheadroom-token-compression-proxy-library-mcp-server%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

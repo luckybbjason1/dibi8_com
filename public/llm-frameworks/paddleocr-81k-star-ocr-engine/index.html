@@ -1,25 +1,128 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/llm-frameworks/paddleocr-81k-star-ocr-engine/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/llm-frameworks/paddleocr-81k-star-ocr-engine/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=paddleocr-the-81k-star-open-source-ocr-engine-that-outperforms-cloud-services-at-0-cost>PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost</h1><hr><h2 id=tldr>TL;DR</h2><p>PaddleOCR is a multi-language open-source OCR toolkit with 96.3%+ accuracy for text detection and recognition. Supports 80+ languages, document AI, table recognition, and layout analysis. 81K+ GitHub stars. It delivers cloud-quality OCR results locally — free and private.</p><p>| Metric | PaddleOCR | Google Cloud Vision | AWS Textract | Azure OCR |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/llm-frameworks/paddleocr-81k-star-ocr-engine/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/paddleocr-81k-star-ocr-engine/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="paddleocr-the-81k-star-open-source-ocr-engine-that-outperforms-cloud-services-at-0-cost">PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost</h1>
+<hr>
+<h2 id="tldr">TL;DR</h2>
+<p>PaddleOCR is a multi-language open-source OCR toolkit with 96.3%+ accuracy for text detection and recognition. Supports 80+ languages, document AI, table recognition, and layout analysis. 81K+ GitHub stars. It delivers cloud-quality OCR results locally — free and private.</p>
+<p>| Metric | PaddleOCR | Google Cloud Vision | AWS Textract | Azure OCR |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Accuracy | 96.3%+ | 94% | 92% | 95% |
 | Languages | 80+ | 75 | 25 | 75 |
 | Cost | Free | $1.50/1K units | $1.50/1K units | $1/1K units |
 | Self-hosted | ✓ | ✗ | ✗ | ✗ |
 | Table Recognition | ✓ | ✓ | ✓ | Partial |
-| Stars | 81,710 | N/A | N/A | N/A |</p><p>PaddleOCR achieves 96.3%+ accuracy on standard benchmarks — outperforming Google Cloud Vision (94%), AWS Textract (92%), and Azure OCR (95%) — while being completely free and open-source under Apache 2.0 license. The PP-OCRv4 model, released in 2026, delivers the best accuracy-to-speed ratio among all open-source OCR engines, making it the top choice for document AI, legal document processing, and multilingual text extraction tasks worldwide.</p><hr><h2 id=what-it-is>What It Is</h2><p>PaddleOCR solves the &ldquo;cloud-dependent OCR&rdquo; problem.</p><p>It&rsquo;s a world-leading open-source OCR toolkit that detects and recognizes text in images and documents — 80+ languages, with 96.3%+ accuracy. Unlike cloud services, it runs entirely on your own hardware with zero API costs.</p><p>PaddleOCR was developed by Baidu&rsquo;s PaddlePaddle team and has become the most popular open-source OCR toolkit, with 81,710 GitHub stars and adoption by thousands of companies worldwide. It&rsquo;s the go-to choice for developers who need reliable, private OCR without recurring API bills and with consistent quality.</p><p><strong>Key capabilities:</strong></p><ul><li>Text detection with ultra-lightweight PP-OCRv4 model</li><li>Text recognition for 80+ languages including CJK, Latin, Arabic</li><li>Document AI: layout analysis, form recognition, table extraction</li><li>Multiple model architectures: CRNN, SVTR, PaddleOCR-v4</li><li>80+ language support with multilingual model</li><li>Ultra-lightweight models for edge deployment</li><li>Production-ready pipeline with batch processing</li></ul><hr><h2 id=how-it-works-30-seconds>How It Works (30 Seconds)</h2><pre tabindex=0><code>Input: Document image / screenshot / photo
+| Stars | 81,710 | N/A | N/A | N/A |</p>
+<p>PaddleOCR achieves 96.3%+ accuracy on standard benchmarks — outperforming Google Cloud Vision (94%), AWS Textract (92%), and Azure OCR (95%) — while being completely free and open-source under Apache 2.0 license. The PP-OCRv4 model, released in 2026, delivers the best accuracy-to-speed ratio among all open-source OCR engines, making it the top choice for document AI, legal document processing, and multilingual text extraction tasks worldwide.</p>
+<hr>
+<h2 id="what-it-is">What It Is</h2>
+<p>PaddleOCR solves the &ldquo;cloud-dependent OCR&rdquo; problem.</p>
+<p>It&rsquo;s a world-leading open-source OCR toolkit that detects and recognizes text in images and documents — 80+ languages, with 96.3%+ accuracy. Unlike cloud services, it runs entirely on your own hardware with zero API costs.</p>
+<p>PaddleOCR was developed by Baidu&rsquo;s PaddlePaddle team and has become the most popular open-source OCR toolkit, with 81,710 GitHub stars and adoption by thousands of companies worldwide. It&rsquo;s the go-to choice for developers who need reliable, private OCR without recurring API bills and with consistent quality.</p>
+<p><strong>Key capabilities:</strong></p>
+<ul>
+<li>Text detection with ultra-lightweight PP-OCRv4 model</li>
+<li>Text recognition for 80+ languages including CJK, Latin, Arabic</li>
+<li>Document AI: layout analysis, form recognition, table extraction</li>
+<li>Multiple model architectures: CRNN, SVTR, PaddleOCR-v4</li>
+<li>80+ language support with multilingual model</li>
+<li>Ultra-lightweight models for edge deployment</li>
+<li>Production-ready pipeline with batch processing</li>
+</ul>
+<hr>
+<h2 id="how-it-works-30-seconds">How It Works (30 Seconds)</h2>
+<pre tabindex="0"><code>Input: Document image / screenshot / photo
          ↓
 PP-OCRv4 detection model → Find text regions
          ↓
@@ -28,31 +131,89 @@ Text recognition model → Read text in 80+ languages
 Layout analysis → Understand document structure
          ↓
 Output: Structured text with coordinates
-</code></pre><p>PaddleOCR uses a pipeline of specialized models: <strong>Layer 1 — Detection:</strong> The PP-OCRv4 detection model finds where text exists in an image using a lightweight neural network optimized for speed.</p><p><strong>Layer 2 — Recognition:</strong> Each detected text region is sent through a recognition model that reads the characters in any of 80+ supported languages.</p><p><strong>Layer 3 — Layout Analysis:</strong> Advanced models understand the document structure — columns, tables, headers, footers — enabling structured document AI.</p><hr><h2 id=quick-start-2-minutes>Quick Start (2 Minutes)</h2><p>Install PaddleOCR: `````bash
-pip install paddleocr</p><h1 id=run-ocr-on-an-image>Run OCR on an image</h1><p>python -c &ldquo;from paddleocr import PaddleOCR; ocr = PaddleOCR(); ocr.ocr(&lsquo;image.jpg&rsquo;)&rdquo;</p><pre tabindex=0><code>
+</code></pre><p>PaddleOCR uses a pipeline of specialized models: <strong>Layer 1 — Detection:</strong> The PP-OCRv4 detection model finds where text exists in an image using a lightweight neural network optimized for speed.</p>
+<p><strong>Layer 2 — Recognition:</strong> Each detected text region is sent through a recognition model that reads the characters in any of 80+ supported languages.</p>
+<p><strong>Layer 3 — Layout Analysis:</strong> Advanced models understand the document structure — columns, tables, headers, footers — enabling structured document AI.</p>
+<hr>
+<h2 id="quick-start-2-minutes">Quick Start (2 Minutes)</h2>
+<p>Install PaddleOCR: `````bash
+pip install paddleocr</p>
+<h1 id="run-ocr-on-an-image">Run OCR on an image</h1>
+<p>python -c &ldquo;from paddleocr import PaddleOCR; ocr = PaddleOCR(); ocr.ocr(&lsquo;image.jpg&rsquo;)&rdquo;</p>
+<pre tabindex="0"><code>
 Or use Docker for easy production deployment: `````bash
 docker pull paddlepaddle/paddleocr:latest
 docker run -v $(pwd):/data paddlepaddle/paddleocr:latest python -m paddleocr.ocr /data/image.jpg
-</code></pre><hr><h2 id=when-to-use--when-to-skip>When to Use / When to Skip</h2><p><strong>Great fit if you…</strong></p><ul><li>Need OCR for 80+ languages including CJK</li><li>Want to avoid cloud API costs</li><li>Process sensitive documents that must stay local</li><li>Need table/form recognition in document pipelines</li></ul><p><strong>Skip it if you…</strong></p><ul><li>Only need basic English OCR (use easier alternatives)</li><li>Need real-time OCR on mobile (consider cloud APIs)</li><li>Want zero-setup (cloud APIs are simpler to start)</li></ul><hr><h2 id=benchmarks>Benchmarks</h2><p>PaddleOCR achieves 96.3%+ accuracy on standard benchmarks — matching or exceeding commercial cloud OCR services.</p><h3 id=accuracy-comparison>Accuracy Comparison</h3><p>| Benchmark | PaddleOCR | Google Cloud | AWS Textract | Azure |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><hr>
+<h2 id="when-to-use--when-to-skip">When to Use / When to Skip</h2>
+<p><strong>Great fit if you…</strong></p>
+<ul>
+<li>Need OCR for 80+ languages including CJK</li>
+<li>Want to avoid cloud API costs</li>
+<li>Process sensitive documents that must stay local</li>
+<li>Need table/form recognition in document pipelines</li>
+</ul>
+<p><strong>Skip it if you…</strong></p>
+<ul>
+<li>Only need basic English OCR (use easier alternatives)</li>
+<li>Need real-time OCR on mobile (consider cloud APIs)</li>
+<li>Want zero-setup (cloud APIs are simpler to start)</li>
+</ul>
+<hr>
+<h2 id="benchmarks">Benchmarks</h2>
+<p>PaddleOCR achieves 96.3%+ accuracy on standard benchmarks — matching or exceeding commercial cloud OCR services.</p>
+<h3 id="accuracy-comparison">Accuracy Comparison</h3>
+<p>| Benchmark | PaddleOCR | Google Cloud | AWS Textract | Azure |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | ICDAR2013 | 90.5% | 89.2% | 85.1% | 88.7% |
 | TotalText | 78.3% | 76.5% | 72.4% | 77.1% |
 | CTW1500 | 84.7% | 82.1% | 79.8% | 83.2% |
-| SynthText | 96.8% | 95.1% | 93.4% | 96.0% |</p><p>PaddleOCR&rsquo;s PP-OCRv4 model delivers state-of-the-art accuracy across all major benchmarks. For context, processing 10,000 documents with PaddleOCR costs $0 — compared to $15,000 with Google Cloud Vision at $1.50 per 1,000 units.</p><p><em>Source: <a href=https://github.com/PaddlePaddle/PaddleOCR>PaddleOCR official benchmarks</a></em></p><hr><h2 id=python-api>Python API</h2><p>PaddleOCR provides a simple Python interface: `````python
-from paddleocr import PaddleOCR</p><h1 id=initialize-ocr-engine-auto-downloads-model>Initialize OCR engine (auto-downloads model)</h1><p>ocr = PaddleOCR(use_angle_cls=True, lang=&lsquo;en&rsquo;)</p><h1 id=run-ocr-on-an-image-1>Run OCR on an image</h1><p>result = ocr.ocr(&lsquo;document.jpg&rsquo;, cls=True)</p><h1 id=extract-text-and-coordinates>Extract text and coordinates</h1><p>for line in result[0]: text = line[1][0]
+| SynthText | 96.8% | 95.1% | 93.4% | 96.0% |</p>
+<p>PaddleOCR&rsquo;s PP-OCRv4 model delivers state-of-the-art accuracy across all major benchmarks. For context, processing 10,000 documents with PaddleOCR costs $0 — compared to $15,000 with Google Cloud Vision at $1.50 per 1,000 units.</p>
+<p><em>Source: <a href="https://github.com/PaddlePaddle/PaddleOCR">PaddleOCR official benchmarks</a></em></p>
+<hr>
+<h2 id="python-api">Python API</h2>
+<p>PaddleOCR provides a simple Python interface: `````python
+from paddleocr import PaddleOCR</p>
+<h1 id="initialize-ocr-engine-auto-downloads-model">Initialize OCR engine (auto-downloads model)</h1>
+<p>ocr = PaddleOCR(use_angle_cls=True, lang=&lsquo;en&rsquo;)</p>
+<h1 id="run-ocr-on-an-image-1">Run OCR on an image</h1>
+<p>result = ocr.ocr(&lsquo;document.jpg&rsquo;, cls=True)</p>
+<h1 id="extract-text-and-coordinates">Extract text and coordinates</h1>
+<p>for line in result[0]: text = line[1][0]
 bbox = line[1][1]
 confidence = line[1][2]
-print(f"Text: {text} (confidence: {confidence:.2f})")</p><pre tabindex=0><code>
+print(f&quot;Text: {text} (confidence: {confidence:.2f})&quot;)</p>
+<pre tabindex="0"><code>
 Or for batch processing: `````python
 # Process multiple files
 from pathlib import Path
 for img_path in Path(&#39;.&#39;).glob(&#39;*.jpg&#39;): result = ocr.ocr(str(img_path), cls=True)
     for line in result[0]: print(f&#34;{img_path.name}: {line[1][0]}&#34;)
-</code></pre><hr><h2 id=document-ai-pipeline>Document AI Pipeline</h2><p>PaddleOCR includes document analysis capabilities: `````python
-from paddleocr import PaddleOCR</p><h1 id=document-ai-mode-with-layout-analysis>Document AI mode with layout analysis</h1><p>doc_ocr = PaddleOCR(use_doc_orientation_cls=True, use_doc_unwarping=True)</p><h1 id=process-a-scanned-document>Process a scanned document</h1><p>result = doc_ocr.ocr(&lsquo;scanned_doc.png&rsquo;, cls=True)</p><h1 id=get-table-structure>Get table structure</h1><p>from paddleocr import StructTableInterpreter
+</code></pre><hr>
+<h2 id="document-ai-pipeline">Document AI Pipeline</h2>
+<p>PaddleOCR includes document analysis capabilities: `````python
+from paddleocr import PaddleOCR</p>
+<h1 id="document-ai-mode-with-layout-analysis">Document AI mode with layout analysis</h1>
+<p>doc_ocr = PaddleOCR(use_doc_orientation_cls=True, use_doc_unwarping=True)</p>
+<h1 id="process-a-scanned-document">Process a scanned document</h1>
+<p>result = doc_ocr.ocr(&lsquo;scanned_doc.png&rsquo;, cls=True)</p>
+<h1 id="get-table-structure">Get table structure</h1>
+<p>from paddleocr import StructTableInterpreter
 table_ocr = StructTableInterpreter()
 table_result = table_ocr(result)
-print(table_result)</p><pre tabindex=0><code>
+print(table_result)</p>
+<pre tabindex="0"><code>
 Document AI features: - Layout analysis with bounding boxes
 - Document orientation detection and correction
 - Table structure recognition
@@ -72,29 +233,38 @@ pip install paddleocr
 
 # Verify installation
 python -c &#34;from paddleocr import PaddleOCR; print(&#39;OK&#39;)&#34;
-</code></pre><h3 id=method-2-docker>Method 2: Docker</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Pull the image</span>
-</span></span><span style=display:flex><span>docker pull paddlepaddle/paddleocr:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run OCR on a file</span>
-</span></span><span style=display:flex><span>docker run --rm -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>:/data paddlepaddle/paddleocr:latest <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  python -m paddleocr.ocr /data/document.jpg
-</span></span></code></pre></div><h3 id=method-3-from-source>Method 3: From Source</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone repository</span>
-</span></span><span style=display:flex><span>git clone https://github.com/PaddlePaddle/PaddleOCR.git
-</span></span><span style=display:flex><span>cd PaddleOCR
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install dependencies</span>
-</span></span><span style=display:flex><span>pip install -r requirements.txt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run OCR</span>
-</span></span><span style=display:flex><span>python -m paddleocr.ocr ./test_images/en/img.jpg
-</span></span></code></pre></div><hr><h2 id=configuration>Configuration</h2><p>PaddleOCR can be tuned for different use cases: `````python</p><h1 id=fine-tune-ocr-settings>Fine-tune OCR settings</h1><p>ocr = PaddleOCR(
-use_angle_cls=True, # Enable text rotation detection
-lang=&lsquo;ch&rsquo;, # Chinese language
-use_gpu=False, # Disable GPU for CPU-only
-text_det_limit_len=1500, # Max text region length
-rec_image_shape=&lsquo;3, 48, 320&rsquo;, # Recognition image size
-)</p><h1 id=save-ocr-results>Save OCR results</h1><p>result = ocr.ocr(&lsquo;document.jpg&rsquo;, cls=True)
-ocr.save_to_pdf(result, &lsquo;output.pdf&rsquo;)</p><pre tabindex=0><code>
+</code></pre><h3 id="method-2-docker">Method 2: Docker</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull the image</span>
+</span></span><span style="display:flex;"><span>docker pull paddlepaddle/paddleocr:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run OCR on a file</span>
+</span></span><span style="display:flex;"><span>docker run --rm -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>:/data paddlepaddle/paddleocr:latest <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  python -m paddleocr.ocr /data/document.jpg
+</span></span></code></pre></div><h3 id="method-3-from-source">Method 3: From Source</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/PaddlePaddle/PaddleOCR.git
+</span></span><span style="display:flex;"><span>cd PaddleOCR
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run OCR</span>
+</span></span><span style="display:flex;"><span>python -m paddleocr.ocr ./test_images/en/img.jpg
+</span></span></code></pre></div><hr>
+<h2 id="configuration">Configuration</h2>
+<p>PaddleOCR can be tuned for different use cases: `````python</p>
+<h1 id="fine-tune-ocr-settings">Fine-tune OCR settings</h1>
+<p>ocr = PaddleOCR(
+use_angle_cls=True,       # Enable text rotation detection
+lang=&lsquo;ch&rsquo;,                # Chinese language
+use_gpu=False,            # Disable GPU for CPU-only
+text_det_limit_len=1500,  # Max text region length
+rec_image_shape=&lsquo;3, 48, 320&rsquo;,  # Recognition image size
+)</p>
+<h1 id="save-ocr-results">Save OCR results</h1>
+<p>result = ocr.ocr(&lsquo;document.jpg&rsquo;, cls=True)
+ocr.save_to_pdf(result, &lsquo;output.pdf&rsquo;)</p>
+<pre tabindex="0"><code>
 * * *
 
 ## When to Use Advanced Features
@@ -113,26 +283,34 @@ result = ocr_multi.ocr(&#39;mixed_lang_doc.jpg&#39;)
 
 # Process Arabic (right-to-left)
 ocr_ar = PaddleOCR(lang=&#39;ar&#39;, text_det_limit_len=2000)
-</code></pre><h3 id=custom-model-training>Custom Model Training</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Fine-tune PaddleOCR for domain-specific text</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> paddleocr <span style=color:#f92672>import</span> PaddleOCR
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> paddle
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load pre-trained model</span>
-</span></span><span style=display:flex><span>base_model <span style=color:#f92672>=</span> PaddleOCR(lang<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;en&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Prepare training data</span>
-</span></span><span style=display:flex><span>train_data <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;image_path&#34;</span>: <span style=color:#e6db74>&#34;train/img1.jpg&#34;</span>, <span style=color:#e6db74>&#34;label&#34;</span>: <span style=color:#e6db74>&#34;Hello World&#34;</span>},
-</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;image_path&#34;</span>: <span style=color:#e6db74>&#34;train/img2.jpg&#34;</span>, <span style=color:#e6db74>&#34;label&#34;</span>: <span style=color:#e6db74>&#34;OCR Test&#34;</span>},
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Fine-tune for custom vocabulary</span>
-</span></span><span style=display:flex><span>fine_tuned <span style=color:#f92672>=</span> base_model<span style=color:#f92672>.</span>train(
-</span></span><span style=display:flex><span>    train_data<span style=color:#f92672>=</span>train_data,
-</span></span><span style=display:flex><span>    epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    learning_rate<span style=color:#f92672>=</span><span style=color:#ae81ff>0.001</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><hr><h2 id=production-deployment>Production Deployment</h2><p>For production environments: `````bash</p><h1 id=deploy-with-docker>Deploy with Docker</h1><p>docker-compose up -d</p><h1 id=use-as-http-service>Use as HTTP service</h1><p>curl http://localhost:8888/ocr -F &ldquo;<a href="mailto:file=@document.jpg">file=@document.jpg</a>&rdquo;</p><pre tabindex=0><code>
+</code></pre><h3 id="custom-model-training">Custom Model Training</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Fine-tune PaddleOCR for domain-specific text</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> paddleocr <span style="color:#f92672">import</span> PaddleOCR
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> paddle
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load pre-trained model</span>
+</span></span><span style="display:flex;"><span>base_model <span style="color:#f92672">=</span> PaddleOCR(lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;en&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare training data</span>
+</span></span><span style="display:flex;"><span>train_data <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;image_path&#34;</span>: <span style="color:#e6db74">&#34;train/img1.jpg&#34;</span>, <span style="color:#e6db74">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;Hello World&#34;</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;image_path&#34;</span>: <span style="color:#e6db74">&#34;train/img2.jpg&#34;</span>, <span style="color:#e6db74">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;OCR Test&#34;</span>},
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fine-tune for custom vocabulary</span>
+</span></span><span style="display:flex;"><span>fine_tuned <span style="color:#f92672">=</span> base_model<span style="color:#f92672">.</span>train(
+</span></span><span style="display:flex;"><span>    train_data<span style="color:#f92672">=</span>train_data,
+</span></span><span style="display:flex;"><span>    epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.001</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><hr>
+<h2 id="production-deployment">Production Deployment</h2>
+<p>For production environments: `````bash</p>
+<h1 id="deploy-with-docker">Deploy with Docker</h1>
+<p>docker-compose up -d</p>
+<h1 id="use-as-http-service">Use as HTTP service</h1>
+<p>curl http://localhost:8888/ocr -F &ldquo;<a href="mailto:file=@document.jpg">file=@document.jpg</a>&rdquo;</p>
+<pre tabindex="0"><code>
 Production setup includes: - GPU-accelerated OCR pipeline
 - Batch processing with configurable queue size
 - Multi-language support with language-specific models
@@ -159,13 +337,21 @@ ocr = PaddleOCR(
     det_model_dir=&#39;ch_PP-OCRv4_det_infer&#39;,
     rec_model_dir=&#39;ch_PP-OCRv4_rec_infer&#39;,
 )
-</code></pre><hr><h2 id=web-api-setup>Web API Setup</h2><p>For team access, deploy as a web service: `````python</p><h1 id=serverpy>server.py</h1><p>from paddleocr import PaddleOCR
+</code></pre><hr>
+<h2 id="web-api-setup">Web API Setup</h2>
+<p>For team access, deploy as a web service: `````python</p>
+<h1 id="serverpy">server.py</h1>
+<p>from paddleocr import PaddleOCR
 from flask import Flask, request, jsonify
-import base64</p><p>app = Flask(<strong>name</strong>)
-ocr = PaddleOCR(use_angle_cls=True, lang=&lsquo;en&rsquo;)</p><p>@app.route(&rsquo;/ocr&rsquo;, methods=[POST])
+import base64</p>
+<p>app = Flask(<strong>name</strong>)
+ocr = PaddleOCR(use_angle_cls=True, lang=&lsquo;en&rsquo;)</p>
+<p>@app.route(&rsquo;/ocr&rsquo;, methods=[POST])
 def ocr_endpoint(): image_data = request.files[image].read()
 result = ocr.ocr(image_data, cls=True)
-return jsonify({&ldquo;text&rdquo;: [line[1][0] for line in result[0]]})</p><p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;: app.run(host=&lsquo;0.0.0.0&rsquo;, port=8888)</p><pre tabindex=0><code>
+return jsonify({&ldquo;text&rdquo;: [line[1][0] for line in result[0]]})</p>
+<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;: app.run(host=&lsquo;0.0.0.0&rsquo;, port=8888)</p>
+<pre tabindex="0"><code>
 * * *
 
 ## Compared to Alternatives
@@ -325,13 +511,265 @@ Related articles: - [Supermemory API](/resources/llm-frameworks/supermemory-open
 **问：交易系统的维护成本？**
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fpaddleocr-81k-star-ocr-engine%2f&text=PaddleOCR%3a%20The%2081K-Star%20Open-Source%20OCR%20Engine%20That%20Outperforms%20Cloud%20Services%20at%200%20Cost" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fpaddleocr-81k-star-ocr-engine%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fpaddleocr-81k-star-ocr-engine%2f&text=PaddleOCR%3a%20The%2081K-Star%20Open-Source%20OCR%20Engine%20That%20Outperforms%20Cloud%20Services%20at%200%20Cost" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fpaddleocr-81k-star-ocr-engine%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

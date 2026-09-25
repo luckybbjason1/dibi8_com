@@ -1,32 +1,129 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Traditional Workflow (deterministic) | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Traditional Workflow (deterministic) | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/n8n-ai-automation-complete-guide/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/n8n-ai-automation-complete-guide/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Traditional Workflow (deterministic)</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Traditional Workflow (deterministic)</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Traditional Workflow (deterministic)&rdquo;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Workflow (deterministic) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Traditional Workflow (deterministic) | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/n8n-ai-automation-complete-guide/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/n8n-ai-automation-complete-guide/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Traditional Workflow (deterministic)</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Traditional Workflow (deterministic)</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Traditional Workflow (deterministic)&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 apps with AI nodes, build autonomous agents, and automate complex business processes.
 Pricing, templates, and real-world examples.
-tags: - n8n</p><ul><li>workflow-automation</li><li>ai-automation</li><li>no-code</li><li>agent-automation</li><li>business-process
+tags: - n8n</p>
+<ul>
+<li>workflow-automation</li>
+<li>ai-automation</li>
+<li>no-code</li>
+<li>agent-automation</li>
+<li>business-process
 category: dev-utils
 date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00slug: n8n-ai-automation-complete-guide&mdash;</li></ul><h2 id=tldr>TL;DR</h2><p>n8n is a powerful workflow automation platform that lets you connect 400+ apps and services with an intuitive visual interface. In 2026, n8n has evolved into an AI automation powerhouse with native LLM integration, autonomous agent support, and enterprise-grade reliability. This guide covers setup, AI node configurations, real-world workflows, pricing, and advanced patterns for building intelligent automation.</p><hr><h2 id=what-is-n8n>What Is n8n?</h2><p>n8n (pronounced &ldquo;n-eight-n&rdquo;) is a fair-code workflow automation tool that enables you to connect apps, databases, APIs, and AI models visually. Unlike Zapier or Make, n8n is self-hostable, giving you full control over your data and workflows.</p><p><strong>Key differentiator</strong>: n8n combines traditional workflow automation with <strong>native AI capabilities</strong> — you can embed LLM calls, vector searches, and AI decision-making directly into your automation pipelines.</p><h3 id=why-n8n-in-2026>Why n8n in 2026?</h3><p>The automation landscape has shifted dramatically: | Era | Approach | Limitation |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+lastmod: 2026-07-16T00:00:00+00:00slug: n8n-ai-automation-complete-guide&mdash;</li>
+</ul>
+<h2 id="tldr">TL;DR</h2>
+<p>n8n is a powerful workflow automation platform that lets you connect 400+ apps and services with an intuitive visual interface. In 2026, n8n has evolved into an AI automation powerhouse with native LLM integration, autonomous agent support, and enterprise-grade reliability. This guide covers setup, AI node configurations, real-world workflows, pricing, and advanced patterns for building intelligent automation.</p>
+<hr>
+<h2 id="what-is-n8n">What Is n8n?</h2>
+<p>n8n (pronounced &ldquo;n-eight-n&rdquo;) is a fair-code workflow automation tool that enables you to connect apps, databases, APIs, and AI models visually. Unlike Zapier or Make, n8n is self-hostable, giving you full control over your data and workflows.</p>
+<p><strong>Key differentiator</strong>: n8n combines traditional workflow automation with <strong>native AI capabilities</strong> — you can embed LLM calls, vector searches, and AI decision-making directly into your automation pipelines.</p>
+<h3 id="why-n8n-in-2026">Why n8n in 2026?</h3>
+<p>The automation landscape has shifted dramatically: | Era | Approach | Limitation |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 2020-2022 | Simple trigger→action | No intelligence, linear only |
 | 2023-2024 | API connectors + basic logic | Limited customization |
-| 2025-2026 | AI-native workflows | Full autonomy, reasoning, memory |</p><p>n8n leads the 2026 wave by making AI workflows accessible without coding.</p><hr><h2 id=core-architecture>Core Architecture</h2><h3 id=nodes-the-building-blocks>Nodes: The Building Blocks</h3><p>Every n8n workflow consists of <strong>nodes</strong> — modular processing units: ````
+| 2025-2026 | AI-native workflows | Full autonomy, reasoning, memory |</p>
+<p>n8n leads the 2026 wave by making AI workflows accessible without coding.</p>
+<hr>
+<h2 id="core-architecture">Core Architecture</h2>
+<h3 id="nodes-the-building-blocks">Nodes: The Building Blocks</h3>
+<p>Every n8n workflow consists of <strong>nodes</strong> — modular processing units: ````
 [Trigger] → [HTTP Request] → [AI Process] → [Database] → [Notification]
-│ │ │ │ │
-When&mldr; Fetch data LLM analyzes Store result Alert team</p><pre tabindex=0><code>
+│            │                 │              │              │
+When&hellip;     Fetch data      LLM analyzes   Store result    Alert team</p>
+<pre tabindex="0"><code>
 Node categories: - **Triggers**: Webhooks, schedules, email polling, database changes
 - **Operations**: HTTP requests, CRUD operations, file processing
 - **AI/ML**: LLM calls, embeddings, vector search, image generation
@@ -49,46 +146,65 @@ trigger: new_support_ticket
       → AI_draft_response()
       → human_review_queue
   → else: → auto_reply_with_knowledge_base
-</code></pre><hr><h2 id=getting-started>Getting Started</h2><h3 id=installation-options>Installation Options</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Option 1: Docker (recommended for self-hosting)</span>
-</span></span><span style=display:flex><span>docker run -d <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name n8n <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -p 5678:5678 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v ~/.n8n:/home/node/.n8n <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  n8nio/n8n
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Option 2: npm</span>
-</span></span><span style=display:flex><span>npm install -g n8n
-</span></span><span style=display:flex><span>n8n start
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Option 3: Cloud (managed)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Visit app.n8n.cloud for hosted option</span>
-</span></span></code></pre></div><h3 id=first-workflow>First Workflow</h3><ol><li>Open n8n at <code>http://localhost:5678</code></li><li>Click &ldquo;Create Workflow&rdquo;</li><li>Search for &ldquo;Webhook&rdquo; node as trigger</li><li>Add &ldquo;HTTP Request&rdquo; node</li><li>Connect nodes with draggable lines</li><li>Click &ldquo;Execute Workflow&rdquo; to test</li></ol><h3 id=configuration>Configuration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;n8n&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;0.0.0.0&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;port&#34;</span>: <span style=color:#ae81ff>5678</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;security&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;authCookie&#34;</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;disableCors&#34;</span>: <span style=color:#66d9ef>false</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;database&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;sqlite&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;path&#34;</span>: <span style=color:#e6db74>&#34;~/.n8n/database.sqlite&#34;</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;ai&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;defaultProvider&#34;</span>: <span style=color:#e6db74>&#34;openai&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;gpt-4o-mini&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;temperature&#34;</span>: <span style=color:#ae81ff>0.7</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=ai-nodes-deep-dive>AI Nodes Deep Dive</h2><h3 id=llm-node>LLM Node</h3><p>The core AI node for text generation, classification, and extraction: `````python</p><h1 id=llm-node-configuration>LLM Node configuration</h1><p>{
+</code></pre><hr>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="installation-options">Installation Options</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Option 1: Docker (recommended for self-hosting)</span>
+</span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name n8n <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 5678:5678 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v ~/.n8n:/home/node/.n8n <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  n8nio/n8n
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Option 2: npm</span>
+</span></span><span style="display:flex;"><span>npm install -g n8n
+</span></span><span style="display:flex;"><span>n8n start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Option 3: Cloud (managed)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Visit app.n8n.cloud for hosted option</span>
+</span></span></code></pre></div><h3 id="first-workflow">First Workflow</h3>
+<ol>
+<li>Open n8n at <code>http://localhost:5678</code></li>
+<li>Click &ldquo;Create Workflow&rdquo;</li>
+<li>Search for &ldquo;Webhook&rdquo; node as trigger</li>
+<li>Add &ldquo;HTTP Request&rdquo; node</li>
+<li>Connect nodes with draggable lines</li>
+<li>Click &ldquo;Execute Workflow&rdquo; to test</li>
+</ol>
+<h3 id="configuration">Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;n8n&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;port&#34;</span>: <span style="color:#ae81ff">5678</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;security&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;authCookie&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;disableCors&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;database&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;sqlite&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;~/.n8n/database.sqlite&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;ai&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;defaultProvider&#34;</span>: <span style="color:#e6db74">&#34;openai&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;temperature&#34;</span>: <span style="color:#ae81ff">0.7</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="ai-nodes-deep-dive">AI Nodes Deep Dive</h2>
+<h3 id="llm-node">LLM Node</h3>
+<p>The core AI node for text generation, classification, and extraction: `````python</p>
+<h1 id="llm-node-configuration">LLM Node configuration</h1>
+<p>{
 &ldquo;nodeType&rdquo;: &ldquo;aiLLM&rdquo;,
 &ldquo;parameters&rdquo;: {
 &ldquo;model&rdquo;: &ldquo;claude-sonnet-4-202603&rdquo;,
 &ldquo;prompt&rdquo;: &ldquo;Classify this customer message:\n\n\nCategories: support, sales, complaint, inquiry&rdquo;,
 &ldquo;outputKey&rdquo;: &ldquo;classification&rdquo;
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 Use cases: - **Text Classification**: Route emails, tickets, messages
 - **Information Extraction**: Pull structured data from unstructured text
 - **Summarization**: Condense long documents, meeting notes, threads
@@ -105,12 +221,21 @@ Convert text to vector representations for semantic search: `````python
     &#34;input&#34;: &#34;&#34;
   }
 }
-</code></pre><h3 id=vector-store-nodes>Vector Store Nodes</h3><p>Store and query embeddings: | Node | Purpose | Best For |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="vector-store-nodes">Vector Store Nodes</h3>
+<p>Store and query embeddings: | Node | Purpose | Best For |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Pinecone | Cloud vector DB | Scalable semantic search |
 | Qdrant | Self-hosted | Privacy-focused RAG |
 | Weaviate | Hybrid search | Combined text+vector queries |
-| Chroma | Local/embedded | Small-scale, prototyping |</p><h3 id=image-generation-node>Image Generation Node</h3><p>Generate images from text prompts: `````python
+| Chroma | Local/embedded | Small-scale, prototyping |</p>
+<h3 id="image-generation-node">Image Generation Node</h3>
+<p>Generate images from text prompts: `````python
 {
 &ldquo;nodeType&rdquo;: &ldquo;aiImageGen&rdquo;,
 &ldquo;parameters&rdquo;: {
@@ -119,7 +244,8 @@ Convert text to vector representations for semantic search: `````python
 &ldquo;size&rdquo;: &ldquo;1024x1024&rdquo;,
 &ldquo;quality&rdquo;: &ldquo;hd&rdquo;
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 * * *
 
 ## Real-World Workflows
@@ -136,7 +262,8 @@ IF priority = &ldquo;urgent&rdquo; THEN
 ELSE
 → AI Answer from Knowledge Base (Vector Search)
 → Auto-reply to customer
-→ Log to CRM</p><pre tabindex=0><code>
+→ Log to CRM</p>
+<pre tabindex="0"><code>
 **Implementation**: `````python
 # Step 1: Extract email content
 email_body = extract_gmail_body(message_id)
@@ -157,7 +284,8 @@ if classification.priority == &#34;urgent&#34;: response = llm_draft_response(
     send_to_human_review(response)
 else: answer = semantic_search_kb(email_body)
     auto_reply(answer)
-</code></pre><h3 id=workflow-2-automated-content-pipeline>Workflow 2: Automated Content Pipeline</h3><pre tabindex=0><code>RSS Feed New Post (Webhook)
+</code></pre><h3 id="workflow-2-automated-content-pipeline">Workflow 2: Automated Content Pipeline</h3>
+<pre tabindex="0"><code>RSS Feed New Post (Webhook)
     ↓
 AI Summarize (LLM Node)
     ↓
@@ -166,7 +294,8 @@ AI Generate Social Posts (LLM Node)
 Schedule Twitter Post (Twitter API)
     Schedule LinkedIn Post (LinkedIn API)
     Update Blog CMS (WordPress API)
-</code></pre><h3 id=workflow-3-data-enrichment-pipeline>Workflow 3: Data Enrichment Pipeline</h3><pre tabindex=0><code>New Lead (Form Submit)
+</code></pre><h3 id="workflow-3-data-enrichment-pipeline">Workflow 3: Data Enrichment Pipeline</h3>
+<pre tabindex="0"><code>New Lead (Form Submit)
     ↓
 Enrich with Clearbit API (HTTP Node)
     ↓
@@ -178,7 +307,8 @@ IF score &gt; 80 THEN
 ELSE
     → Nurture sequence (Mailchimp)
     → Weekly summary to manager (Slack)
-</code></pre><h3 id=workflow-4-autonomous-research-agent>Workflow 4: Autonomous Research Agent</h3><pre tabindex=0><code>Scheduled Trigger (Daily)
+</code></pre><h3 id="workflow-4-autonomous-research-agent">Workflow 4: Autonomous Research Agent</h3>
+<pre tabindex="0"><code>Scheduled Trigger (Daily)
     ↓
 Search News APIs (HTTP Node)
     ↓
@@ -191,7 +321,10 @@ AI Identify Action Items (LLM Node)
 Compile Report → Save to Google Drive
     ↓
 Notify Team via Slack
-</code></pre><hr><h2 id=advanced-patterns>Advanced Patterns</h2><h3 id=pattern-1-human-in-the-loop>Pattern 1: Human-in-the-Loop</h3><p>Always keep humans in the loop for critical decisions: `````python
+</code></pre><hr>
+<h2 id="advanced-patterns">Advanced Patterns</h2>
+<h3 id="pattern-1-human-in-the-loop">Pattern 1: Human-in-the-Loop</h3>
+<p>Always keep humans in the loop for critical decisions: `````python
 workflow = {
 &ldquo;auto_steps&rdquo;: [
 &ldquo;classify_ticket&rdquo;,
@@ -199,14 +332,15 @@ workflow = {
 &ldquo;draft_response&rdquo;
 ],
 &ldquo;human_gate&rdquo;: [
-&ldquo;approve_response&rdquo;, # Human must approve before sending
-&ldquo;escalate_urgent&rdquo; # Human decides on escalation
+&ldquo;approve_response&rdquo;,      # Human must approve before sending
+&ldquo;escalate_urgent&rdquo;        # Human decides on escalation
 ],
 &ldquo;final_auto&rdquo;: [
 &ldquo;send_approved_email&rdquo;,
 &ldquo;log_to_crm&rdquo;
 ]
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 ### Pattern 2: Parallel Processing
 
 Process multiple items simultaneously: `````python
@@ -220,209 +354,514 @@ parallel_results = [
 
 # Merge results
 final_result = merge_parallel(parallel_results)
-</code></pre><h3 id=pattern-3-error-handling-and-retry>Pattern 3: Error Handling and Retry</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>workflow_config <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;retry&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;maxAttempts&#34;</span>: <span style=color:#ae81ff>3</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;backoffMultiplier&#34;</span>: <span style=color:#ae81ff>2</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;initialDelayMs&#34;</span>: <span style=color:#ae81ff>1000</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;onError&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;strategy&#34;</span>: <span style=color:#e6db74>&#34;continue&#34;</span>,  <span style=color:#75715e># or &#34;stop&#34;, &#34;send_alert&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;alertChannel&#34;</span>: <span style=color:#e6db74>&#34;slack&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;alertMessage&#34;</span>: <span style=color:#e6db74>&#34;Workflow failed: &#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=pattern-4-conditional-branching>Pattern 4: Conditional Branching</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>if</span> condition_a: execute_workflow_a()
-</span></span><span style=display:flex><span><span style=color:#66d9ef>elif</span> condition_b: execute_workflow_b()
-</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>: execute_default()
-</span></span></code></pre></div><p>n8n&rsquo;s Switch node handles complex branching visually.</p><hr><h2 id=integrations>Integrations</h2><h3 id=popular-connections>Popular Connections</h3><p>| Category | Examples |
-|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="pattern-3-error-handling-and-retry">Pattern 3: Error Handling and Retry</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>workflow_config <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;retry&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;maxAttempts&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;backoffMultiplier&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;initialDelayMs&#34;</span>: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;onError&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;strategy&#34;</span>: <span style="color:#e6db74">&#34;continue&#34;</span>,  <span style="color:#75715e"># or &#34;stop&#34;, &#34;send_alert&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;alertChannel&#34;</span>: <span style="color:#e6db74">&#34;slack&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;alertMessage&#34;</span>: <span style="color:#e6db74">&#34;Workflow failed: &#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="pattern-4-conditional-branching">Pattern 4: Conditional Branching</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> condition_a: execute_workflow_a()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> condition_b: execute_workflow_b()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>: execute_default()
+</span></span></code></pre></div><p>n8n&rsquo;s Switch node handles complex branching visually.</p>
+<hr>
+<h2 id="integrations">Integrations</h2>
+<h3 id="popular-connections">Popular Connections</h3>
+<p>| Category | Examples |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Communication | Slack, Discord, Telegram, Microsoft Teams |
 | Email | Gmail, Outlook, SendGrid, Mailchimp |
 | CRM | Salesforce, HubSpot, Pipedrive, Notion |
 | Storage | Google Drive, Dropbox, S3, OneDrive |
 | Databases | PostgreSQL, MySQL, MongoDB, Firebase |
 | AI/ML | OpenAI, Anthropic, HuggingFace, Ollama |
-| Web | Webhooks, HTTP requests, RSS feeds |</p><h3 id=custom-api-integration>Custom API Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Generic HTTP node for any REST API</span>
-</span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;nodeType&#34;</span>: <span style=color:#e6db74>&#34;httpRequest&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;parameters&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;POST&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://api.example.com/v1/data&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;headers&#34;</span>: {<span style=color:#e6db74>&#34;Authorization&#34;</span>: <span style=color:#e6db74>&#34;Bearer &#34;</span>},
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;body&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;input&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;context&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=pricing>Pricing</h2><p>| Plan | Price | Features |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Web | Webhooks, HTTP requests, RSS feeds |</p>
+<h3 id="custom-api-integration">Custom API Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Generic HTTP node for any REST API</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;nodeType&#34;</span>: <span style="color:#e6db74">&#34;httpRequest&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;parameters&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://api.example.com/v1/data&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;headers&#34;</span>: {<span style="color:#e6db74">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer &#34;</span>},
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;body&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;context&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="pricing">Pricing</h2>
+<p>| Plan | Price | Features |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Free | $0 | Self-hosted, unlimited workflows, community support |
 | Pro (Cloud) | $20/month | Managed hosting, 5K workflow executions/month |
 | Business | $50/user/month | SSO, audit logs, priority support, 50K executions |
-| Enterprise | Custom | On-premise, SLA, custom integrations, unlimited |</p><p>The free self-hosted plan is extremely generous — unlimited workflows and executions. Most users never need to pay.</p><h3 id=cost-comparison>Cost Comparison</h3><p>| Platform | Entry Price | 10K Executions | Unlimited |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Enterprise | Custom | On-premise, SLA, custom integrations, unlimited |</p>
+<p>The free self-hosted plan is extremely generous — unlimited workflows and executions. Most users never need to pay.</p>
+<h3 id="cost-comparison">Cost Comparison</h3>
+<p>| Platform | Entry Price | 10K Executions | Unlimited |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | n8n (self-hosted) | $0 | $0 | $0 |
 | n8n Cloud Pro | $20/mo | $20/mo | $20/mo |
 | Zapier | $29/mo | $29/mo | $59/mo |
-| Make | $9/mo | $19/mo | $29/mo |</p><hr><h2 id=performance-and-scaling>Performance and Scaling</h2><h3 id=execution-limits>Execution Limits</h3><p>| Plan | Max Concurrent Workflows | Execution Timeout |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Make | $9/mo | $19/mo | $29/mo |</p>
+<hr>
+<h2 id="performance-and-scaling">Performance and Scaling</h2>
+<h3 id="execution-limits">Execution Limits</h3>
+<p>| Plan | Max Concurrent Workflows | Execution Timeout |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Self-hosted | Unlimited | Configurable |
 | Pro Cloud | 10 | 30 seconds |
 | Business | 50 | 60 seconds |
-| Enterprise | Unlimited | 120 seconds |</p><h3 id=optimization-tips>Optimization Tips</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Optimize slow workflows</span>
-</span></span><span style=display:flex><span>optimization_strategies <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;batch_processing&#34;</span>: <span style=color:#e6db74>&#34;Process 100 items in one batch instead of 100 separate runs&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;caching&#34;</span>: <span style=color:#e6db74>&#34;Cache LLM responses for identical inputs&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;parallel_execution&#34;</span>: <span style=color:#e6db74>&#34;Run independent branches concurrently&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;selective_data&#34;</span>: <span style=color:#e6db74>&#34;Only fetch required fields from APIs&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;webhook_filtering&#34;</span>: <span style=color:#e6db74>&#34;Filter events before they enter the workflow&#34;</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=troubleshooting>Troubleshooting</h2><h3 id=issue-1-workflow-stuck-in-waiting-state>Issue 1: Workflow Stuck in &ldquo;Waiting&rdquo; State</h3><pre tabindex=0><code>Problem: Workflow pauses indefinitely
+| Enterprise | Unlimited | 120 seconds |</p>
+<h3 id="optimization-tips">Optimization Tips</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Optimize slow workflows</span>
+</span></span><span style="display:flex;"><span>optimization_strategies <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;batch_processing&#34;</span>: <span style="color:#e6db74">&#34;Process 100 items in one batch instead of 100 separate runs&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;caching&#34;</span>: <span style="color:#e6db74">&#34;Cache LLM responses for identical inputs&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;parallel_execution&#34;</span>: <span style="color:#e6db74">&#34;Run independent branches concurrently&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;selective_data&#34;</span>: <span style="color:#e6db74">&#34;Only fetch required fields from APIs&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;webhook_filtering&#34;</span>: <span style="color:#e6db74">&#34;Filter events before they enter the workflow&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="issue-1-workflow-stuck-in-waiting-state">Issue 1: Workflow Stuck in &ldquo;Waiting&rdquo; State</h3>
+<pre tabindex="0"><code>Problem: Workflow pauses indefinitely
 Solution: Check timeout settings, increase execution limit
-</code></pre><h3 id=issue-2-ai-node-returns-empty-results>Issue 2: AI Node Returns Empty Results</h3><pre tabindex=0><code>Problem: LLM node outputs null
+</code></pre><h3 id="issue-2-ai-node-returns-empty-results">Issue 2: AI Node Returns Empty Results</h3>
+<pre tabindex="0"><code>Problem: LLM node outputs null
 Solution: Check API key validity, verify prompt format, increase max tokens
-</code></pre><h3 id=issue-3-rate-limiting-errors>Issue 3: Rate Limiting Errors</h3><pre tabindex=0><code>Problem: HTTP 429 Too Many Requests
+</code></pre><h3 id="issue-3-rate-limiting-errors">Issue 3: Rate Limiting Errors</h3>
+<pre tabindex="0"><code>Problem: HTTP 429 Too Many Requests
 Solution: Add delay nodes between API calls, use exponential backoff
-</code></pre><h3 id=issue-4-memory-issues-on-self-hosted>Issue 4: Memory Issues on Self-Hosted</h3><pre tabindex=0><code>Problem: n8n crashes with out-of-memory
+</code></pre><h3 id="issue-4-memory-issues-on-self-hosted">Issue 4: Memory Issues on Self-Hosted</h3>
+<pre tabindex="0"><code>Problem: n8n crashes with out-of-memory
 Solution: Increase NODE_OPTIONS memory: NODE_OPTIONS=&#34;--max-old-space-size=4096&#34;
-</code></pre><hr><h2 id=security-best-practices>Security Best Practices</h2><h3 id=credential-management>Credential Management</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Store secrets in environment variables</span>
-</span></span><span style=display:flex><span>export N8N_ENCRYPTION_KEY<span style=color:#f92672>=</span>your-encryption-key
-</span></span><span style=display:flex><span>export OPENAI_API_KEY<span style=color:#f92672>=</span>sk-...
-</span></span><span style=display:flex><span>export DATABASE_URL<span style=color:#f92672>=</span>postgresql://...
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Never hardcode credentials in workflows</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use n8n&#39;s built-in credential system</span>
-</span></span></code></pre></div><h3 id=network-security>Network Security</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#75715e># Reverse proxy with TLS
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>server</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>n8n.yourdomain.com</span>;
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://localhost:5678</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Host</span> $host;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Real-IP</span> $remote_addr;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#66d9ef>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Access Control
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>Enable</span> <span style=color:#e6db74>two-factor</span> <span style=color:#e6db74>authentication</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>admin</span> <span style=color:#e6db74>accounts</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>Use</span> <span style=color:#e6db74>role-based</span> <span style=color:#e6db74>access</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>team</span> <span style=color:#e6db74>members</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>Restrict</span> <span style=color:#e6db74>webhook</span> <span style=color:#e6db74>endpoints</span> <span style=color:#e6db74>with</span> <span style=color:#e6db74>IP</span> <span style=color:#e6db74>whitelisting</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>Regularly</span> <span style=color:#e6db74>audit</span> <span style=color:#e6db74>workflow</span> <span style=color:#e6db74>permissions</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Future Directions
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### n8n 2026 Roadmap
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**Native</span> <span style=color:#e6db74>Agent</span> <span style=color:#e6db74>Framework**</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>Built-in</span> <span style=color:#e6db74>multi-agent</span> <span style=color:#e6db74>orchestration</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>2</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**Visual</span> <span style=color:#e6db74>Code</span> <span style=color:#e6db74>Editor**</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>Edit</span> <span style=color:#e6db74>JavaScript/Python</span> <span style=color:#e6db74>directly</span> <span style=color:#e6db74>in</span> <span style=color:#e6db74>workflows</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>3</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**Marketplace</span> <span style=color:#e6db74>Expansion**</span> <span style=color:#e6db74>—</span> <span style=color:#ae81ff>500</span><span style=color:#e6db74>+</span> <span style=color:#e6db74>pre-built</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>workflow</span> <span style=color:#e6db74>templates</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>4</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**Real-time</span> <span style=color:#e6db74>Collaboration**</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>Multi-user</span> <span style=color:#e6db74>workflow</span> <span style=color:#e6db74>editing</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>5</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**Edge</span> <span style=color:#e6db74>Deployment**</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>Run</span> <span style=color:#e6db74>lightweight</span> <span style=color:#e6db74>n8n</span> <span style=color:#66d9ef>on</span> <span style=color:#e6db74>IoT</span> <span style=color:#e6db74>devices</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### When to Choose n8n
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>**Choose</span> <span style=color:#e6db74>n8n</span> <span style=color:#e6db74>when:**</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>You</span> <span style=color:#e6db74>want</span> <span style=color:#e6db74>full</span> <span style=color:#e6db74>control</span> <span style=color:#e6db74>over</span> <span style=color:#e6db74>your</span> <span style=color:#e6db74>automation</span> <span style=color:#e6db74>infrastructure</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>You</span> <span style=color:#e6db74>need</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>capabilities</span> <span style=color:#e6db74>integrated</span> <span style=color:#e6db74>into</span> <span style=color:#e6db74>workflows</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>You</span> <span style=color:#e6db74>prefer</span> <span style=color:#e6db74>self-hosting</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>privacy</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>cost</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>Your</span> <span style=color:#e6db74>workflows</span> <span style=color:#e6db74>require</span> <span style=color:#e6db74>complex</span> <span style=color:#e6db74>logic</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>branching</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>**Consider</span> <span style=color:#e6db74>alternatives</span> <span style=color:#e6db74>when:**</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>You</span> <span style=color:#e6db74>need</span> <span style=color:#e6db74>zero</span> <span style=color:#e6db74>setup</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>Zapier</span> <span style=color:#e6db74>is</span> <span style=color:#e6db74>easier</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>beginners</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>You</span> <span style=color:#66d9ef>on</span><span style=color:#e6db74>ly</span> <span style=color:#e6db74>need</span> <span style=color:#e6db74>simple</span> <span style=color:#e6db74>integrations</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>Make</span> <span style=color:#e6db74>may</span> <span style=color:#e6db74>suffice</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>You&#39;re</span> <span style=color:#e6db74>heavily</span> <span style=color:#e6db74>invested</span> <span style=color:#e6db74>in</span> <span style=color:#e6db74>a</span> <span style=color:#e6db74>specific</span> <span style=color:#e6db74>ecosystem</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>Native</span> <span style=color:#e6db74>tools</span> <span style=color:#e6db74>may</span> <span style=color:#e6db74>be</span> <span style=color:#e6db74>better</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Community Resources
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**n8n</span> <span style=color:#e6db74>Official</span> <span style=color:#e6db74>Docs**:</span> <span style=color:#e6db74>https://docs.n8n.io</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**Workflow</span> <span style=color:#e6db74>Templates**:</span> <span style=color:#e6db74>https://n8n.io/workflows</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**Community</span> <span style=color:#e6db74>Forum**:</span> <span style=color:#e6db74>https://community.n8n.io</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**GitHub</span> <span style=color:#e6db74>Repository**:</span> <span style=color:#e6db74>https://github.com/n8n-io/n8n</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**Discord**:</span> <span style=color:#e6db74>Active</span> <span style=color:#e6db74>community</span> <span style=color:#e6db74>with</span> <span style=color:#ae81ff>20</span><span style=color:#e6db74>,000+</span> <span style=color:#e6db74>members</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## FAQ
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: Is n8n really free?
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>Yes.</span> <span style=color:#e6db74>The</span> <span style=color:#e6db74>self-hosted</span> <span style=color:#e6db74>version</span> <span style=color:#e6db74>is</span> <span style=color:#e6db74>open-source</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>completely</span> <span style=color:#e6db74>free</span> <span style=color:#e6db74>with</span> <span style=color:#e6db74>no</span> <span style=color:#e6db74>feature</span> <span style=color:#e6db74>restrictions.</span> <span style=color:#e6db74>Cloud</span> <span style=color:#e6db74>plans</span> <span style=color:#e6db74>start</span> <span style=color:#e6db74>at</span> $20/month <span style=color:#e6db74>for</span> <span style=color:#e6db74>managed</span> <span style=color:#e6db74>hosting.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: How does n8n compare to Zapier?
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>n8n</span> <span style=color:#66d9ef>off</span><span style=color:#e6db74>ers</span> <span style=color:#e6db74>more</span> <span style=color:#e6db74>flexibility,</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>integration,</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>self-hosting.</span> <span style=color:#e6db74>Zapier</span> <span style=color:#e6db74>is</span> <span style=color:#e6db74>easier</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>non-technical</span> <span style=color:#e6db74>users</span> <span style=color:#e6db74>but</span> <span style=color:#e6db74>costs</span> <span style=color:#e6db74>more</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>has</span> <span style=color:#e6db74>less</span> <span style=color:#e6db74>control.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: Can I use n8n with local LLMs like LlamaFile?
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>Absolutely.</span> <span style=color:#e6db74>Use</span> <span style=color:#e6db74>the</span> <span style=color:#e6db74>HTTP</span> <span style=color:#e6db74>Request</span> <span style=color:#e6db74>node</span> <span style=color:#e6db74>to</span> <span style=color:#e6db74>call</span> <span style=color:#e6db74>your</span> <span style=color:#e6db74>local</span> <span style=color:#e6db74>LlamaFile</span> <span style=color:#e6db74>server&#39;s</span> <span style=color:#e6db74>API</span> <span style=color:#e6db74>endpoint.</span> <span style=color:#e6db74>This</span> <span style=color:#e6db74>gives</span> <span style=color:#e6db74>you</span> <span style=color:#e6db74>fully</span> <span style=color:#e6db74>private</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>automation.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: Does n8n support Python code execution?
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>Yes.</span> <span style=color:#e6db74>The</span> <span style=color:#e6db74>Code</span> <span style=color:#e6db74>node</span> <span style=color:#e6db74>allows</span> <span style=color:#e6db74>running</span> <span style=color:#e6db74>JavaScript,</span> <span style=color:#e6db74>Python,</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>Go</span> <span style=color:#e6db74>code</span> <span style=color:#e6db74>directly</span> <span style=color:#e6db74>within</span> <span style=color:#e6db74>workflows</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>custom</span> <span style=color:#e6db74>logic.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: How do I handle sensitive data in n8n?
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>Use</span> <span style=color:#e6db74>n8n&#39;s</span> <span style=color:#e6db74>encrypted</span> <span style=color:#e6db74>credential</span> <span style=color:#e6db74>storage,</span> <span style=color:#e6db74>environment</span> <span style=color:#e6db74>variables</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>secrets,</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>self-hosting</span> <span style=color:#e6db74>to</span> <span style=color:#e6db74>keep</span> <span style=color:#e6db74>all</span> <span style=color:#e6db74>data</span> <span style=color:#66d9ef>on</span> <span style=color:#e6db74>your</span> <span style=color:#e6db74>infrastructure.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Q: Can n8n replace my existing CRM or marketing tools?
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>Not</span> <span style=color:#e6db74>entirely</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>n8n</span> <span style=color:#e6db74>connects</span> <span style=color:#e6db74>tools</span> <span style=color:#e6db74>rather</span> <span style=color:#e6db74>than</span> <span style=color:#e6db74>replacing</span> <span style=color:#e6db74>them.</span> <span style=color:#e6db74>It</span> <span style=color:#e6db74>automates</span> <span style=color:#e6db74>the</span> <span style=color:#e6db74>flow</span> <span style=color:#e6db74>of</span> <span style=color:#e6db74>data</span> <span style=color:#e6db74>between</span> <span style=color:#e6db74>your</span> <span style=color:#e6db74>existing</span> <span style=color:#e6db74>systems.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## References
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n</span> <span style=color:#e6db74>Official</span> <span style=color:#e6db74>Documentation](https://docs.n8n.io)</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n</span> <span style=color:#e6db74>GitHub</span> <span style=color:#e6db74>Repository](https://github.com/n8n-io/n8n)</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n</span> <span style=color:#e6db74>Workflow</span> <span style=color:#e6db74>Templates](https://n8n.io/workflows)</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[AI</span> <span style=color:#e6db74>Automation</span> <span style=color:#e6db74>Best</span> <span style=color:#e6db74>Practices</span> <span style=color:#ae81ff>2026</span><span style=color:#e6db74>](https://automationguide.ai/best-practices-2026)</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[Self-Hosting</span> <span style=color:#e6db74>Guide</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>n8n](https://docs.n8n.io/hosting/)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>*Join</span> <span style=color:#e6db74>our</span> <span style=color:#e6db74>Telegram</span> <span style=color:#e6db74>group</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>real-time</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>tool</span> <span style=color:#e6db74>discussions</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>deployment</span> <span style=color:#e6db74>tips:</span> <span style=color:#e6db74>[t.me/dibi8](https://t.me/dibi8)*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;@context&#34;:</span> <span style=color:#e6db74>&#34;https://schema.org&#34;,</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;Article&#34;,</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;:</span> <span style=color:#e6db74>&#34;n8n</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>Automation</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>Build</span> <span style=color:#e6db74>Intelligent</span> <span style=color:#e6db74>Workflows</span> <span style=color:#e6db74>Without</span> <span style=color:#e6db74>Code&#34;,</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;:</span> <span style=color:#e6db74>&#34;2026-07-16&#34;,</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;:</span> <span style=color:#e6db74>&#34;2026-07-16&#34;,</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;:</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;Organization&#34;,</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;:</span> <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>}</span><span style=color:#e6db74>,</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;:</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;Organization&#34;,</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;:</span> <span style=color:#e6db74>&#34;Dibi8&#34;,</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;:</span> {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;ImageObject&#34;,</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;:</span> <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>}</span><span style=color:#e6db74>,</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;:</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;WebPage&#34;,</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;:</span> <span style=color:#e6db74>&#34;https://dibi8.com/resources/n8n-ai-automation-complete-guide&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>}</span>
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>}</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>&lt;/script&gt;</span>
-</span></span></code></pre></div></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fn8n-ai-automation-complete-guide%2f&text=Traditional%20Workflow%20%28deterministic%29" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fn8n-ai-automation-complete-guide%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre><hr>
+<h2 id="security-best-practices">Security Best Practices</h2>
+<h3 id="credential-management">Credential Management</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Store secrets in environment variables</span>
+</span></span><span style="display:flex;"><span>export N8N_ENCRYPTION_KEY<span style="color:#f92672">=</span>your-encryption-key
+</span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span>sk-...
+</span></span><span style="display:flex;"><span>export DATABASE_URL<span style="color:#f92672">=</span>postgresql://...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Never hardcode credentials in workflows</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use n8n&#39;s built-in credential system</span>
+</span></span></code></pre></div><h3 id="network-security">Network Security</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># Reverse proxy with TLS
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">n8n.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://localhost:5678</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Access Control
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Enable</span> <span style="color:#e6db74">two-factor</span> <span style="color:#e6db74">authentication</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">admin</span> <span style="color:#e6db74">accounts</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Use</span> <span style="color:#e6db74">role-based</span> <span style="color:#e6db74">access</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">team</span> <span style="color:#e6db74">members</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Restrict</span> <span style="color:#e6db74">webhook</span> <span style="color:#e6db74">endpoints</span> <span style="color:#e6db74">with</span> <span style="color:#e6db74">IP</span> <span style="color:#e6db74">whitelisting</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Regularly</span> <span style="color:#e6db74">audit</span> <span style="color:#e6db74">workflow</span> <span style="color:#e6db74">permissions</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Future Directions
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### n8n 2026 Roadmap
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Native</span> <span style="color:#e6db74">Agent</span> <span style="color:#e6db74">Framework**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Built-in</span> <span style="color:#e6db74">multi-agent</span> <span style="color:#e6db74">orchestration</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Visual</span> <span style="color:#e6db74">Code</span> <span style="color:#e6db74">Editor**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Edit</span> <span style="color:#e6db74">JavaScript/Python</span> <span style="color:#e6db74">directly</span> <span style="color:#e6db74">in</span> <span style="color:#e6db74">workflows</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Marketplace</span> <span style="color:#e6db74">Expansion**</span> <span style="color:#e6db74">—</span> <span style="color:#ae81ff">500</span><span style="color:#e6db74">+</span> <span style="color:#e6db74">pre-built</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">workflow</span> <span style="color:#e6db74">templates</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Real-time</span> <span style="color:#e6db74">Collaboration**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Multi-user</span> <span style="color:#e6db74">workflow</span> <span style="color:#e6db74">editing</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Edge</span> <span style="color:#e6db74">Deployment**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Run</span> <span style="color:#e6db74">lightweight</span> <span style="color:#e6db74">n8n</span> <span style="color:#66d9ef">on</span> <span style="color:#e6db74">IoT</span> <span style="color:#e6db74">devices</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### When to Choose n8n
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">**Choose</span> <span style="color:#e6db74">n8n</span> <span style="color:#e6db74">when:**</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#e6db74">want</span> <span style="color:#e6db74">full</span> <span style="color:#e6db74">control</span> <span style="color:#e6db74">over</span> <span style="color:#e6db74">your</span> <span style="color:#e6db74">automation</span> <span style="color:#e6db74">infrastructure</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#e6db74">need</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">capabilities</span> <span style="color:#e6db74">integrated</span> <span style="color:#e6db74">into</span> <span style="color:#e6db74">workflows</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#e6db74">prefer</span> <span style="color:#e6db74">self-hosting</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">privacy</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">cost</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Your</span> <span style="color:#e6db74">workflows</span> <span style="color:#e6db74">require</span> <span style="color:#e6db74">complex</span> <span style="color:#e6db74">logic</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">branching</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">**Consider</span> <span style="color:#e6db74">alternatives</span> <span style="color:#e6db74">when:**</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#e6db74">need</span> <span style="color:#e6db74">zero</span> <span style="color:#e6db74">setup</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Zapier</span> <span style="color:#e6db74">is</span> <span style="color:#e6db74">easier</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">beginners</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#66d9ef">on</span><span style="color:#e6db74">ly</span> <span style="color:#e6db74">need</span> <span style="color:#e6db74">simple</span> <span style="color:#e6db74">integrations</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Make</span> <span style="color:#e6db74">may</span> <span style="color:#e6db74">suffice</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You&#39;re</span> <span style="color:#e6db74">heavily</span> <span style="color:#e6db74">invested</span> <span style="color:#e6db74">in</span> <span style="color:#e6db74">a</span> <span style="color:#e6db74">specific</span> <span style="color:#e6db74">ecosystem</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Native</span> <span style="color:#e6db74">tools</span> <span style="color:#e6db74">may</span> <span style="color:#e6db74">be</span> <span style="color:#e6db74">better</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Community Resources
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**n8n</span> <span style="color:#e6db74">Official</span> <span style="color:#e6db74">Docs**:</span> <span style="color:#e6db74">https://docs.n8n.io</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**Workflow</span> <span style="color:#e6db74">Templates**:</span> <span style="color:#e6db74">https://n8n.io/workflows</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**Community</span> <span style="color:#e6db74">Forum**:</span> <span style="color:#e6db74">https://community.n8n.io</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**GitHub</span> <span style="color:#e6db74">Repository**:</span> <span style="color:#e6db74">https://github.com/n8n-io/n8n</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**Discord**:</span> <span style="color:#e6db74">Active</span> <span style="color:#e6db74">community</span> <span style="color:#e6db74">with</span> <span style="color:#ae81ff">20</span><span style="color:#e6db74">,000+</span> <span style="color:#e6db74">members</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## FAQ
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Is n8n really free?
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Yes.</span> <span style="color:#e6db74">The</span> <span style="color:#e6db74">self-hosted</span> <span style="color:#e6db74">version</span> <span style="color:#e6db74">is</span> <span style="color:#e6db74">open-source</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">completely</span> <span style="color:#e6db74">free</span> <span style="color:#e6db74">with</span> <span style="color:#e6db74">no</span> <span style="color:#e6db74">feature</span> <span style="color:#e6db74">restrictions.</span> <span style="color:#e6db74">Cloud</span> <span style="color:#e6db74">plans</span> <span style="color:#e6db74">start</span> <span style="color:#e6db74">at</span> $20/month <span style="color:#e6db74">for</span> <span style="color:#e6db74">managed</span> <span style="color:#e6db74">hosting.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: How does n8n compare to Zapier?
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">n8n</span> <span style="color:#66d9ef">off</span><span style="color:#e6db74">ers</span> <span style="color:#e6db74">more</span> <span style="color:#e6db74">flexibility,</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">integration,</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">self-hosting.</span> <span style="color:#e6db74">Zapier</span> <span style="color:#e6db74">is</span> <span style="color:#e6db74">easier</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">non-technical</span> <span style="color:#e6db74">users</span> <span style="color:#e6db74">but</span> <span style="color:#e6db74">costs</span> <span style="color:#e6db74">more</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">has</span> <span style="color:#e6db74">less</span> <span style="color:#e6db74">control.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Can I use n8n with local LLMs like LlamaFile?
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Absolutely.</span> <span style="color:#e6db74">Use</span> <span style="color:#e6db74">the</span> <span style="color:#e6db74">HTTP</span> <span style="color:#e6db74">Request</span> <span style="color:#e6db74">node</span> <span style="color:#e6db74">to</span> <span style="color:#e6db74">call</span> <span style="color:#e6db74">your</span> <span style="color:#e6db74">local</span> <span style="color:#e6db74">LlamaFile</span> <span style="color:#e6db74">server&#39;s</span> <span style="color:#e6db74">API</span> <span style="color:#e6db74">endpoint.</span> <span style="color:#e6db74">This</span> <span style="color:#e6db74">gives</span> <span style="color:#e6db74">you</span> <span style="color:#e6db74">fully</span> <span style="color:#e6db74">private</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">automation.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Does n8n support Python code execution?
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Yes.</span> <span style="color:#e6db74">The</span> <span style="color:#e6db74">Code</span> <span style="color:#e6db74">node</span> <span style="color:#e6db74">allows</span> <span style="color:#e6db74">running</span> <span style="color:#e6db74">JavaScript,</span> <span style="color:#e6db74">Python,</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">Go</span> <span style="color:#e6db74">code</span> <span style="color:#e6db74">directly</span> <span style="color:#e6db74">within</span> <span style="color:#e6db74">workflows</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">custom</span> <span style="color:#e6db74">logic.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: How do I handle sensitive data in n8n?
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Use</span> <span style="color:#e6db74">n8n&#39;s</span> <span style="color:#e6db74">encrypted</span> <span style="color:#e6db74">credential</span> <span style="color:#e6db74">storage,</span> <span style="color:#e6db74">environment</span> <span style="color:#e6db74">variables</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">secrets,</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">self-hosting</span> <span style="color:#e6db74">to</span> <span style="color:#e6db74">keep</span> <span style="color:#e6db74">all</span> <span style="color:#e6db74">data</span> <span style="color:#66d9ef">on</span> <span style="color:#e6db74">your</span> <span style="color:#e6db74">infrastructure.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Can n8n replace my existing CRM or marketing tools?
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Not</span> <span style="color:#e6db74">entirely</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">n8n</span> <span style="color:#e6db74">connects</span> <span style="color:#e6db74">tools</span> <span style="color:#e6db74">rather</span> <span style="color:#e6db74">than</span> <span style="color:#e6db74">replacing</span> <span style="color:#e6db74">them.</span> <span style="color:#e6db74">It</span> <span style="color:#e6db74">automates</span> <span style="color:#e6db74">the</span> <span style="color:#e6db74">flow</span> <span style="color:#e6db74">of</span> <span style="color:#e6db74">data</span> <span style="color:#e6db74">between</span> <span style="color:#e6db74">your</span> <span style="color:#e6db74">existing</span> <span style="color:#e6db74">systems.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## References
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">Official</span> <span style="color:#e6db74">Documentation](https://docs.n8n.io)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">GitHub</span> <span style="color:#e6db74">Repository](https://github.com/n8n-io/n8n)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">Workflow</span> <span style="color:#e6db74">Templates](https://n8n.io/workflows)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[AI</span> <span style="color:#e6db74">Automation</span> <span style="color:#e6db74">Best</span> <span style="color:#e6db74">Practices</span> <span style="color:#ae81ff">2026</span><span style="color:#e6db74">](https://automationguide.ai/best-practices-2026)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[Self-Hosting</span> <span style="color:#e6db74">Guide</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">n8n](https://docs.n8n.io/hosting/)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">*Join</span> <span style="color:#e6db74">our</span> <span style="color:#e6db74">Telegram</span> <span style="color:#e6db74">group</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">real-time</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">tool</span> <span style="color:#e6db74">discussions</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">deployment</span> <span style="color:#e6db74">tips:</span> <span style="color:#e6db74">[t.me/dibi8](https://t.me/dibi8)*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;@context&#34;:</span> <span style="color:#e6db74">&#34;https://schema.org&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;:</span> <span style="color:#e6db74">&#34;Article&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;:</span> <span style="color:#e6db74">&#34;n8n</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">Automation</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Build</span> <span style="color:#e6db74">Intelligent</span> <span style="color:#e6db74">Workflows</span> <span style="color:#e6db74">Without</span> <span style="color:#e6db74">Code&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;:</span> <span style="color:#e6db74">&#34;2026-07-16&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;:</span> <span style="color:#e6db74">&#34;2026-07-16&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;:</span> <span style="color:#e6db74">&#34;Organization&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;:</span> <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">}</span><span style="color:#e6db74">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;:</span> <span style="color:#e6db74">&#34;Organization&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;:</span> <span style="color:#e6db74">&#34;Dibi8&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;:</span> <span style="color:#e6db74">&#34;ImageObject&#34;,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;:</span> <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">}</span><span style="color:#e6db74">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;:</span> <span style="color:#e6db74">&#34;WebPage&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;:</span> <span style="color:#e6db74">&#34;https://dibi8.com/resources/n8n-ai-automation-complete-guide&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/script&gt;</span>
+</span></span></code></pre></div>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fn8n-ai-automation-complete-guide%2f&text=Traditional%20Workflow%20%28deterministic%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fn8n-ai-automation-complete-guide%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

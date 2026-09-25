@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Groq API (free tier) | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Groq API (free tier) | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/free-llm-api-resources-ai-development/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/free-llm-api-resources-ai-development/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Groq API (free tier)</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Groq API (free tier)</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Free LLM API Resources: Access AI Models Without Breakin&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groq API (free tier) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Groq API (free tier) | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/free-llm-api-resources-ai-development/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/free-llm-api-resources-ai-development/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Groq API (free tier)</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Groq API (free tier)</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Free LLM API Resources: Access AI Models Without Breakin&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 AI applications without API costs using these community-maintained free tiers.
 date: 2026-05-15T04:20:25+09:00
@@ -24,102 +94,203 @@ licensing_model: Open Source
 license_type: MIT
 file_size: &ldquo;431 KB&rdquo;
 file_md5: &rsquo;'
-download_url: <a href=https://github.com/cheahjs/free-llm-api-resources>https://github.com/cheahjs/free-llm-api-resources</a>
+download_url: <a href="https://github.com/cheahjs/free-llm-api-resources">https://github.com/cheahjs/free-llm-api-resources</a>
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-16&rdquo;
 draft: false
-aliases:</p><ul><li>/posts/free-llm-api-resources-ai-development/
+aliases:</p>
+<ul>
+<li>/posts/free-llm-api-resources-ai-development/
 faqs: - q: &lsquo;What is the fastest free LLM inference provider?&rsquo;
-a: &lsquo;Groq offers the fastest free inference at over 800 tokens per second. Its free tier is completely free but rate limited to around 20 requests per minute and 6,000 tokens per minute.&rsquo;</li><li>q: &lsquo;How can I run LLMs locally for free with full privacy?&rsquo;
-a: &lsquo;Use Ollama or LM Studio, which run models on your own hardware at no cost and keep data 100% private. Ollama is CLI-based (pull a model, then run an API server on localhost:11434), while LM Studio adds a GUI model browser plus a local API server on localhost:1234.&rsquo;</li><li>q: &lsquo;Does Together AI offer a free tier for LLM APIs?&rsquo;
-a: &lsquo;Together AI gives new accounts $5 of free credit, with access to 100+ open source models and support for fine-tuning and embeddings. Its rate limit is roughly 60 requests per minute, making it good for experimentation and testing.&rsquo;</li><li>q: &lsquo;Which free LLM providers are OpenAI-API compatible?&rsquo;
-a: &lsquo;Groq, Together AI, and LM Studio all expose OpenAI-compatible endpoints, so you can use the standard OpenAI Python client by just changing the base_url (for example <a href=https://api.together.xyz/v1>https://api.together.xyz/v1</a> for Together or http://localhost:1234/v1 for LM Studio).&rsquo;</li><li>q: &lsquo;Are free LLM API tiers suitable for production use?&rsquo;
-a: &lsquo;Free tiers can work for low-traffic applications, fallback providers, and cost-sensitive or community projects, but they carry rate limits and terms that may change. For high-traffic production you should use them with care or pair them with paid options.&rsquo;</li></ul><hr><p>{&lt;/* resource-info */>}</p><h2 id=what-is-free-llm-api-resources>What is Free LLM API Resources?</h2><p><strong>Free LLM API Resources</strong> is a curated collection of <strong>free Large Language Model inference APIs</strong> — allowing developers to build AI-powered applications without paying for API access. Maintained by the community, it tracks which providers offer free tiers, what models are available, and how to access them.</p><p><strong>GitHub</strong>: <a href=https://github.com/cheahjs/free-llm-api-resources>https://github.com/cheahjs/free-llm-api-resources</a>
+a: &lsquo;Groq offers the fastest free inference at over 800 tokens per second. Its free tier is completely free but rate limited to around 20 requests per minute and 6,000 tokens per minute.&rsquo;</li>
+<li>q: &lsquo;How can I run LLMs locally for free with full privacy?&rsquo;
+a: &lsquo;Use Ollama or LM Studio, which run models on your own hardware at no cost and keep data 100% private. Ollama is CLI-based (pull a model, then run an API server on localhost:11434), while LM Studio adds a GUI model browser plus a local API server on localhost:1234.&rsquo;</li>
+<li>q: &lsquo;Does Together AI offer a free tier for LLM APIs?&rsquo;
+a: &lsquo;Together AI gives new accounts $5 of free credit, with access to 100+ open source models and support for fine-tuning and embeddings. Its rate limit is roughly 60 requests per minute, making it good for experimentation and testing.&rsquo;</li>
+<li>q: &lsquo;Which free LLM providers are OpenAI-API compatible?&rsquo;
+a: &lsquo;Groq, Together AI, and LM Studio all expose OpenAI-compatible endpoints, so you can use the standard OpenAI Python client by just changing the base_url (for example <a href="https://api.together.xyz/v1">https://api.together.xyz/v1</a> for Together or http://localhost:1234/v1 for LM Studio).&rsquo;</li>
+<li>q: &lsquo;Are free LLM API tiers suitable for production use?&rsquo;
+a: &lsquo;Free tiers can work for low-traffic applications, fallback providers, and cost-sensitive or community projects, but they carry rate limits and terms that may change. For high-traffic production you should use them with care or pair them with paid options.&rsquo;</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="what-is-free-llm-api-resources">What is Free LLM API Resources?</h2>
+<p><strong>Free LLM API Resources</strong> is a curated collection of <strong>free Large Language Model inference APIs</strong> — allowing developers to build AI-powered applications without paying for API access. Maintained by the community, it tracks which providers offer free tiers, what models are available, and how to access them.</p>
+<p><strong>GitHub</strong>: <a href="https://github.com/cheahjs/free-llm-api-resources">https://github.com/cheahjs/free-llm-api-resources</a>
 <strong>Stars</strong>: 20,310+
 <strong>Language</strong>: Python
-<strong>License</strong>: CC0-1.0 (Public Domain)</p><hr><h2 id=the-problem-ai-api-costs>The Problem: AI API Costs</h2><h3 id=current-pricing-2026>Current Pricing (2026)</h3><p>| Provider | Model | Input Cost | Output Cost |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+<strong>License</strong>: CC0-1.0 (Public Domain)</p>
+<hr>
+<h2 id="the-problem-ai-api-costs">The Problem: AI API Costs</h2>
+<h3 id="current-pricing-2026">Current Pricing (2026)</h3>
+<p>| Provider | Model | Input Cost | Output Cost |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | OpenAI | GPT-4o | $5/M tokens | $15/M tokens |
 | Anthropic | Claude 3.5 | $3/M tokens | $15/M tokens |
 | Google | Gemini Pro | $3.50/M tokens | $10.50/M tokens |
-| Mistral | Large | $4/M tokens | $12/M tokens |</p><p><strong>Problem</strong>: Building AI apps costs $50-500/month in API fees.</p><h3 id=the-solution-free-tiers>The Solution: Free Tiers</h3><p>| Provider | Free Tier | Rate Limit | Models |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Mistral | Large | $4/M tokens | $12/M tokens |</p>
+<p><strong>Problem</strong>: Building AI apps costs $50-500/month in API fees.</p>
+<h3 id="the-solution-free-tiers">The Solution: Free Tiers</h3>
+<p>| Provider | Free Tier | Rate Limit | Models |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Groq | 100% free | 20 req/min | Llama 3, Mixtral |
 | Together AI | $5 credit | 60 req/min | Various OSS |
 | Fireworks AI | Trial | Varies | Multiple |
 | Ollama | Local | Unlimited | Self-hosted |
-| LM Studio | Local | Unlimited | Self-hosted |</p><hr><h2 id=featured-free-providers>Featured Free Providers</h2><h3 id=1-groq--fastest-inference>1. Groq — Fastest Inference</h3><p><strong>Website</strong>: <a href=https://groq.com>https://groq.com</a>
+| LM Studio | Local | Unlimited | Self-hosted |</p>
+<hr>
+<h2 id="featured-free-providers">Featured Free Providers</h2>
+<h3 id="1-groq--fastest-inference">1. Groq — Fastest Inference</h3>
+<p><strong>Website</strong>: <a href="https://groq.com">https://groq.com</a>
 <strong>Free Tier</strong>: Completely free (rate limited)
 <strong>Speed</strong>: 800+ tokens/second
-<strong>Models</strong>: - Llama 3 70B</p><ul><li>Llama 3 8B</li><li>Mixtral 8x7B</li><li>Gemma 7B</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Groq API (free tier)</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://api.groq.com/openai/v1/chat/completions&#34;</span>,
-</span></span><span style=display:flex><span>    headers<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;Authorization&#34;</span>: <span style=color:#e6db74>&#34;Bearer YOUR_FREE_API_KEY&#34;</span>},
-</span></span><span style=display:flex><span>    json<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;llama3-70b-8192&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;messages&#34;</span>: [{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Hello!&#34;</span>}]
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>print(response<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;choices&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;message&#34;</span>][<span style=color:#e6db74>&#34;content&#34;</span>])
-</span></span></code></pre></div><h3 id=2-together-ai--5-free-credit>2. Together AI — $5 Free Credit</h3><p><strong>Website</strong>: <a href=https://www.together.ai>https://www.together.ai</a>
+<strong>Models</strong>: - Llama 3 70B</p>
+<ul>
+<li>Llama 3 8B</li>
+<li>Mixtral 8x7B</li>
+<li>Gemma 7B</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Groq API (free tier)</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://api.groq.com/openai/v1/chat/completions&#34;</span>,
+</span></span><span style="display:flex;"><span>    headers<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer YOUR_FREE_API_KEY&#34;</span>},
+</span></span><span style="display:flex;"><span>    json<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;llama3-70b-8192&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;messages&#34;</span>: [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Hello!&#34;</span>}]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>json()[<span style="color:#e6db74">&#34;choices&#34;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;message&#34;</span>][<span style="color:#e6db74">&#34;content&#34;</span>])
+</span></span></code></pre></div><h3 id="2-together-ai--5-free-credit">2. Together AI — $5 Free Credit</h3>
+<p><strong>Website</strong>: <a href="https://www.together.ai">https://www.together.ai</a>
 <strong>Free Tier</strong>: $5 credit for new accounts
 <strong>Models</strong>: 100+ open source models
-<strong>Features</strong>: Fine-tuning, embeddings</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> openai
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> openai<span style=color:#f92672>.</span>OpenAI(
-</span></span><span style=display:flex><span>    api_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;YOUR_TOGETHER_API_KEY&#34;</span>,
-</span></span><span style=display:flex><span>    base_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://api.together.xyz/v1&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;meta-llama/Llama-3-70b-chat-hf&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Explain quantum computing&#34;</span>}]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>print(response<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>content)
-</span></span></code></pre></div><h3 id=3-ollama--run-locally>3. Ollama — Run Locally</h3><p><strong>Website</strong>: <a href=https://ollama.com>https://ollama.com</a>
+<strong>Features</strong>: Fine-tuning, embeddings</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> openai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> openai<span style="color:#f92672">.</span>OpenAI(
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;YOUR_TOGETHER_API_KEY&#34;</span>,
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://api.together.xyz/v1&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;meta-llama/Llama-3-70b-chat-hf&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Explain quantum computing&#34;</span>}]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><h3 id="3-ollama--run-locally">3. Ollama — Run Locally</h3>
+<p><strong>Website</strong>: <a href="https://ollama.com">https://ollama.com</a>
 <strong>Cost</strong>: Completely free (runs on your hardware)
 <strong>Privacy</strong>: 100% private
-<strong>Models</strong>: Pull from Ollama library</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install Ollama</span>
-</span></span><span style=display:flex><span>curl -fsSL https://ollama.com/install.sh | sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Pull a model</span>
-</span></span><span style=display:flex><span>ollama pull llama3
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run API server</span>
-</span></span><span style=display:flex><span>ollama serve
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use the API</span>
-</span></span><span style=display:flex><span>curl http://localhost:11434/api/generate -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;model&#34;: &#34;llama3&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;prompt&#34;: &#34;Why is the sky blue?&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>}&#39;</span>
-</span></span></code></pre></div><h3 id=4-lm-studio--gui--api>4. LM Studio — GUI + API</h3><p><strong>Website</strong>: <a href=https://lmstudio.ai>https://lmstudio.ai</a>
+<strong>Models</strong>: Pull from Ollama library</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Ollama</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh | sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pull a model</span>
+</span></span><span style="display:flex;"><span>ollama pull llama3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run API server</span>
+</span></span><span style="display:flex;"><span>ollama serve
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use the API</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:11434/api/generate -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;model&#34;: &#34;llama3&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;prompt&#34;: &#34;Why is the sky blue?&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}&#39;</span>
+</span></span></code></pre></div><h3 id="4-lm-studio--gui--api">4. LM Studio — GUI + API</h3>
+<p><strong>Website</strong>: <a href="https://lmstudio.ai">https://lmstudio.ai</a>
 <strong>Cost</strong>: Free (local inference)
 <strong>Features</strong>: GUI model browser, API server
-<strong>Best for</strong>: Testing models, development</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># LM Studio local API</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> openai
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> openai<span style=color:#f92672>.</span>OpenAI(
-</span></span><span style=display:flex><span>    base_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:1234/v1&#34;</span>,
-</span></span><span style=display:flex><span>    api_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;not-needed&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;local-model&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Hello!&#34;</span>}]
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=5-fireworks-ai--fast-oss-models>5. Fireworks AI — Fast OSS Models</h3><p><strong>Website</strong>: <a href=https://fireworks.ai>https://fireworks.ai</a>
+<strong>Best for</strong>: Testing models, development</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># LM Studio local API</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> openai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> openai<span style="color:#f92672">.</span>OpenAI(
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:1234/v1&#34;</span>,
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;not-needed&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local-model&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Hello!&#34;</span>}]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="5-fireworks-ai--fast-oss-models">5. Fireworks AI — Fast OSS Models</h3>
+<p><strong>Website</strong>: <a href="https://fireworks.ai">https://fireworks.ai</a>
 <strong>Free Tier</strong>: Trial credits
 <strong>Speed</strong>: Optimized inference
-<strong>Models</strong>: Llama, Mixtral, CodeLlama</p><hr><h2 id=comparison-table>Comparison Table</h2><p>| Provider | Cost | Speed | Privacy | Ease of Use | Best For |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+<strong>Models</strong>: Llama, Mixtral, CodeLlama</p>
+<hr>
+<h2 id="comparison-table">Comparison Table</h2>
+<p>| Provider | Cost | Speed | Privacy | Ease of Use | Best For |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Groq | Free | ⚡⚡⚡ | ❌ | ⭐⭐⭐ | Production apps |
 | Together | $5 credit | ⚡⚡ | ❌ | ⭐⭐⭐ | Experimentation |
 | Ollama | Free | ⚡ | ✅ | ⭐⭐ | Privacy-focused |
 | LM Studio | Free | ⚡ | ✅ | ⭐⭐⭐ | Development |
-| Fireworks | Trial | ⚡⚡ | ❌ | ⭐⭐ | Fast inference |</p><hr><h2 id=use-cases>Use Cases</h2><h3 id=1-development--testing>1. Development & Testing</h3><ul><li>Prototype AI features</li><li>Test prompts</li><li>Build MVPs</li><li>Learn LLM integration</li></ul><h3 id=2-personal-projects>2. Personal Projects</h3><ul><li>Chatbots for personal use</li><li>Content generation tools</li><li>Code assistants</li><li>Research assistants</li></ul><h3 id=3-education>3. Education</h3><ul><li>Learn AI development</li><li>Student projects</li><li>Open source contributions</li><li>Research experiments</li></ul><h3 id=4-production-with-care>4. Production (with care)</h3><ul><li>Low-traffic applications</li><li>Fallback providers</li><li>Cost-sensitive projects</li><li>Community tools</li></ul><hr><h2 id=how-to-choose>How to Choose</h2><h3 id=decision-tree>Decision Tree</h3><pre tabindex=0><code>Need API access?
+| Fireworks | Trial | ⚡⚡ | ❌ | ⭐⭐ | Fast inference |</p>
+<hr>
+<h2 id="use-cases">Use Cases</h2>
+<h3 id="1-development--testing">1. Development &amp; Testing</h3>
+<ul>
+<li>Prototype AI features</li>
+<li>Test prompts</li>
+<li>Build MVPs</li>
+<li>Learn LLM integration</li>
+</ul>
+<h3 id="2-personal-projects">2. Personal Projects</h3>
+<ul>
+<li>Chatbots for personal use</li>
+<li>Content generation tools</li>
+<li>Code assistants</li>
+<li>Research assistants</li>
+</ul>
+<h3 id="3-education">3. Education</h3>
+<ul>
+<li>Learn AI development</li>
+<li>Student projects</li>
+<li>Open source contributions</li>
+<li>Research experiments</li>
+</ul>
+<h3 id="4-production-with-care">4. Production (with care)</h3>
+<ul>
+<li>Low-traffic applications</li>
+<li>Fallback providers</li>
+<li>Cost-sensitive projects</li>
+<li>Community tools</li>
+</ul>
+<hr>
+<h2 id="how-to-choose">How to Choose</h2>
+<h3 id="decision-tree">Decision Tree</h3>
+<pre tabindex="0"><code>Need API access?
 ├── Yes → Need high speed?
 │   ├── Yes → Groq (fastest)
 │   └── No → Together AI (most models)
@@ -280,13 +451,265 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 **问：企业级部署的最佳实践？**
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2ffree-llm-api-resources-ai-development%2f&text=Groq%20API%20%28free%20tier%29" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2ffree-llm-api-resources-ai-development%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2ffree-llm-api-resources-ai-development%2f&text=Groq%20API%20%28free%20tier%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2ffree-llm-api-resources-ai-development%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

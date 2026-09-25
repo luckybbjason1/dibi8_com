@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>etcd: metadata coordination | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="etcd: metadata coordination | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>etcd: metadata coordination</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">etcd: metadata coordination</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Milvus/Zilliz 2026: The Vector Database Handling 10 Bill&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>etcd: metadata coordination | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="etcd: metadata coordination | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">etcd: metadata coordination</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">etcd: metadata coordination</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Milvus/Zilliz 2026: The Vector Database Handling 10 Bill&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,229 +99,290 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;data-science&rdquo;]
 tags: [&ldquo;milvus&rdquo;, &ldquo;zilliz&rdquo;, &ldquo;vector-database&rdquo;, &ldquo;ann&rdquo;, &ldquo;similarity-search&rdquo;, &ldquo;kubernetes&rdquo;, &ldquo;gpu-indexing&rdquo;, &ldquo;ai-infrastructure&rdquo;]
-aliases:</p><ul><li>/posts/zilliz-milvus-vector-database-scale/-</li></ul><hr><h2 id=introduction-the-billion-vector-problem>Introduction: The Billion-Vector Problem</h2><p>In late 2024, a mid-sized e-commerce company hit a wall. Their product catalog had grown to <strong>800 million items</strong>, each represented by a 1,536-dimensional embedding. Their existing vector search solution — a single-node Postgres with <a href=dibi8-internal-link>pgvector</a> — took <strong>4.2 seconds</strong> per query. Switching to a managed alternative priced them out at $12,000/month for that volume. They needed something that could handle <strong>10 billion vectors</strong> without requiring a second mortgage.</p><p>Enter <strong>Milvus 2.5</strong>, the CNCF-graduated open-source vector database maintained by Zilliz. Released in early 2026 with GPU-accelerated indexing, distributed architecture, and tiered storage, Milvus is the only open-source vector database architected from the ground up for <strong>billion-scale approximate nearest neighbor (ANN) search</strong>. With <strong>32,000+ GitHub stars</strong>, it powers search at firms like Nvidia, eBay, and Tokopedia.</p><p>This guide walks you from a local standalone setup to a production-ready Kubernetes cluster handling 1B+ vectors. Every command is copy-paste ready. Every benchmark number is independently measured, not vendor-sourced.</p><h2 id=what-is-milvus--a-purpose-built-vector-database>What Is Milvus? — A Purpose-Built Vector Database</h2><p><strong>Milvus</strong> is an open-source, distributed vector database designed for scalable similarity search over high-dimensional embeddings. Unlike general-purpose databases with vector bolt-ons, Milvus treats ANN search as a first-class architectural primitive. It supports multiple index types (HNSW, IVF-PQ, DiskANN), GPU-accelerated index building, and horizontal sharding across Kubernetes clusters.</p><p>The commercial sibling, <strong>Zilliz Cloud</strong>, offers a fully managed version with zero operational overhead. Both share the same API, so code written against open-source Milvus ports directly to Zilliz Cloud and vice versa.</p><p><strong>Key stats (May 2026):</strong></p><p>| Metric | Value |
-|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/posts/zilliz-milvus-vector-database-scale/-</li>
+</ul>
+<hr>
+<h2 id="introduction-the-billion-vector-problem">Introduction: The Billion-Vector Problem</h2>
+<p>In late 2024, a mid-sized e-commerce company hit a wall. Their product catalog had grown to <strong>800 million items</strong>, each represented by a 1,536-dimensional embedding. Their existing vector search solution — a single-node Postgres with <a href="dibi8-internal-link">pgvector</a> — took <strong>4.2 seconds</strong> per query. Switching to a managed alternative priced them out at $12,000/month for that volume. They needed something that could handle <strong>10 billion vectors</strong> without requiring a second mortgage.</p>
+<p>Enter <strong>Milvus 2.5</strong>, the CNCF-graduated open-source vector database maintained by Zilliz. Released in early 2026 with GPU-accelerated indexing, distributed architecture, and tiered storage, Milvus is the only open-source vector database architected from the ground up for <strong>billion-scale approximate nearest neighbor (ANN) search</strong>. With <strong>32,000+ GitHub stars</strong>, it powers search at firms like Nvidia, eBay, and Tokopedia.</p>
+<p>This guide walks you from a local standalone setup to a production-ready Kubernetes cluster handling 1B+ vectors. Every command is copy-paste ready. Every benchmark number is independently measured, not vendor-sourced.</p>
+<h2 id="what-is-milvus--a-purpose-built-vector-database">What Is Milvus? — A Purpose-Built Vector Database</h2>
+<p><strong>Milvus</strong> is an open-source, distributed vector database designed for scalable similarity search over high-dimensional embeddings. Unlike general-purpose databases with vector bolt-ons, Milvus treats ANN search as a first-class architectural primitive. It supports multiple index types (HNSW, IVF-PQ, DiskANN), GPU-accelerated index building, and horizontal sharding across Kubernetes clusters.</p>
+<p>The commercial sibling, <strong>Zilliz Cloud</strong>, offers a fully managed version with zero operational overhead. Both share the same API, so code written against open-source Milvus ports directly to Zilliz Cloud and vice versa.</p>
+<p><strong>Key stats (May 2026):</strong></p>
+<p>| Metric | Value |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Current version | <strong>2.5.10</strong> |
 | GitHub stars | <strong>32,000+</strong> |
 | Max tested scale | <strong>10 billion vectors</strong> |
 | p99 latency (GPU) | <strong>~8ms</strong> at 100M vectors |
 | Indexing throughput (GPU) | <strong>320,000 vectors/sec</strong> |
-| License | Apache-2.0 |</p><h2 id=how-milvus-works-architecture-deep-dive>How Milvus Works: Architecture Deep Dive</h2><p>Milvus 2.5 follows a <strong>cloud-native microservices architecture</strong> with five core components: 1. <strong>Proxy</strong> — Handles client requests, load balances, and forwards to query nodes.
+| License | Apache-2.0 |</p>
+<h2 id="how-milvus-works-architecture-deep-dive">How Milvus Works: Architecture Deep Dive</h2>
+<p>Milvus 2.5 follows a <strong>cloud-native microservices architecture</strong> with five core components: 1. <strong>Proxy</strong> — Handles client requests, load balances, and forwards to query nodes.
 2. <strong>Query Node</strong> — Executes ANN search against loaded index segments.
 3. <strong>Data Node</strong> — Manages data insertion, flush, and compaction.
 4. <strong>Index Node</strong> — Builds vector indexes (HNSW, IVF, DiskANN, GPU-based).
-5. <strong>Coordinator</strong> (Root/Query/Data) — Metadata management via etcd.</p><p>Storage is decoupled: <strong>etcd</strong> stores metadata, <strong>MinIO/S3</strong> stores actual vector data and indexes. This separation enables <strong>tiered storage</strong> — hot vectors stay on local NVMe, warm vectors move to object storage, and cold vectors can be archived.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># etcd: metadata coordination</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># MinIO: object storage for segments and indexes</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Pulsar/Kafka: log broker for streaming inserts</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Milvus: proxy, query/data/index nodes, coordinators</span>
-</span></span></code></pre></div><p><strong>GPU Indexing (new in 2.5):</strong> Milvus 2.5 introduces GPU-accelerated index building via NVIDIA RAFT. On a single Tesla T4, index construction is <strong>~6x faster</strong> than CPU-only builds. Query throughput doubles. For teams running GPU-enabled Kubernetes clusters (like those on <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean GPU droplets</a>), this is a game-changer.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># GPU resource allocation for Milvus index node (Helm values)</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>indexNode: resources: limits: nvidia.com/gpu</span>: <span style=color:#ae81ff>1</span>  <span style=color:#75715e># Request 1 GPU for index building</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>requests: memory</span>: <span style=color:#e6db74>&#34;16Gi&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;8&#34;</span>
-</span></span></code></pre></div><h2 id=installation--setup-from-docker-to-kubernetes>Installation & Setup: From Docker to Kubernetes</h2><h3 id=option-a-docker-standalone-5-minutes>Option A: Docker Standalone (&lt;5 minutes)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Download docker-compose file</span>
-</span></span><span style=display:flex><span>curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Start Milvus standalone</span>
-</span></span><span style=display:flex><span>bash standalone_embed.sh start
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify</span>
-</span></span><span style=display:flex><span>docker ps | grep milvus
-</span></span><span style=display:flex><span><span style=color:#75715e># Output: milvusdb/milvus:v2.5.10  &#34;milvus run standalone&#34;</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install Python SDK</span>
-</span></span><span style=display:flex><span>pip install pymilvus<span style=color:#f92672>==</span>2.5.10
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Test connection</span>
-</span></span><span style=display:flex><span>python -c <span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>from pymilvus import connections, utility
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>connections.connect(host=localhost, port=19530)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>print(&#39;Milvus version:&#39;, utility.get_server_version())
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><h3 id=option-b-kubernetes-with-helm-production>Option B: Kubernetes with Helm (Production)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Add Milvus Helm repo</span>
-</span></span><span style=display:flex><span>helm repo add milvus https://zilliztech.github.io/milvus-helm/
-</span></span><span style=display:flex><span>helm repo update
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install with default distributed mode</span>
-</span></span><span style=display:flex><span>helm install my-milvus milvus/milvus <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set cluster.enabled<span style=color:#f92672>=</span>true <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set etcd.replicaCount<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set minio.mode<span style=color:#f92672>=</span>distributed <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set minio.drivesPerNode<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set queryNode.replicas<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify all pods are running</span>
-</span></span><span style=display:flex><span>kubectl get pods -l app.kubernetes.io/instance<span style=color:#f92672>=</span>my-milvus
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Expose via LoadBalancer</span>
-</span></span><span style=display:flex><span>kubectl patch svc my-milvus-proxy -p <span style=color:#e6db74>&#39;{&#34;spec&#34;:{&#34;type&#34;:&#34;LoadBalancer&#34;}}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Get endpoint</span>
-</span></span><span style=display:flex><span>export MILVUS_HOST<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>kubectl get svc my-milvus-proxy -o jsonpath<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;{.status.loadBalancer.ingress[0].ip}&#39;</span><span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>echo $MILVUS_HOST
-</span></span></code></pre></div><h3 id=option-c-zilliz-cloud-managed-zero-ops>Option C: Zilliz Cloud (Managed, Zero Ops)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Sign up at https://cloud.zilliz.com</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create a free cluster (up to 1M vectors)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Grab your API key and endpoint</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>pip install pymilvus<span style=color:#f92672>==</span>2.5.10
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pymilvus <span style=color:#f92672>import</span> connections, Collection
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Connect to Zilliz Cloud</span>
-</span></span><span style=display:flex><span>connections<span style=color:#f92672>.</span>connect(
-</span></span><span style=display:flex><span>    alias<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;default&#34;</span>,
-</span></span><span style=display:flex><span>    uri<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://your-cluster.zillizcloud.com&#34;</span>,
-</span></span><span style=display:flex><span>    token<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-api-key&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;Connected to Zilliz Cloud!&#34;</span>)
-</span></span></code></pre></div><h2 id=core-operations-collections-inserts-and-search>Core Operations: Collections, Inserts, and Search</h2><h3 id=creating-a-collection-with-hnsw-index>Creating a Collection with HNSW Index</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pymilvus <span style=color:#f92672>import</span> FieldSchema, CollectionSchema, DataType, Collection
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Define fields</span>
-</span></span><span style=display:flex><span>fields <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    FieldSchema(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;id&#34;</span>, dtype<span style=color:#f92672>=</span>DataType<span style=color:#f92672>.</span>INT64, is_primary<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, auto_id<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>),
-</span></span><span style=display:flex><span>    FieldSchema(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>, dtype<span style=color:#f92672>=</span>DataType<span style=color:#f92672>.</span>FLOAT_VECTOR, dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>),
-</span></span><span style=display:flex><span>    FieldSchema(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>, dtype<span style=color:#f92672>=</span>DataType<span style=color:#f92672>.</span>VARCHAR, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>4096</span>),
-</span></span><span style=display:flex><span>    FieldSchema(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;category&#34;</span>, dtype<span style=color:#f92672>=</span>DataType<span style=color:#f92672>.</span>VARCHAR, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>),
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>schema <span style=color:#f92672>=</span> CollectionSchema(fields, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Document embeddings&#34;</span>)
-</span></span><span style=display:flex><span>collection <span style=color:#f92672>=</span> Collection(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>, schema<span style=color:#f92672>=</span>schema)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create HNSW index for fast ANN search</span>
-</span></span><span style=display:flex><span>index_params <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;metric_type&#34;</span>: <span style=color:#e6db74>&#34;L2&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;index_type&#34;</span>: <span style=color:#e6db74>&#34;HNSW&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;params&#34;</span>: {<span style=color:#e6db74>&#34;M&#34;</span>: <span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#34;efConstruction&#34;</span>: <span style=color:#ae81ff>200</span>}
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>create_index(field_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>, index_params<span style=color:#f92672>=</span>index_params)
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>load()
-</span></span></code></pre></div><h3 id=inserting-vectors-single-and-batch>Inserting Vectors (Single and Batch)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generate sample data: 100K vectors, 1536 dimensions each</span>
-</span></span><span style=display:flex><span>batch_size <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>
-</span></span><span style=display:flex><span>total_vectors <span style=color:#f92672>=</span> <span style=color:#ae81ff>100000</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, total_vectors, batch_size): embeddings <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(batch_size, <span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>tolist()
-</span></span><span style=display:flex><span>    texts <span style=color:#f92672>=</span> [<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;document_</span><span style=color:#e6db74>{</span>i<span style=color:#f92672>+</span>j<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(batch_size)]
-</span></span><span style=display:flex><span>    categories <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;tech&#34;</span> <span style=color:#66d9ef>if</span> j <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;finance&#34;</span> <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(batch_size)]
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    collection<span style=color:#f92672>.</span>insert([embeddings, texts, categories])
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Inserted </span><span style=color:#e6db74>{</span>i <span style=color:#f92672>+</span> batch_size<span style=color:#e6db74>}</span><span style=color:#e6db74>/</span><span style=color:#e6db74>{</span>total_vectors<span style=color:#e6db74>}</span><span style=color:#e6db74> vectors&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Flush to ensure persistence</span>
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>flush()
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Total inserted: </span><span style=color:#e6db74>{</span>collection<span style=color:#f92672>.</span>num_entities<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=vector-search-with-metadata-filters>Vector Search with Metadata Filters</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Single vector search</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> collection<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>[np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(<span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>tolist()],
-</span></span><span style=display:flex><span>    anns_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>,
-</span></span><span style=display:flex><span>    param<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;metric_type&#34;</span>: <span style=color:#e6db74>&#34;L2&#34;</span>, <span style=color:#e6db74>&#34;params&#34;</span>: {<span style=color:#e6db74>&#34;ef&#34;</span>: <span style=color:#ae81ff>64</span>}},
-</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    output_fields<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;text&#34;</span>, <span style=color:#e6db74>&#34;category&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> hit <span style=color:#f92672>in</span> results[<span style=color:#ae81ff>0</span>]: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;ID: </span><span style=color:#e6db74>{</span>hit<span style=color:#f92672>.</span>id<span style=color:#e6db74>}</span><span style=color:#e6db74>, Distance: </span><span style=color:#e6db74>{</span>hit<span style=color:#f92672>.</span>distance<span style=color:#e6db74>:</span><span style=color:#e6db74>.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>, Text: </span><span style=color:#e6db74>{</span>hit<span style=color:#f92672>.</span>entity<span style=color:#f92672>.</span>text<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Hybrid search: vector similarity + metadata filter</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pymilvus <span style=color:#f92672>import</span> Filter
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>expr <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;category == &#34;tech&#34; AND text like &#34;%neural%&#34;&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> collection<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>[np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(<span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>tolist()],
-</span></span><span style=display:flex><span>    anns_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>,
-</span></span><span style=display:flex><span>    param<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;metric_type&#34;</span>: <span style=color:#e6db74>&#34;L2&#34;</span>, <span style=color:#e6db74>&#34;params&#34;</span>: {<span style=color:#e6db74>&#34;ef&#34;</span>: <span style=color:#ae81ff>128</span>}},
-</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>,
-</span></span><span style=display:flex><span>    expr<span style=color:#f92672>=</span>expr,  <span style=color:#75715e># Pre-filter expression</span>
-</span></span><span style=display:flex><span>    output_fields<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;text&#34;</span>, <span style=color:#e6db74>&#34;category&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Found </span><span style=color:#e6db74>{</span>len(results[<span style=color:#ae81ff>0</span>])<span style=color:#e6db74>}</span><span style=color:#e6db74> filtered results&#34;</span>)
-</span></span></code></pre></div><h2 id=benchmarks-real-world-numbers>Benchmarks: Real-World Numbers</h2><p>Independent benchmarks from April 2026 on <code>dbpedia-openai-1M</code> dataset (1M vectors, 1536 dimensions, AWS c6i.8xlarge unless noted): | Metric | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+5. <strong>Coordinator</strong> (Root/Query/Data) — Metadata management via etcd.</p>
+<p>Storage is decoupled: <strong>etcd</strong> stores metadata, <strong>MinIO/S3</strong> stores actual vector data and indexes. This separation enables <strong>tiered storage</strong> — hot vectors stay on local NVMe, warm vectors move to object storage, and cold vectors can be archived.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># etcd: metadata coordination</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># MinIO: object storage for segments and indexes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pulsar/Kafka: log broker for streaming inserts</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Milvus: proxy, query/data/index nodes, coordinators</span>
+</span></span></code></pre></div><p><strong>GPU Indexing (new in 2.5):</strong> Milvus 2.5 introduces GPU-accelerated index building via NVIDIA RAFT. On a single Tesla T4, index construction is <strong>~6x faster</strong> than CPU-only builds. Query throughput doubles. For teams running GPU-enabled Kubernetes clusters (like those on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean GPU droplets</a>), this is a game-changer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># GPU resource allocation for Milvus index node (Helm values)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">indexNode: resources: limits: nvidia.com/gpu</span>: <span style="color:#ae81ff">1</span>  <span style="color:#75715e"># Request 1 GPU for index building</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests: memory</span>: <span style="color:#e6db74">&#34;16Gi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;8&#34;</span>
+</span></span></code></pre></div><h2 id="installation--setup-from-docker-to-kubernetes">Installation &amp; Setup: From Docker to Kubernetes</h2>
+<h3 id="option-a-docker-standalone-5-minutes">Option A: Docker Standalone (&lt;5 minutes)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Download docker-compose file</span>
+</span></span><span style="display:flex;"><span>curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start Milvus standalone</span>
+</span></span><span style="display:flex;"><span>bash standalone_embed.sh start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify</span>
+</span></span><span style="display:flex;"><span>docker ps | grep milvus
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: milvusdb/milvus:v2.5.10  &#34;milvus run standalone&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Python SDK</span>
+</span></span><span style="display:flex;"><span>pip install pymilvus<span style="color:#f92672">==</span>2.5.10
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test connection</span>
+</span></span><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">from pymilvus import connections, utility
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">connections.connect(host=localhost, port=19530)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(&#39;Milvus version:&#39;, utility.get_server_version())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="option-b-kubernetes-with-helm-production">Option B: Kubernetes with Helm (Production)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add Milvus Helm repo</span>
+</span></span><span style="display:flex;"><span>helm repo add milvus https://zilliztech.github.io/milvus-helm/
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install with default distributed mode</span>
+</span></span><span style="display:flex;"><span>helm install my-milvus milvus/milvus <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set cluster.enabled<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set etcd.replicaCount<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set minio.mode<span style="color:#f92672">=</span>distributed <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set minio.drivesPerNode<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set queryNode.replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify all pods are running</span>
+</span></span><span style="display:flex;"><span>kubectl get pods -l app.kubernetes.io/instance<span style="color:#f92672">=</span>my-milvus
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Expose via LoadBalancer</span>
+</span></span><span style="display:flex;"><span>kubectl patch svc my-milvus-proxy -p <span style="color:#e6db74">&#39;{&#34;spec&#34;:{&#34;type&#34;:&#34;LoadBalancer&#34;}}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get endpoint</span>
+</span></span><span style="display:flex;"><span>export MILVUS_HOST<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl get svc my-milvus-proxy -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.status.loadBalancer.ingress[0].ip}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo $MILVUS_HOST
+</span></span></code></pre></div><h3 id="option-c-zilliz-cloud-managed-zero-ops">Option C: Zilliz Cloud (Managed, Zero Ops)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Sign up at https://cloud.zilliz.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a free cluster (up to 1M vectors)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Grab your API key and endpoint</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pip install pymilvus<span style="color:#f92672">==</span>2.5.10
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pymilvus <span style="color:#f92672">import</span> connections, Collection
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect to Zilliz Cloud</span>
+</span></span><span style="display:flex;"><span>connections<span style="color:#f92672">.</span>connect(
+</span></span><span style="display:flex;"><span>    alias<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>,
+</span></span><span style="display:flex;"><span>    uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://your-cluster.zillizcloud.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    token<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-api-key&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Connected to Zilliz Cloud!&#34;</span>)
+</span></span></code></pre></div><h2 id="core-operations-collections-inserts-and-search">Core Operations: Collections, Inserts, and Search</h2>
+<h3 id="creating-a-collection-with-hnsw-index">Creating a Collection with HNSW Index</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pymilvus <span style="color:#f92672">import</span> FieldSchema, CollectionSchema, DataType, Collection
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define fields</span>
+</span></span><span style="display:flex;"><span>fields <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    FieldSchema(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;id&#34;</span>, dtype<span style="color:#f92672">=</span>DataType<span style="color:#f92672">.</span>INT64, is_primary<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, auto_id<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
+</span></span><span style="display:flex;"><span>    FieldSchema(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>, dtype<span style="color:#f92672">=</span>DataType<span style="color:#f92672">.</span>FLOAT_VECTOR, dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>),
+</span></span><span style="display:flex;"><span>    FieldSchema(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>, dtype<span style="color:#f92672">=</span>DataType<span style="color:#f92672">.</span>VARCHAR, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">4096</span>),
+</span></span><span style="display:flex;"><span>    FieldSchema(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;category&#34;</span>, dtype<span style="color:#f92672">=</span>DataType<span style="color:#f92672">.</span>VARCHAR, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>schema <span style="color:#f92672">=</span> CollectionSchema(fields, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Document embeddings&#34;</span>)
+</span></span><span style="display:flex;"><span>collection <span style="color:#f92672">=</span> Collection(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>, schema<span style="color:#f92672">=</span>schema)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create HNSW index for fast ANN search</span>
+</span></span><span style="display:flex;"><span>index_params <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;metric_type&#34;</span>: <span style="color:#e6db74">&#34;L2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;index_type&#34;</span>: <span style="color:#e6db74">&#34;HNSW&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;params&#34;</span>: {<span style="color:#e6db74">&#34;M&#34;</span>: <span style="color:#ae81ff">16</span>, <span style="color:#e6db74">&#34;efConstruction&#34;</span>: <span style="color:#ae81ff">200</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>create_index(field_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>, index_params<span style="color:#f92672">=</span>index_params)
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>load()
+</span></span></code></pre></div><h3 id="inserting-vectors-single-and-batch">Inserting Vectors (Single and Batch)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate sample data: 100K vectors, 1536 dimensions each</span>
+</span></span><span style="display:flex;"><span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>total_vectors <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, total_vectors, batch_size): embeddings <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(batch_size, <span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>tolist()
+</span></span><span style="display:flex;"><span>    texts <span style="color:#f92672">=</span> [<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;document_</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span>j<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(batch_size)]
+</span></span><span style="display:flex;"><span>    categories <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;tech&#34;</span> <span style="color:#66d9ef">if</span> j <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;finance&#34;</span> <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(batch_size)]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    collection<span style="color:#f92672">.</span>insert([embeddings, texts, categories])
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Inserted </span><span style="color:#e6db74">{</span>i <span style="color:#f92672">+</span> batch_size<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>total_vectors<span style="color:#e6db74">}</span><span style="color:#e6db74"> vectors&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Flush to ensure persistence</span>
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>flush()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total inserted: </span><span style="color:#e6db74">{</span>collection<span style="color:#f92672">.</span>num_entities<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="vector-search-with-metadata-filters">Vector Search with Metadata Filters</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Single vector search</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> collection<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span>[np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>tolist()],
+</span></span><span style="display:flex;"><span>    anns_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>,
+</span></span><span style="display:flex;"><span>    param<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;metric_type&#34;</span>: <span style="color:#e6db74">&#34;L2&#34;</span>, <span style="color:#e6db74">&#34;params&#34;</span>: {<span style="color:#e6db74">&#34;ef&#34;</span>: <span style="color:#ae81ff">64</span>}},
+</span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    output_fields<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;text&#34;</span>, <span style="color:#e6db74">&#34;category&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> results[<span style="color:#ae81ff">0</span>]: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;ID: </span><span style="color:#e6db74">{</span>hit<span style="color:#f92672">.</span>id<span style="color:#e6db74">}</span><span style="color:#e6db74">, Distance: </span><span style="color:#e6db74">{</span>hit<span style="color:#f92672">.</span>distance<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, Text: </span><span style="color:#e6db74">{</span>hit<span style="color:#f92672">.</span>entity<span style="color:#f92672">.</span>text<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Hybrid search: vector similarity + metadata filter</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pymilvus <span style="color:#f92672">import</span> Filter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>expr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;category == &#34;tech&#34; AND text like &#34;%neural%&#34;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> collection<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span>[np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>tolist()],
+</span></span><span style="display:flex;"><span>    anns_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>,
+</span></span><span style="display:flex;"><span>    param<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;metric_type&#34;</span>: <span style="color:#e6db74">&#34;L2&#34;</span>, <span style="color:#e6db74">&#34;params&#34;</span>: {<span style="color:#e6db74">&#34;ef&#34;</span>: <span style="color:#ae81ff">128</span>}},
+</span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,
+</span></span><span style="display:flex;"><span>    expr<span style="color:#f92672">=</span>expr,  <span style="color:#75715e"># Pre-filter expression</span>
+</span></span><span style="display:flex;"><span>    output_fields<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;text&#34;</span>, <span style="color:#e6db74">&#34;category&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Found </span><span style="color:#e6db74">{</span>len(results[<span style="color:#ae81ff">0</span>])<span style="color:#e6db74">}</span><span style="color:#e6db74"> filtered results&#34;</span>)
+</span></span></code></pre></div><h2 id="benchmarks-real-world-numbers">Benchmarks: Real-World Numbers</h2>
+<p>Independent benchmarks from April 2026 on <code>dbpedia-openai-1M</code> dataset (1M vectors, 1536 dimensions, AWS c6i.8xlarge unless noted): | Metric | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>p99 Query Latency</strong> | 18 ms | <strong>8 ms</strong> | 28 ms | 19 ms | 12 ms |
 | <strong>Recall@10</strong> | <strong>0.99</strong> | <strong>0.99</strong> | 0.94 | 0.97 | 0.99 |
 | <strong>Throughput (QPS)</strong> | 3,900 | <strong>8,200</strong> | 1,200 | 2,800 | 4,100 |
 | <strong>Indexing Speed</strong> | 85K vec/s | <strong>320K vec/s</strong> | 50K vec/s | 35K vec/s | 42K vec/s |
 | <strong>Scale Ceiling</strong> | <strong>10B+</strong> | <strong>10B+</strong> | Unlimited | 200M | 500M |
 | <strong>Hybrid Search</strong> | Native | Native | Native | Native | Native |
-| <strong>Self-Host Cost ($/M/mo)</strong> | ~$400 | ~$600 | N/A | ~$320 | ~$280 |</p><p><strong>Key takeaways:</strong></p><ul><li><strong>Milvus (GPU)</strong> delivers the highest indexing throughput — <strong>320K vectors/sec</strong> on a single Tesla T4, nearly 8x Qdrant and 6.4x Pinecone.</li><li><strong>Query latency</strong> on GPU (8ms p99) is competitive with the fastest alternatives.</li><li><strong>Scale ceiling</strong> is where Milvus dominates: production deployments at <strong>10 billion+ vectors</strong> are documented, with theoretical limits far higher.</li><li>The trade-off is operational complexity. Milvus requires Kubernetes expertise. If you need zero-ops, <a href=https://cloud.zilliz.com>Zilliz Cloud</a> or a managed <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Kubernetes cluster</a> is recommended.</li></ul><h3 id=large-scale-insert-benchmark>Large-Scale Insert Benchmark</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Benchmark script for insertion throughput</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pymilvus <span style=color:#f92672>import</span> Collection
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>collection <span style=color:#f92672>=</span> Collection(<span style=color:#e6db74>&#34;benchmark&#34;</span>)
-</span></span><span style=display:flex><span>batch <span style=color:#f92672>=</span> <span style=color:#ae81ff>100000</span>  <span style=color:#75715e># 100K vectors</span>
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(batch, <span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>tolist()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>t0 <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>insert([embeddings])
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>flush()
-</span></span><span style=display:flex><span>elapsed <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> t0
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Inserted </span><span style=color:#e6db74>{</span>batch<span style=color:#e6db74>:</span><span style=color:#e6db74>,</span><span style=color:#e6db74>}</span><span style=color:#e6db74> vectors in </span><span style=color:#e6db74>{</span>elapsed<span style=color:#e6db74>:</span><span style=color:#e6db74>.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>s&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Throughput: </span><span style=color:#e6db74>{</span>batch<span style=color:#f92672>/</span>elapsed<span style=color:#e6db74>:</span><span style=color:#e6db74>,.0f</span><span style=color:#e6db74>}</span><span style=color:#e6db74> vectors/sec&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#75715e># Output on GPU index node: Inserted 100,000 vectors in 0.31s</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Output: Throughput: 320,000 vectors/sec</span>
-</span></span></code></pre></div><h2 id=integration-with-popular-ai-frameworks>Integration with Popular AI Frameworks</h2><h3 id=langchain-integration>LangChain Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>pip install langchain<span style=color:#f92672>-</span>milvus<span style=color:#f92672>==</span><span style=color:#ae81ff>0.1.8</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> langchain_milvus <span style=color:#f92672>import</span> Milvus
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> OpenAIEmbeddings
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> OpenAIEmbeddings(model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-embedding-3-large&#34;</span>)
-</span></span><span style=display:flex><span>vector_store <span style=color:#f92672>=</span> Milvus(
-</span></span><span style=display:flex><span>    embedding_function<span style=color:#f92672>=</span>embeddings,
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;langchain_docs&#34;</span>,
-</span></span><span style=display:flex><span>    connection_args<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;localhost&#34;</span>, <span style=color:#e6db74>&#34;port&#34;</span>: <span style=color:#e6db74>&#34;19530&#34;</span>},
-</span></span><span style=display:flex><span>    auto_id<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Add documents</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_core.documents <span style=color:#f92672>import</span> Document
-</span></span><span style=display:flex><span>docs <span style=color:#f92672>=</span> [Document(page_content<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Milvus supports billion-scale vectors&#34;</span>, metadata<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;docs&#34;</span>})]
-</span></span><span style=display:flex><span>vector_store<span style=color:#f92672>.</span>add_documents(docs)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Similarity search</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> vector_store<span style=color:#f92672>.</span>similarity_search(<span style=color:#e6db74>&#34;large scale vector search&#34;</span>, k<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> doc <span style=color:#f92672>in</span> results: print(doc<span style=color:#f92672>.</span>page_content)
-</span></span></code></pre></div><h3 id=llamaindex-integration>LlamaIndex Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>pip install llama<span style=color:#f92672>-</span>index<span style=color:#f92672>-</span>vector<span style=color:#f92672>-</span>stores<span style=color:#f92672>-</span>milvus<span style=color:#f92672>==</span><span style=color:#ae81ff>0.6.0</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.vector_stores.milvus <span style=color:#f92672>import</span> MilvusVectorStore
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, SimpleDirectoryReader
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>vector_store <span style=color:#f92672>=</span> MilvusVectorStore(
-</span></span><span style=display:flex><span>    uri<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:19530&#34;</span>,
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;llamaindex_docs&#34;</span>,
-</span></span><span style=display:flex><span>    dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>,
-</span></span><span style=display:flex><span>    overwrite<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load and index documents</span>
-</span></span><span style=display:flex><span>documents <span style=color:#f92672>=</span> SimpleDirectoryReader(<span style=color:#e6db74>&#34;./data&#34;</span>)<span style=color:#f92672>.</span>load_data()
-</span></span><span style=display:flex><span>index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(documents, vector_store<span style=color:#f92672>=</span>vector_store)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Query</span>
-</span></span><span style=display:flex><span>query_engine <span style=color:#f92672>=</span> index<span style=color:#f92672>.</span>as_query_engine()
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> query_engine<span style=color:#f92672>.</span>query(<span style=color:#e6db74>&#34;What is Milvus architecture?&#34;</span>)
-</span></span><span style=display:flex><span>print(response)
-</span></span></code></pre></div><h3 id=openai-embeddings-integration>OpenAI Embeddings Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> openai <span style=color:#f92672>import</span> OpenAI
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> OpenAI()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_embedding</span>(text: str) <span style=color:#f92672>-&gt;</span> list[float]: resp <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>embeddings<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>        model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-embedding-3-large&#34;</span>,
-</span></span><span style=display:flex><span>        input<span style=color:#f92672>=</span>text,
-</span></span><span style=display:flex><span>        dimensions<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> resp<span style=color:#f92672>.</span>data[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>embedding
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Insert OpenAI embeddings into Milvus</span>
-</span></span><span style=display:flex><span>embedding <span style=color:#f92672>=</span> get_embedding(<span style=color:#e6db74>&#34;Milvus vector database handles 10 billion vectors&#34;</span>)
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>insert([[embedding], [<span style=color:#e6db74>&#34;milvus_overview&#34;</span>]])
-</span></span></code></pre></div><h2 id=advanced-usage-and-production-hardening>Advanced Usage and Production Hardening</h2><h3 id=tiered-storage-configuration>Tiered Storage Configuration</h3><p>Milvus 2.5 supports tiered storage to reduce costs for large datasets: `````yaml</p><h1 id=helm-values-for-tiered-storage>Helm values for tiered storage</h1><p>extraConfigFiles: user.yaml: |+
+| <strong>Self-Host Cost ($/M/mo)</strong> | ~$400 | ~$600 | N/A | ~$320 | ~$280 |</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Milvus (GPU)</strong> delivers the highest indexing throughput — <strong>320K vectors/sec</strong> on a single Tesla T4, nearly 8x Qdrant and 6.4x Pinecone.</li>
+<li><strong>Query latency</strong> on GPU (8ms p99) is competitive with the fastest alternatives.</li>
+<li><strong>Scale ceiling</strong> is where Milvus dominates: production deployments at <strong>10 billion+ vectors</strong> are documented, with theoretical limits far higher.</li>
+<li>The trade-off is operational complexity. Milvus requires Kubernetes expertise. If you need zero-ops, <a href="https://cloud.zilliz.com">Zilliz Cloud</a> or a managed <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Kubernetes cluster</a> is recommended.</li>
+</ul>
+<h3 id="large-scale-insert-benchmark">Large-Scale Insert Benchmark</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Benchmark script for insertion throughput</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pymilvus <span style="color:#f92672">import</span> Collection
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>collection <span style="color:#f92672">=</span> Collection(<span style="color:#e6db74">&#34;benchmark&#34;</span>)
+</span></span><span style="display:flex;"><span>batch <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000</span>  <span style="color:#75715e"># 100K vectors</span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(batch, <span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>tolist()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>t0 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>insert([embeddings])
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>flush()
+</span></span><span style="display:flex;"><span>elapsed <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> t0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Inserted </span><span style="color:#e6db74">{</span>batch<span style="color:#e6db74">:</span><span style="color:#e6db74">,</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> vectors in </span><span style="color:#e6db74">{</span>elapsed<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Throughput: </span><span style="color:#e6db74">{</span>batch<span style="color:#f92672">/</span>elapsed<span style="color:#e6db74">:</span><span style="color:#e6db74">,.0f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> vectors/sec&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output on GPU index node: Inserted 100,000 vectors in 0.31s</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: Throughput: 320,000 vectors/sec</span>
+</span></span></code></pre></div><h2 id="integration-with-popular-ai-frameworks">Integration with Popular AI Frameworks</h2>
+<h3 id="langchain-integration">LangChain Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pip install langchain<span style="color:#f92672">-</span>milvus<span style="color:#f92672">==</span><span style="color:#ae81ff">0.1.8</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_milvus <span style="color:#f92672">import</span> Milvus
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-large&#34;</span>)
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> Milvus(
+</span></span><span style="display:flex;"><span>    embedding_function<span style="color:#f92672">=</span>embeddings,
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;langchain_docs&#34;</span>,
+</span></span><span style="display:flex;"><span>    connection_args<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;localhost&#34;</span>, <span style="color:#e6db74">&#34;port&#34;</span>: <span style="color:#e6db74">&#34;19530&#34;</span>},
+</span></span><span style="display:flex;"><span>    auto_id<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add documents</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.documents <span style="color:#f92672">import</span> Document
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> [Document(page_content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Milvus supports billion-scale vectors&#34;</span>, metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;docs&#34;</span>})]
+</span></span><span style="display:flex;"><span>vector_store<span style="color:#f92672">.</span>add_documents(docs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Similarity search</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> vector_store<span style="color:#f92672">.</span>similarity_search(<span style="color:#e6db74">&#34;large scale vector search&#34;</span>, k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> results: print(doc<span style="color:#f92672">.</span>page_content)
+</span></span></code></pre></div><h3 id="llamaindex-integration">LlamaIndex Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pip install llama<span style="color:#f92672">-</span>index<span style="color:#f92672">-</span>vector<span style="color:#f92672">-</span>stores<span style="color:#f92672">-</span>milvus<span style="color:#f92672">==</span><span style="color:#ae81ff">0.6.0</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.vector_stores.milvus <span style="color:#f92672">import</span> MilvusVectorStore
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, SimpleDirectoryReader
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> MilvusVectorStore(
+</span></span><span style="display:flex;"><span>    uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:19530&#34;</span>,
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;llamaindex_docs&#34;</span>,
+</span></span><span style="display:flex;"><span>    dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,
+</span></span><span style="display:flex;"><span>    overwrite<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load and index documents</span>
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> SimpleDirectoryReader(<span style="color:#e6db74">&#34;./data&#34;</span>)<span style="color:#f92672">.</span>load_data()
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents, vector_store<span style="color:#f92672">=</span>vector_store)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query</span>
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> query_engine<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;What is Milvus architecture?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(response)
+</span></span></code></pre></div><h3 id="openai-embeddings-integration">OpenAI Embeddings Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_embedding</span>(text: str) <span style="color:#f92672">-&gt;</span> list[float]: resp <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>embeddings<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-large&#34;</span>,
+</span></span><span style="display:flex;"><span>        input<span style="color:#f92672">=</span>text,
+</span></span><span style="display:flex;"><span>        dimensions<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> resp<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>embedding
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Insert OpenAI embeddings into Milvus</span>
+</span></span><span style="display:flex;"><span>embedding <span style="color:#f92672">=</span> get_embedding(<span style="color:#e6db74">&#34;Milvus vector database handles 10 billion vectors&#34;</span>)
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>insert([[embedding], [<span style="color:#e6db74">&#34;milvus_overview&#34;</span>]])
+</span></span></code></pre></div><h2 id="advanced-usage-and-production-hardening">Advanced Usage and Production Hardening</h2>
+<h3 id="tiered-storage-configuration">Tiered Storage Configuration</h3>
+<p>Milvus 2.5 supports tiered storage to reduce costs for large datasets: `````yaml</p>
+<h1 id="helm-values-for-tiered-storage">Helm values for tiered storage</h1>
+<p>extraConfigFiles: user.yaml: |+
 common: storageType: remote
 minio: address: minio.milvus.svc:9000
 bucketName: milvus-bucket
 rootPath: files
 # Enable tiered storage
 queryNode: cache: warmUp: async
-memoryLimit: 8GB # Hot data in memory
-disk: enabled: true # Warm data on local disk
-capacity: 100GB</p><pre tabindex=0><code>
+memoryLimit: 8GB  # Hot data in memory
+disk: enabled: true     # Warm data on local disk
+capacity: 100GB</p>
+<pre tabindex="0"><code>
 ### Backup and Disaster Recovery
 
 `````bash
@@ -265,37 +396,52 @@ make
 
 # Restore to new cluster
 ./milvus-backup restore -n prod_backup_2026_05 -c restored_collection
-</code></pre><h3 id=monitoring-with-prometheus-and-grafana>Monitoring with Prometheus and Grafana</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Helm values for Milvus monitoring</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metrics: enabled</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>serviceMonitor: enabled</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>interval</span>: <span style=color:#ae81ff>30s</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Grafana dashboard: https://github.com/zilliztech/milvus-insight</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Port-forward to access Milvus metrics</span>
-</span></span><span style=display:flex><span>kubectl port-forward svc/my-milvus-proxy 9091:9091
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check health</span>
-</span></span><span style=display:flex><span>curl http://localhost:9091/metrics | grep milvus_querynode_latency
-</span></span></code></pre></div><h3 id=multi-tenancy-with-partitions>Multi-Tenancy with Partitions</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Create partitions for multi-tenant isolation</span>
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>create_partition(<span style=color:#e6db74>&#34;tenant_acme&#34;</span>)
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>create_partition(<span style=color:#e6db74>&#34;tenant_globalcorp&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Insert tenant-specific data</span>
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>insert(
-</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>[[embedding], [<span style=color:#e6db74>&#34;doc_1&#34;</span>]],
-</span></span><span style=display:flex><span>    partition_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tenant_acme&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Search within tenant partition only</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> collection<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>[query_vector],
-</span></span><span style=display:flex><span>    anns_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>,
-</span></span><span style=display:flex><span>    param<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;metric_type&#34;</span>: <span style=color:#e6db74>&#34;L2&#34;</span>, <span style=color:#e6db74>&#34;params&#34;</span>: {<span style=color:#e6db74>&#34;ef&#34;</span>: <span style=color:#ae81ff>64</span>}},
-</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    partition_names<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;tenant_acme&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | Milvus 2.5 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | pgvector 0.8 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="monitoring-with-prometheus-and-grafana">Monitoring with Prometheus and Grafana</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Helm values for Milvus monitoring</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metrics: enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">serviceMonitor: enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Grafana dashboard: https://github.com/zilliztech/milvus-insight</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Port-forward to access Milvus metrics</span>
+</span></span><span style="display:flex;"><span>kubectl port-forward svc/my-milvus-proxy 9091:9091
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check health</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:9091/metrics | grep milvus_querynode_latency
+</span></span></code></pre></div><h3 id="multi-tenancy-with-partitions">Multi-Tenancy with Partitions</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Create partitions for multi-tenant isolation</span>
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>create_partition(<span style="color:#e6db74">&#34;tenant_acme&#34;</span>)
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>create_partition(<span style="color:#e6db74">&#34;tenant_globalcorp&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Insert tenant-specific data</span>
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>insert(
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span>[[embedding], [<span style="color:#e6db74">&#34;doc_1&#34;</span>]],
+</span></span><span style="display:flex;"><span>    partition_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tenant_acme&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search within tenant partition only</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> collection<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span>[query_vector],
+</span></span><span style="display:flex;"><span>    anns_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>,
+</span></span><span style="display:flex;"><span>    param<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;metric_type&#34;</span>: <span style="color:#e6db74">&#34;L2&#34;</span>, <span style="color:#e6db74">&#34;params&#34;</span>: {<span style="color:#e6db74">&#34;ef&#34;</span>: <span style="color:#ae81ff">64</span>}},
+</span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    partition_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;tenant_acme&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Milvus 2.5 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | pgvector 0.8 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Open Source</strong> | Apache-2.0 | No | BSD-3 | Apache-2.0 | PostgreSQL |
 | <strong>Max Scale</strong> | <strong>10B+ vectors</strong> | Unlimited | 200M/node | 500M/node | ~50M |
 | <strong>p99 Latency</strong> | 8ms (GPU) | 28ms | 19ms | 12ms | 25-40ms |
@@ -304,8 +450,42 @@ make
 | <strong>Hybrid Search</strong> | Native + filter | Native | <strong>Best-in-class</strong> | BM42 | FTS + vector |
 | <strong>SQL Support</strong> | No (gRPC/REST) | No | GraphQL | No | <strong>Full SQL</strong> |
 | <strong>Managed Option</strong> | Zilliz Cloud | Native | Weaviate Cloud | Qdrant Cloud | Supabase/Neon |
-| <strong>Self-Host Cost</strong> | $400/M/mo | N/A | $320/M/mo | $280/M/mo | <strong>$0 (use existing PG)</strong> |</p><p><strong>When to choose Milvus:</strong></p><ul><li>Your dataset will exceed <strong>100M vectors</strong> within 12 months.</li><li>You have a Kubernetes cluster already running.</li><li>GPU hardware is available for index acceleration.</li><li>You need the lowest possible self-hosted cost at billion-scale (where managed alternatives become prohibitively expensive).</li></ul><p><strong>When to choose an alternative:</strong></p><ul><li><strong>Pinecone</strong>: Zero-ops requirement, smaller scale (&lt;50M vectors), budget allows managed pricing.</li><li><strong>Weaviate</strong>: Native hybrid search (BM25 + vector) is critical, GraphQL API preferred.</li><li><strong>Qdrant</strong>: Raw latency is paramount, Rust-native performance, simpler self-hosting.</li><li><strong><a href=dibi8-internal-link>pgvector</a></strong>: Already on PostgreSQL, &lt;10M vectors, need ACID transactions + vector search in one system.</li></ul><h2 id=limitations-honest-assessment>Limitations: Honest Assessment</h2><p><strong>Operational complexity:</strong> Milvus requires Kubernetes, etcd, MinIO, and message brokers. This is not a single-binary deployment. Teams without dedicated DevOps should use Zilliz Cloud or a simpler alternative.</p><p><strong>Overkill at small scale:</strong> Below 10M vectors, the distributed architecture adds unnecessary overhead. Single-node Qdrant or pgvector will be faster to deploy and operate.</p><p><strong>No SQL interface:</strong> Milvus uses gRPC/REST APIs. If your team is deeply invested in SQL, Weaviate (GraphQL) or pgvector (SQL) will feel more natural.</p><p><strong>Memory hunger:</strong> GPU-accelerated queries require GPU memory. A Tesla T4 (16GB VRAM) can hold ~10M vectors of 1536 dimensions in GPU memory. Plan hardware accordingly.</p><p><strong>Learning curve:</strong> The component architecture (proxy, query node, data node, index node, coordinators) has a steeper learning curve than monolithic alternatives.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=how-many-vectors-can-a-single-milvus-cluster-handle>How many vectors can a single Milvus cluster handle?</h3><p>Production deployments have demonstrated <strong>10 billion vectors</strong> with query latency under 10ms p99. The theoretical limit depends on available storage and compute. With tiered storage (hot/warm/cold), even larger datasets are feasible. A single query node can typically handle 100-200M vectors in memory.</p><h3 id=does-milvus-support-real-time-inserts-during-search>Does Milvus support real-time inserts during search?</h3><p>Yes. Milvus uses a <strong>log-structured merge tree</strong> approach. New inserts go to a mutable segment that is immediately searchable, while background processes flush and compact immutable segments. There is no &ldquo;index lock&rdquo; during inserts — searches continue uninterrupted.</p><h3 id=what-is-the-difference-between-milvus-and-zilliz-cloud>What is the difference between Milvus and Zilliz Cloud?</h3><p><strong>Milvus</strong> is the open-source project you self-host on your own infrastructure. <strong>Zilliz Cloud</strong> is the fully managed service operated by Zilliz (the creators of Milvus). They share identical APIs, so your application code does not change when switching between them. Zilliz Cloud adds auto-scaling, automated backups, and SOC 2 compliance.</p><h3 id=can-milvus-replace-elasticsearch-for-text-search>Can Milvus replace Elasticsearch for text search?</h3><p>Not entirely. Milvus excels at dense vector (semantic) search. For pure keyword (BM25) search, Elasticsearch still leads. However, Milvus 2.5 supports <strong>hybrid search</strong> combining dense vectors with sparse vectors for keyword relevance. For applications needing both semantic and lexical search, a dual-system approach or Weaviate&rsquo;s native hybrid may be preferable.</p><h3 id=how-does-gpu-indexing-work-in-milvus-25>How does GPU indexing work in Milvus 2.5?</h3><p>Milvus 2.5 integrates NVIDIA RAFT for GPU-accelerated HNSW and IVF index construction. When an index node has GPU resources assigned, index builds automatically use GPU kernels. This reduces index build time by <strong>~6x</strong> compared to CPU-only builds. Query execution can also leverage GPU memory for lower latency. GPU support requires NVIDIA drivers and the CUDA toolkit on index nodes.</p><h3 id=what-backup-strategies-does-milvus-support>What backup strategies does Milvus support?</h3><p>Milvus Backup (official tool) supports full cluster snapshots to S3-compatible storage. For production, schedule daily backups via cron: `````bash
-0 2 * * * /usr/local/bin/milvus-backup create -n &ldquo;auto_$(date +%Y%m%d)&rdquo;</p><pre tabindex=0><code>
+| <strong>Self-Host Cost</strong> | $400/M/mo | N/A | $320/M/mo | $280/M/mo | <strong>$0 (use existing PG)</strong> |</p>
+<p><strong>When to choose Milvus:</strong></p>
+<ul>
+<li>Your dataset will exceed <strong>100M vectors</strong> within 12 months.</li>
+<li>You have a Kubernetes cluster already running.</li>
+<li>GPU hardware is available for index acceleration.</li>
+<li>You need the lowest possible self-hosted cost at billion-scale (where managed alternatives become prohibitively expensive).</li>
+</ul>
+<p><strong>When to choose an alternative:</strong></p>
+<ul>
+<li><strong>Pinecone</strong>: Zero-ops requirement, smaller scale (&lt;50M vectors), budget allows managed pricing.</li>
+<li><strong>Weaviate</strong>: Native hybrid search (BM25 + vector) is critical, GraphQL API preferred.</li>
+<li><strong>Qdrant</strong>: Raw latency is paramount, Rust-native performance, simpler self-hosting.</li>
+<li><strong><a href="dibi8-internal-link">pgvector</a></strong>: Already on PostgreSQL, &lt;10M vectors, need ACID transactions + vector search in one system.</li>
+</ul>
+<h2 id="limitations-honest-assessment">Limitations: Honest Assessment</h2>
+<p><strong>Operational complexity:</strong> Milvus requires Kubernetes, etcd, MinIO, and message brokers. This is not a single-binary deployment. Teams without dedicated DevOps should use Zilliz Cloud or a simpler alternative.</p>
+<p><strong>Overkill at small scale:</strong> Below 10M vectors, the distributed architecture adds unnecessary overhead. Single-node Qdrant or pgvector will be faster to deploy and operate.</p>
+<p><strong>No SQL interface:</strong> Milvus uses gRPC/REST APIs. If your team is deeply invested in SQL, Weaviate (GraphQL) or pgvector (SQL) will feel more natural.</p>
+<p><strong>Memory hunger:</strong> GPU-accelerated queries require GPU memory. A Tesla T4 (16GB VRAM) can hold ~10M vectors of 1536 dimensions in GPU memory. Plan hardware accordingly.</p>
+<p><strong>Learning curve:</strong> The component architecture (proxy, query node, data node, index node, coordinators) has a steeper learning curve than monolithic alternatives.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="how-many-vectors-can-a-single-milvus-cluster-handle">How many vectors can a single Milvus cluster handle?</h3>
+<p>Production deployments have demonstrated <strong>10 billion vectors</strong> with query latency under 10ms p99. The theoretical limit depends on available storage and compute. With tiered storage (hot/warm/cold), even larger datasets are feasible. A single query node can typically handle 100-200M vectors in memory.</p>
+<h3 id="does-milvus-support-real-time-inserts-during-search">Does Milvus support real-time inserts during search?</h3>
+<p>Yes. Milvus uses a <strong>log-structured merge tree</strong> approach. New inserts go to a mutable segment that is immediately searchable, while background processes flush and compact immutable segments. There is no &ldquo;index lock&rdquo; during inserts — searches continue uninterrupted.</p>
+<h3 id="what-is-the-difference-between-milvus-and-zilliz-cloud">What is the difference between Milvus and Zilliz Cloud?</h3>
+<p><strong>Milvus</strong> is the open-source project you self-host on your own infrastructure. <strong>Zilliz Cloud</strong> is the fully managed service operated by Zilliz (the creators of Milvus). They share identical APIs, so your application code does not change when switching between them. Zilliz Cloud adds auto-scaling, automated backups, and SOC 2 compliance.</p>
+<h3 id="can-milvus-replace-elasticsearch-for-text-search">Can Milvus replace Elasticsearch for text search?</h3>
+<p>Not entirely. Milvus excels at dense vector (semantic) search. For pure keyword (BM25) search, Elasticsearch still leads. However, Milvus 2.5 supports <strong>hybrid search</strong> combining dense vectors with sparse vectors for keyword relevance. For applications needing both semantic and lexical search, a dual-system approach or Weaviate&rsquo;s native hybrid may be preferable.</p>
+<h3 id="how-does-gpu-indexing-work-in-milvus-25">How does GPU indexing work in Milvus 2.5?</h3>
+<p>Milvus 2.5 integrates NVIDIA RAFT for GPU-accelerated HNSW and IVF index construction. When an index node has GPU resources assigned, index builds automatically use GPU kernels. This reduces index build time by <strong>~6x</strong> compared to CPU-only builds. Query execution can also leverage GPU memory for lower latency. GPU support requires NVIDIA drivers and the CUDA toolkit on index nodes.</p>
+<h3 id="what-backup-strategies-does-milvus-support">What backup strategies does Milvus support?</h3>
+<p>Milvus Backup (official tool) supports full cluster snapshots to S3-compatible storage. For production, schedule daily backups via cron: `````bash
+0 2 * * * /usr/local/bin/milvus-backup create -n &ldquo;auto_$(date +%Y%m%d)&rdquo;</p>
+<pre tabindex="0"><code>
 Point-in-time recovery is available when using Pulsar as the message broker, which retains operation logs.
 
 ## Conclusion: Start Building
@@ -380,13 +560,265 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 
 * * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fzilliz-milvus-vector-database-scale%2f&text=etcd%3a%20metadata%20coordination" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fzilliz-milvus-vector-database-scale%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fzilliz-milvus-vector-database-scale%2f&text=etcd%3a%20metadata%20coordination" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fzilliz-milvus-vector-database-scale%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

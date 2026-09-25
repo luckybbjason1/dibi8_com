@@ -1,31 +1,107 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/personal-ai-infrastructure-daniel-miessler/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/personal-ai-infrastructure-daniel-miessler/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h1 id=personal-ai-infrastructure-agentic-ai-setup-for-humans--2026-guide>Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide</h1><p>Personal AI Infrastructure (PAI) (15,000+ stars) by Daniel Miessler is a &ldquo;Life Operating System&rdquo; that combines AI strategy, execution, and reflection into one unified platform. With 45 skills, 171 workflows, 37 hooks, and Algorithm v6.3.0, PAI transforms AI from a simple tool into an intelligent partner that knows who you are and what you&rsquo;re trying to achieve.</p><p><img alt="PAI Architecture" loading=lazy src=https://opengraph.github.com/github/danielmiessler/Personal_AI_Infrastructure></p><h2 id=what-is-pai>What Is PAI?</h2><p>PAI is not a chatbot, not a code generator, and not a productivity app. It is a <strong>Life Operating System</strong> — a complete infrastructure layer that sits between you and all your AI tools, managing context, strategy, and execution across every AI interaction you have.</p><p>PAI has three layers: ````
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/personal-ai-infrastructure-daniel-miessler/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/personal-ai-infrastructure-daniel-miessler/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h1 id="personal-ai-infrastructure-agentic-ai-setup-for-humans--2026-guide">Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide</h1>
+<p>Personal AI Infrastructure (PAI) (15,000+ stars) by Daniel Miessler is a &ldquo;Life Operating System&rdquo; that combines AI strategy, execution, and reflection into one unified platform. With 45 skills, 171 workflows, 37 hooks, and Algorithm v6.3.0, PAI transforms AI from a simple tool into an intelligent partner that knows who you are and what you&rsquo;re trying to achieve.</p>
+<p><img alt="PAI Architecture" loading="lazy" src="https://opengraph.github.com/github/danielmiessler/Personal_AI_Infrastructure"></p>
+<h2 id="what-is-pai">What Is PAI?</h2>
+<p>PAI is not a chatbot, not a code generator, and not a productivity app. It is a <strong>Life Operating System</strong> — a complete infrastructure layer that sits between you and all your AI tools, managing context, strategy, and execution across every AI interaction you have.</p>
+<p>PAI has three layers: ````
 ┌─────────────────────────────────────┐
-│ PAI (The OS) │
-│ Skills, Memory, Algorithm, Telos │
-│ Identity Files, Containment │
+│         PAI (The OS)                │
+│  Skills, Memory, Algorithm, Telos   │
+│  Identity Files, Containment        │
 ├─────────────────────────────────────┤
-│ Pulse (Life Dashboard) │
-│ localhost:31337 │
-│ Voice, Hooks, Observability, Cron │
+│       Pulse (Life Dashboard)        │
+│  localhost:31337                    │
+│  Voice, Hooks, Observability, Cron  │
 ├─────────────────────────────────────┤
-│ The DA (Digital Assistant) │
-│ Your AI&rsquo;s voice and personality │
-│ Named, Voice-picked, TELOS-driven │
-└─────────────────────────────────────┘</p><pre tabindex=0><code>
+│       The DA (Digital Assistant)    │
+│  Your AI&rsquo;s voice and personality    │
+│  Named, Voice-picked, TELOS-driven  │
+└─────────────────────────────────────┘</p>
+<pre tabindex="0"><code>
 **PAI** — the OS itself. Skills, memory, the Algorithm, your Telos, your identity files.
 
 **Pulse** — the Life Dashboard at ````localhost:31337````. Where you see your state, goals, and work.
@@ -46,36 +122,52 @@ Current State ──▶ OBSERVE ──▶ THINK ──▶ PLAN
                              │                 │
                              └──────── LEARN ←┘
 </code></pre><p>Each phase has a specific purpose: | Phase | Purpose | Output |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>OBSERVE</strong> | Gather facts about the current state | State documentation |
 | <strong>THINK</strong> | Analyze using first principles | Root cause analysis |
 | <strong>PLAN</strong> | Define the path to the ideal state | Implementation plan |
 | <strong>BUILD</strong> | Construct the solution | Working artifacts |
 | <strong>EXECUTE</strong> | Deploy and run the solution | Live system |
 | <strong>VERIFY</strong> | Validate against acceptance criteria | Verification report |
-| <strong>LEARN</strong> | Document what was learned | Compounded knowledge |</p><p>The classifier determines whether a prompt needs minimal response, standard LLM processing, or the full seven-phase algorithm. This prevents wasting compute on simple queries while ensuring complex tasks get the full treatment. For reliable API access, <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare.io</a> provides proxy infrastructure.</p><h3 id=mode-classifier>Mode Classifier</h3><p>PAI includes a Sonnet-backed mode classifier that picks the appropriate processing mode per prompt: `````
+| <strong>LEARN</strong> | Document what was learned | Compounded knowledge |</p>
+<p>The classifier determines whether a prompt needs minimal response, standard LLM processing, or the full seven-phase algorithm. This prevents wasting compute on simple queries while ensuring complex tasks get the full treatment. For reliable API access, <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare.io</a> provides proxy infrastructure.</p>
+<h3 id="mode-classifier">Mode Classifier</h3>
+<p>PAI includes a Sonnet-backed mode classifier that picks the appropriate processing mode per prompt: `````
 Mode Classification: ┌────────────┬───────────────┐
-│ Mode │ Description │
+│ Mode       │ Description   │
 ├────────────┼───────────────┤
-│ MINIMAL │ Quick answers │
-│ NATIVE │ Standard LLM │
-│ ALGORITHM │ Full 7-phase │
-└────────────┴───────────────┘</p><p>Tier Classification: ┌────────┬─────────────────────┐
-│ Tier │ Complexity │
+│ MINIMAL    │ Quick answers │
+│ NATIVE     │ Standard LLM  │
+│ ALGORITHM  │ Full 7-phase  │
+└────────────┴───────────────┘</p>
+<p>Tier Classification: ┌────────┬─────────────────────┐
+│ Tier   │ Complexity          │
 ├────────┼─────────────────────┤
-│ E1 │ Simple query │
-│ E2 │ Moderate task │
-│ E3 │ Complex task │
-│ E4 │ Multi-phase project │
-│ E5 │ Life-scale project │
-└────────┴─────────────────────┘</p><pre tabindex=0><code>
+│ E1     │ Simple query        │
+│ E2     │ Moderate task       │
+│ E3     │ Complex task        │
+│ E4     │ Multi-phase project │
+│ E5     │ Life-scale project  │
+└────────┴─────────────────────┘</p>
+<pre tabindex="0"><code>
 The classifier determines whether a prompt needs minimal response, standard LLM processing, or the full seven-phase algorithm. This prevents wasting compute on simple queries while ensuring complex tasks get the full treatment.
 
 ## Installation &amp; Setup
 
 PAI v5.0.0 (the latest major release) is a complete rewrite — not an incremental upgrade. One-line install: `````bash
 curl -sSL https://ourpai.ai/install.sh | bash
-</code></pre><p>After installation: `````bash</p><h1 id=start-the-pulse-daemon>Start the Pulse daemon</h1><p>pulse start</p><h1 id=access-the-life-dashboard>Access the Life Dashboard</h1><p>open http://localhost:31337</p><pre tabindex=0><code>
+</code></pre><p>After installation: `````bash</p>
+<h1 id="start-the-pulse-daemon">Start the Pulse daemon</h1>
+<p>pulse start</p>
+<h1 id="access-the-life-dashboard">Access the Life Dashboard</h1>
+<p>open http://localhost:31337</p>
+<pre tabindex="0"><code>
 The Dashboard provides real-time visibility into: - Current state documentation
 - Active projects and goals
 - AI interaction logs
@@ -90,13 +182,17 @@ PAI begins with an interview that shapes your Digital Assistant: `````bash
 2. <strong>Picking a voice</strong> — Audio identity for voice interactions
 3. <strong>Capturing your TELOS</strong> — Your life&rsquo;s purpose and direction
 4. <strong>Defining constraints</strong> — Budget, time, and resource limits
-5. <strong>Setting principles</strong> — Decision-making heuristics</p><p>The TELOS (Τέλος) is the most important configuration. It captures your fundamental purpose and acts as a filter for every AI-generated recommendation.</p><h3 id=identity-files>Identity Files</h3><p>PAI uses identity files to provide context to your DA: `````
+5. <strong>Setting principles</strong> — Decision-making heuristics</p>
+<p>The TELOS (Τέλος) is the most important configuration. It captures your fundamental purpose and acts as a filter for every AI-generated recommendation.</p>
+<h3 id="identity-files">Identity Files</h3>
+<p>PAI uses identity files to provide context to your DA: `````
 ~/.pai/
-├── PRINCIPAL_IDENTITY.md # Who you are
-├── DA_IDENTITY.md # Your digital assistant&rsquo;s personality
-├── TELOS.md # Your life&rsquo;s purpose
-├── CONTAINMENT_ZONES/ # Privacy isolation rules
-└── SKILLS/ # Custom skills directory</p><pre tabindex=0><code>
+├── PRINCIPAL_IDENTITY.md    # Who you are
+├── DA_IDENTITY.md           # Your digital assistant&rsquo;s personality
+├── TELOS.md                 # Your life&rsquo;s purpose
+├── CONTAINMENT_ZONES/       # Privacy isolation rules
+└── SKILLS/                  # Custom skills directory</p>
+<pre tabindex="0"><code>
 ### Upgrading from v4.x
 
 If you&#39;re upgrading from PAI v4.x, this is a different system — not a patch. Read the [migration guide](https://github.com/danielmiessler/Personal_AI_Infrastructure/releases/v5.0.0) first.
@@ -114,11 +210,26 @@ Skill Categories: ┌───────────────────�
 │ Automation Skills    │   5   │
 │ Reflection Skills    │   4   │
 └──────────────────────┴───────┘
-</code></pre><h3 id=thinking-skills>Thinking Skills</h3><p>PAI&rsquo;s thinking skills are its most distinctive feature. These aren&rsquo;t generic prompts — they&rsquo;re deterministic code execution units: - <strong>First Principles Analysis</strong> — Decompose problems to fundamental truths</p><ul><li><strong>Council Debates</strong> — Simulate multiple expert perspectives</li><li><strong>Red Team Analysis</strong> — Systematically attack your own ideas</li><li><strong>Root Cause Analysis</strong> — Find the underlying cause, not symptoms</li><li><strong>Inversion Thinking</strong> — Solve problems by considering the opposite</li><li><strong>Second-Order Thinking</strong> — Map the consequences of consequences</li><li><strong>Steel-Manning</strong> — Build the strongest version of opposing arguments</li><li><strong>Pre-Mortem Analysis</strong> — Imagine failure and work backward</li><li><strong>Systems Thinking</strong> — Map interconnected relationships</li></ul><h3 id=code-execution-skills>Code Execution Skills</h3><p>PAI biases toward deterministic code execution over pure prompting: `````
-Skill Hierarchy (deterministic > prompt-based): 1. Code (deterministic) ← Most preferred
+</code></pre><h3 id="thinking-skills">Thinking Skills</h3>
+<p>PAI&rsquo;s thinking skills are its most distinctive feature. These aren&rsquo;t generic prompts — they&rsquo;re deterministic code execution units: - <strong>First Principles Analysis</strong> — Decompose problems to fundamental truths</p>
+<ul>
+<li><strong>Council Debates</strong> — Simulate multiple expert perspectives</li>
+<li><strong>Red Team Analysis</strong> — Systematically attack your own ideas</li>
+<li><strong>Root Cause Analysis</strong> — Find the underlying cause, not symptoms</li>
+<li><strong>Inversion Thinking</strong> — Solve problems by considering the opposite</li>
+<li><strong>Second-Order Thinking</strong> — Map the consequences of consequences</li>
+<li><strong>Steel-Manning</strong> — Build the strongest version of opposing arguments</li>
+<li><strong>Pre-Mortem Analysis</strong> — Imagine failure and work backward</li>
+<li><strong>Systems Thinking</strong> — Map interconnected relationships</li>
+</ul>
+<h3 id="code-execution-skills">Code Execution Skills</h3>
+<p>PAI biases toward deterministic code execution over pure prompting: `````
+Skill Hierarchy (deterministic &gt; prompt-based): 1. Code (deterministic) ← Most preferred
 2. CLI to run the code
 3. Workflow that prompts the CLI
-4. SKILL.md that routes between workflows</p><p>&ldquo;Prompts wrap code; code doesn&rsquo;t wrap prompts.&rdquo;</p><pre tabindex=0><code>
+4. SKILL.md that routes between workflows</p>
+<p>&ldquo;Prompts wrap code; code doesn&rsquo;t wrap prompts.&rdquo;</p>
+<pre tabindex="0"><code>
 ### The ISA — Ideal State Artifact
 
 The ISA is a universal primitive for articulating &#34;ideal state&#34;: `````markdown
@@ -136,14 +247,26 @@ The ISA is a universal primitive for articulating &#34;ideal state&#34;: `````ma
 10. Decisions — Key architectural choices
 11. Changelog — Version history
 12. Verification — Final validation
-</code></pre><p>Every major project in PAI starts with an ISA. This forces clarity before execution.</p><h2 id=features-deep-dive>Features Deep Dive</h2><h3 id=pulse-daemon>Pulse Daemon</h3><p>Pulse is the unified daemon that powers the Life Dashboard at <code>localhost:31337</code>. It provides: - <strong>Voice integration</strong> — Speech input/output for hands-free interaction</p><ul><li><strong>Hooks</strong> — Automated triggers based on events, time, or context</li><li><strong>Observability</strong> — Real-time monitoring of all AI interactions</li><li><strong>Cron scheduling</strong> — Scheduled tasks and automated workflows</li><li><strong>Wiki API</strong> — Structured knowledge base access</li><li><strong>Telegram/iMessage bridges</strong> — Optional messaging integrations</li></ul><p>The Pulse dashboard has 22 routes covering: `````
+</code></pre><p>Every major project in PAI starts with an ISA. This forces clarity before execution.</p>
+<h2 id="features-deep-dive">Features Deep Dive</h2>
+<h3 id="pulse-daemon">Pulse Daemon</h3>
+<p>Pulse is the unified daemon that powers the Life Dashboard at <code>localhost:31337</code>. It provides: - <strong>Voice integration</strong> — Speech input/output for hands-free interaction</p>
+<ul>
+<li><strong>Hooks</strong> — Automated triggers based on events, time, or context</li>
+<li><strong>Observability</strong> — Real-time monitoring of all AI interactions</li>
+<li><strong>Cron scheduling</strong> — Scheduled tasks and automated workflows</li>
+<li><strong>Wiki API</strong> — Structured knowledge base access</li>
+<li><strong>Telegram/iMessage bridges</strong> — Optional messaging integrations</li>
+</ul>
+<p>The Pulse dashboard has 22 routes covering: `````
 Pulse Dashboard Routes: ┌────────────────────────────────────────────────────┐
-│ Dashboard │ Current State │ Ideal State │ Strategy │
-│ Tasks │ Projects │ Skills │ Workflows │
-│ Metrics │ Logs │ Hooks │ Cron │
-│ Settings │ Identity │ TELOS │ Contain. │
-│ Reports │ Audit │ Backup │ Restore │
-└────────────────────────────────────────────────────┘</p><pre tabindex=0><code>
+│ Dashboard │ Current State │ Ideal State │ Strategy  │
+│ Tasks     │ Projects      │ Skills      │ Workflows │
+│ Metrics   │ Logs          │ Hooks       │ Cron      │
+│ Settings  │ Identity      │ TELOS       │ Contain.  │
+│ Reports   │ Audit         │ Backup      │ Restore   │
+└────────────────────────────────────────────────────┘</p>
+<pre tabindex="0"><code>
 ### 171 Workflows
 
 Workflows are pre-built sequences of skills that automate common patterns: `````
@@ -152,7 +275,8 @@ Workflow Examples: - research-workflow: Gather sources → Analyze → Synthesiz
 - decision-framework: Define problem → Gather options → Evaluate → Decide
 - project-init: Brainstorm → ISA → Plan → Execute
 - daily-standup: Review progress → Update state → Plan next steps
-</code></pre><h3 id=37-hooks>37 Hooks</h3><p>Hooks automate responses to specific triggers: `````json
+</code></pre><h3 id="37-hooks">37 Hooks</h3>
+<p>Hooks automate responses to specific triggers: `````json
 // Hook examples
 {
 &ldquo;trigger&rdquo;: &ldquo;git-commit&rdquo;,
@@ -161,7 +285,8 @@ Workflow Examples: - research-workflow: Gather sources → Analyze → Synthesiz
 &ldquo;folder&rdquo;: &ldquo;daily-logs&rdquo;,
 &ldquo;template&rdquo;: &ldquo;commit-template.md&rdquo;
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 ### Containment Zones
 
 PAI provides structural privacy through containment zones. Each zone isolates data and AI interactions: `````json
@@ -188,8 +313,15 @@ PAI provides structural privacy through containment zones. Each zone isolates da
     }
   ]
 }
-</code></pre><h2 id=integration-with-other-tools>Integration with Other Tools</h2><p>PAI integrates with the broader AI ecosystem: | Tool | Integration | Direction |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="integration-with-other-tools">Integration with Other Tools</h2>
+<p>PAI integrates with the broader AI ecosystem: | Tool | Integration | Direction |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Claude Code | Skills layer | PAI → Claude |
 | Cursor | Identity files | PAI → Cursor |
 | Obsidian | Knowledge base | Bi-directional |
@@ -197,7 +329,14 @@ PAI provides structural privacy through containment zones. Each zone isolates da
 | Telegram | Notifications | PAI → Telegram |
 | iMessage | Notifications | PAI → iMessage |
 | Cron | Scheduled tasks | PAI manages |
-| Local LLMs | Fallback mode | LLM → PAI |</p><h3 id=obsidian-integration>Obsidian Integration</h3><p>PAI syncs its knowledge base with Obsidian: `````bash</p><h1 id=sync-pai-data-to-obsidian-vault>Sync PAI data to Obsidian vault</h1><p>pulse sync &ndash;target obsidian &ndash;vault ~/Obsidian</p><h1 id=import-obsidian-notes-into-pai>Import Obsidian notes into PAI</h1><p>pulse import &ndash;source obsidian &ndash;vault ~/Obsidian</p><pre tabindex=0><code>
+| Local LLMs | Fallback mode | LLM → PAI |</p>
+<h3 id="obsidian-integration">Obsidian Integration</h3>
+<p>PAI syncs its knowledge base with Obsidian: `````bash</p>
+<h1 id="sync-pai-data-to-obsidian-vault">Sync PAI data to Obsidian vault</h1>
+<p>pulse sync &ndash;target obsidian &ndash;vault ~/Obsidian</p>
+<h1 id="import-obsidian-notes-into-pai">Import Obsidian notes into PAI</h1>
+<p>pulse import &ndash;source obsidian &ndash;vault ~/Obsidian</p>
+<pre tabindex="0"><code>
 This creates a persistent knowledge base that survives across PAI sessions.
 
 ### GitHub Integration
@@ -208,13 +347,37 @@ pulse project --create --github my-new-project
 
 # Sync current state to GitHub issues
 pulse sync --target github --issues
-</code></pre><h2 id=benchmarks--real-world-use-cases>Benchmarks / Real-World Use Cases</h2><h3 id=decision-quality-improvement>Decision Quality Improvement</h3><p>Users report dramatic improvements in decision quality after adopting PAI: | Metric | Without PAI | With PAI | Improvement |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="decision-quality-improvement">Decision Quality Improvement</h3>
+<p>Users report dramatic improvements in decision quality after adopting PAI: | Metric | Without PAI | With PAI | Improvement |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Decision re-evaluation rate | 40% | 8% | -80% |
 | Time from problem to solution | 3.2 days | 0.8 days | -75% |
 | Cross-project knowledge reuse | 5% | 45% | +800% |
 | AI prompt effectiveness | 60% | 92% | +53% |
-| Project completion rate | 65% | 89% | +37% |</p><h3 id=typical-daily-workflow>Typical Daily Workflow</h3><p>A typical day with PAI: `````bash</p><h1 id=morning-daily-standup>Morning: Daily standup</h1><p>pulse standup</p><h1 id=work-session-task-with-isa-framework>Work session: Task with ISA framework</h1><p>/isa &ldquo;Build user onboarding flow&rdquo;</p><h1 id=pai-generates-isa-document-breaks-into-tasks>PAI generates ISA document, breaks into tasks</h1><h1 id=during-work-automated-hooks>During work: Automated hooks</h1><h1 id=git-commit--logs-to-obsidian>git commit → logs to Obsidian</h1><h1 id=pr-merged--updates-project-status>PR merged → updates project status</h1><h1 id=evening-reflection>Evening: Reflection</h1><p>pulse reflect &ndash;today</p><h1 id=pai-compiles-daily-learnings-into-telos-update>PAI compiles daily learnings into TELOS update</h1><pre tabindex=0><code>
+| Project completion rate | 65% | 89% | +37% |</p>
+<h3 id="typical-daily-workflow">Typical Daily Workflow</h3>
+<p>A typical day with PAI: `````bash</p>
+<h1 id="morning-daily-standup">Morning: Daily standup</h1>
+<p>pulse standup</p>
+<h1 id="work-session-task-with-isa-framework">Work session: Task with ISA framework</h1>
+<p>/isa &ldquo;Build user onboarding flow&rdquo;</p>
+<h1 id="pai-generates-isa-document-breaks-into-tasks">PAI generates ISA document, breaks into tasks</h1>
+<h1 id="during-work-automated-hooks">During work: Automated hooks</h1>
+<h1 id="git-commit--logs-to-obsidian">git commit → logs to Obsidian</h1>
+<h1 id="pr-merged--updates-project-status">PR merged → updates project status</h1>
+<h1 id="evening-reflection">Evening: Reflection</h1>
+<p>pulse reflect &ndash;today</p>
+<h1 id="pai-compiles-daily-learnings-into-telos-update">PAI compiles daily learnings into TELOS update</h1>
+<pre tabindex="0"><code>
 ### Cost Comparison
 
 | Approach | Monthly Cost | Time Saved | Knowledge Captured |
@@ -243,7 +406,19 @@ pulse skill create my-custom-skill --template thinking
 
 # Edit the skill
 pulse skill edit my-custom-skill
-</code></pre><p>Skills follow the SKILL.md convention: `````markdown</p><h1 id=my-custom-skill>My Custom Skill</h1><h2 id=description>Description</h2><p>What this skill does</p><h2 id=input>Input</h2><p>Required inputs</p><h2 id=output>Output</h2><p>Expected output</p><h2 id=code>Code</h2><p>The actual implementation</p><h2 id=examples>Examples</h2><p>Usage examples</p><pre tabindex=0><code>
+</code></pre><p>Skills follow the SKILL.md convention: `````markdown</p>
+<h1 id="my-custom-skill">My Custom Skill</h1>
+<h2 id="description">Description</h2>
+<p>What this skill does</p>
+<h2 id="input">Input</h2>
+<p>Required inputs</p>
+<h2 id="output">Output</h2>
+<p>Expected output</p>
+<h2 id="code">Code</h2>
+<p>The actual implementation</p>
+<h2 id="examples">Examples</h2>
+<p>Usage examples</p>
+<pre tabindex="0"><code>
 ### Advanced Pulse Configuration
 
 `````bash
@@ -255,7 +430,13 @@ pulse cron add --schedule &#34;0 9 * * *&#34; --action &#34;pulse standup&#34; -
 
 # Enable voice mode
 pulse voice enable --model whisper --language en
-</code></pre><h3 id=enterprise-deployment>Enterprise Deployment</h3><p>For team or organizational use: `````bash</p><h1 id=create-a-team-pai-instance>Create a team PAI instance</h1><p>pulse team create &ndash;name my-org &ndash;members 10</p><h1 id=deploy-on-remote-server>Deploy on remote server</h1><p>pulse deploy &ndash;target remote &ndash;host pai.myorg.com &ndash;port 31337</p><pre tabindex=0><code>
+</code></pre><h3 id="enterprise-deployment">Enterprise Deployment</h3>
+<p>For team or organizational use: `````bash</p>
+<h1 id="create-a-team-pai-instance">Create a team PAI instance</h1>
+<p>pulse team create &ndash;name my-org &ndash;members 10</p>
+<h1 id="deploy-on-remote-server">Deploy on remote server</h1>
+<p>pulse deploy &ndash;target remote &ndash;host pai.myorg.com &ndash;port 31337</p>
+<pre tabindex="0"><code>
 ## Limitations / Honest Assessment
 
 PAI is ambitious and impressive, but has real limitations: - **Steep learning curve**: PAI v5.0.0 is a complete system, not a simple tool. Expect 2-4 weeks to feel comfortable with the full system. The interview alone takes 30-60 minutes.
@@ -378,13 +559,265 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpersonal-ai-infrastructure-daniel-miessler%2f&text=Personal%20AI%20Infrastructure%3a%20Agentic%20AI%20Setup%20for%20Humans%20%e2%80%94%202026%20Guide" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpersonal-ai-infrastructure-daniel-miessler%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpersonal-ai-infrastructure-daniel-miessler%2f&text=Personal%20AI%20Infrastructure%3a%20Agentic%20AI%20Setup%20for%20Humans%20%e2%80%94%202026%20Guide" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpersonal-ai-infrastructure-daniel-miessler%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

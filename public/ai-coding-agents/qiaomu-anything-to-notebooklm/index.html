@@ -1,21 +1,108 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>qiaomu anything notebooklm | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="qiaomu anything notebooklm | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/qiaomu-anything-to-notebooklm/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/qiaomu-anything-to-notebooklm/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>qiaomu anything notebooklm</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">qiaomu anything notebooklm</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=introduction>Introduction</h2><p>Google NotebookLM has rapidly become one of the most useful AI-powered knowledge management tools available. By uploading documents and sources, users can create a personal &ldquo;notebook&rdquo; that an AI assistant can reason over, answer questions about, and synthesize into summaries, study guides, and deep-dive analyses. It is essentially a RAG system that you can use out of the box.</p><p>But NotebookLM has a limitation: you have to manually upload documents, and there is no programmatic way to feed it content at scale. What if you could automatically convert a YouTube video, a podcast episode, a blog article, or a paywalled research paper into a ready-to-use NotebookLM source?</p><p>Enter <strong>Qiaomu Anything to NotebookLM</strong> by <a href=https://github.com/joeseesun>joeseesun</a>, a tool that does exactly that. With <a href=https://github.com/joeseesun/qiaomu-anything-to-notebooklm>5,015 GitHub stars</a>, this toolkit bridges the gap between diverse content sources and Google NotebookLM, supporting 15+ content formats and offering innovative capabilities like paywall bypass.</p><p><strong>Disclosure:</strong> This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. <a href=/about/disclosure>Disclosure Policy</a></p><p><a href=https://www.digitalocean.com/try/affiliate>DigitalOcean</a> - Reliable cloud infrastructure for your AI tools. <a href=https://htstack.com/>HTStack</a> - High-performance server hosting. <a href=https://webshare.io/>WebShare</a> - Premium proxy services for AI data pipelines.</p><p><img alt="architecture diagram for 2026-06-11-qiaomu" loading=lazy src=https://media.roboflow.com/notebooks/template/icons/purple/youtube.png>
-<em>Architecture overview</em> (source: dibi8.com)</p><h2 id=what-is-qiaomu-anything-to-notebooklm>What Is Qiaomu Anything to NotebookLM?</h2><p>Qiaomu Anything to NotebookLM is a comprehensive toolkit that converts content from 15+ different sources into formats compatible with Google NotebookLM. It works as both a standalone Python package and as a Claude Code Skill, making it accessible to both programmatic users and those who prefer conversational AI workflows.</p><p>The toolkit is built around two main modes of operation: 1. <strong>Claude Code Skill Mode</strong> — Use natural language in Claude Code to trigger conversions: &ldquo;Convert this YouTube video about machine learning into a NotebookLM source.&rdquo; The skill handles the entire pipeline.
-2. <strong>Python Package Mode</strong> — Use the ```qiaomu-notebooklm```` Python package programmatically for batch processing, scheduling, and integration into larger data pipelines.</p><p><strong>Feature Image:</strong></p><p><img alt="Qiaomu NotebookLM Converter Overview" loading=lazy src=https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-overview.png></p><h2 id=supported-content-sources>Supported Content Sources</h2><p>The toolkit supports an impressive range of content sources. Here is the complete list: | Category | Sources |
-|</p><hr><p>|</p><hr><p>|
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qiaomu anything notebooklm | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="qiaomu anything notebooklm | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/qiaomu-anything-to-notebooklm/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/qiaomu-anything-to-notebooklm/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">qiaomu anything notebooklm</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">qiaomu anything notebooklm</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="introduction">Introduction</h2>
+<p>Google NotebookLM has rapidly become one of the most useful AI-powered knowledge management tools available. By uploading documents and sources, users can create a personal &ldquo;notebook&rdquo; that an AI assistant can reason over, answer questions about, and synthesize into summaries, study guides, and deep-dive analyses. It is essentially a RAG system that you can use out of the box.</p>
+<p>But NotebookLM has a limitation: you have to manually upload documents, and there is no programmatic way to feed it content at scale. What if you could automatically convert a YouTube video, a podcast episode, a blog article, or a paywalled research paper into a ready-to-use NotebookLM source?</p>
+<p>Enter <strong>Qiaomu Anything to NotebookLM</strong> by <a href="https://github.com/joeseesun">joeseesun</a>, a tool that does exactly that. With <a href="https://github.com/joeseesun/qiaomu-anything-to-notebooklm">5,015 GitHub stars</a>, this toolkit bridges the gap between diverse content sources and Google NotebookLM, supporting 15+ content formats and offering innovative capabilities like paywall bypass.</p>
+<p><strong>Disclosure:</strong> This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. <a href="/about/disclosure">Disclosure Policy</a></p>
+<p><a href="https://www.digitalocean.com/try/affiliate">DigitalOcean</a> - Reliable cloud infrastructure for your AI tools. <a href="https://htstack.com/">HTStack</a> - High-performance server hosting. <a href="https://webshare.io/">WebShare</a> - Premium proxy services for AI data pipelines.</p>
+<p><img alt="architecture diagram for 2026-06-11-qiaomu" loading="lazy" src="https://media.roboflow.com/notebooks/template/icons/purple/youtube.png">
+<em>Architecture overview</em> (source: dibi8.com)</p>
+<h2 id="what-is-qiaomu-anything-to-notebooklm">What Is Qiaomu Anything to NotebookLM?</h2>
+<p>Qiaomu Anything to NotebookLM is a comprehensive toolkit that converts content from 15+ different sources into formats compatible with Google NotebookLM. It works as both a standalone Python package and as a Claude Code Skill, making it accessible to both programmatic users and those who prefer conversational AI workflows.</p>
+<p>The toolkit is built around two main modes of operation: 1. <strong>Claude Code Skill Mode</strong> — Use natural language in Claude Code to trigger conversions: &ldquo;Convert this YouTube video about machine learning into a NotebookLM source.&rdquo; The skill handles the entire pipeline.
+2. <strong>Python Package Mode</strong> — Use the ```qiaomu-notebooklm```` Python package programmatically for batch processing, scheduling, and integration into larger data pipelines.</p>
+<p><strong>Feature Image:</strong></p>
+<p><img alt="Qiaomu NotebookLM Converter Overview" loading="lazy" src="https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-overview.png"></p>
+<h2 id="supported-content-sources">Supported Content Sources</h2>
+<p>The toolkit supports an impressive range of content sources. Here is the complete list: | Category | Sources |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Video | YouTube, Vimeo, Bilibili |
 | Audio | Podcasts (RSS feeds), MP3 files, Spotify (via transcript) |
 | Web | Websites, Blog articles, Twitter/X threads, Reddit threads |
@@ -23,11 +110,23 @@
 | Text | Markdown files, Text files, JSON data, CSV files |
 | Academic | ArXiv papers, Semantic Scholar, Google Scholar |
 | News | News articles (with paywall bypass), RSS feeds |
-| Social | Instagram posts (with captions), TikTok (with captions) |</p><p>This breadth of support means that regardless of where your knowledge lives, Qiaomu can likely extract it and convert it for NotebookLM.</p><h2 id=how-it-works>How It Works</h2><p>The conversion pipeline has four main stages: ### 1. Content Extraction</p><p>The tool extracts content from the source using appropriate extraction strategies: `````python</p><h1 id=install-the-package>Install the package</h1><p>pip install qiaomu-notebooklm</p><h1 id=basic-usage-convert-a-url>Basic usage: convert a URL</h1><p>from qiaomu_notebooklm import ContentConverter</p><p>converter = ContentConverter()</p><h1 id=convert-a-youtube-video>Convert a YouTube video</h1><p>result = converter.convert(
+| Social | Instagram posts (with captions), TikTok (with captions) |</p>
+<p>This breadth of support means that regardless of where your knowledge lives, Qiaomu can likely extract it and convert it for NotebookLM.</p>
+<h2 id="how-it-works">How It Works</h2>
+<p>The conversion pipeline has four main stages: ### 1. Content Extraction</p>
+<p>The tool extracts content from the source using appropriate extraction strategies: `````python</p>
+<h1 id="install-the-package">Install the package</h1>
+<p>pip install qiaomu-notebooklm</p>
+<h1 id="basic-usage-convert-a-url">Basic usage: convert a URL</h1>
+<p>from qiaomu_notebooklm import ContentConverter</p>
+<p>converter = ContentConverter()</p>
+<h1 id="convert-a-youtube-video">Convert a YouTube video</h1>
+<p>result = converter.convert(
 source_url=&ldquo;<a href="https://youtube.com/watch?v=example%22">https://youtube.com/watch?v=example"</a>,
 output_format=&ldquo;notebooklm&rdquo;
 )
-print(f"Converted {result.word_count} words to NotebookLM format&rdquo;)</p><pre tabindex=0><code>
+print(f&quot;Converted {result.word_count} words to NotebookLM format&rdquo;)</p>
+<pre tabindex="0"><code>
 ### 2. Text Processing and Cleaning
 
 Extracted content is cleaned, deduplicated, and structured. The tool removes navigation elements, advertisements, footers, and other non-content elements: `````python
@@ -43,14 +142,20 @@ result = converter.convert(
         &#34;language&#34;: &#34;en&#34;
     }
 )
-</code></pre><h3 id=3-notebooklm-formatting>3. NotebookLM Formatting</h3><p>The processed content is formatted into a structure that Google NotebookLM can ingest. This typically means generating well-structured Markdown or PDF files: `````python</p><h1 id=export-to-notebooklm-compatible-formats>Export to NotebookLM-compatible formats</h1><p>converter.export(
+</code></pre><h3 id="3-notebooklm-formatting">3. NotebookLM Formatting</h3>
+<p>The processed content is formatted into a structure that Google NotebookLM can ingest. This typically means generating well-structured Markdown or PDF files: `````python</p>
+<h1 id="export-to-notebooklm-compatible-formats">Export to NotebookLM-compatible formats</h1>
+<p>converter.export(
 result,
-output_path="./notebooklm_sources/",
+output_path=&quot;./notebooklm_sources/&quot;,
 formats=[&ldquo;markdown&rdquo;, &ldquo;pdf&rdquo;, &ldquo;text&rdquo;]
-)</p><h1 id=list-exported-files>List exported files</h1><p>import os
-for f in os.listdir("./notebooklm_sources/"): filepath = os.path.join("./notebooklm_sources/", f)
+)</p>
+<h1 id="list-exported-files">List exported files</h1>
+<p>import os
+for f in os.listdir(&quot;./notebooklm_sources/&quot;): filepath = os.path.join(&quot;./notebooklm_sources/&quot;, f)
 size = os.path.getsize(filepath)
-print(f"{f}: {size / 1024:.1f} KB")</p><pre tabindex=0><code>
+print(f&quot;{f}: {size / 1024:.1f} KB&quot;)</p>
+<pre tabindex="0"><code>
 ### 4. Upload to NotebookLM
 
 Optionally, the tool can upload the converted content directly to Google NotebookLM via the API (when available): `````python
@@ -68,16 +173,26 @@ notebook = notebooklm.create_notebook(
 # Upload sources
 notebook.upload_source(&#34;./notebooklm_sources/youtube_tutorial.md&#34;)
 notebook.upload_source(&#34;./notebooklm_sources/paper_abstract.pdf&#34;)
-</code></pre><h2 id=installation>Installation</h2><h3 id=python-package-installation>Python Package Installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install via pip</span>
-</span></span><span style=display:flex><span>pip install qiaomu-notebooklm
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify installation</span>
-</span></span><span style=display:flex><span>python -c <span style=color:#e6db74>&#34;import qiaomu_notebooklm; print(qiaomu_notebooklm.__version__)&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install with all optional dependencies</span>
-</span></span><span style=display:flex><span>pip install qiaomu-notebooklm<span style=color:#f92672>[</span>all<span style=color:#f92672>]</span>
-</span></span></code></pre></div><h3 id=git-clone-installation>Git Clone Installation</h3><p>For the latest development version: `````bash</p><h1 id=clone-the-repository>Clone the repository</h1><p>git clone <a href=https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git>https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git</a>
-cd qiaomu-anything-to-notebooklm</p><h1 id=install-in-development-mode>Install in development mode</h1><p>pip install -e .</p><h1 id=install-development-dependencies>Install development dependencies</h1><p>pip install -r requirements-dev.txt</p><pre tabindex=0><code>
+</code></pre><h2 id="installation">Installation</h2>
+<h3 id="python-package-installation">Python Package Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install via pip</span>
+</span></span><span style="display:flex;"><span>pip install qiaomu-notebooklm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify installation</span>
+</span></span><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;import qiaomu_notebooklm; print(qiaomu_notebooklm.__version__)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install with all optional dependencies</span>
+</span></span><span style="display:flex;"><span>pip install qiaomu-notebooklm<span style="color:#f92672">[</span>all<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="git-clone-installation">Git Clone Installation</h3>
+<p>For the latest development version: `````bash</p>
+<h1 id="clone-the-repository">Clone the repository</h1>
+<p>git clone <a href="https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git">https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git</a>
+cd qiaomu-anything-to-notebooklm</p>
+<h1 id="install-in-development-mode">Install in development mode</h1>
+<p>pip install -e .</p>
+<h1 id="install-development-dependencies">Install development dependencies</h1>
+<p>pip install -r requirements-dev.txt</p>
+<pre tabindex="0"><code>
 ### Claude Code Skill Installation
 
 To use as a Claude Code Skill, add the skill configuration to your Claude Code setup: `````bash
@@ -89,19 +204,26 @@ cp -r qiaomu-notebooklm/claude-code-skill/ ~/.claude/skills/
 
 # Restart Claude Code
 claude --reload-skills
-</code></pre><h2 id=integration-patterns>Integration Patterns</h2><h3 id=batch-processing-workflow>Batch Processing Workflow</h3><p>For processing large collections of content: `````python</p><h1 id=batch-process-a-list-of-urls>Batch process a list of URLs</h1><p>urls = [
+</code></pre><h2 id="integration-patterns">Integration Patterns</h2>
+<h3 id="batch-processing-workflow">Batch Processing Workflow</h3>
+<p>For processing large collections of content: `````python</p>
+<h1 id="batch-process-a-list-of-urls">Batch process a list of URLs</h1>
+<p>urls = [
 &ldquo;https://youtube.com/watch?v=video1&rdquo;,
 &ldquo;https://youtube.com/watch?v=video2&rdquo;,
 &ldquo;https://arxiv.org/abs/2023.12345&rdquo;,
 &ldquo;https://example.com/blog/post&rdquo;,
 &ldquo;https://example.com/paper.pdf&rdquo;
-]</p><p>converter = ContentConverter()
+]</p>
+<p>converter = ContentConverter()
 results = converter.batch_convert(
 urls=urls,
-output_dir="./notebooklm_batch/",
+output_dir=&quot;./notebooklm_batch/&quot;,
 concurrent_workers=4
-)</p><p>for url, result in results.items(): status = &ldquo;SUCCESS&rdquo; if result.success else &ldquo;FAILED&rdquo;
-print(f"[{status}] {url}: {result.word_count} words converted")</p><pre tabindex=0><code>
+)</p>
+<p>for url, result in results.items(): status = &ldquo;SUCCESS&rdquo; if result.success else &ldquo;FAILED&rdquo;
+print(f&quot;[{status}] {url}: {result.word_count} words converted&quot;)</p>
+<pre tabindex="0"><code>
 ### Scheduled Conversion
 
 Set up scheduled content ingestion: `````python
@@ -134,14 +256,22 @@ schedule.every().day.at(&#34;06:00&#34;).do(daily_content_sync)
 
 while True: schedule.run_pending()
     time.sleep(60)
-</code></pre><h3 id=paywall-bypass>Paywall Bypass</h3><p>One of the most distinctive features of Qiaomu is its ability to access paywalled content: `````python</p><h1 id=bypass-paywall-to-extract-article-content>Bypass paywall to extract article content</h1><p>result = converter.convert(
-source_url=&ldquo;<a href=https://premium-article.example.com/breaking-news%22>https://premium-article.example.com/breaking-news"</a>,
+</code></pre><h3 id="paywall-bypass">Paywall Bypass</h3>
+<p>One of the most distinctive features of Qiaomu is its ability to access paywalled content: `````python</p>
+<h1 id="bypass-paywall-to-extract-article-content">Bypass paywall to extract article content</h1>
+<p>result = converter.convert(
+source_url=&ldquo;<a href="https://premium-article.example.com/breaking-news%22">https://premium-article.example.com/breaking-news"</a>,
 paywall_options={
 &ldquo;bypass_enabled&rdquo;: True,
-&ldquo;method&rdquo;: &ldquo;archive_service&rdquo;, # archive.org, archive.is, etc.
+&ldquo;method&rdquo;: &ldquo;archive_service&rdquo;,  # archive.org, archive.is, etc.
 &ldquo;fallback_to_text_only&rdquo;: True
 }
-)</p><h1 id=the-tool-tries-multiple-strategies--1-direct-extraction>The tool tries multiple strategies: # 1. Direct extraction</h1><h1 id=2-archive-service-lookup>2. Archive service lookup</h1><h1 id=3-text-only-fallback>3. Text-only fallback</h1><h1 id=4-proxy-based-access-via-webshare>4. Proxy-based access (via WebShare)</h1><pre tabindex=0><code>
+)</p>
+<h1 id="the-tool-tries-multiple-strategies--1-direct-extraction">The tool tries multiple strategies: # 1. Direct extraction</h1>
+<h1 id="2-archive-service-lookup">2. Archive service lookup</h1>
+<h1 id="3-text-only-fallback">3. Text-only fallback</h1>
+<h1 id="4-proxy-based-access-via-webshare">4. Proxy-based access (via WebShare)</h1>
+<pre tabindex="0"><code>
 ![Qiaomu Conversion Pipeline](https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/conversion-pipeline.png)
 
 ## Benchmarks
@@ -206,8 +336,11 @@ result = converter.convert(
     source_url=&#34;https://custom-source.example.com/article&#34;,
     extractor=&#34;my_custom_source&#34;
 )
-</code></pre><h3 id=multi-notebook-management>Multi-Notebook Management</h3><p>Manage multiple NotebookLM notebooks from a single script: `````python
-notebooklm = converter.connect_notebooklm()</p><h1 id=create-project-specific-notebooks>Create project-specific notebooks</h1><p>projects = {
+</code></pre><h3 id="multi-notebook-management">Multi-Notebook Management</h3>
+<p>Manage multiple NotebookLM notebooks from a single script: `````python
+notebooklm = converter.connect_notebooklm()</p>
+<h1 id="create-project-specific-notebooks">Create project-specific notebooks</h1>
+<p>projects = {
 &ldquo;machine_learning&rdquo;: [
 &ldquo;https://youtube.com/watch?v=ml_tutorial_1&rdquo;,
 &ldquo;https://arxiv.org/abs/2301.12345&rdquo;
@@ -216,13 +349,16 @@ notebooklm = converter.connect_notebooklm()</p><h1 id=create-project-specific-no
 &ldquo;https://youtube.com/watch?v=design_talk&rdquo;,
 &ldquo;https://example.com/blog/design_principles&rdquo;
 ]
-}</p><p>for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebook(
-title=f&rdquo;{notebook_name.replace(&rsquo;_&rsquo;, &rsquo; &lsquo;).title()} Sources",
-description=f"Curated sources for {notebook_name}"
-)</p><pre><code>for url in urls: result = converter.convert(url, output_format=&quot;notebooklm&quot;)
+}</p>
+<p>for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebook(
+title=f&rdquo;{notebook_name.replace(&rsquo;_&rsquo;, &rsquo; &lsquo;).title()} Sources&quot;,
+description=f&quot;Curated sources for {notebook_name}&quot;
+)</p>
+<pre><code>for url in urls: result = converter.convert(url, output_format=&quot;notebooklm&quot;)
     notebook.upload_source(result.file_path)
     print(f&quot;Added source to {notebook_name}: {url}&quot;)
-</code></pre><pre tabindex=0><code>
+</code></pre>
+<pre tabindex="0"><code>
 ### Knowledge Graph Generation
 
 Generate structured knowledge from converted content: `````python
@@ -242,8 +378,20 @@ knowledge_graph.save(&#34;./knowledge_graph.json&#34;)
 # Query the graph
 entities = knowledge_graph.get_entities_by_type(&#34;Person&#34;)
 print(f&#34;Found {len(entities)} entities: {[e.name for e in entities]}&#34;)
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>How does Qiaomu Anything to NotebookLM compare to other content-to-notebook solutions?</p><p>| Feature | Qiaomu | NotebookLM Native | Notion AI | Obsidian + AI |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>How does Qiaomu Anything to NotebookLM compare to other content-to-notebook solutions?</p>
+<p>| Feature | Qiaomu | NotebookLM Native | Notion AI | Obsidian + AI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Source Support | 15+ formats | Manual upload only | Limited | Plugin-dependent |
 | Automated Conversion | Yes | No | Limited | Plugin-dependent |
 | Paywall Bypass | Yes | No | No | Plugin-dependent |
@@ -252,12 +400,40 @@ print(f&#34;Found {len(entities)} entities: {[e.name for e in entities]}&#34;)
 | Scheduled Sync | Yes | No | No | Plugin-dependent |
 | API Access | Yes | Partial | No | Partial |
 | Open Source | Yes (MIT) | No | No | Partial |
-| GitHub Stars | 5,015 | N/A | N/A | N/A |</p><p>Qiaomu fills a gap that no other tool addresses: automated, programmatic content ingestion for NotebookLM with support for paywalled content. While Notion AI and Obsidian offer AI features, they lack the broad source support and automation capabilities that Qiaomu provides.</p><h2 id=limitations>Limitations</h2><p>While Qiaomu is a powerful tool, some limitations should be noted: <strong>Google NotebookLM API Dependency.</strong> Direct upload to NotebookLM requires access to the Google NotebookLM API, which may have limited availability. Some users may need to manually upload the converted files to NotebookLM.</p><p><strong>Paywall Bypass Effectiveness.</strong> While the paywall bypass feature works well for many sources, its effectiveness varies by publisher and anti-bot measures. Complex paywalls may require manual intervention.</p><p><strong>Processing Time for Large Sources.</strong> Converting long-form content (full books, extensive video transcripts) can take significant time and computational resources.</p><p><strong>Python Dependency.</strong> The full functionality requires Python, which may be a barrier for non-technical users who might otherwise use the Claude Code Skill.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Convert a PDF to NotebookLM format</span>
-</span></span><span style=display:flex><span>qiaomu convert input.pdf --format notebooklm --output notes.json
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Generate podcast from a YouTube video</span>
-</span></span><span style=display:flex><span>qiaomu youtube <span style=color:#e6db74>&#34;https://youtube.com/watch?v=...&#34;</span> --format podcast
-</span></span></code></pre></div><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h2 id=frequently-asked-questions-1>Frequently Asked Questions</h2><h3 id=1-how-do-i-install-qiaomu-anything-to-notebooklm>1. How do I install Qiaomu Anything to NotebookLM?</h3><p>Run <code>pip install qiaomu-notebooklm</code> to install the Python package. For the latest version, clone the repository with <code>git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git</code> and install from source.</p><h3 id=2-what-content-sources-does-it-support>2. What content sources does it support?</h3><p>The toolkit supports 15+ content sources including YouTube, Vimeo, Bilibili, podcasts, PDFs, blog articles, Twitter threads, Reddit threads, ArXiv papers, news articles, and more.</p><h3 id=3-does-it-really-bypass-paywalls>3. Does it really bypass paywalls?</h3><p>Yes, for many paywalled articles. The tool uses multiple strategies including archive services and text extraction. However, effectiveness varies by publisher. For complex paywalls, results may be partial.</p><h3 id=4-can-i-use-it-without-python>4. Can I use it without Python?</h3><p>Yes. The Claude Code Skill allows you to use the tool through natural language. Simply install the skill and ask Claude Code to convert content for NotebookLM.</p><h3 id=5-is-the-output-directly-compatible-with-notebooklm>5. Is the output directly compatible with NotebookLM?</h3><p>Yes. The converter outputs files in formats that Google NotebookLM accepts — Markdown, PDF, and plain text — which can be directly uploaded to your notebooks.</p><h3 id=6-can-i-automate-the-process>6. Can I automate the process?</h3><p>Absolutely. The batch processing API supports scheduled conversions, making it easy to set up automated daily or weekly content ingestion from your favorite sources.</p><h3 id=7-is-it-open-source>7. Is it open source?</h3><p>Yes, Qiaomu Anything to NotebookLM is open source under the MIT license. Contributions are welcome through the GitHub repository.</p><h2 id=conclusion>Conclusion</h2><p>Qiaomu Anything to NotebookLM solves a real problem: how to get content from your favorite sources into Google NotebookLM at scale. With <a href=https://github.com/joeseesun/qiaomu-anything-to-notebooklm>5,015 GitHub stars</a> and support for 15+ content sources, it is the most comprehensive content-to-notebook tool available.</p><p>Whether you want to automatically convert YouTube tutorials into study notebooks, ingest research papers from ArXiv, or bypass paywalls to access premium articles, Qiaomu makes it possible through a clean Python API or a conversational Claude Code Skill.</p><p>The paywall bypass feature alone makes this tool invaluable for researchers and students who need to access a wide range of content for their NotebookLM knowledge bases.</p><p>Install it today and start building your automated knowledge pipeline: `````bash
-pip install qiaomu-notebooklm</p><pre tabindex=0><code>
+| GitHub Stars | 5,015 | N/A | N/A | N/A |</p>
+<p>Qiaomu fills a gap that no other tool addresses: automated, programmatic content ingestion for NotebookLM with support for paywalled content. While Notion AI and Obsidian offer AI features, they lack the broad source support and automation capabilities that Qiaomu provides.</p>
+<h2 id="limitations">Limitations</h2>
+<p>While Qiaomu is a powerful tool, some limitations should be noted: <strong>Google NotebookLM API Dependency.</strong> Direct upload to NotebookLM requires access to the Google NotebookLM API, which may have limited availability. Some users may need to manually upload the converted files to NotebookLM.</p>
+<p><strong>Paywall Bypass Effectiveness.</strong> While the paywall bypass feature works well for many sources, its effectiveness varies by publisher and anti-bot measures. Complex paywalls may require manual intervention.</p>
+<p><strong>Processing Time for Large Sources.</strong> Converting long-form content (full books, extensive video transcripts) can take significant time and computational resources.</p>
+<p><strong>Python Dependency.</strong> The full functionality requires Python, which may be a barrier for non-technical users who might otherwise use the Claude Code Skill.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Convert a PDF to NotebookLM format</span>
+</span></span><span style="display:flex;"><span>qiaomu convert input.pdf --format notebooklm --output notes.json
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Generate podcast from a YouTube video</span>
+</span></span><span style="display:flex;"><span>qiaomu youtube <span style="color:#e6db74">&#34;https://youtube.com/watch?v=...&#34;</span> --format podcast
+</span></span></code></pre></div><h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h2 id="frequently-asked-questions-1">Frequently Asked Questions</h2>
+<h3 id="1-how-do-i-install-qiaomu-anything-to-notebooklm">1. How do I install Qiaomu Anything to NotebookLM?</h3>
+<p>Run <code>pip install qiaomu-notebooklm</code> to install the Python package. For the latest version, clone the repository with <code>git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git</code> and install from source.</p>
+<h3 id="2-what-content-sources-does-it-support">2. What content sources does it support?</h3>
+<p>The toolkit supports 15+ content sources including YouTube, Vimeo, Bilibili, podcasts, PDFs, blog articles, Twitter threads, Reddit threads, ArXiv papers, news articles, and more.</p>
+<h3 id="3-does-it-really-bypass-paywalls">3. Does it really bypass paywalls?</h3>
+<p>Yes, for many paywalled articles. The tool uses multiple strategies including archive services and text extraction. However, effectiveness varies by publisher. For complex paywalls, results may be partial.</p>
+<h3 id="4-can-i-use-it-without-python">4. Can I use it without Python?</h3>
+<p>Yes. The Claude Code Skill allows you to use the tool through natural language. Simply install the skill and ask Claude Code to convert content for NotebookLM.</p>
+<h3 id="5-is-the-output-directly-compatible-with-notebooklm">5. Is the output directly compatible with NotebookLM?</h3>
+<p>Yes. The converter outputs files in formats that Google NotebookLM accepts — Markdown, PDF, and plain text — which can be directly uploaded to your notebooks.</p>
+<h3 id="6-can-i-automate-the-process">6. Can I automate the process?</h3>
+<p>Absolutely. The batch processing API supports scheduled conversions, making it easy to set up automated daily or weekly content ingestion from your favorite sources.</p>
+<h3 id="7-is-it-open-source">7. Is it open source?</h3>
+<p>Yes, Qiaomu Anything to NotebookLM is open source under the MIT license. Contributions are welcome through the GitHub repository.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Qiaomu Anything to NotebookLM solves a real problem: how to get content from your favorite sources into Google NotebookLM at scale. With <a href="https://github.com/joeseesun/qiaomu-anything-to-notebooklm">5,015 GitHub stars</a> and support for 15+ content sources, it is the most comprehensive content-to-notebook tool available.</p>
+<p>Whether you want to automatically convert YouTube tutorials into study notebooks, ingest research papers from ArXiv, or bypass paywalls to access premium articles, Qiaomu makes it possible through a clean Python API or a conversational Claude Code Skill.</p>
+<p>The paywall bypass feature alone makes this tool invaluable for researchers and students who need to access a wide range of content for their NotebookLM knowledge bases.</p>
+<p>Install it today and start building your automated knowledge pipeline: `````bash
+pip install qiaomu-notebooklm</p>
+<pre tabindex="0"><code>
 [CTA: Transform any content into NotebookLM knowledge bases. [Get Started](https://github.com/joeseesun/qiaomu-anything-to-notebooklm) | [View Examples](https://github.com/joeseesun/qiaomu-anything-to-notebooklm/tree/main/examples)]
 
 
@@ -342,13 +518,265 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fqiaomu-anything-to-notebooklm%2f&text=qiaomu%20anything%20notebooklm" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fqiaomu-anything-to-notebooklm%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fqiaomu-anything-to-notebooklm%2f&text=qiaomu%20anything%20notebooklm" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fqiaomu-anything-to-notebooklm%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,491 +1,673 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Update system packages | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Update system packages | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/mistral-ai-local-llm-deployment/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/mistral-ai-local-llm-deployment/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Update system packages</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Update system packages</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>Running Large Language Models locally has shifted from a niche experiment to a production necessity. Enterprises need data sovereignty, predictable latency, and freedom from vendor lock-in. The Mistral AI family of models — led by the groundbreaking <strong>8x7B Mixture of Experts (MoE)</strong> architecture — delivers GPT-4-class performance while being efficient enough to run on accessible hardware.</p><p>In this comprehensive guide, you&rsquo;ll learn how to deploy production-grade Mistral models locally using the official ```mistral-inference```` engine, vLLM for high-throughput serving, GGUF quantization for CPU inference, and the full tool ecosystem including function calling, fine-tuning, and API server deployment.</p><blockquote><p><strong>Quick Start</strong>: Mistral&rsquo;s inference engine is open-source under Apache-2.0 with 9,500+ GitHub stars. We&rsquo;ll cover everything from single-GPU deployment to multi-node clusters.</p></blockquote><hr><h2 id=understanding-mistrals-model-architecture>Understanding Mistral&rsquo;s Model Architecture</h2><p>Mistral AI has built a diverse family of models, each optimized for different use cases. Understanding these variants is essential for choosing the right model for your deployment.</p><h3 id=mistral-8x7b-moe-mixtral>Mistral 8x7B MoE (Mixtral)</h3><p>The flagship Mixtral 8x7B uses a <strong>Sparse Mixture of Experts</strong> architecture. Despite having 47B total parameters, it only activates 8 billion parameters per token, making it remarkably efficient: | Specification | Value |
-|</p><hr><p>|</p><hr><p>|
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update system packages | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Update system packages | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/mistral-ai-local-llm-deployment/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/mistral-ai-local-llm-deployment/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Update system packages</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Update system packages</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>Running Large Language Models locally has shifted from a niche experiment to a production necessity. Enterprises need data sovereignty, predictable latency, and freedom from vendor lock-in. The Mistral AI family of models — led by the groundbreaking <strong>8x7B Mixture of Experts (MoE)</strong> architecture — delivers GPT-4-class performance while being efficient enough to run on accessible hardware.</p>
+<p>In this comprehensive guide, you&rsquo;ll learn how to deploy production-grade Mistral models locally using the official ```mistral-inference```` engine, vLLM for high-throughput serving, GGUF quantization for CPU inference, and the full tool ecosystem including function calling, fine-tuning, and API server deployment.</p>
+<blockquote>
+<p><strong>Quick Start</strong>: Mistral&rsquo;s inference engine is open-source under Apache-2.0 with 9,500+ GitHub stars. We&rsquo;ll cover everything from single-GPU deployment to multi-node clusters.</p>
+</blockquote>
+<hr>
+<h2 id="understanding-mistrals-model-architecture">Understanding Mistral&rsquo;s Model Architecture</h2>
+<p>Mistral AI has built a diverse family of models, each optimized for different use cases. Understanding these variants is essential for choosing the right model for your deployment.</p>
+<h3 id="mistral-8x7b-moe-mixtral">Mistral 8x7B MoE (Mixtral)</h3>
+<p>The flagship Mixtral 8x7B uses a <strong>Sparse Mixture of Experts</strong> architecture. Despite having 47B total parameters, it only activates 8 billion parameters per token, making it remarkably efficient: | Specification | Value |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Architecture | Sparse MoE |
 | Total Parameters | 46.7B (8 x 7B experts) |
 | Active Parameters per Token | ~12.9B (2 experts x 6.5B) |
 | Context Window | 32,768 tokens (64K with extended) |
 | Vocabulary Size | 32,000 |
-| License | Apache-2.0 |</p><p>The MoE architecture routes each token to the 2 most relevant experts from a pool of 8, enabling the model to develop specialized knowledge across different domains while maintaining inference efficiency.</p><h3 id=mistral-nemo-12b>Mistral Nemo (12B)</h3><p>A 12B parameter dense model released in partnership with NVIDIA. Optimized for efficiency on consumer GPUs and edge devices while maintaining strong performance on reasoning and coding tasks.</p><h3 id=mistral-large-123b>Mistral Large (123B)</h3><p>The most capable Mistral model with 123B parameters, designed for complex reasoning, multilingual tasks, and advanced coding. Available as a flagship API model and through select deployment partnerships.</p><h3 id=codestral-22b>Codestral (22B)</h3><p>A 22B parameter model specialized for code generation with training on 80+ programming languages. Supports fill-in-the-middle (FIM) completion and repository-level context understanding.</p><hr><h2 id=hardware-requirements-and-planning>Hardware Requirements and Planning</h2><p>Before deployment, ensure your hardware meets the requirements for your chosen model.</p><h3 id=gpu-memory-requirements>GPU Memory Requirements</h3><p>| Model | FP16/BF16 | INT8 | INT4/GGUF Q4 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| License | Apache-2.0 |</p>
+<p>The MoE architecture routes each token to the 2 most relevant experts from a pool of 8, enabling the model to develop specialized knowledge across different domains while maintaining inference efficiency.</p>
+<h3 id="mistral-nemo-12b">Mistral Nemo (12B)</h3>
+<p>A 12B parameter dense model released in partnership with NVIDIA. Optimized for efficiency on consumer GPUs and edge devices while maintaining strong performance on reasoning and coding tasks.</p>
+<h3 id="mistral-large-123b">Mistral Large (123B)</h3>
+<p>The most capable Mistral model with 123B parameters, designed for complex reasoning, multilingual tasks, and advanced coding. Available as a flagship API model and through select deployment partnerships.</p>
+<h3 id="codestral-22b">Codestral (22B)</h3>
+<p>A 22B parameter model specialized for code generation with training on 80+ programming languages. Supports fill-in-the-middle (FIM) completion and repository-level context understanding.</p>
+<hr>
+<h2 id="hardware-requirements-and-planning">Hardware Requirements and Planning</h2>
+<p>Before deployment, ensure your hardware meets the requirements for your chosen model.</p>
+<h3 id="gpu-memory-requirements">GPU Memory Requirements</h3>
+<p>| Model | FP16/BF16 | INT8 | INT4/GGUF Q4 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Mistral 7B | 14 GB | 7 GB | 4 GB |
 | Mixtral 8x7B | 94 GB | 47 GB | 26 GB |
 | Mistral Nemo 12B | 24 GB | 12 GB | 7 GB |
-| Codestral 22B | 44 GB | 22 GB | 12 GB |</p><h3 id=recommended-hardware-configurations>Recommended Hardware Configurations</h3><p><strong>Single-GPU Deployment (Mistral 7B / Nemo):</strong></p><pre tabindex=0><code>- GPU: NVIDIA RTX 4090 (24GB) or A6000 (48GB)
+| Codestral 22B | 44 GB | 22 GB | 12 GB |</p>
+<h3 id="recommended-hardware-configurations">Recommended Hardware Configurations</h3>
+<p><strong>Single-GPU Deployment (Mistral 7B / Nemo):</strong></p>
+<pre tabindex="0"><code>- GPU: NVIDIA RTX 4090 (24GB) or A6000 (48GB)
 - RAM: 32GB system memory
 - Storage: 50GB NVMe SSD
 - OS: Ubuntu 22.04 LTS
-</code></pre><p><strong>Multi-GPU Deployment (Mixtral 8x7B):</strong></p><pre tabindex=0><code>- GPUs: 2x NVIDIA A100 80GB or 4x RTX 4090
+</code></pre><p><strong>Multi-GPU Deployment (Mixtral 8x7B):</strong></p>
+<pre tabindex="0"><code>- GPUs: 2x NVIDIA A100 80GB or 4x RTX 4090
 - RAM: 128GB system memory
 - Storage: 100GB NVMe SSD
 - Interconnect: NVLink preferred for multi-GPU
-</code></pre><p><strong>CPU-Only Deployment (GGUF Quantized):</strong></p><pre tabindex=0><code>- CPU: 16+ cores (AMD Ryzen 9 or Intel Xeon)
+</code></pre><p><strong>CPU-Only Deployment (GGUF Quantized):</strong></p>
+<pre tabindex="0"><code>- CPU: 16+ cores (AMD Ryzen 9 or Intel Xeon)
 - RAM: 64GB+ (model dependent)
 - Storage: 50GB NVMe SSD
-</code></pre><p>For cloud GPU instances, <a href="https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367">虎网云</a> offers competitive GPU server options optimized for LLM inference workloads.</p><hr><h2 id=installation-and-environment-setup>Installation and Environment Setup</h2><h3 id=system-dependencies>System Dependencies</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Update system packages</span>
-</span></span><span style=display:flex><span>sudo apt update <span style=color:#f92672>&amp;&amp;</span> sudo apt upgrade -y
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install CUDA toolkit (for NVIDIA GPUs)</span>
-</span></span><span style=display:flex><span>wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-</span></span><span style=display:flex><span>sudo dpkg -i cuda-keyring_1.1-1_all.deb
-</span></span><span style=display:flex><span>sudo apt update
-</span></span><span style=display:flex><span>sudo apt install -y cuda-toolkit-12-4
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify CUDA installation</span>
-</span></span><span style=display:flex><span>nvcc --version
-</span></span><span style=display:flex><span>nvidia-smi
-</span></span></code></pre></div><h3 id=python-environment>Python Environment</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create dedicated environment</span>
-</span></span><span style=display:flex><span>python3 -m venv ~/mistral-env
-</span></span><span style=display:flex><span>source ~/mistral-env/bin/activate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install base dependencies</span>
-</span></span><span style=display:flex><span>pip install --upgrade pip setuptools wheel
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install mistral-inference</span>
-</span></span><span style=display:flex><span>pip install mistral-inference
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install vLLM for production serving</span>
-</span></span><span style=display:flex><span>pip install vllm
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install optional: GGUF support for CPU inference</span>
-</span></span><span style=display:flex><span>pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
-</span></span></code></pre></div><h3 id=download-model-weights>Download Model Weights</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install huggingface-cli</span>
-</span></span><span style=display:flex><span>pip install huggingface-hub
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Login to Hugging Face (required for some models)</span>
-</span></span><span style=display:flex><span>huggingface-cli login
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Download Mistral 7B Instruct</span>
-</span></span><span style=display:flex><span>huggingface-cli download mistralai/Mistral-7B-Instruct-v0.3 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --local-dir ~/models/mistral-7b-instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --local-dir-use-symlinks False
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Download Mixtral 8x7B Instruct</span>
-</span></span><span style=display:flex><span>huggingface-cli download mistralai/Mixtral-8x7B-Instruct-v0.1 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --local-dir ~/models/mixtral-8x7b-instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --local-dir-use-symlinks False
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Download Mistral Nemo</span>
-</span></span><span style=display:flex><span>huggingface-cli download mistralai/Mistral-Nemo-Instruct-2407 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --local-dir ~/models/mistral-nemo <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --local-dir-use-symlinks False
-</span></span></code></pre></div><hr><h2 id=running-inference-with-mistral-inference>Running Inference with mistral-inference</h2><p>The official <code>mistral-inference</code> package provides the simplest way to run Mistral models locally with full feature support.</p><h3 id=basic-inference-script>Basic Inference Script</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> mistral_inference.model <span style=color:#f92672>import</span> Transformer
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mistral_inference.generate <span style=color:#f92672>import</span> generate
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mistral_inference.tokenizer <span style=color:#f92672>import</span> Tokenizer
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load model and tokenizer</span>
-</span></span><span style=display:flex><span>model_path <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;~/models/mistral-7b-instruct&#34;</span>
-</span></span><span style=display:flex><span>tokenizer <span style=color:#f92672>=</span> Tokenizer<span style=color:#f92672>.</span>from_file(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>model_path<span style=color:#e6db74>}</span><span style=color:#e6db74>/tokenizer.model&#34;</span>)
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> Transformer<span style=color:#f92672>.</span>from_folder(model_path, device<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cuda&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Prepare conversation</span>
-</span></span><span style=display:flex><span>messages <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Explain the Mixture of Experts architecture.&#34;</span>}
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tokenize with chat template</span>
-</span></span><span style=display:flex><span>tokens <span style=color:#f92672>=</span> tokenizer<span style=color:#f92672>.</span>encode_chat_completion(messages)<span style=color:#f92672>.</span>tokens
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generate response</span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> generate(
-</span></span><span style=display:flex><span>    encoded<span style=color:#f92672>=</span>[tokens],
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span>model,
-</span></span><span style=display:flex><span>    tokenizer<span style=color:#f92672>=</span>tokenizer,
-</span></span><span style=display:flex><span>    max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span>,
-</span></span><span style=display:flex><span>    temperature<span style=color:#f92672>=</span><span style=color:#ae81ff>0.7</span>,
-</span></span><span style=display:flex><span>    top_p<span style=color:#f92672>=</span><span style=color:#ae81ff>0.95</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(result[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>text)
-</span></span></code></pre></div><h3 id=running-with-different-precision-levels>Running with Different Precision Levels</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Load with BF16 (default, recommended)</span>
-</span></span><span style=display:flex><span>model_bf16 <span style=color:#f92672>=</span> Transformer<span style=color:#f92672>.</span>from_folder(model_path, device<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cuda&#34;</span>, dtype<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bfloat16&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load with FP16 (slightly faster, may have precision issues)</span>
-</span></span><span style=display:flex><span>model_fp16 <span style=color:#f92672>=</span> Transformer<span style=color:#f92672>.</span>from_folder(model_path, device<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cuda&#34;</span>, dtype<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;float16&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load with 8-bit quantization (reduced memory)</span>
-</span></span><span style=display:flex><span>model_int8 <span style=color:#f92672>=</span> Transformer<span style=color:#f92672>.</span>from_folder(model_path, device<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cuda&#34;</span>, load_in_8bit<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># CPU inference (slow but no GPU required)</span>
-</span></span><span style=display:flex><span>model_cpu <span style=color:#f92672>=</span> Transformer<span style=color:#f92672>.</span>from_folder(model_path, device<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cpu&#34;</span>, dtype<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;float32&#34;</span>)
-</span></span></code></pre></div><h3 id=batch-inference-for-throughput>Batch Inference for Throughput</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> mistral_inference.generate <span style=color:#f92672>import</span> generate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Prepare multiple prompts</span>
-</span></span><span style=display:flex><span>batch_prompts <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    [{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;What is machine learning?&#34;</span>}],
-</span></span><span style=display:flex><span>    [{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Explain Docker containers.&#34;</span>}],
-</span></span><span style=display:flex><span>    [{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;How does TCP/IP work?&#34;</span>}],
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tokenize all prompts</span>
-</span></span><span style=display:flex><span>encoded_batch <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    tokenizer<span style=color:#f92672>.</span>encode_chat_completion(msgs)<span style=color:#f92672>.</span>tokens 
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> msgs <span style=color:#f92672>in</span> batch_prompts
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generate in batch</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> generate(
-</span></span><span style=display:flex><span>    encoded<span style=color:#f92672>=</span>encoded_batch,
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span>model,
-</span></span><span style=display:flex><span>    tokenizer<span style=color:#f92672>=</span>tokenizer,
-</span></span><span style=display:flex><span>    max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>256</span>,
-</span></span><span style=display:flex><span>    temperature<span style=color:#f92672>=</span><span style=color:#ae81ff>0.7</span>,
-</span></span><span style=display:flex><span>    batch_size<span style=color:#f92672>=</span>len(batch_prompts),
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i, result <span style=color:#f92672>in</span> enumerate(results): print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Response </span><span style=color:#e6db74>{</span>i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span><span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>text<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><hr><h2 id=production-deployment-with-vllm>Production Deployment with vLLM</h2><p>For production workloads requiring high throughput and concurrent request handling, vLLM is the recommended serving engine. It implements PagedAttention for efficient memory management and continuous batching.</p><h3 id=starting-the-vllm-server>Starting the vLLM Server</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Single GPU deployment for Mistral 7B</span>
-</span></span><span style=display:flex><span>python -m vllm.entrypoints.openai.api_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model mistralai/Mistral-7B-Instruct-v0.3 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --dtype bfloat16 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --tensor-parallel-size <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --max-model-len <span style=color:#ae81ff>32768</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --gpu-memory-utilization 0.85 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>8000</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Multi-GPU deployment for Mixtral 8x7B</span>
-</span></span><span style=display:flex><span>python -m vllm.entrypoints.openai.api_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model mistralai/Mixtral-8x7B-Instruct-v0.1 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --dtype bfloat16 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --tensor-parallel-size <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --max-model-len <span style=color:#ae81ff>32768</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --gpu-memory-utilization 0.90 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>8000</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Four GPU deployment for maximum throughput</span>
-</span></span><span style=display:flex><span>python -m vllm.entrypoints.openai.api_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model mistralai/Mixtral-8x7B-Instruct-v0.1 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --dtype bfloat16 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --tensor-parallel-size <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --pipeline-parallel-size <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --max-num-seqs <span style=color:#ae81ff>256</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --max-model-len <span style=color:#ae81ff>32768</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>8000</span>
-</span></span></code></pre></div><h3 id=api-server-configuration>API Server Configuration</h3><p>Create a <code>vllm-config.yaml</code> for reproducible deployments: `````yaml
+</code></pre><p>For cloud GPU instances, <a href="https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367">虎网云</a> offers competitive GPU server options optimized for LLM inference workloads.</p>
+<hr>
+<h2 id="installation-and-environment-setup">Installation and Environment Setup</h2>
+<h3 id="system-dependencies">System Dependencies</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Update system packages</span>
+</span></span><span style="display:flex;"><span>sudo apt update <span style="color:#f92672">&amp;&amp;</span> sudo apt upgrade -y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install CUDA toolkit (for NVIDIA GPUs)</span>
+</span></span><span style="display:flex;"><span>wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+</span></span><span style="display:flex;"><span>sudo dpkg -i cuda-keyring_1.1-1_all.deb
+</span></span><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install -y cuda-toolkit-12-4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify CUDA installation</span>
+</span></span><span style="display:flex;"><span>nvcc --version
+</span></span><span style="display:flex;"><span>nvidia-smi
+</span></span></code></pre></div><h3 id="python-environment">Python Environment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create dedicated environment</span>
+</span></span><span style="display:flex;"><span>python3 -m venv ~/mistral-env
+</span></span><span style="display:flex;"><span>source ~/mistral-env/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install base dependencies</span>
+</span></span><span style="display:flex;"><span>pip install --upgrade pip setuptools wheel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install mistral-inference</span>
+</span></span><span style="display:flex;"><span>pip install mistral-inference
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install vLLM for production serving</span>
+</span></span><span style="display:flex;"><span>pip install vllm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install optional: GGUF support for CPU inference</span>
+</span></span><span style="display:flex;"><span>pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
+</span></span></code></pre></div><h3 id="download-model-weights">Download Model Weights</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install huggingface-cli</span>
+</span></span><span style="display:flex;"><span>pip install huggingface-hub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Login to Hugging Face (required for some models)</span>
+</span></span><span style="display:flex;"><span>huggingface-cli login
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download Mistral 7B Instruct</span>
+</span></span><span style="display:flex;"><span>huggingface-cli download mistralai/Mistral-7B-Instruct-v0.3 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --local-dir ~/models/mistral-7b-instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --local-dir-use-symlinks False
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download Mixtral 8x7B Instruct</span>
+</span></span><span style="display:flex;"><span>huggingface-cli download mistralai/Mixtral-8x7B-Instruct-v0.1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --local-dir ~/models/mixtral-8x7b-instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --local-dir-use-symlinks False
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download Mistral Nemo</span>
+</span></span><span style="display:flex;"><span>huggingface-cli download mistralai/Mistral-Nemo-Instruct-2407 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --local-dir ~/models/mistral-nemo <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --local-dir-use-symlinks False
+</span></span></code></pre></div><hr>
+<h2 id="running-inference-with-mistral-inference">Running Inference with mistral-inference</h2>
+<p>The official <code>mistral-inference</code> package provides the simplest way to run Mistral models locally with full feature support.</p>
+<h3 id="basic-inference-script">Basic Inference Script</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> mistral_inference.model <span style="color:#f92672">import</span> Transformer
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mistral_inference.generate <span style="color:#f92672">import</span> generate
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mistral_inference.tokenizer <span style="color:#f92672">import</span> Tokenizer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load model and tokenizer</span>
+</span></span><span style="display:flex;"><span>model_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;~/models/mistral-7b-instruct&#34;</span>
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#f92672">=</span> Tokenizer<span style="color:#f92672">.</span>from_file(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>model_path<span style="color:#e6db74">}</span><span style="color:#e6db74">/tokenizer.model&#34;</span>)
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Transformer<span style="color:#f92672">.</span>from_folder(model_path, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare conversation</span>
+</span></span><span style="display:flex;"><span>messages <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Explain the Mixture of Experts architecture.&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tokenize with chat template</span>
+</span></span><span style="display:flex;"><span>tokens <span style="color:#f92672">=</span> tokenizer<span style="color:#f92672">.</span>encode_chat_completion(messages)<span style="color:#f92672">.</span>tokens
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate response</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> generate(
+</span></span><span style="display:flex;"><span>    encoded<span style="color:#f92672">=</span>[tokens],
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>model,
+</span></span><span style="display:flex;"><span>    tokenizer<span style="color:#f92672">=</span>tokenizer,
+</span></span><span style="display:flex;"><span>    max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+</span></span><span style="display:flex;"><span>    top_p<span style="color:#f92672">=</span><span style="color:#ae81ff">0.95</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>text)
+</span></span></code></pre></div><h3 id="running-with-different-precision-levels">Running with Different Precision Levels</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Load with BF16 (default, recommended)</span>
+</span></span><span style="display:flex;"><span>model_bf16 <span style="color:#f92672">=</span> Transformer<span style="color:#f92672">.</span>from_folder(model_path, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, dtype<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bfloat16&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load with FP16 (slightly faster, may have precision issues)</span>
+</span></span><span style="display:flex;"><span>model_fp16 <span style="color:#f92672">=</span> Transformer<span style="color:#f92672">.</span>from_folder(model_path, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, dtype<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;float16&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load with 8-bit quantization (reduced memory)</span>
+</span></span><span style="display:flex;"><span>model_int8 <span style="color:#f92672">=</span> Transformer<span style="color:#f92672">.</span>from_folder(model_path, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, load_in_8bit<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># CPU inference (slow but no GPU required)</span>
+</span></span><span style="display:flex;"><span>model_cpu <span style="color:#f92672">=</span> Transformer<span style="color:#f92672">.</span>from_folder(model_path, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cpu&#34;</span>, dtype<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;float32&#34;</span>)
+</span></span></code></pre></div><h3 id="batch-inference-for-throughput">Batch Inference for Throughput</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> mistral_inference.generate <span style="color:#f92672">import</span> generate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare multiple prompts</span>
+</span></span><span style="display:flex;"><span>batch_prompts <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;What is machine learning?&#34;</span>}],
+</span></span><span style="display:flex;"><span>    [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Explain Docker containers.&#34;</span>}],
+</span></span><span style="display:flex;"><span>    [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;How does TCP/IP work?&#34;</span>}],
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tokenize all prompts</span>
+</span></span><span style="display:flex;"><span>encoded_batch <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    tokenizer<span style="color:#f92672">.</span>encode_chat_completion(msgs)<span style="color:#f92672">.</span>tokens 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> msgs <span style="color:#f92672">in</span> batch_prompts
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate in batch</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> generate(
+</span></span><span style="display:flex;"><span>    encoded<span style="color:#f92672">=</span>encoded_batch,
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>model,
+</span></span><span style="display:flex;"><span>    tokenizer<span style="color:#f92672">=</span>tokenizer,
+</span></span><span style="display:flex;"><span>    max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">256</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#f92672">=</span>len(batch_prompts),
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i, result <span style="color:#f92672">in</span> enumerate(results): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Response </span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>text<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="production-deployment-with-vllm">Production Deployment with vLLM</h2>
+<p>For production workloads requiring high throughput and concurrent request handling, vLLM is the recommended serving engine. It implements PagedAttention for efficient memory management and continuous batching.</p>
+<h3 id="starting-the-vllm-server">Starting the vLLM Server</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Single GPU deployment for Mistral 7B</span>
+</span></span><span style="display:flex;"><span>python -m vllm.entrypoints.openai.api_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model mistralai/Mistral-7B-Instruct-v0.3 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dtype bfloat16 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --tensor-parallel-size <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --max-model-len <span style="color:#ae81ff">32768</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --gpu-memory-utilization 0.85 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">8000</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Multi-GPU deployment for Mixtral 8x7B</span>
+</span></span><span style="display:flex;"><span>python -m vllm.entrypoints.openai.api_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model mistralai/Mixtral-8x7B-Instruct-v0.1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dtype bfloat16 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --tensor-parallel-size <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --max-model-len <span style="color:#ae81ff">32768</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --gpu-memory-utilization 0.90 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">8000</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Four GPU deployment for maximum throughput</span>
+</span></span><span style="display:flex;"><span>python -m vllm.entrypoints.openai.api_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model mistralai/Mixtral-8x7B-Instruct-v0.1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dtype bfloat16 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --tensor-parallel-size <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --pipeline-parallel-size <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --max-num-seqs <span style="color:#ae81ff">256</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --max-model-len <span style="color:#ae81ff">32768</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">8000</span>
+</span></span></code></pre></div><h3 id="api-server-configuration">API Server Configuration</h3>
+<p>Create a <code>vllm-config.yaml</code> for reproducible deployments: `````yaml
 model: mistralai/Mistral-7B-Instruct-v0.3
 dtype: bfloat16
 tensor_parallel_size: 1
 max_model_len: 32768
 gpu_memory_utilization: 0.85
 max_num_seqs: 128
-quantization: null</p><h1 id=sampling-defaults>Sampling defaults</h1><p>temperature: 0.7
+quantization: null</p>
+<h1 id="sampling-defaults">Sampling defaults</h1>
+<p>temperature: 0.7
 top_p: 0.95
-top_k: 40</p><h1 id=server-settings>Server settings</h1><p>port: 8000
+top_k: 40</p>
+<h1 id="server-settings">Server settings</h1>
+<p>port: 8000
 host: 0.0.0.0
-uvicorn_log_level: info</p><h1 id=enable-continuous-batching>Enable continuous batching</h1><p>enable_chunked_prefill: true
-max_num_batched_tokens: 4096</p><pre tabindex=0><code>
+uvicorn_log_level: info</p>
+<h1 id="enable-continuous-batching">Enable continuous batching</h1>
+<p>enable_chunked_prefill: true
+max_num_batched_tokens: 4096</p>
+<pre tabindex="0"><code>
 `````bash
 # Start with config file
 python -m vllm.entrypoints.openai.api_server \
   --config vllm-config.yaml
-</code></pre><h3 id=calling-the-api>Calling the API</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Chat completion endpoint</span>
-</span></span><span style=display:flex><span>curl http://localhost:8000/v1/chat/completions <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;model&#34;: &#34;mistralai/Mistral-7B-Instruct-v0.3&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;messages&#34;: [
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;You are a helpful coding assistant.&#34;},
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Write a Python function to parse JSON safely.&#34;}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    ],
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;temperature&#34;: 0.2,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;max_tokens&#34;: 512
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Python client</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> openai <span style=color:#f92672>import</span> OpenAI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> OpenAI(
-</span></span><span style=display:flex><span>    base_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:8000/v1&#34;</span>,
-</span></span><span style=display:flex><span>    api_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;not-needed-for-local&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Explain the benefits of MoE architecture.&#34;</span>}
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>    stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> chunk <span style=color:#f92672>in</span> response: <span style=color:#66d9ef>if</span> chunk<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>delta<span style=color:#f92672>.</span>content: print(chunk<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>delta<span style=color:#f92672>.</span>content, end<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>)
-</span></span></code></pre></div><hr><h2 id=gguf-quantization-for-cpu-inference>GGUF Quantization for CPU Inference</h2><p>When GPU resources are unavailable, GGUF quantization enables running Mistral models on CPU with acceptable performance for many use cases.</p><h3 id=converting-to-gguf-format>Converting to GGUF Format</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install llama.cpp conversion tools</span>
-</span></span><span style=display:flex><span>git clone https://github.com/ggerganov/llama.cpp.git
-</span></span><span style=display:flex><span>cd llama.cpp
-</span></span><span style=display:flex><span>make -j<span style=color:#66d9ef>$(</span>nproc<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Convert Mistral 7B to GGUF</span>
-</span></span><span style=display:flex><span>python convert_hf_to_gguf.py <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  ~/models/mistral-7b-instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --outfile ~/models/mistral-7b-instruct-q4.gguf <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --outtype q4_k_m
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Convert Mixtral 8x7B (larger, use Q4 for CPU feasibility)</span>
-</span></span><span style=display:flex><span>python convert_hf_to_gguf.py <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  ~/models/mixtral-8x7b-instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --outfile ~/models/mixtral-8x7b-instruct-q4.gguf <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --outtype q4_k_m
-</span></span></code></pre></div><h3 id=running-gguf-with-llamacpp-server>Running GGUF with llama.cpp Server</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Start server with Q4 quantized model</span>
-</span></span><span style=display:flex><span>./server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -m ~/models/mistral-7b-instruct-q4.gguf <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -c <span style=color:#ae81ff>4096</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -n <span style=color:#ae81ff>512</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -t <span style=color:#ae81ff>16</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --host 0.0.0.0 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>8080</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># With GPU offloading (partial layers on GPU, rest on CPU)</span>
-</span></span><span style=display:flex><span>./server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -m ~/models/mistral-7b-instruct-q4.gguf <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -ngl <span style=color:#ae81ff>35</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -c <span style=color:#ae81ff>8192</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -t <span style=color:#ae81ff>8</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --host 0.0.0.0 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>8080</span>
-</span></span></code></pre></div><h3 id=api-access-to-gguf-server>API Access to GGUF Server</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Completion endpoint</span>
-</span></span><span style=display:flex><span>curl http://localhost:8080/completion <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;prompt&#34;: &#34;&lt;s&gt;[INST] Write a haiku about programming [/INST]&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;n_predict&#34;: 128,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;temperature&#34;: 0.7,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;stop&#34;: [&#34;&lt;/s&gt;&#34;]
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><hr><h2 id=function-calling-and-tool-use>Function Calling and Tool Use</h2><p>Mistral Instruct models support function calling, enabling agents that can interact with external tools and APIs.</p><h3 id=defining-tools>Defining Tools</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> openai <span style=color:#f92672>import</span> OpenAI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> OpenAI(base_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:8000/v1&#34;</span>, api_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;local&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>tools <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;function&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;function&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;get_weather&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Get current weather for a location&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;parameters&#34;</span>: {
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;properties&#34;</span>: {
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;location&#34;</span>: {
-</span></span><span style=display:flex><span>                        <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
-</span></span><span style=display:flex><span>                        <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;City name, e.g. San Francisco&#34;</span>
-</span></span><span style=display:flex><span>                    },
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;unit&#34;</span>: {
-</span></span><span style=display:flex><span>                        <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
-</span></span><span style=display:flex><span>                        <span style=color:#e6db74>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;celsius&#34;</span>, <span style=color:#e6db74>&#34;fahrenheit&#34;</span>]
-</span></span><span style=display:flex><span>                    }
-</span></span><span style=display:flex><span>                },
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;location&#34;</span>]
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;function&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;function&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;search_database&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Search the product database&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;parameters&#34;</span>: {
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;properties&#34;</span>: {
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;query&#34;</span>: {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>},
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;category&#34;</span>: {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>}
-</span></span><span style=display:flex><span>                },
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;query&#34;</span>]
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Request with tools</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;What&#39;s the weather in Tokyo?&#34;</span>}
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>tools,
-</span></span><span style=display:flex><span>    tool_choice<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check for tool calls</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> response<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>tool_calls: tool_call <span style=color:#f92672>=</span> response<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>tool_calls[<span style=color:#ae81ff>0</span>]
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Function: </span><span style=color:#e6db74>{</span>tool_call<span style=color:#f92672>.</span>function<span style=color:#f92672>.</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Arguments: </span><span style=color:#e6db74>{</span>tool_call<span style=color:#f92672>.</span>function<span style=color:#f92672>.</span>arguments<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=executing-tool-calls-and-continuing-conversation>Executing Tool Calls and Continuing Conversation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Execute the tool (example implementation)</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_weather</span>(location, unit<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;celsius&#34;</span>): <span style=color:#75715e># Actual implementation would call weather API</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;temperature&#34;</span>: <span style=color:#ae81ff>22</span>, <span style=color:#e6db74>&#34;condition&#34;</span>: <span style=color:#e6db74>&#34;sunny&#34;</span>, <span style=color:#e6db74>&#34;location&#34;</span>: location}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Add tool result to conversation</span>
-</span></span><span style=display:flex><span>messages <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;What&#39;s the weather in Tokyo?&#34;</span>}
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>messages<span style=color:#f92672>.</span>append(response<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message)
-</span></span><span style=display:flex><span>messages<span style=color:#f92672>.</span>append({
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;tool&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;tool_call_id&#34;</span>: tool_call<span style=color:#f92672>.</span>id,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: tool_call<span style=color:#f92672>.</span>function<span style=color:#f92672>.</span>name,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;content&#34;</span>: json<span style=color:#f92672>.</span>dumps(get_weather(<span style=color:#f92672>**</span>json<span style=color:#f92672>.</span>loads(tool_call<span style=color:#f92672>.</span>function<span style=color:#f92672>.</span>arguments)))
-</span></span><span style=display:flex><span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Get final response</span>
-</span></span><span style=display:flex><span>final_response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>messages
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>print(final_response<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>content)
-</span></span></code></pre></div><hr><h2 id=fine-tuning-for-custom-domains>Fine-Tuning for Custom Domains</h2><p>Fine-tuning adapts Mistral models to your specific domain, terminology, and task requirements.</p><h3 id=preparing-training-data>Preparing Training Data</h3><pre tabindex=0><code class=language-jsonl data-lang=jsonl># training_data.jsonl
+</code></pre><h3 id="calling-the-api">Calling the API</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Chat completion endpoint</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:8000/v1/chat/completions <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;model&#34;: &#34;mistralai/Mistral-7B-Instruct-v0.3&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;messages&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;You are a helpful coding assistant.&#34;},
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Write a Python function to parse JSON safely.&#34;}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;temperature&#34;: 0.2,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;max_tokens&#34;: 512
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python client</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:8000/v1&#34;</span>,
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;not-needed-for-local&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Explain the benefits of MoE architecture.&#34;</span>}
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> chunk <span style="color:#f92672">in</span> response: <span style="color:#66d9ef">if</span> chunk<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>delta<span style="color:#f92672">.</span>content: print(chunk<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>delta<span style="color:#f92672">.</span>content, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="gguf-quantization-for-cpu-inference">GGUF Quantization for CPU Inference</h2>
+<p>When GPU resources are unavailable, GGUF quantization enables running Mistral models on CPU with acceptable performance for many use cases.</p>
+<h3 id="converting-to-gguf-format">Converting to GGUF Format</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install llama.cpp conversion tools</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/ggerganov/llama.cpp.git
+</span></span><span style="display:flex;"><span>cd llama.cpp
+</span></span><span style="display:flex;"><span>make -j<span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Convert Mistral 7B to GGUF</span>
+</span></span><span style="display:flex;"><span>python convert_hf_to_gguf.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  ~/models/mistral-7b-instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --outfile ~/models/mistral-7b-instruct-q4.gguf <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --outtype q4_k_m
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Convert Mixtral 8x7B (larger, use Q4 for CPU feasibility)</span>
+</span></span><span style="display:flex;"><span>python convert_hf_to_gguf.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  ~/models/mixtral-8x7b-instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --outfile ~/models/mixtral-8x7b-instruct-q4.gguf <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --outtype q4_k_m
+</span></span></code></pre></div><h3 id="running-gguf-with-llamacpp-server">Running GGUF with llama.cpp Server</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start server with Q4 quantized model</span>
+</span></span><span style="display:flex;"><span>./server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -m ~/models/mistral-7b-instruct-q4.gguf <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -c <span style="color:#ae81ff">4096</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -n <span style="color:#ae81ff">512</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -t <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --host 0.0.0.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">8080</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># With GPU offloading (partial layers on GPU, rest on CPU)</span>
+</span></span><span style="display:flex;"><span>./server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -m ~/models/mistral-7b-instruct-q4.gguf <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -ngl <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -c <span style="color:#ae81ff">8192</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -t <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --host 0.0.0.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">8080</span>
+</span></span></code></pre></div><h3 id="api-access-to-gguf-server">API Access to GGUF Server</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Completion endpoint</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:8080/completion <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;prompt&#34;: &#34;&lt;s&gt;[INST] Write a haiku about programming [/INST]&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;n_predict&#34;: 128,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;temperature&#34;: 0.7,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;stop&#34;: [&#34;&lt;/s&gt;&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><hr>
+<h2 id="function-calling-and-tool-use">Function Calling and Tool Use</h2>
+<p>Mistral Instruct models support function calling, enabling agents that can interact with external tools and APIs.</p>
+<h3 id="defining-tools">Defining Tools</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:8000/v1&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;local&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tools <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;function&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;function&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;get_weather&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Get current weather for a location&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;parameters&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;City name, e.g. San Francisco&#34;</span>
+</span></span><span style="display:flex;"><span>                    },
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;unit&#34;</span>: {
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;enum&#34;</span>: [<span style="color:#e6db74">&#34;celsius&#34;</span>, <span style="color:#e6db74">&#34;fahrenheit&#34;</span>]
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;location&#34;</span>]
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;function&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;function&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;search_database&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Search the product database&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;parameters&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;query&#34;</span>: {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>},
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;category&#34;</span>: {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>}
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;query&#34;</span>]
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Request with tools</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;What&#39;s the weather in Tokyo?&#34;</span>}
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>tools,
+</span></span><span style="display:flex;"><span>    tool_choice<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check for tool calls</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>tool_calls: tool_call <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>tool_calls[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Function: </span><span style="color:#e6db74">{</span>tool_call<span style="color:#f92672">.</span>function<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Arguments: </span><span style="color:#e6db74">{</span>tool_call<span style="color:#f92672">.</span>function<span style="color:#f92672">.</span>arguments<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="executing-tool-calls-and-continuing-conversation">Executing Tool Calls and Continuing Conversation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Execute the tool (example implementation)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_weather</span>(location, unit<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;celsius&#34;</span>): <span style="color:#75715e"># Actual implementation would call weather API</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;temperature&#34;</span>: <span style="color:#ae81ff">22</span>, <span style="color:#e6db74">&#34;condition&#34;</span>: <span style="color:#e6db74">&#34;sunny&#34;</span>, <span style="color:#e6db74">&#34;location&#34;</span>: location}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add tool result to conversation</span>
+</span></span><span style="display:flex;"><span>messages <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;What&#39;s the weather in Tokyo?&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>messages<span style="color:#f92672">.</span>append(response<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message)
+</span></span><span style="display:flex;"><span>messages<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;tool&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;tool_call_id&#34;</span>: tool_call<span style="color:#f92672">.</span>id,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: tool_call<span style="color:#f92672">.</span>function<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;content&#34;</span>: json<span style="color:#f92672">.</span>dumps(get_weather(<span style="color:#f92672">**</span>json<span style="color:#f92672">.</span>loads(tool_call<span style="color:#f92672">.</span>function<span style="color:#f92672">.</span>arguments)))
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get final response</span>
+</span></span><span style="display:flex;"><span>final_response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>messages
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(final_response<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><hr>
+<h2 id="fine-tuning-for-custom-domains">Fine-Tuning for Custom Domains</h2>
+<p>Fine-tuning adapts Mistral models to your specific domain, terminology, and task requirements.</p>
+<h3 id="preparing-training-data">Preparing Training Data</h3>
+<pre tabindex="0"><code class="language-jsonl" data-lang="jsonl"># training_data.jsonl
 {&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Classify: refund request&#34;}, {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;category: billing&#34;}]}
 {&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Classify: app crashes on login&#34;}, {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;category: technical&#34;}]}
 {&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Classify: add dark mode&#34;}, {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;category: feature_request&#34;}]}
-</code></pre><h3 id=fine-tuning-with-peftlora>Fine-Tuning with PEFT/LoRA</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> transformers <span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>    AutoModelForCausalLM, 
-</span></span><span style=display:flex><span>    AutoTokenizer, 
-</span></span><span style=display:flex><span>    TrainingArguments, 
-</span></span><span style=display:flex><span>    BitsAndBytesConfig
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> peft <span style=color:#f92672>import</span> LoraConfig, get_peft_model, prepare_model_for_kbit_training
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> trl <span style=color:#f92672>import</span> SFTTrainer
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> torch
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load model in 4-bit for memory efficiency</span>
-</span></span><span style=display:flex><span>bnb_config <span style=color:#f92672>=</span> BitsAndBytesConfig(
-</span></span><span style=display:flex><span>    load_in_4bit<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    bnb_4bit_quant_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nf4&#34;</span>,
-</span></span><span style=display:flex><span>    bnb_4bit_compute_dtype<span style=color:#f92672>=</span>torch<span style=color:#f92672>.</span>bfloat16,
-</span></span><span style=display:flex><span>    bnb_4bit_use_double_quant<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> AutoModelForCausalLM<span style=color:#f92672>.</span>from_pretrained(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
-</span></span><span style=display:flex><span>    quantization_config<span style=color:#f92672>=</span>bnb_config,
-</span></span><span style=display:flex><span>    device_map<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>,
-</span></span><span style=display:flex><span>    trust_remote_code<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>tokenizer <span style=color:#f92672>=</span> AutoTokenizer<span style=color:#f92672>.</span>from_pretrained(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
-</span></span><span style=display:flex><span>    trust_remote_code<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>tokenizer<span style=color:#f92672>.</span>pad_token <span style=color:#f92672>=</span> tokenizer<span style=color:#f92672>.</span>eos_token
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Prepare model for training</span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> prepare_model_for_kbit_training(model)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># LoRA configuration</span>
-</span></span><span style=display:flex><span>lora_config <span style=color:#f92672>=</span> LoraConfig(
-</span></span><span style=display:flex><span>    r<span style=color:#f92672>=</span><span style=color:#ae81ff>16</span>,                    <span style=color:#75715e># LoRA rank</span>
-</span></span><span style=display:flex><span>    lora_alpha<span style=color:#f92672>=</span><span style=color:#ae81ff>32</span>,           <span style=color:#75715e># Scaling factor</span>
-</span></span><span style=display:flex><span>    target_modules<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;q_proj&#34;</span>, <span style=color:#e6db74>&#34;v_proj&#34;</span>, <span style=color:#e6db74>&#34;k_proj&#34;</span>, <span style=color:#e6db74>&#34;o_proj&#34;</span>, <span style=color:#e6db74>&#34;gate_proj&#34;</span>, <span style=color:#e6db74>&#34;up_proj&#34;</span>, <span style=color:#e6db74>&#34;down_proj&#34;</span>],
-</span></span><span style=display:flex><span>    lora_dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.05</span>,
-</span></span><span style=display:flex><span>    bias<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;none&#34;</span>,
-</span></span><span style=display:flex><span>    task_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;CAUSAL_LM&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> get_peft_model(model, lora_config)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Training arguments</span>
-</span></span><span style=display:flex><span>training_args <span style=color:#f92672>=</span> TrainingArguments(
-</span></span><span style=display:flex><span>    output_dir<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./mistral-finetuned&#34;</span>,
-</span></span><span style=display:flex><span>    num_train_epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>,
-</span></span><span style=display:flex><span>    per_device_train_batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span>,
-</span></span><span style=display:flex><span>    gradient_accumulation_steps<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span>,
-</span></span><span style=display:flex><span>    learning_rate<span style=color:#f92672>=</span><span style=color:#ae81ff>2e-4</span>,
-</span></span><span style=display:flex><span>    max_grad_norm<span style=color:#f92672>=</span><span style=color:#ae81ff>0.3</span>,
-</span></span><span style=display:flex><span>    warmup_ratio<span style=color:#f92672>=</span><span style=color:#ae81ff>0.03</span>,
-</span></span><span style=display:flex><span>    lr_scheduler_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cosine&#34;</span>,
-</span></span><span style=display:flex><span>    logging_steps<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    save_strategy<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;epoch&#34;</span>,
-</span></span><span style=display:flex><span>    fp16<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-</span></span><span style=display:flex><span>    bf16<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    optim<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;paged_adamw_8bit&#34;</span>,
-</span></span><span style=display:flex><span>    group_by_length<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Initialize trainer</span>
-</span></span><span style=display:flex><span>trainer <span style=color:#f92672>=</span> SFTTrainer(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span>model,
-</span></span><span style=display:flex><span>    tokenizer<span style=color:#f92672>=</span>tokenizer,
-</span></span><span style=display:flex><span>    train_dataset<span style=color:#f92672>=</span>dataset,  <span style=color:#75715e># Your prepared dataset</span>
-</span></span><span style=display:flex><span>    args<span style=color:#f92672>=</span>training_args,
-</span></span><span style=display:flex><span>    dataset_text_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>,
-</span></span><span style=display:flex><span>    max_seq_length<span style=color:#f92672>=</span><span style=color:#ae81ff>2048</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Train</span>
-</span></span><span style=display:flex><span>trainer<span style=color:#f92672>.</span>train()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Save adapter</span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>save_pretrained(<span style=color:#e6db74>&#34;./mistral-lora-adapter&#34;</span>)
-</span></span></code></pre></div><h3 id=merging-and-deploying-fine-tuned-model>Merging and Deploying Fine-Tuned Model</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> peft <span style=color:#f92672>import</span> PeftModel
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load base model</span>
-</span></span><span style=display:flex><span>base_model <span style=color:#f92672>=</span> AutoModelForCausalLM<span style=color:#f92672>.</span>from_pretrained(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
-</span></span><span style=display:flex><span>    torch_dtype<span style=color:#f92672>=</span>torch<span style=color:#f92672>.</span>bfloat16,
-</span></span><span style=display:flex><span>    device_map<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Merge LoRA adapter</span>
-</span></span><span style=display:flex><span>merged_model <span style=color:#f92672>=</span> PeftModel<span style=color:#f92672>.</span>from_pretrained(base_model, <span style=color:#e6db74>&#34;./mistral-lora-adapter&#34;</span>)
-</span></span><span style=display:flex><span>merged_model <span style=color:#f92672>=</span> merged_model<span style=color:#f92672>.</span>merge_and_unload()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Save merged model</span>
-</span></span><span style=display:flex><span>merged_model<span style=color:#f92672>.</span>save_pretrained(<span style=color:#e6db74>&#34;./mistral-finetuned-merged&#34;</span>)
-</span></span><span style=display:flex><span>tokenizer<span style=color:#f92672>.</span>save_pretrained(<span style=color:#e6db74>&#34;./mistral-finetuned-merged&#34;</span>)
-</span></span></code></pre></div><hr><h2 id=monitoring-and-production-operations>Monitoring and Production Operations</h2><h3 id=health-check-endpoint>Health Check Endpoint</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># vLLM health check</span>
-</span></span><span style=display:flex><span>curl http://localhost:8000/health
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Expected: {&#34;status&#34;: &#34;healthy&#34;}</span>
-</span></span></code></pre></div><h3 id=prometheus-metrics>Prometheus Metrics</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># vLLM exposes Prometheus metrics</span>
-</span></span><span style=display:flex><span>curl http://localhost:8000/metrics
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Key metrics: # - vllm:num_requests_running</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - vllm:gpu_cache_usage_perc</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - vllm:time_to_first_token_seconds</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - vllm:time_per_output_token_seconds</span>
-</span></span></code></pre></div><h3 id=kubernetes-deployment>Kubernetes Deployment</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>mistral-vllm</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: replicas</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>selector: matchLabels: app</span>: <span style=color:#ae81ff>mistral-vllm</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>template: metadata: labels: app</span>: <span style=color:#ae81ff>mistral-vllm</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>spec: containers: - name</span>: <span style=color:#ae81ff>vllm</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>vllm/vllm-openai:latest</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>args</span>: - --<span style=color:#ae81ff>model</span>
-</span></span><span style=display:flex><span>          - <span style=color:#ae81ff>mistralai/Mistral-7B-Instruct-v0.3</span>
-</span></span><span style=display:flex><span>          - --<span style=color:#ae81ff>dtype</span>
-</span></span><span style=display:flex><span>          - <span style=color:#ae81ff>bfloat16</span>
-</span></span><span style=display:flex><span>          - --<span style=color:#ae81ff>tensor-parallel-size</span>
-</span></span><span style=display:flex><span>          - <span style=color:#e6db74>&#34;1&#34;</span>
-</span></span><span style=display:flex><span>          - --<span style=color:#ae81ff>gpu-memory-utilization</span>
-</span></span><span style=display:flex><span>          - <span style=color:#e6db74>&#34;0.85&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>ports: - containerPort</span>: <span style=color:#ae81ff>8000</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>resources: limits: nvidia.com/gpu</span>: <span style=color:#e6db74>&#34;1&#34;</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;32Gi&#34;</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>requests: nvidia.com/gpu</span>: <span style=color:#e6db74>&#34;1&#34;</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;16Gi&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>volumeMounts: - name</span>: <span style=color:#ae81ff>model-cache</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>/root/.cache/huggingface</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>volumes: - name</span>: <span style=color:#ae81ff>model-cache</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>persistentVolumeClaim: claimName</span>: <span style=color:#ae81ff>model-cache-pvc</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>nodeSelector: accelerator</span>: <span style=color:#ae81ff>nvidia-gpu</span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>mistral-vllm-service</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: selector: app</span>: <span style=color:#ae81ff>mistral-vllm</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>ports: - port</span>: <span style=color:#ae81ff>80</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>8000</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>type</span>: <span style=color:#ae81ff>ClusterIP</span>
-</span></span></code></pre></div><hr><h2 id=faq-mistral-ai-local-deployment>FAQ: Mistral AI Local Deployment</h2><h3 id=what-hardware-do-i-need-to-run-mixtral-8x7b-locally>What hardware do I need to run Mixtral 8x7B locally?</h3><p>For full-precision (BF16) inference, you need approximately 94GB of GPU memory — typically 2x NVIDIA A100 80GB or 4x RTX 4090 (24GB). For quantized inference, a single A100 80GB or 2x RTX 4090 with INT4 quantization works well. CPU inference with GGUF Q4 requires 32GB+ system RAM.</p><h3 id=how-does-mistrals-moe-architecture-compare-to-dense-models>How does Mistral&rsquo;s MoE architecture compare to dense models?</h3><p>Mixtral 8x7B activates only ~13B parameters per token (2 experts out of 8), yet matches or exceeds the performance of 70B+ dense models. This makes inference significantly faster and cheaper while maintaining high quality. The sparse activation is the key innovation — more total knowledge capacity without proportional compute cost.</p><h3 id=can-i-use-mistral-models-commercially>Can I use Mistral models commercially?</h3><p>Yes. Mistral 7B, Mixtral 8x7B, and Mistral Nemo are all licensed under Apache-2.0, permitting commercial use without restrictions. Codestral uses the Mistral AI Non-Production License for the base model, but the instruct versions are commercially usable. Always verify the specific license for the model variant you&rsquo;re deploying.</p><h3 id=whats-the-difference-between-mistral-inference-and-vllm>What&rsquo;s the difference between mistral-inference and vLLM?</h3><p><code>mistral-inference</code> is Mistral&rsquo;s official inference engine with full feature support for Mistral-specific capabilities like function calling and tokenization. <strong>vLLM</strong> is a general-purpose inference engine optimized for throughput with PagedAttention and continuous batching. Use <code>mistral-inference</code> for development and feature completeness; use <strong>vLLM</strong> for production serving requiring high concurrency.</p><h3 id=how-do-i-fine-tune-on-limited-gpu-memory>How do I fine-tune on limited GPU memory?</h3><p>Use parameter-efficient fine-tuning (PEFT) with LoRA adapters. Quantize the base model to 4-bit using BitsAndBytesConfig, apply LoRA with rank 8-64, and train with gradient checkpointing. This enables fine-tuning 7B models on a single 16GB GPU and 8x7B MoE models on a single 40GB GPU.</p><h3 id=does-local-deployment-match-api-performance>Does local deployment match API performance?</h3><p>For single requests, local deployment often has lower latency than cloud APIs since there&rsquo;s no network round-trip to external servers. For batched throughput, a well-configured vLLM deployment can process hundreds of tokens per second. The main trade-off is hardware cost versus per-token API pricing.</p><hr><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=conclusion>Conclusion</h2><p>Deploying Mistral AI models locally gives you complete control over your AI infrastructure. The 8x7B Mixture of Experts architecture delivers exceptional performance per parameter, while the broader Mistral ecosystem — Nemo for efficiency, Large for maximum capability, Codestral for code — covers virtually every production use case.</p><p>Start with ````mistral-inference``` for experimentation, scale to vLLM for production serving, and leverage GGUF quantization when GPU resources are constrained. With function calling support, fine-tuning capabilities, and a vibrant open-source ecosystem, Mistral represents the state of the art in locally deployable LLMs.</p><p>For cloud GPU resources to host your deployment, consider <a href="https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367">虎网云 GPU servers</a> for cost-effective, high-performance inference infrastructure.</p><hr><p><em>Published: 2026-05-19 | Mistral AI | <a href=https://github.com/mistralai/mistral-inference>GitHub: mistralai/mistral-inference</a></em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h3 id="fine-tuning-with-peftlora">Fine-Tuning with PEFT/LoRA</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    AutoModelForCausalLM, 
+</span></span><span style="display:flex;"><span>    AutoTokenizer, 
+</span></span><span style="display:flex;"><span>    TrainingArguments, 
+</span></span><span style="display:flex;"><span>    BitsAndBytesConfig
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> peft <span style="color:#f92672">import</span> LoraConfig, get_peft_model, prepare_model_for_kbit_training
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> trl <span style="color:#f92672">import</span> SFTTrainer
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load model in 4-bit for memory efficiency</span>
+</span></span><span style="display:flex;"><span>bnb_config <span style="color:#f92672">=</span> BitsAndBytesConfig(
+</span></span><span style="display:flex;"><span>    load_in_4bit<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    bnb_4bit_quant_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nf4&#34;</span>,
+</span></span><span style="display:flex;"><span>    bnb_4bit_compute_dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>bfloat16,
+</span></span><span style="display:flex;"><span>    bnb_4bit_use_double_quant<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> AutoModelForCausalLM<span style="color:#f92672">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    quantization_config<span style="color:#f92672">=</span>bnb_config,
+</span></span><span style="display:flex;"><span>    device_map<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>,
+</span></span><span style="display:flex;"><span>    trust_remote_code<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#f92672">=</span> AutoTokenizer<span style="color:#f92672">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    trust_remote_code<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#f92672">.</span>pad_token <span style="color:#f92672">=</span> tokenizer<span style="color:#f92672">.</span>eos_token
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare model for training</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> prepare_model_for_kbit_training(model)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LoRA configuration</span>
+</span></span><span style="display:flex;"><span>lora_config <span style="color:#f92672">=</span> LoraConfig(
+</span></span><span style="display:flex;"><span>    r<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>,                    <span style="color:#75715e"># LoRA rank</span>
+</span></span><span style="display:flex;"><span>    lora_alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>,           <span style="color:#75715e"># Scaling factor</span>
+</span></span><span style="display:flex;"><span>    target_modules<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;q_proj&#34;</span>, <span style="color:#e6db74">&#34;v_proj&#34;</span>, <span style="color:#e6db74">&#34;k_proj&#34;</span>, <span style="color:#e6db74">&#34;o_proj&#34;</span>, <span style="color:#e6db74">&#34;gate_proj&#34;</span>, <span style="color:#e6db74">&#34;up_proj&#34;</span>, <span style="color:#e6db74">&#34;down_proj&#34;</span>],
+</span></span><span style="display:flex;"><span>    lora_dropout<span style="color:#f92672">=</span><span style="color:#ae81ff">0.05</span>,
+</span></span><span style="display:flex;"><span>    bias<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;none&#34;</span>,
+</span></span><span style="display:flex;"><span>    task_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;CAUSAL_LM&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> get_peft_model(model, lora_config)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Training arguments</span>
+</span></span><span style="display:flex;"><span>training_args <span style="color:#f92672">=</span> TrainingArguments(
+</span></span><span style="display:flex;"><span>    output_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./mistral-finetuned&#34;</span>,
+</span></span><span style="display:flex;"><span>    num_train_epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>    per_device_train_batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>    gradient_accumulation_steps<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>    learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">2e-4</span>,
+</span></span><span style="display:flex;"><span>    max_grad_norm<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>,
+</span></span><span style="display:flex;"><span>    warmup_ratio<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>,
+</span></span><span style="display:flex;"><span>    lr_scheduler_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cosine&#34;</span>,
+</span></span><span style="display:flex;"><span>    logging_steps<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    save_strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;epoch&#34;</span>,
+</span></span><span style="display:flex;"><span>    fp16<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>    bf16<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    optim<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;paged_adamw_8bit&#34;</span>,
+</span></span><span style="display:flex;"><span>    group_by_length<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize trainer</span>
+</span></span><span style="display:flex;"><span>trainer <span style="color:#f92672">=</span> SFTTrainer(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>model,
+</span></span><span style="display:flex;"><span>    tokenizer<span style="color:#f92672">=</span>tokenizer,
+</span></span><span style="display:flex;"><span>    train_dataset<span style="color:#f92672">=</span>dataset,  <span style="color:#75715e"># Your prepared dataset</span>
+</span></span><span style="display:flex;"><span>    args<span style="color:#f92672">=</span>training_args,
+</span></span><span style="display:flex;"><span>    dataset_text_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>,
+</span></span><span style="display:flex;"><span>    max_seq_length<span style="color:#f92672">=</span><span style="color:#ae81ff">2048</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train</span>
+</span></span><span style="display:flex;"><span>trainer<span style="color:#f92672">.</span>train()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save adapter</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>save_pretrained(<span style="color:#e6db74">&#34;./mistral-lora-adapter&#34;</span>)
+</span></span></code></pre></div><h3 id="merging-and-deploying-fine-tuned-model">Merging and Deploying Fine-Tuned Model</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> peft <span style="color:#f92672">import</span> PeftModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load base model</span>
+</span></span><span style="display:flex;"><span>base_model <span style="color:#f92672">=</span> AutoModelForCausalLM<span style="color:#f92672">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mistralai/Mistral-7B-Instruct-v0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    torch_dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>bfloat16,
+</span></span><span style="display:flex;"><span>    device_map<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Merge LoRA adapter</span>
+</span></span><span style="display:flex;"><span>merged_model <span style="color:#f92672">=</span> PeftModel<span style="color:#f92672">.</span>from_pretrained(base_model, <span style="color:#e6db74">&#34;./mistral-lora-adapter&#34;</span>)
+</span></span><span style="display:flex;"><span>merged_model <span style="color:#f92672">=</span> merged_model<span style="color:#f92672">.</span>merge_and_unload()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save merged model</span>
+</span></span><span style="display:flex;"><span>merged_model<span style="color:#f92672">.</span>save_pretrained(<span style="color:#e6db74">&#34;./mistral-finetuned-merged&#34;</span>)
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#f92672">.</span>save_pretrained(<span style="color:#e6db74">&#34;./mistral-finetuned-merged&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="monitoring-and-production-operations">Monitoring and Production Operations</h2>
+<h3 id="health-check-endpoint">Health Check Endpoint</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># vLLM health check</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:8000/health
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: {&#34;status&#34;: &#34;healthy&#34;}</span>
+</span></span></code></pre></div><h3 id="prometheus-metrics">Prometheus Metrics</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># vLLM exposes Prometheus metrics</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:8000/metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Key metrics: # - vllm:num_requests_running</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - vllm:gpu_cache_usage_perc</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - vllm:time_to_first_token_seconds</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - vllm:time_per_output_token_seconds</span>
+</span></span></code></pre></div><h3 id="kubernetes-deployment">Kubernetes Deployment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">mistral-vllm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector: matchLabels: app</span>: <span style="color:#ae81ff">mistral-vllm</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template: metadata: labels: app</span>: <span style="color:#ae81ff">mistral-vllm</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec: containers: - name</span>: <span style="color:#ae81ff">vllm</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">vllm/vllm-openai:latest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">args</span>: - --<span style="color:#ae81ff">model</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">mistralai/Mistral-7B-Instruct-v0.3</span>
+</span></span><span style="display:flex;"><span>          - --<span style="color:#ae81ff">dtype</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">bfloat16</span>
+</span></span><span style="display:flex;"><span>          - --<span style="color:#ae81ff">tensor-parallel-size</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>          - --<span style="color:#ae81ff">gpu-memory-utilization</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;0.85&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports: - containerPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">resources: limits: nvidia.com/gpu</span>: <span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;32Gi&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">requests: nvidia.com/gpu</span>: <span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;16Gi&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">volumeMounts: - name</span>: <span style="color:#ae81ff">model-cache</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/root/.cache/huggingface</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes: - name</span>: <span style="color:#ae81ff">model-cache</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">persistentVolumeClaim: claimName</span>: <span style="color:#ae81ff">model-cache-pvc</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">nodeSelector: accelerator</span>: <span style="color:#ae81ff">nvidia-gpu</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">mistral-vllm-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: selector: app</span>: <span style="color:#ae81ff">mistral-vllm</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports: - port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
+</span></span></code></pre></div><hr>
+<h2 id="faq-mistral-ai-local-deployment">FAQ: Mistral AI Local Deployment</h2>
+<h3 id="what-hardware-do-i-need-to-run-mixtral-8x7b-locally">What hardware do I need to run Mixtral 8x7B locally?</h3>
+<p>For full-precision (BF16) inference, you need approximately 94GB of GPU memory — typically 2x NVIDIA A100 80GB or 4x RTX 4090 (24GB). For quantized inference, a single A100 80GB or 2x RTX 4090 with INT4 quantization works well. CPU inference with GGUF Q4 requires 32GB+ system RAM.</p>
+<h3 id="how-does-mistrals-moe-architecture-compare-to-dense-models">How does Mistral&rsquo;s MoE architecture compare to dense models?</h3>
+<p>Mixtral 8x7B activates only ~13B parameters per token (2 experts out of 8), yet matches or exceeds the performance of 70B+ dense models. This makes inference significantly faster and cheaper while maintaining high quality. The sparse activation is the key innovation — more total knowledge capacity without proportional compute cost.</p>
+<h3 id="can-i-use-mistral-models-commercially">Can I use Mistral models commercially?</h3>
+<p>Yes. Mistral 7B, Mixtral 8x7B, and Mistral Nemo are all licensed under Apache-2.0, permitting commercial use without restrictions. Codestral uses the Mistral AI Non-Production License for the base model, but the instruct versions are commercially usable. Always verify the specific license for the model variant you&rsquo;re deploying.</p>
+<h3 id="whats-the-difference-between-mistral-inference-and-vllm">What&rsquo;s the difference between mistral-inference and vLLM?</h3>
+<p><code>mistral-inference</code> is Mistral&rsquo;s official inference engine with full feature support for Mistral-specific capabilities like function calling and tokenization. <strong>vLLM</strong> is a general-purpose inference engine optimized for throughput with PagedAttention and continuous batching. Use <code>mistral-inference</code> for development and feature completeness; use <strong>vLLM</strong> for production serving requiring high concurrency.</p>
+<h3 id="how-do-i-fine-tune-on-limited-gpu-memory">How do I fine-tune on limited GPU memory?</h3>
+<p>Use parameter-efficient fine-tuning (PEFT) with LoRA adapters. Quantize the base model to 4-bit using BitsAndBytesConfig, apply LoRA with rank 8-64, and train with gradient checkpointing. This enables fine-tuning 7B models on a single 16GB GPU and 8x7B MoE models on a single 40GB GPU.</p>
+<h3 id="does-local-deployment-match-api-performance">Does local deployment match API performance?</h3>
+<p>For single requests, local deployment often has lower latency than cloud APIs since there&rsquo;s no network round-trip to external servers. For batched throughput, a well-configured vLLM deployment can process hundreds of tokens per second. The main trade-off is hardware cost versus per-token API pricing.</p>
+<hr>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Deploying Mistral AI models locally gives you complete control over your AI infrastructure. The 8x7B Mixture of Experts architecture delivers exceptional performance per parameter, while the broader Mistral ecosystem — Nemo for efficiency, Large for maximum capability, Codestral for code — covers virtually every production use case.</p>
+<p>Start with ````mistral-inference``` for experimentation, scale to vLLM for production serving, and leverage GGUF quantization when GPU resources are constrained. With function calling support, fine-tuning capabilities, and a vibrant open-source ecosystem, Mistral represents the state of the art in locally deployable LLMs.</p>
+<p>For cloud GPU resources to host your deployment, consider <a href="https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367">虎网云 GPU servers</a> for cost-effective, high-performance inference infrastructure.</p>
+<hr>
+<p><em>Published: 2026-05-19 | Mistral AI | <a href="https://github.com/mistralai/mistral-inference">GitHub: mistralai/mistral-inference</a></em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Mistral AI 2026: Deploy Production-Grade Local LLMs with 8x7B MoE Architecture — Complete Setup Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-20&rdquo;,
@@ -499,20 +681,285 @@ python -m vllm.entrypoints.openai.api_server \
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/mistral-ai-local-llm-deployment%22>https://dibi8.com/resources/mistral-ai-local-llm-deployment"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/mistral-ai-local-llm-deployment%22">https://dibi8.com/resources/mistral-ai-local-llm-deployment"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/mistral-ai-local-llm-deployment/>12-factor-agents</a></li><li><a href=/ai-coding-agents/mistral-ai-local-llm-deployment/>2026-05-25-trending-ai-agents</a></li><li><a href=/ai-coding-agents/mistral-ai-local-llm-deployment/>2026-06-01-trending-ai-agents</a></li><li><a href=/ai-coding-agents/mistral-ai-local-llm-deployment/>2026-06-08-trending-ai-agents</a></li><li><a href=/ai-coding-agents/mistral-ai-local-llm-deployment/>2026-06-15-trending-ai-agents</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmistral-ai-local-llm-deployment%2f&text=Update%20system%20packages" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmistral-ai-local-llm-deployment%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/mistral-ai-local-llm-deployment/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/mistral-ai-local-llm-deployment/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/mistral-ai-local-llm-deployment/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/mistral-ai-local-llm-deployment/">2026-06-08-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/mistral-ai-local-llm-deployment/">2026-06-15-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmistral-ai-local-llm-deployment%2f&text=Update%20system%20packages" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmistral-ai-local-llm-deployment%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

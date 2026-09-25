@@ -1,22 +1,96 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Web UI on :80, API on :9380 | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Web UI on :80, API on :9380 | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/knowledge-base-stack/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/knowledge-base-stack/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Web UI on :80, API on :9380</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Web UI on :80, API on :9380</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;The Knowledge Base Stack 2026: Build Your &ldquo;Second Brain&rdquo;&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web UI on :80, API on :9380 | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Web UI on :80, API on :9380 | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/knowledge-base-stack/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/knowledge-base-stack/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Web UI on :80, API on :9380</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Web UI on :80, API on :9380</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;The Knowledge Base Stack 2026: Build Your &ldquo;Second Brain&rdquo;&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
-tech_stack: - Docker</p><ul><li>Python</li><li>PostgreSQL</li><li>Redis
+tech_stack: - Docker</p>
+<ul>
+<li>Python</li>
+<li>PostgreSQL</li>
+<li>Redis
 application_domain: Collections
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -29,15 +103,39 @@ last_maintained: &ldquo;2026-05-21&rdquo;
 draft: false
 categories: [&ldquo;collections&rdquo;]
 tags: [&ldquo;knowledge base&rdquo;, &ldquo;rag&rdquo;, &ldquo;second brain&rdquo;, &ldquo;stack&rdquo;, &ldquo;collection&rdquo;]
-aliases:</li><li>/posts/knowledge-base-stack/-</li></ul><hr><p>You&rsquo;ve got 500 PDFs, 2,000 notes, 10 years of email, and the AI in your editor doesn&rsquo;t know any of it exists. Notion AI is $10/seat/mo and can&rsquo;t see your local files. Glean costs $30k/year minimum. Mem.ai is great but it&rsquo;s a SaaS — your &ldquo;second brain&rdquo; lives on someone else&rsquo;s hardware.</p><p>This collection assembles the <strong>5-component self-hosted knowledge base stack</strong> that ingests everything (PDFs, notes, web pages, code), embeds it locally, lets you query it via chat + API, and exposes it to your AI coding agents via MCP — for <strong>$10-25/month</strong> total infrastructure cost.</p><h2 id=tldr--the-stack-at-a-glance>TL;DR — The Stack at a Glance</h2><p>| # | Component | Role | Why | Deep dive |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| 1 | <strong>AnythingLLM</strong> | All-in-one RAG UI + document manager + chat interface | The &ldquo;front door&rdquo; — what you and your team actually click into | <a href=/resources/llm-frameworks/anythingllm-architecture-local-rag/>AnythingLLM local RAG architecture</a> |
-| 2 | <strong>RAGFlow</strong> | Deep document parsing (tables, formulas, multi-column PDFs) | Where AnythingLLM stops at &ldquo;good enough&rdquo; parsing, RAGFlow handles the hard documents | <a href=/resources/llm-frameworks/ragflow/>RAGFlow guide</a> |
-| 3 | <strong>mem0</strong> | Persistent semantic memory layer for agents | Long-term &ldquo;remember this fact about the user&rdquo; across sessions | <a href=/resources/llm-frameworks/mem0/>mem0 setup</a> |
-| 4 | <strong>AgentMemory MCP</strong> | Exposes mem0 to any MCP host (Claude Desktop, OpenCode, Cursor) | Lets your coding agent share the knowledge base via MCP protocol | <a href=/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/>AgentMemory MCP</a> |
-| 5 | <strong>Vector DB</strong> (Chroma / Qdrant / Weaviate) | Embedding storage + similarity search backend | Pick varies — see <a href=/resources/llm-frameworks/vector-database-comparison/>Vector DB comparison</a> | <a href=/resources/llm-frameworks/vector-database-comparison/>Vector DB comparison 2026</a> |</p><p><strong>Total monthly cost</strong> (solo, 10 GB of docs): <strong>$10-15</strong> • <strong>Small team (10 GB, 5 users)</strong>: <strong>$15-25</strong> • <strong>Org (100 GB, 50 users)</strong>: <strong>$60-150</strong></p><p>Compare against SaaS equivalents: Notion AI + Mem + Glean Lite = $50-200/mo for solo-to-small-team coverage.</p><h2 id=1-why-self-host-a-knowledge-base-in-2026>1. Why Self-Host a Knowledge Base in 2026</h2><p>Three things converged: 1. <strong>Local embedding models hit production quality</strong> — ```nomic-embed-text<code>and</code>bge-large```` run on a 4GB VPS, embed at 200 docs/min, retrieve at sub-100ms. No more &ldquo;send your data to OpenAI for embeddings.&rdquo;
-2. <strong>MCP standardized agent-to-knowledge integration</strong> — once your knowledge base speaks MCP, every AI coding agent (Claude Desktop, OpenCode, Cursor, Continue) can query it without custom integration code. See our <a href=/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/>MCP server registry guide</a> for the protocol details.
-3. <strong>RAGFlow shipped enterprise-grade document parsing as open source</strong> — multi-column PDFs, tables with merged cells, embedded formulas. The thing every &ldquo;DIY RAG&rdquo; stack failed at, now solved.</p><p>Stack the three — local embedding + MCP exposure + RAGFlow-grade parsing — and the &ldquo;I&rsquo;ll just use Notion AI&rdquo; decision flips for anyone with privacy concerns or > 5 GB of source documents.</p><h2 id=2-architecture-overview>2. Architecture Overview</h2><pre tabindex=0><code>   ┌────────────────────────────────────────────────────┐
+aliases:</li>
+<li>/posts/knowledge-base-stack/-</li>
+</ul>
+<hr>
+<p>You&rsquo;ve got 500 PDFs, 2,000 notes, 10 years of email, and the AI in your editor doesn&rsquo;t know any of it exists. Notion AI is $10/seat/mo and can&rsquo;t see your local files. Glean costs $30k/year minimum. Mem.ai is great but it&rsquo;s a SaaS — your &ldquo;second brain&rdquo; lives on someone else&rsquo;s hardware.</p>
+<p>This collection assembles the <strong>5-component self-hosted knowledge base stack</strong> that ingests everything (PDFs, notes, web pages, code), embeds it locally, lets you query it via chat + API, and exposes it to your AI coding agents via MCP — for <strong>$10-25/month</strong> total infrastructure cost.</p>
+<h2 id="tldr--the-stack-at-a-glance">TL;DR — The Stack at a Glance</h2>
+<p>| # | Component | Role | Why | Deep dive |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 1 | <strong>AnythingLLM</strong> | All-in-one RAG UI + document manager + chat interface | The &ldquo;front door&rdquo; — what you and your team actually click into | <a href="/resources/llm-frameworks/anythingllm-architecture-local-rag/">AnythingLLM local RAG architecture</a> |
+| 2 | <strong>RAGFlow</strong> | Deep document parsing (tables, formulas, multi-column PDFs) | Where AnythingLLM stops at &ldquo;good enough&rdquo; parsing, RAGFlow handles the hard documents | <a href="/resources/llm-frameworks/ragflow/">RAGFlow guide</a> |
+| 3 | <strong>mem0</strong> | Persistent semantic memory layer for agents | Long-term &ldquo;remember this fact about the user&rdquo; across sessions | <a href="/resources/llm-frameworks/mem0/">mem0 setup</a> |
+| 4 | <strong>AgentMemory MCP</strong> | Exposes mem0 to any MCP host (Claude Desktop, OpenCode, Cursor) | Lets your coding agent share the knowledge base via MCP protocol | <a href="/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/">AgentMemory MCP</a> |
+| 5 | <strong>Vector DB</strong> (Chroma / Qdrant / Weaviate) | Embedding storage + similarity search backend | Pick varies — see <a href="/resources/llm-frameworks/vector-database-comparison/">Vector DB comparison</a> | <a href="/resources/llm-frameworks/vector-database-comparison/">Vector DB comparison 2026</a> |</p>
+<p><strong>Total monthly cost</strong> (solo, 10 GB of docs): <strong>$10-15</strong> • <strong>Small team (10 GB, 5 users)</strong>: <strong>$15-25</strong> • <strong>Org (100 GB, 50 users)</strong>: <strong>$60-150</strong></p>
+<p>Compare against SaaS equivalents: Notion AI + Mem + Glean Lite = $50-200/mo for solo-to-small-team coverage.</p>
+<h2 id="1-why-self-host-a-knowledge-base-in-2026">1. Why Self-Host a Knowledge Base in 2026</h2>
+<p>Three things converged: 1. <strong>Local embedding models hit production quality</strong> — ```nomic-embed-text<code>and</code>bge-large```` run on a 4GB VPS, embed at 200 docs/min, retrieve at sub-100ms. No more &ldquo;send your data to OpenAI for embeddings.&rdquo;
+2. <strong>MCP standardized agent-to-knowledge integration</strong> — once your knowledge base speaks MCP, every AI coding agent (Claude Desktop, OpenCode, Cursor, Continue) can query it without custom integration code. See our <a href="/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/">MCP server registry guide</a> for the protocol details.
+3. <strong>RAGFlow shipped enterprise-grade document parsing as open source</strong> — multi-column PDFs, tables with merged cells, embedded formulas. The thing every &ldquo;DIY RAG&rdquo; stack failed at, now solved.</p>
+<p>Stack the three — local embedding + MCP exposure + RAGFlow-grade parsing — and the &ldquo;I&rsquo;ll just use Notion AI&rdquo; decision flips for anyone with privacy concerns or &gt; 5 GB of source documents.</p>
+<h2 id="2-architecture-overview">2. Architecture Overview</h2>
+<pre tabindex="0"><code>   ┌────────────────────────────────────────────────────┐
    │ VPS ($10-25/mo)                                    │
    │                                                    │
    │  ┌────────────────────────────────────────────┐   │
@@ -68,8 +166,18 @@ aliases:</li><li>/posts/knowledge-base-stack/-</li></ul><hr><p>You&rsquo;ve got 
    │  │    (Claude / Cursor / OpenCode)  │               │
    │  └─────────────────────────────────┘               │
    └────────────────────────────────────────────────────┘
-</code></pre><p>The split: AnythingLLM is the user-facing front door, RAGFlow handles documents AnythingLLM&rsquo;s parser stumbles on, the vector DB is the shared retrieval backend, and mem0 + AgentMemory MCP expose the same knowledge to your AI coding agents.</p><h2 id=3-component-1--anythingllm-the-front-door>3. Component 1 — AnythingLLM (The Front Door)</h2><p><strong>The role</strong>: This is what you and your team click into. Document upload, workspace organization, chat-with-your-docs, user management — all in one self-hosted app.</p><p><strong>Why this pick</strong>: 28k+ stars, single Docker container deploys in 10 minutes, has the most polished web UI of any open-source RAG tool. Supports 40+ LLM providers as the chat backend (Ollama / DeepSeek / Claude / GPT-5 / OpenRouter) so you keep cost flexibility.</p><p><strong>Quick install</strong>: `````bash
-docker run -d &ndash;name anythingllm<br>-p 3001:3001<br>-v anythingllm-storage:/app/server/storage<br>-e LLM_PROVIDER=ollama<br>-e EMBEDDING_ENGINE=native<br>mintplexlabs/anythingllm:latest</p><pre tabindex=0><code>
+</code></pre><p>The split: AnythingLLM is the user-facing front door, RAGFlow handles documents AnythingLLM&rsquo;s parser stumbles on, the vector DB is the shared retrieval backend, and mem0 + AgentMemory MCP expose the same knowledge to your AI coding agents.</p>
+<h2 id="3-component-1--anythingllm-the-front-door">3. Component 1 — AnythingLLM (The Front Door)</h2>
+<p><strong>The role</strong>: This is what you and your team click into. Document upload, workspace organization, chat-with-your-docs, user management — all in one self-hosted app.</p>
+<p><strong>Why this pick</strong>: 28k+ stars, single Docker container deploys in 10 minutes, has the most polished web UI of any open-source RAG tool. Supports 40+ LLM providers as the chat backend (Ollama / DeepSeek / Claude / GPT-5 / OpenRouter) so you keep cost flexibility.</p>
+<p><strong>Quick install</strong>: `````bash
+docker run -d &ndash;name anythingllm <br>
+-p 3001:3001 <br>
+-v anythingllm-storage:/app/server/storage <br>
+-e LLM_PROVIDER=ollama <br>
+-e EMBEDDING_ENGINE=native <br>
+mintplexlabs/anythingllm:latest</p>
+<pre tabindex="0"><code>
 Open ````http://your-vps:3001````, create a workspace, drag in PDFs. Built-in parser handles 80% of documents. For the other 20%, route to RAGFlow (next component).
 
 **Full setup** including team auth, workspace structure, and LLM provider routing: [AnythingLLM local RAG architecture](/resources/llm-frameworks/anythingllm-architecture-local-rag/).
@@ -83,8 +191,17 @@ Open ````http://your-vps:3001````, create a workspace, drag in PDFs. Built-in pa
 **Quick install**: `````bash
 docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-compose.yml up -d
 # Web UI on :80, API on :9380
-</code></pre><p><strong>Workflow pattern</strong>: AnythingLLM is the daily driver. When retrieval quality drops for a specific doc, re-process it through RAGFlow, save the parsed chunks back to the shared vector DB.</p><p><strong>Full RAGFlow setup</strong> including DeepDoc tuning and pipeline integration: <a href=/resources/llm-frameworks/ragflow/>RAGFlow guide</a>.</p><h2 id=5-component-3--mem0-agent-memory-layer>5. Component 3 — mem0 (Agent Memory Layer)</h2><p><strong>The role</strong>: Persistent semantic memory that survives across chat sessions and across agents. &ldquo;Remember the user is using Tailwind v4 and the auth lives in <code>src/lib/auth.ts</code>&rdquo; — and any agent that talks to mem0 gets that fact next session, next month, next year.</p><p><strong>Why this pick</strong>: 30k+ stars. Built specifically for agent memory (not general-purpose vector DB). Auto-extracts facts from conversations, deduplicates, decays old facts naturally.</p><p><strong>Quick install</strong>: `````bash
-pip install mem0ai</p><h1 id=or-run-as-a-service-docker-run--d-name-mem0--p-87658765->Or run as a service: docker run -d &ndash;name mem0 -p 8765:8765 \</h1><p>-e VECTOR_DB=chroma<br>mem0ai/mem0-server:latest</p><pre tabindex=0><code>
+</code></pre><p><strong>Workflow pattern</strong>: AnythingLLM is the daily driver. When retrieval quality drops for a specific doc, re-process it through RAGFlow, save the parsed chunks back to the shared vector DB.</p>
+<p><strong>Full RAGFlow setup</strong> including DeepDoc tuning and pipeline integration: <a href="/resources/llm-frameworks/ragflow/">RAGFlow guide</a>.</p>
+<h2 id="5-component-3--mem0-agent-memory-layer">5. Component 3 — mem0 (Agent Memory Layer)</h2>
+<p><strong>The role</strong>: Persistent semantic memory that survives across chat sessions and across agents. &ldquo;Remember the user is using Tailwind v4 and the auth lives in <code>src/lib/auth.ts</code>&rdquo; — and any agent that talks to mem0 gets that fact next session, next month, next year.</p>
+<p><strong>Why this pick</strong>: 30k+ stars. Built specifically for agent memory (not general-purpose vector DB). Auto-extracts facts from conversations, deduplicates, decays old facts naturally.</p>
+<p><strong>Quick install</strong>: `````bash
+pip install mem0ai</p>
+<h1 id="or-run-as-a-service-docker-run--d-name-mem0--p-87658765-">Or run as a service: docker run -d &ndash;name mem0 -p 8765:8765 \</h1>
+<p>-e VECTOR_DB=chroma <br>
+mem0ai/mem0-server:latest</p>
+<pre tabindex="0"><code>
 **Use case**: Connect mem0 as a writeback layer to your AnythingLLM workspace. Every chat conversation auto-distills into mem0 facts. Your AI coding agent (next component) then has both the document corpus AND the conversation-extracted facts available.
 
 **Full mem0 setup** including embedding model picks and decay policy tuning: [mem0 setup guide](/resources/llm-frameworks/mem0/).
@@ -98,141 +215,403 @@ pip install mem0ai</p><h1 id=or-run-as-a-service-docker-run--d-name-mem0--p-8765
 **Quick install**: `````bash
 npm install -g @mem0/mem0-mcp
 # Add to OpenCode / Claude Desktop MCP config: # { &#34;agentmemory&#34;: { &#34;command&#34;: &#34;mem0-mcp&#34;, &#34;env&#34;: { &#34;MEM0_URL&#34;: &#34;http://localhost:8765&#34; } } }
-</code></pre><p><strong>The result</strong>: Your coding agent can now answer &ldquo;based on our project docs and our past conversations, how should I structure the new auth flow?&rdquo; — with citations from both your PDFs and your prior decisions.</p><p><strong>Full setup</strong> including how to share AgentMemory MCP across a team: <a href=/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/>AgentMemory MCP guide</a>.</p><h2 id=7-component-5--vector-db-pick>7. Component 5 — Vector DB Pick</h2><p><strong>The role</strong>: The shared embedding storage backend behind AnythingLLM, RAGFlow, and mem0.</p><p><strong>The three viable picks</strong> (full comparison: <a href=/resources/llm-frameworks/vector-database-comparison/>Vector DB comparison 2026</a>): - <strong>Chroma</strong> — Best for solo / small team. Single-file SQLite-like simplicity. Embedded mode = zero extra services. Default for AnythingLLM.</p><ul><li><strong>Qdrant</strong> — Best for production team. Rust-based, sub-10ms latency, scales horizontally. Docker compose handles it.</li><li><strong>Weaviate</strong> — Best when you need hybrid search (vector + keyword). Heavier ops but more powerful retrieval modes.</li></ul><p><strong>Default recommendation</strong>: Start with Chroma (already inside AnythingLLM). Migrate to Qdrant when your corpus > 100 GB or query latency > 200ms.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Qdrant if/when you outgrow Chroma: docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \</span>
-</span></span><span style=display:flex><span>  -v qdrant-storage:/qdrant/storage <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  qdrant/qdrant:latest
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 8. Day 1 Setup Order (90 minutes)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>1. **Spin up VPS** <span style=color:#f92672>(</span><span style=color:#ae81ff>10</span> min<span style=color:#f92672>)</span> — Order a  <span style=color:#f92672>(</span><span style=color:#ae81ff>8</span> GB tier; <span style=color:#ae81ff>4</span> GB is too tight <span style=color:#66d9ef>for</span> parsing + embedding + LLM<span style=color:#f92672>)</span>, install Docker
-</span></span><span style=display:flex><span>2. **AnythingLLM first** <span style=color:#f92672>(</span><span style=color:#ae81ff>15</span> min<span style=color:#f92672>)</span> — Single docker run, browse to :3001, create admin account + first workspace
-</span></span><span style=display:flex><span>3. **Upload <span style=color:#ae81ff>10</span> test documents** <span style=color:#f92672>(</span><span style=color:#ae81ff>10</span> min<span style=color:#f92672>)</span> — Mix of PDFs, .md notes, .docx — see what AnythingLLM<span style=color:#960050;background-color:#1e0010>&#39;</span>s built-in parser handles
-</span></span><span style=display:flex><span>4. **RAGFlow second** <span style=color:#f92672>(</span><span style=color:#ae81ff>20</span> min<span style=color:#f92672>)</span> — docker compose, browse to :80, re-process the 2-3 documents AnythingLLM stumbled on
-</span></span><span style=display:flex><span>5. **mem0 third** <span style=color:#f92672>(</span><span style=color:#ae81ff>10</span> min<span style=color:#f92672>)</span> — pip install + run as service, point at the Chroma instance AnythingLLM uses
-</span></span><span style=display:flex><span>6. **AgentMemory MCP fourth** <span style=color:#f92672>(</span><span style=color:#ae81ff>10</span> min<span style=color:#f92672>)</span> — npm install, add to Claude Desktop / OpenCode config
-</span></span><span style=display:flex><span>7. **Test the full pipeline** <span style=color:#f92672>(</span><span style=color:#ae81ff>15</span> min<span style=color:#f92672>)</span> — Upload doc to AnythingLLM → chat → mem0 captures fact → ask same question in Claude Desktop via MCP → cite both sources
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>After <span style=color:#ae81ff>90</span> minutes you have a personal Glean-equivalent running on a $12/mo droplet.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 9. Cost Breakdown</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>| Item | Solo <span style=color:#f92672>(</span><span style=color:#ae81ff>10</span> GB docs<span style=color:#f92672>)</span> | Small team <span style=color:#f92672>(</span><span style=color:#ae81ff>10</span> GB, <span style=color:#ae81ff>5</span> users<span style=color:#f92672>)</span> | Org <span style=color:#f92672>(</span><span style=color:#ae81ff>100</span> GB, <span style=color:#ae81ff>50</span> users<span style=color:#f92672>)</span> |
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>| VPS | $12 <span style=color:#f92672>(</span><span style=color:#ae81ff>8</span> GB<span style=color:#f92672>)</span> | $24 <span style=color:#f92672>(</span><span style=color:#ae81ff>16</span> GB<span style=color:#f92672>)</span> | $120 <span style=color:#f92672>(</span><span style=color:#ae81ff>64</span> GB + replica<span style=color:#f92672>)</span> |
-</span></span><span style=display:flex><span>| AnythingLLM | $0 <span style=color:#f92672>(</span>self-host<span style=color:#f92672>)</span> | $0 | $0 |
-</span></span><span style=display:flex><span>| RAGFlow | $0 <span style=color:#f92672>(</span>self-host<span style=color:#f92672>)</span> | $0 | $0 |
-</span></span><span style=display:flex><span>| mem0 / AgentMemory MCP | $0 <span style=color:#f92672>(</span>self-host<span style=color:#f92672>)</span> | $0 | $0 |
-</span></span><span style=display:flex><span>| Vector DB <span style=color:#f92672>(</span>Chroma → Qdrant<span style=color:#f92672>)</span> | $0 | $0 | $0 <span style=color:#f92672>(</span>Qdrant self-host<span style=color:#f92672>)</span> |
-</span></span><span style=display:flex><span>| Embedding <span style=color:#f92672>(</span>local Ollama bge-large<span style=color:#f92672>)</span> | $0 | $0 | $0 |
-</span></span><span style=display:flex><span>| Chat LLM <span style=color:#f92672>(</span>DeepSeek <span style=color:#66d9ef>for</span> cheap, Claude <span style=color:#66d9ef>for</span> hard<span style=color:#f92672>)</span> | $0-5 | $0-10 | $20-30 |
-</span></span><span style=display:flex><span>| Backup storage | $1 | $2 | $20 |
-</span></span><span style=display:flex><span>| **Total** | **~$13-18/mo** | **~$26-36/mo** | **~$160-170/mo** |
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Compare against SaaS equivalents: - Solo: Notion AI <span style=color:#f92672>(</span>$10<span style=color:#f92672>)</span> + Mem.ai <span style=color:#f92672>(</span>$15<span style=color:#f92672>)</span> <span style=color:#f92672>=</span> $25/mo, can<span style=color:#e6db74>&#34;t see local files
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- Small team: same × 5 users = </span>$125<span style=color:#e6db74>/mo
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- Org: Glean Lite ~</span>$30<span style=color:#e6db74>/user/mo × 50 = </span>$1<span style=color:#e6db74>,500/mo
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>## 10. Upgrade Path
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>When you outgrow this stack: - **Corpus &gt; 1 TB or &gt; 10M docs** — Move Qdrant to dedicated 32 GB box, add sharding
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- **Multi-region team** — Replicate AnythingLLM read replicas in multiple regions, single write master in  for China-friendly latency
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- **Need full text + vector hybrid** — Migrate vector DB from Chroma to Weaviate
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- **Audit / SOC2 compliance** — Pair with Portkey for LLM call observability (see [LLM Gateway comparison 2026](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/))
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- **Multi-tenant SaaS** — Add LiteLLM for virtual-key-per-customer ([LiteLLM guide](/resources/llm-frameworks/litellm/))
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>## TL;DR — The Recipe
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>**5 components, </span>$10<span style=color:#e6db74>-25/mo for solo-to-small-team**: 1. **AnythingLLM** — front door + chat UI
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>2. **RAGFlow** — deep document parser (hard PDFs)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>3. **mem0** — agent memory layer
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>4. **AgentMemory MCP** — bridge to coding agents
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>5. **Vector DB** (Chroma → Qdrant at scale)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Replaces </span>$50<span style=color:#e6db74>-200/mo of SaaS (Notion AI + Mem + Glean Lite) with self-hosted you own. 90-minute setup, MCP-native so every coding agent benefits.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Spin up a  for the entry tier, follow section 8, and your knowledge base is queryable from Claude Desktop / Cursor / OpenCode by tomorrow.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>* * *
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>*Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) plugs this knowledge base into your coding agent stack. [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the chat-LLM cost side. [Cross-Border AI Marketing Stack](/collections/cross-border-ai-marketing-stack/) for Chinese teams needing China-friendly hosting.*
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>@context<span style=color:#e6db74>&#34;: &#34;</span>https://schema.org<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>Article<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>headline<span style=color:#e6db74>&#34;: &#34;</span>The Knowledge Base Stack 2026: Build Your <span style=color:#e6db74>&#34;Second Brain&#34;</span> with AnythingLLM + RAGFlow + mem0 <span style=color:#f92672>(</span>$10-25/Month<span style=color:#f92672>)</span><span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>datePublished<span style=color:#e6db74>&#34;: &#34;</span>2026-05-21<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>dateModified<span style=color:#e6db74>&#34;: &#34;</span>2026-05-21<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>author<span style=color:#e6db74>&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>Organization<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>name<span style=color:#e6db74>&#34;: &#34;</span>Dibi8<span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  },
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>publisher<span style=color:#e6db74>&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>Organization<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>name<span style=color:#e6db74>&#34;: &#34;</span>Dibi8<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>logo<span style=color:#e6db74>&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>ImageObject<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;</span>url<span style=color:#e6db74>&#34;: &#34;</span>https://dibi8.com/logo.png<span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  },
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>mainEntityOfPage<span style=color:#e6db74>&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>WebPage<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>@id<span style=color:#e6db74>&#34;: &#34;</span>https://dibi8.com/resources/knowledge-base-stack<span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&lt;/script&gt;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>* * *
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>## Related Articles
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [prompts-chat](knowledge-base-stack)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [alpaca-trading-api-stock-broker](knowledge-base-stack)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [appwrite-backend-as-service](knowledge-base-stack)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [arize-ai-observability-llm](knowledge-base-stack)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [cognee-ai-memory-platform](knowledge-base-stack)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>* * *
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>## Frequently Asked Questions (FAQ)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>**问：AI Agent和传统自动化有什么区别？**
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>**问：如何选择合适的AI Agent框架？**
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>**问：AI Agent的安全性如何保证？**
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>**问：AI Agent的学习成本有多高？**
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>**问：能否自定义AI Agent的行为？**
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></span></code></pre></div></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fknowledge-base-stack%2f&text=Web%20UI%20on%20%3a80%2c%20API%20on%20%3a9380" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fknowledge-base-stack%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre><p><strong>The result</strong>: Your coding agent can now answer &ldquo;based on our project docs and our past conversations, how should I structure the new auth flow?&rdquo; — with citations from both your PDFs and your prior decisions.</p>
+<p><strong>Full setup</strong> including how to share AgentMemory MCP across a team: <a href="/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/">AgentMemory MCP guide</a>.</p>
+<h2 id="7-component-5--vector-db-pick">7. Component 5 — Vector DB Pick</h2>
+<p><strong>The role</strong>: The shared embedding storage backend behind AnythingLLM, RAGFlow, and mem0.</p>
+<p><strong>The three viable picks</strong> (full comparison: <a href="/resources/llm-frameworks/vector-database-comparison/">Vector DB comparison 2026</a>): - <strong>Chroma</strong> — Best for solo / small team. Single-file SQLite-like simplicity. Embedded mode = zero extra services. Default for AnythingLLM.</p>
+<ul>
+<li><strong>Qdrant</strong> — Best for production team. Rust-based, sub-10ms latency, scales horizontally. Docker compose handles it.</li>
+<li><strong>Weaviate</strong> — Best when you need hybrid search (vector + keyword). Heavier ops but more powerful retrieval modes.</li>
+</ul>
+<p><strong>Default recommendation</strong>: Start with Chroma (already inside AnythingLLM). Migrate to Qdrant when your corpus &gt; 100 GB or query latency &gt; 200ms.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Qdrant if/when you outgrow Chroma: docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \</span>
+</span></span><span style="display:flex;"><span>  -v qdrant-storage:/qdrant/storage <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  qdrant/qdrant:latest
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 8. Day 1 Setup Order (90 minutes)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>1. **Spin up VPS** <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> min<span style="color:#f92672">)</span> — Order a  <span style="color:#f92672">(</span><span style="color:#ae81ff">8</span> GB tier; <span style="color:#ae81ff">4</span> GB is too tight <span style="color:#66d9ef">for</span> parsing + embedding + LLM<span style="color:#f92672">)</span>, install Docker
+</span></span><span style="display:flex;"><span>2. **AnythingLLM first** <span style="color:#f92672">(</span><span style="color:#ae81ff">15</span> min<span style="color:#f92672">)</span> — Single docker run, browse to :3001, create admin account + first workspace
+</span></span><span style="display:flex;"><span>3. **Upload <span style="color:#ae81ff">10</span> test documents** <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> min<span style="color:#f92672">)</span> — Mix of PDFs, .md notes, .docx — see what AnythingLLM<span style="color:#960050;background-color:#1e0010">&#39;</span>s built-in parser handles
+</span></span><span style="display:flex;"><span>4. **RAGFlow second** <span style="color:#f92672">(</span><span style="color:#ae81ff">20</span> min<span style="color:#f92672">)</span> — docker compose, browse to :80, re-process the 2-3 documents AnythingLLM stumbled on
+</span></span><span style="display:flex;"><span>5. **mem0 third** <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> min<span style="color:#f92672">)</span> — pip install + run as service, point at the Chroma instance AnythingLLM uses
+</span></span><span style="display:flex;"><span>6. **AgentMemory MCP fourth** <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> min<span style="color:#f92672">)</span> — npm install, add to Claude Desktop / OpenCode config
+</span></span><span style="display:flex;"><span>7. **Test the full pipeline** <span style="color:#f92672">(</span><span style="color:#ae81ff">15</span> min<span style="color:#f92672">)</span> — Upload doc to AnythingLLM → chat → mem0 captures fact → ask same question in Claude Desktop via MCP → cite both sources
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>After <span style="color:#ae81ff">90</span> minutes you have a personal Glean-equivalent running on a $12/mo droplet.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 9. Cost Breakdown</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>| Item | Solo <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> GB docs<span style="color:#f92672">)</span> | Small team <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> GB, <span style="color:#ae81ff">5</span> users<span style="color:#f92672">)</span> | Org <span style="color:#f92672">(</span><span style="color:#ae81ff">100</span> GB, <span style="color:#ae81ff">50</span> users<span style="color:#f92672">)</span> |
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>| VPS | $12 <span style="color:#f92672">(</span><span style="color:#ae81ff">8</span> GB<span style="color:#f92672">)</span> | $24 <span style="color:#f92672">(</span><span style="color:#ae81ff">16</span> GB<span style="color:#f92672">)</span> | $120 <span style="color:#f92672">(</span><span style="color:#ae81ff">64</span> GB + replica<span style="color:#f92672">)</span> |
+</span></span><span style="display:flex;"><span>| AnythingLLM | $0 <span style="color:#f92672">(</span>self-host<span style="color:#f92672">)</span> | $0 | $0 |
+</span></span><span style="display:flex;"><span>| RAGFlow | $0 <span style="color:#f92672">(</span>self-host<span style="color:#f92672">)</span> | $0 | $0 |
+</span></span><span style="display:flex;"><span>| mem0 / AgentMemory MCP | $0 <span style="color:#f92672">(</span>self-host<span style="color:#f92672">)</span> | $0 | $0 |
+</span></span><span style="display:flex;"><span>| Vector DB <span style="color:#f92672">(</span>Chroma → Qdrant<span style="color:#f92672">)</span> | $0 | $0 | $0 <span style="color:#f92672">(</span>Qdrant self-host<span style="color:#f92672">)</span> |
+</span></span><span style="display:flex;"><span>| Embedding <span style="color:#f92672">(</span>local Ollama bge-large<span style="color:#f92672">)</span> | $0 | $0 | $0 |
+</span></span><span style="display:flex;"><span>| Chat LLM <span style="color:#f92672">(</span>DeepSeek <span style="color:#66d9ef">for</span> cheap, Claude <span style="color:#66d9ef">for</span> hard<span style="color:#f92672">)</span> | $0-5 | $0-10 | $20-30 |
+</span></span><span style="display:flex;"><span>| Backup storage | $1 | $2 | $20 |
+</span></span><span style="display:flex;"><span>| **Total** | **~$13-18/mo** | **~$26-36/mo** | **~$160-170/mo** |
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Compare against SaaS equivalents: - Solo: Notion AI <span style="color:#f92672">(</span>$10<span style="color:#f92672">)</span> + Mem.ai <span style="color:#f92672">(</span>$15<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> $25/mo, can<span style="color:#e6db74">&#34;t see local files
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- Small team: same × 5 users = </span>$125<span style="color:#e6db74">/mo
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- Org: Glean Lite ~</span>$30<span style="color:#e6db74">/user/mo × 50 = </span>$1<span style="color:#e6db74">,500/mo
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## 10. Upgrade Path
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">When you outgrow this stack: - **Corpus &gt; 1 TB or &gt; 10M docs** — Move Qdrant to dedicated 32 GB box, add sharding
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- **Multi-region team** — Replicate AnythingLLM read replicas in multiple regions, single write master in  for China-friendly latency
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- **Need full text + vector hybrid** — Migrate vector DB from Chroma to Weaviate
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- **Audit / SOC2 compliance** — Pair with Portkey for LLM call observability (see [LLM Gateway comparison 2026](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/))
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- **Multi-tenant SaaS** — Add LiteLLM for virtual-key-per-customer ([LiteLLM guide](/resources/llm-frameworks/litellm/))
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## TL;DR — The Recipe
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**5 components, </span>$10<span style="color:#e6db74">-25/mo for solo-to-small-team**: 1. **AnythingLLM** — front door + chat UI
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2. **RAGFlow** — deep document parser (hard PDFs)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3. **mem0** — agent memory layer
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4. **AgentMemory MCP** — bridge to coding agents
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5. **Vector DB** (Chroma → Qdrant at scale)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Replaces </span>$50<span style="color:#e6db74">-200/mo of SaaS (Notion AI + Mem + Glean Lite) with self-hosted you own. 90-minute setup, MCP-native so every coding agent benefits.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Spin up a  for the entry tier, follow section 8, and your knowledge base is queryable from Claude Desktop / Cursor / OpenCode by tomorrow.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">*Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) plugs this knowledge base into your coding agent stack. [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the chat-LLM cost side. [Cross-Border AI Marketing Stack](/collections/cross-border-ai-marketing-stack/) for Chinese teams needing China-friendly hosting.*
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>@context<span style="color:#e6db74">&#34;: &#34;</span>https://schema.org<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>Article<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>headline<span style="color:#e6db74">&#34;: &#34;</span>The Knowledge Base Stack 2026: Build Your <span style="color:#e6db74">&#34;Second Brain&#34;</span> with AnythingLLM + RAGFlow + mem0 <span style="color:#f92672">(</span>$10-25/Month<span style="color:#f92672">)</span><span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>datePublished<span style="color:#e6db74">&#34;: &#34;</span>2026-05-21<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>dateModified<span style="color:#e6db74">&#34;: &#34;</span>2026-05-21<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>author<span style="color:#e6db74">&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>Organization<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>name<span style="color:#e6db74">&#34;: &#34;</span>Dibi8<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>publisher<span style="color:#e6db74">&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>Organization<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>name<span style="color:#e6db74">&#34;: &#34;</span>Dibi8<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>logo<span style="color:#e6db74">&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>ImageObject<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;</span>url<span style="color:#e6db74">&#34;: &#34;</span>https://dibi8.com/logo.png<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>mainEntityOfPage<span style="color:#e6db74">&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>WebPage<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>@id<span style="color:#e6db74">&#34;: &#34;</span>https://dibi8.com/resources/knowledge-base-stack<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## Related Articles
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [prompts-chat](knowledge-base-stack)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [alpaca-trading-api-stock-broker](knowledge-base-stack)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [appwrite-backend-as-service](knowledge-base-stack)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [arize-ai-observability-llm](knowledge-base-stack)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [cognee-ai-memory-platform](knowledge-base-stack)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## Frequently Asked Questions (FAQ)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**问：AI Agent和传统自动化有什么区别？**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**问：如何选择合适的AI Agent框架？**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**问：AI Agent的安全性如何保证？**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**问：AI Agent的学习成本有多高？**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**问：能否自定义AI Agent的行为？**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></span></code></pre></div>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fknowledge-base-stack%2f&text=Web%20UI%20on%20%3a80%2c%20API%20on%20%3a9380" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fknowledge-base-stack%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

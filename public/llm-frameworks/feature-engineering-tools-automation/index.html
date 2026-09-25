@@ -1,38 +1,147 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Why Feature Engineering is the Bottleneck in ML Pipelines | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Why Feature Engineering is the Bottleneck in ML Pipelines | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/llm-frameworks/feature-engineering-tools-automation/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/llm-frameworks/feature-engineering-tools-automation/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Why Feature Engineering is the Bottleneck in ML Pipelines</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Why Feature Engineering is the Bottleneck in ML Pipelines</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>{&lt;/* resource-info */>}</p><p>Feature engineering is the process of transforming raw data into variables that machine learning models can use effectively. It is also the most time-consuming, expertise-dependent phase of a typical ML pipeline. A <a href=https://www.forbes.com>Forbes survey from 2016</a> found that data scientists spend 80% of their time on data preparation — much of it on feature engineering. Nearly a decade later, despite advances in AutoML, manual feature creation remains a bottleneck.</p><p>Automated feature engineering tools promise to change this. They generate hundreds or thousands of candidate features from raw data, apply statistical relevance filtering, and output feature matrices ready for model training. The three most mature Python libraries in this space are <a href=https://featuretools.alteryx.com>Featuretools</a> (for relational data), <a href=https://github.com/cod3licious/autofeat>AutoFeat</a> (for tabular data), and <a href=https://tsfresh.com>tsfresh</a> (for time series).</p><p>This guide explains when each tool excels, demonstrates their usage with code examples, and provides a decision framework for incorporating automated feature engineering into production ML pipelines.</p><h2 id=why-feature-engineering-is-the-bottleneck-in-ml-pipelines>Why Feature Engineering is the Bottleneck in ML Pipelines</h2><p>Manual feature engineering requires three things that are always in short supply: domain expertise, programming time, and creative experimentation. A data scientist working on customer churn prediction might manually create features like &ldquo;days since last purchase,&rdquo; &ldquo;average order value,&rdquo; and &ldquo;number of support tickets.&rdquo; Each feature requires understanding the business context, writing the transformation code, and validating that the feature actually improves model performance.</p><p>The problems compound across projects: - <strong>Repetition.</strong> The same feature engineering patterns (aggregations, datetime extractions, text embeddings) are rewritten for every new dataset.</p><ul><li><strong>Error-proneness.</strong> Manual transformations introduce bugs — off-by-one errors in window calculations, data leakage from future information, incorrect handling of missing values.</li><li><strong>Incompleteness.</strong> Humans can only explore a tiny fraction of the possible feature space. A dataset with 20 numeric columns has millions of potential interaction terms, ratios, and polynomial combinations.</li><li><strong>Maintenance.</strong> When upstream data changes, manually engineered features break silently. Automated pipelines are easier to test and version.</li></ul><p>Automated feature engineering addresses each of these problems by systematically generating features, testing their relevance, and integrating them into reproducible pipelines.</p><h2 id=featuretools-deep-feature-synthesis-for-relational-data>Featuretools: Deep Feature Synthesis for Relational Data</h2><p><a href=https://featuretools.alteryx.com>Featuretools</a>, developed by Alteryx and first released in 2017, is the most established automated feature engineering library for relational datasets. It implements Deep Feature Synthesis (DFS) — an algorithm that automatically generates features across related tables by stacking aggregation and transformation operations.</p><p>Featuretools revolves around three core concepts: - <strong>Entity:</strong> A single table (DataFrame) containing information about a real-world object — customers, transactions, products.</p><ul><li><strong>Relationship:</strong> A one-to-many connection between two entities — one customer has many transactions.</li><li><strong>Primitive:</strong> A basic operation applied to data. Aggregation primitives (```sum<code>, </code>mean<code>, </code>count<code>, </code>max<code>, </code>min<code>) operate across relationships. Transformation primitives (</code>day<code>, </code>month<code>, </code>absolute<code>, </code>log````) operate within a single entity.</li></ul><p>DFS automatically stacks primitives to create &ldquo;deep features.&rdquo; Starting with a customer entity related to transactions, DFS might generate: - <code>SUM(transactions.amount)</code> — total spend per customer</p><ul><li><code>MEAN(transactions.amount)</code> — average transaction value</li><li><code>DAY(transactions.timestamp)</code> — day of each transaction (transformation)</li><li><code>MEAN(transactions.DAY(timestamp))</code> — average day of month for transactions (stacked)</li></ul><h3 id=building-your-first-automated-feature-pipeline-with-featuretools>Building Your First Automated Feature Pipeline with Featuretools</h3><p>Here is a complete walkthrough using a retail dataset with customers and their transactions: `````python
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Feature Engineering is the Bottleneck in ML Pipelines | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Why Feature Engineering is the Bottleneck in ML Pipelines | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/llm-frameworks/feature-engineering-tools-automation/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/feature-engineering-tools-automation/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Why Feature Engineering is the Bottleneck in ML Pipelines</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Why Feature Engineering is the Bottleneck in ML Pipelines</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>{&lt;/* resource-info */&gt;}</p>
+<p>Feature engineering is the process of transforming raw data into variables that machine learning models can use effectively. It is also the most time-consuming, expertise-dependent phase of a typical ML pipeline. A <a href="https://www.forbes.com">Forbes survey from 2016</a> found that data scientists spend 80% of their time on data preparation — much of it on feature engineering. Nearly a decade later, despite advances in AutoML, manual feature creation remains a bottleneck.</p>
+<p>Automated feature engineering tools promise to change this. They generate hundreds or thousands of candidate features from raw data, apply statistical relevance filtering, and output feature matrices ready for model training. The three most mature Python libraries in this space are <a href="https://featuretools.alteryx.com">Featuretools</a> (for relational data), <a href="https://github.com/cod3licious/autofeat">AutoFeat</a> (for tabular data), and <a href="https://tsfresh.com">tsfresh</a> (for time series).</p>
+<p>This guide explains when each tool excels, demonstrates their usage with code examples, and provides a decision framework for incorporating automated feature engineering into production ML pipelines.</p>
+<h2 id="why-feature-engineering-is-the-bottleneck-in-ml-pipelines">Why Feature Engineering is the Bottleneck in ML Pipelines</h2>
+<p>Manual feature engineering requires three things that are always in short supply: domain expertise, programming time, and creative experimentation. A data scientist working on customer churn prediction might manually create features like &ldquo;days since last purchase,&rdquo; &ldquo;average order value,&rdquo; and &ldquo;number of support tickets.&rdquo; Each feature requires understanding the business context, writing the transformation code, and validating that the feature actually improves model performance.</p>
+<p>The problems compound across projects: - <strong>Repetition.</strong> The same feature engineering patterns (aggregations, datetime extractions, text embeddings) are rewritten for every new dataset.</p>
+<ul>
+<li><strong>Error-proneness.</strong> Manual transformations introduce bugs — off-by-one errors in window calculations, data leakage from future information, incorrect handling of missing values.</li>
+<li><strong>Incompleteness.</strong> Humans can only explore a tiny fraction of the possible feature space. A dataset with 20 numeric columns has millions of potential interaction terms, ratios, and polynomial combinations.</li>
+<li><strong>Maintenance.</strong> When upstream data changes, manually engineered features break silently. Automated pipelines are easier to test and version.</li>
+</ul>
+<p>Automated feature engineering addresses each of these problems by systematically generating features, testing their relevance, and integrating them into reproducible pipelines.</p>
+<h2 id="featuretools-deep-feature-synthesis-for-relational-data">Featuretools: Deep Feature Synthesis for Relational Data</h2>
+<p><a href="https://featuretools.alteryx.com">Featuretools</a>, developed by Alteryx and first released in 2017, is the most established automated feature engineering library for relational datasets. It implements Deep Feature Synthesis (DFS) — an algorithm that automatically generates features across related tables by stacking aggregation and transformation operations.</p>
+<p>Featuretools revolves around three core concepts: - <strong>Entity:</strong> A single table (DataFrame) containing information about a real-world object — customers, transactions, products.</p>
+<ul>
+<li><strong>Relationship:</strong> A one-to-many connection between two entities — one customer has many transactions.</li>
+<li><strong>Primitive:</strong> A basic operation applied to data. Aggregation primitives (```sum<code>, </code>mean<code>, </code>count<code>, </code>max<code>, </code>min<code>) operate across relationships. Transformation primitives (</code>day<code>, </code>month<code>, </code>absolute<code>, </code>log````) operate within a single entity.</li>
+</ul>
+<p>DFS automatically stacks primitives to create &ldquo;deep features.&rdquo; Starting with a customer entity related to transactions, DFS might generate: - <code>SUM(transactions.amount)</code> — total spend per customer</p>
+<ul>
+<li><code>MEAN(transactions.amount)</code> — average transaction value</li>
+<li><code>DAY(transactions.timestamp)</code> — day of each transaction (transformation)</li>
+<li><code>MEAN(transactions.DAY(timestamp))</code> — average day of month for transactions (stacked)</li>
+</ul>
+<h3 id="building-your-first-automated-feature-pipeline-with-featuretools">Building Your First Automated Feature Pipeline with Featuretools</h3>
+<p>Here is a complete walkthrough using a retail dataset with customers and their transactions: `````python
 import featuretools as ft
-import pandas as pd</p><h1 id=load-data>Load data</h1><p>customers = pd.read_csv(&lsquo;customers.csv&rsquo;)
-transactions = pd.read_csv(&rsquo;transactions.csv&rsquo;)</p><h1 id=create-entityset>Create EntitySet</h1><p>es = ft.EntitySet(id=&lsquo;retail&rsquo;)</p><h1 id=add-entities>Add entities</h1><p>es = es.add_dataframe(dataframe_name=&lsquo;customers&rsquo;,
+import pandas as pd</p>
+<h1 id="load-data">Load data</h1>
+<p>customers = pd.read_csv(&lsquo;customers.csv&rsquo;)
+transactions = pd.read_csv(&rsquo;transactions.csv&rsquo;)</p>
+<h1 id="create-entityset">Create EntitySet</h1>
+<p>es = ft.EntitySet(id=&lsquo;retail&rsquo;)</p>
+<h1 id="add-entities">Add entities</h1>
+<p>es = es.add_dataframe(dataframe_name=&lsquo;customers&rsquo;,
 dataframe=customers,
 index=&lsquo;customer_id&rsquo;,
-time_index=&lsquo;signup_date&rsquo;)</p><p>es = es.add_dataframe(dataframe_name=&lsquo;transactions&rsquo;,
+time_index=&lsquo;signup_date&rsquo;)</p>
+<p>es = es.add_dataframe(dataframe_name=&lsquo;transactions&rsquo;,
 dataframe=transactions,
 index=&lsquo;transaction_id&rsquo;,
-time_index=&lsquo;timestamp&rsquo;)</p><h1 id=define-relationship>Define relationship</h1><p>relationship = ft.Relationship(
+time_index=&lsquo;timestamp&rsquo;)</p>
+<h1 id="define-relationship">Define relationship</h1>
+<p>relationship = ft.Relationship(
 es[customers][customer_id],
 es[transactions][customer_id]
 )
-es = es.add_relationship(relationship)</p><h1 id=run-deep-feature-synthesis>Run Deep Feature Synthesis</h1><p>feature_matrix, feature_defs = ft.dfs(
+es = es.add_relationship(relationship)</p>
+<h1 id="run-deep-feature-synthesis">Run Deep Feature Synthesis</h1>
+<p>feature_matrix, feature_defs = ft.dfs(
 entityset=es,
 target_dataframe_name=&lsquo;customers&rsquo;,
 agg_primitives=[&lsquo;sum&rsquo;, &lsquo;mean&rsquo;, &lsquo;count&rsquo;, &lsquo;max&rsquo;, &lsquo;min&rsquo;, &lsquo;std&rsquo;],
 trans_primitives=[&lsquo;day&rsquo;, &lsquo;month&rsquo;, &lsquo;year&rsquo;, &lsquo;weekday&rsquo;],
 max_depth=2,
 verbose=True
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 The ````max_depth=2```` parameter controls how many primitives can be stacked. Depth 1 produces simple aggregations. Depth 2 creates stacked features like the average day-of-week for each customer&#39;s transactions. Deeper stacks generate more features but increase computation time and the risk of overfitting.
 
 **Custom primitives** allow domain-specific features. Define a custom primitive for business-specific calculations: `````python
@@ -50,9 +159,11 @@ DiscountRatio = make_trans_primitive(
 cutoff_times = pd.DataFrame({
 &lsquo;customer_id&rsquo;: [1, 2, 3],
 &rsquo;time&rsquo;: pd.to_datetime([&lsquo;2024-06-01&rsquo;, &lsquo;2024-06-01&rsquo;, &lsquo;2024-06-01&rsquo;])
-})</p><p>feature_matrix, _ = ft.dfs(entityset=es,
+})</p>
+<p>feature_matrix, _ = ft.dfs(entityset=es,
 target_dataframe_name=&lsquo;customers&rsquo;,
-cutoff_time=cutoff_times)</p><pre tabindex=0><code>
+cutoff_time=cutoff_times)</p>
+<pre tabindex="0"><code>
 ### Featuretools Integration with Feature Stores
 
 Production ML systems benefit from storing engineered features in a feature store for reuse across models and teams. Featuretools integrates with [Feast](https://docs.feast.dev), the open-source feature store: 1. **Define feature definitions.** Featuretools outputs a list of ````Feature```` objects with complete lineage — you know exactly which primitives and relationships produced each feature.
@@ -78,42 +189,86 @@ model = AutoFeatRegressor(feateng_steps=2,  # transformation depth
                           max_gb=16)        # memory limit
 X_train_transformed = model.fit_transform(X_train, y_train)
 X_test_transformed = model.transform(X_test)
-</code></pre><p><strong>Best for:</strong> Single-table datasets, scientific computing, regression tasks, small-to-medium data (&lt;100K rows), minimal configuration requirements.</p><p><strong>Limitations:</strong> Does not handle relational data or text features. Computation scales poorly beyond 100,000 rows due to the symbolic mathematics engine. Less actively maintained than Featuretools (fewer GitHub commits, smaller community).</p><h2 id=tsfresh-time-series-feature-extraction>tsfresh: Time Series Feature Extraction</h2><p><a href=https://tsfresh.com>tsfresh</a> (Time Series Feature Extraction Based on Scalable Hypothesis Tests) is a specialized library for extracting features from time series data. Developed by the Blue Yonder engineering team and released in 2016, tsfresh automatically extracts 800+ features from univariate and multivariate time series, then filters them for statistical relevance.</p><p>The feature extraction process includes: - <strong>Statistical features:</strong> Mean, variance, skewness, kurtosis, quantiles, absolute energy</p><ul><li><strong>Complexity features:</strong> Sample entropy, Lempel-Ziv complexity, CID complexity</li><li><strong>Trend features:</strong> Linear trend slope, autoregressive coefficients, augmented Dickey-Fuller test statistic</li><li><strong>Shape features:</strong> Number of peaks, longest strike above mean, count above threshold</li><li><strong>Frequency features:</strong> FFT coefficients, spectral centroid, spectral entropy</li></ul><h3 id=the-fresh-algorithm>The FRESH Algorithm</h3><p>tsfresh implements the FRESH (FeatuRe Extraction based on Scalable Hypothesis tests) algorithm, which addresses a critical problem: with 800+ features, many will be irrelevant or correlated. FRESH filters features using hypothesis testing: 1. Extract all 800+ features from each time series.
+</code></pre><p><strong>Best for:</strong> Single-table datasets, scientific computing, regression tasks, small-to-medium data (&lt;100K rows), minimal configuration requirements.</p>
+<p><strong>Limitations:</strong> Does not handle relational data or text features. Computation scales poorly beyond 100,000 rows due to the symbolic mathematics engine. Less actively maintained than Featuretools (fewer GitHub commits, smaller community).</p>
+<h2 id="tsfresh-time-series-feature-extraction">tsfresh: Time Series Feature Extraction</h2>
+<p><a href="https://tsfresh.com">tsfresh</a> (Time Series Feature Extraction Based on Scalable Hypothesis Tests) is a specialized library for extracting features from time series data. Developed by the Blue Yonder engineering team and released in 2016, tsfresh automatically extracts 800+ features from univariate and multivariate time series, then filters them for statistical relevance.</p>
+<p>The feature extraction process includes: - <strong>Statistical features:</strong> Mean, variance, skewness, kurtosis, quantiles, absolute energy</p>
+<ul>
+<li><strong>Complexity features:</strong> Sample entropy, Lempel-Ziv complexity, CID complexity</li>
+<li><strong>Trend features:</strong> Linear trend slope, autoregressive coefficients, augmented Dickey-Fuller test statistic</li>
+<li><strong>Shape features:</strong> Number of peaks, longest strike above mean, count above threshold</li>
+<li><strong>Frequency features:</strong> FFT coefficients, spectral centroid, spectral entropy</li>
+</ul>
+<h3 id="the-fresh-algorithm">The FRESH Algorithm</h3>
+<p>tsfresh implements the FRESH (FeatuRe Extraction based on Scalable Hypothesis tests) algorithm, which addresses a critical problem: with 800+ features, many will be irrelevant or correlated. FRESH filters features using hypothesis testing: 1. Extract all 800+ features from each time series.
 2. For each feature, test whether it is statistically associated with the target variable using the p-value from a suitable test (chi-squared for classification, F-test for regression).
 3. Apply the Benjamini-Yekutieli procedure to control the false discovery rate across all tests.
-4. Return only features that pass the relevance threshold.</p><p>This statistical filtering is tsfresh&rsquo;s key differentiator. Most automated feature engineering tools generate features indiscriminately; tsfresh rigorously tests whether each feature carries predictive signal.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> tsfresh <span style=color:#f92672>import</span> extract_features, select_features
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> tsfresh.utilities.dataframe_functions <span style=color:#f92672>import</span> impute
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Extract features (X is a long-format DataFrame with id, time, value columns)</span>
-</span></span><span style=display:flex><span>X_extracted <span style=color:#f92672>=</span> extract_features(X, column_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;id&#39;</span>,
-</span></span><span style=display:flex><span>                               column_sort<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;time&#39;</span>,
-</span></span><span style=display:flex><span>                               column_value<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;value&#39;</span>,
-</span></span><span style=display:flex><span>                               default_fc_parameters<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;efficient&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Impute missing values</span>
-</span></span><span style=display:flex><span>X_imputed <span style=color:#f92672>=</span> impute(X_extracted)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Select relevant features</span>
-</span></span><span style=display:flex><span>X_selected <span style=color:#f92672>=</span> select_features(X_imputed, y)
-</span></span></code></pre></div><p>The <code>default_fc_parameters='efficient'</code> parameter extracts a subset of ~200 features optimized for computational efficiency. Use <code>'comprehensive'</code> for all 800+ features when computation time is not a constraint.</p><p><strong>Best for:</strong> Time series classification, sensor data analysis, IoT feature extraction, signal processing, multivariate time series.</p><p><strong>Limitations:</strong> Primarily designed for time series — not suitable for cross-sectional or relational data. Feature names are cryptic (e.g., <code>value__agg_autocorrelation__f_agg_"mean"__max_7</code>), requiring documentation lookups for interpretation. Extraction can be slow on large datasets without parallelization.</p><h2 id=tool-comparison-and-selection-guide>Tool Comparison and Selection Guide</h2><p>| Feature | Featuretools | AutoFeat | tsfresh |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+4. Return only features that pass the relevance threshold.</p>
+<p>This statistical filtering is tsfresh&rsquo;s key differentiator. Most automated feature engineering tools generate features indiscriminately; tsfresh rigorously tests whether each feature carries predictive signal.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> tsfresh <span style="color:#f92672">import</span> extract_features, select_features
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> tsfresh.utilities.dataframe_functions <span style="color:#f92672">import</span> impute
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract features (X is a long-format DataFrame with id, time, value columns)</span>
+</span></span><span style="display:flex;"><span>X_extracted <span style="color:#f92672">=</span> extract_features(X, column_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;id&#39;</span>,
+</span></span><span style="display:flex;"><span>                               column_sort<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;time&#39;</span>,
+</span></span><span style="display:flex;"><span>                               column_value<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;value&#39;</span>,
+</span></span><span style="display:flex;"><span>                               default_fc_parameters<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;efficient&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Impute missing values</span>
+</span></span><span style="display:flex;"><span>X_imputed <span style="color:#f92672">=</span> impute(X_extracted)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Select relevant features</span>
+</span></span><span style="display:flex;"><span>X_selected <span style="color:#f92672">=</span> select_features(X_imputed, y)
+</span></span></code></pre></div><p>The <code>default_fc_parameters='efficient'</code> parameter extracts a subset of ~200 features optimized for computational efficiency. Use <code>'comprehensive'</code> for all 800+ features when computation time is not a constraint.</p>
+<p><strong>Best for:</strong> Time series classification, sensor data analysis, IoT feature extraction, signal processing, multivariate time series.</p>
+<p><strong>Limitations:</strong> Primarily designed for time series — not suitable for cross-sectional or relational data. Feature names are cryptic (e.g., <code>value__agg_autocorrelation__f_agg_&quot;mean&quot;__max_7</code>), requiring documentation lookups for interpretation. Extraction can be slow on large datasets without parallelization.</p>
+<h2 id="tool-comparison-and-selection-guide">Tool Comparison and Selection Guide</h2>
+<p>| Feature | Featuretools | AutoFeat | tsfresh |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Primary data type</strong> | Relational (multiple tables) | Tabular (single table) | Time series |
 | <strong>Feature generation method</strong> | Deep Feature Synthesis (primitives stacked across relationships) | Symbolic mathematics (polynomials, ratios, functions) | Statistical extraction (800+ time series features) |
 | <strong>Feature selection</strong> | Manual filtering | L1 regularization (Lasso) | FRESH algorithm (hypothesis testing) |
-| <strong>Scalability</strong> | Good (supports Dask) | Poor (>100K rows) | Good (supports Dask/multiprocessing) |
+| <strong>Scalability</strong> | Good (supports Dask) | Poor (&gt;100K rows) | Good (supports Dask/multiprocessing) |
 | <strong>Best use case</strong> | Customer analytics, relational databases | Scientific data, small tabular datasets | Sensor data, IoT, time series classification |
 | <strong>Custom features</strong> | Yes (custom primitives) | Limited | Limited |
 | <strong>Integration with scikit-learn</strong> | Via custom transformers | Via sklearn-compatible API | Via <code>sklearn.transformers.RelevantFeatureAugmenter</code> |
 | <strong>Installation</strong> | <code>pip install featuretools</code> | <code>pip install autofeat</code> | <code>pip install tsfresh</code> |
 | <strong>Active maintenance</strong> | High (Alteryx-backed) | Moderate | High |
-| <strong>Documentation quality</strong> | Excellent | Good | Excellent |</p><h2 id=combining-automated-and-manual-feature-engineering>Combining Automated and Manual Feature Engineering</h2><p>Automated tools are powerful, but they cannot replace domain expertise entirely. The most effective approach combines automation with human judgment: <strong>Use automated tools as a baseline.</strong> Start with Featuretools, AutoFeat, or tsfresh to generate a broad feature set quickly. This establishes a performance floor within hours rather than weeks.</p><p><strong>Layer domain-specific features on top.</strong> Add features that capture business logic specific to your problem — a retail churn model benefits from &ldquo;days since last purchase&rdquo; even if Featuretools did not generate it with exactly that interpretation.</p><p><strong>Validate generated features.</strong> Automated tools create redundant and correlated features. Use variance inflation factor (VIF) analysis to detect multicollinearity. Remove features with VIF > 10 before model training.</p><p><strong>Remove low-variance features.</strong> Features with near-zero variance (same value in >99% of rows) carry no predictive power. scikit-learn&rsquo;s <code>VarianceThreshold</code> transformer automates this removal.</p><p><strong>Interpretability considerations.</strong> Stakeholders and regulators often require explanations for model predictions. Deep Feature Synthesis can produce features with long, complex names that are hard to interpret. Maintain a mapping from generated feature names to human-readable descriptions.</p><h2 id=performance-optimization-for-large-datasets>Performance Optimization for Large Datasets</h2><p>Automated feature engineering can be computationally expensive. Apply these optimizations for large-scale workflows: <strong>Parallel processing with Dask.</strong> Featuretools supports <a href=https://www.dask.org>Dask</a> DataFrames for distributed computation. tsfresh supports multiprocessing via <code>n_jobs</code> parameter. AutoFeat does not parallelize — it is inherently limited to smaller datasets.</p><p><strong>Chunking strategies.</strong> Process large EntitySets in chunks by partitioning the target entity. For customer features, process 100,000 customers at a time rather than all 10 million simultaneously.</p><p><strong>Caching feature definitions.</strong> Save Featuretools&rsquo; <code>feature_defs</code> list as JSON after the first run. Reload and reuse for subsequent pipeline executions without redefining primitives.</p><p><strong>Incremental feature updates.</strong> For streaming or frequently updated data, compute features only for new entities rather than recomputing the full historical feature matrix. Featuretools supports this via <code>cutoff_time</code> parameters.</p><p><strong>Memory management.</strong> Materialized feature matrices can be enormous (10,000 entities x 500 features = 40 MB as float64, often much larger). Use float32 instead of float64 to halve memory usage. Drop low-importance features aggressively after initial model evaluation.</p><h2 id=complete-end-to-end-pipeline-example>Complete End-to-End Pipeline Example</h2><p>Here is a complete pipeline using Featuretools for a customer churn prediction task: `````python
+| <strong>Documentation quality</strong> | Excellent | Good | Excellent |</p>
+<h2 id="combining-automated-and-manual-feature-engineering">Combining Automated and Manual Feature Engineering</h2>
+<p>Automated tools are powerful, but they cannot replace domain expertise entirely. The most effective approach combines automation with human judgment: <strong>Use automated tools as a baseline.</strong> Start with Featuretools, AutoFeat, or tsfresh to generate a broad feature set quickly. This establishes a performance floor within hours rather than weeks.</p>
+<p><strong>Layer domain-specific features on top.</strong> Add features that capture business logic specific to your problem — a retail churn model benefits from &ldquo;days since last purchase&rdquo; even if Featuretools did not generate it with exactly that interpretation.</p>
+<p><strong>Validate generated features.</strong> Automated tools create redundant and correlated features. Use variance inflation factor (VIF) analysis to detect multicollinearity. Remove features with VIF &gt; 10 before model training.</p>
+<p><strong>Remove low-variance features.</strong> Features with near-zero variance (same value in &gt;99% of rows) carry no predictive power. scikit-learn&rsquo;s <code>VarianceThreshold</code> transformer automates this removal.</p>
+<p><strong>Interpretability considerations.</strong> Stakeholders and regulators often require explanations for model predictions. Deep Feature Synthesis can produce features with long, complex names that are hard to interpret. Maintain a mapping from generated feature names to human-readable descriptions.</p>
+<h2 id="performance-optimization-for-large-datasets">Performance Optimization for Large Datasets</h2>
+<p>Automated feature engineering can be computationally expensive. Apply these optimizations for large-scale workflows: <strong>Parallel processing with Dask.</strong> Featuretools supports <a href="https://www.dask.org">Dask</a> DataFrames for distributed computation. tsfresh supports multiprocessing via <code>n_jobs</code> parameter. AutoFeat does not parallelize — it is inherently limited to smaller datasets.</p>
+<p><strong>Chunking strategies.</strong> Process large EntitySets in chunks by partitioning the target entity. For customer features, process 100,000 customers at a time rather than all 10 million simultaneously.</p>
+<p><strong>Caching feature definitions.</strong> Save Featuretools&rsquo; <code>feature_defs</code> list as JSON after the first run. Reload and reuse for subsequent pipeline executions without redefining primitives.</p>
+<p><strong>Incremental feature updates.</strong> For streaming or frequently updated data, compute features only for new entities rather than recomputing the full historical feature matrix. Featuretools supports this via <code>cutoff_time</code> parameters.</p>
+<p><strong>Memory management.</strong> Materialized feature matrices can be enormous (10,000 entities x 500 features = 40 MB as float64, often much larger). Use float32 instead of float64 to halve memory usage. Drop low-importance features aggressively after initial model evaluation.</p>
+<h2 id="complete-end-to-end-pipeline-example">Complete End-to-End Pipeline Example</h2>
+<p>Here is a complete pipeline using Featuretools for a customer churn prediction task: `````python
 import featuretools as ft
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
-from sklearn.feature_selection import SelectKBest, mutual_info_classif</p><h1 id=1-load-raw-data>1. Load raw data</h1><p>customers = pd.read_csv(&lsquo;customers.csv&rsquo;) # customer_id, signup_date, country, &mldr;
-transactions = pd.read_csv(&rsquo;transactions.csv&rsquo;) # transaction_id, customer_id, amount, timestamp</p><h1 id=2-build-entityset>2. Build EntitySet</h1><p>es = ft.EntitySet(id=&lsquo;churn&rsquo;)
+from sklearn.feature_selection import SelectKBest, mutual_info_classif</p>
+<h1 id="1-load-raw-data">1. Load raw data</h1>
+<p>customers = pd.read_csv(&lsquo;customers.csv&rsquo;)      # customer_id, signup_date, country, &hellip;
+transactions = pd.read_csv(&rsquo;transactions.csv&rsquo;) # transaction_id, customer_id, amount, timestamp</p>
+<h1 id="2-build-entityset">2. Build EntitySet</h1>
+<p>es = ft.EntitySet(id=&lsquo;churn&rsquo;)
 es = es.add_dataframe(&lsquo;customers&rsquo;, customers, index=&lsquo;customer_id&rsquo;,
 time_index=&lsquo;signup_date&rsquo;)
 es = es.add_dataframe(&rsquo;transactions&rsquo;, transactions, index=&lsquo;transaction_id&rsquo;,
@@ -121,23 +276,36 @@ time_index=&lsquo;timestamp&rsquo;)
 es = es.add_relationship(ft.Relationship(
 es[customers][customer_id],
 es[transactions][customer_id]
-))</p><h1 id=3-automated-feature-engineering>3. Automated feature engineering</h1><p>feature_matrix, feature_defs = ft.dfs(
+))</p>
+<h1 id="3-automated-feature-engineering">3. Automated feature engineering</h1>
+<p>feature_matrix, feature_defs = ft.dfs(
 entityset=es,
 target_dataframe_name=&lsquo;customers&rsquo;,
 agg_primitives=[&lsquo;sum&rsquo;, &lsquo;mean&rsquo;, &lsquo;count&rsquo;, &lsquo;max&rsquo;, &lsquo;min&rsquo;, &lsquo;std&rsquo;, &rsquo;trend&rsquo;],
 trans_primitives=[&lsquo;day&rsquo;, &lsquo;month&rsquo;, &lsquo;weekday&rsquo;, &rsquo;time_since_previous&rsquo;],
 max_depth=2
-)</p><h1 id=4-encode-categoricals-and-handle-missing-values>4. Encode categoricals and handle missing values</h1><p>feature_matrix = pd.get_dummies(feature_matrix)
-feature_matrix = feature_matrix.fillna(0)</p><h1 id=5-split-data>5. Split data</h1><p>X = feature_matrix.drop(&lsquo;churned&rsquo;, axis=1)
+)</p>
+<h1 id="4-encode-categoricals-and-handle-missing-values">4. Encode categoricals and handle missing values</h1>
+<p>feature_matrix = pd.get_dummies(feature_matrix)
+feature_matrix = feature_matrix.fillna(0)</p>
+<h1 id="5-split-data">5. Split data</h1>
+<p>X = feature_matrix.drop(&lsquo;churned&rsquo;, axis=1)
 y = feature_matrix[churned]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
 random_state=42,
-stratify=y)</p><h1 id=6-feature-selection>6. Feature selection</h1><p>selector = SelectKBest(mutual_info_classif, k=50)
+stratify=y)</p>
+<h1 id="6-feature-selection">6. Feature selection</h1>
+<p>selector = SelectKBest(mutual_info_classif, k=50)
 X_train_selected = selector.fit_transform(X_train, y_train)
-X_test_selected = selector.transform(X_test)</p><h1 id=7-train-model>7. Train model</h1><p>model = RandomForestClassifier(n_estimators=200, random_state=42)
-model.fit(X_train_selected, y_train)</p><h1 id=8-evaluate>8. Evaluate</h1><p>predictions = model.predict_proba(X_test_selected)[:, 1]
+X_test_selected = selector.transform(X_test)</p>
+<h1 id="7-train-model">7. Train model</h1>
+<p>model = RandomForestClassifier(n_estimators=200, random_state=42)
+model.fit(X_train_selected, y_train)</p>
+<h1 id="8-evaluate">8. Evaluate</h1>
+<p>predictions = model.predict_proba(X_test_selected)[:, 1]
 auc = roc_auc_score(y_test, predictions)
-print(f&rsquo;AUC-ROC: {auc:.4f}&rsquo;)</p><pre tabindex=0><code>
+print(f&rsquo;AUC-ROC: {auc:.4f}&rsquo;)</p>
+<pre tabindex="0"><code>
 A baseline model without automated feature engineering typically achieves AUC-ROC around 0.72 on standard churn datasets. With Featuretools generating 200+ aggregated features and proper selection, AUC-ROC typically improves to 0.78-0.82 — a meaningful business impact when applied to customer retention campaigns.
 
 ## Frequently Asked Questions
@@ -205,13 +373,265 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
 }
 &lt;/script&gt;
 * * *
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2ffeature-engineering-tools-automation%2f&text=Why%20Feature%20Engineering%20is%20the%20Bottleneck%20in%20ML%20Pipelines" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2ffeature-engineering-tools-automation%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2ffeature-engineering-tools-automation%2f&text=Why%20Feature%20Engineering%20is%20the%20Bottleneck%20in%20ML%20Pipelines" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2ffeature-engineering-tools-automation%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

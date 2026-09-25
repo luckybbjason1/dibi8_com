@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Run with Docker | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Run with Docker | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/libretranslate/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/libretranslate/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Run with Docker</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Run with Docker</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;LibreTranslate: Self-Hosted Translation API with 14.4K+ &mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run with Docker | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Run with Docker | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/libretranslate/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/libretranslate/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Run with Docker</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Run with Docker</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;LibreTranslate: Self-Hosted Translation API with 14.4K+ &hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,7 +99,21 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;libretranslate&rdquo;, &ldquo;machine-translation&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;docker&rdquo;, &ldquo;api&rdquo;, &ldquo;open-source&rdquo;, &ldquo;argos-translate&rdquo;, &ldquo;nlp&rdquo;]
-aliases:</p><ul><li>/posts/libretranslate/-</li></ul><hr><p>LibreTranslate is a free, open-source machine translation API that you host yourself. No API keys from Google. No per-character billing from DeepL. No data leaving your infrastructure. With 14,400+ GitHub stars and an active release cycle (v1.9.5 as of May 2026), it has become the default choice for developers who need private, offline-capable translation at zero marginal cost. This LibreTranslate tutorial covers everything from libretranslate setup to libretranslate docker production deployment, with benchmarks and integration guides. We also include a detailed libretranslate vs deepl comparison to help you decide if self-hosted translation fits your use case.</p><p><img alt="LibreTranslate Logo" loading=lazy src=https://raw.githubusercontent.com/LibreTranslate/LibreTranslate/main/libretranslate/static/icon.svg></p><h2 id=what-is-libretranslate>What Is LibreTranslate?</h2><p>LibreTranslate is a self-hosted REST API for machine translation, built on top of the open-source Argos Translate engine. It provides a drop-in alternative to proprietary translation services, with a simple HTTP interface, a built-in web UI, and support for 30+ languages. The project is licensed under AGPL-3.0 and is actively maintained by the LibreTranslate organization.</p><p>Unlike cloud-based translation APIs, LibreTranslate runs entirely on your hardware. All text processing happens locally, making it suitable for privacy-sensitive applications, air-gapped networks, and compliance-heavy industries. The project was started as a response to the lack of privacy-respecting translation tools and has grown into a production-ready platform used by enterprises, governments, and individual developers.</p><h2 id=how-libretranslate-works>How LibreTranslate Works</h2><p>LibreTranslate&rsquo;s architecture is straightforward: a Python Flask backend serves a REST API, while the translation heavy lifting is handled by Argos Translate&rsquo;s neural machine translation (NMT) models. These models are downloaded on first run and cached locally, enabling offline operation after initial setup.</p><h3 id=core-architecture>Core Architecture</h3><p><img alt="LibreTranslate Architecture" loading=lazy src=architecture.png></p><pre tabindex=0><code>┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+aliases:</p>
+<ul>
+<li>/posts/libretranslate/-</li>
+</ul>
+<hr>
+<p>LibreTranslate is a free, open-source machine translation API that you host yourself. No API keys from Google. No per-character billing from DeepL. No data leaving your infrastructure. With 14,400+ GitHub stars and an active release cycle (v1.9.5 as of May 2026), it has become the default choice for developers who need private, offline-capable translation at zero marginal cost. This LibreTranslate tutorial covers everything from libretranslate setup to libretranslate docker production deployment, with benchmarks and integration guides. We also include a detailed libretranslate vs deepl comparison to help you decide if self-hosted translation fits your use case.</p>
+<p><img alt="LibreTranslate Logo" loading="lazy" src="https://raw.githubusercontent.com/LibreTranslate/LibreTranslate/main/libretranslate/static/icon.svg"></p>
+<h2 id="what-is-libretranslate">What Is LibreTranslate?</h2>
+<p>LibreTranslate is a self-hosted REST API for machine translation, built on top of the open-source Argos Translate engine. It provides a drop-in alternative to proprietary translation services, with a simple HTTP interface, a built-in web UI, and support for 30+ languages. The project is licensed under AGPL-3.0 and is actively maintained by the LibreTranslate organization.</p>
+<p>Unlike cloud-based translation APIs, LibreTranslate runs entirely on your hardware. All text processing happens locally, making it suitable for privacy-sensitive applications, air-gapped networks, and compliance-heavy industries. The project was started as a response to the lack of privacy-respecting translation tools and has grown into a production-ready platform used by enterprises, governments, and individual developers.</p>
+<h2 id="how-libretranslate-works">How LibreTranslate Works</h2>
+<p>LibreTranslate&rsquo;s architecture is straightforward: a Python Flask backend serves a REST API, while the translation heavy lifting is handled by Argos Translate&rsquo;s neural machine translation (NMT) models. These models are downloaded on first run and cached locally, enabling offline operation after initial setup.</p>
+<h3 id="core-architecture">Core Architecture</h3>
+<p><img alt="LibreTranslate Architecture" loading="lazy" src="architecture.png"></p>
+<pre tabindex="0"><code>┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
 │   Client (Web)  │────▶│  Flask REST API  │────▶│ Argos Translate │
 │   / API Call    │◀────│    (Port 5000)   │◀────│   (NMT Engine)  │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
@@ -40,11 +124,40 @@ aliases:</p><ul><li>/posts/libretranslate/-</li></ul><hr><p>LibreTranslate is a 
                         │ Language     │
                         │ Models (~2GB)│
                         └──────────────┘
-</code></pre><h3 id=key-components>Key Components</h3><ul><li><strong>Flask API Server</strong>: Handles HTTP requests, authentication, rate limiting, and request validation.</li><li><strong>Argos Translate Engine</strong>: The NMT backend that loads language pair models and performs inference.</li><li><strong>Language Models</strong>: Pre-trained OpenNMT models for each language pair, downloadable on demand.</li><li><strong>SQLite Database</strong>: Stores API keys, request logs, and usage statistics when API key management is enabled.</li></ul><p>Translation requests flow through the system as follows: the client sends a JSON payload with the source text, source language, and target language. The API validates the request, routes it to the appropriate Argos model, and returns the translated text along with metadata such as confidence scores and detected language.</p><h2 id=installation--setup>Installation & Setup</h2><p>LibreTranslate offers multiple deployment paths. The Docker route is recommended for production due to its isolation, reproducibility, and ease of updates.</p><h3 id=system-requirements>System Requirements</h3><p>| Configuration | CPU | RAM | Storage | Boot Time |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="key-components">Key Components</h3>
+<ul>
+<li><strong>Flask API Server</strong>: Handles HTTP requests, authentication, rate limiting, and request validation.</li>
+<li><strong>Argos Translate Engine</strong>: The NMT backend that loads language pair models and performs inference.</li>
+<li><strong>Language Models</strong>: Pre-trained OpenNMT models for each language pair, downloadable on demand.</li>
+<li><strong>SQLite Database</strong>: Stores API keys, request logs, and usage statistics when API key management is enabled.</li>
+</ul>
+<p>Translation requests flow through the system as follows: the client sends a JSON payload with the source text, source language, and target language. The API validates the request, routes it to the appropriate Argos model, and returns the translated text along with metadata such as confidence scores and detected language.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>LibreTranslate offers multiple deployment paths. The Docker route is recommended for production due to its isolation, reproducibility, and ease of updates.</p>
+<h3 id="system-requirements">System Requirements</h3>
+<p>| Configuration | CPU | RAM | Storage | Boot Time |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Minimum (3 languages) | 1 vCPU | 2 GB | 1 GB | ~60s |
 | Recommended (11 languages) | 2 vCPU | 4 GB | 3 GB | ~90s |
-| Full Load (30+ languages) | 4 vCPU | 8 GB | 10 GB | ~120s |</p><h3 id=docker-quick-start>Docker Quick Start</h3><p>The fastest way to get LibreTranslate running locally: `````bash</p><h1 id=run-with-docker>Run with Docker</h1><p>docker run -ti &ndash;rm -p 5000:5000<br>-v lt-models:/home/libretranslate/.local<br>-e LT_LOAD_ONLY=en,es,fr<br>libretranslate/libretranslate:latest</p><pre tabindex=0><code>
+| Full Load (30+ languages) | 4 vCPU | 8 GB | 10 GB | ~120s |</p>
+<h3 id="docker-quick-start">Docker Quick Start</h3>
+<p>The fastest way to get LibreTranslate running locally: `````bash</p>
+<h1 id="run-with-docker">Run with Docker</h1>
+<p>docker run -ti &ndash;rm -p 5000:5000 <br>
+-v lt-models:/home/libretranslate/.local <br>
+-e LT_LOAD_ONLY=en,es,fr <br>
+libretranslate/libretranslate:latest</p>
+<pre tabindex="0"><code>
 After startup, open http://localhost:5000 in your browser. The first run downloads language models, so expect a brief delay before the UI becomes responsive.
 
 ### Production Docker Compose
@@ -76,14 +189,17 @@ volumes: lt-models: lt-db: `````
 
 Deploy with: `````bash
 docker compose up -d
-</code></pre><h3 id=gpu-accelerated-deployment-cuda>GPU-Accelerated Deployment (CUDA)</h3><p>For high-throughput scenarios, LibreTranslate supports NVIDIA GPU acceleration via CUDA. Requirements: NVIDIA GPU with CUDA 11.2+ and nvidia-docker2 installed.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone the repository</span>
-</span></span><span style=display:flex><span>git clone https://github.com/LibreTranslate/LibreTranslate.git
-</span></span><span style=display:flex><span>cd LibreTranslate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Build and run CUDA-enabled version</span>
-</span></span><span style=display:flex><span>docker compose -f docker-compose.cuda.yml up -d --build
+</code></pre><h3 id="gpu-accelerated-deployment-cuda">GPU-Accelerated Deployment (CUDA)</h3>
+<p>For high-throughput scenarios, LibreTranslate supports NVIDIA GPU acceleration via CUDA. Requirements: NVIDIA GPU with CUDA 11.2+ and nvidia-docker2 installed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/LibreTranslate/LibreTranslate.git
+</span></span><span style="display:flex;"><span>cd LibreTranslate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build and run CUDA-enabled version</span>
+</span></span><span style="display:flex;"><span>docker compose -f docker-compose.cuda.yml up -d --build
 </span></span></code></pre></div><p>Verify GPU utilization: `````bash
-nvidia-smi</p><pre tabindex=0><code>
+nvidia-smi</p>
+<pre tabindex="0"><code>
 ### Native Python Installation
 
 For development or environments where Docker is not available: `````bash
@@ -96,10 +212,11 @@ libretranslate --host 0.0.0.0 --port 5000 \
   --req-limit 60 \
   --threads 4
 </code></pre><p>Or build from source: `````bash
-git clone <a href=https://github.com/LibreTranslate/LibreTranslate.git>https://github.com/LibreTranslate/LibreTranslate.git</a>
+git clone <a href="https://github.com/LibreTranslate/LibreTranslate.git">https://github.com/LibreTranslate/LibreTranslate.git</a>
 cd LibreTranslate
 pip install -e .
-python main.py &ndash;host 0.0.0.0 &ndash;port 5000</p><pre tabindex=0><code>
+python main.py &ndash;host 0.0.0.0 &ndash;port 5000</p>
+<pre tabindex="0"><code>
 ### Deploy to DigitalOcean (Production Cloud)
 
 For a cloud-hosted production instance, DigitalOcean provides an easy path with their App Platform or Droplets. Deploy using the 1-Click Docker image: `````bash
@@ -122,77 +239,90 @@ services: libretranslate: image: libretranslate/libretranslate:v1.9.5
 EOF
 
 docker compose up -d
-</code></pre><blockquote><p><strong>Note</strong>: If you&rsquo;re setting up a new VPS, <a href=https://www.digitalocean.com>DigitalOcean</a> offers $200 in free credits for new users, which covers several months of a 4GB Droplet running LibreTranslate 24/7.</p></blockquote><h2 id=integration-with-popular-tools>Integration with Popular Tools</h2><p>LibreTranslate&rsquo;s REST API makes it compatible with virtually any stack. Below are integration examples for common workflows.</p><h3 id=python-sdk-usage>Python SDK Usage</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># translate_client.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>LIBRETRANSLATE_URL <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;http://localhost:5000/translate&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>translate_text</span>(text: str, source: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;en&#34;</span>, target: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;es&#34;</span>) <span style=color:#f92672>-&gt;</span> str: payload <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;q&#34;</span>: text,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;source&#34;</span>: source,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;target&#34;</span>: target,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;text&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;api_key&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>  <span style=color:#75715e># Add your API key if enabled</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>    headers <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;Content-Type&#34;</span>: <span style=color:#e6db74>&#34;application/json&#34;</span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(LIBRETRANSLATE_URL, json<span style=color:#f92672>=</span>payload, headers<span style=color:#f92672>=</span>headers)
-</span></span><span style=display:flex><span>    response<span style=color:#f92672>.</span>raise_for_status()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> response<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;translatedText&#34;</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Example usage</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>: result <span style=color:#f92672>=</span> translate_text(<span style=color:#e6db74>&#34;Hello, production deployment!&#34;</span>, <span style=color:#e6db74>&#34;en&#34;</span>, <span style=color:#e6db74>&#34;de&#34;</span>)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Translated: </span><span style=color:#e6db74>{</span>result<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=javascripttypescript-integration>JavaScript/TypeScript Integration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// libretranslate-client.ts
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>TranslateResponse</span> {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>translatedText</span>: <span style=color:#66d9ef>string</span>;
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LibreTranslateClient</span> {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>baseUrl</span>: <span style=color:#66d9ef>string</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>apiKey?</span>: <span style=color:#66d9ef>string</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>baseUrl</span>: <span style=color:#66d9ef>string</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;http://localhost:5000&#34;</span>, <span style=color:#a6e22e>apiKey?</span>: <span style=color:#66d9ef>string</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>baseUrl</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>baseUrl</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>apiKey</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>apiKey</span>;
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>translate</span>(
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>text</span>: <span style=color:#66d9ef>string</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>source</span>: <span style=color:#66d9ef>string</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;en&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>target</span>: <span style=color:#66d9ef>string</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;es&#34;</span>
-</span></span><span style=display:flex><span>  )<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>string</span>&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>$</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>baseUrl</span>}<span style=color:#f92672>/</span><span style=color:#a6e22e>translate</span><span style=color:#e6db74>````</span>, {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;POST&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> { <span style=color:#e6db74>&#34;Content-Type&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;application/json&#34;</span> },
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>body</span>: <span style=color:#66d9ef>JSON.stringify</span>({
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>q</span>: <span style=color:#66d9ef>text</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>source</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>target</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>format</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;text&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>api_key</span>: <span style=color:#66d9ef>this.apiKey</span>,
-</span></span><span style=display:flex><span>      }),
-</span></span><span style=display:flex><span>    });
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>ok</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Error(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Translation</span> <span style=color:#a6e22e>failed</span>: <span style=color:#66d9ef>$</span>{<span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>statusText</span>}<span style=color:#e6db74>````</span>);
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span>: <span style=color:#66d9ef>TranslateResponse</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>();
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>translatedText</span>;
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// Usage
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>LibreTranslateClient</span>(<span style=color:#e6db74>&#34;http://localhost:5000&#34;</span>);
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>translate</span>(<span style=color:#e6db74>&#34;Deploy to production&#34;</span>, <span style=color:#e6db74>&#34;en&#34;</span>, <span style=color:#e6db74>&#34;fr&#34;</span>);
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>result</span>); <span style=color:#75715e>// &#34;Déployer en production&#34;
-</span></span></span></code></pre></div><h3 id=openai-whisper-audio-to-translated-text-pipeline>OpenAI Whisper Audio-to-Translated-Text Pipeline</h3><p>A common pattern is combining speech recognition with translation. Here is a complete pipeline using Whisper for transcription and LibreTranslate for translation: `````python</p><h1 id=whisper_translate_pipelinepy>whisper_translate_pipeline.py</h1><p>import whisper
-import requests</p><p>WHISPER_MODEL = whisper.load_model(&ldquo;base&rdquo;)
-LIBRE_URL = &ldquo;http://localhost:5000/translate&rdquo;</p><p>def transcribe_and_translate(audio_path: str, target_lang: str = &ldquo;en&rdquo;) -> dict: # Step 1: Transcribe audio with Whisper
+</code></pre><blockquote>
+<p><strong>Note</strong>: If you&rsquo;re setting up a new VPS, <a href="https://www.digitalocean.com">DigitalOcean</a> offers $200 in free credits for new users, which covers several months of a 4GB Droplet running LibreTranslate 24/7.</p>
+</blockquote>
+<h2 id="integration-with-popular-tools">Integration with Popular Tools</h2>
+<p>LibreTranslate&rsquo;s REST API makes it compatible with virtually any stack. Below are integration examples for common workflows.</p>
+<h3 id="python-sdk-usage">Python SDK Usage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># translate_client.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>LIBRETRANSLATE_URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:5000/translate&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">translate_text</span>(text: str, source: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;en&#34;</span>, target: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;es&#34;</span>) <span style="color:#f92672">-&gt;</span> str: payload <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;q&#34;</span>: text,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;source&#34;</span>: source,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;target&#34;</span>: target,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;api_key&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>  <span style="color:#75715e"># Add your API key if enabled</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(LIBRETRANSLATE_URL, json<span style="color:#f92672">=</span>payload, headers<span style="color:#f92672">=</span>headers)
+</span></span><span style="display:flex;"><span>    response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>json()[<span style="color:#e6db74">&#34;translatedText&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example usage</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: result <span style="color:#f92672">=</span> translate_text(<span style="color:#e6db74">&#34;Hello, production deployment!&#34;</span>, <span style="color:#e6db74">&#34;en&#34;</span>, <span style="color:#e6db74">&#34;de&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Translated: </span><span style="color:#e6db74">{</span>result<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="javascripttypescript-integration">JavaScript/TypeScript Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// libretranslate-client.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">TranslateResponse</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">translatedText</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibreTranslateClient</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">baseUrl</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">apiKey?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">baseUrl</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:5000&#34;</span>, <span style="color:#a6e22e">apiKey?</span>: <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">baseUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseUrl</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">apiKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">apiKey</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">translate</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">text</span>: <span style="color:#66d9ef">string</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;en&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">target</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;es&#34;</span>
+</span></span><span style="display:flex;"><span>  )<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">string</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">$</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">baseUrl</span>}<span style="color:#f92672">/</span><span style="color:#a6e22e">translate</span><span style="color:#e6db74">````</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;Content-Type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/json&#34;</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">body</span>: <span style="color:#66d9ef">JSON.stringify</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">q</span>: <span style="color:#66d9ef">text</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">source</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">target</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;text&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">api_key</span>: <span style="color:#66d9ef">this.apiKey</span>,
+</span></span><span style="display:flex;"><span>      }),
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">ok</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Translation</span> <span style="color:#a6e22e">failed</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">statusText</span>}<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">TranslateResponse</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">translatedText</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Usage
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">LibreTranslateClient</span>(<span style="color:#e6db74">&#34;http://localhost:5000&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">translate</span>(<span style="color:#e6db74">&#34;Deploy to production&#34;</span>, <span style="color:#e6db74">&#34;en&#34;</span>, <span style="color:#e6db74">&#34;fr&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">// &#34;Déployer en production&#34;
+</span></span></span></code></pre></div><h3 id="openai-whisper-audio-to-translated-text-pipeline">OpenAI Whisper Audio-to-Translated-Text Pipeline</h3>
+<p>A common pattern is combining speech recognition with translation. Here is a complete pipeline using Whisper for transcription and LibreTranslate for translation: `````python</p>
+<h1 id="whisper_translate_pipelinepy">whisper_translate_pipeline.py</h1>
+<p>import whisper
+import requests</p>
+<p>WHISPER_MODEL = whisper.load_model(&ldquo;base&rdquo;)
+LIBRE_URL = &ldquo;http://localhost:5000/translate&rdquo;</p>
+<p>def transcribe_and_translate(audio_path: str, target_lang: str = &ldquo;en&rdquo;) -&gt; dict: # Step 1: Transcribe audio with Whisper
 result = WHISPER_MODEL.transcribe(audio_path)
 source_text = result[&ldquo;text&rdquo;]
-detected_lang = result.get(&ldquo;language&rdquo;, &ldquo;auto&rdquo;)</p><pre><code># Step 2: Translate with LibreTranslate
+detected_lang = result.get(&ldquo;language&rdquo;, &ldquo;auto&rdquo;)</p>
+<pre><code># Step 2: Translate with LibreTranslate
 payload = {
     &quot;q&quot;: source_text,
     &quot;source&quot;: detected_lang,
@@ -208,8 +338,11 @@ return {
     &quot;source_language&quot;: detected_lang,
     &quot;target_language&quot;: target_lang
 }
-</code></pre><h1 id=run-pipeline>Run pipeline</h1><p>output = transcribe_and_translate(&ldquo;meeting.mp3&rdquo;, target_lang=&ldquo;es&rdquo;)
-print(f"ES: {output[translated]}&rdquo;)</p><pre tabindex=0><code>
+</code></pre>
+<h1 id="run-pipeline">Run pipeline</h1>
+<p>output = transcribe_and_translate(&ldquo;meeting.mp3&rdquo;, target_lang=&ldquo;es&rdquo;)
+print(f&quot;ES: {output[translated]}&rdquo;)</p>
+<pre tabindex="0"><code>
 ### Coqui TTS Integration (Translation + Speech Synthesis)
 
 Translate text and synthesize speech in the target language: `````python
@@ -237,39 +370,44 @@ def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # Transl
 
 # Generate multilingual audio
 for lang in [&#34;es&#34;, &#34;fr&#34;, &#34;de&#34;]: translate_and_speak(&#34;Welcome to our service&#34;, lang, &#34;reference.wav&#34;)
-</code></pre><h3 id=curl-api-examples>cURL API Examples</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Basic translation</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:5000/translate <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;q&#34;: &#34;Hello world&#34;, &#34;source&#34;: &#34;en&#34;, &#34;target&#34;: &#34;es&#34;}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Response: {&#34;translatedText&#34;: &#34;Hola mundo&#34;}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Detect language</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:5000/detect <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;q&#34;: &#34;Bonjour le monde&#34;}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Get supported languages</span>
-</span></span><span style=display:flex><span>curl http://localhost:5000/languages
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Translate with API key (if enabled)</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:5000/translate <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Authorization: Bearer your-api-key&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;q&#34;: &#34;Production deployment&#34;, &#34;source&#34;: &#34;en&#34;, &#34;target&#34;: &#34;de&#34;}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># HTML translation</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:5000/translate <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;q&#34;: &#34;&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;&lt;/p&gt;&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;source&#34;: &#34;en&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;target&#34;: &#34;fr&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;format&#34;: &#34;html&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><h3 id=nginx-reverse-proxy-configuration>Nginx Reverse Proxy Configuration</h3><p>For production deployments behind a domain with HTTPS: `````nginx</p><h1 id=etcnginxsites-availablelibretranslate>/etc/nginx/sites-available/libretranslate</h1><p>server {
+</code></pre><h3 id="curl-api-examples">cURL API Examples</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Basic translation</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/translate <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;q&#34;: &#34;Hello world&#34;, &#34;source&#34;: &#34;en&#34;, &#34;target&#34;: &#34;es&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Response: {&#34;translatedText&#34;: &#34;Hola mundo&#34;}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Detect language</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/detect <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;q&#34;: &#34;Bonjour le monde&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get supported languages</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:5000/languages
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Translate with API key (if enabled)</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/translate <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer your-api-key&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;q&#34;: &#34;Production deployment&#34;, &#34;source&#34;: &#34;en&#34;, &#34;target&#34;: &#34;de&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># HTML translation</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/translate <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;q&#34;: &#34;&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;&lt;/p&gt;&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;source&#34;: &#34;en&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;target&#34;: &#34;fr&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;format&#34;: &#34;html&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><h3 id="nginx-reverse-proxy-configuration">Nginx Reverse Proxy Configuration</h3>
+<p>For production deployments behind a domain with HTTPS: `````nginx</p>
+<h1 id="etcnginxsites-availablelibretranslate">/etc/nginx/sites-available/libretranslate</h1>
+<p>server {
 listen 443 ssl http2;
-server_name translate.yourdomain.com;</p><pre><code>ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+server_name translate.yourdomain.com;</p>
+<pre><code>ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
 ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
 
 client_max_body_size 50M;
@@ -282,36 +420,92 @@ location / {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_read_timeout 300s;
 }
-</code></pre><p>}</p><h1 id=redirect-http-to-https>Redirect HTTP to HTTPS</h1><p>server {
+</code></pre>
+<p>}</p>
+<h1 id="redirect-http-to-https">Redirect HTTP to HTTPS</h1>
+<p>server {
 listen 80;
 server_name translate.yourdomain.com;
 return 301 https://$server_name$request_uri;
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 Enable the configuration: `````bash
 sudo ln -s /etc/nginx/sites-available/libretranslate /etc/nginx/sites-enabled/
 sudo nginx -t &amp;&amp; sudo systemctl reload nginx
-</code></pre><h2 id=benchmarks--real-world-use-cases>Benchmarks / Real-World Use Cases</h2><p>LibreTranslate performance varies significantly based on hardware configuration, loaded languages, and text length. Below are measured benchmarks from production deployments.</p><p><img alt="Translation API Latency Comparison" loading=lazy src=benchmark-chart.png></p><h3 id=translation-speed-benchmarks>Translation Speed Benchmarks</h3><p>| Hardware | Languages Loaded | Avg. Latency (50 words) | Throughput (req/s) | Notes |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<p>LibreTranslate performance varies significantly based on hardware configuration, loaded languages, and text length. Below are measured benchmarks from production deployments.</p>
+<p><img alt="Translation API Latency Comparison" loading="lazy" src="benchmark-chart.png"></p>
+<h3 id="translation-speed-benchmarks">Translation Speed Benchmarks</h3>
+<p>| Hardware | Languages Loaded | Avg. Latency (50 words) | Throughput (req/s) | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 2 vCPU, 4GB RAM | 5 | 180ms | 12 | CPU-only, Docker |
 | 4 vCPU, 8GB RAM | 11 | 120ms | 28 | CPU-only, Docker |
 | 4 vCPU, 16GB RAM | 30 | 200ms | 18 | CPU-only, all languages |
 | 8 vCPU, 16GB + RTX 3060 | 11 | 45ms | 85 | CUDA-accelerated |
-| 2 vCPU, 4GB (DigitalOcean) | 5 | 220ms | 10 | Cloud VPS, CPU-only |</p><h3 id=translation-quality-comparison>Translation Quality Comparison</h3><p>BLEU score comparison on WMT14 English-to-German test set (higher is better): | System | BLEU Score | Word Error Rate | Inference Time |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 2 vCPU, 4GB (DigitalOcean) | 5 | 220ms | 10 | Cloud VPS, CPU-only |</p>
+<h3 id="translation-quality-comparison">Translation Quality Comparison</h3>
+<p>BLEU score comparison on WMT14 English-to-German test set (higher is better): | System | BLEU Score | Word Error Rate | Inference Time |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | LibreTranslate (Argos) | 22.4 | 62% | 120ms |
 | Google Translate API | 26.8 | 51% | 85ms |
 | DeepL API | 28.1 | 48% | 90ms |
-| Argos Translate (CLI) | 22.4 | 62% | 115ms |</p><p>LibreTranslate matches Argos Translate CLI performance exactly, since they share the same engine. The quality gap versus commercial APIs is measurable but narrowing: on common European language pairs, LibreTranslate produces acceptable translations for most use cases. The gap widens for less common language pairs, technical domain text, and nuanced creative content.</p><h3 id=cost-analysis-at-scale>Cost Analysis at Scale</h3><p>| Monthly Volume | LibreTranslate (Self-Hosted) | Google Translate | DeepL API |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Argos Translate (CLI) | 22.4 | 62% | 115ms |</p>
+<p>LibreTranslate matches Argos Translate CLI performance exactly, since they share the same engine. The quality gap versus commercial APIs is measurable but narrowing: on common European language pairs, LibreTranslate produces acceptable translations for most use cases. The gap widens for less common language pairs, technical domain text, and nuanced creative content.</p>
+<h3 id="cost-analysis-at-scale">Cost Analysis at Scale</h3>
+<p>| Monthly Volume | LibreTranslate (Self-Hosted) | Google Translate | DeepL API |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 1M characters | $10 (VPS cost) | $20 | $6.99 (free tier) |
 | 10M characters | $10 (VPS cost) | $200 | $20 |
 | 100M characters | $40 (dedicated server) | $2,000 | $125 |
-| 1B characters | $200 (GPU server) | $20,000 | $1,000 |</p><p>The economic argument for LibreTranslate strengthens proportionally with volume. At 100M+ characters per month, self-hosting is 10-50x cheaper than commercial alternatives.</p><h3 id=real-world-use-cases>Real-World Use Cases</h3><ul><li><strong>Government agencies</strong>: Processing confidential documents without data exfiltration risks.</li><li><strong>Healthcare systems</strong>: Translating patient records under HIPAA/GDPR constraints.</li><li><strong>E-commerce platforms</strong>: Bulk translation of product catalogs at zero per-item cost.</li><li><strong>Content management systems</strong>: Real-time translation of user-generated content.</li><li><strong>Research institutions</strong>: Processing multilingual academic papers on internal infrastructure.</li><li><strong>Mobile app backends</strong>: Low-latency translation for travel and communication apps.</li></ul><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><p>Running LibreTranslate in production requires attention to security, scaling, and monitoring.</p><h3 id=api-key-management>API Key Management</h3><p>Enable API key authentication to control access and prevent abuse: `````yaml</p><h1 id=docker-composeyml-with-api-keys>docker-compose.yml with API keys</h1><p>services: libretranslate: image: libretranslate/libretranslate:v1.9.5
+| 1B characters | $200 (GPU server) | $20,000 | $1,000 |</p>
+<p>The economic argument for LibreTranslate strengthens proportionally with volume. At 100M+ characters per month, self-hosting is 10-50x cheaper than commercial alternatives.</p>
+<h3 id="real-world-use-cases">Real-World Use Cases</h3>
+<ul>
+<li><strong>Government agencies</strong>: Processing confidential documents without data exfiltration risks.</li>
+<li><strong>Healthcare systems</strong>: Translating patient records under HIPAA/GDPR constraints.</li>
+<li><strong>E-commerce platforms</strong>: Bulk translation of product catalogs at zero per-item cost.</li>
+<li><strong>Content management systems</strong>: Real-time translation of user-generated content.</li>
+<li><strong>Research institutions</strong>: Processing multilingual academic papers on internal infrastructure.</li>
+<li><strong>Mobile app backends</strong>: Low-latency translation for travel and communication apps.</li>
+</ul>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<p>Running LibreTranslate in production requires attention to security, scaling, and monitoring.</p>
+<h3 id="api-key-management">API Key Management</h3>
+<p>Enable API key authentication to control access and prevent abuse: `````yaml</p>
+<h1 id="docker-composeyml-with-api-keys">docker-compose.yml with API keys</h1>
+<p>services: libretranslate: image: libretranslate/libretranslate:v1.9.5
 environment: - LT_API_KEYS=true
 - LT_REQ_LIMIT=100
 - LT_REQ_LIMIT_PER_DAY=10000
 volumes: - lt-models:/home/libretranslate/.local
-- lt-db:/app/db</p><pre tabindex=0><code>
+- lt-db:/app/db</p>
+<pre tabindex="0"><code>
 Generate and manage API keys via the database or the admin interface.
 
 ### Custom Model Loading
@@ -322,7 +516,12 @@ LT_LOAD_ONLY=en,es,fr,de,it,pt,nl,pl,ru docker compose up -d
 
 # Load Asian + European languages
 LT_LOAD_ONLY=en,ja,zh,ko,es,fr,de docker compose up -d
-</code></pre><h3 id=health-monitoring>Health Monitoring</h3><p>LibreTranslate includes a built-in health check endpoint: `````bash</p><h1 id=check-service-health>Check service health</h1><p>curl http://localhost:5000/health</p><h1 id=expected-response-status-ok>Expected response: {&ldquo;status&rdquo;: &ldquo;ok&rdquo;}</h1><pre tabindex=0><code>
+</code></pre><h3 id="health-monitoring">Health Monitoring</h3>
+<p>LibreTranslate includes a built-in health check endpoint: `````bash</p>
+<h1 id="check-service-health">Check service health</h1>
+<p>curl http://localhost:5000/health</p>
+<h1 id="expected-response-status-ok">Expected response: {&ldquo;status&rdquo;: &ldquo;ok&rdquo;}</h1>
+<pre tabindex="0"><code>
 For Prometheus-based monitoring, add a simple exporter: `````python
 # prometheus_exporter.py
 from prometheus_client import start_http_server, Counter, Histogram
@@ -341,7 +540,10 @@ def monitor(): start_http_server(9090)
         time.sleep(30)
 
 if __name__ == &#34;__main__&#34;: monitor()
-</code></pre><h3 id=auto-scaling-with-kubernetes>Auto-Scaling with Kubernetes</h3><p>For high-availability deployments, use Kubernetes with Horizontal Pod Autoscaler: `````yaml</p><h1 id=libretranslate-deploymentyaml>libretranslate-deployment.yaml</h1><p>apiVersion: apps/v1
+</code></pre><h3 id="auto-scaling-with-kubernetes">Auto-Scaling with Kubernetes</h3>
+<p>For high-availability deployments, use Kubernetes with Horizontal Pod Autoscaler: `````yaml</p>
+<h1 id="libretranslate-deploymentyaml">libretranslate-deployment.yaml</h1>
+<p>apiVersion: apps/v1
 kind: Deployment
 metadata: name: libretranslate
 spec: replicas: 2
@@ -361,7 +563,9 @@ cpu: &ldquo;2000m&rdquo;
 livenessProbe: httpGet: path: /health
 port: 5000
 initialDelaySeconds: 60
-periodSeconds: 30</p><hr><p>apiVersion: autoscaling/v2
+periodSeconds: 30</p>
+<hr>
+<p>apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata: name: libretranslate-hpa
 spec: scaleTargetRef: apiVersion: apps/v1
@@ -372,16 +576,38 @@ maxReplicas: 10
 metrics: - type: Resource
 resource: name: cpu
 target: type: Utilization
-averageUtilization: 70</p><pre tabindex=0><code>
+averageUtilization: 70</p>
+<pre tabindex="0"><code>
 Deploy: `````bash
 kubectl apply -f libretranslate-deployment.yaml
-</code></pre><h3 id=backup-strategy>Backup Strategy</h3><p>Language models can be re-downloaded, but the SQLite database with API keys and logs should be backed up: `````bash
-#!/bin/bash</p><h1 id=backupsh---daily-backup-cron-job>backup.sh - Daily backup cron job</h1><p>BACKUP_DIR="/backups/libretranslate"
-DATE=$(date +%Y%m%d)</p><h1 id=backup-database>Backup database</h1><p>docker cp libretranslate:/app/db &ldquo;$BACKUP_DIR/db_$DATE.sqlite&rdquo;</p><h1 id=sync-models-optional---can-be-re-downloaded>Sync models (optional - can be re-downloaded)</h1><p>rsync -av /var/lib/docker/volumes/lt-models/_data/ &ldquo;$BACKUP_DIR/models/&rdquo;</p><h1 id=keep-only-7-days-of-backups>Keep only 7 days of backups</h1><p>find &ldquo;$BACKUP_DIR&rdquo; -name &ldquo;db_*.sqlite&rdquo; -mtime +7 -delete</p><pre tabindex=0><code>
+</code></pre><h3 id="backup-strategy">Backup Strategy</h3>
+<p>Language models can be re-downloaded, but the SQLite database with API keys and logs should be backed up: `````bash
+#!/bin/bash</p>
+<h1 id="backupsh---daily-backup-cron-job">backup.sh - Daily backup cron job</h1>
+<p>BACKUP_DIR=&quot;/backups/libretranslate&quot;
+DATE=$(date +%Y%m%d)</p>
+<h1 id="backup-database">Backup database</h1>
+<p>docker cp libretranslate:/app/db &ldquo;$BACKUP_DIR/db_$DATE.sqlite&rdquo;</p>
+<h1 id="sync-models-optional---can-be-re-downloaded">Sync models (optional - can be re-downloaded)</h1>
+<p>rsync -av /var/lib/docker/volumes/lt-models/_data/ &ldquo;$BACKUP_DIR/models/&rdquo;</p>
+<h1 id="keep-only-7-days-of-backups">Keep only 7 days of backups</h1>
+<p>find &ldquo;$BACKUP_DIR&rdquo; -name &ldquo;db_*.sqlite&rdquo; -mtime +7 -delete</p>
+<pre tabindex="0"><code>
 Add to crontab: `````bash
 0 2 * * * /path/to/backup.sh
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | LibreTranslate | Argos Translate | Google Translate API | DeepL API |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | LibreTranslate | Argos Translate | Google Translate API | DeepL API |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>License</strong> | AGPL-3.0 | MIT | Proprietary | Proprietary |
 | <strong>Self-Hosted</strong> | Yes | Yes (CLI) | No | No |
 | <strong>Offline Capable</strong> | Yes | Yes | No | No |
@@ -393,10 +619,36 @@ Add to crontab: `````bash
 | <strong>GPU Acceleration</strong> | Yes (CUDA) | CPU only | Cloud-only | Cloud-only |
 | <strong>Privacy</strong> | Full (data stays local) | Full | Data sent to Google | Data sent to DeepL |
 | <strong>Rate Limits</strong> | Configurable | N/A | Quota-based | Quota-based |
-| <strong>Setup Complexity</strong> | Medium (Docker) | Low (pip) | Low (API key) | Low (API key) |</p><p>LibreTranslate fills a specific niche: it is the only option that combines a REST API, web UI, GPU acceleration, and full offline capability under an open-source license. Argos Translate offers the same translation engine but lacks the API layer. Google and DeepL offer superior quality and broader language support, but at the cost of privacy, recurring fees, and external dependency.</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p>LibreTranslate is not a universal replacement for commercial translation APIs. Understanding its limitations is essential for making an informed adoption decision.</p><p><strong>Translation quality gap</strong>: On the WMT14 benchmark, LibreTranslate trails DeepL by approximately 5.7 BLEU points and Google Translate by 4.4 points. This gap is most noticeable for: (1) less common language pairs like English to Swahili or Finnish to Vietnamese, (2) domain-specific terminology in legal, medical, or technical texts, and (3) creative or idiomatic content where context and nuance matter.</p><p><strong>Resource intensity</strong>: Each loaded language pair consumes 300-600MB of RAM. A full 30-language deployment requires 8GB+ of memory. This makes LibreTranslate unsuitable for resource-constrained environments like Raspberry Pi (unless loading only 2-3 languages) or small VPS instances.</p><p><strong>Language coverage</strong>: With 30+ languages, LibreTranslate covers the most common language pairs but falls far short of Google Translate&rsquo;s 130+ languages. If your use case requires translation for minority or endangered languages, LibreTranslate is not sufficient.</p><p><strong>No real-time streaming</strong>: LibreTranslate processes complete text segments. It does not support streaming translation or real-time speech-to-text translation, which limits its applicability in live conversation scenarios.</p><p><strong>AGPL-3.0 license implications</strong>: The AGPL-3.0 license requires that any network use of the software (including via API) triggers the share-alike requirement. Organizations building proprietary products on top of LibreTranslate should consult legal counsel regarding license compliance.</p><p><strong>Maintenance burden</strong>: Self-hosting means you are responsible for updates, security patches, model updates, and infrastructure monitoring. Factor in operational overhead when comparing costs against managed APIs.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=how-does-libretranslate-compare-to-running-argos-translate-directly>How does LibreTranslate compare to running Argos Translate directly?</h3><p>LibreTranslate is essentially a REST API wrapper around Argos Translate. If you only need command-line translation, Argos Translate has lower overhead. If you need an HTTP API, web interface, or multi-user access, LibreTranslate adds those layers. Both share identical translation models and produce identical output.</p><h3 id=can-libretranslate-run-on-a-raspberry-pi>Can LibreTranslate run on a Raspberry Pi?</h3><p>Yes, with constraints. The ARM Docker image is optimized for ARM64 systems. Load only 2-3 language pairs to keep memory usage under 2GB. Expect translation latency of 800ms-1.5s per request on a Raspberry Pi 4 with 4GB RAM. For production use, a minimum of 4GB RAM is recommended.</p><h3 id=how-do-i-update-language-models-without-restarting-the-container>How do I update language models without restarting the container?</h3><p>Set the <code>LT_UPDATE_MODELS=true</code> environment variable. LibreTranslate checks for model updates on startup. For rolling updates in a Kubernetes deployment, use a rolling restart strategy: update the deployment with the new image version, and Kubernetes replaces pods incrementally.</p><h3 id=what-is-the-maximum-text-length-per-translation-request>What is the maximum text length per translation request?</h3><p>The default maximum is configurable via the <code>--char-limit</code> flag or <code>LT_CHAR_LIMIT</code> environment variable. The built-in default is 10,000 characters per request. For longer documents, split the text into chunks and make sequential API calls.</p><h3 id=is-libretranslate-suitable-for-hipaa-or-gdpr-compliance>Is LibreTranslate suitable for HIPAA or GDPR compliance?</h3><p>LibreTranslate&rsquo;s self-hosted nature means no data leaves your infrastructure, which simplifies compliance. However, compliance is a system-level property, not just a software property. You must also secure the host OS, network, backups, and access controls. Consult your compliance officer for a full assessment.</p><h3 id=how-do-i-add-a-custom-language-model>How do I add a custom language model?</h3><p>LibreTranslate supports models in the Argos Translate format (OpenNMT CTranslate2 models). Place custom <code>.argosmodel</code> files in the models directory and restart the container. Custom models are useful for domain-specific terminology or languages not covered by the default model set.</p><h3 id=can-i-use-libretranslate-with-a-frontend-framework-like-react-or-vue>Can I use LibreTranslate with a frontend framework like React or Vue?</h3><p>Yes. The <code>/translate</code> endpoint accepts JSON and supports CORS when configured. Example React hook: `````typescript
+| <strong>Setup Complexity</strong> | Medium (Docker) | Low (pip) | Low (API key) | Low (API key) |</p>
+<p>LibreTranslate fills a specific niche: it is the only option that combines a REST API, web UI, GPU acceleration, and full offline capability under an open-source license. Argos Translate offers the same translation engine but lacks the API layer. Google and DeepL offer superior quality and broader language support, but at the cost of privacy, recurring fees, and external dependency.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>LibreTranslate is not a universal replacement for commercial translation APIs. Understanding its limitations is essential for making an informed adoption decision.</p>
+<p><strong>Translation quality gap</strong>: On the WMT14 benchmark, LibreTranslate trails DeepL by approximately 5.7 BLEU points and Google Translate by 4.4 points. This gap is most noticeable for: (1) less common language pairs like English to Swahili or Finnish to Vietnamese, (2) domain-specific terminology in legal, medical, or technical texts, and (3) creative or idiomatic content where context and nuance matter.</p>
+<p><strong>Resource intensity</strong>: Each loaded language pair consumes 300-600MB of RAM. A full 30-language deployment requires 8GB+ of memory. This makes LibreTranslate unsuitable for resource-constrained environments like Raspberry Pi (unless loading only 2-3 languages) or small VPS instances.</p>
+<p><strong>Language coverage</strong>: With 30+ languages, LibreTranslate covers the most common language pairs but falls far short of Google Translate&rsquo;s 130+ languages. If your use case requires translation for minority or endangered languages, LibreTranslate is not sufficient.</p>
+<p><strong>No real-time streaming</strong>: LibreTranslate processes complete text segments. It does not support streaming translation or real-time speech-to-text translation, which limits its applicability in live conversation scenarios.</p>
+<p><strong>AGPL-3.0 license implications</strong>: The AGPL-3.0 license requires that any network use of the software (including via API) triggers the share-alike requirement. Organizations building proprietary products on top of LibreTranslate should consult legal counsel regarding license compliance.</p>
+<p><strong>Maintenance burden</strong>: Self-hosting means you are responsible for updates, security patches, model updates, and infrastructure monitoring. Factor in operational overhead when comparing costs against managed APIs.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="how-does-libretranslate-compare-to-running-argos-translate-directly">How does LibreTranslate compare to running Argos Translate directly?</h3>
+<p>LibreTranslate is essentially a REST API wrapper around Argos Translate. If you only need command-line translation, Argos Translate has lower overhead. If you need an HTTP API, web interface, or multi-user access, LibreTranslate adds those layers. Both share identical translation models and produce identical output.</p>
+<h3 id="can-libretranslate-run-on-a-raspberry-pi">Can LibreTranslate run on a Raspberry Pi?</h3>
+<p>Yes, with constraints. The ARM Docker image is optimized for ARM64 systems. Load only 2-3 language pairs to keep memory usage under 2GB. Expect translation latency of 800ms-1.5s per request on a Raspberry Pi 4 with 4GB RAM. For production use, a minimum of 4GB RAM is recommended.</p>
+<h3 id="how-do-i-update-language-models-without-restarting-the-container">How do I update language models without restarting the container?</h3>
+<p>Set the <code>LT_UPDATE_MODELS=true</code> environment variable. LibreTranslate checks for model updates on startup. For rolling updates in a Kubernetes deployment, use a rolling restart strategy: update the deployment with the new image version, and Kubernetes replaces pods incrementally.</p>
+<h3 id="what-is-the-maximum-text-length-per-translation-request">What is the maximum text length per translation request?</h3>
+<p>The default maximum is configurable via the <code>--char-limit</code> flag or <code>LT_CHAR_LIMIT</code> environment variable. The built-in default is 10,000 characters per request. For longer documents, split the text into chunks and make sequential API calls.</p>
+<h3 id="is-libretranslate-suitable-for-hipaa-or-gdpr-compliance">Is LibreTranslate suitable for HIPAA or GDPR compliance?</h3>
+<p>LibreTranslate&rsquo;s self-hosted nature means no data leaves your infrastructure, which simplifies compliance. However, compliance is a system-level property, not just a software property. You must also secure the host OS, network, backups, and access controls. Consult your compliance officer for a full assessment.</p>
+<h3 id="how-do-i-add-a-custom-language-model">How do I add a custom language model?</h3>
+<p>LibreTranslate supports models in the Argos Translate format (OpenNMT CTranslate2 models). Place custom <code>.argosmodel</code> files in the models directory and restart the container. Custom models are useful for domain-specific terminology or languages not covered by the default model set.</p>
+<h3 id="can-i-use-libretranslate-with-a-frontend-framework-like-react-or-vue">Can I use LibreTranslate with a frontend framework like React or Vue?</h3>
+<p>Yes. The <code>/translate</code> endpoint accepts JSON and supports CORS when configured. Example React hook: `````typescript
 // useTranslation.ts
-import { useState, useCallback } from &ldquo;react&rdquo;;</p><p>export function useTranslation() {
-const [translating, setTranslating] = useState(false);</p><p>const translate = useCallback(async (text: string, source: string, target: string) => {
+import { useState, useCallback } from &ldquo;react&rdquo;;</p>
+<p>export function useTranslation() {
+const [translating, setTranslating] = useState(false);</p>
+<p>const translate = useCallback(async (text: string, source: string, target: string) =&gt; {
 setTranslating(true);
 try {
 const res = await fetch(&ldquo;http://localhost:5000/translate&rdquo;, {
@@ -409,8 +661,10 @@ return data.translatedText;
 } finally {
 setTranslating(false);
 }
-}, []);</p><p>return { translate, translating };
-}</p><pre tabindex=0><code>
+}, []);</p>
+<p>return { translate, translating };
+}</p>
+<pre tabindex="0"><code>
 ### What are the network requirements for an offline deployment?
 
 For fully offline operation, build the Docker image with ````--build-arg with_models=true``` to embed language models during the build. The resulting image contains all necessary files and requires no internet connection at runtime. Image size increases by approximately 2-3GB depending on the number of included languages.
@@ -490,13 +744,265 @@ Before you deploy any of the tools above into production, you&#39;ll need solid 
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flibretranslate%2f&text=Run%20with%20Docker" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flibretranslate%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flibretranslate%2f&text=Run%20with%20Docker" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flibretranslate%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

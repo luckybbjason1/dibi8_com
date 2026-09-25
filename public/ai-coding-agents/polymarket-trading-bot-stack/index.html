@@ -1,79 +1,260 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;28 Tools Behind a $1M Polymarket Trading Bot: Full Stack&mldr;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;28 Tools Behind a $1M Polymarket Trading Bot: Full Stack&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 $1M. Learn latency arbitrage, AI reasoning, and the complete tech stack for prediction
 market trading.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Go</p><ul><li>JavaScript</li><li>Python</li><li>Rust</li><li>TypeScript
+tech_stack: - Go</p>
+<ul>
+<li>JavaScript</li>
+<li>Python</li>
+<li>Rust</li>
+<li>TypeScript
 application_domain: Dev Utils
 source_version: &rsquo;'
 licensing_model: Open Source
 license_type: MIT
 file_size: &ldquo;1.1 GB&rdquo;
 file_md5: &rsquo;'
-download_url: <a href=https://github.com/QwenLM/Qwen3-Coder>https://github.com/QwenLM/Qwen3-Coder</a>
+download_url: <a href="https://github.com/QwenLM/Qwen3-Coder">https://github.com/QwenLM/Qwen3-Coder</a>
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-03-24&rdquo;
 draft: false
-aliases:<ul><li>/en/posts/polymarket-trading-bot-stack/</li></ul></li><li>/posts/polymarket-trading-bot-automated/</li><li>/posts/polymarket-trading-bot-framework/</li><li>/posts/polymarket-trading-bot-stack/
+aliases:
+<ul>
+<li>/en/posts/polymarket-trading-bot-stack/</li>
+</ul>
+</li>
+<li>/posts/polymarket-trading-bot-automated/</li>
+<li>/posts/polymarket-trading-bot-framework/</li>
+<li>/posts/polymarket-trading-bot-stack/
 faqs: - q: &lsquo;Why can a bot profit from arbitrage between Binance and Polymarket?&rsquo;
-a: &lsquo;Polymarket updates its prices slower than the underlying asset moves on Binance. In 2024 that lag averaged 12 seconds, and by Q1 2026 competition had compressed it to about 2.7 seconds. A bot can read the real price move on Binance and trade the stale Polymarket price before the market corrects.&rsquo;<ul><li>q: &lsquo;What types of Polymarket contracts are best suited for automated trading?&rsquo;
-a: &lsquo;Short-duration crypto contracts, specifically 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, give immediate feedback, and exhibit the largest price lag relative to Binance, which is where the arbitrage edge lives.&rsquo;</li><li>q: &lsquo;How does a Polymarket arbitrage bot decide its position size?&rsquo;
-a: &lsquo;It calculates the edge size using the Kelly Criterion. After detecting a price discrepancy between Binance and Polymarket, the bot sizes the bet by Kelly, executes through Polymarket&rsquo;&rsquo;s CLOB API, and closes the position once the market corrects, repeating 200 to 500 times per day.&rsquo;</li><li>q: &lsquo;What API surfaces does Polymarket expose for building a trading bot?&rsquo;
-a: &lsquo;Polymarket exposes four: the Gamma API for market data, prices, and metadata; the CLOB API for the order book and trade execution; on-chain settlement on Polygon (chain ID 137) in USDC; and WebSocket feeds for real-time price updates. The official py-clob-client Python client wraps all of these.&rsquo;</li><li>q: &lsquo;Why do trading bots outperform humans using the same Polymarket strategy?&rsquo;
-a: &lsquo;In a tracked period bots generated about $206,000 versus roughly $100,000 for humans using the same logic, a 2x gap. Humans lose to four systematic errors: late entries after the window closes, emotional and inconsistent position sizing, fatigue after about 8 hours, and drawdown psychology that makes them abandon or double down on strategies.&rsquo;</li></ul></li></ul><hr><h1 id=28-tools-behind-a-1m-polymarket-trading-bot-full-stack-breakdown>28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown</h1><p>{&lt;/* resource-info */>}</p><h2 id=introduction>Introduction</h2><p><strong>$1,003,450 in profit. 3,062 predictions. One wallet.</strong></p><p>When traders first saw the growth trajectory of wallet ```0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3```` on Polymarket, the reaction was simple: <em>fake</em>. A seven-figure PnL from a retail-profile wallet belongs in a Telegram scam group, not on a verifiable on-chain dashboard.</p><p>But the blockchain doesn&rsquo;t lie. Every trade is public. Every settlement is verifiable.</p><p>This article maps the <strong>complete 28-tool tech stack</strong> that makes this possible - 6 layers from AI reasoning to production execution. Whether you want to build your own bot or simply copy profitable traders, this is the blueprint.</p><p>![Polymarket Trading Dashboard](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h2 id=what-polymarket-is-and-where-the-edge-lives>What Polymarket Is and Where the Edge Lives</h2><p><strong>Polymarket</strong> is a prediction market where users trade on binary outcomes. Each contract resolves at $1.00 (correct) or $0.00 (wrong). A contract priced at $0.73 means the market believes there&rsquo;s a 73% chance the &ldquo;Yes&rdquo; outcome happens.</p><p>The platform&rsquo;s weekly volume exceeded <strong>$2 billion</strong> in early 2026.</p><h3 id=the-structural-vulnerability>The Structural Vulnerability</h3><p>The key category for automated trading is <strong>short-duration crypto contracts</strong> - 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, provide immediate feedback, and have a critical vulnerability: > <strong>Polymarket updates prices slower than the underlying asset moves on Binance.</strong></p><p>In 2024, that lag averaged 12 seconds. By Q1 2026, competition compressed it to <strong>2.7 seconds</strong>.</p><p><strong>2.7 seconds is an eternity for a machine.</strong></p><p>That gap - between what Binance knows and what Polymarket still shows - is where every strategy lives.</p><source src=https://www.youtube.com/embed/dQw4w9WgXcQ type=video/mp4>Your browser does not support the video tag.</video><h2 id=the-arbitrage-mechanism-step-by-step>The Arbitrage Mechanism, Step by Step</h2><p>A 15-minute BTC contract opens at 50/50. Ten minutes in, Bitcoin drops 0.6% on Binance in 30 seconds. The &ldquo;real&rdquo; probability that BTC will be lower at expiry just shifted to roughly 78%. Polymarket still shows 54/46.</p><p><strong>That&rsquo;s a 24-point edge on a binary contract.</strong></p><p>A bot monitoring Binance&rsquo;s WebSocket feed with under 50ms latency: 1. Detects the price discrepancy
+a: &lsquo;Polymarket updates its prices slower than the underlying asset moves on Binance. In 2024 that lag averaged 12 seconds, and by Q1 2026 competition had compressed it to about 2.7 seconds. A bot can read the real price move on Binance and trade the stale Polymarket price before the market corrects.&rsquo;
+<ul>
+<li>q: &lsquo;What types of Polymarket contracts are best suited for automated trading?&rsquo;
+a: &lsquo;Short-duration crypto contracts, specifically 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, give immediate feedback, and exhibit the largest price lag relative to Binance, which is where the arbitrage edge lives.&rsquo;</li>
+<li>q: &lsquo;How does a Polymarket arbitrage bot decide its position size?&rsquo;
+a: &lsquo;It calculates the edge size using the Kelly Criterion. After detecting a price discrepancy between Binance and Polymarket, the bot sizes the bet by Kelly, executes through Polymarket&rsquo;&rsquo;s CLOB API, and closes the position once the market corrects, repeating 200 to 500 times per day.&rsquo;</li>
+<li>q: &lsquo;What API surfaces does Polymarket expose for building a trading bot?&rsquo;
+a: &lsquo;Polymarket exposes four: the Gamma API for market data, prices, and metadata; the CLOB API for the order book and trade execution; on-chain settlement on Polygon (chain ID 137) in USDC; and WebSocket feeds for real-time price updates. The official py-clob-client Python client wraps all of these.&rsquo;</li>
+<li>q: &lsquo;Why do trading bots outperform humans using the same Polymarket strategy?&rsquo;
+a: &lsquo;In a tracked period bots generated about $206,000 versus roughly $100,000 for humans using the same logic, a 2x gap. Humans lose to four systematic errors: late entries after the window closes, emotional and inconsistent position sizing, fatigue after about 8 hours, and drawdown psychology that makes them abandon or double down on strategies.&rsquo;</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="28-tools-behind-a-1m-polymarket-trading-bot-full-stack-breakdown">28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown</h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="introduction">Introduction</h2>
+<p><strong>$1,003,450 in profit. 3,062 predictions. One wallet.</strong></p>
+<p>When traders first saw the growth trajectory of wallet ```0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3```` on Polymarket, the reaction was simple: <em>fake</em>. A seven-figure PnL from a retail-profile wallet belongs in a Telegram scam group, not on a verifiable on-chain dashboard.</p>
+<p>But the blockchain doesn&rsquo;t lie. Every trade is public. Every settlement is verifiable.</p>
+<p>This article maps the <strong>complete 28-tool tech stack</strong> that makes this possible - 6 layers from AI reasoning to production execution. Whether you want to build your own bot or simply copy profitable traders, this is the blueprint.</p>
+<p>![Polymarket Trading Dashboard](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h2 id="what-polymarket-is-and-where-the-edge-lives">What Polymarket Is and Where the Edge Lives</h2>
+<p><strong>Polymarket</strong> is a prediction market where users trade on binary outcomes. Each contract resolves at $1.00 (correct) or $0.00 (wrong). A contract priced at $0.73 means the market believes there&rsquo;s a 73% chance the &ldquo;Yes&rdquo; outcome happens.</p>
+<p>The platform&rsquo;s weekly volume exceeded <strong>$2 billion</strong> in early 2026.</p>
+<h3 id="the-structural-vulnerability">The Structural Vulnerability</h3>
+<p>The key category for automated trading is <strong>short-duration crypto contracts</strong> - 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, provide immediate feedback, and have a critical vulnerability: &gt; <strong>Polymarket updates prices slower than the underlying asset moves on Binance.</strong></p>
+<p>In 2024, that lag averaged 12 seconds. By Q1 2026, competition compressed it to <strong>2.7 seconds</strong>.</p>
+<p><strong>2.7 seconds is an eternity for a machine.</strong></p>
+<p>That gap - between what Binance knows and what Polymarket still shows - is where every strategy lives.</p>
+<source src="https://www.youtube.com/embed/dQw4w9WgXcQ" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<h2 id="the-arbitrage-mechanism-step-by-step">The Arbitrage Mechanism, Step by Step</h2>
+<p>A 15-minute BTC contract opens at 50/50. Ten minutes in, Bitcoin drops 0.6% on Binance in 30 seconds. The &ldquo;real&rdquo; probability that BTC will be lower at expiry just shifted to roughly 78%. Polymarket still shows 54/46.</p>
+<p><strong>That&rsquo;s a 24-point edge on a binary contract.</strong></p>
+<p>A bot monitoring Binance&rsquo;s WebSocket feed with under 50ms latency: 1. Detects the price discrepancy
 2. Calculates edge size using Kelly Criterion
 3. Executes via Polymarket&rsquo;s CLOB API
 4. Two seconds later, the market corrects
-5. Position closes profitable</p><p><strong>Repeat 200-500 times per day.</strong> That&rsquo;s the coinman2 result. Not magic - industrial-scale exploitation of a gap that still exists.</p><p>![Latency Arbitrage Diagram](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h2 id=the-complete-stack-6-layers-28-tools>The Complete Stack: 6 Layers, 28 Tools</h2><h3 id=layer-1---brain-ai-reasoning>Layer 1 - Brain: AI Reasoning</h3><p>The coinman2 bot ran on <strong>Anthropic&rsquo;s Claude</strong>. In March 2026, a controlled experiment ran Claude against OpenClaw framework - same starting capital ($1,000), same market conditions, 48 hours: - <strong>Claude</strong>: +1,322% return</p><ul><li><strong>OpenClaw</strong>: Fully liquidated</li></ul><p>The gap? Risk management quality. Claude&rsquo;s generated code included more conservative defaults, better edge cases, and cleaner error handling.</p><p>| Tool | Purpose | Link |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Claude (Anthropic)</strong> | Primary strategist. Reasons about market questions, estimates probability vs current price | <a href=https://anthropic.com>anthropic.com</a> |
-| <strong>Qwen3-Coder</strong> | Open source coding LLM. Watches live performance, rewrites modules autonomously | <a href=https://github.com/QwenLM/Qwen3-Coder>GitHub</a> |
-| <strong>G0DM0D3</strong> | Uncensored AI interface for uncomfortable market theses | <a href=https://github.com/elder-plinius/G0DM0D3>GitHub</a> |
-| <strong>Claude Squad</strong> | Runs multiple Claude instances in parallel across market sectors | <a href=https://github.com/smtg-ai/claude-squad>GitHub</a> |</p></iframe><h3 id=layer-2---orchestration-making-agents-execute>Layer 2 - Orchestration: Making Agents Execute</h3><p>A reasoning engine with no execution layer is just an opinion generator.</p><p>| Tool | Purpose | Link |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Agency Agents</strong> | Bull vs Bear debate with Risk Manager veto | <a href=https://github.com/msitarzewski/agency-agents>GitHub</a> |
-| <strong>ClaudeAgent OneClick</strong> | One-click deploy. 24/7 market watcher in minutes | <a href=https://github.com/cvxv666/ClaudeAgentOneClick>GitHub</a> |
-| <strong>MiroThinker</strong> | Mandatory chain-of-thought layer. Bot must justify every position | <a href=https://github.com/MiroMindAI/MiroThinker>GitHub</a> |
-| <strong>Superpowers</strong> | Extends agents with web access, file ops, arbitrary API calls | <a href=https://github.com/obra/superpowers>GitHub</a> |
-| <strong>TradingAgents</strong> | Multi-agent framework: fundamental + technical + sentiment analyst | <a href=https://github.com/TauricResearch/TradingAgents>GitHub</a> |</p><p>![Multi-Agent Trading Architecture](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h3 id=layer-3---data--market-signals-the-eyes>Layer 3 - Data & Market Signals: The Eyes</h3><p>The bot is only as good as what it can see.</p><p>| Tool | Purpose | Link |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>OpenBB</strong> | Open source Bloomberg. 100+ data sources unified | <a href=https://github.com/OpenBB-finance/OpenBB>GitHub</a> |
-| <strong>Dexter</strong> | Autonomous deep research. SEC filings, earnings transcripts | <a href=https://github.com/virattt/dexter>GitHub</a> |
-| <strong>MCP Server</strong> | Financial datasets via MCP protocol into Claude&rsquo;s context | <a href=https://github.com/financial-datasets/mcp-server>GitHub</a> |
-| <strong>Crucix</strong> | On-chain aggregator. Whale wallet movements on Polygon | <a href=https://github.com/calesthio/Crucix>GitHub</a> |
-| <strong>fredapi</strong> | Federal Reserve datasets: CPI, unemployment, yield curves | <a href=https://github.com/mortada/fredapi>GitHub</a> |
-| <strong>Binance Collector</strong> | Predicts market direction for short-duration BTC/ETH contracts | <a href=https://github.com/txbabaxyz/mlmodelpoly>GitHub</a> |
-| <strong>Polymarket Assistant Tool</strong> | Indicator engine for directional bias on live markets | <a href=https://github.com/FiatFiorino/polymarket-assistant-tool>GitHub</a> |
-| <strong>lightweight-charts</strong> | TradingView&rsquo;s charting library. 14k stars, 45KB | <a href=https://github.com/tradingview/lightweight-charts>GitHub</a> |</p><p>![Trading Data Dashboard](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h3 id=layer-4---market-intelligence-what-others-built>Layer 4 - Market Intelligence: What Others Built</h3><p>You don&rsquo;t have to build everything from scratch.</p><p>| Tool | Purpose | Link |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Polyscope</strong> | Scans 2,000+ markets. Whale alerts to Telegram | <a href=https://thepolyscope.com>thepolyscope.com</a> |
-| <strong>Polywhaler</strong> | $10k+ whale trade tracker with AI signals | <a href=https://polywhaler.com>polywhaler.com</a> |
-| <strong>WHALES tracker</strong> | Smart Money Consensus, Health Score, Conviction Score | <a href=https://apify.com>Apify</a> |
-| <strong>HyperBuildX bot</strong> | Rust-based, sub-100ms latency. AI copy-trade ranking | <a href=https://github.com/HyperBuildX/Polymarket-Trading-Bot>GitHub</a> |
-| <strong>polymarketanalytics.com</strong> | Open trader analytics, top wallet P&amp;L | <a href=https://polymarketanalytics.com>polymarketanalytics.com</a> |
-| <strong>polyrec</strong> | Real-time terminal with 70+ indicators, backtester | <a href=https://github.com/txbabaxyz/polyrec>GitHub</a> |
-| <strong>Polymarket-Trading-Bot</strong> | 53k lines TypeScript. 7 prebuilt strategies | <a href=https://github.com/dylanpersonguy/Polymarket-Trading-Bot>GitHub</a> |</p><p>![Polymarket Analytics Dashboard](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h3 id=layer-5---backtest--simulation-prove-before-you-run>Layer 5 - Backtest & Simulation: Prove Before You Run</h3><p>This is the layer most retail bots skip - and the reason most blow up.</p><p>| Tool | Purpose | Link |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>prediction-market-backtesting</strong> | Backtests against real historical Polymarket/Kalshi data | <a href=https://github.com/evan-kolberg/prediction-market-backtesting>GitHub</a> |
-| <strong>polybot</strong> | Full execution infrastructure with paper trading. Kafka, ClickHouse, Grafana | <a href=https://github.com/ent0n29/polybot>GitHub</a> |</p><p>![Backtesting Results Chart](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h3 id=layer-6---execution-infrastructure>Layer 6 - Execution Infrastructure</h3><p>Polymarket exposes four API surfaces: 1. <strong>Gamma API</strong> - Market data, prices, metadata
+5. Position closes profitable</p>
+<p><strong>Repeat 200-500 times per day.</strong> That&rsquo;s the coinman2 result. Not magic - industrial-scale exploitation of a gap that still exists.</p>
+<p>![Latency Arbitrage Diagram](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h2 id="the-complete-stack-6-layers-28-tools">The Complete Stack: 6 Layers, 28 Tools</h2>
+<h3 id="layer-1---brain-ai-reasoning">Layer 1 - Brain: AI Reasoning</h3>
+<p>The coinman2 bot ran on <strong>Anthropic&rsquo;s Claude</strong>. In March 2026, a controlled experiment ran Claude against OpenClaw framework - same starting capital ($1,000), same market conditions, 48 hours: - <strong>Claude</strong>: +1,322% return</p>
+<ul>
+<li><strong>OpenClaw</strong>: Fully liquidated</li>
+</ul>
+<p>The gap? Risk management quality. Claude&rsquo;s generated code included more conservative defaults, better edge cases, and cleaner error handling.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Claude (Anthropic)</strong> | Primary strategist. Reasons about market questions, estimates probability vs current price | <a href="https://anthropic.com">anthropic.com</a> |
+| <strong>Qwen3-Coder</strong> | Open source coding LLM. Watches live performance, rewrites modules autonomously | <a href="https://github.com/QwenLM/Qwen3-Coder">GitHub</a> |
+| <strong>G0DM0D3</strong> | Uncensored AI interface for uncomfortable market theses | <a href="https://github.com/elder-plinius/G0DM0D3">GitHub</a> |
+| <strong>Claude Squad</strong> | Runs multiple Claude instances in parallel across market sectors | <a href="https://github.com/smtg-ai/claude-squad">GitHub</a> |</p>
+</iframe>
+<h3 id="layer-2---orchestration-making-agents-execute">Layer 2 - Orchestration: Making Agents Execute</h3>
+<p>A reasoning engine with no execution layer is just an opinion generator.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Agency Agents</strong> | Bull vs Bear debate with Risk Manager veto | <a href="https://github.com/msitarzewski/agency-agents">GitHub</a> |
+| <strong>ClaudeAgent OneClick</strong> | One-click deploy. 24/7 market watcher in minutes | <a href="https://github.com/cvxv666/ClaudeAgentOneClick">GitHub</a> |
+| <strong>MiroThinker</strong> | Mandatory chain-of-thought layer. Bot must justify every position | <a href="https://github.com/MiroMindAI/MiroThinker">GitHub</a> |
+| <strong>Superpowers</strong> | Extends agents with web access, file ops, arbitrary API calls | <a href="https://github.com/obra/superpowers">GitHub</a> |
+| <strong>TradingAgents</strong> | Multi-agent framework: fundamental + technical + sentiment analyst | <a href="https://github.com/TauricResearch/TradingAgents">GitHub</a> |</p>
+<p>![Multi-Agent Trading Architecture](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="layer-3---data--market-signals-the-eyes">Layer 3 - Data &amp; Market Signals: The Eyes</h3>
+<p>The bot is only as good as what it can see.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>OpenBB</strong> | Open source Bloomberg. 100+ data sources unified | <a href="https://github.com/OpenBB-finance/OpenBB">GitHub</a> |
+| <strong>Dexter</strong> | Autonomous deep research. SEC filings, earnings transcripts | <a href="https://github.com/virattt/dexter">GitHub</a> |
+| <strong>MCP Server</strong> | Financial datasets via MCP protocol into Claude&rsquo;s context | <a href="https://github.com/financial-datasets/mcp-server">GitHub</a> |
+| <strong>Crucix</strong> | On-chain aggregator. Whale wallet movements on Polygon | <a href="https://github.com/calesthio/Crucix">GitHub</a> |
+| <strong>fredapi</strong> | Federal Reserve datasets: CPI, unemployment, yield curves | <a href="https://github.com/mortada/fredapi">GitHub</a> |
+| <strong>Binance Collector</strong> | Predicts market direction for short-duration BTC/ETH contracts | <a href="https://github.com/txbabaxyz/mlmodelpoly">GitHub</a> |
+| <strong>Polymarket Assistant Tool</strong> | Indicator engine for directional bias on live markets | <a href="https://github.com/FiatFiorino/polymarket-assistant-tool">GitHub</a> |
+| <strong>lightweight-charts</strong> | TradingView&rsquo;s charting library. 14k stars, 45KB | <a href="https://github.com/tradingview/lightweight-charts">GitHub</a> |</p>
+<p>![Trading Data Dashboard](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="layer-4---market-intelligence-what-others-built">Layer 4 - Market Intelligence: What Others Built</h3>
+<p>You don&rsquo;t have to build everything from scratch.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Polyscope</strong> | Scans 2,000+ markets. Whale alerts to Telegram | <a href="https://thepolyscope.com">thepolyscope.com</a> |
+| <strong>Polywhaler</strong> | $10k+ whale trade tracker with AI signals | <a href="https://polywhaler.com">polywhaler.com</a> |
+| <strong>WHALES tracker</strong> | Smart Money Consensus, Health Score, Conviction Score | <a href="https://apify.com">Apify</a> |
+| <strong>HyperBuildX bot</strong> | Rust-based, sub-100ms latency. AI copy-trade ranking | <a href="https://github.com/HyperBuildX/Polymarket-Trading-Bot">GitHub</a> |
+| <strong>polymarketanalytics.com</strong> | Open trader analytics, top wallet P&amp;L | <a href="https://polymarketanalytics.com">polymarketanalytics.com</a> |
+| <strong>polyrec</strong> | Real-time terminal with 70+ indicators, backtester | <a href="https://github.com/txbabaxyz/polyrec">GitHub</a> |
+| <strong>Polymarket-Trading-Bot</strong> | 53k lines TypeScript. 7 prebuilt strategies | <a href="https://github.com/dylanpersonguy/Polymarket-Trading-Bot">GitHub</a> |</p>
+<p>![Polymarket Analytics Dashboard](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="layer-5---backtest--simulation-prove-before-you-run">Layer 5 - Backtest &amp; Simulation: Prove Before You Run</h3>
+<p>This is the layer most retail bots skip - and the reason most blow up.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>prediction-market-backtesting</strong> | Backtests against real historical Polymarket/Kalshi data | <a href="https://github.com/evan-kolberg/prediction-market-backtesting">GitHub</a> |
+| <strong>polybot</strong> | Full execution infrastructure with paper trading. Kafka, ClickHouse, Grafana | <a href="https://github.com/ent0n29/polybot">GitHub</a> |</p>
+<p>![Backtesting Results Chart](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="layer-6---execution-infrastructure">Layer 6 - Execution Infrastructure</h3>
+<p>Polymarket exposes four API surfaces: 1. <strong>Gamma API</strong> - Market data, prices, metadata
 2. <strong>CLOB API</strong> - Order book, trade execution
 3. <strong>On-chain settlement</strong> - Polygon (chain ID 137), USDC
-4. <strong>WebSocket feeds</strong> - Real-time price updates</p><p>The official Python client <code>py-clob-client</code> wraps all of this. Three lines to fetch an order book. Five to place a signed limit order.</p><p><strong>Key repos:</strong></p><ul><li><a href=https://github.com/Polymarket/agents>Polymarket/agents</a> - Official AI agent framework with LangChain</li><li><a href=https://github.com/NYTEMODEONLY/polyterm>polyterm</a> - Terminal dashboard with whale tracker</li></ul><h2 id=the-complete-signal-flow>The Complete Signal Flow</h2><pre tabindex=0><code>World Event → Binance WebSocket (50ms) → AI Analysis → Kelly Sizing → 
+4. <strong>WebSocket feeds</strong> - Real-time price updates</p>
+<p>The official Python client <code>py-clob-client</code> wraps all of this. Three lines to fetch an order book. Five to place a signed limit order.</p>
+<p><strong>Key repos:</strong></p>
+<ul>
+<li><a href="https://github.com/Polymarket/agents">Polymarket/agents</a> - Official AI agent framework with LangChain</li>
+<li><a href="https://github.com/NYTEMODEONLY/polyterm">polyterm</a> - Terminal dashboard with whale tracker</li>
+</ul>
+<h2 id="the-complete-signal-flow">The Complete Signal Flow</h2>
+<pre tabindex="0"><code>World Event → Binance WebSocket (50ms) → AI Analysis → Kelly Sizing → 
 CLOB API Order → Polygon Settlement → Position Monitoring → Profit/Loss
 ````
 
@@ -190,13 +371,265 @@ For developers building or deploying open-source AI tools, we recommend: - **** 
 **问：交易系统的维护成本？**
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpolymarket-trading-bot-stack%2f&text=28%20Tools%20Behind%20a%20%241M%20Polymarket%20Trading%20Bot%3a%20Full%20Stack%20Breakdown" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpolymarket-trading-bot-stack%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpolymarket-trading-bot-stack%2f&text=28%20Tools%20Behind%20a%20%241M%20Polymarket%20Trading%20Bot%3a%20Full%20Stack%20Breakdown" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fpolymarket-trading-bot-stack%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

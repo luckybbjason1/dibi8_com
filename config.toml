@@ -34,6 +34,12 @@ enableGitInfo = false
 
 # Menu configuration
 [[menu.main]]
+  identifier = "about"
+  name = "关于"
+  pageRef = "about"
+  weight = 5
+
+[[menu.main]]
   identifier = "categories"
   name = "分类"
   pageRef = "categories"

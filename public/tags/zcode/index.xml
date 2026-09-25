@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Zcode on Dibi8 - AI工具目录</title><link>https://dibi8.com/tags/zcode/</link><description>Recent content in Zcode on Dibi8 - AI工具目录</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate><atom:link href="https://dibi8.com/tags/zcode/index.xml" rel="self" type="application/rss+xml"/><item><title>ZCode: AI-Powered Coding Workbench — Desktop, Browser &amp; Terminal in One Platform 2026</title><link>https://dibi8.com/ai-coding-agents/zcode-ai-coding-workbench-desktop-browser-terminal-2026/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate><guid>https://dibi8.com/ai-coding-agents/zcode-ai-coding-workbench-desktop-browser-terminal-2026/</guid><description>ZCode by zai-org combines desktop, browser and terminal AI coding in one unified workbench. 6.5K+ stars, VS Code extension + web app. Multi-agent collaboration, real-time sync. MIT license.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Zcode on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/tags/zcode/</link>
+    <description>Recent content in Zcode on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/zcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZCode: AI-Powered Coding Workbench — Desktop, Browser &amp; Terminal in One Platform 2026</title>
+      <link>https://dibi8.com/ai-coding-agents/zcode-ai-coding-workbench-desktop-browser-terminal-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/ai-coding-agents/zcode-ai-coding-workbench-desktop-browser-terminal-2026/</guid>
+      <description>ZCode by zai-org combines desktop, browser and terminal AI coding in one unified workbench. 6.5K&#43; stars, VS Code extension &#43; web app. Multi-agent collaboration, real-time sync. MIT license.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Install CUDA 12.8 toolkit first (Linux) | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Install CUDA 12.8 toolkit first (Linux) | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/llm-frameworks/whisperx/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/llm-frameworks/whisperx/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Install CUDA 12.8 toolkit first (Linux)</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install CUDA 12.8 toolkit first (Linux)</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Install CUDA 12.8 toolkit first (Linux)&rdquo;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install CUDA 12.8 toolkit first (Linux) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Install CUDA 12.8 toolkit first (Linux) | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/llm-frameworks/whisperx/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/whisperx/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install CUDA 12.8 toolkit first (Linux)</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install CUDA 12.8 toolkit first (Linux)</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Install CUDA 12.8 toolkit first (Linux)&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,14 +99,28 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;whisperx&rdquo;, &ldquo;asr&rdquo;, &ldquo;speech-recognition&rdquo;, &ldquo;speaker-diarization&rdquo;, &ldquo;word-timestamps&rdquo;, &ldquo;faster-whisper&rdquo;, &ldquo;pyannote&rdquo;, &ldquo;docker&rdquo;]
-aliases:</p><ul><li>/posts/whisperx/-</li></ul><hr><p>Transcribing audio is easy. Getting <strong>word-level timestamps accurate to sub-100ms</strong> and knowing <strong>exactly who spoke each word</strong> is hard. OpenAI Whisper gives you segment-level timestamps that drift by seconds. For podcast editing, video subtitling, meeting transcripts, and legal depositions, that level of precision is unusable.</p><p>Enter <strong>WhisperX</strong> — a 22,000-star open-source toolkit that wraps ```faster-whisper```` with forced phoneme alignment via wav2vec2 and speaker diarization via pyannote.audio. The result: 70x realtime transcription with word-level timestamps and multi-speaker labels. Accepted at INTERSPEECH 2023 and battle-tested in production pipelines worldwide.</p><p>This guide walks through a complete WhisperX tutorial covering installation, a full WhisperX Docker setup, Python API integration, production hardening, and honest benchmarks in a WhisperX vs Whisper comparison with faster-whisper and DeepSpeech.</p><p><img alt="WhisperX example output with word-level timestamps" loading=lazy src=https://raw.githubusercontent.com/m-bain/whisperX/main/figures/example_output.png></p><h2 id=what-is-whisperx>What Is WhisperX?</h2><p>WhisperX is an automatic speech recognition (ASR) pipeline that extends OpenAI&rsquo;s Whisper model with three production-critical capabilities: <strong>word-level timestamp alignment</strong> via wav2vec2 forced alignment, <strong>speaker diarization</strong> via pyannote.audio, and <strong>batched inference</strong> via the faster-whisper backend. It is maintained by Max Bain at the University of Oxford&rsquo;s Visual Geometry Group and licensed under BSD-2-Clause.</p><p>Unlike Whisper&rsquo;s segment-level timestamps (which drift by 1-3 seconds), WhisperX pins every word to its exact audio position with sub-100ms accuracy. Unlike standalone diarization tools, WhisperX assigns speaker labels to individual words — not just 30-second chunks. This makes it the go-to choice for multi-speaker transcription workflows.</p><h2 id=how-whisperx-works>How WhisperX Works</h2><p>WhisperX operates as a three-stage pipeline, with each stage producing incrementally richer output: `````
-┌─────────────────┐ ┌──────────────────┐ ┌──────────────────┐
-│ Stage 1: ASR │ → │ Stage 2: Align │ → │ Stage 3: Diarize │
-│ (faster-whisper)│ │ (wav2vec2 forced)│ │ (pyannote.audio) │
-└─────────────────┘ └──────────────────┘ └──────────────────┘
-│ │ │
-Segment text Word timestamps Speaker labels
-(no timestamps) (sub-100ms) (per word)</p><pre tabindex=0><code>
+aliases:</p>
+<ul>
+<li>/posts/whisperx/-</li>
+</ul>
+<hr>
+<p>Transcribing audio is easy. Getting <strong>word-level timestamps accurate to sub-100ms</strong> and knowing <strong>exactly who spoke each word</strong> is hard. OpenAI Whisper gives you segment-level timestamps that drift by seconds. For podcast editing, video subtitling, meeting transcripts, and legal depositions, that level of precision is unusable.</p>
+<p>Enter <strong>WhisperX</strong> — a 22,000-star open-source toolkit that wraps ```faster-whisper```` with forced phoneme alignment via wav2vec2 and speaker diarization via pyannote.audio. The result: 70x realtime transcription with word-level timestamps and multi-speaker labels. Accepted at INTERSPEECH 2023 and battle-tested in production pipelines worldwide.</p>
+<p>This guide walks through a complete WhisperX tutorial covering installation, a full WhisperX Docker setup, Python API integration, production hardening, and honest benchmarks in a WhisperX vs Whisper comparison with faster-whisper and DeepSpeech.</p>
+<p><img alt="WhisperX example output with word-level timestamps" loading="lazy" src="https://raw.githubusercontent.com/m-bain/whisperX/main/figures/example_output.png"></p>
+<h2 id="what-is-whisperx">What Is WhisperX?</h2>
+<p>WhisperX is an automatic speech recognition (ASR) pipeline that extends OpenAI&rsquo;s Whisper model with three production-critical capabilities: <strong>word-level timestamp alignment</strong> via wav2vec2 forced alignment, <strong>speaker diarization</strong> via pyannote.audio, and <strong>batched inference</strong> via the faster-whisper backend. It is maintained by Max Bain at the University of Oxford&rsquo;s Visual Geometry Group and licensed under BSD-2-Clause.</p>
+<p>Unlike Whisper&rsquo;s segment-level timestamps (which drift by 1-3 seconds), WhisperX pins every word to its exact audio position with sub-100ms accuracy. Unlike standalone diarization tools, WhisperX assigns speaker labels to individual words — not just 30-second chunks. This makes it the go-to choice for multi-speaker transcription workflows.</p>
+<h2 id="how-whisperx-works">How WhisperX Works</h2>
+<p>WhisperX operates as a three-stage pipeline, with each stage producing incrementally richer output: `````
+┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
+│  Stage 1: ASR   │ →  │ Stage 2: Align   │ →  │ Stage 3: Diarize │
+│  (faster-whisper)│    │ (wav2vec2 forced)│    │ (pyannote.audio) │
+└─────────────────┘    └──────────────────┘    └──────────────────┘
+│                       │                       │
+Segment text           Word timestamps         Speaker labels
+(no timestamps)        (sub-100ms)             (per word)</p>
+<pre tabindex="0"><code>
 **Stage 1 — Transcription.** Uses ````faster-whisper```` (via CTranslate2) for batched inference. VAD preprocessing from pyannote strips silent segments, reducing hallucinations and enabling batching without WER degradation. Output: text segments without timestamps.
 
 **Stage 2 — Alignment.** Runs the transcript through a language-specific wav2vec2 phoneme alignment model. This maps each recognized word to its exact position in the audio via forced alignment. Output: segments with word-level start/end timestamps.
@@ -82,33 +166,45 @@ pip install whisperx
 
 # Verify installation
 whisperx --version
-</code></pre><h3 id=method-2-uv-install-fastest>Method 2: uv Install (Fastest)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Using Astral uv for instant tool execution</span>
-</span></span><span style=display:flex><span>uvx whisperx --help
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or install from GitHub for latest features</span>
-</span></span><span style=display:flex><span>uvx git+https://github.com/m-bain/whisperX.git
-</span></span></code></pre></div><h3 id=method-3-docker-install-production>Method 3: Docker Install (Production)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Pull pre-built image with all dependencies</span>
-</span></span><span style=display:flex><span>docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create a Dockerfile for WhisperX</span>
-</span></span><span style=display:flex><span>cat &gt; Dockerfile.whisperx <span style=color:#e6db74>&lt;&lt; EOF
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>RUN apt-get update &amp;&amp; apt-get install -y \
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    python3-pip ffmpeg git wget \
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &amp;&amp; rm -rf /var/lib/apt/lists/*
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>RUN pip install --no-cache-dir whisperx torch==2.7.1
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>WORKDIR /workspace
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>ENTRYPOINT [&#34;whisperx&#34;]
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Build and run</span>
-</span></span><span style=display:flex><span>docker build -f Dockerfile.whisperx -t whisperx:latest .
-</span></span><span style=display:flex><span>docker run --gpus all -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>/audio:/workspace/audio <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  whisperx:latest /workspace/audio/sample.wav --model large-v2
-</span></span></code></pre></div><h3 id=hugging-face-token-setup-required-for-diarization>Hugging Face Token Setup (Required for Diarization)</h3><p>Speaker diarization requires accepting the pyannote model license: `````bash</p><h1 id=1-create-a-hugging-face-account-at>1. Create a Hugging Face account at <a href=https://huggingface.co>https://huggingface.co</a></h1><h1 id=2-generate-a-read-token-at>2. Generate a read token at <a href=https://huggingface.co/settings/tokens>https://huggingface.co/settings/tokens</a></h1><h1 id=3-accept-the-license-for-------pyannotespeaker-diarization-community-1>3. Accept the license for: # - pyannote/speaker-diarization-community-1</h1><h1 id=--pyannotesegmentation-30>- pyannote/segmentation-3.0</h1><h1 id=export-token>Export token</h1><p>export HF_TOKEN=&ldquo;hf_your_token_here&rdquo;</p><h1 id=pass-via-cli>Pass via CLI</h1><p>whisperx audio.wav &ndash;diarize &ndash;hf_token $HF_TOKEN</p><pre tabindex=0><code>
+</code></pre><h3 id="method-2-uv-install-fastest">Method 2: uv Install (Fastest)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Using Astral uv for instant tool execution</span>
+</span></span><span style="display:flex;"><span>uvx whisperx --help
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or install from GitHub for latest features</span>
+</span></span><span style="display:flex;"><span>uvx git+https://github.com/m-bain/whisperX.git
+</span></span></code></pre></div><h3 id="method-3-docker-install-production">Method 3: Docker Install (Production)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull pre-built image with all dependencies</span>
+</span></span><span style="display:flex;"><span>docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a Dockerfile for WhisperX</span>
+</span></span><span style="display:flex;"><span>cat &gt; Dockerfile.whisperx <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">RUN apt-get update &amp;&amp; apt-get install -y \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    python3-pip ffmpeg git wget \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &amp;&amp; rm -rf /var/lib/apt/lists/*
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">RUN pip install --no-cache-dir whisperx torch==2.7.1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">WORKDIR /workspace
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ENTRYPOINT [&#34;whisperx&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build and run</span>
+</span></span><span style="display:flex;"><span>docker build -f Dockerfile.whisperx -t whisperx:latest .
+</span></span><span style="display:flex;"><span>docker run --gpus all -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/audio:/workspace/audio <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  whisperx:latest /workspace/audio/sample.wav --model large-v2
+</span></span></code></pre></div><h3 id="hugging-face-token-setup-required-for-diarization">Hugging Face Token Setup (Required for Diarization)</h3>
+<p>Speaker diarization requires accepting the pyannote model license: `````bash</p>
+<h1 id="1-create-a-hugging-face-account-at">1. Create a Hugging Face account at <a href="https://huggingface.co">https://huggingface.co</a></h1>
+<h1 id="2-generate-a-read-token-at">2. Generate a read token at <a href="https://huggingface.co/settings/tokens">https://huggingface.co/settings/tokens</a></h1>
+<h1 id="3-accept-the-license-for-------pyannotespeaker-diarization-community-1">3. Accept the license for: #    - pyannote/speaker-diarization-community-1</h1>
+<h1 id="--pyannotesegmentation-30">- pyannote/segmentation-3.0</h1>
+<h1 id="export-token">Export token</h1>
+<p>export HF_TOKEN=&ldquo;hf_your_token_here&rdquo;</p>
+<h1 id="pass-via-cli">Pass via CLI</h1>
+<p>whisperx audio.wav &ndash;diarize &ndash;hf_token $HF_TOKEN</p>
+<pre tabindex="0"><code>
 ## Integration with Popular Tools
 
 ### faster-whisper
@@ -128,16 +224,24 @@ model = whisperx.load_model(
         &#34;patience&#34;: 2.0,
     }
 )
-</code></pre><h3 id=pyannoteaudio>pyannote.audio</h3><p>Diarization uses pyannote.audio 3.1+ models. The <code>DiarizationPipeline</code> wraps pyannote with WhisperX-specific speaker assignment: `````python
-from whisperx.diarize import DiarizationPipeline</p><h1 id=initialize-diarization-with-pyannote-backend>Initialize diarization with pyannote backend</h1><p>diarize_model = DiarizationPipeline(
+</code></pre><h3 id="pyannoteaudio">pyannote.audio</h3>
+<p>Diarization uses pyannote.audio 3.1+ models. The <code>DiarizationPipeline</code> wraps pyannote with WhisperX-specific speaker assignment: `````python
+from whisperx.diarize import DiarizationPipeline</p>
+<h1 id="initialize-diarization-with-pyannote-backend">Initialize diarization with pyannote backend</h1>
+<p>diarize_model = DiarizationPipeline(
 model_name=&ldquo;pyannote/speaker-diarization-community-1&rdquo;,
 use_auth_token=HF_TOKEN,
 device=&ldquo;cuda&rdquo;
-)</p><h1 id=run-diarization-with-known-speaker-count>Run diarization with known speaker count</h1><p>diarize_segments = diarize_model(
+)</p>
+<h1 id="run-diarization-with-known-speaker-count">Run diarization with known speaker count</h1>
+<p>diarize_segments = diarize_model(
 audio,
 min_speakers=2,
 max_speakers=4
-)</p><h1 id=assign-speakers-to-words>Assign speakers to words</h1><p>result = whisperx.assign_word_speakers(diarize_segments, result)</p><pre tabindex=0><code>
+)</p>
+<h1 id="assign-speakers-to-words">Assign speakers to words</h1>
+<p>result = whisperx.assign_word_speakers(diarize_segments, result)</p>
+<pre tabindex="0"><code>
 ### OpenAI Whisper
 
 WhisperX loads OpenAI&#39;s Whisper weights but converts them to CTranslate2 format for 4x faster inference. Use the ``--model`` flag to select any Whisper variant: `````bash
@@ -146,94 +250,104 @@ whisperx audio.wav --model large-v3 --language en
 
 # For 8GB VRAM GPUs, use INT8 quantization
 whisperx audio.wav --model large-v2 --compute_type int8
-</code></pre><h3 id=docker-compose-production-stack>Docker Compose Production Stack</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: whisperx: build: context</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>dockerfile</span>: <span style=color:#ae81ff>Dockerfile.whisperx</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>runtime</span>: <span style=color:#ae81ff>nvidia</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>NVIDIA_VISIBLE_DEVICES=all</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>HF_TOKEN=${HF_TOKEN}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>CUDA_VISIBLE_DEVICES=0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./audio:/workspace/audio:ro</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./output:/workspace/output</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./models:/root/.cache:rw</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      /workspace/audio/
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --model large-v2
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --language en
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --diarize
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --output_dir /workspace/output
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --output_format json
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --batch_size 16
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --compute_type float16</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: reservations: devices: - driver</span>: <span style=color:#ae81ff>nvidia</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>count</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>capabilities</span>: [<span style=color:#ae81ff>gpu]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e># Optional: Redis queue for batch jobs</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>redis: image</span>: <span style=color:#ae81ff>redis:7-alpine</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;6379:6379&#34;</span>
-</span></span></code></pre></div><h3 id=fastapi-service-wrapper>FastAPI Service Wrapper</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># api.py - Production-ready WhisperX API</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI, UploadFile, File
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi.responses <span style=color:#f92672>import</span> JSONResponse
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> whisperx
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> torch
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> tempfile
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI(title<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;WhisperX ASR Service&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Preload models at startup</span>
-</span></span><span style=display:flex><span>DEVICE <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;cuda&#34;</span> <span style=color:#66d9ef>if</span> torch<span style=color:#f92672>.</span>cuda<span style=color:#f92672>.</span>is_available() <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;cpu&#34;</span>
-</span></span><span style=display:flex><span>BATCH_SIZE <span style=color:#f92672>=</span> <span style=color:#ae81ff>16</span>
-</span></span><span style=display:flex><span>MODEL <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>load_model(<span style=color:#e6db74>&#34;large-v2&#34;</span>, DEVICE, compute_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;float16&#34;</span>)
-</span></span><span style=display:flex><span>ALIGN_MODEL, ALIGN_METADATA <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>load_align_model(<span style=color:#e6db74>&#34;en&#34;</span>, DEVICE)
-</span></span><span style=display:flex><span>DIARIZE_MODEL <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>DiarizationPipeline(
-</span></span><span style=display:flex><span>    use_auth_token<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#34;HF_TOKEN&#34;</span>),
-</span></span><span style=display:flex><span>    device<span style=color:#f92672>=</span>DEVICE
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/transcribe&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>transcribe</span>(
-</span></span><span style=display:flex><span>    file: UploadFile <span style=color:#f92672>=</span> File(<span style=color:#f92672>...</span>),
-</span></span><span style=display:flex><span>    diarize: bool <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    language: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;en&#34;</span>
-</span></span><span style=display:flex><span>): <span style=color:#e6db74>&#34;&#34;&#34;Transcribe audio with word-level timestamps and speaker labels.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> tempfile<span style=color:#f92672>.</span>NamedTemporaryFile(suffix<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;.wav&#34;</span>, delete<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>) <span style=color:#66d9ef>as</span> tmp: tmp<span style=color:#f92672>.</span>write(<span style=color:#66d9ef>await</span> file<span style=color:#f92672>.</span>read())
-</span></span><span style=display:flex><span>        tmp_path <span style=color:#f92672>=</span> tmp<span style=color:#f92672>.</span>name
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>: <span style=color:#75715e># Load audio</span>
-</span></span><span style=display:flex><span>        audio <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>load_audio(tmp_path)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Stage 1: Transcribe</span>
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> MODEL<span style=color:#f92672>.</span>transcribe(audio, batch_size<span style=color:#f92672>=</span>BATCH_SIZE, language<span style=color:#f92672>=</span>language)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Stage 2: Align</span>
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>align(
-</span></span><span style=display:flex><span>            result[<span style=color:#e6db74>&#34;segments&#34;</span>], ALIGN_MODEL, ALIGN_METADATA,
-</span></span><span style=display:flex><span>            audio, DEVICE, return_char_alignments<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Stage 3: Diarize (optional)</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> diarize: diarize_segments <span style=color:#f92672>=</span> DIARIZE_MODEL(audio)
-</span></span><span style=display:flex><span>            result <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>assign_word_speakers(diarize_segments, result)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;language&#34;</span>: result<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;language&#34;</span>, language),
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;segments&#34;</span>: result[<span style=color:#e6db74>&#34;segments&#34;</span>],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;word_count&#34;</span>: sum(len(s<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;words&#34;</span>, [])) <span style=color:#66d9ef>for</span> s <span style=color:#f92672>in</span> result[<span style=color:#e6db74>&#34;segments&#34;</span>]),
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;speakers&#34;</span>: list(set(
-</span></span><span style=display:flex><span>                w<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;speaker&#34;</span>, <span style=color:#e6db74>&#34;UNKNOWN&#34;</span>)
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> s <span style=color:#f92672>in</span> result[<span style=color:#e6db74>&#34;segments&#34;</span>]
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> w <span style=color:#f92672>in</span> s<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;words&#34;</span>, [])
-</span></span><span style=display:flex><span>            )) <span style=color:#66d9ef>if</span> diarize <span style=color:#66d9ef>else</span> []
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>finally</span>: os<span style=color:#f92672>.</span>unlink(tmp_path)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/health&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>health</span>(): <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;ok&#34;</span>, <span style=color:#e6db74>&#34;device&#34;</span>: DEVICE, <span style=color:#e6db74>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;large-v2&#34;</span>}
-</span></span></code></pre></div><p>Run the API: `````bash</p><h1 id=install-dependencies>Install dependencies</h1><p>pip install fastapi uvicorn python-multipart</p><h1 id=start-server>Start server</h1><p>uvicorn api:app &ndash;host 0.0.0.0 &ndash;port 8000 &ndash;workers 1</p><h1 id=test-with-curl>Test with curl</h1><p>curl -X POST &ldquo;http://localhost:8000/transcribe?diarize=true&rdquo;<br>-F &ldquo;<a href="mailto:file=@interview.wav">file=@interview.wav</a>&rdquo;</p><pre tabindex=0><code>
+</code></pre><h3 id="docker-compose-production-stack">Docker Compose Production Stack</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: whisperx: build: context</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dockerfile</span>: <span style="color:#ae81ff">Dockerfile.whisperx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runtime</span>: <span style="color:#ae81ff">nvidia</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">NVIDIA_VISIBLE_DEVICES=all</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">HF_TOKEN=${HF_TOKEN}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CUDA_VISIBLE_DEVICES=0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./audio:/workspace/audio:ro</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./output:/workspace/output</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./models:/root/.cache:rw</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      /workspace/audio/
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --model large-v2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --language en
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --diarize
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --output_dir /workspace/output
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --output_format json
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --batch_size 16
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --compute_type float16</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: resources: reservations: devices: - driver</span>: <span style="color:#ae81ff">nvidia</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">count</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">capabilities</span>: [<span style="color:#ae81ff">gpu]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Optional: Redis queue for batch jobs</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis: image</span>: <span style="color:#ae81ff">redis:7-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;6379:6379&#34;</span>
+</span></span></code></pre></div><h3 id="fastapi-service-wrapper">FastAPI Service Wrapper</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># api.py - Production-ready WhisperX API</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI, UploadFile, File
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi.responses <span style="color:#f92672">import</span> JSONResponse
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> whisperx
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tempfile
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;WhisperX ASR Service&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Preload models at startup</span>
+</span></span><span style="display:flex;"><span>DEVICE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cuda&#34;</span> <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available() <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;cpu&#34;</span>
+</span></span><span style="display:flex;"><span>BATCH_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>MODEL <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_model(<span style="color:#e6db74">&#34;large-v2&#34;</span>, DEVICE, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;float16&#34;</span>)
+</span></span><span style="display:flex;"><span>ALIGN_MODEL, ALIGN_METADATA <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_align_model(<span style="color:#e6db74">&#34;en&#34;</span>, DEVICE)
+</span></span><span style="display:flex;"><span>DIARIZE_MODEL <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>DiarizationPipeline(
+</span></span><span style="display:flex;"><span>    use_auth_token<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;HF_TOKEN&#34;</span>),
+</span></span><span style="display:flex;"><span>    device<span style="color:#f92672">=</span>DEVICE
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/transcribe&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">transcribe</span>(
+</span></span><span style="display:flex;"><span>    file: UploadFile <span style="color:#f92672">=</span> File(<span style="color:#f92672">...</span>),
+</span></span><span style="display:flex;"><span>    diarize: bool <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    language: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;en&#34;</span>
+</span></span><span style="display:flex;"><span>): <span style="color:#e6db74">&#34;&#34;&#34;Transcribe audio with word-level timestamps and speaker labels.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> tempfile<span style="color:#f92672">.</span>NamedTemporaryFile(suffix<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.wav&#34;</span>, delete<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>) <span style="color:#66d9ef">as</span> tmp: tmp<span style="color:#f92672">.</span>write(<span style="color:#66d9ef">await</span> file<span style="color:#f92672">.</span>read())
+</span></span><span style="display:flex;"><span>        tmp_path <span style="color:#f92672">=</span> tmp<span style="color:#f92672">.</span>name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: <span style="color:#75715e"># Load audio</span>
+</span></span><span style="display:flex;"><span>        audio <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_audio(tmp_path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Stage 1: Transcribe</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> MODEL<span style="color:#f92672">.</span>transcribe(audio, batch_size<span style="color:#f92672">=</span>BATCH_SIZE, language<span style="color:#f92672">=</span>language)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Stage 2: Align</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>align(
+</span></span><span style="display:flex;"><span>            result[<span style="color:#e6db74">&#34;segments&#34;</span>], ALIGN_MODEL, ALIGN_METADATA,
+</span></span><span style="display:flex;"><span>            audio, DEVICE, return_char_alignments<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Stage 3: Diarize (optional)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> diarize: diarize_segments <span style="color:#f92672">=</span> DIARIZE_MODEL(audio)
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>assign_word_speakers(diarize_segments, result)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;language&#34;</span>: result<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;language&#34;</span>, language),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;segments&#34;</span>: result[<span style="color:#e6db74">&#34;segments&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;word_count&#34;</span>: sum(len(s<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;words&#34;</span>, [])) <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> result[<span style="color:#e6db74">&#34;segments&#34;</span>]),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;speakers&#34;</span>: list(set(
+</span></span><span style="display:flex;"><span>                w<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;speaker&#34;</span>, <span style="color:#e6db74">&#34;UNKNOWN&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> result[<span style="color:#e6db74">&#34;segments&#34;</span>]
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> w <span style="color:#f92672">in</span> s<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;words&#34;</span>, [])
+</span></span><span style="display:flex;"><span>            )) <span style="color:#66d9ef">if</span> diarize <span style="color:#66d9ef">else</span> []
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">finally</span>: os<span style="color:#f92672">.</span>unlink(tmp_path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.get</span>(<span style="color:#e6db74">&#34;/health&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">health</span>(): <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>, <span style="color:#e6db74">&#34;device&#34;</span>: DEVICE, <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;large-v2&#34;</span>}
+</span></span></code></pre></div><p>Run the API: `````bash</p>
+<h1 id="install-dependencies">Install dependencies</h1>
+<p>pip install fastapi uvicorn python-multipart</p>
+<h1 id="start-server">Start server</h1>
+<p>uvicorn api:app &ndash;host 0.0.0.0 &ndash;port 8000 &ndash;workers 1</p>
+<h1 id="test-with-curl">Test with curl</h1>
+<p>curl -X POST &ldquo;http://localhost:8000/transcribe?diarize=true&rdquo; <br>
+-F &ldquo;<a href="mailto:file=@interview.wav">file=@interview.wav</a>&rdquo;</p>
+<pre tabindex="0"><code>
 ## Benchmarks / Real-World Use Cases
 
 ### Speed Benchmark: 1 Hour of Audio
@@ -319,106 +433,127 @@ whisperx audio.wav \
   --model base \
   --compute_type int8 \
   --device cpu
-</code></pre><h3 id=model-caching-for-container-environments>Model Caching for Container Environments</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Pre-download models to avoid cold-start latency</span>
-</span></span><span style=display:flex><span>python3 <span style=color:#e6db74>&lt;&lt; PYEOF
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>import whisperx
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>import torch
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># Download ASR model
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>model = whisperx.load_model(&#34;large-v2&#34;, &#34;cuda&#34;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>del model
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># Download alignment model
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>align_model, metadata = whisperx.load_align_model(&#34;en&#34;, &#34;cuda&#34;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>del align_model
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># Download diarization model
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>diarize = whisperx.DiarizationPipeline(use_auth_token=&#34;token&#34;, device=&#34;cuda&#34;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>del diarize
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>torch.cuda.empty_cache()
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>print(&#34;Models cached successfully&#34;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>PYEOF</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Mount cache in Docker</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># -v /host/cache:/root/.cache:rw</span>
-</span></span></code></pre></div><h3 id=monitoring--logging>Monitoring & Logging</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># monitoring.py - Prometheus metrics for WhisperX</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> prometheus_client <span style=color:#f92672>import</span> Counter, Histogram, start_http_server
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>TRANSCRIPTION_DURATION <span style=color:#f92672>=</span> Histogram(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;whisperx_transcription_seconds&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Time spent transcribing audio&#34;</span>,
-</span></span><span style=display:flex><span>    [<span style=color:#e6db74>&#34;model&#34;</span>, <span style=color:#e6db74>&#34;stage&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>REQUEST_COUNT <span style=color:#f92672>=</span> Counter(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;whisperx_requests_total&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Total transcription requests&#34;</span>,
-</span></span><span style=display:flex><span>    [<span style=color:#e6db74>&#34;model&#34;</span>, <span style=color:#e6db74>&#34;status&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>transcribe_with_metrics</span>(audio_path, model_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;large-v2&#34;</span>): start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-</span></span><span style=display:flex><span>    audio <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>load_audio(audio_path)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Stage 1</span>
-</span></span><span style=display:flex><span>    t0 <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> MODEL<span style=color:#f92672>.</span>transcribe(audio, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>16</span>)
-</span></span><span style=display:flex><span>    TRANSCRIPTION_DURATION<span style=color:#f92672>.</span>labels(model_name, <span style=color:#e6db74>&#34;transcribe&#34;</span>)<span style=color:#f92672>.</span>observe(time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> t0)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Stage 2</span>
-</span></span><span style=display:flex><span>    t0 <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>align(result[<span style=color:#e6db74>&#34;segments&#34;</span>], ALIGN_MODEL, ALIGN_METADATA, audio, <span style=color:#e6db74>&#34;cuda&#34;</span>)
-</span></span><span style=display:flex><span>    TRANSCRIPTION_DURATION<span style=color:#f92672>.</span>labels(model_name, <span style=color:#e6db74>&#34;align&#34;</span>)<span style=color:#f92672>.</span>observe(time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> t0)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Stage 3</span>
-</span></span><span style=display:flex><span>    t0 <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-</span></span><span style=display:flex><span>    diarize_segments <span style=color:#f92672>=</span> DIARIZE_MODEL(audio)
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> whisperx<span style=color:#f92672>.</span>assign_word_speakers(diarize_segments, result)
-</span></span><span style=display:flex><span>    TRANSCRIPTION_DURATION<span style=color:#f92672>.</span>labels(model_name, <span style=color:#e6db74>&#34;diarize&#34;</span>)<span style=color:#f92672>.</span>observe(time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> t0)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    total <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> start
-</span></span><span style=display:flex><span>    REQUEST_COUNT<span style=color:#f92672>.</span>labels(model_name, <span style=color:#e6db74>&#34;success&#34;</span>)<span style=color:#f92672>.</span>inc()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> result, total
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Expose metrics on port 9090</span>
-</span></span><span style=display:flex><span>start_http_server(<span style=color:#ae81ff>9090</span>)
-</span></span></code></pre></div><h3 id=security-considerations>Security Considerations</h3><ol><li><strong>Token management.</strong> Store <code>HF_TOKEN</code> in a secrets manager (AWS Secrets Manager, Vault), never in code or environment files.</li><li><strong>Input validation.</strong> Sanitize uploaded filenames. Process audio in isolated temp directories.</li><li><strong>Rate limiting.</strong> Implement per-user rate limits to prevent GPU resource exhaustion.</li><li><strong>Model isolation.</strong> Run WhisperX in a dedicated container with read-only root filesystem.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Secure Docker run</span>
-</span></span><span style=display:flex><span>docker run --gpus all <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --read-only <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --tmpfs /tmp:noexec,nosuid,size<span style=color:#f92672>=</span>1g <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --security-opt no-new-privileges:true <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --cap-drop ALL <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -e HF_TOKEN_FILE<span style=color:#f92672>=</span>/run/secrets/hf_token <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  whisperx:latest audio.wav --diarize
-</span></span></code></pre></div><h3 id=scaling-with-kubernetes>Scaling with Kubernetes</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># k8s-deployment.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>whisperx-asr</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: replicas</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>selector: matchLabels: app</span>: <span style=color:#ae81ff>whisperx</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>template: metadata: labels: app</span>: <span style=color:#ae81ff>whisperx</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>spec: runtimeClassName</span>: <span style=color:#ae81ff>nvidia</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>containers: - name</span>: <span style=color:#ae81ff>whisperx</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>whisperx:latest</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>resources: limits: nvidia.com/gpu</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;16Gi&#34;</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>requests: nvidia.com/gpu</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;8Gi&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>env: - name</span>: <span style=color:#ae81ff>HF_TOKEN</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>valueFrom: secretKeyRef: name</span>: <span style=color:#ae81ff>hf-token-secret</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>key</span>: <span style=color:#ae81ff>token</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>volumeMounts: - name</span>: <span style=color:#ae81ff>model-cache</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>/root/.cache</span>
-</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>audio-input</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>/workspace/audio</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>readOnly</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>volumes: - name</span>: <span style=color:#ae81ff>model-cache</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>persistentVolumeClaim: claimName</span>: <span style=color:#ae81ff>whisperx-model-cache</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>audio-input</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>nfs: server</span>: <span style=color:#ae81ff>10.0.0.5</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/shared/audio</span>
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | WhisperX | OpenAI Whisper | faster-whisper | DeepSpeech |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="model-caching-for-container-environments">Model Caching for Container Environments</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pre-download models to avoid cold-start latency</span>
+</span></span><span style="display:flex;"><span>python3 <span style="color:#e6db74">&lt;&lt; PYEOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">import whisperx
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">import torch
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Download ASR model
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">model = whisperx.load_model(&#34;large-v2&#34;, &#34;cuda&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">del model
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Download alignment model
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">align_model, metadata = whisperx.load_align_model(&#34;en&#34;, &#34;cuda&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">del align_model
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Download diarization model
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">diarize = whisperx.DiarizationPipeline(use_auth_token=&#34;token&#34;, device=&#34;cuda&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">del diarize
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">torch.cuda.empty_cache()
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(&#34;Models cached successfully&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">PYEOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mount cache in Docker</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -v /host/cache:/root/.cache:rw</span>
+</span></span></code></pre></div><h3 id="monitoring--logging">Monitoring &amp; Logging</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># monitoring.py - Prometheus metrics for WhisperX</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> Counter, Histogram, start_http_server
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TRANSCRIPTION_DURATION <span style="color:#f92672">=</span> Histogram(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;whisperx_transcription_seconds&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Time spent transcribing audio&#34;</span>,
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;model&#34;</span>, <span style="color:#e6db74">&#34;stage&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>REQUEST_COUNT <span style="color:#f92672">=</span> Counter(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;whisperx_requests_total&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Total transcription requests&#34;</span>,
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;model&#34;</span>, <span style="color:#e6db74">&#34;status&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">transcribe_with_metrics</span>(audio_path, model_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;large-v2&#34;</span>): start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>    audio <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_audio(audio_path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stage 1</span>
+</span></span><span style="display:flex;"><span>    t0 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> MODEL<span style="color:#f92672">.</span>transcribe(audio, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>    TRANSCRIPTION_DURATION<span style="color:#f92672">.</span>labels(model_name, <span style="color:#e6db74">&#34;transcribe&#34;</span>)<span style="color:#f92672">.</span>observe(time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> t0)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stage 2</span>
+</span></span><span style="display:flex;"><span>    t0 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>align(result[<span style="color:#e6db74">&#34;segments&#34;</span>], ALIGN_MODEL, ALIGN_METADATA, audio, <span style="color:#e6db74">&#34;cuda&#34;</span>)
+</span></span><span style="display:flex;"><span>    TRANSCRIPTION_DURATION<span style="color:#f92672">.</span>labels(model_name, <span style="color:#e6db74">&#34;align&#34;</span>)<span style="color:#f92672">.</span>observe(time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> t0)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stage 3</span>
+</span></span><span style="display:flex;"><span>    t0 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>    diarize_segments <span style="color:#f92672">=</span> DIARIZE_MODEL(audio)
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>assign_word_speakers(diarize_segments, result)
+</span></span><span style="display:flex;"><span>    TRANSCRIPTION_DURATION<span style="color:#f92672">.</span>labels(model_name, <span style="color:#e6db74">&#34;diarize&#34;</span>)<span style="color:#f92672">.</span>observe(time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> t0)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    total <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start
+</span></span><span style="display:flex;"><span>    REQUEST_COUNT<span style="color:#f92672">.</span>labels(model_name, <span style="color:#e6db74">&#34;success&#34;</span>)<span style="color:#f92672">.</span>inc()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result, total
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expose metrics on port 9090</span>
+</span></span><span style="display:flex;"><span>start_http_server(<span style="color:#ae81ff">9090</span>)
+</span></span></code></pre></div><h3 id="security-considerations">Security Considerations</h3>
+<ol>
+<li><strong>Token management.</strong> Store <code>HF_TOKEN</code> in a secrets manager (AWS Secrets Manager, Vault), never in code or environment files.</li>
+<li><strong>Input validation.</strong> Sanitize uploaded filenames. Process audio in isolated temp directories.</li>
+<li><strong>Rate limiting.</strong> Implement per-user rate limits to prevent GPU resource exhaustion.</li>
+<li><strong>Model isolation.</strong> Run WhisperX in a dedicated container with read-only root filesystem.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Secure Docker run</span>
+</span></span><span style="display:flex;"><span>docker run --gpus all <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --read-only <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --tmpfs /tmp:noexec,nosuid,size<span style="color:#f92672">=</span>1g <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --security-opt no-new-privileges:true <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --cap-drop ALL <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e HF_TOKEN_FILE<span style="color:#f92672">=</span>/run/secrets/hf_token <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  whisperx:latest audio.wav --diarize
+</span></span></code></pre></div><h3 id="scaling-with-kubernetes">Scaling with Kubernetes</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># k8s-deployment.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">whisperx-asr</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: replicas</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector: matchLabels: app</span>: <span style="color:#ae81ff">whisperx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template: metadata: labels: app</span>: <span style="color:#ae81ff">whisperx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec: runtimeClassName</span>: <span style="color:#ae81ff">nvidia</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers: - name</span>: <span style="color:#ae81ff">whisperx</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">whisperx:latest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">resources: limits: nvidia.com/gpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;16Gi&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">requests: nvidia.com/gpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;8Gi&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env: - name</span>: <span style="color:#ae81ff">HF_TOKEN</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">valueFrom: secretKeyRef: name</span>: <span style="color:#ae81ff">hf-token-secret</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>: <span style="color:#ae81ff">token</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">volumeMounts: - name</span>: <span style="color:#ae81ff">model-cache</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/root/.cache</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">audio-input</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/workspace/audio</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">readOnly</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes: - name</span>: <span style="color:#ae81ff">model-cache</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">persistentVolumeClaim: claimName</span>: <span style="color:#ae81ff">whisperx-model-cache</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">audio-input</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">nfs: server</span>: <span style="color:#ae81ff">10.0.0.5</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/shared/audio</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | WhisperX | OpenAI Whisper | faster-whisper | DeepSpeech |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Word-level timestamps</strong> | Yes (&lt;80ms) | No (segment only) | No (segment only) | No |
 | <strong>Speaker diarization</strong> | Yes (per word) | No | No | No |
 | <strong>Max inference speed</strong> | 70x RTF | 10x RTF | 70x RTF | 15x RTF |
@@ -429,8 +564,60 @@ whisperx audio.wav \
 | <strong>Batch processing</strong> | Yes (batched) | No | Yes (batched) | Yes |
 | <strong>Docker support</strong> | Build your own | Community images | Official images | Official images |
 | <strong>License</strong> | BSD-2-Clause | MIT | MIT | MPL 2.0 |
-| <strong>Active maintenance</strong> | High (110+ contributors) | Medium | High | Low (deprecated) |</p><p><strong>When to choose WhisperX:</strong> You need word-level timestamps, speaker labels, or both. The 30-40% speed penalty over faster-whisper is justified by the richer output.</p><p><strong>When to choose faster-whisper:</strong> You only need fast transcription without timestamps or diarization. It is the speed king for plain ASR.</p><p><strong>When to choose OpenAI Whisper:</strong> You need the reference implementation for research or compatibility. The API is simplest but slowest and most expensive at scale.</p><p><strong>When to choose DeepSpeech:</strong> You need a tiny English-only model on resource-constrained devices. Note: Mozilla officially deprecated DeepSpeech in 2022; avoid for new projects.</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p><strong>Numbers and symbols cannot be aligned.</strong> Words like &ldquo;2014&rdquo; or &ldquo;£13.60&rdquo; contain no phonemes that wav2vec2 can align. These words appear in the transcript but without timestamps. Post-process with regex-based estimation if needed.</p><p><strong>Overlapping speech is problematic.</strong> When two speakers talk simultaneously, WhisperX (and Whisper) assigns all speech to one speaker. The pyannote diarization model detects overlaps but cannot separate intertwined audio streams. For heavy crosstalk scenarios, expect 20-30% speaker error.</p><p><strong>Diarization requires known speaker counts for best accuracy.</strong> While pyannote can auto-detect speaker count, accuracy drops from ~90% (known count) to ~75% (auto-detect) on 4+ speaker recordings. Pass <code>--min_speakers</code> and <code>--max_speakers</code> when possible.</p><p><strong>Language-specific alignment models needed.</strong> Word-level alignment requires a phoneme model for each language. WhisperX auto-selects models for 20+ languages, but low-resource languages may lack quality aligners. Test on your target language before committing.</p><p><strong>Not a real-time streaming system.</strong> WhisperX processes complete audio files. It cannot transcribe live streams or microphone input. For real-time use cases, look at WebRTC + buffered chunking or commercial APIs like Deepgram.</p><p><strong>GPU is essentially required.</strong> CPU diarization runs at 0.5x realtime — a 1-hour meeting takes 2 hours to process. The alignment stage is also GPU-dependent. Budget for at least an 8GB VRAM GPU.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><p><strong>Q1: How accurate are the word-level timestamps compared to manual annotation?</strong></p><p>WhisperX timestamps have a mean absolute error of 40-80ms on clean speech, measured against manually aligned TED talks. This is sufficient for subtitle synchronization and click-to-seek. On noisy audio with background music, error increases to 100-200ms. Always validate on your specific audio domain.</p><p><strong>Q2: Can I use WhisperX without speaker diarization?</strong></p><p>Yes — diarization is completely optional. Run without <code>--diarize</code> to get word-level timestamps only. The alignment stage runs regardless, so you still get sub-100ms word timestamps. This cuts processing time by ~40%.</p><p><strong>Q3: What GPU do I need for production deployment?</strong></p><p>An RTX 3060 (8GB VRAM) with INT8 quantization handles the large-v2 model comfortably. For high-throughput deployments, an RTX 4070 (12GB) processes 20+ audio hours per hour with full diarization. Cloud GPUs (A10G, T4, L4) work well with the same configurations.</p><p><strong>Q4: How do I handle long audio files (2+ hours)?</strong></p><p>WhisperX automatically segments long audio using VAD. No manual chunking required. For 4+ hour files, increase <code>--batch_size</code> if VRAM allows, or reduce to 4 for memory-constrained systems. The VAD stage ensures no words are cut mid-sentence.</p><p><strong>Q5: Can I fine-tune WhisperX on my own data?</strong></p><p>You can fine-tune the underlying Whisper model using OpenAI&rsquo;s training scripts, then load your custom weights into WhisperX. The alignment and diarization stages do not require fine-tuning. For domain-specific vocabulary (medical, legal), fine-tuning the ASR model reduces WER by 15-30%.</p><p><strong>Q6: Why do I need a Hugging Face token?</strong></p><p>The pyannote.audio speaker diarization model (````speaker-diarization-community-1```) is hosted on Hugging Face and requires accepting a license agreement. The token proves you have accepted the terms. It is free and takes 2 minutes to set up. No token is needed if you skip diarization.</p><h2 id=conclusion>Conclusion</h2><p>WhisperX fills a critical gap in the open-source ASR stack: production-grade word-level timestamps and speaker diarization at 70x realtime. The three-stage pipeline (transcribe → align → diarize) gives you precise control over output granularity, and the faster-whisper backend keeps inference costs low.</p><p>For teams building podcast platforms, legal tech tools, meeting transcription services, or video subtitling pipelines, WhisperX is the most capable open-source option available in 2026. The 22,000 GitHub stars and active contributor base (110+) signal a healthy, evolving project.</p><p><strong>Next steps:</strong></p><ol><li>Run the Docker setup in this guide to process your first audio file</li><li>Integrate the FastAPI service into your existing pipeline</li><li>Join the <a href=https://t.me/dibi8dev>dibi8 developer community on Telegram</a> to share deployment tips</li></ol><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading</h2><ul><li><a href=https://github.com/m-bain/whisperX>WhisperX GitHub Repository</a> — Official source code, 22k stars</li><li><a href=https://arxiv.org/abs/2303.00747>WhisperX Paper (INTERSPEECH 2023)</a> — Original research paper with benchmarks</li><li><a href=https://github.com/guillaumekln/faster-whisper>faster-whisper Documentation</a> — CTranslate2 backend details</li><li><a href=https://github.com/pyannote/pyannote-audio>pyannote.audio Documentation</a> — Speaker diarization model info</li><li><a href=https://github.com/openai/whisper>OpenAI Whisper</a> — Base ASR model</li><li><a href=https://huggingface.co/pyannote>Hugging Face pyannote models</a> — Speaker diarization model licenses</li><li><a href=https://docs.nvidia.com/cuda/cuda-installation-guide-linux/>CUDA Installation Guide</a> — GPU setup for Linux</li><li><a href=https://opennmt.net/CTranslate2/performance.html>CTranslate2 Performance Guide</a> — Optimization tips</li><li><a href=https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md>WhisperX Examples</a> — Multilingual usage samples</li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>Active maintenance</strong> | High (110+ contributors) | Medium | High | Low (deprecated) |</p>
+<p><strong>When to choose WhisperX:</strong> You need word-level timestamps, speaker labels, or both. The 30-40% speed penalty over faster-whisper is justified by the richer output.</p>
+<p><strong>When to choose faster-whisper:</strong> You only need fast transcription without timestamps or diarization. It is the speed king for plain ASR.</p>
+<p><strong>When to choose OpenAI Whisper:</strong> You need the reference implementation for research or compatibility. The API is simplest but slowest and most expensive at scale.</p>
+<p><strong>When to choose DeepSpeech:</strong> You need a tiny English-only model on resource-constrained devices. Note: Mozilla officially deprecated DeepSpeech in 2022; avoid for new projects.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p><strong>Numbers and symbols cannot be aligned.</strong> Words like &ldquo;2014&rdquo; or &ldquo;£13.60&rdquo; contain no phonemes that wav2vec2 can align. These words appear in the transcript but without timestamps. Post-process with regex-based estimation if needed.</p>
+<p><strong>Overlapping speech is problematic.</strong> When two speakers talk simultaneously, WhisperX (and Whisper) assigns all speech to one speaker. The pyannote diarization model detects overlaps but cannot separate intertwined audio streams. For heavy crosstalk scenarios, expect 20-30% speaker error.</p>
+<p><strong>Diarization requires known speaker counts for best accuracy.</strong> While pyannote can auto-detect speaker count, accuracy drops from ~90% (known count) to ~75% (auto-detect) on 4+ speaker recordings. Pass <code>--min_speakers</code> and <code>--max_speakers</code> when possible.</p>
+<p><strong>Language-specific alignment models needed.</strong> Word-level alignment requires a phoneme model for each language. WhisperX auto-selects models for 20+ languages, but low-resource languages may lack quality aligners. Test on your target language before committing.</p>
+<p><strong>Not a real-time streaming system.</strong> WhisperX processes complete audio files. It cannot transcribe live streams or microphone input. For real-time use cases, look at WebRTC + buffered chunking or commercial APIs like Deepgram.</p>
+<p><strong>GPU is essentially required.</strong> CPU diarization runs at 0.5x realtime — a 1-hour meeting takes 2 hours to process. The alignment stage is also GPU-dependent. Budget for at least an 8GB VRAM GPU.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q1: How accurate are the word-level timestamps compared to manual annotation?</strong></p>
+<p>WhisperX timestamps have a mean absolute error of 40-80ms on clean speech, measured against manually aligned TED talks. This is sufficient for subtitle synchronization and click-to-seek. On noisy audio with background music, error increases to 100-200ms. Always validate on your specific audio domain.</p>
+<p><strong>Q2: Can I use WhisperX without speaker diarization?</strong></p>
+<p>Yes — diarization is completely optional. Run without <code>--diarize</code> to get word-level timestamps only. The alignment stage runs regardless, so you still get sub-100ms word timestamps. This cuts processing time by ~40%.</p>
+<p><strong>Q3: What GPU do I need for production deployment?</strong></p>
+<p>An RTX 3060 (8GB VRAM) with INT8 quantization handles the large-v2 model comfortably. For high-throughput deployments, an RTX 4070 (12GB) processes 20+ audio hours per hour with full diarization. Cloud GPUs (A10G, T4, L4) work well with the same configurations.</p>
+<p><strong>Q4: How do I handle long audio files (2+ hours)?</strong></p>
+<p>WhisperX automatically segments long audio using VAD. No manual chunking required. For 4+ hour files, increase <code>--batch_size</code> if VRAM allows, or reduce to 4 for memory-constrained systems. The VAD stage ensures no words are cut mid-sentence.</p>
+<p><strong>Q5: Can I fine-tune WhisperX on my own data?</strong></p>
+<p>You can fine-tune the underlying Whisper model using OpenAI&rsquo;s training scripts, then load your custom weights into WhisperX. The alignment and diarization stages do not require fine-tuning. For domain-specific vocabulary (medical, legal), fine-tuning the ASR model reduces WER by 15-30%.</p>
+<p><strong>Q6: Why do I need a Hugging Face token?</strong></p>
+<p>The pyannote.audio speaker diarization model (````speaker-diarization-community-1```) is hosted on Hugging Face and requires accepting a license agreement. The token proves you have accepted the terms. It is free and takes 2 minutes to set up. No token is needed if you skip diarization.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>WhisperX fills a critical gap in the open-source ASR stack: production-grade word-level timestamps and speaker diarization at 70x realtime. The three-stage pipeline (transcribe → align → diarize) gives you precise control over output granularity, and the faster-whisper backend keeps inference costs low.</p>
+<p>For teams building podcast platforms, legal tech tools, meeting transcription services, or video subtitling pipelines, WhisperX is the most capable open-source option available in 2026. The 22,000 GitHub stars and active contributor base (110+) signal a healthy, evolving project.</p>
+<p><strong>Next steps:</strong></p>
+<ol>
+<li>Run the Docker setup in this guide to process your first audio file</li>
+<li>Integrate the FastAPI service into your existing pipeline</li>
+<li>Join the <a href="https://t.me/dibi8dev">dibi8 developer community on Telegram</a> to share deployment tips</li>
+</ol>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://github.com/m-bain/whisperX">WhisperX GitHub Repository</a> — Official source code, 22k stars</li>
+<li><a href="https://arxiv.org/abs/2303.00747">WhisperX Paper (INTERSPEECH 2023)</a> — Original research paper with benchmarks</li>
+<li><a href="https://github.com/guillaumekln/faster-whisper">faster-whisper Documentation</a> — CTranslate2 backend details</li>
+<li><a href="https://github.com/pyannote/pyannote-audio">pyannote.audio Documentation</a> — Speaker diarization model info</li>
+<li><a href="https://github.com/openai/whisper">OpenAI Whisper</a> — Base ASR model</li>
+<li><a href="https://huggingface.co/pyannote">Hugging Face pyannote models</a> — Speaker diarization model licenses</li>
+<li><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/">CUDA Installation Guide</a> — GPU setup for Linux</li>
+<li><a href="https://opennmt.net/CTranslate2/performance.html">CTranslate2 Performance Guide</a> — Optimization tips</li>
+<li><a href="https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md">WhisperX Examples</a> — Multilingual usage samples</li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;WhisperX: 22K+ Stars — Production ASR Setup Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -444,20 +631,285 @@ whisperx audio.wav \
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/whisperx%22>https://dibi8.com/resources/whisperx"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/whisperx%22">https://dibi8.com/resources/whisperx"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/llm-frameworks/whisperx/>apple-container</a></li><li><a href=/llm-frameworks/whisperx/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/llm-frameworks/whisperx/>moneyprinterturbo-one-click-ai-video-generator</a></li><li><a href=/llm-frameworks/whisperx/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/llm-frameworks/whisperx/>moneyprinterturbo-one-click-ai-video-generator</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fwhisperx%2f&text=Install%20CUDA%2012.8%20toolkit%20first%20%28Linux%29" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fwhisperx%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/llm-frameworks/whisperx/">apple-container</a></li>
+<li><a href="/llm-frameworks/whisperx/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/llm-frameworks/whisperx/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+<li><a href="/llm-frameworks/whisperx/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/llm-frameworks/whisperx/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fwhisperx%2f&text=Install%20CUDA%2012.8%20toolkit%20first%20%28Linux%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fwhisperx%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

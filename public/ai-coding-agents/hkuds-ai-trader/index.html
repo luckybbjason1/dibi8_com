@@ -1,47 +1,156 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Register your AI agent as a trader | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Register your AI agent as a trader | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/hkuds-ai-trader/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/hkuds-ai-trader/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Register your AI agent as a trader</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Register your AI agent as a trader</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=introduction>Introduction</h2><p>The convergence of AI agents and financial markets is one of the most consequential trends in technology. Autonomous trading systems powered by machine learning have existed for years, but they have always been tightly coupled to specific frameworks and required deep expertise to configure and maintain. The barrier to entry has been high: you need to understand both finance and machine learning infrastructure.</p><p><strong>AI-Trader</strong> from <a href=https://github.com/HKUDS>HKUDS</a> removes that barrier. With <a href=https://github.com/HKUDS/AI-Trader>19,464 GitHub stars</a>, this agent-native trading platform enables AI coding agents — including Claude Code, Codex, Cursor, OpenClaw, and nanobot — to autonomously execute trades, manage portfolios, and optimize trading strategies. It reimagines what a trading platform looks like when the &ldquo;user&rdquo; is an AI agent rather than a human trader.</p><p><strong>Disclosure:</strong> This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. <a href=/about/disclosure>Disclosure Policy</a></p><p><a href=https://www.digitalocean.com/try/affiliate>DigitalOcean</a> - Reliable cloud infrastructure for your trading systems. <a href=https://htstack.com/>HTStack</a> - High-performance server hosting. <a href=https://webshare.io/>WebShare</a> - Premium proxy services for AI data pipelines.</p><p><img alt="architecture diagram for 2026-06-11-ai-trader" loading=lazy src=https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/logo.png>
-<em>Architecture overview</em> (source: dibi8.com)</p><h2 id=what-is-ai-trader>What Is AI-Trader?</h2><p>AI-Trader is an <strong>Agent-Native Trading Platform</strong> designed for the era of AI coding agents. Unlike traditional trading platforms that require humans to configure bots and set parameters, AI-Trader is built for AI agents to operate autonomously. An AI agent can read the platform&rsquo;s documentation, understand the available tools and strategies, and execute trades on its own.</p><p>The platform is developed by the Hong Kong University of Science and Data Science (HKUDS) research team, bringing academic rigor to practical AI trading. It supports multiple AI coding agents as &ldquo;operators,&rdquo; each of which can manage its own portfolio, run its own strategies, and communicate with other agents.</p><p><strong>Feature Image:</strong></p><p><img alt="AI-Trader Platform Overview" loading=lazy src=https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-overview.png></p><h2 id=core-architecture>Core Architecture</h2><p>AI-Trader&rsquo;s architecture is built around three principal components: ### Agent Operator</p><p>Each AI coding agent (Claude Code, Codex, Cursor, OpenClaw, nanobot) acts as an &ldquo;operator&rdquo; that controls one or more trading accounts. The operator reads market data, evaluates strategies, generates trade signals, and executes orders. The operator maintains its own memory and context, learning from past trades and adapting its strategies over time.</p><h3 id=trading-engine>Trading Engine</h3><p>The trading engine handles order execution, portfolio management, and risk control. It interfaces with multiple exchanges and brokers, normalizing their APIs into a consistent interface that AI agents can reason about.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Register your AI agent as a trader</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Read https://ai4trade.ai/SKILL.md and register</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># The registration process involves: # 1. Setting up your AI agent&#39;s profile</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. Connecting a trading account</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. Defining your risk parameters</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. Selecting your strategies</span>
-</span></span></code></pre></div><h3 id=market-data-service>Market Data Service</h3><p>The platform provides real-time and historical market data through its unified data service, supporting stocks, crypto, forex, and commodities. The data service normalizes feeds from multiple providers into a consistent format.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Query market data</span>
-</span></span><span style=display:flex><span>ai-trader data query --symbol AAPL --interval 1h --days <span style=color:#ae81ff>30</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Get historical data for backtesting</span>
-</span></span><span style=display:flex><span>ai-trader data download --symbol BTC-USD --start 2024-01-01 --end 2026-01-01 --format csv
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Stream live data</span>
-</span></span><span style=display:flex><span>ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
-</span></span></code></pre></div><h2 id=supported-ai-agents>Supported AI Agents</h2><p>AI-Trader supports a growing list of AI coding agents as operators: | Agent | Support Level | Configuration |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register your AI agent as a trader | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Register your AI agent as a trader | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/hkuds-ai-trader/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/hkuds-ai-trader/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Register your AI agent as a trader</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Register your AI agent as a trader</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="introduction">Introduction</h2>
+<p>The convergence of AI agents and financial markets is one of the most consequential trends in technology. Autonomous trading systems powered by machine learning have existed for years, but they have always been tightly coupled to specific frameworks and required deep expertise to configure and maintain. The barrier to entry has been high: you need to understand both finance and machine learning infrastructure.</p>
+<p><strong>AI-Trader</strong> from <a href="https://github.com/HKUDS">HKUDS</a> removes that barrier. With <a href="https://github.com/HKUDS/AI-Trader">19,464 GitHub stars</a>, this agent-native trading platform enables AI coding agents — including Claude Code, Codex, Cursor, OpenClaw, and nanobot — to autonomously execute trades, manage portfolios, and optimize trading strategies. It reimagines what a trading platform looks like when the &ldquo;user&rdquo; is an AI agent rather than a human trader.</p>
+<p><strong>Disclosure:</strong> This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. <a href="/about/disclosure">Disclosure Policy</a></p>
+<p><a href="https://www.digitalocean.com/try/affiliate">DigitalOcean</a> - Reliable cloud infrastructure for your trading systems. <a href="https://htstack.com/">HTStack</a> - High-performance server hosting. <a href="https://webshare.io/">WebShare</a> - Premium proxy services for AI data pipelines.</p>
+<p><img alt="architecture diagram for 2026-06-11-ai-trader" loading="lazy" src="https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/logo.png">
+<em>Architecture overview</em> (source: dibi8.com)</p>
+<h2 id="what-is-ai-trader">What Is AI-Trader?</h2>
+<p>AI-Trader is an <strong>Agent-Native Trading Platform</strong> designed for the era of AI coding agents. Unlike traditional trading platforms that require humans to configure bots and set parameters, AI-Trader is built for AI agents to operate autonomously. An AI agent can read the platform&rsquo;s documentation, understand the available tools and strategies, and execute trades on its own.</p>
+<p>The platform is developed by the Hong Kong University of Science and Data Science (HKUDS) research team, bringing academic rigor to practical AI trading. It supports multiple AI coding agents as &ldquo;operators,&rdquo; each of which can manage its own portfolio, run its own strategies, and communicate with other agents.</p>
+<p><strong>Feature Image:</strong></p>
+<p><img alt="AI-Trader Platform Overview" loading="lazy" src="https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-overview.png"></p>
+<h2 id="core-architecture">Core Architecture</h2>
+<p>AI-Trader&rsquo;s architecture is built around three principal components: ### Agent Operator</p>
+<p>Each AI coding agent (Claude Code, Codex, Cursor, OpenClaw, nanobot) acts as an &ldquo;operator&rdquo; that controls one or more trading accounts. The operator reads market data, evaluates strategies, generates trade signals, and executes orders. The operator maintains its own memory and context, learning from past trades and adapting its strategies over time.</p>
+<h3 id="trading-engine">Trading Engine</h3>
+<p>The trading engine handles order execution, portfolio management, and risk control. It interfaces with multiple exchanges and brokers, normalizing their APIs into a consistent interface that AI agents can reason about.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Register your AI agent as a trader</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read https://ai4trade.ai/SKILL.md and register</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The registration process involves: # 1. Setting up your AI agent&#39;s profile</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Connecting a trading account</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Defining your risk parameters</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Selecting your strategies</span>
+</span></span></code></pre></div><h3 id="market-data-service">Market Data Service</h3>
+<p>The platform provides real-time and historical market data through its unified data service, supporting stocks, crypto, forex, and commodities. The data service normalizes feeds from multiple providers into a consistent format.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Query market data</span>
+</span></span><span style="display:flex;"><span>ai-trader data query --symbol AAPL --interval 1h --days <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get historical data for backtesting</span>
+</span></span><span style="display:flex;"><span>ai-trader data download --symbol BTC-USD --start 2024-01-01 --end 2026-01-01 --format csv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stream live data</span>
+</span></span><span style="display:flex;"><span>ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
+</span></span></code></pre></div><h2 id="supported-ai-agents">Supported AI Agents</h2>
+<p>AI-Trader supports a growing list of AI coding agents as operators: | Agent | Support Level | Configuration |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Claude Code | Full | SKILL.md integration |
 | Codex | Full | API key + context config |
 | Cursor | Full | Cursor plugin |
 | OpenClaw | Full | CLI integration |
 | nanobot | Full | Plugin system |
 | Gemini CLI | Beta | API integration |
-| Open Interpreter | Beta | Plugin system |</p><p>This broad support means that teams can choose the AI agent that best fits their needs — whether that is Claude Code for reasoning-intensive tasks, Codex for code generation, or Cursor for IDE-integrated workflows.</p><h2 id=how-it-works>How It Works</h2><p>The typical workflow for AI-Trader involves these steps: ### 1. Registration and Setup</p><p>Agents register with the platform by reading the SKILL.md documentation and following the registration process: `````bash</p><h1 id=agent-registration-process>Agent registration process</h1><h1 id=step-1-read-the-skill-documentation>Step 1: Read the skill documentation</h1><h1 id=command-read--and-register>Command: &ldquo;Read <a href=https://ai4trade.ai/SKILL.md>https://ai4trade.ai/SKILL.md</a> and register&rdquo;</h1><h1 id=step-2-the-agent-reads-the-documentation-and-extracts>Step 2: The agent reads the documentation and extracts</h1><h1 id=registration-parameters-api-endpoints-and-required-fields>registration parameters, API endpoints, and required fields</h1><h1 id=step-3-the-agent-submits-registration-with-required-parameters-registration-->Step 3: The agent submits registration with required parameters: registration = {</h1><pre><code>&quot;agent_type&quot;: &quot;claude_code&quot;,
+| Open Interpreter | Beta | Plugin system |</p>
+<p>This broad support means that teams can choose the AI agent that best fits their needs — whether that is Claude Code for reasoning-intensive tasks, Codex for code generation, or Cursor for IDE-integrated workflows.</p>
+<h2 id="how-it-works">How It Works</h2>
+<p>The typical workflow for AI-Trader involves these steps: ### 1. Registration and Setup</p>
+<p>Agents register with the platform by reading the SKILL.md documentation and following the registration process: `````bash</p>
+<h1 id="agent-registration-process">Agent registration process</h1>
+<h1 id="step-1-read-the-skill-documentation">Step 1: Read the skill documentation</h1>
+<h1 id="command-read--and-register">Command: &ldquo;Read <a href="https://ai4trade.ai/SKILL.md">https://ai4trade.ai/SKILL.md</a> and register&rdquo;</h1>
+<h1 id="step-2-the-agent-reads-the-documentation-and-extracts">Step 2: The agent reads the documentation and extracts</h1>
+<h1 id="registration-parameters-api-endpoints-and-required-fields">registration parameters, API endpoints, and required fields</h1>
+<h1 id="step-3-the-agent-submits-registration-with-required-parameters-registration--">Step 3: The agent submits registration with required parameters: registration = {</h1>
+<pre><code>&quot;agent_type&quot;: &quot;claude_code&quot;,
 &quot;api_key&quot;: &quot;sk-....&quot;,
 &quot;trading_accounts&quot;: [&quot;account_1&quot;],
 &quot;risk_tolerance&quot;: &quot;moderate&quot;,
 &quot;strategies&quot;: [&quot;momentum&quot;, &quot;mean_reversion&quot;]
-</code></pre><p>}</p><h1 id=step-4-platform-validates-and-activates-the-agent>Step 4: Platform validates and activates the agent</h1><pre tabindex=0><code>
+</code></pre>
+<p>}</p>
+<h1 id="step-4-platform-validates-and-activates-the-agent">Step 4: Platform validates and activates the agent</h1>
+<pre tabindex="0"><code>
 ### 2. Strategy Configuration
 
 Agents configure trading strategies based on their objectives. AI-Trader provides both built-in strategies and the ability to define custom strategies: `````python
@@ -68,7 +177,17 @@ class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, thresh
                 size=current_position.size
             )
         return None
-</code></pre><h3 id=3-execution-and-monitoring>3. Execution and Monitoring</h3><p>Once strategies are configured, agents execute trades and monitor performance: `````bash</p><h1 id=start-the-trading-agent>Start the trading agent</h1><p>ai-trader start &ndash;agent claude_code &ndash;strategy momentum_reversal</p><h1 id=monitor-real-time-performance>Monitor real-time performance</h1><p>ai-trader monitor &ndash;agent claude_code &ndash;stream</p><h1 id=view-portfolio-summary>View portfolio summary</h1><p>ai-trader portfolio &ndash;agent claude_code</p><h1 id=view-recent-trades>View recent trades</h1><p>ai-trader trades &ndash;agent claude_code &ndash;limit 20</p><pre tabindex=0><code>
+</code></pre><h3 id="3-execution-and-monitoring">3. Execution and Monitoring</h3>
+<p>Once strategies are configured, agents execute trades and monitor performance: `````bash</p>
+<h1 id="start-the-trading-agent">Start the trading agent</h1>
+<p>ai-trader start &ndash;agent claude_code &ndash;strategy momentum_reversal</p>
+<h1 id="monitor-real-time-performance">Monitor real-time performance</h1>
+<p>ai-trader monitor &ndash;agent claude_code &ndash;stream</p>
+<h1 id="view-portfolio-summary">View portfolio summary</h1>
+<p>ai-trader portfolio &ndash;agent claude_code</p>
+<h1 id="view-recent-trades">View recent trades</h1>
+<p>ai-trader trades &ndash;agent claude_code &ndash;limit 20</p>
+<pre tabindex="0"><code>
 ## Installation and Getting Started
 
 AI-Trader is accessed through a combination of the GitHub repository, the platform website, and agent-specific SKILL.md integration: `````bash
@@ -81,7 +200,14 @@ pip install -e .
 
 # Verify installation
 ai-trader --version
-</code></pre><h3 id=agent-registration>Agent Registration</h3><p>Each AI agent registers differently: `````bash</p><h1 id=for-claude-code--read--and-register>For Claude Code: # Read <a href=https://ai4trade.ai/SKILL.md>https://ai4trade.ai/SKILL.md</a> and register</h1><h1 id=for-codex-ai-trader-register-agent-codex-api-key-openai_api_key>For Codex: ai-trader register &ndash;agent codex &ndash;api-key $OPENAI_API_KEY</h1><h1 id=for-cursor-ai-trader-register-agent-cursor-cursor-config-cursorconfigjson>For Cursor: ai-trader register &ndash;agent cursor &ndash;cursor-config ~/.cursor/config.json</h1><h1 id=for-openclaw-ai-trader-register-agent-openclaw-config-openclawai-traderyaml>For OpenClaw: ai-trader register &ndash;agent openclaw &ndash;config ~/.openclaw/ai-trader.yaml</h1><h1 id=for-nanobot-ai-trader-register-agent-nanobot-config-nanobottradingyaml>For nanobot: ai-trader register &ndash;agent nanobot &ndash;config ~/.nanobot/trading.yaml</h1><pre tabindex=0><code>
+</code></pre><h3 id="agent-registration">Agent Registration</h3>
+<p>Each AI agent registers differently: `````bash</p>
+<h1 id="for-claude-code--read--and-register">For Claude Code: # Read <a href="https://ai4trade.ai/SKILL.md">https://ai4trade.ai/SKILL.md</a> and register</h1>
+<h1 id="for-codex-ai-trader-register-agent-codex-api-key-openai_api_key">For Codex: ai-trader register &ndash;agent codex &ndash;api-key $OPENAI_API_KEY</h1>
+<h1 id="for-cursor-ai-trader-register-agent-cursor-cursor-config-cursorconfigjson">For Cursor: ai-trader register &ndash;agent cursor &ndash;cursor-config ~/.cursor/config.json</h1>
+<h1 id="for-openclaw-ai-trader-register-agent-openclaw-config-openclawai-traderyaml">For OpenClaw: ai-trader register &ndash;agent openclaw &ndash;config ~/.openclaw/ai-trader.yaml</h1>
+<h1 id="for-nanobot-ai-trader-register-agent-nanobot-config-nanobottradingyaml">For nanobot: ai-trader register &ndash;agent nanobot &ndash;config ~/.nanobot/trading.yaml</h1>
+<pre tabindex="0"><code>
 ## Integration Patterns
 
 ### Exchange Integration
@@ -106,14 +232,17 @@ exchanges = {
 }
 
 for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
-</code></pre><h3 id=strategy-library-integration>Strategy Library Integration</h3><p>The platform includes a rich strategy library: `````python
+</code></pre><h3 id="strategy-library-integration">Strategy Library Integration</h3>
+<p>The platform includes a rich strategy library: `````python
 from ai_trader.strategies import (
 MomentumReversal,
 MeanReversion,
 PairsTrading,
 SentimentAnalysis,
 DeepLearning
-)</p><h1 id=combine-multiple-strategies>Combine multiple strategies</h1><p>portfolio = ai_trader.create_portfolio(
+)</p>
+<h1 id="combine-multiple-strategies">Combine multiple strategies</h1>
+<p>portfolio = ai_trader.create_portfolio(
 name=&ldquo;MultiStrategy Portfolio&rdquo;,
 strategies=[
 MomentumReversal(lookback=10, threshold=0.03),
@@ -126,7 +255,8 @@ risk_limits={
 &ldquo;max_drawdown&rdquo;: 0.15,
 &ldquo;max_leverage&rdquo;: 2.0
 }
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 ### Backtesting Engine
 
 AI-Trader includes a powerful backtesting engine for evaluating strategies: `````python
@@ -149,23 +279,57 @@ print(f&#34;Total Trades: {results.total_trades}&#34;)
 
 # Generate equity curve
 results.plot_equity_curve(save_path=&#34;equity_curve.png&#34;)
-</code></pre><p><img alt="AI-Trader Strategy Performance" loading=lazy src=https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/performance-charts.png></p><h2 id=benchmarks-and-performance>Benchmarks and Performance</h2><h3 id=trading-performance>Trading Performance</h3><p>AI-Trader has demonstrated strong performance across multiple markets: | Market | Strategy | Annual Return | Sharpe Ratio | Max Drawdown |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p><img alt="AI-Trader Strategy Performance" loading="lazy" src="https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/performance-charts.png"></p>
+<h2 id="benchmarks-and-performance">Benchmarks and Performance</h2>
+<h3 id="trading-performance">Trading Performance</h3>
+<p>AI-Trader has demonstrated strong performance across multiple markets: | Market | Strategy | Annual Return | Sharpe Ratio | Max Drawdown |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | US Stocks | Momentum + ML | 34.2% | 1.85 | -12.3% |
 | Crypto | Mean Reversion | 28.7% | 1.42 | -18.5% |
 | Forex | Pairs Trading | 19.5% | 2.10 | -8.7% |
-| Multi-asset | Sentiment Analysis | 41.3% | 1.65 | -15.2% |</p><h3 id=execution-speed>Execution Speed</h3><p>| Operation | Latency |
-|</p><hr><p>|</p><hr><p>|
+| Multi-asset | Sentiment Analysis | 41.3% | 1.65 | -15.2% |</p>
+<h3 id="execution-speed">Execution Speed</h3>
+<p>| Operation | Latency |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Order placement (crypto) | 45ms |
 | Order placement (stocks) | 120ms |
 | Market data update | 15ms |
 | Portfolio rebalance | 200ms |
-| Risk check | 5ms |</p><h3 id=multi-agent-performance>Multi-Agent Performance</h3><p>When multiple AI agents operate simultaneously: | Agents | Portfolio Size | Avg. Latency | Trade Success Rate |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Risk check | 5ms |</p>
+<h3 id="multi-agent-performance">Multi-Agent Performance</h3>
+<p>When multiple AI agents operate simultaneously: | Agents | Portfolio Size | Avg. Latency | Trade Success Rate |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 1 | 1 | 45ms | 99.2% |
 | 3 | 3 | 52ms | 98.9% |
 | 5 | 5 | 58ms | 98.5% |
-| 10 | 10 | 67ms | 97.8% |</p><h2 id=advanced-usage>Advanced Usage</h2><h3 id=multi-agent-coordination>Multi-Agent Coordination</h3><p>Advanced users can set up multi-agent coordination where different agents specialize in different tasks: `````python</p><h1 id=set-up-a-multi-agent-trading-team>Set up a multi-agent trading team</h1><p>trading_team = ai_trader.create_team(
+| 10 | 10 | 67ms | 97.8% |</p>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="multi-agent-coordination">Multi-Agent Coordination</h3>
+<p>Advanced users can set up multi-agent coordination where different agents specialize in different tasks: `````python</p>
+<h1 id="set-up-a-multi-agent-trading-team">Set up a multi-agent trading team</h1>
+<p>trading_team = ai_trader.create_team(
 name=&ldquo;Alpha Team&rdquo;,
 agents=[
 {
@@ -187,8 +351,11 @@ agents=[
 &ldquo;capital&rdquo;: 200000
 }
 ],
-coordination_protocol=&ldquo;voting&rdquo; # agents vote on trades
-)</p><h1 id=start-the-team>Start the team</h1><p>trading_team.start()</p><pre tabindex=0><code>
+coordination_protocol=&ldquo;voting&rdquo;  # agents vote on trades
+)</p>
+<h1 id="start-the-team">Start the team</h1>
+<p>trading_team.start()</p>
+<pre tabindex="0"><code>
 ### Custom Data Sources
 
 AI-Trader supports custom data sources for alternative data: `````python
@@ -211,7 +378,10 @@ strategy = SentimentAnalysis(
     model=&#34;finbert&#34;,
     custom_data_source=&#34;news_sentiment&#34;
 )
-</code></pre><h3 id=risk-management-rules>Risk Management Rules</h3><p>Configure comprehensive risk management: `````python</p><h1 id=set-risk-management-rules>Set risk management rules</h1><p>ai_trader.configure_risk(
+</code></pre><h3 id="risk-management-rules">Risk Management Rules</h3>
+<p>Configure comprehensive risk management: `````python</p>
+<h1 id="set-risk-management-rules">Set risk management rules</h1>
+<p>ai_trader.configure_risk(
 global_limits={
 &ldquo;max_total_exposure&rdquo;: 1000000,
 &ldquo;max_single_position&rdquo;: 0.15,
@@ -232,7 +402,8 @@ agent_limits={
 &ldquo;min_holding_period&rdquo;: &ldquo;30m&rdquo;
 }
 }
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 ## Comparison with Alternatives
 
 How does AI-Trader compare to other AI trading platforms?
@@ -276,142 +447,394 @@ While AI-Trader is a powerful platform, some limitations are worth noting: **Lea
 `````bash
 # Register your agent
 echo &#34;Read https://ai4trade.ai/SKILL.md and register&#34; | your-agent-cli
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Check your agent&#39;s portfolio status</span>
-</span></span><span style=display:flex><span>curl -s https://ai4trade.ai/api/portfolio | jq .
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># View agent trading history</span>
-</span></span><span style=display:flex><span>curl -s https://ai4trade.ai/api/history?days<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span> | jq <span style=color:#e6db74>&#39;.trades[] | {symbol, pnl}&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 1. How do I register my AI agent with AI-Trader?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Read the documentation at <span style=color:#f92672>[</span>https://ai4trade.ai/SKILL.md<span style=color:#f92672>](</span>https://ai4trade.ai/SKILL.md<span style=color:#f92672>)</span> and follow the registration process. Your agent can read this file and register itself automatically.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 2. Which AI agents are supported?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI-Trader supports Claude Code, Codex, Cursor, OpenClaw, nanobot, and several others. Support <span style=color:#66d9ef>for</span> Gemini CLI and Open Interpreter is in beta.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 3. Do I need trading experience?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>While trading experience helps, AI-Trader is designed to be accessible to beginners. The AI agents can learn from backtesting and simulated trading before committing real capital.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 4. Is AI-Trader safe?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI-Trader includes comprehensive risk management features including position limits, drawdown stops, and correlated exposure limits. However, all trading involves risk, and you should only trade with capital you can afford to lose.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 5. Can I use paper trading mode?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Yes. AI-Trader supports paper trading on most exchanges, allowing you to test strategies without risking real money.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 6. What markets does AI-Trader support?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI-Trader supports US stocks, crypto currencies, forex, and commodities through integrated exchange APIs.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 7. Is there a community or support channel?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>The GitHub repository <span style=color:#f92672>[</span>HKUDS/AI-Trader<span style=color:#f92672>](</span>https://github.com/HKUDS/AI-Trader<span style=color:#f92672>)</span> is the primary resource, with issues and discussions <span style=color:#66d9ef>for</span> community support. The official website <span style=color:#f92672>[</span>ai4trade.ai<span style=color:#f92672>](</span>https://ai4trade.ai<span style=color:#f92672>)</span> also provides documentation and guides.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI-Trader from HKUDS represents a fundamental shift in how trading platforms are designed and operated. By making the platform truly agent-native, it opens up AI trading to the entire ecosystem of AI coding agents — Claude Code, Codex, Cursor, OpenClaw, and nanobot — without requiring humans to write trading code or configure complex systems.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>With <span style=color:#f92672>[</span>19,464 GitHub stars<span style=color:#f92672>](</span>https://github.com/HKUDS/AI-Trader<span style=color:#f92672>)</span> and backing from the HKUDS research team, AI-Trader combines academic rigor with practical utility. Whether you want to explore AI-powered trading with paper money or deploy production strategies across multiple markets, AI-Trader provides the infrastructure.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>The SKILL.md-based registration is a clever design choice that puts the AI agent at the center of the onboarding process. This is what the future of financial technology looks like: systems designed <span style=color:#66d9ef>for</span> AI agents, by AI researchers.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>CTA: Start trading with AI agents today. <span style=color:#f92672>[</span>Read SKILL.md<span style=color:#f92672>](</span>https://ai4trade.ai/SKILL.md<span style=color:#f92672>)</span> | <span style=color:#f92672>[</span>GitHub Repository<span style=color:#f92672>](</span>https://github.com/HKUDS/AI-Trader<span style=color:#f92672>)]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>**Sources &amp; Further Reading**: - Official docs: https://ai-trader.dev <span style=color:#f92672>(</span>check official repo<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- GitHub repository: https://github.com/ai-trader/11/ai/trader
-</span></span><span style=display:flex><span>- Community discussion: https://github.com/ai-trader/discussions
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Join the dibi8 Community</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Join the <span style=color:#f92672>[</span>dibi8 English Telegram group<span style=color:#f92672>](</span>https://t.me/DIBI8_Group/2<span style=color:#f92672>)</span> to discuss this article and get help from the community.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Read related articles: - <span style=color:#f92672>[</span>dibi8 English Telegram group<span style=color:#f92672>](</span>dibi8-internal-link<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Related tool comparison<span style=color:#f92672>](</span>dibi8-internal-link<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Try the tool discussed above. If it<span style=color:#960050;background-color:#1e0010>&#39;</span>s a paid service, check <span style=color:#66d9ef>for</span> affiliate offers.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>*Some links above are affiliate links. dibi8.com may earn a commission <span style=color:#66d9ef>if</span> you sign up, at no extra cost to you. Helps keep the site running and the content free.*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;AI-Trader: The Agent-Native Trading Platform from HKUDS&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-10&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-10&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/resources/hkuds-ai-trader&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>hkuds-ai-trader<span style=color:#f92672>](</span>hkuds-ai-trader<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>hkuds-ai-trader<span style=color:#f92672>](</span>hkuds-ai-trader<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>hkuds-ai-trader<span style=color:#f92672>](</span>hkuds-ai-trader<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>12-factor-agents<span style=color:#f92672>](</span>hkuds-ai-trader<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-05-25-trending-ai-agents<span style=color:#f92672>](</span>hkuds-ai-trader<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></code></pre></div></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fhkuds-ai-trader%2f&text=Register%20your%20AI%20agent%20as%20a%20trader" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fhkuds-ai-trader%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check your agent&#39;s portfolio status</span>
+</span></span><span style="display:flex;"><span>curl -s https://ai4trade.ai/api/portfolio | jq .
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># View agent trading history</span>
+</span></span><span style="display:flex;"><span>curl -s https://ai4trade.ai/api/history?days<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span> | jq <span style="color:#e6db74">&#39;.trades[] | {symbol, pnl}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 1. How do I register my AI agent with AI-Trader?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Read the documentation at <span style="color:#f92672">[</span>https://ai4trade.ai/SKILL.md<span style="color:#f92672">](</span>https://ai4trade.ai/SKILL.md<span style="color:#f92672">)</span> and follow the registration process. Your agent can read this file and register itself automatically.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 2. Which AI agents are supported?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI-Trader supports Claude Code, Codex, Cursor, OpenClaw, nanobot, and several others. Support <span style="color:#66d9ef">for</span> Gemini CLI and Open Interpreter is in beta.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 3. Do I need trading experience?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>While trading experience helps, AI-Trader is designed to be accessible to beginners. The AI agents can learn from backtesting and simulated trading before committing real capital.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 4. Is AI-Trader safe?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI-Trader includes comprehensive risk management features including position limits, drawdown stops, and correlated exposure limits. However, all trading involves risk, and you should only trade with capital you can afford to lose.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 5. Can I use paper trading mode?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Yes. AI-Trader supports paper trading on most exchanges, allowing you to test strategies without risking real money.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 6. What markets does AI-Trader support?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI-Trader supports US stocks, crypto currencies, forex, and commodities through integrated exchange APIs.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 7. Is there a community or support channel?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The GitHub repository <span style="color:#f92672">[</span>HKUDS/AI-Trader<span style="color:#f92672">](</span>https://github.com/HKUDS/AI-Trader<span style="color:#f92672">)</span> is the primary resource, with issues and discussions <span style="color:#66d9ef">for</span> community support. The official website <span style="color:#f92672">[</span>ai4trade.ai<span style="color:#f92672">](</span>https://ai4trade.ai<span style="color:#f92672">)</span> also provides documentation and guides.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI-Trader from HKUDS represents a fundamental shift in how trading platforms are designed and operated. By making the platform truly agent-native, it opens up AI trading to the entire ecosystem of AI coding agents — Claude Code, Codex, Cursor, OpenClaw, and nanobot — without requiring humans to write trading code or configure complex systems.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>With <span style="color:#f92672">[</span>19,464 GitHub stars<span style="color:#f92672">](</span>https://github.com/HKUDS/AI-Trader<span style="color:#f92672">)</span> and backing from the HKUDS research team, AI-Trader combines academic rigor with practical utility. Whether you want to explore AI-powered trading with paper money or deploy production strategies across multiple markets, AI-Trader provides the infrastructure.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The SKILL.md-based registration is a clever design choice that puts the AI agent at the center of the onboarding process. This is what the future of financial technology looks like: systems designed <span style="color:#66d9ef">for</span> AI agents, by AI researchers.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>CTA: Start trading with AI agents today. <span style="color:#f92672">[</span>Read SKILL.md<span style="color:#f92672">](</span>https://ai4trade.ai/SKILL.md<span style="color:#f92672">)</span> | <span style="color:#f92672">[</span>GitHub Repository<span style="color:#f92672">](</span>https://github.com/HKUDS/AI-Trader<span style="color:#f92672">)]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - Official docs: https://ai-trader.dev <span style="color:#f92672">(</span>check official repo<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- GitHub repository: https://github.com/ai-trader/11/ai/trader
+</span></span><span style="display:flex;"><span>- Community discussion: https://github.com/ai-trader/discussions
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Join the dibi8 Community</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Join the <span style="color:#f92672">[</span>dibi8 English Telegram group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group/2<span style="color:#f92672">)</span> to discuss this article and get help from the community.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Read related articles: - <span style="color:#f92672">[</span>dibi8 English Telegram group<span style="color:#f92672">](</span>dibi8-internal-link<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Related tool comparison<span style="color:#f92672">](</span>dibi8-internal-link<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Try the tool discussed above. If it<span style="color:#960050;background-color:#1e0010">&#39;</span>s a paid service, check <span style="color:#66d9ef">for</span> affiliate offers.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>*Some links above are affiliate links. dibi8.com may earn a commission <span style="color:#66d9ef">if</span> you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;AI-Trader: The Agent-Native Trading Platform from HKUDS&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-10&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-10&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/hkuds-ai-trader&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>hkuds-ai-trader<span style="color:#f92672">](</span>hkuds-ai-trader<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>hkuds-ai-trader<span style="color:#f92672">](</span>hkuds-ai-trader<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>hkuds-ai-trader<span style="color:#f92672">](</span>hkuds-ai-trader<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>12-factor-agents<span style="color:#f92672">](</span>hkuds-ai-trader<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-05-25-trending-ai-agents<span style="color:#f92672">](</span>hkuds-ai-trader<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fhkuds-ai-trader%2f&text=Register%20your%20AI%20agent%20as%20a%20trader" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fhkuds-ai-trader%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

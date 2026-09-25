@@ -1,46 +1,155 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>openai whisper complete guide | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="openai whisper complete guide | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/openai-whisper-complete-guide/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/openai-whisper-complete-guide/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>openai whisper complete guide</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">openai whisper complete guide</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><h2 id=tldr>TL;DR</h2><p>OpenAI Whisper is the most capable open-source speech-to-text engine available in 2026, supporting 99+ languages with near-human accuracy. This comprehensive guide covers installation, fine-tuning, deployment, and real-world production workflows for building voice-powered applications at scale.</p><h2 id=what-is-openai-whisper>What Is OpenAI Whisper?</h2><p>OpenAI Whisper is a general-purpose speech recognition model trained on 680,000 hours of multilingual and multitask supervised data collected from the web. Unlike proprietary APIs that charge per minute, Whisper runs entirely on your own hardware — making it ideal for privacy-sensitive applications, cost-effective batch processing, and offline deployments.</p><h3 id=key-features>Key Features</h3><ul><li><strong>99+ Languages</strong>: Automatic language detection and transcription in over 99 languages</li><li><strong>Multilingual Audio</strong>: Transcribe mixed-language audio where speakers switch between languages</li><li><strong>Speaker Diarization</strong>: Identify and separate different speakers in the same audio file</li><li><strong>Timestamped Output</strong>: Word-level timestamps for precise synchronization</li><li><strong>Zero-Shot Translation</strong>: Translate any language audio directly into English text</li><li><strong>Fine-Tuning Support</strong>: Custom training on domain-specific vocabulary and accents</li><li><strong>Open Source</strong>: MIT licensed, fully transparent and auditable</li></ul><h3 id=how-whisper-works>How Whisper Works</h3><p>Whisper uses a transformer encoder-decoder architecture similar to GPT, but trained on speech rather than text. The encoder processes raw audio waveforms into mel spectrograms, while the decoder generates text tokens autoregressively. This design enables Whisper to handle diverse accents, backgrounds noise, and domain-specific terminology without task-specific training.</p><h4 id=mel-spectrogram-processing>Mel Spectrogram Processing</h4><p>The audio preprocessing pipeline converts raw waveform inputs into mel spectrograms — visual representations of sound frequency over time. This transformation reduces computational complexity while preserving phonetic information critical for accurate transcription.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> whisper
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>preprocess_audio</span>(audio_path): model <span style=color:#f92672>=</span> whisper<span style=color:#f92672>.</span>load_model(<span style=color:#e6db74>&#34;base&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Load and resample audio</span>
-</span></span><span style=display:flex><span>    audio, sr <span style=color:#f92672>=</span> whisper<span style=color:#f92672>.</span>load_audio(audio_path)
-</span></span><span style=display:flex><span>    audio <span style=color:#f92672>=</span> whisper<span style=color:#f92672>.</span>pad_or_trim(audio)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Compute mel spectrogram</span>
-</span></span><span style=display:flex><span>    mel <span style=color:#f92672>=</span> whisper<span style=color:#f92672>.</span>log_mel_spectrogram(audio)<span style=color:#f92672>.</span>unsqueeze(<span style=color:#ae81ff>0</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> mel
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>mel <span style=color:#f92672>=</span> preprocess_audio(<span style=color:#e6db74>&#34;sample.wav&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Spectrogram shape: </span><span style=color:#e6db74>{</span>mel<span style=color:#f92672>.</span>shape<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)  <span style=color:#75715e># [1, 80, 3000]</span>
-</span></span></code></pre></div><h4 id=tokenization-strategy>Tokenization Strategy</h4><p>Whisper uses a byte-pair encoding (BPE) tokenizer with 51,865 tokens. The vocabulary includes: - Language identification tokens (one per supported language)</p><ul><li>Task tokens (transcribe, translate, timestamp, no_timestamps)</li><li>Special tokens (startoftranscript, transcribe, etc.)</li><li>Regular word/subword tokens</li></ul><p>This tokenization strategy enables Whisper to handle multiple languages and tasks within a single unified model.</p><h4 id=training-data-and-methodology>Training Data and Methodology</h4><p>Whisper was trained on 680,000 hours of multilingual and multitask supervised data collected from the web. The dataset spans 109 languages with varying quality levels and domains including: - <strong>High-quality labeled data</strong>: Professional voiceovers, audiobooks, and news broadcasts</p><ul><li><strong>Weakly labeled data</strong>: YouTube captions, subtitles, and podcast transcripts</li><li><strong>Multilingual data</strong>: Audio in 109 different languages with corresponding text</li><li><strong>Domain diversity</strong>: Technical, medical, legal, conversational, and casual speech</li></ul><p>This massive, diverse training corpus is what gives Whisper its remarkable generalization capabilities.</p><h2 id=installation-guide>Installation Guide</h2><h3 id=option-1-pip-install-simplest>Option 1: pip Install (Simplest)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install -U openai-whisper
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openai whisper complete guide | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="openai whisper complete guide | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/openai-whisper-complete-guide/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/openai-whisper-complete-guide/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">openai whisper complete guide</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">openai whisper complete guide</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <h2 id="tldr">TL;DR</h2>
+<p>OpenAI Whisper is the most capable open-source speech-to-text engine available in 2026, supporting 99+ languages with near-human accuracy. This comprehensive guide covers installation, fine-tuning, deployment, and real-world production workflows for building voice-powered applications at scale.</p>
+<h2 id="what-is-openai-whisper">What Is OpenAI Whisper?</h2>
+<p>OpenAI Whisper is a general-purpose speech recognition model trained on 680,000 hours of multilingual and multitask supervised data collected from the web. Unlike proprietary APIs that charge per minute, Whisper runs entirely on your own hardware — making it ideal for privacy-sensitive applications, cost-effective batch processing, and offline deployments.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>99+ Languages</strong>: Automatic language detection and transcription in over 99 languages</li>
+<li><strong>Multilingual Audio</strong>: Transcribe mixed-language audio where speakers switch between languages</li>
+<li><strong>Speaker Diarization</strong>: Identify and separate different speakers in the same audio file</li>
+<li><strong>Timestamped Output</strong>: Word-level timestamps for precise synchronization</li>
+<li><strong>Zero-Shot Translation</strong>: Translate any language audio directly into English text</li>
+<li><strong>Fine-Tuning Support</strong>: Custom training on domain-specific vocabulary and accents</li>
+<li><strong>Open Source</strong>: MIT licensed, fully transparent and auditable</li>
+</ul>
+<h3 id="how-whisper-works">How Whisper Works</h3>
+<p>Whisper uses a transformer encoder-decoder architecture similar to GPT, but trained on speech rather than text. The encoder processes raw audio waveforms into mel spectrograms, while the decoder generates text tokens autoregressively. This design enables Whisper to handle diverse accents, backgrounds noise, and domain-specific terminology without task-specific training.</p>
+<h4 id="mel-spectrogram-processing">Mel Spectrogram Processing</h4>
+<p>The audio preprocessing pipeline converts raw waveform inputs into mel spectrograms — visual representations of sound frequency over time. This transformation reduces computational complexity while preserving phonetic information critical for accurate transcription.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> whisper
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">preprocess_audio</span>(audio_path): model <span style="color:#f92672">=</span> whisper<span style="color:#f92672">.</span>load_model(<span style="color:#e6db74">&#34;base&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Load and resample audio</span>
+</span></span><span style="display:flex;"><span>    audio, sr <span style="color:#f92672">=</span> whisper<span style="color:#f92672">.</span>load_audio(audio_path)
+</span></span><span style="display:flex;"><span>    audio <span style="color:#f92672">=</span> whisper<span style="color:#f92672">.</span>pad_or_trim(audio)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Compute mel spectrogram</span>
+</span></span><span style="display:flex;"><span>    mel <span style="color:#f92672">=</span> whisper<span style="color:#f92672">.</span>log_mel_spectrogram(audio)<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> mel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mel <span style="color:#f92672">=</span> preprocess_audio(<span style="color:#e6db74">&#34;sample.wav&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Spectrogram shape: </span><span style="color:#e6db74">{</span>mel<span style="color:#f92672">.</span>shape<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># [1, 80, 3000]</span>
+</span></span></code></pre></div><h4 id="tokenization-strategy">Tokenization Strategy</h4>
+<p>Whisper uses a byte-pair encoding (BPE) tokenizer with 51,865 tokens. The vocabulary includes: - Language identification tokens (one per supported language)</p>
+<ul>
+<li>Task tokens (transcribe, translate, timestamp, no_timestamps)</li>
+<li>Special tokens (startoftranscript, transcribe, etc.)</li>
+<li>Regular word/subword tokens</li>
+</ul>
+<p>This tokenization strategy enables Whisper to handle multiple languages and tasks within a single unified model.</p>
+<h4 id="training-data-and-methodology">Training Data and Methodology</h4>
+<p>Whisper was trained on 680,000 hours of multilingual and multitask supervised data collected from the web. The dataset spans 109 languages with varying quality levels and domains including: - <strong>High-quality labeled data</strong>: Professional voiceovers, audiobooks, and news broadcasts</p>
+<ul>
+<li><strong>Weakly labeled data</strong>: YouTube captions, subtitles, and podcast transcripts</li>
+<li><strong>Multilingual data</strong>: Audio in 109 different languages with corresponding text</li>
+<li><strong>Domain diversity</strong>: Technical, medical, legal, conversational, and casual speech</li>
+</ul>
+<p>This massive, diverse training corpus is what gives Whisper its remarkable generalization capabilities.</p>
+<h2 id="installation-guide">Installation Guide</h2>
+<h3 id="option-1-pip-install-simplest">Option 1: pip Install (Simplest)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install -U openai-whisper
 </span></span></code></pre></div><p>Verify the installation: `````python
-import whisper</p><p>model = whisper.load_model(&ldquo;base&rdquo;)
+import whisper</p>
+<p>model = whisper.load_model(&ldquo;base&rdquo;)
 result = model.transcribe(&ldquo;audio.mp3&rdquo;)
-print(result[&ldquo;text&rdquo;])</p><pre tabindex=0><code>
+print(result[&ldquo;text&rdquo;])</p>
+<pre tabindex="0"><code>
 ### Option 2: GPU Accelerated Installation
 
 For faster inference, install with CUDA support: `````bash
 pip install -U openai-whisper torch torchaudio
 </code></pre><p>Check GPU availability: `````python
 import torch
-print(f"CUDA available: {torch.cuda.is_available()}")
-print(f"GPU: {torch.cuda.get_device_name(0)}")</p><pre tabindex=0><code>
+print(f&quot;CUDA available: {torch.cuda.is_available()}&quot;)
+print(f&quot;GPU: {torch.cuda.get_device_name(0)}&quot;)</p>
+<pre tabindex="0"><code>
 ### Option 3: Docker Deployment
 
 For containerized production environments: `````dockerfile
@@ -52,7 +161,8 @@ RUN pip install -U openai-whisper
 CMD [&#34;whisper&#34;, &#34;audio.mp3&#34;, &#34;--model&#34;, &#34;large-v3&#34;, &#34;--language&#34;, &#34;en&#34;]
 </code></pre><p>Build and run: `````bash
 docker build -t whisper-app .
-docker run &ndash;gpus all -v $(pwd):/data whisper-app /data/audio.mp3</p><pre tabindex=0><code>
+docker run &ndash;gpus all -v $(pwd):/data whisper-app /data/audio.mp3</p>
+<pre tabindex="0"><code>
 ## Model Sizes Comparison
 
 | Model | Parameters | VRAM Required | Relative Speed | WER* |
@@ -100,33 +210,40 @@ with open(&#34;transcript.txt&#34;, &#34;w&#34;) as f: f.write(result[&#34;text&
 
 # Save with timestamps
 for segment in result[&#34;segments&#34;]: print(f&#34;[{segment[start]:.2f}s] {segment[text]}&#34;)
-</code></pre><h3 id=batch-processing-multiple-files>Batch Processing Multiple Files</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> whisper
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> glob
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pathlib <span style=color:#f92672>import</span> Path
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> whisper<span style=color:#f92672>.</span>load_model(<span style=color:#e6db74>&#34;medium&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>audio_files <span style=color:#f92672>=</span> glob<span style=color:#f92672>.</span>glob(<span style=color:#e6db74>&#34;/data/audio/*.wav&#34;</span>)
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> audio_path <span style=color:#f92672>in</span> audio_files: result <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>transcribe(audio_path)
-</span></span><span style=display:flex><span>    results<span style=color:#f92672>.</span>append({
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;file&#34;</span>: audio_path,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;text&#34;</span>: result[<span style=color:#e6db74>&#34;text&#34;</span>],
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;language&#34;</span>: result[<span style=color:#e6db74>&#34;language&#34;</span>],
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;duration&#34;</span>: result[<span style=color:#e6db74>&#34;segments&#34;</span>][<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#e6db74>&#34;end&#34;</span>] <span style=color:#66d9ef>if</span> result[<span style=color:#e6db74>&#34;segments&#34;</span>] <span style=color:#66d9ef>else</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>    })
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Processed </span><span style=color:#e6db74>{</span>len(results)<span style=color:#e6db74>}</span><span style=color:#e6db74> files successfully&#34;</span>)
-</span></span></code></pre></div><h3 id=streaming-transcription>Streaming Transcription</h3><p>For real-time applications like live captioning: `````python
+</code></pre><h3 id="batch-processing-multiple-files">Batch Processing Multiple Files</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> whisper
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> glob
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pathlib <span style="color:#f92672">import</span> Path
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> whisper<span style="color:#f92672">.</span>load_model(<span style="color:#e6db74">&#34;medium&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>audio_files <span style="color:#f92672">=</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;/data/audio/*.wav&#34;</span>)
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> audio_path <span style="color:#f92672">in</span> audio_files: result <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(audio_path)
+</span></span><span style="display:flex;"><span>    results<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;file&#34;</span>: audio_path,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;text&#34;</span>: result[<span style="color:#e6db74">&#34;text&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;language&#34;</span>: result[<span style="color:#e6db74">&#34;language&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;duration&#34;</span>: result[<span style="color:#e6db74">&#34;segments&#34;</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#e6db74">&#34;end&#34;</span>] <span style="color:#66d9ef">if</span> result[<span style="color:#e6db74">&#34;segments&#34;</span>] <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Processed </span><span style="color:#e6db74">{</span>len(results)<span style="color:#e6db74">}</span><span style="color:#e6db74"> files successfully&#34;</span>)
+</span></span></code></pre></div><h3 id="streaming-transcription">Streaming Transcription</h3>
+<p>For real-time applications like live captioning: `````python
 import whisper
 import sounddevice as sd
-import numpy as np</p><p>model = whisper.load_model(&ldquo;base&rdquo;)</p><p>def callback(indata, frames, time, status): if status: print(status)
-return</p><pre><code># Process audio chunk
+import numpy as np</p>
+<p>model = whisper.load_model(&ldquo;base&rdquo;)</p>
+<p>def callback(indata, frames, time, status): if status: print(status)
+return</p>
+<pre><code># Process audio chunk
 result = model.transcribe(indata.flatten())
 print(result[&quot;text&quot;], end=&quot;\r&quot;, flush=True)
-</code></pre><p>with sd.InputStream(samplerate=16000, channels=1, callback=callback): print(&ldquo;Listening&mldr; Press Ctrl+C to stop.&rdquo;)
-sd.sleep(100000)</p><pre tabindex=0><code>
+</code></pre>
+<p>with sd.InputStream(samplerate=16000, channels=1, callback=callback): print(&ldquo;Listening&hellip; Press Ctrl+C to stop.&rdquo;)
+sd.sleep(100000)</p>
+<pre tabindex="0"><code>
 ### Subtitle Generation (SRT Format)
 
 `````python
@@ -139,13 +256,18 @@ result = model.transcribe(&#34;video.mp4&#34;, word_timestamps=True)
 with open(&#34;subtitles.srt&#34;, &#34;w&#34;) as f: for i, segment in enumerate(result[&#34;segments&#34;], 1): start = format_timestamp(segment[&#34;start&#34;])
         end = format_timestamp(segment[&#34;end&#34;])
         f.write(f&#34;{i}\n{start} --&gt; {end}\n{segment[text].strip()}\n\n&#34;)
-</code></pre><h2 id=advanced-transcription-techniques>Advanced Transcription Techniques</h2><h3 id=forced-alignment>Forced Alignment</h3><p>For precise word-level alignment, use Whisper&rsquo;s built-in timestamp feature: `````python
-import whisper</p><p>model = whisper.load_model(&ldquo;large-v3&rdquo;)
+</code></pre><h2 id="advanced-transcription-techniques">Advanced Transcription Techniques</h2>
+<h3 id="forced-alignment">Forced Alignment</h3>
+<p>For precise word-level alignment, use Whisper&rsquo;s built-in timestamp feature: `````python
+import whisper</p>
+<p>model = whisper.load_model(&ldquo;large-v3&rdquo;)
 result = model.transcribe(
 &ldquo;presentation.mp3&rdquo;,
 word_timestamps=True,
 verbose=True
-)</p><p>for word_info in result[&ldquo;segments&rdquo;][0][&ldquo;words&rdquo;]: print(f"{word_info[word]}: {word_info[start]:.2f}s - {word_info[end]:.2f}s")</p><pre tabindex=0><code>
+)</p>
+<p>for word_info in result[&ldquo;segments&rdquo;][0][&ldquo;words&rdquo;]: print(f&quot;{word_info[word]}: {word_info[start]:.2f}s - {word_info[end]:.2f}s&quot;)</p>
+<pre tabindex="0"><code>
 ### Language Detection and Translation
 
 Whisper can automatically detect the language of input audio and translate it to English: `````python
@@ -164,13 +286,19 @@ result = model.transcribe(
     verbose=True
 )
 print(result[&#34;text&#34;])  # English translation
-</code></pre><h3 id=prompting-for-better-results>Prompting for Better Results</h3><p>Whisper supports prompt-based transcription where you provide partial context to improve accuracy: `````python
-import whisper</p><p>model = whisper.load_model(&ldquo;medium&rdquo;)</p><h1 id=use-a-prompt-to-guide-transcription>Use a prompt to guide transcription</h1><p>prompt = &ldquo;Previously discussed topics include:&rdquo;
+</code></pre><h3 id="prompting-for-better-results">Prompting for Better Results</h3>
+<p>Whisper supports prompt-based transcription where you provide partial context to improve accuracy: `````python
+import whisper</p>
+<p>model = whisper.load_model(&ldquo;medium&rdquo;)</p>
+<h1 id="use-a-prompt-to-guide-transcription">Use a prompt to guide transcription</h1>
+<p>prompt = &ldquo;Previously discussed topics include:&rdquo;
 result = model.transcribe(
 &ldquo;meeting_part2.mp3&rdquo;,
 prompt=prompt,
 verbose=True
-)</p><h1 id=the-prompt-helps-the-model-maintain-context-continuity>The prompt helps the model maintain context continuity</h1><pre tabindex=0><code>
+)</p>
+<h1 id="the-prompt-helps-the-model-maintain-context-continuity">The prompt helps the model maintain context continuity</h1>
+<pre tabindex="0"><code>
 ### VAD (Voice Activity Detection) Integration
 
 For long recordings with silence, integrate VAD to process only active speech segments: `````python
@@ -199,13 +327,21 @@ for segment in speech_segments.itertracks(yield_label=False): start, end = segme
     full_transcript.append(chunk[&#34;text&#34;])
 
 final_text = &#34; &#34;.join(full_transcript)
-</code></pre><h2 id=fine-tuning-whisper>Fine-Tuning Whisper</h2><h3 id=preparing-training-data>Preparing Training Data</h3><p>To improve accuracy on domain-specific content (medical, legal, technical), prepare a dataset with paired audio and transcripts: `````python
+</code></pre><h2 id="fine-tuning-whisper">Fine-Tuning Whisper</h2>
+<h3 id="preparing-training-data">Preparing Training Data</h3>
+<p>To improve accuracy on domain-specific content (medical, legal, technical), prepare a dataset with paired audio and transcripts: `````python
 import whisper
 import torch
-from datasets import load_dataset</p><h1 id=load-custom-dataset>Load custom dataset</h1><p>dataset = load_dataset(&ldquo;csv&rdquo;, data_files={&ldquo;train&rdquo;: &ldquo;training_data.csv&rdquo;})</p><h1 id=prepare-data-for-fine-tuning>Prepare data for fine-tuning</h1><p>def prepare_example(example): return {
+from datasets import load_dataset</p>
+<h1 id="load-custom-dataset">Load custom dataset</h1>
+<p>dataset = load_dataset(&ldquo;csv&rdquo;, data_files={&ldquo;train&rdquo;: &ldquo;training_data.csv&rdquo;})</p>
+<h1 id="prepare-data-for-fine-tuning">Prepare data for fine-tuning</h1>
+<p>def prepare_example(example): return {
 &ldquo;input_features&rdquo;: whisper.feature_extractor.process_audio(example[&ldquo;audio&rdquo;]),
 &ldquo;labels&rdquo;: whisper.tokenizer.encode(example[&ldquo;text&rdquo;])
-}</p><p>tokenized_dataset = dataset.map(prepare_example, batched=True)</p><pre tabindex=0><code>
+}</p>
+<p>tokenized_dataset = dataset.map(prepare_example, batched=True)</p>
+<pre tabindex="0"><code>
 ### Fine-Tuning with Hugging Face Transformers
 
 `````python
@@ -237,10 +373,17 @@ trainer = Trainer(
 )
 
 trainer.train()
-</code></pre><h3 id=domain-specific-vocabulary-injection>Domain-Specific Vocabulary Injection</h3><p>For specialized domains, inject custom vocabulary without full fine-tuning: `````python
-import whisper</p><p>model = whisper.load_model(&ldquo;large-v3&rdquo;)</p><h1 id=add-custom-tokens>Add custom tokens</h1><p>custom_tokens = ["&lt;MEDICAL_TERM>", &ldquo;&lt;LEGAL_JARGON>&rdquo;]
-model.config.decoder_start_token_id = 50259</p><h1 id=use-forced-decoding-for-known-terms>Use forced decoding for known terms</h1><p>forced_decoder = [(0, 50259)] + [(i, tid) for i, tid in enumerate(custom_tokens)]
-result = model.transcribe(&ldquo;audio.wav&rdquo;, decoder_input_ids=np.array(forced_decoder))</p><pre tabindex=0><code>
+</code></pre><h3 id="domain-specific-vocabulary-injection">Domain-Specific Vocabulary Injection</h3>
+<p>For specialized domains, inject custom vocabulary without full fine-tuning: `````python
+import whisper</p>
+<p>model = whisper.load_model(&ldquo;large-v3&rdquo;)</p>
+<h1 id="add-custom-tokens">Add custom tokens</h1>
+<p>custom_tokens = [&quot;&lt;MEDICAL_TERM&gt;&quot;, &ldquo;&lt;LEGAL_JARGON&gt;&rdquo;]
+model.config.decoder_start_token_id = 50259</p>
+<h1 id="use-forced-decoding-for-known-terms">Use forced decoding for known terms</h1>
+<p>forced_decoder = [(0, 50259)] + [(i, tid) for i, tid in enumerate(custom_tokens)]
+result = model.transcribe(&ldquo;audio.wav&rdquo;, decoder_input_ids=np.array(forced_decoder))</p>
+<pre tabindex="0"><code>
 ## Production Deployment
 
 ### Flask API Server
@@ -272,22 +415,28 @@ def transcribe(): if &#34;audio&#34; not in request.files: return jsonify({&#34;
     finally: os.unlink(audio_path)
 
 if __name__ == &#34;__main__&#34;: app.run(host=&#34;0.0.0.0&#34;, port=8000)
-</code></pre><h3 id=fastapi-with-async-support>FastAPI with Async Support</h3><p>For high-throughput production environments: `````python
+</code></pre><h3 id="fastapi-with-async-support">FastAPI with Async Support</h3>
+<p>For high-throughput production environments: `````python
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 import whisper
-import asyncio</p><p>app = FastAPI()
-model = whisper.load_model(&ldquo;large-v3&rdquo;)</p><p>class TranscriptionResponse(BaseModel): text: str
+import asyncio</p>
+<p>app = FastAPI()
+model = whisper.load_model(&ldquo;large-v3&rdquo;)</p>
+<p>class TranscriptionResponse(BaseModel): text: str
 language: str
-segments: list</p><p>@app.post("/transcribe", response_model=TranscriptionResponse)
-async def transcribe_audio(file: UploadFile = File(&mldr;)): # Run in thread pool to avoid blocking
-def transcribe_sync(): return model.transcribe(file.file)</p><pre><code>result = await asyncio.to_thread(transcribe_sync)
+segments: list</p>
+<p>@app.post(&quot;/transcribe&quot;, response_model=TranscriptionResponse)
+async def transcribe_audio(file: UploadFile = File(&hellip;)): # Run in thread pool to avoid blocking
+def transcribe_sync(): return model.transcribe(file.file)</p>
+<pre><code>result = await asyncio.to_thread(transcribe_sync)
 return TranscriptionResponse(
     text=result[&quot;text&quot;],
     language=result[&quot;language&quot;],
     segments=result[&quot;segments&quot;]
 )
-</code></pre><pre tabindex=0><code>
+</code></pre>
+<pre tabindex="0"><code>
 ### Kubernetes Deployment
 
 Scale Whisper across multiple GPU nodes: `````yaml
@@ -301,11 +450,17 @@ spec: replicas: 3
         image: whisper-app:latest
         resources: limits: nvidia.com/gpu: 1
         ports: - containerPort: 8000
-</code></pre><h2 id=performance-optimization>Performance Optimization</h2><h3 id=quantization-for-edge-devices>Quantization for Edge Devices</h3><p>Reduce model size for mobile or IoT deployment: `````python
+</code></pre><h2 id="performance-optimization">Performance Optimization</h2>
+<h3 id="quantization-for-edge-devices">Quantization for Edge Devices</h3>
+<p>Reduce model size for mobile or IoT deployment: `````python
 import whisper
-from optimum.quanto import quantize</p><p>model = whisper.load_model(&ldquo;medium&rdquo;)
+from optimum.quanto import quantize</p>
+<p>model = whisper.load_model(&ldquo;medium&rdquo;)
 quantize(model.encoder, weights=&ldquo;int8&rdquo;, activations=&ldquo;none&rdquo;)
-quantize(model.decoder, weights=&ldquo;int8&rdquo;, activations=&ldquo;none&rdquo;)</p><h1 id=save-quantized-model>Save quantized model</h1><p>model.save_pretrained("./whisper-quantized")</p><pre tabindex=0><code>
+quantize(model.decoder, weights=&ldquo;int8&rdquo;, activations=&ldquo;none&rdquo;)</p>
+<h1 id="save-quantized-model">Save quantized model</h1>
+<p>model.save_pretrained(&quot;./whisper-quantized&quot;)</p>
+<pre tabindex="0"><code>
 ### Caching Results
 
 Avoid reprocessing identical audio files: `````python
@@ -328,10 +483,16 @@ class WhisperCache: def __init__(self, cache_dir=&#34;./cache&#34;): self.cache_
         cache_file = os.path.join(self.cache_dir, f&#34;{key}.json&#34;)
         
         with open(cache_file, &#34;w&#34;) as f: json.dump(result, f)
-</code></pre><h3 id=parallel-processing>Parallel Processing</h3><p>Process multiple audio files concurrently: `````python
+</code></pre><h3 id="parallel-processing">Parallel Processing</h3>
+<p>Process multiple audio files concurrently: `````python
 from concurrent.futures import ThreadPoolExecutor
-import whisper</p><p>model = whisper.load_model(&ldquo;medium&rdquo;)
-audio_files = [&ldquo;file1.wav&rdquo;, &ldquo;file2.wav&rdquo;, &ldquo;file3.wav&rdquo;]</p><p>def transcribe_file(audio_path): return model.transcribe(audio_path)</p><p>with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(transcribe_file, audio_files))</p><p>print(f"Processed {len(results)} files in parallel")</p><pre tabindex=0><code>
+import whisper</p>
+<p>model = whisper.load_model(&ldquo;medium&rdquo;)
+audio_files = [&ldquo;file1.wav&rdquo;, &ldquo;file2.wav&rdquo;, &ldquo;file3.wav&rdquo;]</p>
+<p>def transcribe_file(audio_path): return model.transcribe(audio_path)</p>
+<p>with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(transcribe_file, audio_files))</p>
+<p>print(f&quot;Processed {len(results)} files in parallel&quot;)</p>
+<pre tabindex="0"><code>
 ## Cost Analysis: Whisper vs Commercial APIs
 
 | Provider | Pricing Model | Cost per Hour | Min Order |
@@ -376,18 +537,23 @@ def preprocess_audio_for_whisper(audio_path): # Load audio
     audio.export(temp_path, format=&#34;wav&#34;)
     
     return temp_path
-</code></pre><h3 id=error-handling-and-retries>Error Handling and Retries</h3><p>Implement robust error handling for production systems: `````python
+</code></pre><h3 id="error-handling-and-retries">Error Handling and Retries</h3>
+<p>Implement robust error handling for production systems: `````python
 import whisper
 import time
-from functools import wraps</p><p>def retry_on_failure(max_retries=3, delay=5): def decorator(func): @wraps(func)
+from functools import wraps</p>
+<p>def retry_on_failure(max_retries=3, delay=5): def decorator(func): @wraps(func)
 def wrapper(*args, **kwargs): for attempt in range(max_retries): try: return func(*args, **kwargs)
 except Exception as e: if attempt == max_retries - 1: raise
-print(f"Attempt {attempt + 1} failed: {e}")
+print(f&quot;Attempt {attempt + 1} failed: {e}&quot;)
 time.sleep(delay * (2 ** attempt))
 return wrapper
-return decorator</p><p>@retry_on_failure(max_retries=3, delay=10)
-def reliable_transcribe(model, audio_path): return model.transcribe(audio_path, fp16=False)</p><p>model = whisper.load_model(&ldquo;medium&rdquo;)
-result = reliable_transcribe(model, &ldquo;production_audio.wav&rdquo;)</p><pre tabindex=0><code>
+return decorator</p>
+<p>@retry_on_failure(max_retries=3, delay=10)
+def reliable_transcribe(model, audio_path): return model.transcribe(audio_path, fp16=False)</p>
+<p>model = whisper.load_model(&ldquo;medium&rdquo;)
+result = reliable_transcribe(model, &ldquo;production_audio.wav&rdquo;)</p>
+<pre tabindex="0"><code>
 ### Monitoring and Logging
 
 Track transcription quality and performance metrics: `````python
@@ -428,18 +594,36 @@ def transcribe_with_logging(model, audio_path, config=None): start_time = dateti
             &#34;duration_seconds&#34;: round((datetime.now() - start_time).total_seconds(), 2)
         })
         raise
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | Whisper | Google STT | Azure Speech | AWS Transcribe |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Whisper | Google STT | Azure Speech | AWS Transcribe |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Open Source | ✅ | ❌ | ❌ | ❌ |
 | Offline Mode | ✅ | ❌ | ❌ | ❌ |
 | Free Tier | Unlimited | 60 min/mo | 5 min/mo | 60 min/mo |
 | Languages | 99+ | 130+ | 140+ | 30+ |
 | Speaker Diarization | ✅ | ✅ | ✅ | ✅ |
 | Custom Vocabulary | ✅ | ✅ | ✅ | ✅ |
-| Privacy | Full control | Cloud only | Cloud only | Cloud only |</p><h2 id=faq>FAQ</h2><h3 id=q1-can-whisper-work-offline-without-internet-connection>Q1: Can Whisper work offline without internet connection?</h3><p>Yes, Whisper is completely self-contained. Once downloaded, it requires no network connection for transcription. This makes it ideal for healthcare, legal, and other privacy-sensitive applications where audio data cannot leave the premises.</p><h3 id=q2-whats-the-maximum-audio-length-whisper-can-process>Q2: What&rsquo;s the maximum audio length Whisper can process?</h3><p>Whisper can process audio up to 30 minutes in a single call. For longer recordings, the audio is automatically segmented into 30-second chunks internally. You can also manually split long files using libraries like <code>pydub</code>: `````python
-from pydub import AudioSegment</p><p>audio = AudioSegment.from_wav(&ldquo;long_recording.wav&rdquo;)
-chunk_length = 30 * 1000 # 30 seconds in milliseconds
-chunks = [audio[i:i+chunk_length] for i in range(0, len(audio), chunk_length)]</p><pre tabindex=0><code>
+| Privacy | Full control | Cloud only | Cloud only | Cloud only |</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="q1-can-whisper-work-offline-without-internet-connection">Q1: Can Whisper work offline without internet connection?</h3>
+<p>Yes, Whisper is completely self-contained. Once downloaded, it requires no network connection for transcription. This makes it ideal for healthcare, legal, and other privacy-sensitive applications where audio data cannot leave the premises.</p>
+<h3 id="q2-whats-the-maximum-audio-length-whisper-can-process">Q2: What&rsquo;s the maximum audio length Whisper can process?</h3>
+<p>Whisper can process audio up to 30 minutes in a single call. For longer recordings, the audio is automatically segmented into 30-second chunks internally. You can also manually split long files using libraries like <code>pydub</code>: `````python
+from pydub import AudioSegment</p>
+<p>audio = AudioSegment.from_wav(&ldquo;long_recording.wav&rdquo;)
+chunk_length = 30 * 1000  # 30 seconds in milliseconds
+chunks = [audio[i:i+chunk_length] for i in range(0, len(audio), chunk_length)]</p>
+<pre tabindex="0"><code>
 ### Q3: How accurate is Whisper compared to commercial APIs?
 
 In benchmark tests, Whisper Large-v3 achieves near-human accuracy on clean audio (WER ~2-3%) and competitive performance on noisy audio (~8-10% WER). While commercial APIs may have slight advantages in specific domains, Whisper provides comparable quality at a fraction of the cost for most use cases.
@@ -522,13 +706,265 @@ Ready to build voice-powered applications with Whisper? Join our community of de
 
 * * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopenai-whisper-complete-guide%2f&text=openai%20whisper%20complete%20guide" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopenai-whisper-complete-guide%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+</code></pre>
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopenai-whisper-complete-guide%2f&text=openai%20whisper%20complete%20guide" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopenai-whisper-complete-guide%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

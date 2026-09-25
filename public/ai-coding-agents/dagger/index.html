@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Example DAG execution flow | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Example DAG execution flow | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/dagger/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/dagger/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Example DAG execution flow</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Example DAG execution flow</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Example DAG execution flow&rdquo;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example DAG execution flow | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Example DAG execution flow | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/dagger/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/dagger/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Example DAG execution flow</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Example DAG execution flow</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Example DAG execution flow&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,10 +99,35 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;cicd&rdquo;, &ldquo;devops&rdquo;, &ldquo;containers&rdquo;, &ldquo;pipeline-as-code&rdquo;, &ldquo;docker&rdquo;, &ldquo;github-actions&rdquo;, &ldquo;gitlab-ci&rdquo;, &ldquo;build-automation&rdquo;]
-aliases:</p><ul><li>/posts/dagger/-</li></ul><hr><h2 id=introduction>Introduction</h2><p>The average developer pushes 3.2 commits per day and waits 12 minutes for each CI run to finish. Multiply that across a team of 20 engineers, and you are looking at 4 hours of collective idle time daily — all because CI/CD pipelines cannot be tested locally, are locked to vendor-specific YAML syntax, and fail unpredictably between environments.</p><p>Dagger, created by Solomon Hykes (co-founder of Docker), takes a different approach: it treats CI/CD pipelines as regular code. Instead of wrestling with GitHub Actions YAML or GitLab CI DSL, you write your automation in Go, Python, or TypeScript. The pipeline runs inside containers using the same BuildKit engine that powers Docker, giving you identical behavior on your laptop and in production.</p><p>With 15,829 GitHub stars, 878 forks, and 304 contributors as of May 2026, Dagger has established itself as a serious alternative to traditional CI/CD. This <strong>Dagger tutorial</strong> walks through a complete Dagger setup, compares it head-to-head against GitHub Actions, GitLab CI, and Jenkins, and covers production hardening patterns you can deploy today.</p><p><img alt="Dagger CI/CD Engine Architecture" loading=lazy src=https://docs.dagger.io/img/dagger-overview.svg></p><h2 id=what-is-dagger>What Is Dagger?</h2><p>A programmable CI/CD engine that executes automation pipelines inside OCI containers, letting developers define build, test, and deploy logic in general-purpose programming languages instead of YAML or proprietary DSLs.</p><h3 id=the-core-value-proposition>The Core Value Proposition</h3><p>Dagger embodies the <strong>CI/CD as code</strong> (also called <strong>cicd as code</strong>) philosophy — your build, test, and deploy logic lives in the same repository as your application, written in the same languages your team already uses.</p><ul><li><strong>Write once, run anywhere</strong>: The same pipeline executes identically on a developer&rsquo;s laptop, in GitHub Actions, in GitLab CI, or on a bare-metal server.</li><li><strong>Language-native SDKs</strong>: First-class support for Go, Python, TypeScript, PHP, Java, .NET, Elixir, and Rust — with autocomplete, type checking, and unit testing.</li><li><strong>Container-native execution</strong>: Every step runs in an isolated container, eliminating &ldquo;works on my machine&rdquo; discrepancies.</li><li><strong>Intelligent caching</strong>: Content-addressed caching at the operation level means unchanged steps never re-run.</li><li><strong>Observable by default</strong>: Every operation emits OpenTelemetry traces viewable in the terminal or exported to Jaeger, Honeycomb, or any OTel backend.</li></ul><p><img alt="Dagger SDKs and Languages" loading=lazy src=https://raw.githubusercontent.com/dagger/dagger/main/docs/current/sdk/go/snippets/get-started/step2/test/main.go.image.svg></p><h2 id=how-dagger-works>How Dagger Works</h2><h3 id=architecture-overview>Architecture Overview</h3><p>Dagger&rsquo;s architecture consists of four layers: 1. <strong>Your Pipeline Code</strong> (Go / Python / TypeScript) — defines the logic using Dagger&rsquo;s SDK.
+aliases:</p>
+<ul>
+<li>/posts/dagger/-</li>
+</ul>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>The average developer pushes 3.2 commits per day and waits 12 minutes for each CI run to finish. Multiply that across a team of 20 engineers, and you are looking at 4 hours of collective idle time daily — all because CI/CD pipelines cannot be tested locally, are locked to vendor-specific YAML syntax, and fail unpredictably between environments.</p>
+<p>Dagger, created by Solomon Hykes (co-founder of Docker), takes a different approach: it treats CI/CD pipelines as regular code. Instead of wrestling with GitHub Actions YAML or GitLab CI DSL, you write your automation in Go, Python, or TypeScript. The pipeline runs inside containers using the same BuildKit engine that powers Docker, giving you identical behavior on your laptop and in production.</p>
+<p>With 15,829 GitHub stars, 878 forks, and 304 contributors as of May 2026, Dagger has established itself as a serious alternative to traditional CI/CD. This <strong>Dagger tutorial</strong> walks through a complete Dagger setup, compares it head-to-head against GitHub Actions, GitLab CI, and Jenkins, and covers production hardening patterns you can deploy today.</p>
+<p><img alt="Dagger CI/CD Engine Architecture" loading="lazy" src="https://docs.dagger.io/img/dagger-overview.svg"></p>
+<h2 id="what-is-dagger">What Is Dagger?</h2>
+<p>A programmable CI/CD engine that executes automation pipelines inside OCI containers, letting developers define build, test, and deploy logic in general-purpose programming languages instead of YAML or proprietary DSLs.</p>
+<h3 id="the-core-value-proposition">The Core Value Proposition</h3>
+<p>Dagger embodies the <strong>CI/CD as code</strong> (also called <strong>cicd as code</strong>) philosophy — your build, test, and deploy logic lives in the same repository as your application, written in the same languages your team already uses.</p>
+<ul>
+<li><strong>Write once, run anywhere</strong>: The same pipeline executes identically on a developer&rsquo;s laptop, in GitHub Actions, in GitLab CI, or on a bare-metal server.</li>
+<li><strong>Language-native SDKs</strong>: First-class support for Go, Python, TypeScript, PHP, Java, .NET, Elixir, and Rust — with autocomplete, type checking, and unit testing.</li>
+<li><strong>Container-native execution</strong>: Every step runs in an isolated container, eliminating &ldquo;works on my machine&rdquo; discrepancies.</li>
+<li><strong>Intelligent caching</strong>: Content-addressed caching at the operation level means unchanged steps never re-run.</li>
+<li><strong>Observable by default</strong>: Every operation emits OpenTelemetry traces viewable in the terminal or exported to Jaeger, Honeycomb, or any OTel backend.</li>
+</ul>
+<p><img alt="Dagger SDKs and Languages" loading="lazy" src="https://raw.githubusercontent.com/dagger/dagger/main/docs/current/sdk/go/snippets/get-started/step2/test/main.go.image.svg"></p>
+<h2 id="how-dagger-works">How Dagger Works</h2>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>Dagger&rsquo;s architecture consists of four layers: 1. <strong>Your Pipeline Code</strong> (Go / Python / TypeScript) — defines the logic using Dagger&rsquo;s SDK.
 2. <strong>Dagger SDK</strong> — generates GraphQL queries from native function calls.
 3. <strong>Dagger Engine</strong> — a BuildKit-based container runtime that executes the pipeline graph.
-4. <strong>Container Runtime</strong> — Docker, Podman, or any OCI-compliant runtime hosting the engine.</p><pre tabindex=0><code>┌─────────────────────────────────────────────────────────────┐
+4. <strong>Container Runtime</strong> — Docker, Podman, or any OCI-compliant runtime hosting the engine.</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
 │  Pipeline Code (Go/Python/TS)                               │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐                 │
 │  │  Build   │  │   Test   │  │  Deploy  │                 │
@@ -56,67 +151,92 @@ aliases:</p><ul><li>/posts/dagger/-</li></ul><hr><h2 id=introduction>Introductio
 ┌─────────────────────────────────────────────────────────────┐
 │  Docker / Podman / OCI Runtime                              │
 └─────────────────────────────────────────────────────────────┘
-</code></pre><h3 id=the-execution-model>The Execution Model</h3><p>When you run a Dagger pipeline, the SDK translates your function calls into a Directed Acyclic Graph (DAG) of operations. Each node in the DAG represents a container operation: pulling an image, copying files, running a command, or exporting an artifact. The Dagger Engine schedules these operations with automatic parallelism and caches every intermediate result.</p><pre tabindex=0><code># Example DAG execution flow
+</code></pre><h3 id="the-execution-model">The Execution Model</h3>
+<p>When you run a Dagger pipeline, the SDK translates your function calls into a Directed Acyclic Graph (DAG) of operations. Each node in the DAG represents a container operation: pulling an image, copying files, running a command, or exporting an artifact. The Dagger Engine schedules these operations with automatic parallelism and caches every intermediate result.</p>
+<pre tabindex="0"><code># Example DAG execution flow
 Pull base image ──┬── Install deps ──┬── Run tests ──┬── Export binary
                   │                   │                │
                   └── Cache hit? Skip  └── Cache hit?   └── Cache hit?
-</code></pre><h3 id=key-concepts>Key Concepts</h3><p>| Concept | Description |
-|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="key-concepts">Key Concepts</h3>
+<p>| Concept | Description |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Module</strong> | A reusable package of Dagger functions defined in a <code>dagger.json</code> manifest |
 | <strong>Function</strong> | A typed, sandboxed operation that accepts inputs and produces outputs |
 | <strong>Directory</strong> | A content-addressed filesystem tree passed between functions |
 | <strong>Container</strong> | An OCI container image or running container manipulated through the API |
 | <strong>Secret</strong> | A secure value (token, key) that is never logged or exposed in traces |
-| <strong>Service</strong> | A long-running container exposed as a network endpoint for integration tests |</p><h2 id=installation--setup>Installation & Setup</h2><h3 id=prerequisites>Prerequisites</h3><ul><li>Docker Engine 24.0+ or Podman 4.0+ running locally</li><li>A container runtime accessible via the default socket</li></ul><h3 id=install-the-dagger-cli>Install the Dagger CLI</h3><p><strong>macOS (Homebrew):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install via Homebrew tap</span>
-</span></span><span style=display:flex><span>brew install dagger/tap/dagger
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify the installation</span>
-</span></span><span style=display:flex><span>dagger version
-</span></span><span style=display:flex><span><span style=color:#75715e># Expected: dagger v0.19.7 (registry.dagger.io/engine:v0.19.7)</span>
-</span></span></code></pre></div><p><strong>Linux:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install using the official install script</span>
-</span></span><span style=display:flex><span>curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR<span style=color:#f92672>=</span>/usr/local/bin sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or with sudo for system-wide installation</span>
-</span></span><span style=display:flex><span>curl -fsSL https://dl.dagger.io/dagger/install.sh | <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  DAGGER_VERSION<span style=color:#f92672>=</span>0.19.7 BIN_DIR<span style=color:#f92672>=</span>/usr/local/bin sudo -E sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify</span>
-</span></span><span style=display:flex><span>dagger version
-</span></span></code></pre></div><p><strong>Windows:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-powershell data-lang=powershell><span style=display:flex><span><span style=color:#75715e># Install via scoop</span>
-</span></span><span style=display:flex><span>scoop bucket add dagger https<span style=color:#960050;background-color:#1e0010>:</span>//github.com/dagger/scoop-bucket
-</span></span><span style=display:flex><span>scoop install dagger
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify</span>
-</span></span><span style=display:flex><span>dagger version
-</span></span></code></pre></div><h3 id=initialize-your-first-project>Initialize Your First Project</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create a new Dagger module</span>
-</span></span><span style=display:flex><span>dagger init --sdk<span style=color:#f92672>=</span>python --source<span style=color:#f92672>=</span>./dagger my-pipeline
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or with Go</span>
-</span></span><span style=display:flex><span>dagger init --sdk<span style=color:#f92672>=</span>go --source<span style=color:#f92672>=</span>./dagger my-pipeline
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or with TypeScript</span>
-</span></span><span style=display:flex><span>dagger init --sdk<span style=color:#f92672>=</span>typescript --source<span style=color:#f92672>=</span>./dagger my-pipeline
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># The command creates: # ├── dagger/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># │   └── src/main.py (or main.go, or index.ts)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ├── dagger.json</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># └── .gitignore</span>
-</span></span></code></pre></div><h3 id=quick-local-test>Quick Local Test</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># dagger/src/main.py — A minimal Dagger pipeline</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> dagger
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> dagger <span style=color:#f92672>import</span> dag, function, object_type
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@object_type</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyPipeline</span>: <span style=color:#a6e22e>@function</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>hello</span>(self, name: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;World&#34;</span>) <span style=color:#f92672>-&gt;</span> str: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>await</span> dag<span style=color:#f92672>.</span>container()
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>from_(<span style=color:#e6db74>&#34;alpine:latest&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_exec([<span style=color:#e6db74>&#34;echo&#34;</span>, <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Hello, </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>!&#34;</span>])
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>stdout()
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Run the function locally</span>
-</span></span><span style=display:flex><span>dagger call hello --name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Dagger&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Output: # Hello, Dagger!</span>
-</span></span></code></pre></div><h2 id=integration-with-docker-go-python-and-typescript>Integration with Docker, Go, Python, and TypeScript</h2><h3 id=docker-integration--building-and-pushing-images>Docker Integration — Building and Pushing Images</h3><p>Dagger natively manipulates containers through the Docker ecosystem. Here is a complete pipeline that builds, tags, and pushes a Docker image: `````python</p><h1 id=daggersrcmainpy--build-and-push-a-docker-image>dagger/src/main.py — Build and push a Docker image</h1><p>import dagger
-from dagger import dag, function, object_type, Directory</p><p>@object_type
+| <strong>Service</strong> | A long-running container exposed as a network endpoint for integration tests |</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Docker Engine 24.0+ or Podman 4.0+ running locally</li>
+<li>A container runtime accessible via the default socket</li>
+</ul>
+<h3 id="install-the-dagger-cli">Install the Dagger CLI</h3>
+<p><strong>macOS (Homebrew):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install via Homebrew tap</span>
+</span></span><span style="display:flex;"><span>brew install dagger/tap/dagger
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify the installation</span>
+</span></span><span style="display:flex;"><span>dagger version
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: dagger v0.19.7 (registry.dagger.io/engine:v0.19.7)</span>
+</span></span></code></pre></div><p><strong>Linux:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install using the official install script</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR<span style="color:#f92672">=</span>/usr/local/bin sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or with sudo for system-wide installation</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://dl.dagger.io/dagger/install.sh | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  DAGGER_VERSION<span style="color:#f92672">=</span>0.19.7 BIN_DIR<span style="color:#f92672">=</span>/usr/local/bin sudo -E sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify</span>
+</span></span><span style="display:flex;"><span>dagger version
+</span></span></code></pre></div><p><strong>Windows:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Install via scoop</span>
+</span></span><span style="display:flex;"><span>scoop bucket add dagger https<span style="color:#960050;background-color:#1e0010">:</span>//github.com/dagger/scoop-bucket
+</span></span><span style="display:flex;"><span>scoop install dagger
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify</span>
+</span></span><span style="display:flex;"><span>dagger version
+</span></span></code></pre></div><h3 id="initialize-your-first-project">Initialize Your First Project</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a new Dagger module</span>
+</span></span><span style="display:flex;"><span>dagger init --sdk<span style="color:#f92672">=</span>python --source<span style="color:#f92672">=</span>./dagger my-pipeline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or with Go</span>
+</span></span><span style="display:flex;"><span>dagger init --sdk<span style="color:#f92672">=</span>go --source<span style="color:#f92672">=</span>./dagger my-pipeline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or with TypeScript</span>
+</span></span><span style="display:flex;"><span>dagger init --sdk<span style="color:#f92672">=</span>typescript --source<span style="color:#f92672">=</span>./dagger my-pipeline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The command creates: # ├── dagger/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │   └── src/main.py (or main.go, or index.ts)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ├── dagger.json</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># └── .gitignore</span>
+</span></span></code></pre></div><h3 id="quick-local-test">Quick Local Test</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># dagger/src/main.py — A minimal Dagger pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> dagger
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dagger <span style="color:#f92672">import</span> dag, function, object_type
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@object_type</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyPipeline</span>: <span style="color:#a6e22e">@function</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello</span>(self, name: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;World&#34;</span>) <span style="color:#f92672">-&gt;</span> str: <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> dag<span style="color:#f92672">.</span>container()
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>from_(<span style="color:#e6db74">&#34;alpine:latest&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_exec([<span style="color:#e6db74">&#34;echo&#34;</span>, <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Hello, </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">!&#34;</span>])
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>stdout()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the function locally</span>
+</span></span><span style="display:flex;"><span>dagger call hello --name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Dagger&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: # Hello, Dagger!</span>
+</span></span></code></pre></div><h2 id="integration-with-docker-go-python-and-typescript">Integration with Docker, Go, Python, and TypeScript</h2>
+<h3 id="docker-integration--building-and-pushing-images">Docker Integration — Building and Pushing Images</h3>
+<p>Dagger natively manipulates containers through the Docker ecosystem. Here is a complete pipeline that builds, tags, and pushes a Docker image: `````python</p>
+<h1 id="daggersrcmainpy--build-and-push-a-docker-image">dagger/src/main.py — Build and push a Docker image</h1>
+<p>import dagger
+from dagger import dag, function, object_type, Directory</p>
+<p>@object_type
 class CiPipeline: @function
 async def build_and_push(
 self,
@@ -126,14 +246,16 @@ username: str,
 password: dagger.Secret,
 repository: str,
 tag: str = &ldquo;latest&rdquo;
-) -> str: # Build the container from a Dockerfile in the source directory
+) -&gt; str: # Build the container from a Dockerfile in the source directory
 image = await dag.container()
-.build(source, dockerfile=&ldquo;Dockerfile&rdquo;)</p><pre><code>    # Publish to a container registry
+.build(source, dockerfile=&ldquo;Dockerfile&rdquo;)</p>
+<pre><code>    # Publish to a container registry
     digest = await image.with_registry_auth(registry, username, password)
         .publish(f&quot;{registry}/{repository}:{tag}&quot;)
 
     return digest
-</code></pre><pre tabindex=0><code>
+</code></pre>
+<pre tabindex="0"><code>
 `````bash
 # Run the build-and-push function
 dagger call build-and-push \
@@ -143,141 +265,180 @@ dagger call build-and-push \
   --password=env:GITHUB_TOKEN \
   --repository=my-org/my-app \
   --tag=v1.2.3
-</code></pre><h3 id=go-sdk--full-ci-pipeline>Go SDK — Full CI Pipeline</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// dagger/main.go — Go-based CI pipeline with testing</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>dagger</span> <span style=color:#e6db74>&#34;dagger.io/dagger&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;context&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;fmt&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;os&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>CiPipeline</span> <span style=color:#66d9ef>struct</span>{}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// Run executes the full CI pipeline: lint → test → build</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>m</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>CiPipeline</span>) <span style=color:#a6e22e>Run</span>(<span style=color:#a6e22e>ctx</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Context</span>, <span style=color:#a6e22e>source</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>dagger</span>.<span style=color:#a6e22e>Directory</span>) (<span style=color:#f92672>*</span><span style=color:#a6e22e>dagger</span>.<span style=color:#a6e22e>File</span>, <span style=color:#66d9ef>error</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// Define a Go builder container with the source mounted</span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>builder</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>dag</span>.<span style=color:#a6e22e>Container</span>().
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>From</span>(<span style=color:#e6db74>&#34;golang:1.24-alpine&#34;</span>).
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>WithMountedDirectory</span>(<span style=color:#e6db74>&#34;/src&#34;</span>, <span style=color:#a6e22e>source</span>).
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>WithWorkdir</span>(<span style=color:#e6db74>&#34;/src&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// Run linting</span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lint</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>builder</span>.<span style=color:#a6e22e>WithExec</span>([]<span style=color:#66d9ef>string</span>{<span style=color:#e6db74>&#34;go&#34;</span>, <span style=color:#e6db74>&#34;vet&#34;</span>, <span style=color:#e6db74>&#34;./...&#34;</span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// Run tests with race detection</span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>tested</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>lint</span>.<span style=color:#a6e22e>WithExec</span>([]<span style=color:#66d9ef>string</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;go&#34;</span>, <span style=color:#e6db74>&#34;test&#34;</span>, <span style=color:#e6db74>&#34;-race&#34;</span>, <span style=color:#e6db74>&#34;-coverprofile=coverage.out&#34;</span>, <span style=color:#e6db74>&#34;./...&#34;</span>,
-</span></span><span style=display:flex><span>    })
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// Build the binary</span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>binary</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>tested</span>.<span style=color:#a6e22e>WithExec</span>([]<span style=color:#66d9ef>string</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;go&#34;</span>, <span style=color:#e6db74>&#34;build&#34;</span>, <span style=color:#e6db74>&#34;-ldflags=-s -w&#34;</span>, <span style=color:#e6db74>&#34;-o&#34;</span>, <span style=color:#e6db74>&#34;bin/myapp&#34;</span>, <span style=color:#e6db74>&#34;./cmd/myapp&#34;</span>,
-</span></span><span style=display:flex><span>    })
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// Extract the built binary as a file</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>binary</span>.<span style=color:#a6e22e>File</span>(<span style=color:#e6db74>&#34;/src/bin/myapp&#34;</span>), <span style=color:#66d9ef>nil</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Run the Go pipeline from the project root</span>
-</span></span><span style=display:flex><span>dagger call run --source<span style=color:#f92672>=</span>. -o ./bin/myapp
-</span></span></code></pre></div><h3 id=python-sdk--integration-testing-with-services>Python SDK — Integration Testing with Services</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># dagger/src/main.py — Integration test with PostgreSQL service</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> dagger
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> dagger <span style=color:#f92672>import</span> dag, function, object_type, Directory, Service
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@object_type</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestPipeline</span>: <span style=color:#a6e22e>@function</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>integration_test</span>(self, source: Directory) <span style=color:#f92672>-&gt;</span> str: <span style=color:#75715e># Start a PostgreSQL service container</span>
-</span></span><span style=display:flex><span>        postgres <span style=color:#f92672>=</span> dag<span style=color:#f92672>.</span>service(
-</span></span><span style=display:flex><span>            dag<span style=color:#f92672>.</span>container()
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>from_(<span style=color:#e6db74>&#34;postgres:16-alpine&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_env_variable(<span style=color:#e6db74>&#34;POSTGRES_USER&#34;</span>, <span style=color:#e6db74>&#34;test&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_env_variable(<span style=color:#e6db74>&#34;POSTGRES_PASSWORD&#34;</span>, <span style=color:#e6db74>&#34;test&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_env_variable(<span style=color:#e6db74>&#34;POSTGRES_DB&#34;</span>, <span style=color:#e6db74>&#34;testdb&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_exposed_port(<span style=color:#ae81ff>5432</span>)
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Run integration tests against the database</span>
-</span></span><span style=display:flex><span>        test_result <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> (
-</span></span><span style=display:flex><span>            dag<span style=color:#f92672>.</span>container()
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>from_(<span style=color:#e6db74>&#34;python:3.12-slim&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_mounted_directory(<span style=color:#e6db74>&#34;/app&#34;</span>, source)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_service_binding(<span style=color:#e6db74>&#34;db&#34;</span>, postgres)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_env_variable(<span style=color:#e6db74>&#34;DATABASE_URL&#34;</span>, <span style=color:#e6db74>&#34;postgresql://test:test@db:5432/testdb&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_workdir(<span style=color:#e6db74>&#34;/app&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_exec([<span style=color:#e6db74>&#34;pip&#34;</span>, <span style=color:#e6db74>&#34;install&#34;</span>, <span style=color:#e6db74>&#34;-r&#34;</span>, <span style=color:#e6db74>&#34;requirements-test.txt&#34;</span>])
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>with_exec([<span style=color:#e6db74>&#34;pytest&#34;</span>, <span style=color:#e6db74>&#34;tests/integration&#34;</span>, <span style=color:#e6db74>&#34;-v&#34;</span>, <span style=color:#e6db74>&#34;--tb=short&#34;</span>])
-</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span>stdout()
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> test_result
-</span></span></code></pre></div><h3 id=typescript-sdk--multi-platform-build>TypeScript SDK — Multi-Platform Build</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// dagger/src/index.ts — Multi-platform container build
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>dag</span>, <span style=color:#66d9ef>function</span>, <span style=color:#a6e22e>objectType</span>, <span style=color:#a6e22e>Directory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@dagger.io/dagger&#34;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@objectType</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BuildPipeline</span> {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>@function</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>multiPlatformBuild</span>(<span style=color:#a6e22e>source</span>: <span style=color:#66d9ef>Directory</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>string</span><span style=color:#960050;background-color:#1e0010>[]</span>&gt; {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>platforms</span> <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;linux/amd64&#34;</span>, <span style=color:#e6db74>&#34;linux/arm64&#34;</span>];
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>image</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>dag</span>.<span style=color:#a6e22e>container</span>().<span style=color:#a6e22e>build</span>(<span style=color:#a6e22e>source</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>digests</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>Promise</span>.<span style=color:#a6e22e>all</span>(
-</span></span><span style=display:flex><span>            <span style=color:#a6e22e>platforms</span>.<span style=color:#a6e22e>map</span>(<span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>platform</span>) <span style=color:#f92672>=&gt;</span> {
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>image</span>
-</span></span><span style=display:flex><span>                    .<span style=color:#a6e22e>platform</span>(<span style=color:#a6e22e>platform</span>)
-</span></span><span style=display:flex><span>                    .<span style=color:#a6e22e>publish</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>ghcr</span>.<span style=color:#a6e22e>io</span><span style=color:#f92672>/</span><span style=color:#a6e22e>my</span><span style=color:#f92672>-</span><span style=color:#a6e22e>org</span><span style=color:#f92672>/</span><span style=color:#a6e22e>my</span><span style=color:#f92672>-</span><span style=color:#a6e22e>app</span>:<span style=color:#66d9ef>$</span>{<span style=color:#a6e22e>platform</span>.<span style=color:#a6e22e>replace</span>(<span style=color:#e6db74>&#34;/&#34;</span>, <span style=color:#e6db74>&#34;-&#34;</span>)}<span style=color:#e6db74>````</span>);
-</span></span><span style=display:flex><span>            })
-</span></span><span style=display:flex><span>        );
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>digests</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks / Real-World Use Cases</h2><h3 id=caching-performance>Caching Performance</h3><p>Dagger&rsquo;s content-addressed cache provides measurable speedups over traditional CI systems. In a controlled benchmark building a Go microservice (approx. 50 dependencies) across 10 consecutive runs: <img alt="Dagger Cache Performance Comparison" loading=lazy src="https://dagger.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdagger-call.d6f2e4e8.png&w=3840&q=75"></p><p>| Scenario | GitHub Actions | GitLab CI | Dagger (local cache) | Dagger (shared cache) |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="go-sdk--full-ci-pipeline">Go SDK — Full CI Pipeline</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// dagger/main.go — Go-based CI pipeline with testing</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dagger</span> <span style="color:#e6db74">&#34;dagger.io/dagger&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">CiPipeline</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Run executes the full CI pipeline: lint → test → build</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CiPipeline</span>) <span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">source</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">dagger</span>.<span style="color:#a6e22e">Directory</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">dagger</span>.<span style="color:#a6e22e">File</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Define a Go builder container with the source mounted</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">builder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">dag</span>.<span style="color:#a6e22e">Container</span>().
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">From</span>(<span style="color:#e6db74">&#34;golang:1.24-alpine&#34;</span>).
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">WithMountedDirectory</span>(<span style="color:#e6db74">&#34;/src&#34;</span>, <span style="color:#a6e22e">source</span>).
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">WithWorkdir</span>(<span style="color:#e6db74">&#34;/src&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Run linting</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">lint</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">builder</span>.<span style="color:#a6e22e">WithExec</span>([]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;go&#34;</span>, <span style="color:#e6db74">&#34;vet&#34;</span>, <span style="color:#e6db74">&#34;./...&#34;</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Run tests with race detection</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">tested</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">lint</span>.<span style="color:#a6e22e">WithExec</span>([]<span style="color:#66d9ef">string</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;go&#34;</span>, <span style="color:#e6db74">&#34;test&#34;</span>, <span style="color:#e6db74">&#34;-race&#34;</span>, <span style="color:#e6db74">&#34;-coverprofile=coverage.out&#34;</span>, <span style="color:#e6db74">&#34;./...&#34;</span>,
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Build the binary</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">binary</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tested</span>.<span style="color:#a6e22e">WithExec</span>([]<span style="color:#66d9ef">string</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;go&#34;</span>, <span style="color:#e6db74">&#34;build&#34;</span>, <span style="color:#e6db74">&#34;-ldflags=-s -w&#34;</span>, <span style="color:#e6db74">&#34;-o&#34;</span>, <span style="color:#e6db74">&#34;bin/myapp&#34;</span>, <span style="color:#e6db74">&#34;./cmd/myapp&#34;</span>,
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Extract the built binary as a file</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">binary</span>.<span style="color:#a6e22e">File</span>(<span style="color:#e6db74">&#34;/src/bin/myapp&#34;</span>), <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the Go pipeline from the project root</span>
+</span></span><span style="display:flex;"><span>dagger call run --source<span style="color:#f92672">=</span>. -o ./bin/myapp
+</span></span></code></pre></div><h3 id="python-sdk--integration-testing-with-services">Python SDK — Integration Testing with Services</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># dagger/src/main.py — Integration test with PostgreSQL service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> dagger
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dagger <span style="color:#f92672">import</span> dag, function, object_type, Directory, Service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@object_type</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestPipeline</span>: <span style="color:#a6e22e">@function</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">integration_test</span>(self, source: Directory) <span style="color:#f92672">-&gt;</span> str: <span style="color:#75715e"># Start a PostgreSQL service container</span>
+</span></span><span style="display:flex;"><span>        postgres <span style="color:#f92672">=</span> dag<span style="color:#f92672">.</span>service(
+</span></span><span style="display:flex;"><span>            dag<span style="color:#f92672">.</span>container()
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>from_(<span style="color:#e6db74">&#34;postgres:16-alpine&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_env_variable(<span style="color:#e6db74">&#34;POSTGRES_USER&#34;</span>, <span style="color:#e6db74">&#34;test&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_env_variable(<span style="color:#e6db74">&#34;POSTGRES_PASSWORD&#34;</span>, <span style="color:#e6db74">&#34;test&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_env_variable(<span style="color:#e6db74">&#34;POSTGRES_DB&#34;</span>, <span style="color:#e6db74">&#34;testdb&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_exposed_port(<span style="color:#ae81ff">5432</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Run integration tests against the database</span>
+</span></span><span style="display:flex;"><span>        test_result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> (
+</span></span><span style="display:flex;"><span>            dag<span style="color:#f92672">.</span>container()
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>from_(<span style="color:#e6db74">&#34;python:3.12-slim&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_mounted_directory(<span style="color:#e6db74">&#34;/app&#34;</span>, source)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_service_binding(<span style="color:#e6db74">&#34;db&#34;</span>, postgres)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_env_variable(<span style="color:#e6db74">&#34;DATABASE_URL&#34;</span>, <span style="color:#e6db74">&#34;postgresql://test:test@db:5432/testdb&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_workdir(<span style="color:#e6db74">&#34;/app&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_exec([<span style="color:#e6db74">&#34;pip&#34;</span>, <span style="color:#e6db74">&#34;install&#34;</span>, <span style="color:#e6db74">&#34;-r&#34;</span>, <span style="color:#e6db74">&#34;requirements-test.txt&#34;</span>])
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>with_exec([<span style="color:#e6db74">&#34;pytest&#34;</span>, <span style="color:#e6db74">&#34;tests/integration&#34;</span>, <span style="color:#e6db74">&#34;-v&#34;</span>, <span style="color:#e6db74">&#34;--tb=short&#34;</span>])
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span>stdout()
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> test_result
+</span></span></code></pre></div><h3 id="typescript-sdk--multi-platform-build">TypeScript SDK — Multi-Platform Build</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// dagger/src/index.ts — Multi-platform container build
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">dag</span>, <span style="color:#66d9ef">function</span>, <span style="color:#a6e22e">objectType</span>, <span style="color:#a6e22e">Directory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@dagger.io/dagger&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@objectType</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BuildPipeline</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@function</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">multiPlatformBuild</span>(<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Directory</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">string</span><span style="color:#960050;background-color:#1e0010">[]</span>&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">platforms</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;linux/amd64&#34;</span>, <span style="color:#e6db74">&#34;linux/arm64&#34;</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">image</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dag</span>.<span style="color:#a6e22e">container</span>().<span style="color:#a6e22e">build</span>(<span style="color:#a6e22e">source</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">digests</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">Promise</span>.<span style="color:#a6e22e">all</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">platforms</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">platform</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">image</span>
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">platform</span>(<span style="color:#a6e22e">platform</span>)
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">publish</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">ghcr</span>.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span><span style="color:#a6e22e">my</span><span style="color:#f92672">-</span><span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">my</span><span style="color:#f92672">-</span><span style="color:#a6e22e">app</span>:<span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">platform</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#e6db74">&#34;-&#34;</span>)}<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">digests</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="caching-performance">Caching Performance</h3>
+<p>Dagger&rsquo;s content-addressed cache provides measurable speedups over traditional CI systems. In a controlled benchmark building a Go microservice (approx. 50 dependencies) across 10 consecutive runs: <img alt="Dagger Cache Performance Comparison" loading="lazy" src="https://dagger.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdagger-call.d6f2e4e8.png&w=3840&q=75"></p>
+<p>| Scenario | GitHub Actions | GitLab CI | Dagger (local cache) | Dagger (shared cache) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Cold build | 4m 12s | 3m 48s | 4m 05s | 4m 05s |
 | 2nd run (no code changes) | 3m 55s | 3m 30s | 8s | 8s |
 | Dependency-only change | 4m 05s | 3m 42s | 1m 15s | 1m 15s |
-| Source-only change | 3m 50s | 3m 35s | 45s | 45s |</p><p>The key insight: GitHub Actions and GitLab CI cache Docker layers and dependency directories, but they re-execute the entire job graph. Dagger caches at the individual operation level, so only changed operations re-run.</p><h3 id=case-study-replacing-700-lines-of-github-actions-yaml>Case Study: Replacing 700 Lines of GitHub Actions YAML</h3><p>One engineering team replaced a 700-line GitHub Actions workflow (building, testing, pushing, and deploying 3 microservices) with a 180-line Dagger pipeline in Python. Results after 30 days: - Local pipeline runs enabled: developers test CI changes before pushing (previously impossible)</p><ul><li>Average CI debugging time: down from 45 minutes to 5 minutes per developer per week</li><li>CI minutes consumption: reduced 34% due to intelligent caching</li><li>Pipeline code duplication: eliminated through shared Dagger modules</li></ul><h3 id=daggerverse-the-module-ecosystem>Daggerverse: The Module Ecosystem</h3><p>Daggerverse (<a href=https://daggerverse.dev>daggerverse.dev</a>) is a community registry of reusable modules. As of May 2026, it hosts 800+ modules covering: - Language toolchains: Go, Python, Node.js, Rust builds</p><ul><li>Cloud deployments: AWS, GCP, Azure, Fly.io</li><li>Security scanning: Trivy, Snyk, SLSA verification</li><li>Testing: k6 load tests, Playwright browser tests</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install and use a module from Daggerverse</span>
-</span></span><span style=display:flex><span>dagger -m github.com/kpenfound/blueprints/go call build <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --source<span style=color:#f92672>=</span>. --args<span style=color:#f92672>=</span>./cmd/myapp
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># List installed modules</span>
-</span></span><span style=display:flex><span>dagger module use github.com/Dudesons/daggerverse/node
-</span></span></code></pre></div><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><h3 id=secret-management>Secret Management</h3><p>Never pass secrets as plain strings. Dagger&rsquo;s <code>Secret</code> type ensures sensitive values are masked in logs and traces: `````python
+| Source-only change | 3m 50s | 3m 35s | 45s | 45s |</p>
+<p>The key insight: GitHub Actions and GitLab CI cache Docker layers and dependency directories, but they re-execute the entire job graph. Dagger caches at the individual operation level, so only changed operations re-run.</p>
+<h3 id="case-study-replacing-700-lines-of-github-actions-yaml">Case Study: Replacing 700 Lines of GitHub Actions YAML</h3>
+<p>One engineering team replaced a 700-line GitHub Actions workflow (building, testing, pushing, and deploying 3 microservices) with a 180-line Dagger pipeline in Python. Results after 30 days: - Local pipeline runs enabled: developers test CI changes before pushing (previously impossible)</p>
+<ul>
+<li>Average CI debugging time: down from 45 minutes to 5 minutes per developer per week</li>
+<li>CI minutes consumption: reduced 34% due to intelligent caching</li>
+<li>Pipeline code duplication: eliminated through shared Dagger modules</li>
+</ul>
+<h3 id="daggerverse-the-module-ecosystem">Daggerverse: The Module Ecosystem</h3>
+<p>Daggerverse (<a href="https://daggerverse.dev">daggerverse.dev</a>) is a community registry of reusable modules. As of May 2026, it hosts 800+ modules covering: - Language toolchains: Go, Python, Node.js, Rust builds</p>
+<ul>
+<li>Cloud deployments: AWS, GCP, Azure, Fly.io</li>
+<li>Security scanning: Trivy, Snyk, SLSA verification</li>
+<li>Testing: k6 load tests, Playwright browser tests</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install and use a module from Daggerverse</span>
+</span></span><span style="display:flex;"><span>dagger -m github.com/kpenfound/blueprints/go call build <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --source<span style="color:#f92672">=</span>. --args<span style="color:#f92672">=</span>./cmd/myapp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># List installed modules</span>
+</span></span><span style="display:flex;"><span>dagger module use github.com/Dudesons/daggerverse/node
+</span></span></code></pre></div><h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="secret-management">Secret Management</h3>
+<p>Never pass secrets as plain strings. Dagger&rsquo;s <code>Secret</code> type ensures sensitive values are masked in logs and traces: `````python
 import dagger
-from dagger import dag, function, object_type, Secret</p><p>@object_type
+from dagger import dag, function, object_type, Secret</p>
+<p>@object_type
 class SecurePipeline: @function
 async def deploy(
 self,
 kubeconfig: Secret,
 image_digest: str
-) -> str: return await (
+) -&gt; str: return await (
 dag.container()
 .from_(&ldquo;bitnami/kubectl:latest&rdquo;)
-.with_mounted_secret("/root/.kube/config", kubeconfig)
+.with_mounted_secret(&quot;/root/.kube/config&quot;, kubeconfig)
 .with_exec([
 &ldquo;kubectl&rdquo;, &ldquo;set&rdquo;, &ldquo;image&rdquo;,
 &ldquo;deployment/myapp&rdquo;,
-f"myapp={image_digest}",
+f&quot;myapp={image_digest}&quot;,
 &ldquo;&ndash;namespace=production&rdquo;
 ])
 .stdout()
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 `````bash
 # Pass the secret from an environment variable
 dagger call deploy \
   --kubeconfig=file:$HOME/.kube/config \
   --image-digest=ghcr.io/my-org/my-app@sha256:abc123...
-</code></pre><h3 id=parallel-execution-patterns>Parallel Execution Patterns</h3><p>Dagger automatically parallelizes independent operations. Explicitly structure pipelines to maximize parallelism: `````python
+</code></pre><h3 id="parallel-execution-patterns">Parallel Execution Patterns</h3>
+<p>Dagger automatically parallelizes independent operations. Explicitly structure pipelines to maximize parallelism: `````python
 import asyncio
-from dagger import dag, function, object_type, Directory</p><p>@object_type
+from dagger import dag, function, object_type, Directory</p>
+<p>@object_type
 class ParallelPipeline: @function
-async def run_parallel(self, source: Directory) -> list[str]: # These three operations run in parallel automatically
+async def run_parallel(self, source: Directory) -&gt; list[str]: # These three operations run in parallel automatically
 results = await asyncio.gather(
 self.lint(source),
 self.unit_tests(source),
 self.security_scan(source),
 )
-return list(results)</p><pre><code>async def lint(self, source: Directory) -&gt; str: return await dag.container()
+return list(results)</p>
+<pre><code>async def lint(self, source: Directory) -&gt; str: return await dag.container()
         .from_(&quot;golangci/golangci-lint:latest&quot;)
         .with_mounted_directory(&quot;/src&quot;, source)
         .with_workdir(&quot;/src&quot;)
@@ -297,7 +458,8 @@ async def security_scan(self, source: Directory) -&gt; str: return await dag.con
         .with_workdir(&quot;/src&quot;)
         .with_exec([&quot;trivy&quot;, &quot;fs&quot;, &quot;--scanners=vuln&quot;, &quot;.&quot;])
         .stdout()
-</code></pre><pre tabindex=0><code>
+</code></pre>
+<pre tabindex="0"><code>
 ### Monitoring with OpenTelemetry
 
 Dagger emits OpenTelemetry traces for every operation. Export them to a backend for pipeline observability: `````bash
@@ -308,53 +470,67 @@ export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 dagger call run --source=. --otel-export=auto
 
 # View the trace in Jaeger UI at http://localhost:16686
-</code></pre><h3 id=ci-integration--github-actions>CI Integration — GitHub Actions</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/dagger.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Dagger CI</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: [<span style=color:#ae81ff>push, pull_request]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs: ci: runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps: - uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run Dagger pipeline</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>dagger/dagger-for-github@v7</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>with: version</span>: <span style=color:#e6db74>&#34;0.19.7&#34;</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>verb</span>: <span style=color:#ae81ff>call</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>module</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>args</span>: <span style=color:#ae81ff>run --source=.</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>env: GITHUB_TOKEN</span>: <span style=color:#ae81ff>$</span>
-</span></span></code></pre></div><h3 id=ci-integration--gitlab-ci>CI Integration — GitLab CI</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .gitlab-ci.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>stages</span>: [<span style=color:#ae81ff>build]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>dagger:build: stage</span>: <span style=color:#ae81ff>build</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>image</span>: <span style=color:#ae81ff>docker:24-dind</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>services</span>: - <span style=color:#ae81ff>docker:24-dind</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>variables: DAGGER_VERSION</span>: <span style=color:#e6db74>&#34;0.19.7&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>before_script</span>: - <span style=color:#ae81ff>apk add --no-cache curl</span>
-</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>script</span>: - <span style=color:#ae81ff>dagger call run --source=.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>cache: key</span>: <span style=color:#ae81ff>dagger-cache</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>paths</span>: - <span style=color:#ae81ff>.dagger-cache/</span>
-</span></span></code></pre></div><h3 id=ci-integration--jenkins>CI Integration — Jenkins</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-groovy data-lang=groovy><span style=display:flex><span><span style=color:#75715e>// Jenkinsfile
-</span></span></span><span style=display:flex><span>pipeline <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    agent any
-</span></span><span style=display:flex><span>    environment <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>        DAGGER_VERSION <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;0.19.7&#39;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>    stages <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;Run Dagger Pipeline&#39;</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>            steps <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>                sh <span style=color:#e6db74>&#39;&#39;&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                    curl -fsSL https://dl.dagger.io/dagger/install.sh | \
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        BIN_DIR=/usr/local/bin sh
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                    dagger call run --source=.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                &#39;&#39;&#39;</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | Dagger | GitHub Actions | GitLab CI | Jenkins |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="ci-integration--github-actions">CI Integration — GitHub Actions</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/dagger.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Dagger CI</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push, pull_request]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: ci: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run Dagger pipeline</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">dagger/dagger-for-github@v7</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with: version</span>: <span style="color:#e6db74">&#34;0.19.7&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">verb</span>: <span style="color:#ae81ff">call</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">module</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">args</span>: <span style="color:#ae81ff">run --source=.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env: GITHUB_TOKEN</span>: <span style="color:#ae81ff">$</span>
+</span></span></code></pre></div><h3 id="ci-integration--gitlab-ci">CI Integration — GitLab CI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .gitlab-ci.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">stages</span>: [<span style="color:#ae81ff">build]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">dagger:build: stage</span>: <span style="color:#ae81ff">build</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">docker:24-dind</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">services</span>: - <span style="color:#ae81ff">docker:24-dind</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">variables: DAGGER_VERSION</span>: <span style="color:#e6db74">&#34;0.19.7&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">before_script</span>: - <span style="color:#ae81ff">apk add --no-cache curl</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>: - <span style="color:#ae81ff">dagger call run --source=.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cache: key</span>: <span style="color:#ae81ff">dagger-cache</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">paths</span>: - <span style="color:#ae81ff">.dagger-cache/</span>
+</span></span></code></pre></div><h3 id="ci-integration--jenkins">CI Integration — Jenkins</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span><span style="color:#75715e">// Jenkinsfile
+</span></span></span><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    agent any
+</span></span><span style="display:flex;"><span>    environment <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        DAGGER_VERSION <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0.19.7&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Run Dagger Pipeline&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                sh <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    curl -fsSL https://dl.dagger.io/dagger/install.sh | \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        BIN_DIR=/usr/local/bin sh
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    dagger call run --source=.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Dagger | GitHub Actions | GitLab CI | Jenkins |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Pipeline Definition</strong> | Go/Python/TypeScript code | YAML workflows | YAML <code>.gitlab-ci.yml</code> | Groovy/Java DSL |
 | <strong>Local Execution</strong> | Native — identical to CI | Not supported (act is partial) | Limited (<code>gitlab-runner exec</code>) | Full support |
 | <strong>Caching Granularity</strong> | Per-operation (content-addressed) | Key-value + Docker layer cache | Key-value + cache layers | Plugin-dependent |
@@ -364,15 +540,89 @@ dagger call run --source=. --otel-export=auto
 | <strong>Container-Native</strong> | Yes — core design principle | Via Docker actions | Via Docker executor | Via Docker plugin |
 | <strong>Parallel Execution</strong> | Automatic DAG scheduling | Job-level + matrix builds | DAG + parallel stages | Pipeline parallel stages |
 | <strong>Observability</strong> | Built-in OpenTelemetry traces | Basic logging + third-party | Built-in metrics + monitoring | Plugin-dependent |
-| <strong>Pricing (2026)</strong> | Free (OSS) / $50/mo Team | $4/user/mo (Team) | $29/user/mo (Premium) | Free (self-hosted infra) |</p><h3 id=when-to-choose-each-tool>When to Choose Each Tool</h3><p><strong>Choose Dagger when:</strong></p><ul><li>You need to test CI/CD pipelines locally before pushing</li><li>Pipeline complexity exceeds ~50 lines of YAML</li><li>Your team already works in Go, Python, or TypeScript</li><li>Avoiding vendor lock-in is a strategic priority</li></ul><p><strong>Choose GitHub Actions when:</strong></p><ul><li>Your repositories are already on GitHub</li><li>Workflows are simple and benefit from marketplace actions</li><li>Your team prefers minimal configuration overhead</li></ul><p><strong>Choose GitLab CI when:</strong></p><ul><li>You use GitLab as your primary DevOps platform</li><li>You need built-in security scanning and compliance features</li><li>DAG pipeline execution for complex job dependencies is critical</li></ul><p><strong>Choose Jenkins when:</strong></p><ul><li>You need maximum plugin flexibility</li><li>Self-hosted infrastructure with full control is a requirement</li><li>You have Groovy expertise in-house</li></ul><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p>Dagger is not the right tool for every situation. Here is what it does not do well: <strong>Learning curve is real.</strong> Writing pipelines in Go or Python requires more upfront investment than copying a GitHub Actions YAML template. Teams without Go/TypeScript/Python fluency face a steeper adoption path.</p><p><strong>Ecosystem is smaller.</strong> With ~800 Daggerverse modules versus 20,000+ GitHub Actions, you will sometimes need to write functionality that already exists as a one-line Action step.</p><p><strong>No built-in CI scheduling.</strong> Dagger is a pipeline executor, not a CI server. You still need GitHub Actions, GitLab CI, or another trigger mechanism to run pipelines on push, PR, or schedule.</p><p><strong>Complex debugging.</strong> When a Dagger pipeline fails inside the BuildKit engine, error traces can be verbose and require understanding the DAG execution model. The TUI helps, but debugging nested container failures is harder than reading a sequential CI log.</p><p><strong>Team coordination.</strong> Dagger Cloud starts at $50/month for 10 users. The free tier only supports single-user observability, which means adding a second team member forces an upgrade for shared caching and dashboards.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><p><strong>Q: What programming languages does Dagger support?</strong>
-Dagger provides first-party SDKs for eight languages: Go, Python, TypeScript, PHP, Java, .NET, Elixir, and Rust. The Go, Python, and TypeScript SDKs are the most mature and widely used. Each SDK is generated from Dagger&rsquo;s GraphQL schema, giving you full type safety and IDE autocomplete.</p><p><strong>Q: Can Dagger replace my CI server entirely?</strong>
-No. Dagger is a pipeline execution engine, not a CI orchestration platform. You still need a trigger mechanism — GitHub Actions, GitLab CI, Jenkins, or a cron job — to invoke Dagger pipelines on events like push, pull request, or scheduled runs. Dagger replaces the YAML-based job definitions, not the CI scheduler itself.</p><p><strong>Q: How does Dagger caching compare to Docker layer caching?</strong>
-Dagger uses content-addressed caching at the operation level, which is more granular than Docker layer caching. If you change one source file, Dagger only re-runs operations that depend on that file. Docker layer caching invalidates all layers after the changed one. In practice, this means Dagger cache hits are more frequent and rebuilds are faster.</p><p><strong>Q: Is Dagger suitable for large monorepos?</strong>
-Yes, but with caveats. Dagger&rsquo;s content-addressed caching works well in monorepos because unchanged packages are skipped entirely. However, the initial DAG construction and file scanning can be slower for very large repositories (10GB+). The Dagger team is actively optimizing monorepo performance in the v0.20.x release cycle.</p><p><strong>Q: How do I migrate an existing GitHub Actions workflow to Dagger?</strong>
-Start incrementally. Port one job at a time — typically the build or test job first. Keep the GitHub Actions workflow as the orchestration layer and replace individual steps with <code>dagger call</code> invocations. This hybrid approach lets you validate Dagger locally while maintaining your existing CI infrastructure. Over time, consolidate the remaining jobs into Dagger functions.</p><p><strong>Q: What container runtimes does Dagger support?</strong>
-Dagger requires a Linux container runtime: Docker Engine 24.0+, Podman 4.0+, containerd, or any OCI-compliant runtime. On macOS and Windows, Docker Desktop or Podman Desktop is required. Rootless Docker and Podman are supported with some configuration caveats documented in the official reference.</p><p><strong>Q: Can I use Dagger for non-CI/CD automation?</strong>
-Yes. Dagger is a general-purpose container automation platform. Teams use it for local development environment setup, data processing pipelines, security scanning workflows, and infrastructure testing. Any task that involves running containers with dependencies between steps is a potential Dagger use case.</p><h2 id=conclusion>Conclusion</h2><p>Dagger brings a fundamentally different approach to CI/CD: pipelines as real code, executed in containers, with the same behavior on every machine. The 15,829 GitHub stars reflect a developer community tired of YAML debugging and vendor-specific lock-in.</p><p>For teams working in Go, Python, or TypeScript, Dagger eliminates the cognitive overhead of switching between application code and CI configuration. The local-first execution model alone — running a 4-minute CI pipeline in 8 seconds on your laptop — justifies the migration effort for teams shipping multiple times per day.</p><h3 id=action-items>Action Items</h3><ol><li>Install the Dagger CLI: <code>brew install dagger/tap/dagger</code></li><li>Run the quickstart: ````dagger init &ndash;sdk=python &ndash;source=./dagger my-pipeline```</li><li>Port your build job first — keep existing CI as the trigger layer</li><li>Join the Dagger community on <a href=https://discord.com/invite/dagger-io>Discord</a> for support</li><li>Explore the <a href=https://daggerverse.dev>Daggerverse</a> for reusable modules</li></ol><p>Follow the dibi8 DevOps Telegram group for weekly CI/CD tooling updates and production deployment patterns: <strong><a href=https://t.me/dibi8dev>https://t.me/dibi8dev</a></strong></p><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading</h2><ul><li><a href=https://docs.dagger.io/>Dagger Official Documentation</a></li><li><a href=https://github.com/dagger/dagger>Dagger GitHub Repository</a> — 15.8k stars, Apache-2.0</li><li><a href=https://daggerverse.dev>Daggerverse Module Registry</a></li><li><a href=https://docs.dagger.io/getting-started/installation>Dagger Installation Guide</a></li><li><a href=https://docs.dagger.io/core-concepts>Dagger Core Concepts</a></li><li><a href=https://docs.dagger.io/cookbook>Dagger Cookbook</a></li><li><a href=https://dagger.io/cloud>Dagger Cloud Pricing</a></li><li><a href=https://www.deployhq.com/blog/best-ci-cd-software-top-10-tools-to-know-in-2025>Dagger vs GitHub Actions: 2026 Comparison</a></li><li><a href=https://byteiota.com/dagger-ci-cd-tutorial-write-pipelines-as-code-not-yaml/>Dagger CI/CD Tutorial: Write Pipelines as Code</a></li><li><a href=https://blog.jetbrains.com/teamcity/2026/03/best-ci-tools/>Best CI/CD Tools 2026: What the Data Shows</a></li><li><a href=https://github.com/dagger/dagger-for-github>Dagger for GitHub Action</a></li><li><a href=https://www.gocodeo.com/post/what-is-dagger-a-new-take-on-ci-cd-for-kubernetes-native-devops>Dagger Architecture Deep Dive</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>Pricing (2026)</strong> | Free (OSS) / $50/mo Team | $4/user/mo (Team) | $29/user/mo (Premium) | Free (self-hosted infra) |</p>
+<h3 id="when-to-choose-each-tool">When to Choose Each Tool</h3>
+<p><strong>Choose Dagger when:</strong></p>
+<ul>
+<li>You need to test CI/CD pipelines locally before pushing</li>
+<li>Pipeline complexity exceeds ~50 lines of YAML</li>
+<li>Your team already works in Go, Python, or TypeScript</li>
+<li>Avoiding vendor lock-in is a strategic priority</li>
+</ul>
+<p><strong>Choose GitHub Actions when:</strong></p>
+<ul>
+<li>Your repositories are already on GitHub</li>
+<li>Workflows are simple and benefit from marketplace actions</li>
+<li>Your team prefers minimal configuration overhead</li>
+</ul>
+<p><strong>Choose GitLab CI when:</strong></p>
+<ul>
+<li>You use GitLab as your primary DevOps platform</li>
+<li>You need built-in security scanning and compliance features</li>
+<li>DAG pipeline execution for complex job dependencies is critical</li>
+</ul>
+<p><strong>Choose Jenkins when:</strong></p>
+<ul>
+<li>You need maximum plugin flexibility</li>
+<li>Self-hosted infrastructure with full control is a requirement</li>
+<li>You have Groovy expertise in-house</li>
+</ul>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>Dagger is not the right tool for every situation. Here is what it does not do well: <strong>Learning curve is real.</strong> Writing pipelines in Go or Python requires more upfront investment than copying a GitHub Actions YAML template. Teams without Go/TypeScript/Python fluency face a steeper adoption path.</p>
+<p><strong>Ecosystem is smaller.</strong> With ~800 Daggerverse modules versus 20,000+ GitHub Actions, you will sometimes need to write functionality that already exists as a one-line Action step.</p>
+<p><strong>No built-in CI scheduling.</strong> Dagger is a pipeline executor, not a CI server. You still need GitHub Actions, GitLab CI, or another trigger mechanism to run pipelines on push, PR, or schedule.</p>
+<p><strong>Complex debugging.</strong> When a Dagger pipeline fails inside the BuildKit engine, error traces can be verbose and require understanding the DAG execution model. The TUI helps, but debugging nested container failures is harder than reading a sequential CI log.</p>
+<p><strong>Team coordination.</strong> Dagger Cloud starts at $50/month for 10 users. The free tier only supports single-user observability, which means adding a second team member forces an upgrade for shared caching and dashboards.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: What programming languages does Dagger support?</strong>
+Dagger provides first-party SDKs for eight languages: Go, Python, TypeScript, PHP, Java, .NET, Elixir, and Rust. The Go, Python, and TypeScript SDKs are the most mature and widely used. Each SDK is generated from Dagger&rsquo;s GraphQL schema, giving you full type safety and IDE autocomplete.</p>
+<p><strong>Q: Can Dagger replace my CI server entirely?</strong>
+No. Dagger is a pipeline execution engine, not a CI orchestration platform. You still need a trigger mechanism — GitHub Actions, GitLab CI, Jenkins, or a cron job — to invoke Dagger pipelines on events like push, pull request, or scheduled runs. Dagger replaces the YAML-based job definitions, not the CI scheduler itself.</p>
+<p><strong>Q: How does Dagger caching compare to Docker layer caching?</strong>
+Dagger uses content-addressed caching at the operation level, which is more granular than Docker layer caching. If you change one source file, Dagger only re-runs operations that depend on that file. Docker layer caching invalidates all layers after the changed one. In practice, this means Dagger cache hits are more frequent and rebuilds are faster.</p>
+<p><strong>Q: Is Dagger suitable for large monorepos?</strong>
+Yes, but with caveats. Dagger&rsquo;s content-addressed caching works well in monorepos because unchanged packages are skipped entirely. However, the initial DAG construction and file scanning can be slower for very large repositories (10GB+). The Dagger team is actively optimizing monorepo performance in the v0.20.x release cycle.</p>
+<p><strong>Q: How do I migrate an existing GitHub Actions workflow to Dagger?</strong>
+Start incrementally. Port one job at a time — typically the build or test job first. Keep the GitHub Actions workflow as the orchestration layer and replace individual steps with <code>dagger call</code> invocations. This hybrid approach lets you validate Dagger locally while maintaining your existing CI infrastructure. Over time, consolidate the remaining jobs into Dagger functions.</p>
+<p><strong>Q: What container runtimes does Dagger support?</strong>
+Dagger requires a Linux container runtime: Docker Engine 24.0+, Podman 4.0+, containerd, or any OCI-compliant runtime. On macOS and Windows, Docker Desktop or Podman Desktop is required. Rootless Docker and Podman are supported with some configuration caveats documented in the official reference.</p>
+<p><strong>Q: Can I use Dagger for non-CI/CD automation?</strong>
+Yes. Dagger is a general-purpose container automation platform. Teams use it for local development environment setup, data processing pipelines, security scanning workflows, and infrastructure testing. Any task that involves running containers with dependencies between steps is a potential Dagger use case.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Dagger brings a fundamentally different approach to CI/CD: pipelines as real code, executed in containers, with the same behavior on every machine. The 15,829 GitHub stars reflect a developer community tired of YAML debugging and vendor-specific lock-in.</p>
+<p>For teams working in Go, Python, or TypeScript, Dagger eliminates the cognitive overhead of switching between application code and CI configuration. The local-first execution model alone — running a 4-minute CI pipeline in 8 seconds on your laptop — justifies the migration effort for teams shipping multiple times per day.</p>
+<h3 id="action-items">Action Items</h3>
+<ol>
+<li>Install the Dagger CLI: <code>brew install dagger/tap/dagger</code></li>
+<li>Run the quickstart: ````dagger init &ndash;sdk=python &ndash;source=./dagger my-pipeline```</li>
+<li>Port your build job first — keep existing CI as the trigger layer</li>
+<li>Join the Dagger community on <a href="https://discord.com/invite/dagger-io">Discord</a> for support</li>
+<li>Explore the <a href="https://daggerverse.dev">Daggerverse</a> for reusable modules</li>
+</ol>
+<p>Follow the dibi8 DevOps Telegram group for weekly CI/CD tooling updates and production deployment patterns: <strong><a href="https://t.me/dibi8dev">https://t.me/dibi8dev</a></strong></p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://docs.dagger.io/">Dagger Official Documentation</a></li>
+<li><a href="https://github.com/dagger/dagger">Dagger GitHub Repository</a> — 15.8k stars, Apache-2.0</li>
+<li><a href="https://daggerverse.dev">Daggerverse Module Registry</a></li>
+<li><a href="https://docs.dagger.io/getting-started/installation">Dagger Installation Guide</a></li>
+<li><a href="https://docs.dagger.io/core-concepts">Dagger Core Concepts</a></li>
+<li><a href="https://docs.dagger.io/cookbook">Dagger Cookbook</a></li>
+<li><a href="https://dagger.io/cloud">Dagger Cloud Pricing</a></li>
+<li><a href="https://www.deployhq.com/blog/best-ci-cd-software-top-10-tools-to-know-in-2025">Dagger vs GitHub Actions: 2026 Comparison</a></li>
+<li><a href="https://byteiota.com/dagger-ci-cd-tutorial-write-pipelines-as-code-not-yaml/">Dagger CI/CD Tutorial: Write Pipelines as Code</a></li>
+<li><a href="https://blog.jetbrains.com/teamcity/2026/03/best-ci-tools/">Best CI/CD Tools 2026: What the Data Shows</a></li>
+<li><a href="https://github.com/dagger/dagger-for-github">Dagger for GitHub Action</a></li>
+<li><a href="https://www.gocodeo.com/post/what-is-dagger-a-new-take-on-ci-cd-for-kubernetes-native-devops">Dagger Architecture Deep Dive</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Dagger: Programmable CI/CD with 15K+ Stars — Comparison vs GitHub Actions, GitLab CI in 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -386,20 +636,285 @@ Yes. Dagger is a general-purpose container automation platform. Teams use it for
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/dagger%22>https://dibi8.com/resources/dagger"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/dagger%22">https://dibi8.com/resources/dagger"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/dagger/>apple-container</a></li><li><a href=/ai-coding-agents/dagger/>trivy-production-security-scanner-2026</a></li><li><a href=/ai-coding-agents/dagger/>trivy-production-security-scanner-2026</a></li><li><a href=/ai-coding-agents/dagger/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/ai-coding-agents/dagger/>moneyprinterturbo-one-click-ai-video-generator</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdagger%2f&text=Example%20DAG%20execution%20flow" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdagger%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/dagger/">apple-container</a></li>
+<li><a href="/ai-coding-agents/dagger/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/ai-coding-agents/dagger/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/ai-coding-agents/dagger/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/ai-coding-agents/dagger/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdagger%2f&text=Example%20DAG%20execution%20flow" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdagger%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>

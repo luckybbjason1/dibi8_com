@@ -1,7 +1,8 @@
 ---
-title: "关于我们"
+title: "关于 Dibi8"
 description: "了解Dibi8——专注于AI工具发现与导航的平台"
 date: 2026-09-26
+layout: single
 ---
 
 # Dibi8 - AI工具目录

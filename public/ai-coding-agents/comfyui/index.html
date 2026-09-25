@@ -1,18 +1,88 @@
-<!doctype html><html lang=zh class=scroll-smooth><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Create virtual environment | Dibi8</title><meta name=description content="Technical guide and comparison"><meta name=keywords content="AI工具,人工智能,工具导航,Dibi8"><meta property="og:title" content="Create virtual environment | Dibi8 - AI工具目录"><meta property="og:description" content="Technical guide and comparison"><meta property="og:url" content="https://dibi8.com/ai-coding-agents/comfyui/"><meta property="og:type" content="website"><link rel=canonical href=https://dibi8.com/ai-coding-agents/comfyui/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css></head><body class="bg-[#f8fafc] font-sans antialiased text-gray-900"><nav class=site-nav><div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div><span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span></a><div class="hidden md:flex items-center gap-8"><a href=/ class=nav-link>首页</a>
-<a href=/categories/ class=nav-link>分类</a>
-<a href=/trending/ class=nav-link>热门</a>
-<a href=/translations/ class="nav-link flex items-center gap-2"><i class="fas fa-globe text-xs"></i>多语言</a></div><div class="flex items-center gap-3"><button onclick=openSearch() class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-<i class="fas fa-search text-xs"></i>
-搜索工具
-<kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-</button>
-<button onclick=openSearch() aria-label=搜索 class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-<i class="fas fa-search text-xs"></i>
-</button>
-<a href=/submit/ class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">提交工具</a></div></div></nav><article class="pt-28 pb-20 px-6"><div class="max-w-4xl mx-auto"><nav class="text-sm text-gray-400 mb-8"><a href=/ class=hover:text-gray-600>首页</a>
-<span class=mx-2>/</span>
-<span class=text-gray-600>Create virtual environment</span></nav><h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Create virtual environment</h1><p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p><div class="flex flex-wrap gap-2 mb-10"><a href=/tags/ai/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-<a href=/tags/tools/ class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a></div><div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"><p>title: &ldquo;Create virtual environment&rdquo;
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create virtual environment | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta property="og:title" content="Create virtual environment | Dibi8 - AI工具目录">
+    <meta property="og:description" content="Technical guide and comparison">
+    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/comfyui/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/comfyui/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/trending/" class="nav-link">热门</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
+                <i class="fas fa-search text-xs"></i>
+                搜索工具
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
+                提交工具
+            </a>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Create virtual environment</span>
+        </nav>
+        
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Create virtual environment</h1>
+        
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+        
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+        
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            <p>title: &ldquo;Create virtual environment&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -29,18 +99,44 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;comfyui&rdquo;, &ldquo;stable diffusion&rdquo;, &ldquo;ai image generation&rdquo;, &ldquo;node-based ui&rdquo;, &ldquo;docker&rdquo;, &ldquo;flux&rdquo;, &ldquo;sdxl&rdquo;, &ldquo;machine learning&rdquo;]
-aliases:</p><ul><li>/posts/comfyui/</li><li>/resources/ai-tools/comfyui-architecture-node-based-ai-image/-</li></ul><hr><h2 id=introduction>Introduction</h2><p>Stable Diffusion workflows are broken. Most tools hide the pipeline behind a one-size-fits-all interface that forces you to click through tabs, wait for generations, and pray the output matches your intent. When you need to process 500 product images with consistent styling, inpaint specific regions, and upscale to 4K, point-and-click UIs collapse under their own weight.</p><p><img alt="ComfyUI Official Screenshot" loading=lazy src=https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/comfyui_screenshot.png>
-<em>The default ComfyUI text-to-image workflow showing the node-based image generation interface.</em></p><p>ComfyUI solves this with a node-based architecture that treats image generation as a visual programming problem. Every operation — model loading, sampling, upscaling, face restoration — is a node on a canvas. Wire them together and you have a reproducible, shareable, automatable workflow. With 87,200+ GitHub stars, it is the dominant open-source interface for production AI image pipelines.</p><p>This ComfyUI tutorial and setup guide covers the complete installation: local ComfyUI setup, Docker deployment, model integration, custom node development, and production hardening. Expect real commands, measured benchmarks, and honest trade-offs for node-based image generation workflows.</p><h2 id=what-is-comfyui>What Is ComfyUI?</h2><p>ComfyUI is a node-based graphical interface and inference engine for diffusion models. It exposes the entire Stable Diffusion pipeline — text encoding, latent diffusion, VAE decoding, post-processing — as composable nodes that connect via a visual graph editor. Originally created by comfyanonymous in 2023 and now maintained under the Comfy-Org organization, it supports SD 1.5, SDXL, Flux, Wan, LTXV, ControlNet, LoRA, and 3D generation workflows through an extensible Python backend and React-based frontend.</p><h2 id=how-comfyui-works>How ComfyUI Works</h2><h3 id=architecture-overview>Architecture Overview</h3><p>ComfyUI&rsquo;s architecture separates concerns into three layers: 1. <strong>Frontend</strong> — A React/LiteGraph.js canvas that renders nodes, handles user interaction, and serializes workflows to JSON
+aliases:</p>
+<ul>
+<li>/posts/comfyui/</li>
+<li>/resources/ai-tools/comfyui-architecture-node-based-ai-image/-</li>
+</ul>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>Stable Diffusion workflows are broken. Most tools hide the pipeline behind a one-size-fits-all interface that forces you to click through tabs, wait for generations, and pray the output matches your intent. When you need to process 500 product images with consistent styling, inpaint specific regions, and upscale to 4K, point-and-click UIs collapse under their own weight.</p>
+<p><img alt="ComfyUI Official Screenshot" loading="lazy" src="https://raw.githubusercontent.com/comfyanonymous/ComfyUI/master/comfyui_screenshot.png">
+<em>The default ComfyUI text-to-image workflow showing the node-based image generation interface.</em></p>
+<p>ComfyUI solves this with a node-based architecture that treats image generation as a visual programming problem. Every operation — model loading, sampling, upscaling, face restoration — is a node on a canvas. Wire them together and you have a reproducible, shareable, automatable workflow. With 87,200+ GitHub stars, it is the dominant open-source interface for production AI image pipelines.</p>
+<p>This ComfyUI tutorial and setup guide covers the complete installation: local ComfyUI setup, Docker deployment, model integration, custom node development, and production hardening. Expect real commands, measured benchmarks, and honest trade-offs for node-based image generation workflows.</p>
+<h2 id="what-is-comfyui">What Is ComfyUI?</h2>
+<p>ComfyUI is a node-based graphical interface and inference engine for diffusion models. It exposes the entire Stable Diffusion pipeline — text encoding, latent diffusion, VAE decoding, post-processing — as composable nodes that connect via a visual graph editor. Originally created by comfyanonymous in 2023 and now maintained under the Comfy-Org organization, it supports SD 1.5, SDXL, Flux, Wan, LTXV, ControlNet, LoRA, and 3D generation workflows through an extensible Python backend and React-based frontend.</p>
+<h2 id="how-comfyui-works">How ComfyUI Works</h2>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>ComfyUI&rsquo;s architecture separates concerns into three layers: 1. <strong>Frontend</strong> — A React/LiteGraph.js canvas that renders nodes, handles user interaction, and serializes workflows to JSON
 2. <strong>Execution Engine</strong> — A Python backend that validates the workflow graph, schedules execution with topological sorting, and runs each node
-3. <strong>Model Layer</strong> — PyTorch-based inference code that interfaces with checkpoint files, LoRAs, ControlNets, and custom model architectures</p><p><img alt="ComfyUI Interface Overview" loading=lazy src=https://comfyui-wiki.com/_next/static/media/sidebar.8eef927d.jpg>
-<em>The ComfyUI sidebar showing node library, model browser, and queue — a complete node-based image generation environment.</em></p><p><img alt="ComfyUI Node Workflow" loading=lazy src=https://www.cursor-ide.com/blog/image-to-image-comfyui/cover.png>
-<em>A typical ComfyUI workflow chain: Load Image → VAE Encode → KSampler → VAE Decode → Save Image.</em></p><h3 id=core-concepts>Core Concepts</h3><p>| Concept | Description |
-|</p><hr><p>|</p><hr><p>|
+3. <strong>Model Layer</strong> — PyTorch-based inference code that interfaces with checkpoint files, LoRAs, ControlNets, and custom model architectures</p>
+<p><img alt="ComfyUI Interface Overview" loading="lazy" src="https://comfyui-wiki.com/_next/static/media/sidebar.8eef927d.jpg">
+<em>The ComfyUI sidebar showing node library, model browser, and queue — a complete node-based image generation environment.</em></p>
+<p><img alt="ComfyUI Node Workflow" loading="lazy" src="https://www.cursor-ide.com/blog/image-to-image-comfyui/cover.png">
+<em>A typical ComfyUI workflow chain: Load Image → VAE Encode → KSampler → VAE Decode → Save Image.</em></p>
+<h3 id="core-concepts">Core Concepts</h3>
+<p>| Concept | Description |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Node</strong> | A single operation (e.g., ```KSampler<code>, </code>Load Checkpoint<code>, </code>Save Image````) |
 | <strong>Link</strong> | A directed connection carrying typed data (MODEL, LATENT, IMAGE, CONDITIONING) |
 | <strong>Workflow</strong> | A complete JSON graph defining a generative pipeline |
 | <strong>Queue</strong> | The execution scheduler that runs workflows in order |
-| <strong>Custom Node</strong> | A Python class extending ComfyUI&rsquo;s node registry |</p><p>The node system enforces type safety at the graph level. A <code>KSampler</code> node expects a <code>MODEL</code> input and outputs a <code>LATENT</code> tensor. Connect a string to a model slot and the editor highlights the mismatch before execution starts.</p><h3 id=workflow-serialization>Workflow Serialization</h3><p>Every workflow is a JSON file. Share it with a teammate, version it in Git, or POST it to the API server: `````json
+| <strong>Custom Node</strong> | A Python class extending ComfyUI&rsquo;s node registry |</p>
+<p>The node system enforces type safety at the graph level. A <code>KSampler</code> node expects a <code>MODEL</code> input and outputs a <code>LATENT</code> tensor. Connect a string to a model slot and the editor highlights the mismatch before execution starts.</p>
+<h3 id="workflow-serialization">Workflow Serialization</h3>
+<p>Every workflow is a JSON file. Share it with a teammate, version it in Git, or POST it to the API server: `````json
 {
 &ldquo;1&rdquo;: {
 &ldquo;inputs&rdquo;: {
@@ -57,7 +153,8 @@ aliases:</p><ul><li>/posts/comfyui/</li><li>/resources/ai-tools/comfyui-architec
 &ldquo;class_type&rdquo;: &ldquo;CLIPTextEncode&rdquo;,
 &ldquo;_meta&rdquo;: { &ldquo;title&rdquo;: &ldquo;Positive Prompt&rdquo; }
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 This JSON-first approach makes ComfyUI uniquely suitable for CI/CD pipelines and automated batch processing.
 
 ## Installation &amp; Setup
@@ -95,7 +192,13 @@ pip install -r requirements.txt
 
 # Start the server
 python main.py --listen 0.0.0.0 --port 8188
-</code></pre><p>Open <code>http://localhost:8188</code> in your browser. The interface loads a default text-to-image workflow.</p><h3 id=method-2-comfyui-desktop>Method 2: ComfyUI Desktop</h3><p>For users who prefer an installer over the terminal: `````bash</p><h1 id=download-the-latest-desktop-release-from->Download the latest desktop release from: # <a href=https://github.com/Comfy-Org/ComfyUI-Desktop/releases>https://github.com/Comfy-Org/ComfyUI-Desktop/releases</a></h1><h1 id=the-desktop-app-handles-python-cuda-and-dependency-management-automatically>The desktop app handles Python, CUDA, and dependency management automatically.</h1><h1 id=first-launch-takes-15-minutes-downloads-models-and-sets-up-the-environment>First launch takes ~15 minutes (downloads models and sets up the environment).</h1><pre tabindex=0><code>
+</code></pre><p>Open <code>http://localhost:8188</code> in your browser. The interface loads a default text-to-image workflow.</p>
+<h3 id="method-2-comfyui-desktop">Method 2: ComfyUI Desktop</h3>
+<p>For users who prefer an installer over the terminal: `````bash</p>
+<h1 id="download-the-latest-desktop-release-from-">Download the latest desktop release from: # <a href="https://github.com/Comfy-Org/ComfyUI-Desktop/releases">https://github.com/Comfy-Org/ComfyUI-Desktop/releases</a></h1>
+<h1 id="the-desktop-app-handles-python-cuda-and-dependency-management-automatically">The desktop app handles Python, CUDA, and dependency management automatically.</h1>
+<h1 id="first-launch-takes-15-minutes-downloads-models-and-sets-up-the-environment">First launch takes ~15 minutes (downloads models and sets up the environment).</h1>
+<pre tabindex="0"><code>
 ### Method 3: Docker (Production Recommended)
 
 The Docker approach keeps your host system clean and makes deployment reproducible: `````bash
@@ -105,30 +208,44 @@ docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
 # Create directory structure for persistent storage
 mkdir -p comfyui-deploy/{models/checkpoints,models/loras,models/vae,models/controlnet,output,custom_nodes,workflows}
 cd comfyui-deploy
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: comfyui: image</span>: <span style=color:#ae81ff>ghcr.io/ai-dock/comfyui:latest-cuda</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>comfyui</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8188:8188&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./models:/workspace/ComfyUI/models</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./output:/workspace/ComfyUI/output</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./custom_nodes:/workspace/ComfyUI/custom_nodes</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./workflows:/workspace/ComfyUI/user</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>CLI_ARGS=--listen 0.0.0.0 --preview-method auto</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: reservations: devices: - driver</span>: <span style=color:#ae81ff>nvidia</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>count</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>capabilities</span>: [<span style=color:#ae81ff>gpu]</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Start the stack</span>
-</span></span><span style=display:flex><span>docker compose up -d
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Monitor startup logs</span>
-</span></span><span style=display:flex><span>docker compose logs -f comfyui
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check GPU utilization inside the container</span>
-</span></span><span style=display:flex><span>docker exec comfyui nvidia-smi
-</span></span></code></pre></div><h3 id=model-setup>Model Setup</h3><p>Download models into the appropriate directories: `````bash</p><h1 id=sdxl-base-69-gb>SDXL Base (6.9 GB)</h1><p>wget -P models/checkpoints<br>&ldquo;<a href=https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors%22>https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"</a></p><h1 id=flux-dev-23-gb--requires-16-gb-vram>Flux Dev (23 GB) — requires 16+ GB VRAM</h1><p>wget -P models/unet<br>&ldquo;<a href=https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors%22>https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors"</a></p><h1 id=vae-for-sdxl>VAE for SDXL</h1><p>wget -P models/vae<br>&ldquo;<a href=https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors%22>https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors"</a></p><h1 id=controlnet-openpose>ControlNet OpenPose</h1><p>wget -P models/controlnet<br>&ldquo;<a href=https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/diffusion_pytorch_model.safetensors%22>https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/diffusion_pytorch_model.safetensors"</a></p><pre tabindex=0><code>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: comfyui: image</span>: <span style="color:#ae81ff">ghcr.io/ai-dock/comfyui:latest-cuda</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">comfyui</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8188:8188&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./models:/workspace/ComfyUI/models</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./output:/workspace/ComfyUI/output</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./custom_nodes:/workspace/ComfyUI/custom_nodes</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./workflows:/workspace/ComfyUI/user</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">CLI_ARGS=--listen 0.0.0.0 --preview-method auto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: resources: reservations: devices: - driver</span>: <span style="color:#ae81ff">nvidia</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">count</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">capabilities</span>: [<span style="color:#ae81ff">gpu]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the stack</span>
+</span></span><span style="display:flex;"><span>docker compose up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Monitor startup logs</span>
+</span></span><span style="display:flex;"><span>docker compose logs -f comfyui
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check GPU utilization inside the container</span>
+</span></span><span style="display:flex;"><span>docker exec comfyui nvidia-smi
+</span></span></code></pre></div><h3 id="model-setup">Model Setup</h3>
+<p>Download models into the appropriate directories: `````bash</p>
+<h1 id="sdxl-base-69-gb">SDXL Base (6.9 GB)</h1>
+<p>wget -P models/checkpoints <br>
+&ldquo;<a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors%22">https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"</a></p>
+<h1 id="flux-dev-23-gb--requires-16-gb-vram">Flux Dev (23 GB) — requires 16+ GB VRAM</h1>
+<p>wget -P models/unet <br>
+&ldquo;<a href="https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors%22">https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors"</a></p>
+<h1 id="vae-for-sdxl">VAE for SDXL</h1>
+<p>wget -P models/vae <br>
+&ldquo;<a href="https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors%22">https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors"</a></p>
+<h1 id="controlnet-openpose">ControlNet OpenPose</h1>
+<p>wget -P models/controlnet <br>
+&ldquo;<a href="https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/diffusion_pytorch_model.safetensors%22">https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/diffusion_pytorch_model.safetensors"</a></p>
+<pre tabindex="0"><code>
 ## Integration with Popular Tools
 
 ### Stable Diffusion &amp; SDXL
@@ -145,12 +262,18 @@ KSampler: seed: 42
   sampler_name: &#34;dpmpp_2m&#34;
   scheduler: &#34;karras&#34;
   denoise: 1.0
-</code></pre><h3 id=flux>Flux</h3><p>Flux models integrate through dedicated nodes with optimized attention implementations: `````python</p><h1 id=flux-workflow-nodes>Flux workflow nodes</h1><p>UNETLoader: unet_name: &ldquo;flux1-dev.safetensors&rdquo;
-weight_dtype: &ldquo;fp8_e4m3fn&rdquo; # Reduces VRAM from 24GB to 12GB</p><p>DualCLIPLoader: clip_name1: &ldquo;t5xxl_fp8_e4m3fn.safetensors&rdquo;
+</code></pre><h3 id="flux">Flux</h3>
+<p>Flux models integrate through dedicated nodes with optimized attention implementations: `````python</p>
+<h1 id="flux-workflow-nodes">Flux workflow nodes</h1>
+<p>UNETLoader: unet_name: &ldquo;flux1-dev.safetensors&rdquo;
+weight_dtype: &ldquo;fp8_e4m3fn&rdquo;  # Reduces VRAM from 24GB to 12GB</p>
+<p>DualCLIPLoader: clip_name1: &ldquo;t5xxl_fp8_e4m3fn.safetensors&rdquo;
 clip_name2: &ldquo;clip_l.safetensors&rdquo;
-type: &ldquo;flux&rdquo;</p><p>EmptySD3LatentImage: width: 1024
+type: &ldquo;flux&rdquo;</p>
+<p>EmptySD3LatentImage: width: 1024
 height: 1024
-batch_size: 1</p><pre tabindex=0><code>
+batch_size: 1</p>
+<pre tabindex="0"><code>
 Flux support includes Dev, Schnell, and community fine-tunes. FP8 quantization reduces VRAM usage by ~50% with minimal quality loss.
 
 ### Wan Video Models
@@ -160,21 +283,26 @@ Wan 2.1/2.2 integration for text-to-video and image-to-video: `````bash
  cd custom_nodes
 git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 pip install -r ComfyUI-WanVideoWrapper/requirements.txt
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Wan text-to-video workflow</span>
-</span></span><span style=display:flex><span>WanVideoSampler: model: <span style=color:#e6db74>&#34;wan_2.1_14b_fp8.safetensors&#34;</span>
-</span></span><span style=display:flex><span>  positive: <span style=color:#e6db74>&#34;slow motion aerial shot of ocean waves&#34;</span>
-</span></span><span style=display:flex><span>  width: <span style=color:#ae81ff>1280</span>
-</span></span><span style=display:flex><span>  height: <span style=color:#ae81ff>720</span>
-</span></span><span style=display:flex><span>  frames: <span style=color:#ae81ff>81</span>
-</span></span><span style=display:flex><span>  steps: <span style=color:#ae81ff>30</span>
-</span></span></code></pre></div><h3 id=controlnet--lora>ControlNet & LoRA</h3><p>ControlNet and LoRA nodes integrate at the model level, allowing composable conditioning: `````python</p><h1 id=apply-multiple-loras-with-strength-control>Apply multiple LoRAs with strength control</h1><p>LoraLoaderModelOnly: model: [&ldquo;CheckpointLoader&rdquo;, 0]
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Wan text-to-video workflow</span>
+</span></span><span style="display:flex;"><span>WanVideoSampler: model: <span style="color:#e6db74">&#34;wan_2.1_14b_fp8.safetensors&#34;</span>
+</span></span><span style="display:flex;"><span>  positive: <span style="color:#e6db74">&#34;slow motion aerial shot of ocean waves&#34;</span>
+</span></span><span style="display:flex;"><span>  width: <span style="color:#ae81ff">1280</span>
+</span></span><span style="display:flex;"><span>  height: <span style="color:#ae81ff">720</span>
+</span></span><span style="display:flex;"><span>  frames: <span style="color:#ae81ff">81</span>
+</span></span><span style="display:flex;"><span>  steps: <span style="color:#ae81ff">30</span>
+</span></span></code></pre></div><h3 id="controlnet--lora">ControlNet &amp; LoRA</h3>
+<p>ControlNet and LoRA nodes integrate at the model level, allowing composable conditioning: `````python</p>
+<h1 id="apply-multiple-loras-with-strength-control">Apply multiple LoRAs with strength control</h1>
+<p>LoraLoaderModelOnly: model: [&ldquo;CheckpointLoader&rdquo;, 0]
 lora_name: &ldquo;add_detail.safetensors&rdquo;
-strength_model: 0.8</p><p>ControlNetApplyAdvanced: positive: [&ldquo;CLIPTextEncode&rdquo;, 0]
+strength_model: 0.8</p>
+<p>ControlNetApplyAdvanced: positive: [&ldquo;CLIPTextEncode&rdquo;, 0]
 control_net: [&ldquo;ControlNetLoader&rdquo;, 0]
 image: [&ldquo;LoadImage&rdquo;, 0]
 strength: 1.0
 start_percent: 0.0
-end_percent: 0.8</p><pre tabindex=0><code>
+end_percent: 0.8</p>
+<pre tabindex="0"><code>
 ### API Integration
 
 Every workflow can be executed via REST API: `````bash
@@ -193,8 +321,20 @@ curl http://localhost:8188/queue
 
 # Get generated images
 curl http://localhost:8188/view?filename=ComfyUI_00001_.png&amp;subfolder=output&amp;type=output
-</code></pre><h2 id=benchmarks--real-world-use-cases>Benchmarks / Real-World Use Cases</h2><h3 id=generation-speed-comparison>Generation Speed Comparison</h3><p>Benchmarks run on identical hardware (RTX 4090, CUDA 12.4, 64 GB RAM): | Test Case | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="generation-speed-comparison">Generation Speed Comparison</h3>
+<p>Benchmarks run on identical hardware (RTX 4090, CUDA 12.4, 64 GB RAM): | Test Case | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | SD 1.5 512x512 | 2.1s | 2.4s | 2.3s | 2.3s |
 | SDXL 1024x1024 | 7.8s | 9.2s | 8.5s | 8.5s |
 | SDXL 1024x1024 (batch 4) | 28s | 35s | 33s | 32s |
@@ -202,11 +342,17 @@ curl http://localhost:8188/view?filename=ComfyUI_00001_.png&amp;subfolder=output
 | Flux 1024x1024 (FP8) | 18s | 22s* | 25s | Limited |
 | VRAM SDXL (peak) | 8.2 GB | 9.8 GB | 9.5 GB | 8.0 GB |
 | VRAM Flux FP16 (peak) | 18 GB | 20 GB | 20 GB | N/A |
-| VRAM Flux FP8 (peak) | 10 GB | 14 GB | 12 GB | 12 GB |</p><p>*A1111 via Forge fork with Flux patch. Native A1111 does not support Flux.</p><h3 id=use-case-product-photo-pipeline>Use Case: Product Photo Pipeline</h3><p>An e-commerce team generates 50 product images daily with consistent lighting: `````python</p><h1 id=batch-workflow-with-shared-style-lora>Batch workflow with shared style LoRA</h1><p>LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
+| VRAM Flux FP8 (peak) | 10 GB | 14 GB | 12 GB | 12 GB |</p>
+<p>*A1111 via Forge fork with Flux patch. Native A1111 does not support Flux.</p>
+<h3 id="use-case-product-photo-pipeline">Use Case: Product Photo Pipeline</h3>
+<p>An e-commerce team generates 50 product images daily with consistent lighting: `````python</p>
+<h1 id="batch-workflow-with-shared-style-lora">Batch workflow with shared style LoRA</h1>
+<p>LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
 ↓
 LoadPromptList (50 prompts)
 ↓
-SaveImage (with metadata + filename pattern)</p><pre tabindex=0><code>
+SaveImage (with metadata + filename pattern)</p>
+<pre tabindex="0"><code>
 Results: 50 images in 11 minutes (SDXL, 1024x1024), fully reproducible by re-loading the workflow JSON.
 
 ### Use Case: Video Generation Studio
@@ -215,86 +361,104 @@ A content studio produces short-form video clips: `````
 Text Prompt → WanVideoSampler → Frame Interpolation (RIFE) → Video Combine
                    ↓
          Image Conditioning (optional img2video)
-</code></pre><p>Wan 2.1 14B generates 81 frames at 1280x720 in ~4 minutes per clip. The node structure allows swapping between Wan variants (1.3B light, 14B quality) by changing a single loader node.</p><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening</h2><h3 id=reverse-proxy-with-ssl>Reverse Proxy with SSL</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#75715e># /etc/nginx/sites-available/comfyui
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>server</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span> <span style=color:#e6db74>http2</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>comfyui.yourdomain.com</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate</span> <span style=color:#e6db74>/etc/letsencrypt/live/comfyui.yourdomain.com/fullchain.pem</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate_key</span> <span style=color:#e6db74>/etc/letsencrypt/live/comfyui.yourdomain.com/privkey.pem</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://127.0.0.1:8188</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_http_version</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>.1</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Upgrade</span> $http_upgrade;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Connection</span> <span style=color:#e6db74>&#34;upgrade&#34;</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Host</span> $host;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_read_timeout</span> <span style=color:#ae81ff>86400</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Restrict API access
-</span></span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/prompt</span> {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>allow</span> 10.0.0.0<span style=color:#e6db74>/24</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>deny</span> <span style=color:#e6db74>all</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://127.0.0.1:8188</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=authentication>Authentication</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Start with listen-only on localhost + API key</span>
-</span></span><span style=display:flex><span>python main.py --listen 0.0.0.0 --port <span style=color:#ae81ff>8188</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --api-key <span style=color:#e6db74>&#34;your-secure-api-key-here&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --disable-xformers
-</span></span></code></pre></div><h3 id=custom-node-development>Custom Node Development</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># custom_nodes/my_custom_node/nodes.py</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyUpscaleNode</span>: <span style=color:#e6db74>&#34;&#34;&#34;A simple 4x upscale node using Real-ESRGAN.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@classmethod</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>INPUT_TYPES</span>(cls): <span style=color:#66d9ef>return</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;required&#34;</span>: {
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;image&#34;</span>: (<span style=color:#e6db74>&#34;IMAGE&#34;</span>,),
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;model&#34;</span>: ([<span style=color:#e6db74>&#34;RealESRGAN_x4plus&#34;</span>, <span style=color:#e6db74>&#34;RealESRGAN_x2plus&#34;</span>],),
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    RETURN_TYPES <span style=color:#f92672>=</span> (<span style=color:#e6db74>&#34;IMAGE&#34;</span>,)
-</span></span><span style=display:flex><span>    FUNCTION <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;upscale&#34;</span>
-</span></span><span style=display:flex><span>    CATEGORY <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;image/upscaling&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>upscale</span>(self, image, model): <span style=color:#75715e># Implementation here</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> (upscaled_image,)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>NODE_CLASS_MAPPINGS <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;MyUpscaleNode&#34;</span>: MyUpscaleNode}
-</span></span><span style=display:flex><span>NODE_DISPLAY_NAME_MAPPINGS <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;MyUpscaleNode&#34;</span>: <span style=color:#e6db74>&#34;My Upscale (Real-ESRGAN)&#34;</span>}
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># custom_nodes/my_custom_node/__init__.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> .nodes <span style=color:#f92672>import</span> NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>__all__ <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;NODE_CLASS_MAPPINGS&#34;</span>, <span style=color:#e6db74>&#34;NODE_DISPLAY_NAME_MAPPINGS&#34;</span>]
-</span></span></code></pre></div><h3 id=monitoring>Monitoring</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># GPU utilization dashboard (run alongside ComfyUI)</span>
-</span></span><span style=display:flex><span>watch -n <span style=color:#ae81ff>1</span> nvidia-smi
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Log queue depth</span>
-</span></span><span style=display:flex><span>curl -s http://localhost:8188/queue | jq <span style=color:#e6db74>&#39;.queue_running | length&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Disk space monitoring for model storage</span>
-</span></span><span style=display:flex><span>df -h models/ output/
-</span></span></code></pre></div><h3 id=backup-strategy>Backup Strategy</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># backup-comfyui.sh</span>
-</span></span><span style=display:flex><span>BACKUP_DIR<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/backup/comfyui-</span><span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>mkdir -p <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Workflows (lightweight, version in Git)</span>
-</span></span><span style=display:flex><span>cp -r workflows <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Custom nodes</span>
-</span></span><span style=display:flex><span>cp -r custom_nodes <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generated output (use rsync for large directories)</span>
-</span></span><span style=display:flex><span>rsync -av --progress output/ <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/output/&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Models (optional — large, often re-downloadable)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># rsync -av --progress models/ &#34;$BACKUP_DIR/models/&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Backup complete: </span>$BACKUP_DIR<span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives</h2><p>| Feature | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>Wan 2.1 14B generates 81 frames at 1280x720 in ~4 minutes per clip. The node structure allows swapping between Wan variants (1.3B light, 14B quality) by changing a single loader node.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="reverse-proxy-with-ssl">Reverse Proxy with SSL</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># /etc/nginx/sites-available/comfyui
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">http2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">comfyui.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/etc/letsencrypt/live/comfyui.yourdomain.com/fullchain.pem</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/etc/letsencrypt/live/comfyui.yourdomain.com/privkey.pem</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:8188</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#ae81ff">86400</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Restrict API access
+</span></span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/prompt</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">allow</span> 10.0.0.0<span style="color:#e6db74">/24</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">deny</span> <span style="color:#e6db74">all</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:8188</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="authentication">Authentication</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start with listen-only on localhost + API key</span>
+</span></span><span style="display:flex;"><span>python main.py --listen 0.0.0.0 --port <span style="color:#ae81ff">8188</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --api-key <span style="color:#e6db74">&#34;your-secure-api-key-here&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --disable-xformers
+</span></span></code></pre></div><h3 id="custom-node-development">Custom Node Development</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># custom_nodes/my_custom_node/nodes.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyUpscaleNode</span>: <span style="color:#e6db74">&#34;&#34;&#34;A simple 4x upscale node using Real-ESRGAN.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">INPUT_TYPES</span>(cls): <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;required&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;image&#34;</span>: (<span style="color:#e6db74">&#34;IMAGE&#34;</span>,),
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;model&#34;</span>: ([<span style="color:#e6db74">&#34;RealESRGAN_x4plus&#34;</span>, <span style="color:#e6db74">&#34;RealESRGAN_x2plus&#34;</span>],),
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    RETURN_TYPES <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;IMAGE&#34;</span>,)
+</span></span><span style="display:flex;"><span>    FUNCTION <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;upscale&#34;</span>
+</span></span><span style="display:flex;"><span>    CATEGORY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;image/upscaling&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">upscale</span>(self, image, model): <span style="color:#75715e"># Implementation here</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (upscaled_image,)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NODE_CLASS_MAPPINGS <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;MyUpscaleNode&#34;</span>: MyUpscaleNode}
+</span></span><span style="display:flex;"><span>NODE_DISPLAY_NAME_MAPPINGS <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;MyUpscaleNode&#34;</span>: <span style="color:#e6db74">&#34;My Upscale (Real-ESRGAN)&#34;</span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># custom_nodes/my_custom_node/__init__.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> .nodes <span style="color:#f92672">import</span> NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__all__ <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;NODE_CLASS_MAPPINGS&#34;</span>, <span style="color:#e6db74">&#34;NODE_DISPLAY_NAME_MAPPINGS&#34;</span>]
+</span></span></code></pre></div><h3 id="monitoring">Monitoring</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># GPU utilization dashboard (run alongside ComfyUI)</span>
+</span></span><span style="display:flex;"><span>watch -n <span style="color:#ae81ff">1</span> nvidia-smi
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Log queue depth</span>
+</span></span><span style="display:flex;"><span>curl -s http://localhost:8188/queue | jq <span style="color:#e6db74">&#39;.queue_running | length&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Disk space monitoring for model storage</span>
+</span></span><span style="display:flex;"><span>df -h models/ output/
+</span></span></code></pre></div><h3 id="backup-strategy">Backup Strategy</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># backup-comfyui.sh</span>
+</span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/backup/comfyui-</span><span style="color:#66d9ef">$(</span>date +%Y%m%d<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>mkdir -p <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Workflows (lightweight, version in Git)</span>
+</span></span><span style="display:flex;"><span>cp -r workflows <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Custom nodes</span>
+</span></span><span style="display:flex;"><span>cp -r custom_nodes <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generated output (use rsync for large directories)</span>
+</span></span><span style="display:flex;"><span>rsync -av --progress output/ <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/output/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Models (optional — large, often re-downloadable)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># rsync -av --progress models/ &#34;$BACKUP_DIR/models/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Backup complete: </span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Interface Type</strong> | Node-based graph | Traditional Web UI | Canvas + web UI | One-click simplified |
 | <strong>Learning Curve</strong> | Steep (10-20 hrs) | Moderate (3-5 hrs) | Low (1-2 hrs) | Minimal (30 min) |
 | <strong>Workflow Reproducibility</strong> | JSON serialization, versionable | Manual settings save | Project-based | Preset-based |
@@ -305,13 +469,64 @@ Text Prompt → WanVideoSampler → Frame Interpolation (RIFE) → Video Combine
 | <strong>Extension Ecosystem</strong> | 3,000+ custom nodes | 1,000+ extensions | 200+ nodes | Minimal |
 | <strong>Video Generation</strong> | Full (Wan, LTXV, AnimateDiff) | Partial (extensions) | Partial | No |
 | <strong>Inpainting UX</strong> | Node-based mask | Gradio interface | Excellent canvas | Basic |
-| <strong>Best For</strong> | Power users, pipelines | General use, extensions | Artists, canvas work | Beginners |</p><p><img alt="ComfyUI VAE Decode Node" loading=lazy src=https://comfyui-wiki.com/_next/static/media/toggle-collapse.ce6b1f75.jpg>
-<em>A VAE Decode node with input and output sockets — every connection in ComfyUI is typed (LATENT, IMAGE, MODEL, CONDITIONING).</em></p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment</h2><p>ComfyUI is not the right tool for every situation. Here is where it falls short: <strong>Steep learning curve.</strong> The node-based interface requires understanding diffusion mechanics — what a latent space is, why VAE matters, how sampling schedules work. A new user staring at an empty canvas feels overwhelmed. Expect 10-20 hours of practice before fluency.</p><p><strong>No built-in canvas for inpainting.</strong> InvokeAI&rsquo;s canvas-based inpainting is objectively better for artistic workflows. ComfyUI&rsquo;s mask editor is functional but primitive by comparison.</p><p><strong>Workflow fragility.</strong> Custom node dependencies can break across updates. A workflow saved with version 0.20 may error on 0.21 if a node changes its input signature. Pin your ComfyUI version in production.</p><p><strong>Not beginner-friendly.</strong> If you want to type a prompt and get an image in 30 seconds, use Fooocus. ComfyUI rewards investment with control, but that investment is real.</p><p><strong>Model management is manual.</strong> Unlike InvokeAI&rsquo;s built-in model browser, ComfyUI expects you to <code>wget</code> files into the correct directory structure. The ComfyUI Manager custom node helps, but it is not a first-class package manager.</p><h2 id=frequently-asked-questions>Frequently Asked Questions</h2><h3 id=how-much-vram-do-i-need-for-comfyui>How much VRAM do I need for ComfyUI?</h3><p>SD 1.5 runs on 6 GB VRAM. SDXL needs 8 GB for 1024x1024 generation. Flux Dev requires 16 GB (FP16) or 10 GB with FP8 quantization. Video models (Wan) need 16-24 GB depending on resolution and frame count. ComfyUI&rsquo;s dynamic model loading unloads unused models from VRAM, making it more efficient than most alternatives.</p><h3 id=can-i-run-comfyui-without-an-nvidia-gpu>Can I run ComfyUI without an NVIDIA GPU?</h3><p>Yes, with limitations. Apple Silicon Macs work via MPS backend with ~40% slower performance than equivalent NVIDIA cards. AMD GPUs on Linux use ROCm. CPU-only mode exists but generates a 512x512 SD 1.5 image in ~3 minutes versus 2 seconds on a GPU. For production use, NVIDIA hardware is strongly recommended.</p><h3 id=how-do-i-install-custom-nodes>How do I install custom nodes?</h3><p>Use the ComfyUI Manager (install via <code>git clone https://github.com/Comfy-Org/ComfyUI-Manager.git</code> into <code>custom_nodes/</code>), or install manually by cloning repositories into the <code>custom_nodes/</code> directory. Restart ComfyUI after installation. The Manager provides a searchable browser with one-click install for 3,000+ community nodes.</p><h3 id=is-comfyui-free-for-commercial-use>Is ComfyUI free for commercial use?</h3><p>ComfyUI itself is licensed under GPL-3.0, which permits commercial use with the requirement that distributed modifications use the same license. The models you run (SDXL, Flux, etc.) have their own licenses — check each model&rsquo;s Hugging Face page for commercial usage terms. Flux Dev is non-commercial; Flux Schnell permits commercial use.</p><h3 id=how-do-i-upgrade-comfyui-safely>How do I upgrade ComfyUI safely?</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cd ComfyUI
-</span></span><span style=display:flex><span>git pull origin master
-</span></span><span style=display:flex><span>pip install -r requirements.txt
-</span></span><span style=display:flex><span><span style=color:#75715e># Restart the server</span>
-</span></span></code></pre></div><p>For production deployments, pin to a specific release tag instead of master: <code>git checkout v0.21.1</code>. Always back up your workflows before upgrading, as custom node compatibility can break across versions.</p><h3 id=can-i-use-comfyui-with-existing-automatic1111-models>Can I use ComfyUI with existing AUTOMATIC1111 models?</h3><p>Yes. Both tools use the same <code>.safetensors</code> and <code>.ckpt</code> model formats. Point ComfyUI&rsquo;s model directories at your existing A1111 model folder, or symlink them: <code>ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints</code>.</p><h2 id=conclusion>Conclusion</h2><p>ComfyUI is the most capable open-source interface for diffusion model workflows. Its node-based architecture trades initial simplicity for long-term power — once you build a workflow, you can version it, automate it, and scale it. The 87,200+ GitHub stars reflect a community that values this control over convenience.</p><p>Start with the Docker setup for production environments, or the desktop installer for local experimentation. Install the ComfyUI Manager immediately — it unlocks the 3,000+ custom node ecosystem. Benchmark your workflows with ````nvidia-smi``` running, and pin your version tag once you find a stable combination.</p><p><strong>Action items:</strong></p><ol><li>Clone the repo and run the Docker Compose setup</li><li>Download one SDXL and one Flux checkpoint</li><li>Install ComfyUI Manager and browse the top 20 custom nodes</li><li>Save your first workflow as JSON and load it via the API</li></ol><p>Join the ComfyUI community on Telegram: <strong>t.me/dibi8_comfyui</strong> — share workflows, get debugging help, and stay updated on new custom nodes.</p><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure</h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading</h2><ul><li>GitHub Repository: <a href=https://github.com/comfyanonymous/ComfyUI>https://github.com/comfyanonymous/ComfyUI</a></li><li>Official Documentation: <a href=https://docs.comfy.org/>https://docs.comfy.org/</a></li><li>ComfyUI Wiki: <a href=https://comfyui-wiki.com/>https://comfyui-wiki.com/</a></li><li>ComfyUI Manager: <a href=https://github.com/Comfy-Org/ComfyUI-Manager>https://github.com/Comfy-Org/ComfyUI-Manager</a></li><li>Comfy-Org Releases: <a href=https://github.com/Comfy-Org/ComfyUI/releases>https://github.com/Comfy-Org/ComfyUI/releases</a></li><li>SDXL Base Model: <a href=https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0>https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0</a></li><li>Flux Models: <a href=https://huggingface.co/black-forest-labs>https://huggingface.co/black-forest-labs</a></li><li>Wan Video Nodes: <a href=https://github.com/kijai/ComfyUI-WanVideoWrapper>https://github.com/kijai/ComfyUI-WanVideoWrapper</a></li><li>Docker Setup Reference: <a href=https://github.com/ai-dock/comfyui>https://github.com/ai-dock/comfyui</a></li><li>Quantization Guide: <a href=https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md>https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>Best For</strong> | Power users, pipelines | General use, extensions | Artists, canvas work | Beginners |</p>
+<p><img alt="ComfyUI VAE Decode Node" loading="lazy" src="https://comfyui-wiki.com/_next/static/media/toggle-collapse.ce6b1f75.jpg">
+<em>A VAE Decode node with input and output sockets — every connection in ComfyUI is typed (LATENT, IMAGE, MODEL, CONDITIONING).</em></p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>ComfyUI is not the right tool for every situation. Here is where it falls short: <strong>Steep learning curve.</strong> The node-based interface requires understanding diffusion mechanics — what a latent space is, why VAE matters, how sampling schedules work. A new user staring at an empty canvas feels overwhelmed. Expect 10-20 hours of practice before fluency.</p>
+<p><strong>No built-in canvas for inpainting.</strong> InvokeAI&rsquo;s canvas-based inpainting is objectively better for artistic workflows. ComfyUI&rsquo;s mask editor is functional but primitive by comparison.</p>
+<p><strong>Workflow fragility.</strong> Custom node dependencies can break across updates. A workflow saved with version 0.20 may error on 0.21 if a node changes its input signature. Pin your ComfyUI version in production.</p>
+<p><strong>Not beginner-friendly.</strong> If you want to type a prompt and get an image in 30 seconds, use Fooocus. ComfyUI rewards investment with control, but that investment is real.</p>
+<p><strong>Model management is manual.</strong> Unlike InvokeAI&rsquo;s built-in model browser, ComfyUI expects you to <code>wget</code> files into the correct directory structure. The ComfyUI Manager custom node helps, but it is not a first-class package manager.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="how-much-vram-do-i-need-for-comfyui">How much VRAM do I need for ComfyUI?</h3>
+<p>SD 1.5 runs on 6 GB VRAM. SDXL needs 8 GB for 1024x1024 generation. Flux Dev requires 16 GB (FP16) or 10 GB with FP8 quantization. Video models (Wan) need 16-24 GB depending on resolution and frame count. ComfyUI&rsquo;s dynamic model loading unloads unused models from VRAM, making it more efficient than most alternatives.</p>
+<h3 id="can-i-run-comfyui-without-an-nvidia-gpu">Can I run ComfyUI without an NVIDIA GPU?</h3>
+<p>Yes, with limitations. Apple Silicon Macs work via MPS backend with ~40% slower performance than equivalent NVIDIA cards. AMD GPUs on Linux use ROCm. CPU-only mode exists but generates a 512x512 SD 1.5 image in ~3 minutes versus 2 seconds on a GPU. For production use, NVIDIA hardware is strongly recommended.</p>
+<h3 id="how-do-i-install-custom-nodes">How do I install custom nodes?</h3>
+<p>Use the ComfyUI Manager (install via <code>git clone https://github.com/Comfy-Org/ComfyUI-Manager.git</code> into <code>custom_nodes/</code>), or install manually by cloning repositories into the <code>custom_nodes/</code> directory. Restart ComfyUI after installation. The Manager provides a searchable browser with one-click install for 3,000+ community nodes.</p>
+<h3 id="is-comfyui-free-for-commercial-use">Is ComfyUI free for commercial use?</h3>
+<p>ComfyUI itself is licensed under GPL-3.0, which permits commercial use with the requirement that distributed modifications use the same license. The models you run (SDXL, Flux, etc.) have their own licenses — check each model&rsquo;s Hugging Face page for commercial usage terms. Flux Dev is non-commercial; Flux Schnell permits commercial use.</p>
+<h3 id="how-do-i-upgrade-comfyui-safely">How do I upgrade ComfyUI safely?</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ComfyUI
+</span></span><span style="display:flex;"><span>git pull origin master
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restart the server</span>
+</span></span></code></pre></div><p>For production deployments, pin to a specific release tag instead of master: <code>git checkout v0.21.1</code>. Always back up your workflows before upgrading, as custom node compatibility can break across versions.</p>
+<h3 id="can-i-use-comfyui-with-existing-automatic1111-models">Can I use ComfyUI with existing AUTOMATIC1111 models?</h3>
+<p>Yes. Both tools use the same <code>.safetensors</code> and <code>.ckpt</code> model formats. Point ComfyUI&rsquo;s model directories at your existing A1111 model folder, or symlink them: <code>ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>ComfyUI is the most capable open-source interface for diffusion model workflows. Its node-based architecture trades initial simplicity for long-term power — once you build a workflow, you can version it, automate it, and scale it. The 87,200+ GitHub stars reflect a community that values this control over convenience.</p>
+<p>Start with the Docker setup for production environments, or the desktop installer for local experimentation. Install the ComfyUI Manager immediately — it unlocks the 3,000+ custom node ecosystem. Benchmark your workflows with ````nvidia-smi``` running, and pin your version tag once you find a stable combination.</p>
+<p><strong>Action items:</strong></p>
+<ol>
+<li>Clone the repo and run the Docker Compose setup</li>
+<li>Download one SDXL and one Flux checkpoint</li>
+<li>Install ComfyUI Manager and browse the top 20 custom nodes</li>
+<li>Save your first workflow as JSON and load it via the API</li>
+</ol>
+<p>Join the ComfyUI community on Telegram: <strong>t.me/dibi8_comfyui</strong> — share workflows, get debugging help, and stay updated on new custom nodes.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li>GitHub Repository: <a href="https://github.com/comfyanonymous/ComfyUI">https://github.com/comfyanonymous/ComfyUI</a></li>
+<li>Official Documentation: <a href="https://docs.comfy.org/">https://docs.comfy.org/</a></li>
+<li>ComfyUI Wiki: <a href="https://comfyui-wiki.com/">https://comfyui-wiki.com/</a></li>
+<li>ComfyUI Manager: <a href="https://github.com/Comfy-Org/ComfyUI-Manager">https://github.com/Comfy-Org/ComfyUI-Manager</a></li>
+<li>Comfy-Org Releases: <a href="https://github.com/Comfy-Org/ComfyUI/releases">https://github.com/Comfy-Org/ComfyUI/releases</a></li>
+<li>SDXL Base Model: <a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0">https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0</a></li>
+<li>Flux Models: <a href="https://huggingface.co/black-forest-labs">https://huggingface.co/black-forest-labs</a></li>
+<li>Wan Video Nodes: <a href="https://github.com/kijai/ComfyUI-WanVideoWrapper">https://github.com/kijai/ComfyUI-WanVideoWrapper</a></li>
+<li>Docker Setup Reference: <a href="https://github.com/ai-dock/comfyui">https://github.com/ai-dock/comfyui</a></li>
+<li>Quantization Guide: <a href="https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md">https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;ComfyUI: 87K+ Stars — Node-Based Stable Diffusion Setup Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -325,20 +540,285 @@ Text Prompt → WanVideoSampler → Frame Interpolation (RIFE) → Video Combine
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/comfyui%22>https://dibi8.com/resources/comfyui"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/comfyui%22">https://dibi8.com/resources/comfyui"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles</h2><ul><li><a href=/ai-coding-agents/comfyui/>apple-container</a></li><li><a href=/ai-coding-agents/comfyui/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/ai-coding-agents/comfyui/>moneyprinterturbo-one-click-ai-video-generator</a></li><li><a href=/ai-coding-agents/comfyui/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/ai-coding-agents/comfyui/>moneyprinterturbo-one-click-ai-video-generator</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><div class="border-t border-gray-200 pt-8 mt-12"><div class="flex items-center gap-4"><span class="text-sm text-gray-500">分享给朋友：</span>
-<a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcomfyui%2f&text=Create%20virtual%20environment" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-<a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcomfyui%2f" target=_blank class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-<button onclick=copyLink() class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button></div></div><div class="border-t border-gray-200 pt-12 mt-12"><h2 class="text-xl font-bold mb-6">相关文章</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><a href=/ai-coding-agents/12-factor-agents-production-llm-software-2026/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p></a><a href=/ai-coding-agents/1m-context-window-llm-2026-real-test/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p></a><a href=/ai-coding-agents/2026-06-08-trending-ai-agents/ class="card group"><div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors"><i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i></div><h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3><p class="text-sm text-gray-500 mt-2 line-clamp-2"></p></a></div></div></div></article><script>function copyLink(){navigator.clipboard.writeText(window.location.href),alert("链接已复制！")}</script><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><div id=search-modal class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick=closeSearch()></div><div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"><div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100"><i class="fas fa-search text-gray-400 text-sm"></i>
-<input id=search-input type=text placeholder="搜索 AI 工具、框架、标签…" class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400" autocomplete=off>
-<kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd></div><div id=search-results class="max-h-[420px] overflow-y-auto p-2"></div></div></div><script>(function(){var t,n=[];fetch("search-index.json").then(function(e){return e.ok?e.json():[]}).then(function(t){n=Array.isArray(t)?t:[],e("")}).catch(function(){e("")}),window.openSearch=function(){var t=document.getElementById("search-modal");t.classList.remove("hidden"),setTimeout(function(){var t=document.getElementById("search-input");t.value="",t.focus(),e("")},50)},window.closeSearch=function(){document.getElementById("search-modal").classList.add("hidden")},document.addEventListener("keydown",function(e){(e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"&&(e.preventDefault(),openSearch()),e.key==="Escape"&&closeSearch()}),t=document.getElementById("search-input"),t.addEventListener("input",function(){e(t.value)});function s(e,t){if(e=e.trim().toLowerCase(),!e)return 1;if(t.title.toLowerCase().indexOf(e)!==-1)return 3;if(t.cat.toLowerCase().indexOf(e)!==-1)return 2;if(t.desc.toLowerCase().indexOf(e)!==-1)return 1;for(var s=e.split(/\s+/),o=(t.title+" "+t.desc+" "+t.cat).toLowerCase(),n=0;n<s.length;n++)if(s[n]&&o.indexOf(s[n])===-1)return 0;return 1}function e(e){var t=document.getElementById("search-results"),o=n.map(function(t){return{t,s:s(e,t)}}).filter(function(e){return e.s>0}).sort(function(e,t){return t.s-e.s}).slice(0,12);if(!o.length){t.innerHTML='<div class="search-empty">'+(e?"没有找到与「"+e+"」相关的工具":"输入关键词开始搜索")+"</div>";return}t.innerHTML=o.map(function(e){var t=e.t.cat?e.t.cat.replace(/-/g," "):"工具";return'<a class="search-row" href="'+e.t.url+'"><span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">'+t+'</span><span class="text-[14px] font-medium text-gray-900 truncate">'+e.t.title+'</span><i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i></a>'}).join("")}})()</script><script>const toggleSearch=()=>{const e=document.getElementById("search-modal");e.classList.toggle("hidden"),e.classList.contains("hidden")||setTimeout(()=>document.getElementById("search-input").focus(),100)},closeSearch=()=>{document.getElementById("search-modal").classList.add("hidden"),document.getElementById("search-input").value=""};document.addEventListener("keydown",e=>{(e.metaKey||e.ctrlKey)&&e.key==="k"&&(e.preventDefault(),toggleSearch()),e.key==="Escape"&&closeSearch()})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/comfyui/">apple-container</a></li>
+<li><a href="/ai-coding-agents/comfyui/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/ai-coding-agents/comfyui/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+<li><a href="/ai-coding-agents/comfyui/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/ai-coding-agents/comfyui/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+        
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcomfyui%2f&text=Create%20virtual%20environment" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcomfyui%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+    <script>
+        const toggleSearch = () => {
+            const m = document.getElementById('search-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            }
+        };
+        const closeSearch = () => {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-input').value = '';
+        };
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
+            if (e.key === 'Escape') closeSearch();
+        });
+    </script>
+    
+</body>
+</html>
