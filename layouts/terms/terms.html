@@ -1,41 +1,22 @@
-{{ define "title" }}服务条款 | AI工具目录{{ end }}
+{{ define "title" }}{{ .Title }} | Dibi8 - AI工具目录{{ end }}
 {{ define "main" }}
 <section class="pt-32 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         <nav class="text-sm text-gray-400 mb-8" aria-label="面包屑导航">
             <a href="/" class="hover:text-gray-600">首页</a>
             <span class="mx-2">/</span>
-            <span class="text-gray-900">服务条款</span>
+            <span class="text-gray-900">{{ .Title }}</span>
         </nav>
         
         <div class="text-center mb-12">
             <span class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 text-2xl mb-6" aria-hidden="true">
                 <i class="fas fa-file-contract"></i>
             </span>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">服务条款</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ .Title }}</h1>
         </div>
         
         <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 prose prose-lg max-w-none">
-            <p><strong>最后更新</strong>: 2026年9月</p>
-            
-            <h2>1. 接受条款</h2>
-            <p>访问和使用 Dibi8 即表示您同意本服务条款。</p>
-            
-            <h2>2. 服务内容</h2>
-            <p>Dibi8 提供 AI 工具目录、导航和翻译服务。</p>
-            
-            <h2>3. 用户责任</h2>
-            <ul>
-                <li>正确使用网站功能</li>
-                <li>不从事违法行为</li>
-                <li>尊重他人隐私</li>
-            </ul>
-            
-            <h2>4. 免责声明</h2>
-            <p>网站信息仅供参考，Dibi8 不对第三方链接内容负责。</p>
-            
-            <h2>5. 联系我们</h2>
-            <p>如有疑问：<a href="mailto:contact@dibi8.com">contact@dibi8.com</a></p>
+            {{ .Content }}
         </div>
         
         <div class="mt-8 text-center">
@@ -43,20 +24,4 @@
         </div>
     </div>
 </section>
-{{ end }}
-{{ define "schema" }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "服务条款",
-  "description": "Dibi8服务条款",
-  "url": "https://dibi8.com/terms/",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "url": "https://dibi8.com"
-  }
-}
-</script>
 {{ end }}
