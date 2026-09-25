@@ -1,13 +1,13 @@
 ---
 title: "AFFiNE: 开源知识库与白板协作平台"
-description: "title: "AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "affine-knowledge-base-whiteboard"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E...
-description: "title: "AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

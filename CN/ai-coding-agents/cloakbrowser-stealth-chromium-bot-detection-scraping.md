@@ -1,6 +1,6 @@
 ---
 title: "CloakBrowser: Stealth Chromium That Passes Every Bot Detection Test — 25,000 Stars for Scraping — A Practical Guide 2026"
-description: "# CloakBrowser: Stealth Chromium That Passes Every Bot Detection Test — 25,000 Stars for Scraping — A Practical Guide 2026"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "cloakbrowser-stealth-chromium-bot-detection-scraping"
 category: "ai-tools"

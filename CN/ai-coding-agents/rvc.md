@@ -1,13 +1,13 @@
 ---
 title: "RVC: Real-Time Voice Conversion AI模型"
-description: "title: "RVC: Real-Time Voice Conversion AI模型""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "rvc"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "RVC: Real-Time Voice Conversion AI模型"
-description: "title: "RVC: Real-Time Voice Conversion AI模型""
+description: "AI tool guide"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

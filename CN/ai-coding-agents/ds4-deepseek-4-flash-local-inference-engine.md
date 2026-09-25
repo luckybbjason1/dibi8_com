@@ -1,6 +1,6 @@
 ---
 title: "ds4: The Open-Source DeepSeek That Developers Are Switching"
-description: "# ds4: The Open-Source DeepSeek That Developers Are Switching"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "ds4-deepseek-4-flash-local-inference-engine"
 category: "ai-tools"

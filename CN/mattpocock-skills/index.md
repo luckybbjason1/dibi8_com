@@ -1,6 +1,6 @@
 ---
 title: "mattpocock/skills: Bộ Kỹ Năng Chuẩn Cho Engineers 2026"
-description: "mattpocock/skills có 267.501 GitHub stars — cao nhất trong các bộ agent skills. Được tạo bởi Matt Pocock, chuyên gia TypeScript hàng đầu. Bộ kỹ năng thực chiến, không học thuật."
+description: "AI tool comparison and guide"
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, mattpocock, skills, typescript, engineering]

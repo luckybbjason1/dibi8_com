@@ -1,13 +1,13 @@
 ---
 title: "Install CCXT for Python"
-description: "title: "CCXT 2026: The Universal Crypto Exchange API Unifying 10"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ccxt-crypto-exchange-api-unified"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "CCXT 2026: The Universal Crypto Exchange API Unifying 10...
-description: "title: "CCXT 2026: The Universal Crypto Exchange API Unifying 10"
+description: "Technical guide and comparison"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

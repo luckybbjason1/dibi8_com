@@ -1,6 +1,6 @@
 ---
 title: "Best AI Translation Tools 2025: Google Translate vs DeepL vs ChatGPT Compared"
-description: "# Best AI Translation Tools 2025: Google Translate vs DeepL vs ChatGPT Compared"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "ai-translation-tools-compared-2025"
 category: "ai-tools"

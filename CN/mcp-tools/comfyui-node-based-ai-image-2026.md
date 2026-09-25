@@ -1,13 +1,13 @@
 ---
 title: "Opens UI at http://localhost:8188"
-description: "title: "ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "comfyui-node-based-ai-image-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio ...
-description: "title: "ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio"
+description: "Technical guide and comparison"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

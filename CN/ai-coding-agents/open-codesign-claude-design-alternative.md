@@ -1,13 +1,13 @@
 ---
 title: "Open Codesign: The Open-Source Claude Design Alternative with 5,790+ Stars"
-description: "title: "Open Codesign: The Open-Source Claude Design Alternative"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "open-codesign-claude-design-alternative"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Open Codesign: The Open-Source Claude Design Alternative...
-description: "title: "Open Codesign: The Open-Source Claude Design Alternative"
+description: "Technical guide and comparison"
   Design. Multi-model AI design tool with BYOK, local-first architecture, and instant
   prototype generation from natural language prompts.
 date: 2026-05-15T04:20:25+09:00

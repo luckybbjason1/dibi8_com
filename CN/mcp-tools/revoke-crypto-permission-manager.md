@@ -1,6 +1,6 @@
 ---
 title: "Official website (always verify the URL)"
-description: "**Affiliate Disclosure:** *This article contains affiliate links"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "revoke-crypto-permission-manager"
 category: "ai-tools"

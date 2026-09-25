@@ -1,13 +1,13 @@
 ---
 title: "Cursor Cost-Saving Strategies 2026"
-description: "title: "Cursor Cost-Saving Strategies 2026: After the Credit Pri"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "cursor-cost-saving-strategies-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Cursor Cost-Saving Strategies 2026: After the Credit Pri...
-description: "title: "Cursor Cost-Saving Strategies 2026: After the Credit Pri"
+description: "Technical guide and comparison"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']

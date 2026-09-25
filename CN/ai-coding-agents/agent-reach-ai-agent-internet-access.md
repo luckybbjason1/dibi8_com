@@ -1,13 +1,13 @@
 ---
 title: "One-line install via npx"
-description: "title: "Agent Reach: Give Your AI Agent Internet Superpowers""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "agent-reach-ai-agent-internet-access"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Agent Reach: Give Your AI Agent Internet Superpowers"
-description: "title: "Agent Reach: Give Your AI Agent Internet Superpowers""
+description: "AI tool guide"
   access to YouTube, Twitter, Reddit, Xiaohongshu, Bilibili and 15+ platforms with
   one command.
 date: 2026-05-15T04:20:25+09:00

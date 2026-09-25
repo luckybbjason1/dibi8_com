@@ -1,6 +1,6 @@
 ---
 title: "AgentMemory: The 1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026"
-description: "# AgentMemory: The #1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "agentmemory-persistent-memory-ai-coding-agents"
 category: "ai-tools"

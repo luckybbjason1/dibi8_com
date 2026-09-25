@@ -1,6 +1,6 @@
 ---
 title: "Ollama vs LM Studio in 2026: Which Local LLM Runner Wins?"
-description: "# Ollama vs LM Studio in 2026: Which Local LLM Runner Wins?"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "ollama-vs-lm-studio"
 category: "ai-tools"

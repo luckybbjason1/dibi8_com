@@ -1,6 +1,6 @@
 ---
 title: "Jianying Headless: Private Source Preview & Automation — AI Video Editing Without the App 2026"
-description: "Jianying Headless brings CapCut's powerful video editing to the command line. Private source preview, batch processing, automation scripts. 2.5K+ stars, perfect for content creators."
+description: "AI tool comparison and guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "jianying-headless-private-source-preview-automation-2026"
 category: "ai-tools"

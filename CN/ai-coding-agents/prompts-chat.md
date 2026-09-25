@@ -1,6 +1,6 @@
 ---
 title: "prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026"
-description: "chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "prompts-chat"
 category: "ai-tools"

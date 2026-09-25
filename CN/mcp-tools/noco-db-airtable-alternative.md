@@ -1,13 +1,13 @@
 ---
 title: "Create a directory for NocoDB data"
-description: "title: "NocoDB 2026: The Open-Source Airtable Alternative Turnin"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "noco-db-airtable-alternative"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "NocoDB 2026: The Open-Source Airtable Alternative Turnin...
-description: "title: "NocoDB 2026: The Open-Source Airtable Alternative Turnin"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

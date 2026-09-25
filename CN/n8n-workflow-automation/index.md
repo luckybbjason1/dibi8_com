@@ -1,6 +1,6 @@
 ---
 title: "n8n: Workflow Automation Platform 2026 (205K Stars)"
-description: "n8n là fair-code workflow automation platform với native AI capabilities. 400+ integrations, self-hostable, hỗ trợ visual building + custom code. Đạt 205K GitHub stars."
+description: "AI tool comparison and guide"
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, n8n, workflow, automation, ai-agent]

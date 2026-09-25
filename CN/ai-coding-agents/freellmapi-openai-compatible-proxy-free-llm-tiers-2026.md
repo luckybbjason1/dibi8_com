@@ -1,6 +1,6 @@
 ---
 title: "FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint"
-description: "title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "freellmapi-openai-compatible-proxy-free-llm-tiers-2026"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 
 title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
-description: "title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co"
+description: "AI tool guide"
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

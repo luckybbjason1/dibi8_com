@@ -1,13 +1,13 @@
 ---
 title: "Agent Skills: How Development Teams Can Ship Production-Ready Code 5x Faster"
-description: "title: "Agent Skills: How Development Teams Can Ship Production-"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "agent-skills-production-grade-ai-coding"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Agent Skills: How Development Teams Can Ship Production-...
-description: "title: "Agent Skills: How Development Teams Can Ship Production-"
+description: "Technical guide and comparison"
   skills and 7 slash commands that turn AI coding agents into senior software engineers.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

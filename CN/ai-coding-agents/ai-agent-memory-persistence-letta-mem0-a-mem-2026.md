@@ -1,13 +1,13 @@
 ---
 title: "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM"
-description: "title: "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-memory-persistence-letta-mem0-a-mem-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM...
-description: "title: "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM"
+description: "Technical guide and comparison"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]

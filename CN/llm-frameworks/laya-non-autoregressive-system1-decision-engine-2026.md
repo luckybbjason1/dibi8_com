@@ -1,6 +1,6 @@
 ---
 title: "Laya: Non-Autoregressive System 1 Decision Engine — 33ms Typed Decisions Over 100 Languages 2026"
-description: "Laya evaluates choice, score, and noul questions in a single forward pass at 33ms. 20K+ stars, Apache 2.0. Three checkpoints with Router auto-selection. Trained with RLCD against strictly proper scoring rules."
+description: "AI tool comparison and guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "laya-non-autoregressive-system1-decision-engine-2026"
 category: "llm-frameworks"

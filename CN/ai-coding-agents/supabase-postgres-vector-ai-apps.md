@@ -1,13 +1,13 @@
 ---
 title: "Your project comes with:  - PostgreSQL 16 database"
-description: "title: "Supabase 2026: The Open-Source Firebase Alternative Powe"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "supabase-postgres-vector-ai-apps"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Supabase 2026: The Open-Source Firebase Alternative Powe...
-description: "title: "Supabase 2026: The Open-Source Firebase Alternative Powe"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

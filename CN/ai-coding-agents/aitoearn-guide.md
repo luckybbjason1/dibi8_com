@@ -1,13 +1,13 @@
 ---
 title: "Best Open Source Alternative to Buffer (2026): AiToEarn vs Hootsuite Comparison"
-description: "title: "Best Open Source Alternative to Buffer (2026): AiToEarn"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "aitoearn-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Best Open Source Alternative to Buffer (2026): AiToEarn ..."
-description: "title: "Best Open Source Alternative to Buffer (2026): AiToEarn"
+description: "Technical guide and comparison"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

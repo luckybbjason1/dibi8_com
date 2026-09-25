@@ -1,13 +1,13 @@
 ---
 title: "Create and start all containers"
-description: "title: "Docmost 2026: The Open-Source Notion Alternative for Rea"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "docmost-team-docs-collaboration"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Docmost 2026: The Open-Source Notion Alternative for Rea...
-description: "title: "Docmost 2026: The Open-Source Notion Alternative for Rea"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

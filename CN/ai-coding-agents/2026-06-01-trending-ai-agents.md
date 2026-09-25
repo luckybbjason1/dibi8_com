@@ -1,11 +1,3 @@
----
-title: "Top 8 Trending Repos This Week"
-description: "## Top 8 Trending Repos This Week"
-date: 2026-09-20
-slug: "2026-06-01-trending-ai-agents"
-category: "ai-tools"
-tags: ["ai", "tools"]
----
 ## Top 8 Trending Repos This Week
 
 ### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) - ★200497

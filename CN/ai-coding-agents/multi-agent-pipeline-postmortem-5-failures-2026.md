@@ -1,13 +1,13 @@
 ---
 title: "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchestration Goes Wrong (2026)"
-description: "title: "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "multi-agent-pipeline-postmortem-5-failures-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest...
-description: "title: "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest"
+description: "Technical guide and comparison"
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]

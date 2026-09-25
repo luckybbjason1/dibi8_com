@@ -1,13 +1,13 @@
 ---
 title: "The Cheap LLM Stack 2026: How to Run Production AI on $0-15/Month Using Free Tiers and Token Compression"
-description: "title: "The Cheap LLM Stack 2026: How to Run Production AI on $0"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "cheap-llm-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "The Cheap LLM Stack 2026: How to Run Production AI on $0...
-description: "title: "The Cheap LLM Stack 2026: How to Run Production AI on $0"
+description: "Technical guide and comparison"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

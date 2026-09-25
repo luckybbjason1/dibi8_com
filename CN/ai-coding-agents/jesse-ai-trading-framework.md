@@ -1,13 +1,13 @@
 ---
 title: "Install Jesse"
-description: "title: "Jesse: The Advanced Python Crypto Trading Framework with"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "jesse-ai-trading-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Jesse: The Advanced Python Crypto Trading Framework with...
-description: "title: "Jesse: The Advanced Python Crypto Trading Framework with"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

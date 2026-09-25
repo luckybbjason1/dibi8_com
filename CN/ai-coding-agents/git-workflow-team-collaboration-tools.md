@@ -1,6 +1,6 @@
 ---
 title: "Git Workflow & Team Collaboration Tools: A Developer''s Complete Guide"
-description: "# Git Workflow & Team Collaboration Tools: A Developer''s Complete Guide"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "git-workflow-team-collaboration-tools"
 category: "ai-tools"

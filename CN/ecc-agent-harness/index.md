@@ -1,6 +1,6 @@
 ---
 title: "ECC (affaan-m/ECC): Hệ Thống Điều Khiển Agent Mạnh Nhất 2026"
-description: "ECC là agent harness performance optimization system với 265K GitHub stars. Hỗ trợ 68 agents, 286 skills, 94 commands. Tích hợp AgentShield bảo mật. Tương thích Claude Code, Codex, Cursor, OpenCode và nhiều hơn nữa."
+description: "AI tool comparison and guide"
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, ecc, claude-code, coding-agent, performance]

@@ -1,6 +1,6 @@
 ---
 title: "Anthropic Financial Services: How Financial Teams Can Automate Analysis & Boost ROI by 300%"
-description: "title: "Anthropic Financial Services: How Financial Teams Can Au"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "anthropic-financial-services-ai-finance-automation"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 title: "Anthropic Financial Services: How Financial Teams Can Au...
   Boost ROI by 300%'
-description: "title: "Anthropic Financial Services: How Financial Teams Can Au"
+description: "Technical guide and comparison"
   research, and wealth management teams automate pitch decks, DCF models, and KYC
   screening with Claude AI agents.
 date: 2026-05-15T04:20:25+09:00

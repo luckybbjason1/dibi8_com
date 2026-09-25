@@ -1,13 +1,13 @@
 ---
 title: "Tomato Scrambled Eggs (西红柿炒鸡蛋) ⭐"
-description: "title: "HowToCook: 297 Recipes for Programmers - The Open Source"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "howtocook-programmer-open-source-cookbook"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "HowToCook: 297 Recipes for Programmers - The Open Source..."
-description: "title: "HowToCook: 297 Recipes for Programmers - The Open Source"
+description: "Technical guide and comparison"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

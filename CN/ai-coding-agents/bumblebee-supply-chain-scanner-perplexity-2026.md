@@ -1,13 +1,13 @@
 ---
 title: "Routine daily inventory — global packages, toolchains, extensions, MCP configs"
-description: "title: "Bumblebee 2026: Perplexity AI Open-Sources Its Internal"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "bumblebee-supply-chain-scanner-perplexity-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Bumblebee 2026: Perplexity AI Open-Sources Its Internal ...
-description: "title: "Bumblebee 2026: Perplexity AI Open-Sources Its Internal"
+description: "Technical guide and comparison"
 licensing_model: Open Source
 license_type: Apache-2.0
 file_size: ''

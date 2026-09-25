@@ -1,6 +1,6 @@
 ---
 title: "NiubiGEO: Open-Source AI Brand Visibility Platform — Monitor Your Generative AI Presence 2026"
-description: "NiubiGEO by Albert-Weasker monitors AI brand visibility across LLM outputs. 4.8K+ stars, self-hosted GEO tool. Detect mentions, analyze sentiment, export reports. The open-source alternative to commercial AI visibility platforms."
+description: "AI tool comparison and guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "niubigeo-open-source-ai-brand-visibility-2026"
 category: "dev-utils"

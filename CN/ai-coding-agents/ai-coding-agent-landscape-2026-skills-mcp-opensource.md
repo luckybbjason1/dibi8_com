@@ -1,6 +1,6 @@
 ---
 title: "Clone Karpathy's skills into your local skill library"
-description: "## Introduction: This Is Not Just Another Tool Upgrade"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "ai-coding-agent-landscape-2026-skills-mcp-opensource"
 category: "ai-tools"

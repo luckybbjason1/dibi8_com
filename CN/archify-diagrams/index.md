@@ -1,18 +1,3 @@
----
-title: "Archify: Genera Diagramas de Arquitectura Lista para Producción en 2026"
-description: "Archify de tt-a1i se ha convertido en una de las herramientas de visualización de arquitectura más populares en 2026, ganando 59,700 estrellas y 3,900 forks en un solo mes. Esta herramienta HTML autocontenida genera diagramas hermosos e interactivos a partir de análisis de código sin requerir dependencias externas."
-date: 2026-09-20
-lastmod: 2026-09-20
-tags: [archify, architecture-diagrams, ai-tools, visualization, code-analysis, 2026]
-categories: [dev-utils]
-license_type: Open Source
-source: "GitHub"
-github: "tt-a1i/archify"
-word_count: 0
-h2_count: 0
-code_blocks: 0
-faq_count: 0
----
 
 # Archify: Genera Diagramas de Arquitectura Lista para Producción en 2026
 

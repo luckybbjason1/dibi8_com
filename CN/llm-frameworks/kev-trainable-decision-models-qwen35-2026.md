@@ -1,6 +1,6 @@
 ---
 title: "Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026"
-description: "Kev by Jared Palmer (React creator) turns Qwen3.5 into trainable decision models. 30K+ params, RLVR training, JSON/Pydantic outputs. Under 100 lines of code. 5.9K stars."
+description: "AI tool comparison and guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "kev-trainable-decision-models-qwen35-2026"
 category: "llm-frameworks"

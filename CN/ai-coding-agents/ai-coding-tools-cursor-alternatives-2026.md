@@ -1,13 +1,13 @@
 ---
 title: "Best Cursor Alternatives 2026: 7 AI Coding Tools Compared (Claude Code, Cline, Copilot, Windsurf, Continue.dev, Zed)"
-description: "title: "Best Cursor Alternatives 2026: 7 AI Coding Tools Compare"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-coding-tools-cursor-alternatives-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Best Cursor Alternatives 2026: 7 AI Coding Tools Compare...
-description: "title: "Best Cursor Alternatives 2026: 7 AI Coding Tools Compare"
+description: "Technical guide and comparison"
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']

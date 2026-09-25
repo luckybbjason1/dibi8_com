@@ -1,13 +1,13 @@
 ---
 title: "LLM Evaluation & Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared"
-description: "title: "LLM Evaluation & Benchmarking Frameworks 2025: EleutherA"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "llm-evaluation-benchmarking-frameworks"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "LLM Evaluation & Benchmarking Frameworks 2025: EleutherA...
-description: "title: "LLM Evaluation & Benchmarking Frameworks 2025: EleutherA"
+description: "Technical guide and comparison"
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

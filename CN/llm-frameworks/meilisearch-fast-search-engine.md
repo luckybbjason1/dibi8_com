@@ -1,13 +1,13 @@
 ---
 title: "Verify health"
-description: "title: "Meilisearch: The Lightning-Fast Open-Source Search Engin"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "meilisearch-fast-search-engine"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Meilisearch: The Lightning-Fast Open-Source Search Engin...
-description: "title: "Meilisearch: The Lightning-Fast Open-Source Search Engin"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

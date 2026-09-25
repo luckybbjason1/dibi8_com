@@ -1,13 +1,13 @@
 ---
 title: "Create virtual environment"
-description: "title: "Create virtual environment""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "llamaindex"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Create virtual environment"
-description: "title: "Create virtual environment""
+description: "AI tool guide"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

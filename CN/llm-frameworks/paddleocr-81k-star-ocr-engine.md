@@ -1,6 +1,6 @@
 ---
 title: "PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost"
-description: "# PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "paddleocr-81k-star-ocr-engine"
 category: "ai-tools"

@@ -1,6 +1,6 @@
 ---
 title: "Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds — Fast, Lightweight, Production-Ready"
-description: "# Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds — Fast, Lightweight, Production-Ready"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "semgrep-15k-star-sast-security-scanner"
 category: "ai-tools"

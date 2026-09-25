@@ -1,13 +1,13 @@
 ---
 title: "Load settings from environment"
-description: "title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-frameworks-comparison-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap..."
-description: "title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap"
+description: "Technical guide and comparison"
 date: 2026-06-30T00:00:00+09:00
 lastmod: 2026-06-30T00:00:00+09:00
 draft: false
@@ -317,7 +317,7 @@ from pydantic import BaseModel, Field
 class WebSearchInput(BaseModel): query: str = Field(description="The search query")
 
 class WebSearchTool(BaseTool): name: str = "Web Search"
-    description: "title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap"
+    description: "Technical guide and comparison"
     args_schema: type[BaseModel] = WebSearchInput
 
     def _run(self, query: str) -> str: # Implement your search logic

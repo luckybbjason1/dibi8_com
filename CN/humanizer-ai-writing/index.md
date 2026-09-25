@@ -1,18 +1,3 @@
----
-title: "Humanizer: Loại bỏ Viết AI trong 2026"
-description: "Humanizer là kỹ năng agent mạnh mẽ giúp loại bỏ các mẫu viết AI, bảo toàn ý nghĩa gốc. Được tạo bởi blader, đạt 49.212 GitHub stars và 3.993 forks kể từ khi phát hành tháng 1/2026."
-date: 2026-09-20
-lastmod: 2026-09-20
-tags: [humanizer, ai-writing, content-creation, ai-tools, writing-assistant, 2026]
-categories: [ai-tools]
-license_type: Open Source
-source: "GitHub"
-github: "blader/humanizer"
-word_count: 0
-h2_count: 0
-code_blocks: 0
-faq_count: 0
----
 
 # Humanizer: Loại bỏ Viết AI trong 2026
 

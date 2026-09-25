@@ -1,6 +1,6 @@
 ---
 title: "Create a TurboVec index with 4-bit quantization"
-description: "[TurboVec Vector Index](https://opengraph"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "turbovec-rust-vector-index-2026"
 category: "ai-tools"

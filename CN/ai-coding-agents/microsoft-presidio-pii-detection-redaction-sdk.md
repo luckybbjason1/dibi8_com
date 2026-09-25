@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Presidio PII Detection SDK"
-description: "slug: microsoft-presidio-pii-detection-redaction-sdk"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "microsoft-presidio-pii-detection-redaction-sdk"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: "Presidio Review: Microsoft's Open-Source PII Detection a..."
-description: "slug: microsoft-presidio-pii-detection-redaction-sdk"
+description: "AI tool guide"
 tags: ["open-source", "self-hosted"]
 date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"

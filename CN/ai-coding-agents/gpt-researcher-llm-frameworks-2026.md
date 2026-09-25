@@ -1,13 +1,13 @@
 ---
 title: "GPT Researcher: Autonomous Agent for Deep Research Reports — Practical 2026 Guide"
-description: "title: "GPT Researcher: Autonomous Agent for Deep Research Repor"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "gpt-researcher-llm-frameworks-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "GPT Researcher: Autonomous Agent for Deep Research Repor...
-description: "title: "GPT Researcher: Autonomous Agent for Deep Research Repor"
+description: "Technical guide and comparison"
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []

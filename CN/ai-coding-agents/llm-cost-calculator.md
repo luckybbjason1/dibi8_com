@@ -1,6 +1,6 @@
 ---
 title: "LLM API Cost Calculator — GPT-4, Claude, Gemini"
-description: ""headline": ""LLM API Cost Calculator — GPT-4, Claude, Gemini"","
+description: "AI tool guide"
 date: 2026-09-20
 slug: "llm-cost-calculator"
 category: "ai-tools"

@@ -1,6 +1,6 @@
 ---
 title: "Install individual skills on demand (recommended)"
-description: "**Meta Description:** Master AI Agent Skills in 2026 with our comprehensive guide"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "ai-agent-skills-2026-developer-guide"
 category: "ai-tools"

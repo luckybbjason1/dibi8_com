@@ -1,6 +1,6 @@
 ---
 title: "RTK (rtk-ai/rtk): Giảm 90% Token Cost Cho AI Coding"
-description: "RTK là CLI proxy viết bằng Rust giúp giảm 60-90% token consumption khi agent đọc output từ terminal. Hỗ trợ 100+ commands, <10ms overhead. Đạt 81K GitHub stars."
+description: "AI tool comparison and guide"
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, rtk, token-optimization, claude-code, cost-reduction]

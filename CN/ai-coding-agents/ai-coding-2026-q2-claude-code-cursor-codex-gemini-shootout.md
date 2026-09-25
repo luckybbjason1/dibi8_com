@@ -1,13 +1,13 @@
 ---
 title: "AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI — The Honest Comparison"
-description: "title: "AI Coding 2026-Q2 Shootout: Claude Code 1"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr...
-description: "title: "AI Coding 2026-Q2 Shootout: Claude Code 1"
+description: "Technical guide and comparison"
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]

@@ -1,6 +1,6 @@
 ---
 title: "Tech WeChat Hub: Local-First Intelligence Platform — Real-Time Chat Analysis & Automation 2026"
-description: "Tech WeChat Hub provides local-first intelligence gathering from WeChat with real-time analysis. 2.5K+ stars, MIT license. Private data processing, open source alternative to commercial chat analytics tools."
+description: "AI tool comparison and guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "tech-wechat-hub-local-intelligence-platform-2026"
 category: "dev-utils"

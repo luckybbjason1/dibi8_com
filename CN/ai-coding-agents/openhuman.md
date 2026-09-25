@@ -1,6 +1,6 @@
 ---
 title: "OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026"
-description: "# OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "openhuman"
 category: "ai-tools"

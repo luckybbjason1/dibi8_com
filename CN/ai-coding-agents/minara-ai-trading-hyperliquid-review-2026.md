@@ -1,6 +1,6 @@
 ---
 title: "Minara Review 2026: The AI Trading Platform on Hyperliquid That Compresses Your Bloomberg Terminal Into One Chat Box"
-description: "# Minara Review 2026: The AI Trading Platform on Hyperliquid That Compresses Your Bloomberg Terminal Into One Chat Box"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "minara-ai-trading-hyperliquid-review-2026"
 category: "ai-tools"

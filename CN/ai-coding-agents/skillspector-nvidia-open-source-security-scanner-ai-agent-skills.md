@@ -1,13 +1,13 @@
 ---
 title: "SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills"
-description: "title: "SkillSpector: NVIDIA's Open-Source Security Scanner for"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "skillspector-nvidia-open-source-security-scanner-ai-agent-skills"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "SkillSpector: NVIDIA's Open-Source Security Scanner for ..."
-  description: "title: "SkillSpector: NVIDIA's Open-Source Security Scanner for"
+  description: "Technical guide and comparison"
   date: 2026-06-25
   lastmod: 2026-06-25
 draft: false

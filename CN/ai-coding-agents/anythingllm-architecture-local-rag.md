@@ -1,13 +1,13 @@
 ---
 title: "Why Do Enterprises Fear ChatGPT?"
-description: "title: Why Do Enterprises Fear ChatGPT?"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "anythingllm-architecture-local-rag"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: Why Do Enterprises Fear ChatGPT?
-description: "title: Why Do Enterprises Fear ChatGPT?"
+description: "AI tool guide"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

@@ -1,13 +1,13 @@
 ---
 title: "Define the repository of assets"
-description: "title: "Dagster: The Data Pipeline Orchestrator with Asset-Based"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "dagster-data-pipeline-orchestrator"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Dagster: The Data Pipeline Orchestrator with Asset-Based...
-description: "title: "Dagster: The Data Pipeline Orchestrator with Asset-Based"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

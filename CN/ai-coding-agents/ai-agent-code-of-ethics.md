@@ -1,13 +1,13 @@
 ---
 title: "The AI Agent Code of Ethics (2026): A Practical Governance Framework for Autonomous Agents"
-description: "title: "The AI Agent Code of Ethics (2026): A Practical Governan"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-code-of-ethics"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "The AI Agent Code of Ethics (2026): A Practical Governan...
-description: "title: "The AI Agent Code of Ethics (2026): A Practical Governan"
+description: "Technical guide and comparison"
 date: 2026-06-04T00:00:00+08:00
 lastmod: 2026-06-04T00:00:00+08:00
 tech_stack: - AI Agents

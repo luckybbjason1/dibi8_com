@@ -1,13 +1,13 @@
 ---
 title: "Claude Code MCP Advanced 2026: The 10-Server Production Stack"
-description: "title: "Claude Code MCP Advanced 2026: The 10-Server Production"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-mcp-advanced-10-server-stack-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Claude Code MCP Advanced 2026: The 10-Server Production ...
-description: "title: "Claude Code MCP Advanced 2026: The 10-Server Production"
+description: "Technical guide and comparison"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]

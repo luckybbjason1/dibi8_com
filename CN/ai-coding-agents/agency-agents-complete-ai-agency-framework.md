@@ -1,13 +1,13 @@
 ---
 title: "agency agents complete ai agency framework"
-description: "title: "Agency Agents: 125K+ Star Open-Source AI Agency Framework""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "agency-agents-complete-ai-agency-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Agency Agents: 125K+ Star Open-Source AI Agency Framework"
-description: "title: "Agency Agents: 125K+ Star Open-Source AI Agency Framework""
+description: "AI tool guide"
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: agency-agents-complete-ai-agency-framework
@@ -180,7 +180,7 @@ team: frontend: model: claude-sonnet-4-20250514
 
 Create a ``tasks.yaml`` file that describes your project requirements: `````yaml
 project: name: "SaaS Dashboard"
-  description: "title: "Agency Agents: 125K+ Star Open-Source AI Agency Framework""
+  description: "AI tool guide"
   tech_stack: - React
     - Node.js
     - PostgreSQL

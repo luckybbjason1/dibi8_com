@@ -1,13 +1,13 @@
 ---
 title: "FastLanguageModel 模型加载指南"
-description: "date: 2026-05-21T00:00:00+08:00"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "unsloth-fast-llm-fine-tuning-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "FastLanguageModel 模型加载指南"
-description: "date: 2026-05-21T00:00:00+08:00"
+description: "AI tool guide"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

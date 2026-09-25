@@ -1,13 +1,13 @@
 ---
 title: "AI Coding Ethics 2026: Corporate Policy Guide"
-description: "title: "AI Coding Ethics 2026: Corporate Policy Guide for Allow"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-coding-ethics-corporate-policy-guide-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "AI Coding Ethics 2026: Corporate Policy Guide for Allow ...
-description: "title: "AI Coding Ethics 2026: Corporate Policy Guide for Allow"
+description: "Technical guide and comparison"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Policy, Compliance, 'Claude Code', Cursor]

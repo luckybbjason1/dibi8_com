@@ -1,13 +1,13 @@
 ---
 title: "ML Systems Book: MIT Press Textbook on Machine Learning Systems Engineering"
-description: "title: "ML Systems Book: MIT Press Textbook on Machine Learning"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ml-systems-book-mit-press-textbook"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "ML Systems Book: MIT Press Textbook on Machine Learning ..."
-description: "title: "ML Systems Book: MIT Press Textbook on Machine Learning"
+description: "Technical guide and comparison"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

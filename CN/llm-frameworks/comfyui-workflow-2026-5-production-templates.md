@@ -1,13 +1,13 @@
 ---
 title: "ComfyUI Workflow 2026: Setup + 5 Production Templates"
-description: "title: "ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "comfyui-workflow-2026-5-production-templates"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea...
-description: "title: "ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea"
+description: "Technical guide and comparison"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]

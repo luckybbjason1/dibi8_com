@@ -1,6 +1,6 @@
 ---
 title: "MLflow vs Weights & Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024"
-description: "# MLflow vs Weights & Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "mlops-platform-comparison-mlflow-wandb-neptune"
 category: "ai-tools"

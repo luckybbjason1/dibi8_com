@@ -1,13 +1,13 @@
 ---
 title: "prefect-envScriptsactivate   Windows"
-description: "title: "Prefect 2026: The Modern Workflow Orchestration Engine f"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "prefect-workflow-orchestration"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Prefect 2026: The Modern Workflow Orchestration Engine f...
-description: "title: "Prefect 2026: The Modern Workflow Orchestration Engine f"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

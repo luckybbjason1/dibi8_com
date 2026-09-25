@@ -1,6 +1,6 @@
 ---
 title: "CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development"
-description: "# CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "cc-switch-all-in-one-ai-coding-agent-manager"
 category: "ai-tools"

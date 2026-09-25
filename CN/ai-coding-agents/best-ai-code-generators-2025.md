@@ -1,6 +1,6 @@
 ---
 title: "Best AI Code Generators 2025: GitHub Copilot vs Cursor vs Tabnine Compared"
-description: ""headline": "'Best AI Code Generators 2025: GitHub Copilot vs Cursor v"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "best-ai-code-generators-2025"
 category: "ai-tools"

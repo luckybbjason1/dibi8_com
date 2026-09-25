@@ -1,13 +1,13 @@
 ---
 title: "Open Design: The Ultimate Local-First AI Design Tool Replacing Claude Design"
-description: "title: "Open Design: The Ultimate Local-First AI Design Tool Rep"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "open-design-local-first-ai-design-tool"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Open Design: The Ultimate Local-First AI Design Tool Rep..."
-description: "title: "Open Design: The Ultimate Local-First AI Design Tool Rep"
+description: "Technical guide and comparison"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

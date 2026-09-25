@@ -1,13 +1,13 @@
 ---
 title: "docker-compose.yml"
-description: "title: "Outline: The Open-Source Wiki & Knowledge Base Built for"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "outline-wiki-knowledge-base"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Outline: The Open-Source Wiki & Knowledge Base Built for...
-description: "title: "Outline: The Open-Source Wiki & Knowledge Base Built for"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -216,7 +216,7 @@ features: bot_user: display_name: Outline
     always_online: true
   slash_commands: - command: /outline
       url: https://wiki.yourcompany.com/api/hooks.slack
-      description: "title: "Outline: The Open-Source Wiki & Knowledge Base Built for"
+      description: "Technical guide and comparison"
       usage_hint: "[search query]"
       should_escape: false
 oauth_config: redirect_urls: - https://wiki.yourcompany.com/auth/slack.callback

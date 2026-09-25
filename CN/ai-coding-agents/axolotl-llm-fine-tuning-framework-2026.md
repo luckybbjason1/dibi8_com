@@ -1,13 +1,13 @@
 ---
 title: "axolotl LLM fine tuning framework"
-description: "title: "Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "axolotl-llm-fine-tuning-framework-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F...
-description: "title: "Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F"
+description: "Technical guide and comparison"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

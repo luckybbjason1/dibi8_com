@@ -1,6 +1,6 @@
 ---
 title: "Hreflang Tags Generator — Multi-Language & International SEO"
-description: ""headline": ""Hreflang Tags Generator — Multi-Language & International"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "hreflang-generator"
 category: "ai-tools"

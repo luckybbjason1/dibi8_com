@@ -1,6 +1,6 @@
 ---
 title: "Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025"
-description: "# Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "api-testing-tools-postman-vs-insomnia-vs-bruno"
 category: "ai-tools"

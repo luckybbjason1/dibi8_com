@@ -1,13 +1,13 @@
 ---
 title: "Traditional Workflow (deterministic)"
-description: "title: "Traditional Workflow (deterministic)""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "n8n-ai-automation-complete-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Traditional Workflow (deterministic)"
-description: "title: "Traditional Workflow (deterministic)""
+description: "AI tool guide"
   apps with AI nodes, build autonomous agents, and automate complex business processes.
   Pricing, templates, and real-world examples.
 tags: - n8n

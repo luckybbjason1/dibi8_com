@@ -1,6 +1,6 @@
 ---
 title: "SoL-Pi: Scaling Auto-Research Loops for Efficient Agent Harnesses — NVlabs Open-Source Optimization Framework 2026"
-description: "SoL-Pi by NVIDIA saves 13.50/hour vs Claude Code and 5.71/hour vs native Pi. Four mechanisms: Action Fusion, ObservationPack, Evidence-Preserving Reducer, Online Context Compact. Free, opt-in, no patches required."
+description: "AI tool guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "nvlabs-sol-pi-agent-harness-efficiency-2026"
 category: "llm-frameworks"

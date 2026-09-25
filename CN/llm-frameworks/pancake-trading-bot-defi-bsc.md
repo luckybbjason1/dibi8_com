@@ -1,13 +1,13 @@
 ---
 title: "Price of token A in terms of token B"
-description: "title: "PancakeSwap Trading Bot 2026: Build Automated DeFi Strat"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "pancake-trading-bot-defi-bsc"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "PancakeSwap Trading Bot 2026: Build Automated DeFi Strat...
-description: "title: "PancakeSwap Trading Bot 2026: Build Automated DeFi Strat"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

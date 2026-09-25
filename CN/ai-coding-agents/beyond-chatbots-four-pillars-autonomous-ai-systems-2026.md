@@ -1,13 +1,13 @@
 ---
 title: "Beyond Chatbots: The 4 Pillars of Autonomous AI Systems in 2026"
-description: "title: "Beyond Chatbots: The 4 Pillars of Autonomous AI Systems"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "beyond-chatbots-four-pillars-autonomous-ai-systems-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Beyond Chatbots: The 4 Pillars of Autonomous AI Systems ..."
-description: "title: "Beyond Chatbots: The 4 Pillars of Autonomous AI Systems"
+description: "Technical guide and comparison"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

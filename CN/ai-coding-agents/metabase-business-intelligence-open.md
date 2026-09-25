@@ -1,13 +1,13 @@
 ---
 title: "Launch Metabase container"
-description: "title: "Metabase 2026: The Open-Source Business Intelligence Too"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "metabase-business-intelligence-open"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Metabase 2026: The Open-Source Business Intelligence Too...
-description: "title: "Metabase 2026: The Open-Source Business Intelligence Too"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

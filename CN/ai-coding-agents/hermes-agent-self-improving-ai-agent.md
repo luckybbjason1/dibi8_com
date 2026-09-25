@@ -1,13 +1,13 @@
 ---
 title: "Run a skill every day at 9 AM"
-description: "title: "Run a skill every day at 9 AM""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "hermes-agent-self-improving-ai-agent"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Run a skill every day at 9 AM"
-description: "title: "Run a skill every day at 9 AM""
+description: "AI tool guide"
   loop — creates skills from experience, continuously improves, remembers your preferences,
   and gets better the more you use it.
 date: 2026-05-15T04:20:25+09:00

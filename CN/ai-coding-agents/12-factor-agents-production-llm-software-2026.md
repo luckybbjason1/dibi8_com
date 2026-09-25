@@ -1,13 +1,13 @@
 ---
 title: "12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）"
-description: "date: 2026-05-23T00:00:00+08:00"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "12-factor-agents-production-llm-software-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）"
-description: "date: 2026-05-23T00:00:00+08:00"
+description: "AI tool guide"
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

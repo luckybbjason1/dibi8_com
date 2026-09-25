@@ -1,6 +1,6 @@
 ---
 title: "AI Coding Agents - dibi8"
-description: "Hand-tested AI coding agents: OpenCode, Claude Code, Cursor, Codex, and more."
+description: "AI tool guide"
 date: 2026-09-22
 tags: ["ai-coding-agents"]
 ---

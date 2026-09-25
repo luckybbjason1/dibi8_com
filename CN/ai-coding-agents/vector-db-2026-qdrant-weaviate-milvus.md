@@ -1,13 +1,13 @@
 ---
 title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus"
-description: "title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus ("
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "vector-db-2026-qdrant-weaviate-milvus"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (...
-description: "title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus ("
+description: "Technical guide and comparison"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]

@@ -1,6 +1,6 @@
 ---
 title: "Expected: trivy version 0.65.x"
-description: "[Trivy Security Scanner](https://opengraph"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "trivy-production-security-scanner-2026"
 category: "ai-tools"

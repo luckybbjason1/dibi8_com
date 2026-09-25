@@ -1,13 +1,13 @@
 ---
 title: "The MCP Server Registry Guide 2026: 19,700+ Servers, 7 Official Picks, and How to Find the Right One in 60 Seconds"
-description: "title: "The MCP Server Registry Guide 2026: 19,700+ Servers, 7 O"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mcp-server-registry-comprehensive-guide-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "The MCP Server Registry Guide 2026: 19,700+ Servers, 7 O...
-description: "title: "The MCP Server Registry Guide 2026: 19,700+ Servers, 7 O"
+description: "Technical guide and comparison"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - TypeScript

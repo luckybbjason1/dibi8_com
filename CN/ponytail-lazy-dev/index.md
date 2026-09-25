@@ -1,6 +1,6 @@
 ---
 title: "Ponytail: Biến AI Agent Thành 'Kỹ Sư Lười' Hiệu Quả Nhất"
-description: "Ponytail của DietrichGebert đạt 144K stars. Kỹ năng buộc agent viết code tối thiểu — ít nhất 54% LOC, nhanh nhất 27%, rẻ nhất 20%. 'He says nothing. He writes one line. It works.'"
+description: "AI tool comparison and guide"
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, ponytail, minimal-code, claude-code, efficiency]

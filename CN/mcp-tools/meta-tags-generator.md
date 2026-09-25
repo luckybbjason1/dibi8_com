@@ -1,6 +1,6 @@
 ---
 title: "Meta Tags Generator — SEO Title, Description, Open Graph & Twitter Card"
-description: ""headline": ""Meta Tags Generator — SEO Title, Description, Open Graph"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "meta-tags-generator"
 category: "ai-tools"

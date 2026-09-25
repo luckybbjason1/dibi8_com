@@ -1,6 +1,6 @@
 ---
 title: "Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotation Costs by 80% — Open-Source Data Cleaning with Python"
-description: "# Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotation Costs by 80% — Open-Source Data Cleaning with Python"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "cleanlab-11k-star-ai-data-cleaning"
 category: "ai-tools"

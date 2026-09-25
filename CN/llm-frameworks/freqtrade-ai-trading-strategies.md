@@ -1,13 +1,13 @@
 ---
 title: "Create the user_data directory structure"
-description: "title: "Freqtrade 2026: Build AI-Powered Crypto Trading Strategi"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "freqtrade-ai-trading-strategies"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Freqtrade 2026: Build AI-Powered Crypto Trading Strategi...
-description: "title: "Freqtrade 2026: Build AI-Powered Crypto Trading Strategi"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

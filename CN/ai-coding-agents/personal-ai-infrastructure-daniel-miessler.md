@@ -1,6 +1,6 @@
 ---
 title: "Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide"
-description: "# Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "personal-ai-infrastructure-daniel-miessler"
 category: "ai-tools"

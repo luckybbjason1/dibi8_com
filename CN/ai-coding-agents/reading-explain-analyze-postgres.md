@@ -1,13 +1,13 @@
 ---
 title: "Reading EXPLAIN ANALYZE in Postgres Without Getting Lost"
-description: "title: Reading EXPLAIN ANALYZE in Postgres Without Getting Lost"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "reading-explain-analyze-postgres"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: Reading EXPLAIN ANALYZE in Postgres Without Getting Lost
-description: "title: Reading EXPLAIN ANALYZE in Postgres Without Getting Lost"
+description: "AI tool guide"
   interpret query plans, identify bottlenecks and optimize database performance.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

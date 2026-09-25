@@ -1,13 +1,13 @@
 ---
 title: "What Is AiToEarn?"
-description: "date: 2026-05-15T04:20:25+09:00"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "aitoearn-ai-monetization"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "What Is AiToEarn?"
-description: "date: 2026-05-15T04:20:25+09:00"
+description: "AI tool guide"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

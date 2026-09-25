@@ -1,13 +1,13 @@
 ---
 title: "Install Phoenix"
-description: "title: "Arize AI Phoenix: The Open-Source LLM Observability Tool"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "arize-ai-observability-llm"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Arize AI Phoenix: The Open-Source LLM Observability Tool...
-description: "title: "Arize AI Phoenix: The Open-Source LLM Observability Tool"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

@@ -1,13 +1,13 @@
 ---
 title: "Environment is back to whatever it was here."
-description: "title: "Python Context Managers: The Three Cases You Actually Need""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "python-context-managers-the-three-cases-you-actually-need"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Python Context Managers: The Three Cases You Actually Need"
-description: "title: "Python Context Managers: The Three Cases You Actually Need""
+description: "AI tool guide"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

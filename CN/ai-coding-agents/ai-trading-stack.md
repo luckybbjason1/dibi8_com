@@ -1,13 +1,13 @@
 ---
 title: "TL;DR — The Stack at a Glance"
-description: "title: "The AI Trading Stack 2026: 7-Component Open-Source Quant"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-trading-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "The AI Trading Stack 2026: 7-Component Open-Source Quant...
-description: "title: "The AI Trading Stack 2026: 7-Component Open-Source Quant"
+description: "Technical guide and comparison"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

@@ -1,13 +1,13 @@
 ---
 title: "脆弱的选择器，页面一改就失效"
-description: "date: 2026-05-15T04:20:25+09:00"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "browser-harness-self-healing-llm-web-automation"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "脆弱的选择器，页面一改就失效"
-description: "date: 2026-05-15T04:20:25+09:00"
+description: "AI tool guide"
   Playwright 和 Selenium。
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

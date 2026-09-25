@@ -1,6 +1,6 @@
 ---
 title: "Pandas Performance Optimization Guide: When to Switch to Polars or DuckDB in 2024"
-description: "# Pandas Performance Optimization Guide: When to Switch to Polars or DuckDB in 2024"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "pandas-performance-optimization-alternatives"
 category: "ai-tools"

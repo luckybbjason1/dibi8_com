@@ -1,6 +1,6 @@
 ---
 title: "AI Coding Agents 2026 - Complete Guide"
-description: ""headline": ""AI Coding Agents 2026 - Complete Guide"","
+description: "AI tool guide"
 date: 2026-09-20
 slug: "ai-coding-agents-2026-complete-guide"
 category: "ai-tools"

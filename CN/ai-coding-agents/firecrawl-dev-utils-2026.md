@@ -1,13 +1,13 @@
 ---
 title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K Stars) — Practical 2026 Guide"
-description: "title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "firecrawl-dev-utils-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St...
-description: "title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St"
+description: "Technical guide and comparison"
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -178,7 +178,7 @@ const doc = await app.scrape('https://example.com', {
       type: object,
       properties: {
         title: { type: string },
-        description: "title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St"
+        description: "Technical guide and comparison"
       },
     },
   }],

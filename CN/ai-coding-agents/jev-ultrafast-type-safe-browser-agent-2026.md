@@ -1,6 +1,6 @@
 ---
 title: "Jev Ultrafast: TypeSafe Browser Agents That Fly at 7.1 Seconds — browser-use 2026"
-description: "browser-use's Jev Ultrafast achieves 7.1s task completion using TypeSafe's decision engine. Dynamic indexed action space, CLICK/TYPE_TEXT operations, real Google Flights demo. 19K+ stars, MIT license."
+description: "AI tool comparison and guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "jev-ultrafast-type-safe-browser-agent-2026"
 category: "ai-coding-agents"

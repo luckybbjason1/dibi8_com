@@ -1,13 +1,13 @@
 ---
 title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones"
-description: "title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a De"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mcp-servers-2026-rankings-selection-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
-description: "title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a De"
+description: "Technical guide and comparison"
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]

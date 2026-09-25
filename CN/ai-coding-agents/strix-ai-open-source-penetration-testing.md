@@ -1,13 +1,13 @@
 ---
 title: "strix ai open source penetration testing"
-description: "title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "strix-ai-open-source-penetration-testing"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram...
-description: "title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram"
+description: "Technical guide and comparison"
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: strix-ai-open-source-penetration-testing
@@ -243,14 +243,14 @@ class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
 Define custom detection rules for your specific application: `````yaml
 # custom-rules.yaml
 rules: - name: "Custom SQL Injection"
-    description: "title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram"
+    description: "Technical guide and comparison"
     pattern: "(?i)(union\s+select|or\s+1\s*=\s*1|drop\s+table)"
     severity: critical
     endpoints: - "/api/v1/search"
       - "/api/v1/users"
   
   - name: "Information Disclosure"
-    description: "title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram"
+    description: "Technical guide and comparison"
     pattern: "(?i)(password|api_key|secret)\s*[:=]\s*[\w-]+"
     severity: high
     endpoints: - "/api/v1/config"

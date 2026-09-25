@@ -1,6 +1,6 @@
 ---
 title: "Cursor vs Windsurf in 2026: Which AI IDE Wins?"
-description: "# Cursor vs Windsurf in 2026: Which AI IDE Wins?"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "cursor-vs-windsurf"
 category: "ai-tools"

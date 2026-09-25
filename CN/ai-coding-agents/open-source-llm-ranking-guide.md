@@ -1,6 +1,6 @@
 ---
 title: "Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More"
-description: "# Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "open-source-llm-ranking-guide"
 category: "ai-tools"

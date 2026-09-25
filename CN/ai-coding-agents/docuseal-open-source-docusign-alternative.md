@@ -1,6 +1,6 @@
 ---
 title: "DocuSeal Review: Cut Document Signing Costs by 90% with This Open-Source DocuSign Alternative"
-description: "title: "DocuSeal Review: Cut Document Signing Costs by 90% with"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "docuseal-open-source-docusign-alternative"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 title: "DocuSeal Review: Cut Document Signing Costs by 90% with ...
   Alternative'
-description: "title: "DocuSeal Review: Cut Document Signing Costs by 90% with"
+description: "Technical guide and comparison"
   with self-hosted digital document signing, PDF form building, and white-label eSignature
   workflows.
 date: 2026-05-15T04:20:25+09:00

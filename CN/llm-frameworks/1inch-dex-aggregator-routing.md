@@ -1,13 +1,13 @@
 ---
 title: "Install via npm"
-description: "title: "1inch-dex-aggregator-routing""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "1inch-dex-aggregator-routing"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "1inch-dex-aggregator-routing"
-description: "title: "1inch-dex-aggregator-routing""
+description: "AI tool guide"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

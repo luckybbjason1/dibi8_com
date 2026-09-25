@@ -1,13 +1,13 @@
 ---
 title: "For CUDA 11.1 (original project default)"
-description: "date: 2026-05-19T00:00:00+08:00"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "video-retalking"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "For CUDA 11.1 (original project default)"
-description: "date: 2026-05-19T00:00:00+08:00"
+description: "AI tool guide"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

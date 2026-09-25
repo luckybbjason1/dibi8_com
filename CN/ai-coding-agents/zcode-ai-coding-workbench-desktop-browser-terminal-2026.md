@@ -1,6 +1,6 @@
 ---
 title: "ZCode: AI-Powered Coding Workbench — Desktop, Browser & Terminal in One Platform 2026"
-description: "ZCode by zai-org combines desktop, browser and terminal AI coding in one unified workbench. 6.5K+ stars, VS Code extension + web app. Multi-agent collaboration, real-time sync. MIT license."
+description: "AI tool comparison and guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "zcode-ai-coding-workbench-desktop-browser-terminal-2026"
 category: "ai-coding-agents"

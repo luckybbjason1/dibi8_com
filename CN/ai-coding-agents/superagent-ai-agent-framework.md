@@ -1,13 +1,13 @@
 ---
 title: "Verify installation"
-description: "title: "Superagent: Deploy AI Agents to Production with 1 CLI Co"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "superagent-ai-agent-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Superagent: Deploy AI Agents to Production with 1 CLI Co...
-description: "title: "Superagent: Deploy AI Agents to Production with 1 CLI Co"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

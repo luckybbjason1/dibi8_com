@@ -1,6 +1,6 @@
 ---
 title: "Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit"
-description: "# Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "spec-kit-github-spec-driven-development-toolkit"
 category: "ai-tools"

@@ -1,6 +1,6 @@
 ---
 title: "AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex"
-description: ""headline": ""AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "2026-09-20-ai-coding-agents-full-comparison"
 category: "ai-tools"

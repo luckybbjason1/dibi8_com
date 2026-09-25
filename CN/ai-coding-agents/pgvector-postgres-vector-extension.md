@@ -1,13 +1,13 @@
 ---
 title: "Introduction: The 47-Second Query That Killed a Demo"
-description: "title: "pgvector 2026: Turn PostgreSQL into a High-Performance V"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "pgvector-postgres-vector-extension"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "pgvector 2026: Turn PostgreSQL into a High-Performance V...
-description: "title: "pgvector 2026: Turn PostgreSQL into a High-Performance V"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

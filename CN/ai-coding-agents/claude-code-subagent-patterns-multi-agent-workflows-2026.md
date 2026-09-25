@@ -1,13 +1,13 @@
 ---
 title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)"
-description: "title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-subagent-patterns-multi-agent-workflows-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...
-description: "title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T"
+description: "Technical guide and comparison"
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -74,7 +74,7 @@ Single message → 3 Agent tool calls: - Agent("Find auth handlers", subagent_ty
 
 `````
 Agent({
-  description: "title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T"
+  description: "Technical guide and comparison"
   isolation: "worktree",
   prompt: "Refactor controllers/orders.rb to extract the validation logic..."
 })
@@ -92,7 +92,7 @@ Agent({
 
 `````
 Agent({
-  description: "title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T"
+  description: "Technical guide and comparison"
   subagent_type: "code-reviewer",
   prompt: "Review the changes on branch feat/payment-gateway. I want a second
    opinion on the retry logic — I've checked idempotency but want

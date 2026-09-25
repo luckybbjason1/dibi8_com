@@ -1,6 +1,6 @@
 ---
 title: "Agent-Reach: Free Internet Access for Your AI Agent"
-description: "# Agent-Reach: Free Internet Access for Your AI Agent"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "agent-reach-internet-access-ai-agents"
 category: "ai-tools"

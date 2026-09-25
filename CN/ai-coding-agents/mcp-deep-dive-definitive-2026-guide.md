@@ -1,6 +1,6 @@
 ---
 title: "Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers"
-description: "# Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "mcp-deep-dive-definitive-2026-guide"
 category: "ai-tools"

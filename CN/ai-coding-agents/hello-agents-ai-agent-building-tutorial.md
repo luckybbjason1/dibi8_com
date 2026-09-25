@@ -1,6 +1,6 @@
 ---
 title: "Hello-Agents: How Datawhale's Open-Source AI Agent Tutorial Helps You Build Production-Grade Agents from Scratch"
-description: "title: "Hello-Agents: How Datawhale'""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "hello-agents-ai-agent-building-tutorial"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 title: "Hello-Agents: How Datawhale'"
   Production-Grade Agents from Scratch'
-description: "title: "Hello-Agents: How Datawhale'""
+description: "AI tool guide"
   ReAct, AutoGen, LangGraph, MCP, Agentic RL and real-world projects with 45,600+
   GitHub stars.
 date: 2026-05-15T04:20:25+09:00

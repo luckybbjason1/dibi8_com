@@ -1,6 +1,6 @@
 ---
 title: "Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026"
-description: "# Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "langflow-visual-llm-workflow-builder-2026"
 category: "ai-tools"
@@ -227,7 +227,7 @@ from langflow.field_typing import Tool, Prompt
 from typing import Dict, Any
 
 class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper Tool"
-    description: "# Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026"
+    description: "AI tool guide"
 
     def build_config(self) -> Dict[str, Any]: return {
             "url": {"display_name": "URL", "field_type": "str", "required": True},

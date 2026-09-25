@@ -1,13 +1,13 @@
 ---
 title: "Simplified training loop"
-description: "title: "Simplified training loop""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "ai-trader"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Simplified training loop"
-description: "title: "Simplified training loop""
+description: "AI tool guide"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

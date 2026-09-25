@@ -1,6 +1,6 @@
 ---
 title: "Docker Development Environment Best Practices: A Complete 2025 Guide"
-description: "# Docker Development Environment Best Practices: A Complete 2025 Guide"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "docker-development-environment-best-practices"
 category: "ai-tools"

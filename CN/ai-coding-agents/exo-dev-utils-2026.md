@@ -1,13 +1,13 @@
 ---
 title: "Talk to a local exo cluster with the standard OpenAI client"
-description: "title: "exo: Run Frontier AI Across Your Own Devices (45K Stars)"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "exo-dev-utils-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "exo: Run Frontier AI Across Your Own Devices (45K Stars)...
-description: "title: "exo: Run Frontier AI Across Your Own Devices (45K Stars)"
+description: "Technical guide and comparison"
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []

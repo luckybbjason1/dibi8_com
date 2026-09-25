@@ -1,13 +1,13 @@
 ---
 title: "Install + run a model in 30 seconds"
-description: "title: "Ollama vs LM Studio vs llama"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "local-llm-runner-comparison-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026: The Hones...
-description: "title: "Ollama vs LM Studio vs llama"
+description: "Technical guide and comparison"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

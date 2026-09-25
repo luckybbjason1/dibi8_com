@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek Harness: The Plugin Framework Taking Over 2026"
-description: ""headline": "'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "2026-09-19-deepseek-harness"
 category: "ai-tools"

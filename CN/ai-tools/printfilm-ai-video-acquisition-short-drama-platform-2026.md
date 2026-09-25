@@ -1,6 +1,6 @@
 ---
 title: "Printfilm: AI Video Acquisition & Short Drama Platform — Content Creation at Scale 2026"
-description: "Printfilm combines AI video generation with short drama creation tools. 2.2K+ stars, all-in-one platform for content creators. Script generation, AI avatars, automated editing."
+description: "AI tool comparison and guide"
 date: 2026-09-24T00:00:00+08:00
 slug: "printfilm-ai-video-acquisition-short-drama-platform-2026"
 category: "ai-tools"

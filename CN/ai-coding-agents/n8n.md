@@ -1,13 +1,13 @@
 ---
 title: "Ubuntu 22.04 LTS recommended"
-description: "title: "n8n AI Workflow Automation: Self-Hosted Setup with 188K+"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "n8n"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "n8n AI Workflow Automation: Self-Hosted Setup with 188K+...
-description: "title: "n8n AI Workflow Automation: Self-Hosted Setup with 188K+"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

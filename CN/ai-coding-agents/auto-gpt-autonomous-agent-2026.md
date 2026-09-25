@@ -1,13 +1,13 @@
 ---
 title: "Expected: Python 3.10.x or higher"
-description: "title: "Auto-GPT 2026 Revival: How the OG Autonomous Agent Frame"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "auto-gpt-autonomous-agent-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Auto-GPT 2026 Revival: How the OG Autonomous Agent Frame...
-description: "title: "Auto-GPT 2026 Revival: How the OG Autonomous Agent Frame"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

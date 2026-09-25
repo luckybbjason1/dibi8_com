@@ -1,6 +1,6 @@
 ---
 title: "Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents"
-description: "# Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "codebase-memory-mcp-high-performance-code-intelligence"
 category: "ai-tools"

@@ -1,14 +1,3 @@
----
-title: "RAG Systems 2026: Advanced Techniques for Production Deployment"
-description: "Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks."
-date: 2026-09-20
-lastmod: 2026-09-20
-tags: [rag, retrieval-augmented-generation, llm, production, 2026]
-categories: [llm-frameworks]
-license_type: Open Source
-source: "Multiple research papers"
-github: "run-llama/llama_index, langchain-ai/langchain"
----
 
 # RAG Systems 2026: Advanced Techniques for Production Deployment
 

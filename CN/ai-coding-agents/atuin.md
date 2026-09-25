@@ -1,13 +1,13 @@
 ---
 title: "Unix/macOS — interactive install with shell setup prompts"
-description: "title: "Unix/macOS — interactive install with shell setup prompts""
+description: "AI tool guide"
 date: 2026-09-20
 slug: "atuin"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Unix/macOS — interactive install with shell setup prompts"
-description: "title: "Unix/macOS — interactive install with shell setup prompts""
+description: "AI tool guide"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

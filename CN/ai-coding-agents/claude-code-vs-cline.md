@@ -1,6 +1,6 @@
 ---
 title: "Claude Code vs Cline in 2026: Autonomy or Control?"
-description: "# Claude Code vs Cline in 2026: Autonomy or Control?"
+description: "AI tool guide"
 date: 2026-09-20
 slug: "claude-code-vs-cline"
 category: "ai-tools"

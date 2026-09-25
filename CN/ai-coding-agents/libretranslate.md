@@ -1,13 +1,13 @@
 ---
 title: "Run with Docker"
-description: "title: "LibreTranslate: Self-Hosted Translation API with 14"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "libretranslate"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "LibreTranslate: Self-Hosted Translation API with 14.4K+ ...
-description: "title: "LibreTranslate: Self-Hosted Translation API with 14"
+description: "Technical guide and comparison"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

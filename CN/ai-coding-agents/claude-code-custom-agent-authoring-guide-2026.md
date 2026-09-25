@@ -1,13 +1,13 @@
 ---
 title: "Claude Code Custom Agent Authoring: Build Reusable Subagents That Enforce Your Standards (2026)"
-description: "title: "Claude Code Custom Agent Authoring: Build Reusable Subag"
+description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-custom-agent-authoring-guide-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Claude Code Custom Agent Authoring: Build Reusable Subag...
-description: "title: "Claude Code Custom Agent Authoring: Build Reusable Subag"
+description: "Technical guide and comparison"
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -60,7 +60,7 @@ The structure is dead simple: `````markdown
 
 * * *
 name: migration-reviewer
-description: "title: "Claude Code Custom Agent Authoring: Build Reusable Subag"
+description: "Technical guide and comparison"
 tools: Read, Grep, Glob
 model: sonnet
 
@@ -83,8 +83,8 @@ The agent's identity — this is the string the parent passes as ````subagent_ty
 
 ### ````description```` (required — and the one people underweight)
 
-This is **the routing signal**. When the parent agent is deciding whether to delegate, it reads descriptions, not system prompts. So a description must encode *when* to reach for this agent, with concrete triggers: > ❌ ````description: "title: "Claude Code Custom Agent Authoring: Build Reusable Subag"
-> ✅ ````description: "title: "Claude Code Custom Agent Authoring: Build Reusable Subag"
+This is **the routing signal**. When the parent agent is deciding whether to delegate, it reads descriptions, not system prompts. So a description must encode *when* to reach for this agent, with concrete triggers: > ❌ ````description: "Technical guide and comparison"
+> ✅ ````description: "Technical guide and comparison"
 
 The word "proactively" is load-bearing — it nudges the parent to invoke without being explicitly asked. If your agent never seems to fire, the description is almost always why.
 
@@ -129,7 +129,7 @@ A read-only reviewer literally *cannot* go rogue. That predictability is what le
 
 * * *
 name: migration-reviewer
-description: "title: "Claude Code Custom Agent Authoring: Build Reusable Subag"
+description: "Technical guide and comparison"
 tools: Read, Grep, Glob
 model: sonnet
 * * *
@@ -156,7 +156,7 @@ Invoke it from the parent with a natural request — "review the migration on th
 `````markdown
 * * *
 name: security-gate
-description: "title: "Claude Code Custom Agent Authoring: Build Reusable Subag"
+description: "Technical guide and comparison"
 tools: Read, Grep, Glob
 model: opus
 * * *
