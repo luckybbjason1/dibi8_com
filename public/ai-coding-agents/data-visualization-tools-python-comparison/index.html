@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024 | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024 | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/data-visualization-tools-python-comparison/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/data-visualization-tools-python-comparison/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024 | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="AI tool guide">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/data-visualization-tools-python-comparison/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/data-visualization-tools-python-comparison/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/data-visualization-tools-python-comparison/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024">
+  <meta property="og:description" content="AI tool guide">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024">
+  <meta name="twitter:description" content="AI tool guide">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024",
+      "item": "https://dibi8.com/ai-coding-agents/data-visualization-tools-python-comparison/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024",
+  "name": "Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024",
+  "description": "AI tool guide",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024 {\u003c/* resource-info */\u003e}\nData visualization is how insights become decisions. In Python, the visualization ecosystem has matured into a diverse landscape where each library serves distinct needs — from publication-ready static figures to interactive web dashboards to reactive data journalism. Choosing the wrong tool for your workflow means wasted hours fighting APIs, slow rendering, or charts that fail to communicate your findings.\nThis guide compares the four most significant data visualization tools in the Python and JavaScript ecosystem: Matplotlib, Seaborn, Plotly, and Observable Plot. We evaluate each on interactivity, ease of use, customization, performance, and real-world applicability. You will find code examples, comparison tables, and a use-case matrix to guide your choice.\nThe Python Visualization Landscape in 2024 The Python visualization ecosystem follows a clear hierarchy. Matplotlib sits at the foundation — nearly every Python plotting library builds on it or was inspired by its design. Seaborn provides a higher-level statistical interface on top of Matplotlib. Plotly operates independently with its own rendering engine focused on web interactivity. Observable Plot (JavaScript-based, usable from Python via PyObsidian or embedded notebooks) represents the emerging class of web-native, grammar-of-graphics tools.\nUnderstanding this hierarchy matters because it explains interoperability. Seaborn can call Matplotlib functions for fine-tuning. Plotly cannot. Observable Plot outputs HTML that embeds anywhere but does not integrate with Matplotlib’s renderer. Your choice of primary library constrains your secondary options.\nMatplotlib: The Foundational Workhorse Matplotlib, first released in 2003, remains the most widely used plotting library in Python. It provides a MATLAB-inspired interface for creating static, animated, and interactive visualizations. Every data scientist encounters Matplotlib early in their career, and its influence is so pervasive that terms like “figure,” “axes,” and “subplot” have become standard vocabulary across the entire ecosystem.\nMatplotlib’s core strength is control. You can specify the exact position of every tick mark, the precise RGB value of every line, and the exact font metrics of every label. This level of control makes Matplotlib the undisputed choice for academic publications, where journals enforce strict formatting requirements on figure dimensions, font sizes, and color profiles.\nMatplotlib Tips for Better Visuals Use style sheets. Apply ```plt.style.use(‘seaborn-v0_8-whitegrid’)```` or custom stylesheets to improve aesthetics without manual tweaking. Matplotlib includes 26 built-in styles. Configure rcParams globally. Set default figure sizes, font families, and line widths in matplotlibrc or via plt.rcParams[figure.figsize] = (10, 6) to avoid repeating parameters in every script. Master subplots. plt.subplots() with gridspec_kw creates complex layouts with shared axes and custom spacing. Use constrained_layout=True to prevent label overlap. Save in vector formats. Export publication figures as PDF or SVG rather than PNG. Vector formats scale infinitely and maintain sharp text at any zoom level. Leverage the animation module. The matplotlib.animation module creates time-series visualizations and algorithm demonstrations that export as GIFs or MP4s. Best for: Academic papers, precise figure customization, embedding in GUI applications, generating figure assets for reports.\nLimitations: The imperative API requires verbose code for complex layouts. Default styling is widely criticized as dated. Interactive features (zoom, pan) require switching to a backend like TkAgg or Qt5Agg and do not translate to the web.\nSeaborn: Statistical Visualization Made Easy Seaborn, created by Michael Waskom in 2012, is a high-level statistical visualization library built on Matplotlib. It provides a declarative interface for creating informative and attractive statistical graphics with minimal code. Seaborn is tightly integrated with Pandas — it accepts DataFrames directly and uses column names for axis labels, legends, and facet variables.\nSeaborn excels at the exploratory data analysis phase of a project. A single line like sns.pairplot(df, hue='species') generates a matrix of scatter plots showing relationships between all numeric variables, colored by a categorical column. Achieving the same output in raw Matplotlib requires 20+ lines of nested loops and subplot management.\nAdvanced Seaborn Features FacetGrid for multi-plot layouts. Create grids of plots conditioned on one or two categorical variables. g = sns.FacetGrid(df, col='time', row='smoker'); g.map(sns.scatterplot, 'total_bill', 'tip') generates a 2x2 grid of scatter plots automatically. Statistical estimation. Many Seaborn functions compute and display confidence intervals automatically. sns.barplot shows bootstrapped 95% confidence intervals by default. sns.regplot overlays regression lines with confidence bands. Custom color palettes. Seaborn provides perceptually uniform color palettes (viridis, rocket, mako) and tools for creating custom palettes that work for colorblind audiences. Matplotlib integration. Every Seaborn plot returns Matplotlib Axes objects, allowing fine-tuning with Matplotlib commands after the high-level Seaborn call. Best for: Exploratory data analysis, statistical visualization, regression diagnostics, heatmaps and correlation matrices, distribution analysis.\nLimitations: Built on Matplotlib, so inherits its single-threaded rendering performance. Not designed for web interactivity or dashboards. Complex custom layouts still require dropping down to Matplotlib.\nPlotly: Interactive Web-First Visualizations Plotly, developed by the company of the same name, is a commercial plotting library with an open-source Python component (MIT license). Unlike Matplotlib and Seaborn, which render raster or vector images, Plotly generates interactive HTML visualizations using JavaScript and the D3.js rendering engine. Every Plotly figure includes hover tooltips, zoom, pan, lasso selection, and export options without additional configuration.\nPlotly’s architecture is fundamentally different from Matplotlib. Figures are defined as JSON objects following a schema, rendered in a web browser or Jupyter environment. This JSON-based approach enables unique capabilities: - Cross-filtering. Link multiple subplots so that selecting points in one plot filters data in others — essential for dashboard interactivity.\n3D visualization. Native WebGL-based 3D scatter, surface, and mesh plots that rotate and zoom smoothly in the browser. Dash integration. Plotly is the visualization engine behind Dash, a Python framework for building analytical web applications. Combine Plotly charts with dropdowns, sliders, and tables to create full dashboards. Export options. Save figures as interactive HTML files, static PNG/PDF/SVG images, or JSON for programmatic manipulation. Plotly Express vs Graph Objects Plotly offers two API levels: | Aspect | Plotly Express | Graph Objects | |\n|\n|\n| | Abstraction level | High — one-liners for common charts | Low — explicit control over every element | | Code verbosity | 5-15 lines | 30-100+ lines | | Customization | Limited — function parameters only | Unlimited — direct JSON manipulation | | Performance (large data) | Good — uses WebGL for scatter | Better — manual optimization possible | | Best for | Quick exploration, standard charts | Custom dashboards, complex layouts, fine control |\nUse Plotly Express for 90% of your work. Switch to Graph Objects when you need custom subplots with mixed chart types, complex annotations, or performance optimization for datasets exceeding 100,000 points.\nBest for: Web dashboards, stakeholder presentations, 3D visualization, interactive exploration, applications requiring user input.\nLimitations: Steeper learning curve than Seaborn for statistical plots. Large datasets (\u003e1 million points) require WebGL scatter or datashader integration. Offline rendering requires bundling the Plotly.js library (~3 MB).\nObservable Plot: The JavaScript Alternative Observable Plot, created by Mike Bostock (the creator of D3.js), brings a grammar-of-graphics approach to web-native data visualization. Unlike the Python libraries above, Observable Plot runs in the browser using JavaScript. It is accessible from Python through Observable notebooks, PyObsidian, or by generating JavaScript code from Python data.\nObservable Plot’s design philosophy centers on marks and scales — visual encodings that map data properties to graphical properties. A scatter plot is a dot mark with x and y scales. A bar chart is a bar mark with a y scale. This declarative grammar, inspired by Wilkinson’s Grammar of Graphics and Leland Wilkinson’s seminal book, produces concise, composable specifications.\nObservable’s key differentiator is its reactive notebook environment. When you modify a data filter or parameter, every dependent cell updates automatically. This reactivity, combined with Observable Plot’s concise syntax, makes it exceptionally powerful for data journalism and web publishing. The New York Times, Reuters, and The Guardian use Observable for interactive news graphics.\nBest for: Web publishing, data journalism, D3.js-like control with less code, interactive articles, teaching visual thinking.\nLimitations: Requires JavaScript knowledge or a translation layer from Python. Not suitable for generating PDF figures for academic journals. The Observable platform (observablehq.com) charges for private notebooks — public notebooks are free.\nComprehensive Feature Comparison | Feature | Matplotlib | Seaborn | Plotly | Observable Plot | |\n|\n|\n|\n|\n| | License | PSF-based | BSD-3 | MIT | ISC | | Rendering engine | Agg/vector (CPU) | Matplotlib backend | WebGL/D3.js (browser) | Canvas/SVG (browser) | | Interactivity | Limited (backend-dependent) | None | Full (hover, zoom, pan, select) | Full (reactive, linked) | | Ease of use (simple plots) | Moderate | Easy | Easy | Moderate | | Customization depth | Maximum | High (via Matplotlib) | High | High | | Statistical functions | None | Extensive | Limited | Limited | | 3D support | Basic (mplot3d) | None | Excellent (WebGL) | None | | Large data (\u003e1M points) | Slow | Slow | Good (with WebGL) | Good | | Output formats | PNG, PDF, SVG, PS | Same as Matplotlib | HTML, PNG, PDF, SVG | HTML, SVG, PNG | | Dashboard capability | None | None | Excellent (with Dash) | Moderate | | Web embedding | Static images only | Static images only | Native HTML | Native HTML | | Learning curve | Moderate | Gentle | Moderate | Moderate-Steep | | Community size | Largest | Large | Large | Growing | | Typical setup | pip install matplotlib | pip install seaborn | pip install plotly | JavaScript or Observable platform |\nChoosing by Use Case: EDA, Dashboards, and Production The right visualization library depends on where you are in the analytics lifecycle: Exploratory Data Analysis: Use Seaborn for the first pass through a dataset. Its statistical functions (distplot, pairplot, heatmap) reveal patterns quickly. Drop down to Matplotlib when you need precise control over figure composition.\nDashboards and web applications: Plotly + Dash or Streamlit is the standard stack. Plotly provides the interactive charts; Dash or Streamlit provides the layout framework with widgets and callbacks. This combination powers production dashboards at dozens of Fortune 500 companies.\nAcademic publications and reports: Matplotlib with custom stylesheets produces the sharpest, most precisely controlled figures. Journals prefer vector formats (PDF/SVG), and Matplotlib’s output quality remains unmatched for print.\nWeb publishing and data journalism: Observable Plot shines for interactive articles. The reactive notebook environment lets readers explore parameters, and the output embeds directly in any web page.\nMixed workflows: Most professional data scientists use at least two of these libraries daily. Seaborn for EDA, Plotly for presentations, Matplotlib for paper figures. Learning where each excels is more valuable than committing to one.\nCode Examples: Same Chart in All Four Libraries Here is a scatter plot showing the relationship between bill total and tip amount, colored by day of week — implemented in each library: Matplotlib: Requires manual grouping by day, looping to create separate scatter calls, and custom legend handling (~25 lines).\nSeaborn:\nimport seaborn as sns sns.scatterplot(data=tips, x='total_bill', y='tip', hue='day') One line achieves what Matplotlib needs 25 lines to accomplish — grouping, coloring, legend, and labels are automatic.\nPlotly:\nimport plotly.express as px px.scatter(tips, x='total_bill', y='tip', color='day', hover_data=['time', 'size']) Similar conciseness to Seaborn but adds interactive hover tooltips showing additional columns automatically.\nObservable Plot (JavaScript):\nPlot.plot({ marks: [ Plot.dot(tips, {x: 'total_bill', y: 'tip', fill: 'day'}) ], color: {legend: true} }) Declarative mark-based syntax. The dot mark maps data fields to visual encodings directly.\nFrequently Asked Questions Which Python visualization library should I learn first? Learn Matplotlib fundamentals first, then Seaborn. Understanding Matplotlib’s figure/axes model gives you the foundation to customize any visualization in Python. Seaborn builds on this knowledge and handles 80% of common statistical plotting needs with less code. After mastering these two, add Plotly when you need web interactivity or dashboards.\nIs Plotly better than Matplotlib? Plotly is better for interactive web visualizations; Matplotlib is better for static publication figures. Neither is universally superior. Plotly figures render in browsers with hover tooltips and zoom — ideal for presentations. Matplotlib produces sharper static images with precise typographic control — essential for print publications. Most data scientists use both.\nCan I use Seaborn and Plotly together? Not directly in the same figure — they use different rendering engines. However, you can use Seaborn for statistical EDA and Plotly for interactive presentation of the same data. A typical workflow: explore with Seaborn in a Jupyter notebook, identify the key visualizations, then recreate them in Plotly for the stakeholder presentation with added interactivity.\nIs Observable free to use? Observable’s platform (observablehq.com) is free for public notebooks. Anyone can create, publish, and share public notebooks at no cost. Private notebooks and team workspaces require a paid subscription starting at $12/month for individual Pro accounts. Observable Plot as a JavaScript library is open-source (ISC license) and free to use in any project, including commercial applications.\nWhich library is best for large datasets? For datasets exceeding 1 million points, raw Matplotlib and Seaborn become impractically slow. Plotly with WebGL scatter (````render_mode=‘webgl\"```) handles up to ~10 million points. For truly massive datasets (100M+ points), consider Datashader (integrates with Plotly), hvPlot, or server-side rendering with Apache Superset. Observable Plot performs well up to ~1 million points via Canvas rendering, beyond which aggregation or sampling becomes necessary.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/data-visualization-tools-python-comparison\" } } ",
+  "wordCount" : "2311",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/data-visualization-tools-python-comparison/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h1 id="matplotlib-vs-seaborn-vs-plotly-vs-observable-data-visualization-tool-guide-2024">Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024</h1>
 <p>{&lt;/* resource-info */&gt;}</p>
 <p>Data visualization is how insights become decisions. In Python, the visualization ecosystem has matured into a diverse landscape where each library serves distinct needs — from publication-ready static figures to interactive web dashboards to reactive data journalism. Choosing the wrong tool for your workflow means wasted hours fighting APIs, slow rendering, or charts that fail to communicate your findings.</p>
@@ -243,7 +315,7 @@ Requires manual grouping by day, looping to create separate scatter calls, and c
 <hr>
 
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -253,7 +325,7 @@ Requires manual grouping by day, looping to create separate scatter calls, and c
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -273,8 +345,8 @@ Requires manual grouping by day, looping to create separate scatter calls, and c
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -298,6 +370,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -390,116 +463,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

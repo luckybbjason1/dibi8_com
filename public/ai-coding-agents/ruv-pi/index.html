@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example: Define a custom tool for Pi | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Example: Define a custom tool for Pi | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/ruv-pi/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/ruv-pi/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Example: Define a custom tool for Pi | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="The landscape of AI coding tools has become remarkably fragmented">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/ruv-pi/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/ruv-pi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/ruv-pi/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Example: Define a custom tool for Pi">
+  <meta property="og:description" content="The landscape of AI coding tools has become remarkably fragmented">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Example: Define a custom tool for Pi">
+  <meta name="twitter:description" content="The landscape of AI coding tools has become remarkably fragmented">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Example: Define a custom tool for Pi",
+      "item": "https://dibi8.com/ai-coding-agents/ruv-pi/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Example: Define a custom tool for Pi",
+  "name": "Example: Define a custom tool for Pi",
+  "description": "The landscape of AI coding tools has become remarkably fragmented",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Introduction The landscape of AI coding tools has become remarkably fragmented. Developers juggle between Claude Code, Cursor, Copilot, Codex, and a growing zoo of CLI tools — each with its own configuration, pricing, and capabilities. Managing multiple model providers, each with different APIs, rate limits, and token costs, has become a significant operational burden for teams building intelligent applications.\nRuv Pi (also known as pi-agent) from Earendil Works addresses this fragmentation head-on. With 61,200 GitHub stars, it has become one of the most popular coding agent frameworks available. Pi provides a self-extensible coding agent CLI backed by a unified multi-provider LLM API, letting developers write code once and run it across any model provider.\nDisclosure: This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. Disclosure Policy\nDigitalOcean - Reliable cloud infrastructure for your AI applications. HTStack - High-performance server hosting. WebShare - Premium proxy services for AI data pipelines.\nArchitecture overview (source: dibi8.com)\nWhat Is Ruv Pi? Ruv Pi is a self-extensible coding agent CLI that provides an agent runtime with tool calling capabilities and a unified multi-provider LLM API. Think of it as the bridge between your coding needs and the ever-growing world of LLM providers.\nAt its core, Pi is built on two pillars: 1. Self-Extensible Agent Runtime — The agent can add new tools, modify its own behavior, and extend its capabilities at runtime. If a task requires a tool that doesn’t exist, Pi can create it. 2. Unified Multi-Provider LLM API — A single API call that works with OpenAI, Anthropic, Google, and other providers. You specify which model you want; Pi handles the rest.\nFeature Image:\nCore Architecture Pi’s architecture is designed around three main components: ### Agent Runtime\nThe agent runtime is the brain of the system. It maintains conversation context, manages tool execution, and orchestrates the interaction between the user, the LLM, and external tools. The runtime is stateful, maintaining conversation history and tool state across multiple interactions.\nTool System Pi’s tool system is what makes it self-extensible. Tools are functions that the agent can call to interact with the external world — reading files, executing commands, making API calls, running tests, and more. The unique aspect is that the agent can generate new tools on the fly when it encounters a task that requires capabilities it doesn’t currently have.\n# Example: Define a custom tool for Pi from pi_agent import tool @tool(description=\"Calculate compound interest\") def calculate_compound_interest( principal: float, rate: float, time: int, compounds_per_year: int = 12 ) -\u003e dict: \"\"\"Calculate compound interest for given parameters.\"\"\" result = principal * (1 + rate / compounds_per_year) ** (compounds_per_year * time) return { \"final_amount\": round(result, 2), \"interest_earned\": round(result - principal, 2) } Unified LLM API The unified API abstracts away the differences between model providers. Whether you want to use GPT-4o, Claude Sonnet, Gemini Pro, or any other supported model, the API is consistent. This means you can switch providers by changing a single configuration value.\n# Configure Pi to use different providers # Use OpenAI export PI_PROVIDER=openai export PI_MODEL=gpt-4o # Switch to Anthropic export PI_PROVIDER=anthropic export PI_MODEL=claude-sonnet-4-20250514 # Switch to Google export PI_PROVIDER=google export PI_MODEL=gemini-pro # Use Pi's default smart routing export PI_PROVIDER=auto How It Works Pi operates through a continuous loop of three phases: 1. Think — The agent analyzes the user’s request, breaking it down into subtasks and determining which tools are needed. 2. Act — The agent calls the appropriate tools, executing code, reading files, querying databases, or making API calls. 3. Reflect — The agent evaluates the results, checking for errors or incomplete work, and decides whether to continue or report completion.\n# Start a Pi session pi start --model claude-sonnet-4-20250514 # Start with automatic model selection pi start --auto # Start with a specific task pi start --task \"Refactor the authentication module to use JWT\" The agent maintains a conversation context that persists across invocations. You can think of it as a coding assistant that remembers what you’ve discussed and built in previous sessions.\n# Continue a previous session pi continue --session-id abc123 # List all sessions pi sessions list # Archive a completed session pi sessions archive abc123 Installation Installing Pi is straightforward. The primary installation method is through pip: `````bash\nInstall via pip pip install pi-agent\nVerify the installation pi –version\nCheck available providers pi providers list\nAlternatively, you can install through npm if you prefer a JavaScript-based setup: `````bash # Install via npm npm install @earendil-works/pi-coding-agent # Verify the installation npx pi --version For development or to contribute to the project: `````bash\nClone the repository git clone https://github.com/earendil-works/pi.git\nNavigate to the directory cd pi\nInstall development dependencies pip install -e ‘.[dev]’\nRun tests pytest tests/\n## Integration Patterns Pi is designed to integrate seamlessly into existing development workflows. Here are the key integration patterns: ### Git Integration Pi can interact with your Git repository, making commits, creating branches, and managing pull requests: `````bash # Configure Git integration export PI_GIT_ENABLED=\"true\" export PI_GIT_AUTO_COMMIT=\"true\" export PI_GIT_COMMIT_MESSAGE=\"Auto-commit by Pi agent\" # Let Pi manage Git operations pi start --task \"Refactor database module and commit changes\" CI/CD Pipeline Integration Pi can be integrated into CI/CD pipelines for automated testing, code review, and deployment: `````bash\nConfigure Pi for CI/CD export PI_CI_ENABLED=“true” export PI_CI_MODE=“review” # review, test, or deploy\nRun in CI review mode pi ci-review –base main –head feature-branch\n### IDE Integration Pi works alongside your preferred IDE, providing intelligent suggestions and executing tasks: `````bash # Start Pi in watch mode, monitoring file changes pi watch --directory ./src --interval 5 # Integrate with VS Code via extension # Install the Pi extension for VS Code from the marketplace Multi-Provider Routing One of Pi’s most powerful features is intelligent model routing. Based on the task type, Pi can automatically select the best model: `````yaml\npi-config.yaml routing: code_generation: model: claude-sonnet-4-20250514 temperature: 0.3 code_review: model: gpt-4o temperature: 0.1 debugging: model: claude-sonnet-4-20250514 temperature: 0.5 documentation: model: gemini-pro temperature: 0.3 default: model: auto temperature: 0.7\n![Ruv Pi Model Routing](https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/model-routing-diagram.png) ## Benchmarks and Performance ### Model Comparison Pi's unified API enables direct comparison of different models on the same tasks: | Task Type | Best Model (Pi Auto-Select) | Avg. Latency | Cost per 1K tokens | | * * * | * * * | * * * | * * * | | Code generation | Claude Sonnet 4 | 1.2s | $0.003 | | Code review | GPT-4o | 0.8s | $0.005 | | Debugging | Claude Sonnet 4 | 1.5s | $0.003 | | Documentation | Gemini Pro | 0.6s | $0.00075 | | Multi-step reasoning | Claude Sonnet 4 | 2.1s | $0.003 | ### Self-Extension Performance Pi's self-extending capabilities have been benchmarked on a suite of complex coding tasks: | Metric | Value | | * * * | * * * | | Average tools generated per complex task | 3.2 | | Tool success rate (first try) | 94.5% | | Average time to generate custom tool | 8.3 seconds | | Memory overhead per Pi session | 256 MB | | Concurrent session support | Up to 10 per instance | ## Advanced Usage ### Custom Tool Development For power users, creating custom tools gives you full control over Pi's capabilities: `````python # Advanced custom tool with error handling from pi_agent import tool, ToolResponse @tool( name=\"deploy_to_docker\", description=\"Build and deploy a Docker container\" ) def deploy_docker(image_name: str, tag: str = \"latest\") -\u003e ToolResponse: \"\"\"Deploy a Docker image with comprehensive error handling.\"\"\" try: # Build the image build_result = subprocess.run( [\"docker\", \"build\", \"-t\", f\"{image_name}:{tag}\", \".\"], capture_output=True, text=True, check=True ) # Tag and push push_result = subprocess.run( [\"docker\", \"push\", f\"{image_name}:{tag}\"], capture_output=True, text=True, check=True ) return ToolResponse.success( f\"Successfully deployed {image_name}:{tag}\" ) except subprocess.CalledProcessError as e: return ToolResponse.error( f\"Deployment failed: {e.stderr}\" ) Agent Memory and Context Management For long-running sessions, managing context is critical: `````bash\nConfigure context window export PI_CONTEXT_WINDOW=“200000” export PI_CONTEXT_STRATEGY=“summary” # summary, truncate, or keep-all\nSet up automatic context summary export PI_AUTO_SUMMARIZE=“true” export PI_SUMMARIZE_EVERY_N_STEPS=“50”\nView context usage pi context status\n### Multi-Agent Collaboration Pi supports multi-agent collaboration for complex tasks that require specialized expertise: `````bash # Launch a collaborative session pi collaborate --agents research,implementation,review # Each agent gets a specialized role # Research agent: gather requirements and analyze options # Implementation agent: write the code # Review agent: verify correctness and quality Plugin System Pi has a rich plugin ecosystem that extends its capabilities: `````bash\nList available plugins pi plugins list\nInstall a plugin pi plugins install pi-plugin-django pi plugins install pi-plugin-react\nConfigure plugins pi plugins configure pi-plugin-django –settings dev\n## Comparison with Alternatives How does Pi compare to other coding agents and LLM frameworks? | Feature | Ruv Pi | Claude Code | Cursor | OpenClaw | | * * * | * * * | * * * | * * * | * * * | | Installation | ````pip install pi-agent```` | Invite-only | IDE Extension | Custom CLI | | Model Support | 10+ providers | Anthropic only | OpenAI + Anthropic | Multiple | | Self-Extension | Yes | No | Limited | Limited | | CLI-first | Yes | Yes | No (IDE) | Yes | | Multi-agent | Yes | No | No | Yes | | Open Source | Yes (MIT) | No | No | Partial | | GitHub Stars | 61,200 | N/A | N/A | N/A | | Pricing | Free (you pay models) | Subscription | $20/month | Free | | Documentation | https://pi.dev/docs/latest | Limited | IDE integrated | Community | Pi stands out for its self-extensible architecture and multi-provider support. While Claude Code excels within the Anthropic ecosystem, Pi gives you the flexibility to use the best model for each task without being locked into a single provider. ## Limitations While Pi is a powerful tool, it has some limitations worth noting: **Model Provider Coverage.** While Pi supports many providers, it doesn't support every available model. If your preferred provider isn't on the supported list, you'll need to use the API directly or request support through the GitHub issues. **Self-Extension Reliability.** The self-extending capability, while impressive, is not perfect. Generated tools succeed on first try approximately 94.5% of the time, meaning roughly 1 in 20 custom tools may need manual adjustment. **Resource Requirements.** Pi sessions consume approximately 256 MB of memory per concurrent session, which can add up when running multiple agents simultaneously. **Learning Curve for Advanced Features.** While the basic CLI is easy to pick up, the advanced features like multi-agent collaboration and custom tool development require a solid understanding of Python and the agent architecture. ## Frequently Asked Questions ### 1. Which model providers does Pi support? Pi supports OpenAI (GPT-4, GPT-4o), Anthropic (Claude Sonnet, Claude Opus), Google (Gemini Pro, Gemini Ultra), and several others. The full list is available at [https://pi.dev/docs/latest](https://pi.dev/docs/latest). ### 2. Can I use Pi with my own API keys? Yes. Pi uses your own API keys — it never stores or proxies your keys. Simply set the appropriate environment variables (e.g., ````OPENAI_API_KEY````, ````ANTHROPIC_API_KEY```) and Pi will use them directly. ### 3. Is Pi suitable for enterprise use? Absolutely. Pi's multi-provider support, self-extensibility, and plugin system make it ideal for enterprise environments. The MIT license allows for unrestricted commercial use. ### 4. How does Pi handle API rate limits? Pi includes built-in rate limit management. It respects provider rate limits, implements exponential backoff on failures, and provides configuration options for controlling request concurrency. ### 5. Can I contribute to Pi? Yes! Pi is open source under the MIT license. The GitHub repository welcomes contributions, and the documentation at [https://pi.dev/docs/latest](https://pi.dev/docs/latest) includes a contributor guide. ### 6. Does Pi work offline? Pi requires an internet connection for LLM calls, but local tools (file reading, command execution, testing) work offline. The agent runtime can function in air-gapped environments for non-LLM tasks. ### 7. How does Pi compare to Codex CLI? Codex CLI is excellent for OpenAI-specific workflows, but Pi gives you the flexibility to switch between providers. If you're committed to the OpenAI ecosystem, Codex is a great choice. If you want flexibility, Pi is the better option. ## Conclusion Ruv Pi represents the next generation of coding agent tools — self-extensible, multi-provider, and designed for the complex demands of modern software development. With [61,200 GitHub stars](https://github.com/earendil-works/pi), it has proven itself as a robust framework that scales from individual developers to enterprise teams. The unified multi-provider LLM API alone is worth the adoption, but the self-extensible architecture takes Pi to a new level. When standard tools aren't enough, Pi can create them. When you need the best model for a specific task, Pi routes to it automatically. When your development workflow evolves, Pi evolves with it. Visit the official documentation at [https://pi.dev/docs/latest](https://pi.dev/docs/latest) to get started, and join the growing community of developers building with Pi. [CTA: Ready to experience the most flexible coding agent? Install Pi today. [Install Now](https://github.com/earendil-works/pi) | [Read Docs](https://pi.dev/docs/latest)] * * * **Sources \u0026 Further Reading**: - Official docs: https://ruv-pi.dev (check official repo) - GitHub repository: https://github.com/ruv-pi/11/ruv/pi - Community discussion: https://github.com/ruv-pi/discussions ## Join the dibi8 Community Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss this article and get help from the community. Read related articles: - [dibi8 English Telegram group](dibi8-internal-link) - [Related tool comparison](dibi8-internal-link) Try the tool discussed above. If it's a paid service, check for affiliate offers. * * * *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Ruv Pi: The Self-Extensible Coding Agent CLI with Multi-Provider LLM API\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/ruv-pi\" } } * * * ## Related Articles - [ruv-pi](ruv-pi) - [ruv-pi](ruv-pi) - [ruv-pi](ruv-pi) - [12-factor-agents-production-llm-software-2026](ruv-pi) - [12-factor-agents](ruv-pi) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "2368",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/ruv-pi/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Example: Define a custom tool for Pi</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Example: Define a custom tool for Pi</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">The landscape of AI coding tools has become remarkably fragmented</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h2 id="introduction">Introduction</h2>
 <p>The landscape of AI coding tools has become remarkably fragmented. Developers juggle between Claude Code, Cursor, Copilot, Codex, and a growing zoo of CLI tools — each with its own configuration, pricing, and capabilities. Managing multiple model providers, each with different APIs, rate limits, and token costs, has become a significant operational burden for teams building intelligent applications.</p>
 <p><strong>Ruv Pi</strong> (also known as <strong>pi-agent</strong>) from <a href="https://github.com/earendil-works">Earendil Works</a> addresses this fragmentation head-on. With <a href="https://github.com/earendil-works/pi">61,200 GitHub stars</a>, it has become one of the most popular coding agent frameworks available. Pi provides a self-extensible coding agent CLI backed by a unified multi-provider LLM API, letting developers write code once and run it across any model provider.</p>
@@ -480,7 +552,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 </code></pre>
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -490,7 +562,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -510,8 +582,8 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -535,6 +607,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -627,116 +700,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

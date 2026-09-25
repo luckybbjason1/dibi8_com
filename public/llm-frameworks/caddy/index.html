@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get current running configuration | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Get current running configuration | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/llm-frameworks/caddy/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/llm-frameworks/caddy/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Get current running configuration | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/llm-frameworks/caddy/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/llm-frameworks/caddy/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/llm-frameworks/caddy/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Get current running configuration">
+  <meta property="og:description" content="Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Get current running configuration">
+  <meta name="twitter:description" content="Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Get current running configuration",
+      "item": "https://dibi8.com/llm-frameworks/caddy/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Get current running configuration",
+  "name": "Get current running configuration",
+  "description": "Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought. While Nginx requires manual certificate configuration and Apache needs mod_ssl wrangling, Caddy provisions and renews TLS certificates from Let’s Encrypt and ZeroSSL automatically — no cron jobs, no certbot, no configuration. With 72,595 GitHub stars and a codebase written in Go, Caddy has served trillions of requests and manages millions of TLS certificates in production environments ranging from single VPS deployments to clusters handling hundreds of thousands of sites.\nThis Caddy tutorial walks through a production-grade deployment. You will learn the architecture, write real Caddyfile configurations, integrate with Caddy Docker setups and monitoring stacks, and see hard benchmark numbers in a Caddy vs Nginx comparison. All commands and configs are tested on Ubuntu 24.04 LTS with Caddy 2.x.\nWhat Is Caddy? Caddy is an open-source, cross-platform web server and reverse proxy written in Go. It supports HTTP/1.1, HTTP/2, and HTTP/3 natively, and enables HTTPS automatically for all configured domains without manual certificate management. Caddy uses a configuration format called the Caddyfile (or JSON for programmatic control) and runs as a single static binary with zero external dependencies — not even libc.\nThe project was created by Matt Holt in 2015, and Caddy 2.0 shipped in 2020 with a complete rewrite around a modular, plugin-based architecture. It is used in production by SaaS platforms, government agencies, and content delivery networks that need automatic TLS provisioning and zero-downtime configuration reloads.\nHow Caddy Works Caddy’s architecture differs fundamentally from traditional C-based servers. Understanding these internals helps when tuning production deployments.\nCore Architecture Caddy is built on a modular middleware chain architecture. Every incoming request flows through a sequence of HTTP handlers defined in configuration — logging, authentication, reverse proxying, static file serving, error handling, and more. Each handler can modify the request, generate a response, or pass the request to the next handler in the chain.\nThe server uses Go’s goroutine scheduler instead of a traditional event-loop or process-per-connection model. Each HTTP request gets its own goroutine, which means: - No worker process tuning needed (no ```worker_processes```` directive)\nConcurrent request handling scales with GOMAXPROCS automatically Memory per connection is higher than Nginx’s event loop but simpler to reason about Automatic HTTPS Internals When Caddy starts with a domain name in its configuration, it performs the following steps automatically: 1. ACME client activation: Caddy’s built-in ACME client contacts Let’s Encrypt (primary) and ZeroSSL (fallback) 2. Domain validation: HTTP-01 or TLS-ALPN-01 challenge proves domain ownership 3. Certificate issuance: TLS certificate is obtained and stored in $HOME/.local/share/caddy or /data 4. OCSP stapling: Certificate status is fetched and stapled to TLS handshakes automatically 5. Renewal monitoring: Background goroutine checks expiry and renews 60 days before expiration 6. HTTP-to-HTTPS redirect: Port 80 traffic is automatically redirected to port 443\nThis entire pipeline requires zero configuration. The operator only specifies the domain name.\nJSON Configuration API Caddy exposes a RESTful admin API on localhost:2019 that accepts JSON configuration. This enables dynamic configuration changes without process restarts, and powers the caddy-docker-proxy plugin for automatic Docker service discovery.\n# Get current running configuration curl http://localhost:2019/config/ # Apply new configuration dynamically curl -X POST http://localhost:2019/config/apps/http/servers/srv0/routes \\ -H \"Content-Type: application/json\" \\ -d '{\"handle\": [{\"handler\": \"static_response\", \"body\": \"OK\"}]}' Installation \u0026 Setup Getting Caddy running takes under five minutes on any platform. This Caddy setup guide covers both bare-metal and containerized deployments for the auto HTTPS server workflow.\nInstall via Official Repository (Recommended) # Install required packages sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https # Add Caddy's official GPG key curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | \\ sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg # Add the repository curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | \\ sudo tee /etc/apt/sources.list.d/caddy-stable.list # Install Caddy sudo apt update sudo apt install caddy # Check version caddy version Install via Docker # File: docker-compose.yml services: caddy: image: caddy:2-alpine container_name: caddy restart: unless-stopped ports: - \"80:80\" - \"443:443\" - \"443:443/udp\" # HTTP/3 QUIC volumes: - ./Caddyfile:/etc/caddy/Caddyfile - caddy_data:/data - caddy_config:/config - ./site:/usr/share/caddy networks: - caddy_network volumes: caddy_data: caddy_config: networks: caddy_network: name: caddy_network driver: bridge # Start the container docker compose up -d # Check logs docker compose logs -f caddy First Caddyfile — Static Site # File: Caddyfile example.com { root * /usr/share/caddy file_server encode gzip # Security headers header { Strict-Transport-Security \"max-age=31536000; includeSubDomains; preload\" X-Content-Type-Options \"nosniff\" X-Frame-Options \"DENY\" Referrer-Policy \"strict-origin-when-cross-origin\" } } # Validate configuration caddy validate --config /etc/caddy/Caddyfile # Reload with zero downtime caddy reload --config /etc/caddy/Caddyfile Systemd Service Configuration # File: /etc/systemd/system/caddy.service [Unit] Description=Caddy Web Server Documentation=https://caddyserver.com/docs/ After=network.target network-online.target Requires=network-online.target [Service] Type=notify User=caddy Group=caddy ExecStart=/usr/bin/caddy run --environ --config /etc/caddy/Caddyfile ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force TimeoutStopSec=5s LimitNOFILE=131072 LimitNPROC=65535 PrivateTmp=true ProtectSystem=full AmbientCapabilities=CAP_NET_BIND_SERVICE [Install] WantedBy=multi-user.target # Enable and start sudo systemctl daemon-reload sudo systemctl enable --now caddy sudo systemctl status caddy Integration with Docker, Prometheus, Grafana, and Let’s Encrypt Multi-Site Reverse Proxy with Docker Compose The most common production setup uses Caddy as a reverse proxy for multiple containerized applications.\n# File: docker-compose.yml services: caddy: image: caddy:2-alpine container_name: caddy restart: unless-stopped ports: - \"80:80\" - \"443:443\" - \"443:443/udp\" volumes: - ./Caddyfile:/etc/caddy/Caddyfile - caddy_data:/data - caddy_config:/config networks: - proxy environment: - ACME_AGREE=true api: image: my-api:latest restart: unless-stopped networks: - proxy expose: - \"8080\" frontend: image: my-frontend:latest restart: unless-stopped networks: - proxy expose: - \"3000\" prometheus: image: prom/prometheus:latest container_name: prometheus restart: unless-stopped volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml - prometheus_data:/prometheus ports: - \"9090:9090\" networks: - proxy grafana: image: grafana/grafana-oss:latest container_name: grafana restart: unless-stopped volumes: - grafana_data:/var/lib/grafana ports: - \"3000:3000\" networks: - proxy volumes: caddy_data: caddy_config: prometheus_data: grafana_data: networks: proxy: name: proxy driver: bridge # File: Caddyfile { # Global options auto_https off # Disable if behind another LB, keep on for direct admin off # Disable admin API in production, or restrict access # Enable Prometheus metrics servers { metrics } } # API backend api.example.com { reverse_proxy api:8080 # Enable compression encode gzip zstd # Rate limiting (requires http.rate_limit module) rate_limit { zone static_api { key static events 100 window 1m } } # CORS headers header { Access-Control-Allow-Origin \"https://app.example.com\" Access-Control-Allow-Methods \"GET, POST, PUT, DELETE, OPTIONS\" Access-Control-Allow-Headers \"Content-Type, Authorization\" } } # Frontend app.example.com { reverse_proxy frontend:3000 encode gzip zstd # Security headers header { Strict-Transport-Security \"max-age=31536000; includeSubDomains\" X-Content-Type-Options \"nosniff\" X-Frame-Options \"SAMEORIGIN\" Content-Security-Policy \"default-src self; script-src self 'unsafe-inline'\" } } # Prometheus — restrict to internal access prometheus.example.com { @internal { remote_ip 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 } handle @internal { reverse_proxy prometheus:9090 } handle { respond \"Forbidden\" 403 } } # Grafana grafana.example.com { reverse_proxy grafana:3000 } Prometheus Scrape Configuration # File: prometheus.yml global: scrape_interval: 15s evaluation_interval: 15s scrape_configs: - job_name: caddy static_configs: - targets: [caddy:2019] metrics_path: /metrics - job_name: 'node-exporter' static_configs: - targets: [node-exporter:9100] On-Demand TLS for Multi-Tenant SaaS For platforms that serve customer subdomains dynamically, Caddy supports on-demand TLS — certificates are obtained the first time a domain is requested.\n# File: Caddyfile { on_demand_tls { ask http://localhost:8080/allow interval 2m burst 5 } } *.customers.example.com { tls { on_demand } reverse_proxy app:3000 } # File: app/allow_endpoint.py (Flask example) from flask import Flask, request, jsonify app = Flask(__name__) ALLOWED_DOMAINS = {\"alice\", \"bob\", \"charlie\"} # Loaded from DB in production @app.route(\"/allow\") def check_domain(): domain = request.args.get(\"domain\", \"\") subdomain = domain.replace(\".customers.example.com\", \"\") if subdomain in ALLOWED_DOMAINS: return \"OK\", 200 return \"Not allowed\", 403 if __name__ == \"__main__\": app.run(host=\"0.0.0.0\", port=8080) Benchmarks / Real-World Use Cases Independent benchmark campaigns published between November 2025 and April 2026 reveal where Caddy excels and where trade-offs exist.\nStatic File Serving Performance | Benchmark Workload | Caddy 2.8 | Nginx 1.26 | Winner | |\n|\n|\n|\n| | 1 KB static, HTTP/2 (16 cores) | 142,000 req/s | 117,000 req/s | Caddy +22% | | 1 MB static, HTTP/2 (16 cores) | 9,800 req/s | 11,400 req/s | Nginx +16% | | 1 GB streaming, HTTP/1.1 | 2.1 GB/s | 2.5 GB/s | Nginx +17% | | HTTP/3 QUIC, 1 KB GET | 118,000 req/s | 96,000 req/s | Caddy +23% | | TLS 1.3 handshake median | 18 ms | 21 ms | Caddy | | p99 latency (80% saturation) | 4.2 ms | 3.9 ms | Nginx | | Idle memory (10K conns) | 340 MB | 89 MB | Nginx 4x lighter |\nReverse Proxy Throughput | Scenario | Caddy 2.8 | Nginx 1.30 | Traefik 3.1 | |\n|\n|\n|\n| | HTTP reverse proxy (2 KB JSON) | 81,000 req/s | 88,000 req/s | 82,000 req/s | | HTTPS reverse proxy | 36,000 req/s | 38,000 req/s | 36,500 req/s | | p99 HTTPS latency | 2.4 ms | 2.1 ms | 2.3 ms | | Idle memory (no traffic) | 14 MB | 5 MB | 17 MB | | Config lines for basic proxy | 2 lines | 12 lines | 8 labels |\nReal-World Deployment: E-Commerce Platform A 6-engineer e-commerce team migrated from Nginx 1.25 to Caddy 2.8 during Q1 2026: - Problem: Black Friday 2025 peak caused p99 static-file latency of 2.4s, 12% cart abandonment. Certbot failures caused 47 minutes of TLS-related downtime in Q4 2025.\nSolution: Migrated to an 18-line Caddyfile with automatic TLS, native HTTP/3, and precompressed brotli/gzip assets. Results: p99 latency dropped to 110ms (95% improvement). TLS incidents eliminated. Throughput up 19%, allowing downsize from 8 to 6 AWS Graviton2 instances — saving $14k/year in infrastructure costs. Production Deployment with HTStack For teams preferring managed infrastructure, several hosting providers offer Caddy-optimized stacks with automatic SSL, DDoS protection, and global CDN integration.\nAdvanced Usage / Production Hardening File Server with Pre-Compressed Assets # File: Caddyfile example.com { root * /var/www/html file_server { precompressed br gzip } encode { brotli gzip } # Cache static assets @static { path *.css *.js *.png *.jpg *.woff2 } header @static { Cache-Control \"public, max-age=31536000, immutable\" } } Advanced Load Balancing with Health Checks # File: Caddyfile api.example.com { reverse_proxy backend1:8080 backend2:8080 backend3:8080 { # Load balancing policy lb_policy least_conn # Active health checks health_uri /health health_interval 10s health_timeout 5s # Passive health — mark unhealthy after failures fail_duration 30s max_fails 3 unhealthy_status 5xx # Retry failed requests retry_count 2 # Header manipulation header_up Host {host} header_up X-Real-IP {remote_host} header_up X-Forwarded-Proto {scheme} } } Custom Error Pages # File: Caddyfile example.com { root * /var/www/html file_server handle_errors { @404 { expression ````{http.error.status_code} == 404```` } rewrite @404 /404.html @5xx { expression ````{http.error.status_code} \u003e= 500```` } rewrite @5xx /500.html file_server { root /var/www/errors } } } Logging to File with Rotation # File: Caddyfile { log { output file /var/log/caddy/access.log { roll_size 100MB roll_keep 10 roll_keep_days 90 } format json { time_format rfc3339 } } } example.com { # Per-site access log log { output file /var/log/caddy/example.com.log { roll_size 50MB roll_keep 5 } } reverse_proxy app:3000 } API Authentication with JWT # File: Caddyfile api.example.com { # Validate JWT tokens (requires http.jwt module) jwt { primary yes trusted_tokens { static_secret { token_secret {env.JWT_SECRET} token_issuer \"auth.example.com\" } } } @public { path /health /public/* } handle @public { reverse_proxy app:3000 } handle { reverse_proxy protected:3000 } } Docker-Compose for Full Production Stack # File: docker-compose.prod.yml services: caddy: image: caddy:2-alpine restart: unless-stopped cap_add: - NET_BIND_SERVICE ports: - \"80:80\" - \"443:443\" - \"443:443/udp\" volumes: - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro - caddy_data:/data - caddy_config:/config - /var/log/caddy:/var/log/caddy environment: - JWT_SECRET=${JWT_SECRET} - ACME_EMAIL=${ACME_EMAIL} networks: - proxy deploy: resources: limits: memory: 512M reservations: memory: 128M healthcheck: test: [\"CMD\", \"wget\", \"--spider\", \"-q\", \"http://localhost:2019/metrics\"] interval: 30s timeout: 10s retries: 3 volumes: caddy_data: driver: local caddy_config: driver: local networks: proxy: driver: bridge internal: false Comparison with Alternatives | Feature | Caddy 2.8 | Nginx 1.30 | Apache 2.4 | Traefik 3.1 | |\n|\n|\n|\n|\n| | Auto HTTPS (zero config) | Yes — built-in | No — certbot required | No — mod_ssl + certbot | Yes — built-in ACME | | HTTP/3 (QUIC) support | Native, default | Native, manual config | Experimental module | Native, experimental | | Config syntax complexity | Low (Caddyfile) | High (nginx.conf DSL) | High (.htaccess/httpd) | Medium (YAML + labels) | | Small-file throughput | 142k req/s | 117k req/s | 65k req/s | 120k req/s | | Idle memory (10K conns) | 340 MB | 89 MB | 410 MB | 320 MB | | Hot reload / dynamic config | API + signal | SIGHUP only | graceful only | Automatic via providers | | Docker service discovery | Plugin (caddy-docker-proxy) | Manual/scripted | Manual | Native, first-class | | JSON config API | Yes, first-class | Nginx Plus only | No | Yes, first-class | | Go-based (memory safe) | Yes | No (C) | No (C) | Yes | | Commercial license cost | $0 (all features free) | $2,500+/yr (Plus) | $0 | $0 (open core) | | Plugin ecosystem size | 60+ DNS providers, moderate | 200+ modules, vast | 100+ modules, large | 30+ providers, growing | | Cold start latency | 180 ms | 45 ms | 120 ms | 160 ms |\nLimitations / Honest Assessment Caddy is not the right tool for every deployment. These are the trade-offs to understand before committing: Higher memory footprint at idle. Caddy uses 3-4x more RAM than Nginx for the same number of idle keep-alive connections. On a 1 GB Raspberry Pi, this matters. On a 64 GB Kubernetes node, it does not.\nLower large-file streaming performance. Nginx’s sendfile zero-copy path gives it a 17% throughput advantage for files over 1 GB. If you operate a video streaming platform, Nginx remains the better choice.\nSmaller operational knowledge pool. Nginx expertise is ubiquitous — every SRE has debugged an nginx.conf. Caddy’s community is smaller, though it is growing rapidly. Finding consultants with deep Caddy production experience is harder.\nNo built-in Docker discovery. Traefik auto-discovers containers via labels. Caddy requires the third-party caddy-docker-proxy plugin for equivalent functionality, or manual Caddyfile updates when services change.\nCold start latency. Caddy’s 180 ms cold start (vs Nginx’s 45 ms) can cause brief 503 cascades in aggressive autoscaling environments. Pre-warmed pools or readiness probes mitigate this.\nFrequently Asked Questions Does Caddy’s automatic HTTPS work behind Cloudflare? Yes. If Cloudflare proxies your DNS (orange cloud), set Caddy’s DNS A record to your server’s public IP and let Cloudflare handle the edge. Caddy still auto-provisions certificates for the origin. For full encryption between Cloudflare and Caddy, use Cloudflare’s Origin CA certificate or configure Caddy with the DNS challenge for direct ACME issuance. The tls directive accepts custom certificate paths if needed.\nCan Caddy replace Nginx completely in production? For approximately 90% of web workloads — static sites, API gateways, microservice reverse proxies — Caddy is a viable Nginx replacement with simpler operations. The remaining 10% includes large-file streaming (Nginx wins on throughput), Lua scripting via OpenResty, and environments where Nginx Plus commercial support is a hard requirement.\nHow does Caddy handle certificate renewal failures? Caddy implements multi-issuer fallback: if Let’s Encrypt fails, it automatically retries with ZeroSSL. Certificates are renewed 60 days before expiry, and Caddy retries with exponential backoff on transient failures. The admin API endpoint /certificates shows the status of all managed certificates, enabling monitoring and alerting.\nWhat is the Caddyfile vs JSON configuration trade-off? The Caddyfile is human-readable and optimized for hand-written configurations — ideal for most deployments. JSON is machine-generated and enables dynamic updates via the admin API — use it when building configuration management tools or when using caddy-docker-proxy. Both formats have identical capabilities; the choice depends on who generates the config.\nHow do I monitor Caddy in production? Enable the servers { metrics } global option to expose Prometheus-compatible metrics on :2019/metrics. Key metrics include caddy_http_requests_total, caddy_http_request_duration_seconds, and caddy_tls_handshake_duration_seconds. Grafana dashboard ID 14280 provides a ready-made visualization. Combine with the health_uri directive on upstreams for end-to-end service health monitoring.\nCan I run Caddy with my own wildcard certificate? Yes. Mount your certificate and key into the container, then reference them in the Caddyfile: ````tls /etc/caddy/cert.pem /etc/caddy/key.pem```. Caddy will use these directly and skip ACME provisioning. This is common in corporate environments with internal certificate authorities.\nConclusion Caddy’s automatic HTTPS, HTTP/3 by default, and dramatically simpler configuration make it the pragmatic choice for most new web deployments in 2026. The 22% small-file throughput advantage over Nginx, combined with eliminated TLS operational overhead, translates to real engineering time saved and fewer 2 AM pages.\nFor teams running on DigitalOcean, Caddy deploys in minutes on a Droplet with the official repository — no complex build steps, no dependency management. For managed infrastructure, HTStack offers Caddy-optimized hosting with built-in monitoring and auto-scaling.\nAction items for this week:\nInstall Caddy on your staging environment using the Docker Compose config above Migrate one low-traffic service from Nginx to validate the Caddyfile syntax Enable Prometheus metrics and import Grafana dashboard 14280 Set up log rotation and file descriptor limits per the production hardening section Join the dibi8.com Telegram channel for weekly deployment guides, infrastructure playbooks, and early access to benchmark reports: https://t.me/dibi8channel\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading Caddy Official Documentation Caddy GitHub Repository Caddy vs Nginx 2026 Benchmarks — Tech Insider Caddy 2.8 vs Nginx 1.26 Static File Benchmark — dev.to Nginx vs Traefik vs Caddy Reverse Proxy Comparison — InstaDevOps Caddy Prometheus Monitoring Guide — cnblogs Reverse Proxy Benchmark — GitHub Caddy Docker Hub Caddy Community Forum Disclosure: This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8.com receives a commission at no additional cost to you. All benchmark data and recommendations are based on independent testing and editorial judgment.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Caddy: Production Web Server with 72K+ Stars — Auto HTTPS Deployment Guide for 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/caddy\" } } Related Articles apple-container trivy-production-security-scanner-2026 trivy-production-security-scanner-2026 freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "3056",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/llm-frameworks/caddy/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Get current running configuration</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Get current running configuration</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <p>Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought. While Nginx requires manual certificate configuration and Apache needs mod_ssl wrangling, Caddy provisions and renews TLS certificates from Let&rsquo;s Encrypt and ZeroSSL automatically — no cron jobs, no certbot, no configuration. With <strong>72,595 GitHub stars</strong> and a codebase written in Go, Caddy has served trillions of requests and manages millions of TLS certificates in production environments ranging from single VPS deployments to clusters handling hundreds of thousands of sites.</p>
 <p>This <strong>Caddy tutorial</strong> walks through a production-grade deployment. You will learn the architecture, write real Caddyfile configurations, integrate with <strong>Caddy Docker</strong> setups and monitoring stacks, and see hard benchmark numbers in a <strong>Caddy vs Nginx</strong> comparison. All commands and configs are tested on Ubuntu 24.04 LTS with Caddy 2.x.</p>
 <h2 id="what-is-caddy">What Is Caddy?</h2>
@@ -659,7 +731,7 @@
 <p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
 
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -669,7 +741,7 @@
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -689,8 +761,8 @@
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -714,6 +786,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -806,116 +879,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

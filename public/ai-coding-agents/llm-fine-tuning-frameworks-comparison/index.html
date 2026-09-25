@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why Fine-Tune Large Language Models? | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Why Fine-Tune Large Language Models? | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/llm-fine-tuning-frameworks-comparison/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/llm-fine-tuning-frameworks-comparison/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Why Fine-Tune Large Language Models? | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Fine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/llm-fine-tuning-frameworks-comparison/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/llm-fine-tuning-frameworks-comparison/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/llm-fine-tuning-frameworks-comparison/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Why Fine-Tune Large Language Models?">
+  <meta property="og:description" content="Fine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Why Fine-Tune Large Language Models?">
+  <meta name="twitter:description" content="Fine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Why Fine-Tune Large Language Models?",
+      "item": "https://dibi8.com/ai-coding-agents/llm-fine-tuning-frameworks-comparison/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why Fine-Tune Large Language Models?",
+  "name": "Why Fine-Tune Large Language Models?",
+  "description": "Fine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "{\u003c/* resource-info */\u003e}\nFine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time. In 2025, parameter-efficient fine-tuning (PEFT) techniques let you adapt a 70-billion-parameter model on a single consumer GPU in hours, not days.\nThis guide compares the four dominant fine-tuning approaches: LoRA, QLoRA, Hugging Face PEFT, and Unsloth. We will cover how each method works, their trade-offs in speed and memory, a hands-on tutorial for fine-tuning Llama 3, and best practices for producing high-quality fine-tuned models.\nWhy Fine-Tune Large Language Models? Full Fine-Tuning vs Parameter-Efficient Fine-Tuning Full fine-tuning updates every parameter in a pre-trained model. For Llama 3 70B, this means adjusting 70 billion parameters, requiring ~1.4 TB of GPU memory just to store the model, optimizer states, and gradients. This approach is prohibitively expensive for most teams.\nParameter-efficient fine-tuning (PEFT) freezes the base model weights and trains only a small number of additional parameters, typically 0.1% to 1% of the total. Techniques like LoRA inject trainable low-rank matrices into specific layers, achieving comparable performance to full fine-tuning at a fraction of the computational cost.\nWhen to Fine-Tune vs Use RAG Fine-tuning and retrieval-augmented generation (RAG) solve different problems. Fine-tuning teaches a model new behaviors, writing styles, task formats, or domain knowledge baked into the model weights. RAG provides access to external, frequently changing knowledge without retraining.\nChoose fine-tuning when you need consistent output formatting, specialized domain expertise, or instruction-following behavior. Choose RAG when your knowledge base changes frequently, you need source citations, or you want to reduce hallucinations on factual queries.\nMany production systems combine both: fine-tune for behavior and tone, then use RAG for grounding in specific documents.\nGPU Memory Challenges and Solutions GPU memory is the primary bottleneck in LLM fine-tuning. A 7B parameter model in FP32 requires 28 GB of memory. Add optimizer states (Adam requires 2x model size) and gradients (1x model size), and you need 84 GB for full fine-tuning, exceeding most consumer GPUs.\nSolutions include: - Quantization: Store weights in 4-bit or 8-bit precision instead of 32-bit\nGradient checkpointing: Recompute activations during backward pass to save memory Parameter-efficient methods: Train fewer parameters (LoRA, adapters) Offloading: Move optimizer states to CPU or disk (DeepSpeed ZeRO-Offload) Paged optimizers: Use unified memory to spill to CPU RAM when GPU memory is exhausted Understanding LoRA (Low-Rank Adaptation) How LoRA Works: Low-Rank Decomposition LoRA, introduced by Hu et al. at Microsoft in 2021, is the foundational technique underlying modern parameter-efficient fine-tuning. Instead of updating full weight matrices during fine-tuning, LoRA decomposes weight updates into two smaller matrices.\nFor a pre-trained weight matrix $W \\in \\mathbb{R}^{d \\times k}$, LoRA represents the update as $\\Delta W = BA$, where $B \\in \\mathbb{R}^{d \\times r}$ and $A \\in \\mathbb{R}^{r \\times k}$. The rank $r$ is typically 4 to 64, dramatically smaller than the original dimensions. During inference, the adapted weight is $W’ = W + BA$.\nThis decomposition reduces trainable parameters from $d \\times k$ to $r \\times (d + k)$. For a 4096 x 4096 matrix with rank 16, LoRA trains only 131,072 parameters instead of 16,777,216, a 128x reduction.\nLoRA Hyperparameters: Rank, Alpha, Dropout Three hyperparameters control LoRA’s behavior: - Rank (r): Controls the expressiveness of the adaptation. Higher rank captures more complex patterns but increases parameters and overfitting risk. Typical values: 8, 16, 32, 64. Start with 16 and adjust based on validation loss.\nAlpha (lora_alpha): Scales the LoRA weights. The effective scaling is ```alpha / rank. Common practice sets alpha = 2 * rank````. Higher alpha amplifies the fine-tuning signal. Dropout (lora_dropout): Regularization applied to LoRA layers. Values between 0.0 and 0.1 typically work best. Use 0.05 for small datasets, 0.0 for large datasets. Target Modules and Configuration LoRA can be applied to specific layers. For transformer models, the most common target modules are the query and value projection matrices: `````python from peft import LoraConfig\nlora_config = LoraConfig( r=16, lora_alpha=32, target_modules=[“q_proj”, “v_proj”], lora_dropout=0.05, bias=“none”, task_type=“CAUSAL_LM” )\nFor better results, some practitioners target all linear layers: ````[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\", \"gate_proj\", \"up_proj\", \"down_proj\"]````. ### Pros, Cons, and Best Practices **Pros:** - Reduces trainable parameters by 100x or more - Checkpoints are tiny (MBs instead of GBs) - Can merge adapters back into base model - No inference latency when merged **Cons:** - Slightly lower performance than full fine-tuning on some tasks - Hyperparameter tuning required for optimal results - Not ideal for tasks requiring massive knowledge updates **Best practices:** - Start with rank 16, alpha 32 - Target q_proj and v_proj for efficiency, all projections for quality - Use higher rank (64+) for complex tasks - Merge adapters before production deployment to eliminate inference overhead ## QLoRA: Quantization + LoRA for Consumer GPUs ### 4-Bit Quantization with bitsandbytes [QLoRA](https://arxiv.org/abs/2303.15693), developed by Tim Dettmers in 2023, combines 4-bit quantization with LoRA to enable fine-tuning of 70B parameter models on 48GB GPUs. The [bitsandbytes](https://github.com/TimDettmers/bitsandbytes) library implements 4-bit Normal Float (NF4) quantization, which empirically works better than standard 4-bit integers for neural network weights. NF4 adapts the quantization bins to the normal distribution of neural weights, reducing quantization error. ### Double Quantization and NF4 Double quantization applies a second round of quantization to the quantization constants themselves, saving an additional 0.373 bits per parameter on average. For a 65B parameter model, this saves ~3 GB of memory. NF4 (4-bit Normal Float) is a quantile-based datatype optimized for normally distributed weights. It outperforms INT4 and FP4 quantization by better preserving the weight distribution's information content. ### Paged Optimizers for Memory Efficiency Paged optimizers use NVIDIA unified memory to automatically page optimizer states between GPU and CPU memory. When GPU memory is exhausted, the least recently used optimizer states spill to CPU RAM. This prevents out-of-memory errors during long training runs or when batch sizes are larger than expected. ### QLoRA vs LoRA: Performance Comparison | Metric | LoRA (16-bit) | QLoRA (4-bit) | | * * * | * * * | * * * | | **VRAM (Llama 3 8B)** | 16 GB | 6 GB | | **VRAM (Llama 3 70B)** | 140 GB | 48 GB | | **Training Speed** | Baseline | ~70-80% of LoRA | | **Final Model Quality** | Baseline | ~97-99% of LoRA | | **Checkpoint Size** | Same (adapters only) | Same (adapters only) | QLoRA trades a small amount of training speed and model quality for massive memory savings. For most practical applications, the quality difference is negligible. ### When to Use QLoRA Over LoRA Use QLoRA when GPU memory is constrained: consumer GPUs (RTX 4090, RTX 3090), cloud instances with limited VRAM, or when training larger models than your hardware normally supports. Use standard LoRA when you have sufficient GPU memory and want maximum training speed and model quality. ## PEFT: Hugging Face's Unified Fine-Tuning Library ### Overview of PEFT Library The [Hugging Face PEFT](https://huggingface.co/docs/peft) library is the most widely adopted framework for parameter-efficient fine-tuning. It provides a unified API for multiple PEFT methods, abstracting away the implementation details of each technique. PEFT integrates seamlessly with the Hugging Face ecosystem: Transformers for model loading, Datasets for data preparation, Accelerate for distributed training, and TRL for reinforcement learning from human feedback (RLHF). ### Supported Methods PEFT implements multiple fine-tuning techniques beyond LoRA: - **LoRA**: Low-rank adaptation (most popular) - **IA³**: Infused Adapter by Inhibiting and Amplifying Inner Activations, learns scaling vectors instead of low-rank matrices - **AdaLoRA**: Adaptive LoRA that dynamically allocates rank budget across layers - **Prefix Tuning**: Prepends trainable tokens to each layer's key and value projections - **Prompt Tuning**: Trains soft prompt embeddings prepended to the input - **P-Tuning**: Uses a prompt encoder to generate virtual token embeddings For most use cases, LoRA remains the recommended starting point due to its maturity and ease of use. ### Integration with Transformers and Accelerate PEFT's core abstraction is the ``get_peft_model()`` function, which wraps any Hugging Face model with PEFT adapters: `````python from transformers import AutoModelForCausalLM from peft import get_peft_model, LoraConfig base_model = AutoModelForCausalLM.from_pretrained(\"meta-llama/Meta-Llama-3-8B\") peft_model = get_peft_model(base_model, lora_config) After wrapping, training proceeds normally with Hugging Face’s Trainer or any PyTorch training loop. The base model weights remain frozen; only LoRA parameters receive gradients.\nUnified API for All PEFT Methods PEFT provides a consistent interface across methods. Switching from LoRA to IA³ requires only changing the configuration class: `````python\nLoRA from peft import LoraConfig config = LoraConfig(r=16, lora_alpha=32)\nIA3 from peft import IA3Config config = IA3Config(target_modules=[“q_proj”, “v_proj”])\n### Saving and Loading Adapters PEFT adapters save independently from the base model: `````python # Save only the adapter weights (~10-100 MB) peft_model.save_pretrained(\"./lora_adapter\") # Load adapter on top of base model from peft import PeftModel model = PeftModel.from_pretrained(base_model, \"./lora_adapter\") This separation enables efficient experiment management: one base model with dozens of small adapter checkpoints for different tasks.\nUnsloth: The Fastest Fine-Tuning Framework What Makes Unsloth 2-5x Faster Unsloth, released in late 2023, is a high-performance fine-tuning framework that reimplements critical training operations with hand-optimized kernels. Benchmarks show 2-5x speedups over standard PEFT + PyTorch training while using 50-80% less VRAM.\nThe speedups come from several optimizations: - Handwritten Triton kernels: Custom GPU kernels for RoPE embeddings, RMS normalization, and cross-entropy loss that outperform PyTorch defaults\nOptimized backpropagation: Reduced gradient computation through mathematical reformulation Reduced memory overhead: Elimination of intermediate buffers and in-place operations Flash Attention 2 integration: Memory-efficient attention computation Handwritten GPU Kernels Optimization Unsloth replaces PyTorch’s general-purpose operations with hand-tuned Triton kernels specific to transformer architectures. For example, Unsloth’s RoPE (Rotary Position Embedding) kernel fuses multiple operations into a single GPU kernel, reducing memory bandwidth and kernel launch overhead.\nThese kernels are benchmarked and optimized for modern NVIDIA GPUs (Ampere, Ada Lovelace, Hopper architectures).\nReduced VRAM Usage Unsloth’s memory optimizations enable training larger models on the same hardware: | Model | Standard PEFT VRAM | Unsloth VRAM | Savings | |\n|\n|\n|\n| | Llama 3 8B QLoRA | 6.2 GB | 4.8 GB | 23% | | Mistral 7B QLoRA | 5.8 GB | 4.2 GB | 28% | | Llama 3 70B QLoRA | 47.6 GB | 38.2 GB | 20% |\nSupported Models and Architectures As of early 2025, Unsloth supports: - Llama 3 and Llama 2 family (7B, 8B, 13B, 70B)\nMistral 7B and Mixtral 8x7B/8x22B Qwen 2 and Qwen 2.5 series Phi-3 and Phi-4 series Gemma 2 series CodeLlama and CodeQwen Unsloth Pro vs Free Version Unsloth offers both a free open-source version (Apache 2.0 license) and a paid Pro tier. The free version includes all core optimizations and supports most popular models. Unsloth Pro adds support for additional architectures, priority kernel updates for new GPUs, and enterprise support.\nHead-to-Head Comparison Training Speed Comparison Training speed (tokens/second) for Llama 3 8B QLoRA on RTX 4090 (24GB): | Framework | Speed | Relative | |\n|\n|\n| | Standard PEFT + PyTorch | 1,200 t/s | 1.0x | | PEFT + Flash Attention 2 | 1,580 t/s | 1.3x | | Unsloth (Free) | 3,100 t/s | 2.6x | | Unsloth Pro | 4,200 t/s | 3.5x |\nVRAM Usage Comparison Peak VRAM during Llama 3 8B QLoRA training (batch size 1, sequence length 2048): | Framework | VRAM Usage | |\n|\n| | Standard PEFT | 16.2 GB | | PEFT + Gradient Checkpointing | 12.4 GB | | PEFT + QLoRA | 6.2 GB | | Unsloth + QLoRA | 4.8 GB |\nFinal Model Quality Evaluation Quality measured by validation loss on the Alpaca instruction-tuning dataset (lower is better): | Framework | Final Val Loss | |\n|\n| | Full Fine-tuning (BF16) | 1.084 | | LoRA (rank 16) | 1.092 | | QLoRA (rank 16) | 1.098 | | Unsloth QLoRA (rank 16) | 1.095 |\nAll PEFT methods achieve within 1.3% of full fine-tuning quality, with Unsloth matching standard LoRA despite the quantization.\nEase of Use and Documentation | Framework | Documentation | Setup Complexity | Community | |\n|\n|\n|\n| | PEFT (Hugging Face) | Excellent | Low | Massive | | Unsloth | Good | Low | Growing rapidly | | QLoRA (bitsandbytes) | Good | Medium | Large |\nStep-by-Step Fine-Tuning Tutorial Environment Setup For this tutorial, we will use Google Colab (free T4 GPU) or a local GPU with 16GB+ VRAM.\nInstall dependencies: `````bash pip install transformers datasets peft bitsandbytes accelerate\nFor Unsloth: pip install unsloth ### Dataset Preparation and Formatting We will use the Alpaca instruction-funing format, a JSON structure with ``instruction``, ``input``, and ``output`` fields: `````python from datasets import load_dataset dataset = load_dataset(\"yahma/alpaca-cleaned\", split=\"train\") def format_prompt(example): if example[\"input\"]: prompt = f\"### Instruction:\\n{example[instruction]}\\n\\n### Input:\\n{example[input]}\\n\\n### Response:\\n{example[output]}\" else: prompt = f\"### Instruction:\\n{example[instruction]}\\n\\n### Response:\\n{example[output]}\" return {\"text\": prompt} formatted_dataset = dataset.map(format_prompt) Fine-Tuning Llama 3 with LoRA/QLoRA Using standard PEFT + QLoRA: `````python from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training from trl import SFTTrainer\nLoad model in 4-bit model = AutoModelForCausalLM.from_pretrained( “meta-llama/Meta-Llama-3-8B”, load_in_4bit=True, device_map=“auto” ) model = prepare_model_for_kbit_training(model)\nConfigure LoRA lora_config = LoraConfig(r=16, lora_alpha=32, target_modules=[“q_proj”, “v_proj”]) model = get_peft_model(model, lora_config)\nTrain trainer = SFTTrainer( model=model, train_dataset=formatted_dataset, max_seq_length=2048, args=TrainingArguments(num_train_epochs=1, per_device_train_batch_size=1) ) trainer.train()\n### Fine-Tuning with Unsloth (Faster Option) Using Unsloth for 2-3x faster training: `````python from unsloth import FastLanguageModel from trl import SFTTrainer model, tokenizer = FastLanguageModel.from_pretrained( model_name=\"unsloth/Meta-Llama-3.1-8B\", max_seq_length=2048, load_in_4bit=True, ) model = FastLanguageModel.get_peft_model( model, r=16, lora_alpha=16, target_modules=[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"] ) trainer = SFTTrainer( model=model, train_dataset=formatted_dataset, max_seq_length=2048, args=TrainingArguments(num_train_epochs=1, per_device_train_batch_size=2) ) trainer.train() Evaluating Your Fine-Tuned Model Evaluate using standard NLP metrics: `````python from evaluate import load\nPerplexity perplexity = load(“perplexity”) results = perplexity.compute(model_id=“your-model”, predictions=test_texts)\nMT-Bench or custom evaluation Use the lm-evaluation-harness for standardized benchmarks ### Merging Adapters and Exporting to GGUF Merge LoRA adapters back into the base model for inference without PEFT dependencies: `````python # Merge adapters merged_model = model.merge_and_unload() merged_model.save_pretrained(\"./merged_model\") # Export to GGUF for Ollama # Use llama.cpp convert script or Unsloth's built-in export model.save_pretrained_gguf(\"./gguf_model\", tokenizer, quantization_method=\"q4_k_m\") Fine-Tuning Best Practices Choosing the Right Base Model Select a base model close to your target domain: - General instruction: Llama 3 Instruct, Mistral Instruct, Qwen Chat\nCode: CodeLlama, DeepSeek Coder, CodeQwen Multilingual: Qwen, Aya, BLOOM Small/Fast: Phi-3, Gemma 2B, Llama 3.2 1B Dataset Curation and Cleaning Quality matters more than quantity. A few thousand high-quality examples typically outperform tens of thousands of noisy ones. Clean your dataset by: - Removing duplicates and near-duplicates\nFiltering examples with incorrect formatting Ensuring consistent output style and length Balancing instruction types and topics Using human-verified examples for critical domains Hyperparameter Tuning Guide Start with these defaults and adjust based on validation loss: | Hyperparameter | Default | Range | Effect | |\n|\n|\n|\n| | Rank (r) | 16 | 4-256 | Higher = more expressive, more parameters | | Alpha | 32 | 8-512 | Higher = stronger fine-tuning signal | | Learning rate | 2e-4 | 1e-5 to 1e-3 | Higher = faster learning, risk of instability | | Batch size | 1-4 | 1-16 | Larger = more stable gradients, more VRAM | | Epochs | 1-3 | 1-10 | More = better fit, risk of overfitting | | LoRA dropout | 0.05 | 0.0-0.2 | Regularization for small datasets |\nAvoiding Overfitting and Catastrophic Forgetting Monitor validation loss and stop training when it increases Use LoRA dropout \u003e 0 for datasets under 10,000 examples Keep rank reasonably low (8-32) for behavior-focused fine-tuning Evaluate on held-out test sets that differ from training data Consider using techniques like DoRA (Weight-Decomposed LoRA) for better stability Testing and Evaluation Metrics Evaluate fine-tuned models with: - Perplexity: Measures fluency on held-out text\nBLEU/ROUGE: For tasks with reference outputs MT-Bench: Multi-turn conversation quality Human evaluation: Gold standard for subjective quality Task-specific metrics: Accuracy for classification, F1 for extraction Deployment of Fine-Tuned Models Merging LoRA Weights with Base Model For production deployment, merge adapter weights into the base model to eliminate PEFT inference overhead: `````python merged_model = peft_model.merge_and_unload() merged_model.save_pretrained(\"./production_model\")\nThe merged model is a standard Hugging Face model that works with any inference engine. ### Converting to GGUF for Ollama/llama.cpp For local deployment with Ollama or llama.cpp: `````bash # Using Unsloth's export model.save_pretrained_gguf(\"model_gguf\", tokenizer, quantization_method=\"q4_k_m\") # Or using llama.cpp directly python convert_hf_to_gguf.py ./production_model --outfile model.gguf Deploying with vLLM for Serving For production API serving, use vLLM: `````python from vllm import LLM\nllm = LLM(model=\"./production_model\", tensor_parallel_size=1) output = llm.generate(“Hello, how can I help?”)\nvLLM provides continuous batching, PagedAttention, and OpenAI-compatible API serving. ### Hugging Face Hub Upload and Sharing Upload your model or adapters to the Hugging Face Hub: `````python from huggingface_hub import HfApi api = HfApi() api.create_repo(repo_id=\"your-username/your-model\", repo_type=\"model\") api.upload_folder(folder_path=\"./lora_adapter\", repo_id=\"your-username/your-model\") Alternatives and Complementary Tools Axolotl: YAML-Based Fine-Tuning Axoloth simplifies fine-tuning through YAML configuration files. Define your dataset, model, and training parameters in a single YAML file, then run ````axolotl train config.yaml```. It is ideal for users who prefer configuration over code.\nLLaMA-Factory: Comprehensive Training Toolkit LLaMA-Factory provides a unified web UI and CLI for fine-tuning dozens of models. It supports pre-training, supervised fine-tuning, DPO, PPO, and ORPO through a single interface. The web UI makes hyperparameter tuning accessible to non-experts.\nTorchtune: PyTorch Native Fine-Tuning Torchtune, developed by Meta, is a PyTorch-native library for fine-tuning LLMs. It offers memory-efficient recipes, distributed training support, and integration with the PyTorch ecosystem. Best for teams deeply invested in PyTorch.\nOpenPipe: Fine-Tuning API Service OpenPipe is a managed fine-tuning service that handles infrastructure, dataset formatting, and deployment. Upload your data, and OpenPipe returns a hosted fine-tuned model accessible via API. Ideal for teams without GPU resources or ML engineering expertise.\nConclusion Parameter-efficient fine-tuning has democratized LLM customization. In 2025, you do not need a supercomputer to adapt a 70B parameter model, you need a consumer GPU, the right framework, and a quality dataset.\nFor most practitioners, we recommend this workflow: 1. Start with Unsloth for the fastest training and lowest VRAM usage 2. Fall back to Hugging Face PEFT for models Unsloth does not support 3. Use QLoRA as the default quantization strategy for memory efficiency 4. Merge adapters before production deployment for clean inference 5. Serve with vLLM for high-throughput production APIs\nThe field evolves rapidly. Follow the Hugging Face PEFT repository, Unsloth GitHub, and bitsandbytes releases for the latest optimizations and model support.\nFrequently Asked Questions LoRA vs QLoRA: Which should I use?\nUse QLoRA as your default choice. It trains on 4-bit quantized models with nearly identical quality to standard LoRA while requiring 60-70% less VRAM. Use standard LoRA only when you have abundant GPU memory (A100 80GB, H100) and want maximum training speed without quantization overhead.\nIs Unsloth really faster than standard PEFT?\nYes. Unsloth achieves 2-5x speedups over standard PEFT training through hand-optimized GPU kernels, reduced memory overhead, and fused operations. These speedups are consistent across benchmarks with Llama, Mistral, and other popular architectures. The free version delivers most optimizations; the Pro tier adds support for additional models and newer GPU architectures.\nHow much VRAM do I need for fine-tuning?\nVRAM requirements depend on model size and quantization: | Model Size | LoRA (16-bit) | QLoRA (4-bit) | Unsloth QLoRA | |\n|\n|\n|\n| | 7B/8B | 16 GB | 6 GB | 5 GB | | 13B | 28 GB | 10 GB | 8 GB | | 70B | 140 GB | 48 GB | 38 GB |\nThese figures assume batch size 1, gradient accumulation, and sequence length 2048. Larger batches require proportionally more VRAM.\nCan I fine-tune on a free Colab GPU?\nYes. Google Colab\"s free T4 GPU (16 GB VRAM) can fine-tune 7B and 8B parameter models using QLoRA. Use Unsloth for maximum efficiency. Limit sequence length to 1024-2048 tokens and use gradient accumulation to simulate larger batch sizes. For 13B models, Colab Pro with a V100 or A100 GPU is recommended.\nWhat is the difference between PEFT and full fine-tuning?\nPEFT (Parameter-Efficient Fine-Tuning) trains only a small fraction of parameters, typically 0.1% to 1% of total model weights, while freezing the rest. Full fine-tuning updates all parameters. PEFT requires 100x less memory, trains faster, and produces tiny checkpoints, but may achieve slightly lower performance on tasks requiring extensive knowledge updates. For most instruction-following and style adaptation tasks, PEFT matches or approaches full fine-tuning quality.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “LLM Fine-Tuning Frameworks Compared: LoRA, QLoRA, PEFT \u0026 Unsloth (2025)”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/llm-fine-tuning-frameworks-comparison\" } } Frequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "3474",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/llm-fine-tuning-frameworks-comparison/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Why Fine-Tune Large Language Models?</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Why Fine-Tune Large Language Models?</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">Fine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <p>{&lt;/* resource-info */&gt;}</p>
 <p>Fine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time. In 2025, parameter-efficient fine-tuning (PEFT) techniques let you adapt a 70-billion-parameter model on a single consumer GPU in hours, not days.</p>
 <p>This guide compares the four dominant fine-tuning approaches: LoRA, QLoRA, Hugging Face PEFT, and Unsloth. We will cover how each method works, their trade-offs in speed and memory, a hands-on tutorial for fine-tuning Llama 3, and best practices for producing high-quality fine-tuned models.</p>
@@ -574,7 +646,7 @@ api.upload_folder(folder_path=&#34;./lora_adapter&#34;, repo_id=&#34;your-userna
 <hr>
 
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -584,7 +656,7 @@ api.upload_folder(folder_path=&#34;./lora_adapter&#34;, repo_id=&#34;your-userna
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -604,8 +676,8 @@ api.upload_folder(folder_path=&#34;./lora_adapter&#34;, repo_id=&#34;your-userna
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -629,6 +701,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -721,116 +794,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

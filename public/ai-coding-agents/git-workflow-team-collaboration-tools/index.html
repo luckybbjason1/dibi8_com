@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git Workflow &amp; Team Collaboration Tools: A Developer&#39;&#39;s Complete Guide | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Git Workflow &amp; Team Collaboration Tools: A Developer&#39;&#39;s Complete Guide | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/git-workflow-team-collaboration-tools/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/git-workflow-team-collaboration-tools/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Git Workflow &amp; Team Collaboration Tools: A Developer&#39;&#39;s Complete Guide | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="AI tool guide">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/git-workflow-team-collaboration-tools/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/git-workflow-team-collaboration-tools/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/git-workflow-team-collaboration-tools/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Git Workflow & Team Collaboration Tools: A Developer&#39;&#39;s Complete Guide">
+  <meta property="og:description" content="AI tool guide">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Git Workflow & Team Collaboration Tools: A Developer&#39;&#39;s Complete Guide">
+  <meta name="twitter:description" content="AI tool guide">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Git Workflow \u0026 Team Collaboration Tools: A Developer''s Complete Guide",
+      "item": "https://dibi8.com/ai-coding-agents/git-workflow-team-collaboration-tools/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Git Workflow \u0026 Team Collaboration Tools: A Developer''s Complete Guide",
+  "name": "Git Workflow \u0026 Team Collaboration Tools: A Developer\u0027\u0027s Complete Guide",
+  "description": "AI tool guide",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Git Workflow \u0026 Team Collaboration Tools: A Developer’’s Complete Guide {\u003c/* resource-info */\u003e}\nGit is the foundation of modern software development, but Git alone is not enough. How your team branches, merges, reviews, and deploys code determines your velocity, code quality, and ability to scale. A disorganized Git workflow creates merge conflicts, stale branches, deployment surprises, and frustrated developers. A well-designed workflow turns Git into a competitive advantage.\nThis guide covers the branching strategies, code review practices, collaboration platforms, and tooling decisions that define professional Git workflows in 2025. Whether you are a three-person startup or a fifty-person engineering organization, these principles apply.\nWhy Git Workflow Matters The Cost of Poor Git Practices Poor Git practices have concrete costs. A 2023 study by GitClear analyzed over 2 million Git repositories and found that teams without structured branching strategies spent 34% more time resolving merge conflicts. Unreviewed code introduced 2.8x more bugs per line changed. Stale feature branches older than two weeks had a 47% chance of never merging.\nThese numbers translate directly into delayed releases, production incidents, and developer burnout.\nHow Workflow Affects Team Velocity The right Git workflow reduces cognitive load. Developers know where to create branches, how long branches should live, who reviews code, and when it is safe to deploy. This predictability lets teams focus on writing features rather than arguing about process.\nConversely, an overly complex workflow slows everyone down. GitFlow’s five-branch model works for release-oriented teams but becomes bureaucratic for SaaS products that deploy daily. Matching workflow complexity to deployment frequency is key.\nChoosing the Right Strategy for Your Team Size Small teams (2-5 developers) need simplicity. Medium teams (5-20) need structure without rigidity. Large teams (20+) need automation, clear ownership, and tooling that enforces standards. The strategies in this guide scale across these sizes with appropriate adjustments.\nGit Branching Strategies Compared GitFlow: Feature, Develop, Release, and Hotfix Branches GitFlow, introduced by Vincent Driessen in 2010, organizes work into five branch types: - ```main```` — Production code only\ndevelop — Integration branch for the next release feature/* — Individual features branched from develop release/* — Release preparation branched from develop hotfix/* — Emergency fixes branched from main Features merge into develop. When develop is release-ready, a release/* branch is created, tested, and merged into both main and develop. Hotfixes bypass develop entirely and merge directly to main, then backport to develop.\nThis model excels for versioned software like libraries, mobile apps, and desktop applications where releases are scheduled events.\nGitHub Flow: Simple Branch-per-Feature GitHub Flow is intentionally minimal: 1. Create a feature branch from main 2. Make commits 3. Open a pull request 4. Review and discuss 5. Merge to main and deploy\nThere is no develop branch, no release branches, and no prescribed naming convention. The simplicity makes it ideal for teams practicing continuous deployment where every merge to main can go to production immediately.\nGitLab Flow: Environment Branches GitLab Flow adds environment branches to GitHub Flow’s simplicity. You might have main, staging, and production branches. Features merge to main first, then cherry-pick or merge to staging for QA, then to production for release. This adds controlled promotion without GitFlow’s full complexity.\nTrunk-Based Development: Short-Lived Branches Trunk-Based Development takes a radical approach: all developers commit directly to main or use branches that live for less than 24 hours. Long-lived feature branches are forbidden. Incomplete features are hidden behind feature flags rather than kept in separate branches.\nThis requires: - Comprehensive automated testing\nFeature flag infrastructure Developer discipline to commit small, complete changes Fast CI pipelines (ideally under 10 minutes) Google, Facebook, and Amazon practice variants of trunk-based development at massive scale. It is the fastest workflow but demands the highest engineering maturity.\nWhich Strategy for Which Team Size | Strategy | Best For | Deployment Frequency | Complexity | |\n|\n|\n|\n| | GitFlow | Versioned software, libraries, mobile apps | Weekly to monthly | High | | GitHub Flow | SaaS products, web applications | Daily to multiple times daily | Low | | GitLab Flow | Multi-environment pipelines | Daily with staging gates | Medium | | Trunk-Based | High-velocity teams, CI/CD maturity | Continuous | Low (process), High (infrastructure) |\nGitHub Flow in Detail Branch Naming Conventions Consistent branch naming makes it easy to identify work in progress: ````` feature/user-authentication bugfix/login-redirect-loop hotfix/critical-payment-bug refactor/extract-payment-service docs/api-endpoint-reference\nInclude the issue or ticket number when applicable: ````feature/PROJ-123-user-authentication````. This creates an automatic link between the branch and your project management tool. ### Pull Request Workflow A proper pull request workflow includes: 1. **Descriptive title** — \"Add OAuth2 login with Google and GitHub\" not \"Login stuff\" 2. **Detailed description** — What changed, why it changed, and how to test it 3. **Linked issues** — Reference ````Closes #456```` to auto-close related issues 4. **Screenshots or recordings** — For UI changes, visual evidence is essential 5. **Checklist** — Code review checklist in the PR template ### Required Reviews and Branch Protection Configure branch protection rules in your Git platform: - Require at least one code review approval before merging - Require status checks (CI tests, linting) to pass - Require branches to be up to date before merging - Restrict push access to ````main```` — all changes go through pull requests - Dismiss stale review approvals when new commits are pushed ### CI/CD Integration With GitHub Actions GitHub Actions runs your test suite on every pull request. A minimal workflow: `````yaml name: CI on: [pull_request] jobs: test: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: actions/setup-node@v4 with: node-version: '20' cache: 'npm' - run: npm ci - run: npm run lint - run: npm run test - run: npm run build This ensures only passing code reaches main.\nGitFlow for Release-Oriented Teams Understanding the Full Branch Model GitFlow’s strength is explicit release management. When you need to support multiple simultaneous versions — say, version 2.3 in production while preparing 2.4 — the release/* branch provides a clean separation.\nThe branch model is documented in the original nvie.com article and implemented via the git-flow CLI extension.\nRelease and Hotfix Management Release branches live for days or weeks during QA and stabilization. Only bug fixes and documentation updates merge into a release branch — no new features. Hotfix branches address critical production issues and merge to both main and develop to prevent regression.\nTools: git-flow CLI Extension The git-flow CLI extension adds commands like git flow feature start, git flow release publish, and git flow hotfix finish. These automate branch creation, merging, and tagging according to GitFlow conventions.\nTrunk-Based Development Core Principles: Main Branch Always Deployable In trunk-based development, main must always be in a deployable state. This is enforced by comprehensive automated testing, code review requirements, and the discipline to commit only complete, tested changes.\nFeature Flags Instead of Feature Branches When a feature takes multiple days to complete, developers merge incremental changes behind a feature flag rather than keeping work on a long-lived branch. Tools like LaunchDarkly, Unleash, and Flagsmith provide feature flag infrastructure.\nShort-Lived Branches (Hours, Not Days) If branches are used at all, they should be merged within hours. Google’s internal data shows that merge conflict probability increases exponentially after the first day a branch exists. Branches older than 24 hours should be considered a process smell.\nEssential Code Review Practices Pull Request Templates and Checklists A pull request template standardizes what reviewers see: `````markdown\nDescription Type of Change Bug fix New feature Breaking change Documentation update Testing Unit tests added/updated Manual testing performed Edge cases considered Checklist Code follows style guidelines Self-review completed No console errors introduced Documentation updated if needed ### Review Assignment Strategies Assign reviewers based on code ownership and expertise: - **Round-robin** — Distribute reviews evenly across the team - **Code owners** — Use a ````CODEOWNERS```` file to auto-assign based on file paths - **Domain experts** — Tag team members with specific expertise for complex changes - **Pair programming** — Skip formal review for changes written in pairs ### Automated Checks: Linting, Tests, Security Automate everything that can be automated. Human reviewers should focus on architecture, logic, and design — not formatting or whether tests pass. Pre-commit hooks and CI pipelines handle: - Code formatting (Prettier, Black, gofmt) - Linting (ESLint, Ruff, golangci-lint) - Unit and integration tests - Security scanning (Dependabot, Snyk, CodeQL) - License compliance (FOSSA) ### Tools: GitHub PRs, GitLab MRs, Bitbucket, Gerrit | Platform | Code Review Features | CI Integration | | * * * | * * * | * * * | | GitHub | Inline comments, suggestions, required reviews | GitHub Actions | | GitLab | Threaded discussions, code intelligence, approvals | GitLab CI | | Bitbucket | Pull requests, Jira integration | Bitbucket Pipelines | | Gerrit | Pre-commit reviews, fine-grained permissions | Jenkins, Zuul | Gerrit differs from the others by reviewing individual commits before they enter the repository, rather than reviewing branches before merge. ## Git Platforms for Team Collaboration ### GitHub: Largest Ecosystem, Actions CI [GitHub](https://github.com) hosts over 100 million repositories and offers the largest ecosystem of integrations. GitHub Actions provides CI/CD directly in the platform. The marketplace includes over 20,000 actions for every conceivable workflow. GitHub's Copilot AI coding assistant integrates natively, and GitHub Codespaces provides cloud-based dev environments. For open-source projects, GitHub is the default choice. ### GitLab: Built-In CI/CD, Self-Hosted Option [GitLab](https://docs.gitlab.com) provides a complete DevOps platform with built-in CI/CD, container registry, and monitoring. The self-hosted option is popular in regulated industries that cannot use cloud services. GitLab's CI configuration lives in ````.gitlab-ci.yml```` at the repository root. ### Bitbucket: Atlassian Integration (Jira) [Bitbucket](https://bitbucket.org) integrates tightly with the Atlassian suite — Jira, Confluence, and Trello. If your organization already uses these tools, Bitbucket provides seamless issue tracking and documentation linking. Bitbucket Pipelines handles CI/CD. ### Azure DevOps: Microsoft Ecosystem Azure DevOps (formerly VSTS) integrates with Microsoft Entra ID (formerly Azure AD), Azure services, and Microsoft Teams. It is the natural choice for organizations deeply invested in the Microsoft ecosystem. Azure Repos provides Git hosting with branch policies and pull request workflows. ### Gitea: Lightweight Self-Hosted Option [Gitea](https://gitea.io) is a lightweight, open-source Git service that you can host on minimal hardware. A Gitea instance runs comfortably on a Raspberry Pi. For small teams or personal projects that need private hosting without cloud dependency, Gitea is ideal. ## Commit Standards and Conventions ### Conventional Commits Specification The [Conventional Commits](https://www.conventionalcommits.org) specification standardizes commit messages with a structured format: ````` (): [optional body] [optional footer] Types include feat, fix, docs, style, refactor, test, and chore. This structure enables automated changelog generation and semantic versioning.\nPre-Commit Hooks (Husky, lint-staged) Pre-commit hooks run checks before each commit. For JavaScript projects, Husky and lint-staged provide a popular combination: `````json { “lint-staged”: { “.{js,ts}”: [“eslint –fix”, “prettier –write”], “.py”: [“ruff check –fix”, “ruff format”] } }\nThis ensures no commit introduces formatting issues or lint errors. ### Signed Commits for Security Git supports GPG-signed commits that cryptographically verify the author's identity. Enable required commit signing on your main branch to prevent impersonation. This is particularly important for open-source projects with public contribution. ### Generating Changelogs From Commits Tools like [semantic-release](https://github.com/semantic-release/semantic-release) and [standard-version](https://github.com/conventional-changelog/standard-version) automatically generate changelogs and version bumps from Conventional Commits. This eliminates manual changelog maintenance and ensures releases are documented accurately. ## Handling Merge Conflicts and Rebase ### When to Merge vs Rebase vs Squash | Strategy | When to Use | Result | | * * * | * * * | * * * | | Merge | Preserving branch history, team collaboration | Full history preserved, merge commit created | | Rebase | Clean linear history before merging | Linear history, no merge commits | | Squash | Feature branches with many small commits | Single commit per feature, clean main history | Many teams use squash merging as their default. It keeps ````main```` clean with one commit per feature while preserving the detailed commit history in the pull request. ### Interactive Rebase Workflow Use interactive rebase to clean up commits before merging: `````bash git rebase -i HEAD~5 This opens an editor where you can squash, reorder, edit, or drop commits. It is a powerful tool for presenting clean history but should never be used on commits that have already been pushed to shared branches.\nConflict Resolution Best Practices When conflicts occur: 1. Pull the latest target branch before starting conflict resolution 2. Understand both changes — do not just pick yours 3. Test the resolved code before committing 4. Ask the author of the conflicting change if the resolution is unclear 5. Consider pair-resolving complex conflicts\nGit GUI Tools for Teams Fork: Fast, Intuitive Git Client Fork is a Git client for macOS and Windows known for its speed and clean interface. The commit graph visualization, interactive rebase support, and image diff viewer make it popular among developers who prefer GUI tools over command-line Git.\nSourcetree: Free, Powerful Atlassian’s Sourcetree is a free Git client for macOS and Windows. It provides a visual interface for branching, merging, and stashing. While development has slowed, it remains a capable option for developers who want a no-cost GUI.\nGitKraken: Cross-Platform, Team Features GitKraken offers a polished cross-platform experience with built-in code editing, conflict resolution tools, and team collaboration features. The paid Pro tier adds team productivity metrics and advanced merge tools.\nGitHub Desktop: Beginner-Friendly GitHub Desktop simplifies common Git workflows for beginners. It handles branch creation, pull request submission, and conflict resolution through a minimal interface. It is an excellent onboarding tool for developers new to Git.\nTower: Premium Mac/Windows Client Tower is a premium Git client ($69/year) with advanced features like pull request management, submodule support, and extensive keyboard shortcuts. It targets professional developers who spend significant time in Git and want maximum efficiency.\nAdvanced: Monorepo Strategies Tools: Nx, Turborepo, Bazel Monorepos — repositories containing multiple related projects — require specialized tooling: - Nx — Popular for TypeScript monorepos with built-in caching and code generation\nTurborepo — Vercel’s monorepo task runner with remote caching Bazel — Google’s build system, powerful but complex, used by large enterprises Sparse Checkout for Large Repos Git’s sparse checkout feature lets you work with only a subset of a large repository: `````bash git sparse-checkout init –cone git sparse-checkout set packages/frontend packages/shared\nThis dramatically reduces clone time and working directory size for large monorepos. ### When to Choose Monorepo vs Polyrepo | Factor | Monorepo | Polyrepo | | * * * | * * * | * * * | | Code sharing | Easy (shared packages) | Harder (published packages) | | Atomic changes | Easy (single PR) | Harder (multiple PRs) | | CI complexity | Higher | Lower | | Team autonomy | Lower | Higher | | Scale ceiling | Requires tooling | Natural | Small to medium teams (under 50 developers) often benefit from monorepos. Large organizations with independent teams may prefer polyrepos for autonomy. ## Setting Up Your Team Workflow: Step-by-Step ### Step 1: Audit Your Current Practices Before changing anything, document how your team currently works. How long do branches live? How often do merge conflicts occur? How long does code review take? What breaks most often? This baseline helps you measure improvement. ### Step 2: Choose a Branching Strategy Match your strategy to your deployment frequency: - Deploy multiple times daily → GitHub Flow or trunk-based - Deploy weekly with staging → GitLab Flow - Deploy on scheduled releases → GitFlow ### Step 3: Set Up Branch Protection Rules Configure branch protection on your main branch: - Require pull request reviews (minimum 1) - Require status checks to pass - Require branches to be up to date - Restrict direct pushes to maintainers only - Require signed commits (optional, security-sensitive projects) ### Step 4: Configure CI/CD Pipeline Set up automated testing, linting, and deployment. Start with a minimal pipeline and add stages as needed. A typical progression: lint → unit tests → integration tests → build → deploy to staging → manual approval → deploy to production. ### Step 5: Document and Onboard the Team Write a ````CONTRIBUTING.md```` file that documents: - Branch naming conventions - Commit message format - Review requirements and expectations - How to run tests locally - Who to ask for help Review this document in team meetings and update it as your workflow evolves. ## Frequently Asked Questions ### What is the best Git branching strategy for small teams? GitHub Flow is the best choice for small teams. It is simple, requires minimal process overhead, and supports continuous deployment. Create feature branches from ````main````, open pull requests for review, merge, and deploy. No additional branches or ceremonies needed. ### Should I use GitFlow or GitHub Flow? Use GitFlow if you ship versioned software on a schedule — libraries, mobile apps, or enterprise software with release cycles. Use GitHub Flow if you ship a web application continuously. GitFlow's complexity is justified when you need release branches and hotfix isolation. For most SaaS teams, GitHub Flow is the better fit. ### How do I handle merge conflicts in Git? Prevent conflicts by keeping feature branches short-lived (under a few days) and rebasing frequently against the target branch. When conflicts occur, use ````git rebase -i``` or your Git GUI's conflict resolution tool. Understand both changes before resolving — do not mechanically accept your version. Test the resolution before committing. ### What are the best code review practices? The best code review practices include: using pull request templates, keeping reviews focused (under 400 lines when possible), responding to reviews within 24 hours, separating style from substance feedback, and automating everything that can be automated (formatting, linting, tests). Review code, not people — frame feedback as suggestions, not criticisms. ### Is trunk-based development better than feature branches? Trunk-based development is better for teams with mature CI/CD pipelines, comprehensive test coverage, and feature flag infrastructure. It eliminates merge conflicts entirely and enables true continuous deployment. However, it requires significant engineering discipline and infrastructure investment. For teams without these foundations, GitHub Flow with short-lived branches is a more practical stepping stone. * * * ## Recommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. *Affiliate links — no extra cost to you, helps keep dibi8.com running.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Git Workflow \u0026 Team Collaboration Tools: A Developer''s Complete Guide\", \"datePublished\": \"2026-05-18\", \"dateModified\": \"2026-05-18\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/git-workflow-team-collaboration-tools\" } } * * * ",
+  "wordCount" : "3128",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/git-workflow-team-collaboration-tools/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Git Workflow &amp; Team Collaboration Tools: A Developer&#39;&#39;s Complete Guide</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Git Workflow &amp; Team Collaboration Tools: A Developer&#39;&#39;s Complete Guide</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h1 id="git-workflow--team-collaboration-tools-a-developers-complete-guide">Git Workflow &amp; Team Collaboration Tools: A Developer&rsquo;&rsquo;s Complete Guide</h1>
 <p>{&lt;/* resource-info */&gt;}</p>
 <p>Git is the foundation of modern software development, but Git alone is not enough. How your team branches, merges, reviews, and deploys code determines your velocity, code quality, and ability to scale. A disorganized Git workflow creates merge conflicts, stale branches, deployment surprises, and frustrated developers. A well-designed workflow turns Git into a competitive advantage.</p>
@@ -473,7 +545,7 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
 * * *
 </code></pre>
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -483,7 +555,7 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -503,8 +575,8 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -528,6 +600,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -620,116 +693,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

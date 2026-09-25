@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimesFM 2.5: Google&#39;s Revolutionary Time Series Foundation Model for Forecasting | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="TimesFM 2.5: Google&#39;s Revolutionary Time Series Foundation Model for Forecasting | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>TimesFM 2.5: Google&#39;s Revolutionary Time Series Foundation Model for Forecasting | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="AI tool guide">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="TimesFM 2.5: Google&#39;s Revolutionary Time Series Foundation Model for Forecasting">
+  <meta property="og:description" content="AI tool guide">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TimesFM 2.5: Google&#39;s Revolutionary Time Series Foundation Model for Forecasting">
+  <meta name="twitter:description" content="AI tool guide">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting",
+      "item": "https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting",
+  "name": "TimesFM 2.5: Google\u0027s Revolutionary Time Series Foundation Model for Forecasting",
+  "description": "AI tool guide",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "TimesFM 2.5: Google’s Revolutionary Time Series Foundation Model for Forecasting Time series forecasting has long been one of the most challenging problems in data science. From predicting stock prices to forecasting weather patterns, from sales projections to energy consumption estimates — accurate predictions can make or break businesses.\nEnter TimesFM, Google Research’s groundbreaking foundation model for time series forecasting. With version 2.5 now available and over 23,000 GitHub stars, TimesFM represents a paradigm shift in how we approach temporal data analysis.\nIn this comprehensive guide, we’ll explore what makes TimesFM special, how to install and use it, compare it with traditional methods, and provide practical examples for real-world forecasting.\nWhat is TimesFM? TimesFM (Time Series Foundation Model) is a decoder-only foundation model developed by Google Research specifically for time series forecasting. Unlike traditional forecasting methods that require training separate models for each dataset, TimesFM is pretrained on massive amounts of temporal data and can generalize to new forecasting tasks with minimal fine-tuning.\nKey Innovations The model introduces several groundbreaking innovations: Decoder-Only Architecture: Inspired by the success of transformer decoders in language modeling, TimesFM uses a pure decoder architecture optimized for sequential prediction Foundation Model Approach: Pretrained on massive amounts of temporal data, enabling zero-shot and few-shot forecasting capabilities Continuous Quantile Forecasting: Provides uncertainty estimates alongside point forecasts through an optional quantile head Extended Context Window: Supports up to 16,000 time steps of historical data for improved long-range dependencies Reduced Parameter Count: Version 2.5 uses only 200M parameters (down from 500M in v2.0) while improving accuracy The Research Behind TimesFM The foundational research was published in the paper “A decoder-only foundation model for time-series forecasting” at ICML 2024. Since then, the model has evolved through multiple versions, with v2.5 representing the current state-of-the-art in time series foundation modeling.\nTimesFM 2.5: Major Improvements Version 2.5, released in September 2025, brings significant improvements over previous versions: | Feature | TimesFM 2.0 | TimesFM 2.5 | |\n|\n|\n| | Parameters | 500M | 200M | | Context Length | 2,048 | 16,000 | | Quantile Forecasting | Discrete | Continuous (up to 1,000 horizon) | | Frequency Indicator | Required | Removed | | Inference Speed | Baseline | 2.5x faster | | Memory Usage | High | Optimized |\nWhy Fewer Parameters, Better Results? This counterintuitive improvement is achieved through: Better Pretraining Data: More diverse and larger temporal datasets Architectural Refinements: Optimized attention mechanisms for time series Improved Training Objectives: Multi-task learning with various forecasting losses Quantile Head Innovation: The optional 30M quantile head provides uncertainty without bloating the main model Installation Guide Getting started with TimesFM is straightforward. The model is available through PyPI, making installation as simple as: ### Option 1: Quick Install via PyPI\n# Install with PyTorch backend pip install timesfm[torch] # Or with Flax/JAX backend (recommended for GPU/TPU) pip install timesfm[flax] # If you need covariate support (XReg) pip install timesfm[xreg] Option 2: Development Installation For those who want to contribute or access the latest features: `````bash\nClone the repository git clone https://github.com/google-research/timesfm.git cd timesfm\nCreate virtual environment uv venv source .venv/bin/activate\nInstall in editable mode uv pip install -e .[torch]\nOr for Flax backend uv pip install -e .[flax]\n### Backend Selection TimesFM supports multiple backends: - **PyTorch**: Best for CPU and NVIDIA GPU users - **Flax/JAX**: Optimal for TPU and Google Cloud environments - **XReg Extension**: Adds covariate support for external regressors Choose your backend based on your hardware and deployment requirements. ## Basic Usage Let's start with a simple forecasting example: ### Zero-Shot Forecasting `````python import numpy as np import timesfm # Load the pretrained model model = timesfm.TimesFM_2p5_200M.from_pretrained( \"google/timesfm-2.5-200m-flax\" ) # Prepare your time series data # Shape: (num_series, context_length) historical_data = np.random.randn(1, 1024) # Forecast the next 12 time steps forecast = model.forecast(historical_data, horizon=12) print(f\"Forecast shape: {forecast.shape}\") print(f\"Predicted values: {forecast}\") With Quantile Forecasting For uncertainty estimation, enable the continuous quantile head: `````python forecast_with_uncertainty = model.forecast( historical_data, horizon=12, quantiles=[0.1, 0.5, 0.9] # 10th, 50th, 90th percentiles )\nforecast_with_uncertainty contains point forecasts and confidence intervals point_forecast = forecast_with_uncertainty[:, :, 1] # median lower_bound = forecast_with_uncertainty[:, :, 0] # 10th percentile upper_bound = forecast_with_uncertainty[:, :, 2] # 90th percentile\n### Using the PyTorch Backend `````python import torch import timesfm # Set precision for faster computation torch.set_float32_matmul_precision(\"high\") # Load PyTorch version model = timesfm.TimesFM_2p5_200M_torch.from_pretrained( \"google/timesfm-2.5-200m-pytorch\" ) # Compile for optimized inference model.compile( timesfm.ForecastConfig( max_context=1024, max_horizon=256, normalize_inputs=True, use_continuous_quantile_head=True, force_flip_invariance=True, infer_is_positive=True, fix_quantile_crossing=True, ) ) # Make predictions point_forecast, quantile_forecast = model.forecast( horizon=12, inputs=[ np.linspace(0, 1, 100), np.sin(np.linspace(0, 20, 67)), ] ) Advanced Features Fine-Tuning with LoRA One of the most powerful features of TimesFM 2.5 is the ability to fine-tune using Low-Rank Adaptation (LoRA): `````python from transformers import AutoModelForSequenceClassification from peft import LoraConfig, get_peft_model\nLoad the base TimesFM model base_model = timesfm.TimesFM_2p5_200M.from_pretrained( “google/timesfm-2.5-200m-flax” )\nConfigure LoRA lora_config = LoraConfig( r=16, # Rank of the update matrices lora_alpha=32, # Scaling factor target_modules=[“query”, “value”], # Layers to apply LoRA to lora_dropout=0.1, )\nApply LoRA to the model model = get_peft_model(base_model, lora_config)\nNow you can fine-tune on your specific dataset This requires significantly fewer parameters than full fine-tuning ### Covariate Support with XReg For scenarios where you have external variables that influence your time series, TimesFM 2.5 supports covariate modeling: `````python # Install with XReg support # pip install timesfm[xreg] import timesfm # Load model with covariate support model = timesfm.TimesFM_2p5_200M_XReg.from_pretrained( \"google/timesfm-2.5-200m-xreg\" ) # Historical time series data y_train = np.random.randn(1000) # External covariates (e.g., marketing spend, seasonality indicators) X_train = np.random.randn(1000, 5) # Fit the covariate model model.fit(y_train, X_train) # Forecast with future covariates y_pred, confidence_intervals = model.predict( horizon=12, X_future=np.random.randn(12, 5) ) Batch Forecasting For multiple time series simultaneously: `````python\nPrepare batch of time series batch_data = np.random.randn(10, 1024) # 10 series, 1024 timesteps each\nForecast all series at once forecasts = model.forecast(batch_data, horizon=24)\nShape: (10, 24) - 10 forecasts of 24 time steps each print(f\"Batch forecast shape: {forecasts.shape}\")\n### Batch Forecasting For multiple time series simultaneously: `````python # Prepare batch of time series batch_data = np.random.randn(10, 1024) # 10 series, 1024 timesteps each # Forecast all series at once forecasts = model.forecast(batch_data, horizon=24) # Shape: (10, 24) - 10 forecasts of 24 time steps each print(f\"Batch forecast shape: {forecasts.shape}\") Batch Forecasting For multiple time series simultaneously: `````python\nPrepare batch of time series batch_data = np.random.randn(10, 1024) # 10 series, 1024 timesteps each\nForecast all series at once forecasts = model.forecast(batch_data, horizon=24)\nShape: (10, 24) - 10 forecasts of 24 time steps each print(f\"Batch forecast shape: {forecasts.shape}\")\n### Streaming Inference For real-time forecasting applications: `````python # Initialize streaming client streaming_model = timesfm.StreamingTimesFM( model_path=\"google/timesfm-2.5-200m-flax\" ) # Process incoming data streams while True: new_data = get_next_time_step() forecast = streaming_model.update_and_predict(new_data, horizon=12) display_forecast(forecast) Performance Benchmarks TimesFM 2.5 achieves state-of-the-art results across multiple benchmark datasets: ### Benchmark Results\n| Dataset | TimesFM 2.5 | AutoARIMA | Prophet | N-BEATS | |\n|\n|\n|\n|\n| | ETTh1 | 0.312 | 0.487 | 0.523 | 0.398 | | Electricity | 0.234 | 0.312 | 0.298 | 0.267 | | Traffic | 0.198 | 0.287 | 0.276 | 0.245 | | Weather | 0.156 | 0.234 | 0.221 | 0.189 | | Exchange Rate | 0.287 | 0.398 | 0.412 | 0.334 |\nLower values indicate better performance (normalized MSE).\nReal-World Performance In production environments, TimesFM 2.5 has demonstrated: - 95% accuracy on demand forecasting for retail chains\n40% reduction in inventory costs compared to traditional methods 10x faster training times compared to custom neural network approaches Consistent performance across diverse domains (finance, healthcare, manufacturing) Integration with Google Products One of TimesFM’s unique advantages is its integration with Google’s ecosystem: ### BigQuery ML\nFor enterprise-scale forecasting: `````sql – Use TimesFM model in BigQuery ML CREATE MODEL my_project.my_timesfm_model OPTIONS(model_type=‘TIMESFM’) AS SELECT timestamp_col, value_col, EXTRACT(HOUR FROM timestamp_col) AS hour_of_day FROM my_dataset.time_series_data;\n### Google Sheets Integration For non-technical users: 1. Install the [TimesFM add-on](https://workspaceupdates.googleblog.com/2026/02/forecast-data-in-connected-sheets-BigQueryML-TimesFM.html) 2. Select your data range 3. Choose forecast horizon 4. Get predictions directly in your spreadsheet ### Vertex AI Model Garden For cloud deployment: `````python from google.cloud import aiplatform # Deploy TimesFM model to Vertex AI aiplatform.init(project=\"your-project\", location=\"us-central1\") endpoint = aiplatform.Endpoint.create( display_name=\"timesfm-forecasting-endpoint\", description=\"TimesFM 2.5 forecasting endpoint\" ) model = aiplatform.Model.upload( display_name=\"timesfm-2.5\", artifact_uri=\"gs://your-bucket/timesfm-model\" ) endpoint.deploy(model=model, machine_type=\"n1-standard-4\") Real-World Applications Application 1: Sales Forecasting Retail companies can use TimesFM to predict future sales: `````python import pandas as pd import timesfm\nLoad historical sales data sales_data = pd.read_csv(“historical_sales.csv”)\nPrepare time series historical_sales = sales_data[“sales”].values.reshape(1, -1)\nForecast next 30 days model = timesfm.TimesFM_2p5_200M.from_pretrained( “google/timesfm-2.5-200m-flax” )\nforecast = model.forecast(historical_sales, horizon=30) print(f\"Expected sales next month: {forecast.mean():.2f}\")\n### Application 2: Energy Demand Prediction Utility companies can forecast electricity demand: `````python # Load energy consumption data energy_data = pd.read_csv(\"energy_consumption.csv\") # Include weather covariates covariates = pd.DataFrame({ \"temperature\": weather_data[\"temp\"], \"humidity\": weather_data[\"humidity\"], \"day_of_week\": energy_data.index.dayofweek }) # Train with covariates model.fit(energy_data[\"consumption\"], covariates.values) # Predict future demand future_demand = model.predict( horizon=24, X_future=future_covariates.values ) Application 3: Financial Market Analysis While not financial advice, TimesFM can help analyze market patterns: `````python\nStock price forecasting stock_prices = pd.read_csv(“stock_history.csv”)[“close”].values\nMultiple stocks batch_stocks = np.array([ stock_prices[:-100], # Apple stock_prices[100:-100], # Google stock_prices[200:] # Amazon ])\nForecast all stocks predictions = model.forecast(batch_stocks, horizon=30)\n## Comparison with Traditional Methods ### TimesFM vs. ARIMA | Aspect | TimesFM 2.5 | ARIMA | | * * * | * * * | * * * | | Setup Time | Minutes | Hours-Days | | Parameter Tuning | Minimal | Extensive | | Multi-series | Yes | No | | Non-linear Patterns | Excellent | Limited | | Interpretability | Lower | Higher | | Scalability | High | Moderate | ### TimesFM vs. Prophet | Aspect | TimesFM 2.5 | Prophet | | * * * | * * * | * * * | | Foundation Model | Yes | No | | Transfer Learning | Yes | No | | Uncertainty Estimation | Continuous | Discrete | | Computational Efficiency | High | Moderate | | Community Support | Growing | Mature | ## Limitations and Considerations ### Current Limitations 1. **Requires Historical Data**: While few-shot learning helps, some historical data is still needed 2. **Computational Resources**: Large context windows require significant memory 3. **Domain Specificity**: May need fine-tuning for specialized domains 4. **Interpretability**: Like all deep learning models, internal workings are somewhat opaque ### Best Practices 1. **Data Quality**: Ensure clean, consistent time series data 2. **Context Length**: Choose appropriate history window for your use case 3. **Regular Updates**: Retrain periodically as new data becomes available 4. **Validation**: Always validate predictions against holdout datasets ### TimesFM vs. ARIMA | Aspect | TimesFM 2.5 | ARIMA | | * * * | * * * | * * * | | Setup Time | Minutes | Hours-Days | | Parameter Tuning | Minimal | Extensive | | Multi-series | Yes | No | | Non-linear Patterns | Excellent | Limited | | Interpretability | Lower | Higher | | Scalability | High | Moderate | ### TimesFM vs. Prophet | Aspect | TimesFM 2.5 | Prophet | | * * * | * * * | * * * | | Foundation Model | Yes | No | | Transfer Learning | Yes | No | | Uncertainty Estimation | Continuous | Discrete | | Computational Efficiency | High | Moderate | | Community Support | Growing | Mature | ## Limitations and Considerations ### Current Limitations 1. **Requires Historical Data**: While few-shot learning helps, some historical data is still needed 2. **Computational Resources**: Large context windows require significant memory 3. **Domain Specificity**: May need fine-tuning for specialized domains 4. **Interpretability**: Like all deep learning models, internal workings are somewhat opaque ### Best Practices 1. **Data Quality**: Ensure clean, consistent time series data 2. **Context Length**: Choose appropriate history window for your use case 3. **Regular Updates**: Retrain periodically as new data becomes available 4. **Validation**: Always validate predictions against holdout datasets ## The Future of Time Series Forecasting TimesFM represents just the beginning of what foundation models can achieve in temporal data analysis. Upcoming developments include: ### Planned Features - **Multivariate Forecasting**: Better handling of multiple related time series - **Real-time Learning**: Online adaptation without full retraining - **Explainable AI**: Improved interpretability of predictions - **Edge Deployment**: Optimized versions for mobile and IoT devices - **Multi-modal Integration**: Combining time series with images, text, and other data types ### Research Directions The Google Research team continues to push the boundaries with ongoing work on: - Longer context windows (32K+ time steps) - Fewer parameters with equal or better performance - Cross-domain generalization - Causal inference capabilities ## Getting Started Today Ready to revolutionize your forecasting workflow? Here's how to begin: 1. **Install**: ````pip install timesfm[flax]``` 2. **Load Model**: Use the pretrained checkpoint from Hugging Face 3. **Prepare Data**: Format your time series appropriately 4. **Forecast**: Call the forecast method with your desired horizon 5. **Fine-tune**: Optionally adapt the model to your specific domain Whether you're a data scientist looking for better forecasting tools or a business analyst wanting to make data-driven predictions, TimesFM 2.5 offers a powerful, flexible solution that's ready to deploy today. ## Frequently Asked Questions ### Q: What's the difference between TimesFM 2.0 and 2.5? TimesFM 2.5 uses only 200M parameters (down from 500M in 2.0) while achieving better accuracy. It supports up to 16,000 context length (vs 2,048), continuous quantile forecasting up to 1,000 horizon, and removes the need for frequency indicators. ### Q: Do I need a GPU to run TimesFM? No, TimesFM can run on CPU, though GPU acceleration significantly improves inference speed. The Flax/JAX backend is recommended for TPU and NVIDIA GPU users, while PyTorch works well for CPU and NVIDIA GPU setups. ### Q: Can I use TimesFM for financial forecasting? While TimesFM can technically forecast financial time series, it's important to note that financial markets are influenced by countless unpredictable factors. The model should be used as one tool among many, not as a sole basis for investment decisions. ### Q: How does fine-tuning work with TimesFM? Fine-tuning uses Low-Rank Adaptation (LoRA) through HuggingFace Transformers. You prepare your domain-specific data, configure LoRA parameters, and train for a few epochs. This adapts the foundation model to your specific forecasting task without requiring full model retraining. ### Q: What's the maximum forecast horizon? TimesFM 2.5 supports horizons up to 1,000 time steps with its continuous quantile head. For most practical applications, horizons of 24-365 time steps are sufficient and provide the best accuracy. ### Q: Is TimesFM suitable for real-time forecasting? Yes, once compiled and optimized, TimesFM can provide real-time predictions. The compiled models with optimized inference configurations can forecast hundreds of time steps per second on modern hardware. ## Conclusion TimesFM 2.5 represents a quantum leap in time series forecasting. By combining the power of foundation models with domain-specific optimizations for temporal data, it achieves remarkable accuracy with minimal setup and computational overhead. With its integration into Google's ecosystem, active development community, and continuous improvements, TimesFM is poised to become the standard for time series forecasting across industries. For anyone working with temporal data, investing time in learning and deploying TimesFM is not just beneficial — it\"s becoming essential. * * * **Sources:** - [GitHub Repository](https://github.com/google-research/timesfm) - [ICML 2024 Paper](https://arxiv.org/abs/2310.10688) - [Google Research Blog](https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/) - [Hugging Face Models](https://huggingface.co/collections/google/timesfm-release-66e4be5fdb56e960c1e482a6) **CTA:** Join the [DIBI8 Telegram group](https://t.me/DIBI8_Group/2) for more AI and data science insights! **Affiliate Links:** - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - Host your ML models - [HTStack](https://my.htstack.com/aff.php?aff=27187) - Reliable GPU server hosting - [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - GPU servers for training (Chinese) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"TimesFM 2.5: Google Revolutionary Time Series Foundation Model for Forecasting\", \"datePublished\": \"2026-06-19\", \"dateModified\": \"2026-06-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/timesfm-google-time-series-foundation-model\" } } * * * ## Related Articles - [2026-05-25-trending-ai-agents](timesfm-google-time-series-foundation-model) - [2026-06-01-trending-ai-agents](timesfm-google-time-series-foundation-model) - [2026-06-08-trending-ai-agents](timesfm-google-time-series-foundation-model) - [2026-06-15-trending-ai-agents](timesfm-google-time-series-foundation-model) - [2026-06-22-trending-ai-agents](timesfm-google-time-series-foundation-model) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "2651",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">TimesFM 2.5: Google&#39;s Revolutionary Time Series Foundation Model for Forecasting</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">TimesFM 2.5: Google&#39;s Revolutionary Time Series Foundation Model for Forecasting</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h1 id="timesfm-25-googles-revolutionary-time-series-foundation-model-for-forecasting">TimesFM 2.5: Google&rsquo;s Revolutionary Time Series Foundation Model for Forecasting</h1>
 <p>Time series forecasting has long been one of the most challenging problems in data science. From predicting stock prices to forecasting weather patterns, from sales projections to energy consumption estimates — accurate predictions can make or break businesses.</p>
 <p>Enter <strong><a href="https://github.com/google-research/timesfm">TimesFM</a></strong>, Google Research&rsquo;s groundbreaking foundation model for time series forecasting. With version 2.5 now available and over 23,000 GitHub stars, TimesFM represents a paradigm shift in how we approach temporal data analysis.</p>
@@ -643,7 +715,7 @@ For anyone working with temporal data, investing time in learning and deploying 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 </code></pre>
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -653,7 +725,7 @@ For anyone working with temporal data, investing time in learning and deploying 
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -673,8 +745,8 @@ For anyone working with temporal data, investing time in learning and deploying 
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -698,6 +770,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -790,116 +863,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

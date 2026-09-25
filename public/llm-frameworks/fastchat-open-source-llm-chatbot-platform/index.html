@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For LLaMA-based models | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="For LLaMA-based models | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>For LLaMA-based models | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="LMSYS FastChat is the most comprehensive open-source platform for building, serving, and evaluating LLM-powered chatbots in 2026">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="For LLaMA-based models">
+  <meta property="og:description" content="LMSYS FastChat is the most comprehensive open-source platform for building, serving, and evaluating LLM-powered chatbots in 2026">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="For LLaMA-based models">
+  <meta name="twitter:description" content="LMSYS FastChat is the most comprehensive open-source platform for building, serving, and evaluating LLM-powered chatbots in 2026">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "For LLaMA-based models",
+      "item": "https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "For LLaMA-based models",
+  "name": "For LLaMA-based models",
+  "description": "LMSYS FastChat is the most comprehensive open-source platform for building, serving, and evaluating LLM-powered chatbots in 2026",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "TL;DR LMSYS FastChat is the most comprehensive open-source platform for building, serving, and evaluating LLM-powered chatbots in 2026. From fine-tuning models like Vicuna and Alpaca to deploying production-grade conversational AI, this guide covers every aspect of the FastChat ecosystem.\nWhat Is FastChat? FastChat is an open platform developed by the Large Model System Organization (LMSYS) for training, serving, and evaluating large language model chatbots. It provides tools for creating instruction-tuned models, running benchmarks, and deploying chat interfaces — all while maintaining full transparency and reproducibility.\nKey Features Model Training: Train instruction-tuned models from base checkpoints using RLHF or direct preference optimization Multiple Model Support: Out-of-the-box support for Vicuna, Alpaca, LLaMA, and custom architectures OpenAI-Compatible API: Drop-in replacement for OpenAI’s API with your own models Web Chat Interface: Beautiful, responsive UI for testing and deploying chatbots Evaluation Benchmarks: Built-in evaluation on MT-Bench, AlpacaEval, and other standard benchmarks Multi-GPU Serving: Efficient deployment across multiple GPUs with tensor parallelism Community Driven: Backed by LMSYS Org’s research community with thousands of contributors Architecture Overview FastChat follows a modular architecture: 1. FastChat Models: Core model implementations supporting various architectures 2. FastChat Serve: High-performance serving engine with OpenAI API compatibility 3. FastChat Train: Training pipeline for instruction tuning and RLHF 4. FastChat Eval: Evaluation framework for benchmarking model performance 5. FastChat Data: Curated datasets for training and evaluation\nThe Model Worker Architecture FastChat uses a distributed worker architecture where each model runs as an independent worker process: ```` ┌─────────────┐ ┌──────────────┐ ┌─────────────────┐ │ Controller │────▶│ Model Worker│────▶│ Web UI / API │ │ (port 21001)│ │ (port 21002)│ │ (port 7860) │ └─────────────┘ └──────────────┘ └─────────────────┘ │ │ │ ┌──────────────┐ │ │ Model Worker│ │ │ (port 21003)│ │ └──────────────┘ │ ┌─────────────┐ │ Model Worker│ │ (port 21004)│ └─────────────┘\nThe controller manages load balancing, health checks, and routing between workers. Multiple workers can serve different models or handle requests for the same model in parallel. ## Installation Guide ### Quick Start with Docker `````bash docker pull lmsysorg/fastchat:latest docker run -p 8000:8000 lmsysorg/fastchat:latest Manual Installation git clone https://github.com/lm-sys/FastChat.git cd FastChat pip install -e \".[model_worker,webui]\" Install specific model dependencies: `````bash\nFor LLaMA-based models pip install transformers accelerate\nFor vLLM acceleration pip install vllm\nFor TensorRT-LLM pip install tensorrt_llm\n### Verify Installation `````python import fastchat print(fastchat.__version__) # Test model loading from fastchat.model import load_model model, tokenizer = load_model( \"lmsys/vicuna-7b-v1.5\", device=\"cuda\" ) print(\"Model loaded successfully!\") Available Models | Model | Parameters | Base Model | Best For | |\n|\n|\n|\n| | Vicuna-7B-v1.5 | 7B | LLaMA 2 | General conversation | | Vicuna-13B-v1.5 | 13B | LLaMA 2 | Complex reasoning | | Vicuna-33B-v1.5 | 33B | LLaMA 2 | Maximum capability | | Alpaca-7B | 7B | LLaMA | Instruction following | | Koala-13B | 13B | LLaMA | Academic tasks | | ChatGLM2-6B | 6B | GLM | Chinese language | | Baichuan2-7B | 7B | Baichuan | Chinese business |\nLoading Pre-trained Models from fastchat.model import load_model, get_conversation_template model, tokenizer = load_model( \"lmsys/vicuna-7b-v1.5\", device=\"cuda\", num_gpus=1, max_gpu_memory=\"22GiB\" ) # Create conversation template conv = get_conversation_template(\"vicuna\") conv.append_message(conv.roles[0], \"Hello, who are you?\") conv.append_message(conv.roles[1], None) # Generate response state = model.chat( conv, temperature=0.7, max_new_tokens=512 ) print(state.messages[-1][2]) Building Your Own Chatbot Step 1: Prepare Training Data Create instruction-response pairs: `````json [ { “instruction”: “Explain quantum computing in simple terms.”, “input”: “”, “output”: “Quantum computing uses quantum bits (qubits) that can exist in multiple states simultaneously…” }, { “instruction”: “Write a Python function to calculate Fibonacci numbers.”, “input”: “”, “output”: “def fibonacci(n):\\n if n \u003c= 1:\\n return n\\n return fibonacci(n-1) + fibonacci(n-2)” } ]\n### Step 2: Fine-Tune with FastChat Train `````bash python -m fastchat.train.train \\ --model_name_or_path lmsys/vicuna-7b-v1.5 \\ --data_path ./training_data.json \\ --output_dir ./my-finetuned-model \\ --num_train_epochs 3 \\ --per_device_train_batch_size 4 \\ --gradient_accumulation_steps 8 \\ --learning_rate 2e-5 \\ --fp16 True \\ --save_steps 100 \\ --logging_steps 10 \\ --lr_scheduler_type cosine \\ --warmup_ratio 0.03 \\ --weight_decay 0.0 \\ --max_seq_length 2048 Step 3: Evaluate Your Model python -m fastchat.eval.evaluate_benchmark \\ --model-path ./my-finetuned-model \\ --benchmark mt_bench \\ --num-questions 800 Deploying to Production OpenAI-Compatible API Server from fastapi import FastAPI from pydantic import BaseModel from fastchat.serve.api_provider import OpenAIAPIClient app = FastAPI() class ChatRequest(BaseModel): model: str messages: list temperature: float = 0.7 max_tokens: int = 2048 @app.post(\"/v1/chat/completions\") async def create_chat_completion(request: ChatRequest): client = OpenAIAPIClient( model_name=request.model, temperature=request.temperature ) response = await client.chat_completion( messages=request.messages, max_tokens=request.max_tokens ) return response Start the server: `````bash python -m fastchat.serve.openai_api_server –model-path lmsys/vicuna-7b-v1.5 –host 0.0.0.0 –port 8000\nTest with curl: `````bash curl http://localhost:8000/v1/chat/completions \\ -H \"Content-Type: application/json\" \\ -d '{ \"model\": \"vicuna-7b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello!\"}] }' Multi-GPU Deployment For models larger than a single GPU can hold: `````bash python -m fastchat.serve.multi_model_worker –model-path lmsys/vicuna-33b-v1.5 –num-gpus 4 –worker-address http://worker1:21001\nConfigure model parallelism: `````python from fastchat.serve.model_worker import ModelWorker worker = ModelWorker( controller_address=\"http://controller:21001\", worker_address=\"http://worker1:21002\", model_names=[\"vicuna-33b\"], model_path=\"lmsys/vicuna-33b-v1.5\", num_gpus=4 ) Kubernetes Deployment apiVersion: apps/v1 kind: Deployment metadata: name: fastchat-service spec: replicas: 2 selector: matchLabels: app: fastchat template: spec: containers: - name: fastchat image: lmsysorg/fastchat:v1.0 command: [\"python\", \"-m\", \"fastchat.serve.openai_api_server\"] args: - \"--model-path\" - \"lmsys/vicuna-13b-v1.5\" - \"--host\" - \"0.0.0.0\" - \"--port\" - \"8000\" resources: limits: nvidia.com/gpu: 1 ports: - containerPort: 8000 Load Balancing with Multiple Workers Deploy multiple worker instances behind a load balancer: `````bash\nWorker 1 python -m fastchat.serve.model_worker –controller-address http://controller:21001 –worker-address http://worker1:21002 –model-path lmsys/vicuna-7b-v1.5 –limit-worker-concurrency 16\nWorker 2 python -m fastchat.serve.model_worker –controller-address http://controller:21001 –worker-address http://worker2:21003 –model-path lmsys/vicuna-7b-v1.5 –limit-worker-concurrency 16\n## Web Chat Interface ### Launch the Demo UI `````bash python -m fastchat.serve.webui --host 0.0.0.0 --port 7860 Access at http://localhost:7860 to interact with your deployed model through a beautiful web interface.\nCustomizing the UI Modify fastchat/serve/gradio_web_server.py to customize: - Brand colors and logos\nAvailable models list Temperature and parameter controls Conversation history management Export functionality Embedding in External Applications Embed the chat interface in your existing application: `````html\n````` Advanced Topics Reinforcement Learning from Human Feedback (RLHF) Train models using human preferences: `````bash python -m fastchat.train.rlhf.train –model_name_or_path lmsys/vicuna-7b-v1.5 –ref_model_path lmsys/vicuna-7b-v1.5 –data_path ./human_feedback_data.json –output_dir ./rlhf-finetuned-model –num_train_epochs 1 –learning_rate 1e-5\n### Direct Preference Optimization (DPO) Alternative to RLHF that directly optimizes policy from preference data: `````bash python -m fastchat.train.dpo.train \\ --model_name_or_path lmsys/vicuna-7b-v1.5 \\ --data_path ./preference_data.json \\ --output_dir ./dpo-finetuned-model \\ --num_train_epochs 3 \\ --learning_rate 1e-5 \\ --per_device_train_batch_size 2 \\ --gradient_accumulation_steps 8 Model Quantization for Edge Deployment Reduce model size for mobile or edge devices: `````bash\nQuantize to 4-bit python -m fastchat.model.quantize quantize –model-path lmsys/vicuna-7b-v1.5 –output-path ./vicuna-7b-q4 –bits 4\nLoad quantized model from fastchat.model import load_model model, tokenizer = load_model(\"./vicuna-7b-q4\", device=“cpu”)\n### Evaluating with MT-Bench Run the official MT-Bench evaluation: `````bash python -m fastchat.eval.evaluate_mtbench \\ --model-path ./my-finetuned-model \\ --judge-model lmsys/vicuna-13b-v1.5 \\ --output-file ./mtbench_results.json Streaming Responses Enable streaming for real-time token generation: `````python from fastchat.serve.stream_manager import StreamManager\nstream_manager = StreamManager( model=model, tokenizer=tokenizer, max_new_tokens=512, temperature=0.7 )\nfor token in stream_manager.stream(conv): print(token, end=\"\", flush=True)\n## Performance Comparison | Configuration | Tokens/sec | VRAM | Latency (p99) | | * * * | * * * | * * * | * * * | | Vicuna-7B + CPU | 15 tok/s | N/A | 2.5s | | Vicuna-7B + RTX 3090 | 45 tok/s | 12 GB | 0.8s | | Vicuna-13B + 2x A100 | 30 tok/s | 48 GB | 1.2s | | Vicuna-33B + 4x A100 | 18 tok/s | 96 GB | 2.0s | | Vicuna-7B + vLLM | 80 tok/s | 8 GB | 0.4s | ## Integration Examples ### ChatGPT Plugin Integration `````python # Use FastChat as a backend for ChatGPT plugins from fastchat.serve.api_provider import OpenAIAPIClient client = OpenAIAPIClient(model_name=\"custom-vicuna\") response = client.chat_completion( messages=[ {\"role\": \"system\", \"content\": \"You are a helpful assistant.\"}, {\"role\": \"user\", \"content\": \"What is machine learning?\"} ] ) LangChain Integration from langchain.llms import HuggingFacePipeline from transformers import AutoTokenizer, AutoModelForCausalLM # Load model tokenizer = AutoTokenizer.from_pretrained(\"lmsys/vicuna-7b-v1.5\") model = AutoModelForCausalLM.from_pretrained( \"lmsys/vicuna-7b-v1.5\", torch_dtype=torch.float16, device_map=\"auto\" ) # Create pipeline pipeline = HuggingFacePipeline( model=model, tokenizer=tokenizer, max_new_tokens=512, temperature=0.7 ) # Use with LangChain from langchain.chains import ConversationChain conversation = ConversationChain(llm=pipeline) response = conversation.predict(input=\"Tell me about AI.\") RAG (Retrieval-Augmented Generation) Pipeline Combine FastChat with vector databases for knowledge-grounded responses: `````python from langchain.vectorstores import FAISS from langchain.embeddings import HuggingFaceEmbeddings from langchain.chains import RetrievalQA\nLoad vector store embeddings = HuggingFaceEmbeddings(model_name=“sentence-transformers/all-MiniLM-L6-v2”) vectorstore = FAISS.load_local(\"./knowledge_base\", embeddings)\nCreate retriever retriever = vectorstore.as_retriever(search_kwargs={“k”: 5})\nBuild RAG chain qa_chain = RetrievalQA.from_chain_type( llm=pipeline, chain_type=“stuff”, retriever=retriever )\nQuery with context result = qa_chain.run(“What are the key features of this product?”)\n## Production Checklist - [ ] Set up monitoring with Ray Dashboard - [ ] Configure autoscaling for variable workloads - [ ] Implement retry logic for transient failures - [ ] Use streaming responses for better UX - [ ] Monitor GPU utilization and memory usage - [ ] Set up alerts for cluster health - [ ] Document resource requirements for each deployment - [ ] Implement rate limiting for API endpoints - [ ] Add input sanitization to prevent prompt injection - [ ] Set up logging for audit trails ### Streamlit Web Application Build a custom chat interface with Streamlit: `````python import streamlit as st from fastchat.serve.api_provider import OpenAIAPIClient st.title(\"My AI Assistant\") if \"messages\" not in st.session_state: st.session_state.messages = [] for message in st.session_state.messages: with st.chat_message(message[\"role\"]): st.markdown(message[\"content\"]) if prompt := st.chat_input(\"Ask me anything...\"): st.session_state.messages.append({\"role\": \"user\", \"content\": prompt}) with st.chat_message(\"user\"): st.markdown(prompt) client = OpenAIAPIClient(model_name=\"vicuna-7b\") response = client.chat_completion(messages=st.session_state.messages) st.session_state.messages.append({ \"role\": \"assistant\", \"content\": response[\"choices\"][0][\"message\"][\"content\"] }) with st.chat_message(\"assistant\"): st.markdown(response[\"choices\"][0][\"message\"][\"content\"]) WebSocket Real-Time Chat For real-time streaming responses via WebSocket: `````python from fastapi import FastAPI, WebSocket import json\napp = FastAPI()\n@app.websocket(\"/ws/chat\") async def chat_websocket(websocket: WebSocket): await websocket.accept()\nmodel, tokenizer = load_model(\"lmsys/vicuna-7b-v1.5\") while True: data = await websocket.receive_text() message = json.loads(data) # Stream tokens one by one response = \"\" for token in model.stream_chat(message[\"prompt\"]): response += token await websocket.send_text(json.dumps({\"token\": token})) await websocket.send_text(json.dumps({\"done\": True, \"response\": response})) ## Security Considerations ### Prompt Injection Prevention Protect your model against malicious inputs: `````python def sanitize_prompt(prompt: str) -\u003e str: # Remove system-level instructions prompt = re.sub(r'^(system|ignore previous).*$', '', prompt, flags=re.IGNORECASE) # Limit prompt length if len(prompt) \u003e 2000: prompt = prompt[:2000] return prompt.strip() # Usage safe_prompt = sanitize_prompt(user_input) response = model.chat(safe_prompt) Rate Limiting and Abuse Prevention Implement rate limiting for public-facing APIs: `````python from slowapi import Limiter from slowapi.util import get_remote_address\nlimiter = Limiter(key_func=get_remote_address)\n@limiter.limit(“10/minute”) @app.post(\"/chat\") async def chat(request: Request, data: ChatRequest): return process_chat(data)\n### Content Moderation Add a moderation layer before responses reach users: `````python from transformers import pipeline moderator = pipeline( \"text-classification\", model=\"facebook/roberta-hate-speech-dynabench-r4-target\" ) def moderate_response(text: str) -\u003e bool: result = moderator(text)[0] return result[\"label\"] == \"hate\" # Check both input and output if moderate_response(user_input): return {\"error\": \"Input contains inappropriate content\"} response = model.generate(user_input) if moderate_response(response): return {\"error\": \"Response filtered for safety\"} Model Comparison Matrix | Model | Params | Training Data | MT-Bench Score | Best For | |\n|\n|\n|\n|\n| | Vicuna-7B-v1.5 | 7B | 650K conversations | 6.45 | General chat | | Vicuna-13B-v1.5 | 13B | 650K conversations | 6.72 | Complex tasks | | Vicuna-33B-v1.5 | 33B | 650K conversations | 7.12 | Maximum quality | | Alpaca-7B | 7B | 52K instructions | 5.80 | Instruction following | | Koala-13B | 13B | 118K conversations | 6.50 | Academic tasks | | ChatGLM2-6B | 6B | Chinese data | N/A | Chinese language | | Baichuan2-7B | 7B | Chinese data | N/A | Chinese business |\nDeployment Architectures Single-GPU Deployment Ideal for development and light production use: ````` +\n| FastChat Server | | +\n| | | Model Worker | | | | (7B model) | | | | RTX 3090 24GB | | | + | | OpenAI API Compatible | ### Multi-GPU Tensor Parallel For models exceeding single GPU memory: ````` + * * * + | Controller | | (port 21001) | + * * * + * * * + | Worker 1 | Worker 2 | | A100 40GB | A100 40GB | | Part of | Part of | | model | model | + * * * + * * * + Multi-Node Cluster Enterprise-scale deployment across multiple machines: ````` +\n| Load Balancer | +\n| Node 1 | Node 2 | Node 3 | | 4xA100 80GB | 4xA100 80GB | 4xA100 80GB | | Vicuna-33B | Vicuna-33B | Vicuna-7B | +\n## FAQ ### Q1: How does FastChat compare to Ollama? FastChat provides more flexibility for custom model training and evaluation, while Ollama focuses on simplicity. FastChat supports more model architectures and offers better control over serving configurations. ### Q2: Can I use FastChat with non-Llama models? Yes, FastChat supports LLaMA, Mistral, Falcon, BLOOM, GPT-J, and many other architectures. The model registry includes dozens of pre-configured templates. ### Q3: What hardware do I need for production deployment? Minimum: 1x GPU with 12GB VRAM for 7B models. Recommended: 2x A100 40GB for 13B+ models. For high-throughput serving, consider vLLM or TensorRT-LLM acceleration. ### Q4: How do I handle concurrent users? Use FastChat's built-in load balancing with multiple model workers. Each worker handles a portion of requests, and the controller distributes traffic automatically. ### Q5: Is FastChat suitable for commercial use? Yes, FastChat is MIT licensed. However, check the licenses of individual models you train or serve, as some base models may have additional restrictions. ### Q6: How do I prevent prompt injection attacks? Implement input filtering, use system prompts to define behavior boundaries, and consider adding a separate moderation model to scan user inputs before passing them to the main model. ### Q7: Can I add custom tools or function calling to FastChat? Yes, FastChat supports function calling through custom conversation templates. You can define tool schemas and let the model decide which tools to call based on user intent. ## FAQ ### Q1: How does FastChat compare to Ollama? FastChat provides more flexibility for custom model training and evaluation, while Ollama focuses on simplicity. FastChat supports more model architectures and offers better control over serving configurations. ### Q2: Can I use FastChat with non-Llama models? Yes, FastChat supports LLaMA, Mistral, Falcon, BLOOM, GPT-J, and many other architectures. The model registry includes dozens of pre-configured templates. ### Q3: What hardware do I need for production deployment? Minimum: 1x GPU with 12GB VRAM for 7B models. Recommended: 2x A100 40GB for 13B+ models. For high-throughput serving, consider vLLM or TensorRT-LLM acceleration. ### Q4: How do I handle concurrent users? Use FastChat's built-in load balancing with multiple model workers. Each worker handles a portion of requests, and the controller distributes traffic automatically. ### Q5: Is FastChat suitable for commercial use? Yes, FastChat is MIT licensed. However, check the licenses of individual models you train or serve, as some base models may have additional restrictions. ### Q6: How do I prevent prompt injection attacks? Implement input filtering, use system prompts to define behavior boundaries, and consider adding a separate moderation model to scan user inputs before passing them to the main model. ### Q7: Can I add custom tools/function calling to FastChat? Yes, FastChat supports function calling through custom conversation templates. You can define tool schemas and let the model decide which tools to call based on user intent. ## Sources - [FastChat GitHub Repository](https://github.com/lm-sys/FastChat) - [LMSYS Org Research](https://lmsys.org/) - [Vicuna Model Card](https://lmsys.org/blog/2023-03-30-vicuna/) - [MT-Bench Evaluation](https://huggingface.co/datasets/lmsys/mt_bench) - [FastChat Documentation](https://github.com/lm-sys/FastChat/blob/main/docs/) ## Call to Action Build your own AI assistant with FastChat's open-source platform. [Get started](https://dibi8.com/auth/) with our deployment guides and model training tutorials. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"FastChat — Build Your Own Open-Source ChatGPT Clone with LLM Chatbots\", \"datePublished\": \"2026-07-17\", \"dateModified\": \"2026-07-17\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/fastchat-open-source-llm-chatbot-platform\" } } * * * ",
+  "wordCount" : "2570",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/llm-frameworks/fastchat-open-source-llm-chatbot-platform/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">For LLaMA-based models</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">For LLaMA-based models</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">LMSYS FastChat is the most comprehensive open-source platform for building, serving, and evaluating LLM-powered chatbots in 2026</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h2 id="tldr">TL;DR</h2>
 <p>LMSYS FastChat is the most comprehensive open-source platform for building, serving, and evaluating LLM-powered chatbots in 2026. From fine-tuning models like Vicuna and Alpaca to deploying production-grade conversational AI, this guide covers every aspect of the FastChat ecosystem.</p>
 <h2 id="what-is-fastchat">What Is FastChat?</h2>
@@ -776,7 +848,7 @@ Build your own AI assistant with FastChat&#39;s open-source platform. [Get start
 * * *
 </code></pre>
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -786,7 +858,7 @@ Build your own AI assistant with FastChat&#39;s open-source platform. [Get start
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -806,8 +878,8 @@ Build your own AI assistant with FastChat&#39;s open-source platform. [Get start
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -831,6 +903,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -923,116 +996,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

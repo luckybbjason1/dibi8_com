@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change prefix to Ctrl&#43;A (easier to reach) | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Change prefix to Ctrl&#43;A (easier to reach) | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Change prefix to Ctrl&#43;A (easier to reach) | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Developers spend hours each day in the terminal">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Change prefix to Ctrl&#43;A (easier to reach)">
+  <meta property="og:description" content="Developers spend hours each day in the terminal">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Change prefix to Ctrl&#43;A (easier to reach)">
+  <meta name="twitter:description" content="Developers spend hours each day in the terminal">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Change prefix to Ctrl+A (easier to reach)",
+      "item": "https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Change prefix to Ctrl+A (easier to reach)",
+  "name": "Change prefix to Ctrl\u002bA (easier to reach)",
+  "description": "Developers spend hours each day in the terminal",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "{\u003c/* resource-info */\u003e}\nDevelopers spend hours each day in the terminal. A well-configured shell environment saves minutes on every task — compounding into hours of reclaimed productivity each week. In 2025, the terminal ecosystem has never been richer. Tools like zsh, tmux, fzf, and ripgrep transform the command line from a bare prompt into a powerful, customized workspace.\nThis guide covers the essential tools, their configuration, and how they fit together into a cohesive terminal setup. Whether you are on macOS or Linux, following this guide will give you a terminal environment that matches — or exceeds — the productivity of a modern IDE.\nWhy Terminal Efficiency Matters for Developers The terminal is the universal interface for development. IDEs come and go, but the command line persists across languages, frameworks, and operating systems. A developer fluent in terminal tools navigates codebases faster, automates repetitive tasks, and debugs systems more effectively than one relying solely on graphical tools.\nThe tools in this guide share a common philosophy: do one thing well, compose with other tools, and respect the developer’s time. Each tool replaces or enhances a standard Unix utility, providing better defaults, faster performance, or richer interactivity.\nShell Upgrade: Why zsh Replaces bash zsh (Z Shell) has been the default shell on macOS since Catalina (2019) and is the preferred shell for most power users on Linux. It is fully compatible with bash syntax while adding features that dramatically improve daily use: shared command history across sessions, spelling correction, globbing enhancements, and a massive plugin ecosystem through Oh My Zsh.\nOh My Zsh is a community-driven framework with over 300 plugins and 140 themes. Installation takes one command: ````bash sh -c “$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"\nFour plugins deliver the biggest productivity gains. The ````git```` plugin adds aliases like ````gst```` for ````git status````, ````gp```` for ````git push````, and ````gl```` for ````git pull````. The ````z```` plugin tracks your most-used directories and enables jumping with ````z partial-name````. The ````zsh-autosuggestions```` plugin suggests commands based on history as you type. The ````zsh-syntax-highlighting```` plugin provides real-time syntax validation, turning invalid commands red before you press Enter. For themes, Powerlevel10k is the most popular choice in 2025. It renders a fast, informative prompt with git status, command execution time, and directory context — all without lag. Installation instructions are at [the Oh My Zsh website](https://ohmyz.sh). Custom aliases are where the real speed gains live. Add these to your ``~/.zshrc``: `````bash alias ..='cd ..' alias ...='cd ../..' alias gs='git status' alias gp='git pull' alias dc='docker compose' alias k='kubectl' tmux: The Terminal Multiplexer Every Developer Needs tmux solves a problem every terminal user faces: managing multiple terminal sessions. Without tmux, closing your terminal window kills running processes. With tmux, sessions persist on a server, detached from any specific terminal window. You can start a build, close your laptop, reconnect from another machine, and the build is still running.\ntmux organizes work into three hierarchical concepts. Sessions are the top level — a collection of windows. Windows are tabs within a session, each showing a different task. Panes divide a window into multiple sections, each running an independent shell. A typical setup might have one session per project, multiple windows per session (editor, tests, logs), and 2-3 panes per window.\nThe essential key bindings follow a prefix-key pattern. The default prefix is Ctrl+B. Press Ctrl+B, then % to split vertically, \" to split horizontally, arrow keys to navigate between panes, c to create a new window, n to go to the next window, and d to detach from the session. Reattach with tmux attach.\nA productive .tmux.conf starts with these settings: `````bash\nChange prefix to Ctrl+A (easier to reach) set -g prefix C-a unbind C-b bind C-a send-prefix\nEnable mouse support set -g mouse on\nStart window numbering at 1 set -g base-index 1 setw -g pane-base-index 1\nUse 256 colors set -g default-terminal “screen-256color”\ntmux Plugin Manager (TPM) adds functionality without complexity. Install TPM, then add plugins like ````tmux-resurrect```` (save and restore sessions across reboots) and ````tmux-yank```` (copy to system clipboard). The [tmux GitHub repository](https://github.com/tmux/tmux) has the latest release notes and feature additions. Pair programming with tmux is straightforward. Two developers SSH into the same server, attach to the same tmux session, and see identical screens. Either can type, with changes appearing on both terminals in real time. This beats screen sharing for remote collaboration — no video lag, no resolution issues, just shared terminal state. ## fzf: Interactive Fuzzy Finding fzf is a general-purpose command-line fuzzy finder. It takes any list — files, directories, command history, git branches — and provides an interactive interface for filtering it. fzf is not a search tool itself; it is a filter that makes other tools interactive. Install fzf via your package manager or Git. On macOS: ````brew install fzf````. On Ubuntu: ````apt install fzf````. Then run the install script to set up key bindings. The most transformative integration is with shell history. Press ````Ctrl+R```` and fzf replaces the default history search with an interactive, fuzzy-filtered list. Type fragments of a previous command in any order, and fzf narrows the list in real time. Finding that complex Docker command from three weeks ago takes seconds instead of scrolling through hundreds of history entries. The ````Ctrl+T```` binding inserts a fuzzy-found file path at the cursor. ````Alt+C```` cd's into a fuzzy-found directory. These three key bindings alone justify installing fzf. Combined with ripgrep, fzf becomes a code search powerhouse: `````bash rg --files | fzf --preview 'bat --style=numbers --color=always {}' This command lists all files in a project (filtered through fzf), with a syntax-highlighted preview of each file as you navigate. The fzf GitHub repository includes extensive documentation and example scripts.\nripgrep: grep Reimagined for Code Search ripgrep (rg) is a line-oriented search tool that recursively searches your current directory for a regex pattern. It is built by Andrew Gallant and has become the default code search tool for developers in 2025. It replaces grep, ack, and The Silver Searcher (ag) for most use cases.\nripgrep is fast. On a warm cache, it searches the Linux kernel source (over 25 million lines) in under one second. This speed comes from several optimizations: parallel directory traversal, automatic filtering by file type, .gitignore respect by default, and memory-mapped file reading. The ripgrep GitHub repository contains detailed benchmark data comparing rg against grep, ag, ack, and git grep.\nThe smart defaults are what make ripgrep feel effortless. It respects .gitignore files automatically, skips hidden files and binary files, and detects the encoding of each file. You do not need flags for the common case — just rg \"pattern\" searches your project intelligently.\nCommon search patterns every developer should know: `````bash\nSearch for a pattern in specific file types rg “function” –type js\nShow surrounding context lines rg “pattern” -C 3\nSearch only in changed files (compared to git HEAD) rg “pattern” $(git diff –name-only)\nList all files containing a pattern (like grep -l) rg -l “pattern”\nReplace grep with inverted search rg -v “pattern”\nripgrep integrates with every major editor. VS Code uses ripgrep for its search functionality. Vim users combine rg with fzf for ````:Rg```` search. Emacs users have rg.el for projectile integration. ## Modern Replacements for Classic Unix Tools A wave of Rust and Go-based tools has reimagined standard Unix utilities with better defaults, color output, and modern UX. These are the replacements worth adopting in 2025: | Classic Tool | Modern Replacement | Key Improvement | | * * * | * * * | * * * | | ````ls```` | ````eza```` | Colors, git status, tree view, icons | | ````cat```` | ````bat```` | Syntax highlighting, git integration, pager | | ````find```` | ````fd```` | Simpler syntax, respects .gitignore, faster | | ````du```` | ````duf```` | Colorful, sortable, human-readable output | | ````ps```` | ````procs```` | Colorful, tree view, container awareness | | ````sed```` | ````sd```` | Intuitive syntax, no regex escaping | | ````diff```` | ````delta```` | Syntax-highlighted diffs, side-by-side view | | ````man```` | ````tldr```` | Practical examples, not exhaustive reference | bat is the most impactful replacement. It syntax-highlights any file, shows git modification indicators in the gutter, and pipes through a pager automatically. Replace ````cat```` with ````bat```` and you get an immediate visual upgrade with zero workflow disruption. eza (a community fork of exa) replaces ````ls```` with a colorful, informative listing that shows git status indicators, file sizes in human-readable format, and optional icons. The command ````eza -la --git --icons```` gives you a full directory overview that would require multiple ````ls```` flags to approximate. sd replaces sed for interactive find-and-replace tasks. Where sed requires ````sed -i 's/old/new/g' file````, sd uses ````sd 'old' 'new' file````. No regex escaping nightmares, no remembering flag syntax. For scripting, sed remains relevant. For human use, sd is the better tool. ## Starship: A Minimal, Fast Cross-Shell Prompt Starship is a shell prompt written in Rust that works with bash, zsh, fish, and PowerShell. It shows git branch and status, programming language versions (Node, Python, Rust), command execution time, and directory context — all asynchronously so your prompt never lags. Configuration lives in ``~/.config/starship.toml``. A minimal config for developers: `````toml [git_branch] symbol = \" \" [git_status] ahead = \"⇡${count}\" behind = \"⇣${count}\" [nodejs] disabled = false [python] disabled = false [cmd_duration] min_time = 500 format = \"took [$duration](bold yellow)\" Starship starts instantly, updates asynchronously, and uses zero resources when idle. It is the best prompt for developers working across multiple languages and git repositories. See starship.rs for the full configuration reference.\nManaging Your Dotfiles With this many tools, configuration management becomes essential. The most popular approach in 2025 is a Git repository of dotfiles managed with GNU Stow. Stow creates symlinks from a central repository to your home directory, making it trivial to keep configs synchronized across machines.\nAn alternative is chezmoi, which handles machine-specific differences through templates. If your work laptop needs different Git credentials than your personal machine, chezmoi’s templating solves this elegantly.\nBoth approaches beat copying files manually. Choose Stow for simplicity, chezmoi for machine-specific configurations.\nmacOS Terminal Setup: iTerm2 + Homebrew For macOS users, iTerm2 is the best terminal emulator. It supports split panes, search, autocomplete, and a GPU-accelerated renderer. Key features include: paste history, instant replay (scroll back through session output even after clearing), and trigger-based alerts.\nInstall all tools through Homebrew: `````bash brew install tmux fzf ripgrep bat eza fd duf procs sd delta starship\nAdd ````eval \"$(starship init zsh)\"```` to your ````~/.zshrc```` after Oh My Zsh loads. Enable fzf key bindings with ````$(brew --prefix)/opt/fzf/install````. ## Linux Terminal Setup: Alacritty + Package Manager On Linux, Alacritty is the fastest terminal emulator. It uses the GPU for rendering, making it noticeably faster than GNOME Terminal or Konsole for large output streams. Kitty is an alternative with more features (tabs, splits, image previews) at a slight performance cost. Install the tool suite through your distribution's package manager: `````bash # Ubuntu/Debian sudo apt install tmux fzf ripgrep bat eza fd-find duf procs # Arch Linux sudo pacman -S tmux fzf ripgrep bat eza fd duf procs sd starship # Fedora sudo dnf install tmux fzf ripgrep bat eza fd-find duf procps-ng Note that some packages have different names across distributions. fd is fd-find on Debian-based systems. procs may not be available in older repositories — install via cargo if needed.\nEssential Aliases and Functions Add these aliases to your ~/.zshrc for daily workflow speed: `````bash\nGit workflow ga() { git add “$@” } gc() { git commit -m “$1” } gp() { git push }\ndev() { cd ~/dev/$1 }\nDocker shortcuts dcu() { docker compose up -d } dcd() { docker compose down } dcl() { docker compose logs -f }\nFunctions that take arguments (like ````gc \"message\"````) are more flexible than static aliases. Combine with zsh's tab completion for a fluid workflow. ## Conclusion A modern terminal setup stacks multiple specialized tools, each doing one job exceptionally well. Start with zsh and Oh My Zsh for shell improvements. Add tmux for session management. Install fzf and ripgrep for search. Replace classic tools with modern alternatives as you discover them. Configure Starship for a fast, informative prompt. The investment in terminal tooling pays continuous dividends. Unlike framework-specific skills that deprecate, terminal proficiency improves your effectiveness across every project and technology stack you touch. * * * ## FAQ **What is the best terminal setup for developers in 2025?** The most productive setup combines zsh with Oh My Zsh, tmux for session management, fzf for interactive filtering, ripgrep for code search, and modern tool replacements like bat, eza, and sd. On macOS, use iTerm2 as your terminal emulator. On Linux, Alacritty or Kitty. Manage your dotfiles with GNU Stow or chezmoi to keep configurations synchronized. **Is tmux better than GNU screen?** tmux has largely replaced screen for new setups. It offers a more intuitive key binding scheme, better default configuration, active development, and a larger plugin ecosystem (through TPM). Screen still works and is pre-installed on many servers, but tmux provides a better user experience for daily development. For remote server sessions where tmux may not be installed, knowing basic screen commands remains useful. **How do I make my terminal look better?** Start with a good terminal emulator (iTerm2 on macOS, Alacritty on Linux). Install a Nerd Font like \"MesloLGS NF\" for icon support. Use Starship or Powerlevel10k for a feature-rich prompt. Replace ````ls```` with ````eza --icons````, ````cat```` with ````bat````, and enable syntax highlighting in your shell. Enable true color support with ````export TERM=xterm-256color````. These changes take under 30 minutes and transform the visual experience. **What is the difference between fzf and ripgrep?** fzf is an interactive fuzzy finder — it filters lists interactively but does not search file contents. ripgrep is a content search tool — it searches inside files for regex patterns but is not interactive. They are complementary: use ripgrep to find files containing a pattern, pipe the results to fzf for interactive selection, and use bat for preview. The combination ````rg --files | fzf --preview 'bat {}\"``` gives you a complete interactive search workflow. **Can I use these tools on Windows?** Yes, through Windows Subsystem for Linux (WSL2). WSL2 provides a full Linux environment where all tools in this guide work natively. Install a WSL2 distribution (Ubuntu is recommended), then follow the Linux setup instructions. For native Windows, some tools have Windows builds (fzf, ripgrep, starship), but the experience is smoother under WSL2. Windows Terminal is the recommended terminal emulator for WSL2 users. * * * ## Recommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. *Affiliate links — no extra cost to you, helps keep dibi8.com running.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Terminal \u0026 CLI Productivity Tools: tmux, zsh, fzf, ripgrep \u0026 More for Developers\", \"datePublished\": \"2026-05-18\", \"dateModified\": \"2026-05-18\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/terminal-command-line-tools-tmux-zsh-fzf-ripgrep\" } } ",
+  "wordCount" : "2531",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Change prefix to Ctrl&#43;A (easier to reach)</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Change prefix to Ctrl&#43;A (easier to reach)</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">Developers spend hours each day in the terminal</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <p>{&lt;/* resource-info */&gt;}</p>
 <p>Developers spend hours each day in the terminal. A well-configured shell environment saves minutes on every task — compounding into hours of reclaimed productivity each week. In 2025, the terminal ecosystem has never been richer. Tools like zsh, tmux, fzf, and ripgrep transform the command line from a bare prompt into a powerful, customized workspace.</p>
 <p>This guide covers the essential tools, their configuration, and how they fit together into a cohesive terminal setup. Whether you are on macOS or Linux, following this guide will give you a terminal environment that matches — or exceeds — the productivity of a modern IDE.</p>
@@ -309,7 +381,7 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
 &lt;/script&gt;
 </code></pre>
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -319,7 +391,7 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -339,8 +411,8 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -364,6 +436,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -456,116 +529,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

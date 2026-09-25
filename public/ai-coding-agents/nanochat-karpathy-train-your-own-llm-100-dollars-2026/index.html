@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single-node 8-GPU pretraining | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Single-node 8-GPU pretraining | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Single-node 8-GPU pretraining | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="AI tool comparison and guide">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Single-node 8-GPU pretraining">
+  <meta property="og:description" content="AI tool comparison and guide">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Single-node 8-GPU pretraining">
+  <meta name="twitter:description" content="AI tool comparison and guide">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Single-node 8-GPU pretraining",
+      "item": "https://dibi8.com/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Single-node 8-GPU pretraining",
+  "name": "Single-node 8-GPU pretraining",
+  "description": "AI tool comparison and guide",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “nanochat 2026: Andrej Karpathy’’s Open-Source “ChatGPT f… description: “AI tool comparison and guide” date: 2026-06-09T00:00:00+08:00 lastmod: 2026-06-09T00:00:00+08:00 tech_stack: [Python, PyTorch, Rust, ‘LLM Training’] application_domain: LLM Frameworks source_version: ’’ licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ‘https://github.com/karpathy/nanochat' backup_url: ’’ last_maintained: “2026-06-01” draft: false categories: [“llm-frameworks”] tags: [“nanochat”, “karpathy”, “llm-training”, “pytorch”, “gpt”, “self-hosted-llm”, “open-source”, “transformer”, “fine-tuning”] aliases:\n/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/ faqs: - q: ‘What is nanochat and who built it?’ a: ’nanochat is a minimal, full-stack LLM training and inference pipeline built by Andrej Karpathy (founding member of OpenAI, former Director of AI at Tesla). Unlike his earlier nanoGPT which only covered pretraining, nanochat includes the complete pipeline: custom Rust BPE tokenizer, pretraining, supervised finetuning on conversations and tool use, evaluation, inference, and a working ChatGPT-style web UI — all in about 8,000 lines of readable Python and Rust.' q: ‘How much does it cost to train a model with nanochat?’ a: ‘Karpathy estimates roughly $48–$100 to train a GPT-2-capability chatbot from scratch. The training runs on a single 8×H100 GPU node (≈$24/hour on cloud rentals). Two hours gets you a working model; four hours produces a model that can hold a real conversation. The cost dropped by orders of magnitude vs. the original GPT-2 training because of improvements in hardware, software (FlashAttention, BF16, etc.), and better data (FineWeb).’ q: ‘What training data does nanochat use?’ a: ’nanochat pretrain on FineWeb (a high-quality web text dataset), then midtrains on SmolTalk (user-assistant conversations), multiple-choice QA, and tool-use data. The tokenizer is trained from scratch on the same data using a custom Rust BPE implementation. No proprietary datasets are required — everything is open and reproducible.' q: ‘What is the difference between nanochat and Ollama or vLLM?’ a: ‘Ollama and vLLM are inference runtimes — you load an existing pretrained model and serve it. nanochat is a training framework — it trains a model from raw text data, from the very first token. Think of Ollama as the car, and nanochat as the factory that builds the engine. The repo also includes an inference server and chat UI so you can talk to your trained model, but training is the core purpose.’ q: ‘Can I finetune an existing model with nanochat instead of training from scratch?’ a: ‘The primary path in nanochat is full pretraining from scratch on FineWeb followed by supervised finetuning. However, the pipeline is explicitly designed to be “maximally forkable” — the modular structure makes it straightforward to replace the pretraining data loader with a starting checkpoint and proceed with just the SFT stage on your own data. Community forks have demonstrated this pattern.’— In October 2025, Andrej Karpathy announced nanochat with a simple premise: “The best ChatGPT that $100 can buy.” By June 2026 it has accumulated 54,700 GitHub stars and become the most-read LLM training tutorial in the open-source community. If you want to understand how ChatGPT works from the inside — and build your own version — nanochat is where you start.\nWhat nanochat Is (and Is Not) nanochat is not a wrapper around an existing model. It is not a deployment tool. It is the complete factory: 1. Tokenizer — a custom Byte-Pair Encoding (BPE) tokenizer trained from scratch on your data, implemented in Rust for speed. You own the vocabulary; there’s no dependency on tiktoken or sentencepiece. 2. Pretraining — a Transformer (GPT architecture) trained on FineWeb, a high-quality crawled web text dataset. Implements FlashAttention-2, BF16 mixed precision, and gradient checkpointing to fit large batches on a single node. 3. Finetuning (SFT) — trains the pretrained base model on user-assistant conversation data (SmolTalk), multiple-choice questions, and tool-use examples. This is the step that turns a next-token predictor into a chatbot. 4. Evaluation — runs the CORE benchmark suite automatically after each training stage, reporting reasoning, knowledge, coding, and instruction-following scores. 5. Inference — serves the trained model as an HTTP API compatible with the OpenAI chat completions spec. 6. Chat UI — a minimal web interface to talk to your model, equivalent to a local ChatGPT.\nThe whole thing is ~8,000 lines of Python and Rust. Karpathy describes it as “among the most unhinged I’ve written” — a compliment to its scope.\nThe $100 Training Run The advertised $100 assumes you rent a cloud GPU node. In 2026 prices: | Config | Cost/hr | Time to train | Total cost | | |\n|\n|\n| | 8× H100 (SXM5) | ~$24 | 2 hours | ~$48 | | 8× A100 (80GB) | ~$16 | 4 hours | ~$64 | | 8× H100 (PCIe) | ~$18 | 3 hours | ~$54 |\nTwo hours on 8× H100s produces a GPT-2-capability model you can have a real conversation with. Four hours gets you noticeably better reasoning. For comparison, training the original GPT-2 cost Karpathy ~$43,000 in 2019 using the compute available then.\nYou can rent these nodes from Lambda Labs, CoreWeave, vast.ai, or RunPod. The nanochat README includes exact cloud provider commands.\nArchitecture Deep-Dive Tokenizer (Rust) Most LLM toolkits delegate tokenization to Python bindings around a C library (sentencepiece) or a pre-trained vocabulary (tiktoken). nanochat trains its own BPE tokenizer from scratch on the pretraining corpus. The implementation is in Rust for throughput — tokenizing FineWeb at full dataset scale in Python would take hours.\nTraining the tokenizer is a separate command: ````bash python tokenize_dataset.py –dataset fineweb –vocab-size 32768\n### Pretraining (PyTorch) The model is a standard decoder-only Transformer: multi-head self-attention, pre-RMSNorm, SwiGLU activations, RoPE positional embeddings. The default config is ~120M parameters (roughly GPT-2 medium), trainable to higher capacities by adjusting depth and width hyperparameters. `````bash # Single-node 8-GPU pretraining torchrun --nproc_per_node=8 train_pretrain.py \\ --config configs/pretrain_fineweb_120m.yaml Key optimizations: FlashAttention-2 (40% speedup over vanilla attention), BF16 mixed precision (2× memory efficiency vs FP32), gradient checkpointing for long sequences, and DDP data parallelism across all 8 GPUs.\nSupervised Finetuning After pretraining, you finetune on the SmolTalk dataset, which contains ~1M high-quality user-assistant conversations. The SFT stage takes less than 30 minutes on the same 8-GPU node.\ntorchrun --nproc_per_node=8 train_sft.py \\ --pretrain-checkpoint checkpoints/pretrain_final.pt \\ --config configs/sft_smoltalk.yaml Tool-use data is included in the SFT stage, training the model to emit structured function-call JSON that downstream applications can parse.\nEvaluation (CORE) After each training stage, nanochat runs the CORE benchmark automatically — a suite of reasoning, knowledge, coding, and math tasks. This gives you a single composite score to compare runs, ablations, and forks. The benchmark is designed to run fast (\u003c 20 minutes) so it fits into the training loop without blocking iteration.\nInference Server The inference server implements the OpenAI /v1/chat/completions endpoint: `````bash python serve.py –checkpoint checkpoints/sft_final.pt –port 8000\nThis means any tool built for the OpenAI API — Open WebUI, Cursor, Codestral clients — can point at your nanochat model with no modification. ## 2026 Addition: autoresearch In March 2026 Karpathy published [autoresearch](https://github.com/karpathy/autoresearch), a companion repo where AI agents autonomously run nanochat training experiments and report findings. The agent submits batches of training configurations, monitors the CORE benchmark results, and proposes hypothesis-driven follow-up runs. It's currently the most active fork of the nanochat ecosystem. ## Who Should Use nanochat **Use nanochat if:** - You want to understand LLMs from first principles and have the code right in front of you - You're a researcher who needs a clean, hackable baseline to test architectural changes - You want to pretrain a domain-specific model on your own data (replace FineWeb with your corpus) - You're teaching an LLM course and need a complete, readable codebase **Don't use nanochat if:** - You just need to run an existing model locally → use [Ollama](/resources/llm-frameworks/ollama/) instead - You need production-grade serving at scale → use vLLM or TGI - You want to finetune a large model (70B+) → nanochat's sweet spot is 100M–7B parameter models on a single node ## Related Projects in the nanochat Ecosystem The community has built several projects on top of nanochat: - **nanochat-VLM** — adds vision-language capabilities (image → text) - **nanochat-workshop** (i-dot-ai) — a structured workshop curriculum for training LLMs step by step - **nanollama** — a learning-from-scratch baseline extracted from nanochat discussion thread #557 If you just want to talk to a locally-served open model without training your own, start with [Ollama](/resources/llm-frameworks/ollama/) or [Open WebUI](/resources/llm-frameworks/open-webui/). If you want to understand what's inside the models those tools serve, nanochat is the answer. \u003e **Need GPU compute to train your model?** A cloud server is the fastest path to an 8-GPU training node. New users on [DigitalOcean get $200 in credits](https://m.do.co/c/eca87ac14ee0) — enough to run multiple full nanochat training experiments before your first invoice. DigitalOcean's GPU Droplets are available on-demand with no long-term commitment. ## Bottom Line nanochat demystifies the entire LLM stack. In a world where most AI tooling hides complexity behind abstractions, it goes the opposite direction: every algorithm visible, every file readable, every component replaceable. The 54,700 stars reflect genuine community appreciation for what Karpathy has always done best — teaching by showing the code. **GitHub:** [karpathy/nanochat](https://github.com/karpathy/nanochat) · 54.7k stars · MIT { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"nanochat 2026: Andrej Karpathy''s Open-Source \\\"ChatGPT for $100\\\" — Full LLM Pipeline in 8,000 Lines\", \"datePublished\": \"2026-06-09\", \"dateModified\": \"2026-06-09\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/nanochat-karpathy-train-your-own-llm-100-dollars-2026\" } } ## Why This Matters Understanding nanochat 2026: andrej karpathy''s open-source \"chatgpt for $100\" — full llm pipeline in 8,000 lines is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion nanochat 2026: Andrej Karpathy'\"s Open-Source \"ChatGPT for $100\" — Full LLM Pipeline in 8,000 Lines represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-train-your-own-llm-100-dollars-2026) - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-train-your-own-llm-100-dollars-2026) - [wandb-ml-experiment-tracking-platform-2026](nanochat-karpathy-train-your-own-llm-100-dollars-2026) - [wandb-ml-experiment-tracking-platform-2026](nanochat-karpathy-train-your-own-llm-100-dollars-2026) - [2026-05-25-trending-ai-agents](nanochat-karpathy-train-your-own-llm-100-dollars-2026) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ",
+  "wordCount" : "1797",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Single-node 8-GPU pretraining</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Single-node 8-GPU pretraining</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">AI tool comparison and guide</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,11 +151,11 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <p>title: &ldquo;nanochat 2026: Andrej Karpathy&rsquo;&rsquo;s Open-Source &ldquo;ChatGPT f&hellip;
-description: &ldquo;Technical guide and comparison.&rdquo;
+description: &ldquo;AI tool comparison and guide&rdquo;
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, &lsquo;LLM Training&rsquo;]
@@ -304,7 +376,7 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 </code></pre>
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -314,7 +386,7 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -334,8 +406,8 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -359,6 +431,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -451,116 +524,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

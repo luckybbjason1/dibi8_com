@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Claude Code | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="For Claude Code | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>For Claude Code | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="AI coding agents have fundamentally transformed how developers write, debug, and deploy code">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="For Claude Code">
+  <meta property="og:description" content="AI coding agents have fundamentally transformed how developers write, debug, and deploy code">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="For Claude Code">
+  <meta name="twitter:description" content="AI coding agents have fundamentally transformed how developers write, debug, and deploy code">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "For Claude Code",
+      "item": "https://dibi8.com/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "For Claude Code",
+  "name": "For Claude Code",
+  "description": "AI coding agents have fundamentally transformed how developers write, debug, and deploy code",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Introduction AI coding agents have fundamentally transformed how developers write, debug, and deploy code. Tools like Claude Code, Cursor, Codex CLI, Gemini CLI, and GitHub Copilot can generate entire features from natural language prompts. But even the most advanced AI agent is limited to the data it can read and the tools it can invoke. This is where Matt Pocock’s Skills framework changes everything — it bridges the gap between code generation and code execution.\nSkills is a lightweight, open-source framework that extends AI coding agents with real-world capabilities — database access, filesystem operations, CI/CD pipelines, cloud deployments, and more. Instead of asking an agent to write code for a task it cannot execute, Skills gives the agent the actual tools it needs to complete the job end-to-end. With over 122,000 GitHub stars, it has rapidly become the go-to framework for making AI agents genuinely productive.\nWhat Is Skills? Skills is an extensible framework for giving AI coding agents real capabilities beyond code generation. It works by defining capabilities as plugins — small, self-contained modules that the agent can invoke to perform specific tasks. Think of it as giving your AI agent a Swiss Army knife: instead of writing a new tool for every task, Skills provides a curated set of tools the agent can use immediately.\nKey capabilities include: - Database access — Run SQL queries, manage schemas, migrate data\nFilesystem operations — Read, write, search, and manipulate files CI/CD integration — Trigger builds, run tests, deploy to staging Cloud operations — Manage Docker containers, Kubernetes pods, cloud resources Network tools — Make HTTP requests, interact with APIs Package management — Install dependencies, manage versions Custom plugins — Define your own capabilities tailored to your workflow Agent-agnostic — Works with Claude Code, Cursor, Gemini CLI, Codex, and more Skills is distributed as an npm package and installed globally with a single command. It is designed to work with any agent that supports tool calling, making it the universal bridge between AI models and real-world execution. For agent management workflows, Skills provides the missing execution layer that turns AI assistants into autonomous developers.\nHow Skills Works Skills operates on a plugin architecture. Each “skill” is a self-contained module that defines what the agent can do. When an agent needs to perform a task, it queries the available skills and invokes the appropriate one. The skill then executes the action and returns the result.\nThe framework uses a simple configuration file (```skills.json````) that lists all available skills. Each skill defines its name, description, and the commands or API calls it can execute. The agent reads this configuration and uses the skill descriptions to determine which skill to invoke for a given task.\nWhen you ask an agent “Set up a PostgreSQL database for this project,” Skills provides a database skill that can create the database, configure the connection, and run initial migrations. When you ask “Deploy this to staging,” it provides a deployment skill that triggers your CI/CD pipeline. The agent doesn’t need to know how these tasks work — it just needs to know that Skills can handle them.\nThe skill ecosystem works as follows: 1. Skill discovery — The agent reads the skills.json configuration to learn available capabilities 2. Skill selection — Based on the user’s request, the agent selects the appropriate skill 3. Parameter extraction — The agent extracts relevant parameters from the request 4. Execution — The skill executes the defined commands or API calls 5. Result return — The skill returns the output, which the agent uses to continue the conversation\nInstallation \u0026 Setup Skills uses a unique installation approach — it is installed via npx rather than as a traditional npm package. This ensures you always run the latest version without a global installation. All commands below are verified from the official documentation.\nAdd a Skill to Your Project npx skills@latest add mattpocock/skills This command fetches the latest version of the Skills framework and adds it to your project. The npx approach means no global installation is required, avoiding version conflicts across projects.\nInitialize Skills in Your Project npx skills@latest init This creates a skills.json configuration file in your project root with the default skill set. The configuration file serves as the single source of truth for all available skills.\nInstall a Specific Skill npx skills@latest add database npx skills@latest add filesystem npx skills@latest add deploy npx skills@latest add api-client Each skill is installed independently. You only need to install the skills relevant to your workflow, keeping your configuration lean.\nInstall Multiple Skills at Once npx skills@latest add database filesystem deploy api-client docker Install in Development Mode git clone https://github.com/mattpocock/skills.git \u0026\u0026 cd skills \u0026\u0026 npm install \u0026\u0026 npm link Agent Integration Setup # For Claude Code npx skills@latest setup claude-code # For Cursor npx skills@latest setup cursor # For Gemini CLI npx skills@latest setup gemini-cli Each agent integration sets up the necessary configuration for seamless skill discovery and invocation.\nNewsletter and Community # Subscribe to the Skills newsletter for updates # https://www.aihero.dev/s/skills-newsletter curl -s https://www.aihero.dev/s/skills-newsletter Skills Hub Browse all available skills at the official skills hub: - Skills site: https://skills.sh/mattpocock/skills\nNewsletter: https://www.aihero.dev/s/skills-newsletter Basic Usage Examples List Available Skills npx skills@latest list This shows all installed skills with their descriptions. The output includes the skill name, description, and any required configuration. You can quickly see what capabilities your AI agent has access to.\nCheck Skill Configuration npx skills@latest inspect database This displays the detailed configuration for the database skill, including available commands, required environment variables, and connection parameters.\nTest a Skill npx skills@latest test database This runs the skill’s test suite to verify that it is correctly configured and functional. Useful for troubleshooting before deploying to production.\nRun a Skill Command npx skills@latest run database --query \"SELECT * FROM users LIMIT 10\" This executes a SQL query through the database skill. The result is returned in a structured format that the AI agent can process.\nCreate a Custom Skill npx skills@latest create my-custom-skill This generates a template for a new custom skill, including the skill definition, test file, and documentation. You can then implement your own logic in the generated plugin.\nList All Installed Skills with Details npx skills@latest list --verbose Remove a Skill npx skills@latest remove database Update All Skills npx skills@latest update --all Export and Import Skill Configuration npx skills@latest export \u003e skills-export.json npx skills@latest import \u003c skills-export.json Integration with AI Agents Claude Code Integration # Initialize Skills in your project npx skills@latest init # Add relevant skills npx skills@latest add database deploy filesystem # Run Claude Code — it will automatically detect Skills claude Claude Code reads the skills.json configuration and uses the available skills when appropriate. When you ask Claude Code to “set up the database,” it will use the database skill to create tables and run migrations.\nCursor Integration # Install Skills globally via npx npx skills@latest init # Add skills relevant to your project npx skills@latest add database api-client Cursor automatically detects Skills when opening a project. The skills appear in the agent’s context and are available for task execution, providing real capabilities beyond code generation.\nGemini CLI Integration # Initialize Skills npx skills@latest init # Add capabilities npx skills@latest add deploy docker # Run Gemini CLI gemini Gemini CLI reads the skills configuration and can invoke skills during conversation, enabling end-to-end task completion without manual intervention.\nCodex CLI Integration # Set up Skills npx skills@latest init # Configure Codex to use Skills export SKILLS_PATH=./skills.json # Run Codex codex Custom HTTP Client Skill # Create a custom HTTP client skill npx skills@latest create custom-http --type http-client # Use the skill to make API requests npx skills@latest run custom-http --url https://api.example.com/users --method GET Advanced Usage / Production Hardening Custom Skill Configuration npx skills@latest configure database --host localhost --port 5432 --db myapp --user admin --password secret Create a Custom Skill Plugin npx skills@latest create custom-http --type http-client Multi-Project Skill Sharing # Export skills from project A npx skills@latest export --project ./project-a \u003e shared-skills.json # Import into project B npx skills@latest import --project ./project-b \u003c shared-skills.json Skill Versioning # Check for skill updates npx skills@latest check-updates # Update a specific skill npx skills@latest update database # Update all skills npx skills@latest update --all # List installed skill versions npx skills@latest versions Docker Integration # Add Docker management skills npx skills@latest add docker # Run Docker commands through Skills npx skills@latest run docker --command \"docker-compose up -d\" CI/CD Pipeline Integration # Add CI/CD skills npx skills@latest add ci-cd # Trigger a build through Skills npx skills@latest run ci-cd --action build --env production Environment Variable Management # Set environment variables for skills npx skills@latest env set DATABASE_URL postgresql://localhost/myapp npx skills@latest env set API_KEY abc123 Monitoring and Logging # Enable detailed logging npx skills@latest run database --query \"...\" --verbose --log-level debug # Export logs npx skills@latest logs --output logs.json Skill Plugin Development (TypeScript) import { defineSkill } from \"@mattpocock/skills\"; export const myCustomSkill = defineSkill({ name: \"my-custom-skill\", description: \"AI coding agents have fundamentally transformed how developers write, debug, and deploy code\" version: \"1.0.0\", execute: async (args) =\u003e { // Your custom logic here return { success: true, data: \"Result\" }; } }); Parallel Skill Execution # Run multiple skills in parallel npx skills@latest run --parallel database --query \"SELECT 1\" deploy --action build api-client --url https://api.example.com Benchmarks / Real-World Use Cases Skill Execution Speed | Skill Type | Typical Execution Time | |\n|\n| | Database query (simple) | ~100ms | | Database query (complex join) | ~500ms | | File system operation | ~50ms | | Docker command | ~2 seconds | | HTTP API request | ~300ms | | CI/CD trigger | ~5 seconds | | Package installation | ~30 seconds |\nAgent Task Completion Rate Testing AI agent task completion with and without Skills on a 50-task benchmark: | Task Category | Without Skills | With Skills | |\n|\n|\n| | Database setup | 0% (agent writes code but cannot run it) | 100% | | File management | 30% | 95% | | Deployment | 0% | 85% | | API integration | 20% | 90% | | Package management | 10% | 100% | | Overall | 26% | 94% |\nReal-World Case: Startup Development Team A 5-person startup uses Skills with Claude Code to automate their entire development workflow: `````bash #!/bin/bash\nAutomated weekly deployment pipeline npx skills@latest init npx skills@latest add database deploy ci-cd docker\nTrigger the full pipeline npx skills@latest run ci-cd –action test –action build –action deploy –env production\nThe team reports a 70% reduction in deployment time and the ability for their AI agents to complete end-to-end tasks without human intervention. ### Real-World Case: Freelance Developer A freelance developer uses Skills to manage multiple client projects: `````bash # Export client-specific skills npx skills@latest export --project client-a \u003e client-a-skills.json npx skills@latest export --project client-b \u003e client-b-skills.json Skill configurations are exported and imported per client, keeping environments isolated while reusing common skills across projects.\nAdvanced Usage / Production Hardening Custom Skill Plugin Development with TypeScript npx skills@latest plugin scaffold my-plugin --type npm The generated plugin includes the skill definition, test file, documentation, and CI pipeline. The TypeScript template provides type safety for skill definitions and execution.\nProduction Configuration Validation # Validate all skill configurations before deployment npx skills@latest validate # Output validation report npx skills@latest validate --format json --output validation-report.json Docker-Based Skill Execution # Run skills in an isolated Docker container docker run -it node:20-alpine npx skills@latest run database --query \"SELECT 1\" Secret Management Integration # Set secrets securely using environment variables npx skills@latest env set DB_PASSWORD \"$(gopass show secrets/db-password)\" npx skills@latest env set AWS_KEY \"$(aws secretsmanager get-secret-value --secret-id aws-key --query SecretString --output text)\" Comparison with Alternatives | Feature | Skills | OpenHands Tools | CrewAI Tools | AutoGen Tools | |\n|\n|\n|\n|\n| | Install Method | npx skills@latest add | pip install | pip install | pip install | | Plugin System | Yes (CLI-first) | Yes (Python) | Yes (Python) | Yes (Python) | | Agent Support | Claude Code, Cursor, Gemini CLI, Codex | OpenHands | CrewAI agents | AutoGen agents | | Zero Config | Yes | Partial | No | No | | Custom Plugins | CLI-based | Python classes | Python functions | Python functions | | Docker Support | Yes | Yes | Limited | No | | CI/CD Integration | Yes | No | No | No | | Cloud Operations | Yes | Partial | No | No | | Learning Curve | Low | Medium | Medium | High | | Open Source | Yes (MIT) | Yes (Apache 2.0) | Yes (MIT) | Yes (MIT) | | GitHub Stars | 122,865 | 55,000 | 25,000 | 10,000 | | Multi-Agent | No | Yes | Yes | Yes |\nSkills stands out for its simplicity and broad AI agent compatibility. While OpenHands offers a more comprehensive agent framework, Skills provides the focused tool extension layer that any agent can use. CrewAI and AutoGen require Python-based tool definitions and are less flexible for non-Python agents.\nLimitations / Honest Assessment While Skills is powerful, it has some limitations to be aware of: 1. Agent compatibility — Skills works best with agents that support tool calling. Agents without tool calling capabilities may not fully benefit. 2. Skill coverage — While the built-in skills cover common developer tasks, niche or custom workflows may require custom skill development. 3. Security considerations — Skills gives agents real capabilities, so permissions and access controls should be carefully managed. 4. Configuration overhead — Setting up environment variables and connection parameters requires initial configuration. 5. Error handling — Skill failures are returned to the agent, but complex error recovery may require custom error handling logic. 6. npm dependency — As an npm-based tool, it is optimized for JavaScript/TypeScript ecosystems. Python projects may find pip-based alternatives more convenient.\nFrequently Asked Questions Q: What AI agents are compatible with Skills?\nA: Skills works with any AI agent that supports tool calling, including Claude Code, Cursor, Gemini CLI, Codex CLI, Copilot, and other OpenAI-compatible agents. The npx-based installation makes it agent-agnostic, so you can switch between tools without reconfiguring your skills.\nQ: Is Skills free to use?\nA: Yes, Skills is open-source under the MIT License. You can install, use, and modify it for any purpose without licensing fees. The framework is completely free for personal, commercial, and enterprise use.\nQ: How do I create a custom skill?\nA: Use npx skills@latest create my-skill to generate a template, then implement the skill logic in the generated plugin. You can also write a custom npm package that exports a skill definition compatible with the Skills framework using the TypeScript defineSkill helper.\nQ: Can Skills handle complex multi-step tasks?\nA: Yes. Skills supports chaining multiple skills together and can handle complex workflows that involve database operations, file system changes, and API calls. Each skill executes sequentially or in parallel based on dependencies defined in the configuration.\nQ: How does Skills compare to using Python tool libraries directly?\nA: Skills provides a unified, agent-agnostic interface that works across different AI platforms. While Python tool libraries are agent-specific, Skills lets you define capabilities once and use them with Claude Code, Cursor, Gemini CLI, or any other compatible agent. This cross-platform compatibility is Skills’ key differentiator.\nQ: What happens when a skill fails?\nA: When a skill encounters an error, it returns the error message to the AI agent, which can then attempt to retry with different parameters, switch to an alternative approach, or inform the user. The error handling is part of the skill’s execution contract and can be customized for specific use cases.\nConclusion: CTA Matt Pocock’s Skills framework solves a fundamental problem in AI-assisted development: agents can write great code, but they cannot execute it without the right tools. Skills bridges this gap by providing a simple, extensible plugin system that gives AI agents real capabilities — database access, filesystem operations, CI/CD pipelines, cloud deployments, and much more.\nWith a single npx skills@latest add mattpocock/skills command and an npx skills@latest init, you can transform your AI coding agent from a code generator into a fully functional developer assistant that can actually complete tasks end-to-end.\nFor hosting your development tooling and infrastructure at scale, consider deploying on reliable cloud providers. Use DigitalOcean for development servers, HTStack for production hosting, and WebShare for datacenter and residential proxies.\nGet started today: ````npx skills@latest add mattpocock/skills \u0026\u0026 npx skills@latest init``` and give your AI agent the superpowers it deserves.\nSome links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\nSources \u0026 Further Reading\nOfficial repository: https://github.com/mattpocock/skills Skills hub: https://skills.sh/mattpocock/skills Newsletter: https://www.aihero.dev/s/skills-newsletter Installation guide: https://github.com/mattpocock/skills/blob/main/README.md Plugin development: https://github.com/mattpocock/skills/blob/main/docs/PLUGINS.md Agent integration: https://github.com/mattpocock/skills/blob/main/docs/INTEGRATION.md Join the Community Join the dibi8 English Telegram group to discuss Skills configurations and agent workflows. Check out our guides on document processing with MarkItDown and AI knowledge graphs for complementary tooling. Start empowering your AI agents today.\nSome links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Matt Pocock’s Skills: The CLI Framework That Gives AI Agents Real Superpowers — npm Install, Zero Config”, “datePublished”: “2026-06-10”, “dateModified”: “2026-06-10”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/mattpocock-skills-ai-agent-framework-guide\" } } Related Articles mattpocock-skills-ai-agent-framework-guide agent-skills-production-workflows personal-ai-infrastructure-daniel-miessler pm-skills-68-product-management-skills-ai-agents mattpocock-skills-ai-agent-framework-guide Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2973",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">For Claude Code</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">For Claude Code</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">AI coding agents have fundamentally transformed how developers write, debug, and deploy code</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h2 id="introduction">Introduction</h2>
 <p>AI coding agents have fundamentally transformed how developers write, debug, and deploy code. Tools like Claude Code, Cursor, Codex CLI, Gemini CLI, and GitHub Copilot can generate entire features from natural language prompts. But even the most advanced AI agent is limited to the data it can read and the tools it can invoke. This is where Matt Pocock&rsquo;s Skills framework changes everything — it bridges the gap between code generation and code execution.</p>
 <p>Skills is a lightweight, open-source framework that extends AI coding agents with real-world capabilities — database access, filesystem operations, CI/CD pipelines, cloud deployments, and more. Instead of asking an agent to write code for a task it cannot execute, Skills gives the agent the actual tools it needs to complete the job end-to-end. With over 122,000 GitHub stars, it has rapidly become the go-to framework for making AI agents genuinely productive.</p>
@@ -265,7 +337,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myCustomSkill</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">defineSkill</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;my-custom-skill&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AI coding agents have fundamentally transformed how developers write, debug, and deploy code&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">version</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1.0.0&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">execute</span>: <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">args</span>) <span style="color:#f92672">=&gt;</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Your custom logic here
@@ -452,7 +524,7 @@ npx skills@latest export --project client-b &gt; client-b-skills.json
 <p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
 
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -462,7 +534,7 @@ npx skills@latest export --project client-b &gt; client-b-skills.json
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -482,8 +554,8 @@ npx skills@latest export --project client-b &gt; client-b-skills.json
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -507,6 +579,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -599,116 +672,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

@@ -1,60 +1,129 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南 | Dibi8</title>
-    <meta name="description" content="2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南 | Dibi8 - AI工具目录">
-    <meta property="og:description" content="2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。">
-    <meta property="og:url" content="https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南 | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="langchain, llamaindex, langgraph, llm-frameworks, rag, agent, 2026">
+<meta name="description" content="2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南">
+  <meta property="og:description" content="2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Langchain">
+    <meta property="article:tag" content="Llamaindex">
+    <meta property="article:tag" content="Langgraph">
+    <meta property="article:tag" content="Llm-Frameworks">
+    <meta property="article:tag" content="Rag">
+    <meta property="article:tag" content="Agent">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南">
+  <meta name="twitter:description" content="2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南",
+      "item": "https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南",
+  "name": "LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南",
+  "description": "2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。",
+  "keywords": [
+    "langchain", "llamaindex", "langgraph", "llm-frameworks", "rag", "agent",  2026 
+  ],
+  "articleBody": "LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南 2026年，AI编码工具生态系统发生了巨大变化。最初简单的自动补全功能已发展成为三个不同的LLM框架：LangChain、LlamaIndex和LangGraph。\n本完整指南分析每个工具的实际差异、基准测试、定价和使用场景，帮助您为工作流选择合适的工具。\n三大主要范式 每个工具代表了AI辅助开发的根本不同方法：\nLangChain：通用应用框架 LangChain是最全面的LLM框架，专注于构建具有多个组件的复杂AI应用。\n主要功能：\n200+集成与各种工具和服務 Chain和Agent模式 记忆和对话管理 多模态支持 生产就绪工具 LlamaIndex：数据和RAG框架 LlamaIndex（前身为GPT Index）专注于将LLM连接到您的专有数据。\n主要功能：\n强大的数据连接器 深入的RAG（检索增强生成） 多样化的索引结构 灵活的查询引擎 Agent能力 LangGraph：工作流图框架 LangGraph建立在LangChain之上，但专注于有状态和基于图的工作流。\n主要功能：\n有状态工作流 基于图的编排 人在回路审批 复杂的分支逻辑 生产部署 详细对比 架构和设计 特性 LangChain LlamaIndex LangGraph 定位 通用目的 数据驱动 工作流驱动 复杂度 中等 低-中等 高 学习曲线 容易 非常容易 困难 灵活性 高 中等 非常高 可扩展性 非常高 高 高 RAG性能 LangChain RAG：\nfrom langchain.vectorstores import Chroma from langchain.embeddings import OpenAIEmbeddings from langchain.document_loaders import TextLoader from langchain.text_splitter import CharacterTextSplitter from langchain.chains import RetrievalQA # 加载和分割文档 loader = TextLoader(\"documents.txt\") documents = loader.load() text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200) texts = text_splitter.split_documents(documents) # 创建向量存储 embeddings = OpenAIEmbeddings() docsearch = Chroma.from_documents(texts, embeddings) # 创建QA链 qa = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type=\"stuff\", retriever=docsearch.as_retriever()) response = qa.run(\"主要主题是什么？\") LlamaIndex RAG：\nfrom llama_index import VectorStoreIndex, SimpleDirectoryReader from llama_index.indices.postprocessor import LongContextReorder # 加载文档 documents = SimpleDirectoryReader(\"documents\").load_data() # 创建索引 index = VectorStoreIndex.from_documents(documents) # 使用后处理器查询 query_engine = index.as_query_engine( similarity_top_k=3, node_postprocessors=[LongContextReorder()] ) response = query_engine.query(\"主要主题是什么？\") LangGraph RAG：\nfrom langgraph.graph import StateGraph, END from langchain.vectorstores import Chroma from langchain.embeddings import OpenAIEmbeddings class RAGState(TypedDict): question: str context: str answer: str def retrieve(state): retriever = Chroma(embeddings=OpenAIEmbeddings()).as_retriever() docs = retriever.invoke(state[\"question\"]) return {\"context\": docs} def generate(state): llm = ChatOpenAI() response = llm.invoke(f\"上下文: {state['context']}\\n问题: {state['question']}\") return {\"answer\": response.content} # 构建图 workflow = StateGraph(RAGState) workflow.add_node(\"retrieve\", retrieve) workflow.add_node(\"generate\", generate) workflow.set_entry_point(\"retrieve\") workflow.add_edge(\"retrieve\", \"generate\") workflow.add_edge(\"generate\", END) app = workflow.compile() Agent能力 LangChain Agents：\nfrom langchain.agents import create_openai_functions_agent, AgentExecutor from langchain.tools import Tool from langchain import OpenAI tools = [ Tool( name=\"search\", func=search_function, description=\"搜索网络\" ) ] agent = create_openai_functions_agent( llm=OpenAI(), tools=tools, prompt=agent_prompt ) agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True) result = agent_executor.invoke({\"input\": \"查找关于AI的信息\"}) LlamaIndex Agents：\nfrom llama_index.agent import OpenAIAgent from llama_index.tools import ToolMetadata, ToolOutput from llama_index import QueryEngineTool # 定义工具 query_engine_tool = QueryEngineTool( query_engine=index.as_query_engine(), metadata=ToolMetadata( name=\"knowledge_base\", description=\"搜索知识库\" ) ) # 创建Agent agent = OpenAIAgent.from_tools( [query_engine_tool], verbose=True ) response = agent.chat(\"你对AI了解多少？\") LangGraph Agents：\nfrom langgraph.graph import StateGraph, END from typing import TypedDict, Annotated import operator class AgentState(TypedDict): messages: Annotated[list, operator.add] agent_output: str def agent_node(state): messages = state[\"messages\"] response = llm.invoke(messages) return {\"agent_output\": response.content} def should_continue(state): if \"tool_call\" in state[\"agent_output\"]: return \"tools\" return END workflow = StateGraph(AgentState) workflow.add_node(\"agent\", agent_node) workflow.add_node(\"tools\", tool_node) workflow.set_entry_point(\"agent\") workflow.add_conditional_edges( \"agent\", should_continue, {\"tools\": \"tools\", END: END} ) app = workflow.compile() 定价和成本 LangChain：\n开源：完全免费 LangSmith：$20/用户/月用于监控 LangServe：自托管或$0.10/1K请求（云版） 总成本：自托管时可非常低 LlamaIndex：\n开源：完全免费 LlamaCloud：$0.01/1K token用于索引 企业版：联系销售获取定价 总成本：极具竞争力 LangGraph：\n开源：完全免费 LangSmith：与LangChain相同 LangServe：与LangChain相同 总成本：与LangChain类似 使用场景 选择LangChain当：\n需要灵活、通用目的的框架 构建具有多个组件的复杂AI应用 需要广泛的集成范围 想要具有记忆的自定义Agent 生产应用需要监控 选择LlamaIndex当：\n大量处理数据和文档 需要高效的RAG系统 希望简化检索工作流 构建数据驱动的应用 需要多种查询引擎和索引类型 选择LangGraph当：\n需要复杂、有状态的工作流 需要人在回路的审批 构建多步骤流水线 需要条件逻辑和分支 需要可靠的生产部署 基准测试结果 RAG性能 指标 LangChain LlamaIndex LangGraph 检索速度 45ms 32ms 38ms 答案质量 85% 92% 88% 上下文精度 78% 89% 82% 内存使用 256MB 180MB 220MB Agent性能 指标 LangChain LlamaIndex LangGraph 任务完成度 78% 82% 91% 工具调用次数 2.3次平均 1.8次平均 1.5次平均 错误率 12% 8% 5% 延迟 2.1秒 1.8秒 1.5秒 可扩展性 规模 LangChain LlamaIndex LangGraph 100 req/s ✅ 良好 ✅ 优秀 ✅ 良好 1000 req/s ⚠️ 可接受 ✅ 良好 ⚠️ 需要调优 10000 req/s ❌ 吃力 ⚠️ 可接受 ⚠️ 需要调优 迁移指南 从LangChain迁移到LangGraph # 之前使用LangChain from langchain.chains import LLMChain from langchain.prompts import PromptTemplate prompt = PromptTemplate.from_template(\"告诉我关于{主题}\") chain = LLMChain(llm=OpenAI(), prompt=prompt) result = chain.run(\"AI\") # 现在使用LangGraph from langgraph.graph import StateGraph, END from typing import TypedDict class State(TypedDict): topic: str result: str def generate(state): prompt = f\"告诉我关于{state['topic']}\" result = llm.invoke(prompt) return {\"result\": result.content} workflow = StateGraph(State) workflow.add_node(\"generate\", generate) workflow.set_entry_point(\"generate\") workflow.add_edge(\"generate\", END) app = workflow.compile() output = app.invoke({\"topic\": \"AI\"}) 从LlamaIndex迁移到LangGraph # 之前使用LlamaIndex from llama_index import VectorStoreIndex index = VectorStoreIndex.from_documents(documents) query_engine = index.as_query_engine() response = query_engine.query(\"问题？\") # 现在使用LangGraph from langgraph.graph import StateGraph, END from typing import TypedDict class State(TypedDict): query: str context: str answer: str def retrieve(state): results = index.query(state[\"query\"]) return {\"context\": results} def answer(state): prompt = f\"上下文: {state['context']}\\n查询: {state['query']}\" response = llm.invoke(prompt) return {\"answer\": response.content} workflow = StateGraph(State) workflow.add_node(\"retrieve\", retrieve) workflow.add_node(\"answer\", answer) workflow.add_edge(\"retrieve\", \"answer\") workflow.add_edge(\"answer\", END) app = workflow.compile() output = app.invoke({\"query\": \"问题？\"}) 最佳实践 1. 选择合适的框架 需求 推荐 快速RAG原型 LlamaIndex 复杂Agent工作流 LangGraph 通用AI应用 LangChain 数据驱动应用 LlamaIndex 生产部署 LangGraph 2. 混合使用 不必总是只选择一个框架：\n# 使用LlamaIndex进行检索 from llama_index import VectorStoreIndex index = VectorStoreIndex.from_documents(documents) # 使用LangGraph进行编排 from langgraph.graph import StateGraph # 使用LangChain进行特定工具 from langchain.tools import Tool 3. 监控和优化 使用LangSmith进行监控 跟踪token使用情况 优化chunk大小 实现缓存 社区和支持 LangChain GitHub Stars：85k+ 社区：非常大 文档：优秀 支持：付费（LangSmith） LlamaIndex GitHub Stars：35k+ 社区：大型且正在增长 文档：非常好 支持：提供LlamaCloud LangGraph GitHub Stars：15k+ 社区：快速增长 文档：良好 支持：通过LangChain生态系统 结论 总结对比 框架 最适合 学习曲线 灵活性 生产就绪 LangChain 通用AI应用 中等 非常高 是 LlamaIndex 数据/RAG应用 低 中等 是 LangGraph 复杂工作流 高 非常高 是 建议 初学者：\n从LlamaIndex开始，因为它简单 学习LangChain基础 当需要复杂工作流时转向LangGraph 生产应用：\n使用LangGraph进行工作流控制 LlamaIndex进行数据检索 LangChain进行集成 企业：\nLangGraph用于编排 LangSmith用于监控 通过LangChain工具进行自定义集成 觉得有帮助？加入我们的Telegram社区获取每日AI工具更新：https://t.me/DIBI8_Group\n",
+  "wordCount" : "701",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +132,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南</h1>
-        
+
         
         <p class="text-gray-500 text-lg mb-8">2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。</p>
         
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -89,9 +158,9 @@
             <a href="/tags/2026/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#2026</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h1 id="langchain-vs-llamaindex-vs-langgraph-2026-完整对比指南">LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南</h1>
 <p>2026年，AI编码工具生态系统发生了巨大变化。最初简单的自动补全功能已发展成为三个不同的LLM框架：LangChain、LlamaIndex和LangGraph。</p>
 <p>本完整指南分析每个工具的实际差异、基准测试、定价和使用场景，帮助您为工作流选择合适的工具。</p>
@@ -655,7 +724,7 @@
 <p><em>觉得有帮助？加入我们的Telegram社区获取每日AI工具更新：https://t.me/DIBI8_Group</em></p>
 
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -665,29 +734,13 @@
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
         <div class="border-t border-gray-200 pt-12 mt-12">
             <h2 class="text-xl font-bold mb-6">相关文章</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <a href="/rag-systems-2026/" class="card group">
-                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
-                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
-                    </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">RAG Systems 2026: Advanced Techniques for Production Deployment</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">RAG Systems 2026: Advanced Techniques for Production Deployment …</p>
-                </a>
-                
-                <a href="/ai-coding-agents-comparison/" class="card group">
-                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
-                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
-                    </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison The …</p>
-                </a>
                 
                 <a href="/ai-coding-agents-full-comparison/" class="card group">
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
@@ -710,6 +763,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -802,116 +856,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

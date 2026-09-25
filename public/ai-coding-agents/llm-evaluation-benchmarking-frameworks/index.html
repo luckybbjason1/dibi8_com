@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLM Evaluation &amp; Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="LLM Evaluation &amp; Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/llm-evaluation-benchmarking-frameworks/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/llm-evaluation-benchmarking-frameworks/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LLM Evaluation &amp; Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/llm-evaluation-benchmarking-frameworks/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/llm-evaluation-benchmarking-frameworks/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/llm-evaluation-benchmarking-frameworks/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="LLM Evaluation & Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LLM Evaluation & Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "LLM Evaluation \u0026 Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared",
+      "item": "https://dibi8.com/ai-coding-agents/llm-evaluation-benchmarking-frameworks/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LLM Evaluation \u0026 Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared",
+  "name": "LLM Evaluation \u0026 Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “LLM Evaluation \u0026 Benchmarking Frameworks 2025: EleutherA… description: “Technical guide and comparison” date: 2026-05-18T00:00:00+08:00 lastmod: 2026-05-18T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-18” draft: false categories: [“llm-frameworks”] tags: [“llm evaluation”, “benchmarking frameworks”, “eleutherai”, “opencompass”, “big-bench”, “helm”, “alpacaeval”, “deepeval”] aliases:\n/posts/llm-evaluation-benchmarking-frameworks/ LLM Evaluation \u0026 Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared {\u003c/* resource-info */\u003e}\nLast updated: January 21, 2025\nBuilding a large language model is only half the battle — proving it works is equally critical. Whether you’re fine-tuning an open-source model, evaluating third-party APIs, or developing a custom LLM from scratch, you need rigorous, reproducible evaluation methods.\nLLM evaluation and benchmarking frameworks provide the infrastructure to systematically assess model performance across diverse tasks, datasets, and metrics. In this comprehensive guide, we compare the leading frameworks of 2025: EleutherAI LM Evaluation Harness, OpenCompass, BIG-bench, HELM, AlpacaEval, and DeepEval — helping you choose the right evaluation strategy for your needs.\nWhy Is LLM Evaluation Critical for AI Development? LLM evaluation serves multiple purposes across the AI development lifecycle: 1. Model selection: Choosing the best base model for your use case 2. Development iteration: Tracking improvements during training and fine-tuning 3. Quality assurance: Ensuring production models meet performance standards 4. Risk assessment: Identifying failure modes, biases, and safety concerns 5. Competitive analysis: Comparing your model against commercial alternatives 6. Regulatory compliance: Demonstrating responsible AI development\nWithout systematic evaluation, teams risk deploying models that underperform, generate harmful outputs, or fail at critical edge cases.\nKey Metrics for LLM Performance Assessment LLM evaluation typically measures these dimensions: | Metric Category | Examples | What It Measures | |\n|\n|\n| | Perplexity | Cross-entropy loss | How well the model predicts text statistically | | Accuracy | Exact match, F1 score | Correctness on classification/QA tasks | | Code generation | Pass@1, Pass@k | Ability to write functional code | | Reasoning | GSM8K, MATH | Mathematical and logical reasoning | | Knowledge | MMLU, TriviaQA | Factual knowledge breadth and depth | | Safety | TruthfulQA, BBQ | Truthfulness, bias, and harm avoidance | | Efficiency | Throughput, memory usage | Speed and resource consumption | | Human preference | Elo ratings, win rates | Subjective quality vs. other models |\nThe Difference Between Benchmarks and Real-World Evaluation Benchmarks are standardized, reproducible tests that measure specific capabilities on curated datasets. They enable fair comparison across models but may not reflect real-world performance.\nReal-world evaluation measures how models perform on actual production tasks with real users. It captures practical utility but is harder to standardize and reproduce.\n| Aspect | Benchmarks | Real-World Evaluation | |\n|\n|\n| | Reproducibility | High | Low | | Comparison | Fair (same test) | Context-dependent | | Coverage | Narrow (specific tasks) | Broad (end-to-end workflows) | | Practical relevance | May not reflect real use | Directly relevant | | Cost | Low (automated) | High (requires human feedback) | | Speed | Fast | Slow |\nThe best approach combines both: benchmarks for rapid iteration and standardized comparison, plus real-world evaluation for validating practical utility.\nTop LLM Evaluation and Benchmarking Frameworks EleutherAI LM Evaluation Harness: The Industry Standard The EleutherAI LM Evaluation Harness is the most widely adopted open-source framework for evaluating LLMs. It supports hundreds of benchmarks and virtually all model architectures.\nKey Features:\n500+ tasks: MMLU, HellaSwag, ARC, Winogrande, TruthfulQA, and many more Broad model support: Hugging Face Transformers, GPT-NeoX, LLaMA, Mistral, GPT-4, Claude Flexible configuration: YAML-based task configuration Reproducibility: Deterministic evaluation with seed control Parallel execution: Multi-GPU support for faster evaluation Active community: 4,000+ GitHub stars; constant updates Pros: Most comprehensive task library; supports virtually all models; highly configurable; standard for research papers Cons: Steep learning curve; requires Python proficiency; command-line focused\nBest for: Researchers, model developers, anyone publishing benchmark results\nOpenCompass: Comprehensive Chinese-English Benchmark Suite OpenCompass (formerly OpenMMLab’s evaluation toolkit) is developed by Shanghai AI Laboratory and has become a leading evaluation framework, particularly strong in multilingual and Chinese-language benchmarks.\nKey Features:\n100+ datasets: MMLU, C-Eval, CMMLU, GAOKAO, GSM8K, and more Chinese-language focus: Strongest support for Chinese benchmarks Model hub integration: Easy evaluation of Hugging Face and ModelScope models Modular design: Plug-and-play task and model components Visualization: Built-in leaderboard and comparison tools Leaderboard: Public leaderboard at opencompass.org.cn Pros: Excellent multilingual support; strong Chinese benchmarks; active development; great visualization Cons: Smaller community than EleutherAI outside China; fewer documentation resources in English\nBest for: Chinese-language model evaluation; multilingual benchmarks; visual comparison needs\nBIG-bench: Beyond the Imitation Game Benchmark BIG-bench (also known as BIG-bench Lite) is Google’s collaborative benchmark suite designed to test capabilities beyond simple text completion.\nKey Features:\n200+ diverse tasks: Covering reasoning, translation, coding, mathematics, and more Novel tasks: Emphasis on tasks not seen during model training Collaborative: Open-source contributions from 100+ researchers Lite version: 24-task subset for faster evaluation Human baselines: Comparison data from human performers Difficulty spectrum: Tasks ranging from trivial to expert-level Pros: Diverse task types; designed to challenge cutting-edge models; strong research backing Cons: Slower to evaluate than focused benchmarks; some tasks are esoteric; less active than in 2023\nBest for: Stress-testing frontier models; research on emergent capabilities; capability breadth assessment\nHELM: Holistic Evaluation of Language Models by Stanford HELM (Holistic Evaluation of Language Models) is Stanford CRFM’s evaluation framework that emphasizes transparency and multi-metric assessment.\nKey Features:\n16 core scenarios: Diverse real-world use cases 7 metric categories: Accuracy, calibration, robustness, fairness, bias, toxicity, efficiency Transparency: Full disclosure of evaluation parameters and limitations Model cards: Standardized reporting of model capabilities and limitations Regular updates: Quarterly evaluation cycles with published results Academic rigor: Peer-reviewed methodology Pros: Holistic multi-metric approach; strong academic foundation; transparency-focused Cons: Slower evaluation cycle; fewer tasks than EleutherAI; more academic than practical\nBest for: Responsible AI evaluation; understanding model limitations; academic research\nAlpacaEval: Automatic Evaluation for Instruction-Following AlpacaEval is a lightweight, fast benchmark specifically designed to evaluate instruction-following capabilities by comparing model outputs against GPT-4 reference answers.\nKey Features:\n805 instruction-following tasks: Diverse, practical instructions LLM-as-a-judge: GPT-4 rates model outputs against baseline Win rates: Easy-to-understand comparison metric Fast evaluation: Complete evaluation in minutes, not hours Leaderboard: Public leaderboard at alpaca-eval.com Correlation with human judgment: Validated against human preferences Pros: Extremely fast; practical instruction focus; high correlation with ChatBot Arena; easy to set up Cons: Dependent on GPT-4 as judge (bias toward GPT-style outputs); narrower scope than full benchmarks\nBest for: Chatbot evaluation; instruction-tuned models; rapid iteration during development\nDeepEval: Unit Testing Framework for LLMs DeepEval is a developer-friendly testing framework that brings software engineering practices (unit testing, CI/CD integration) to LLM evaluation.\nKey Features:\nPython-native: pytest-style test writing for LLMs 20+ built-in metrics: G-Eval, Summarization, Faithfulness, Answer Relevancy, Hallucination Custom metrics: Define your own evaluation criteria CI/CD integration: Run evaluations in GitHub Actions, GitLab CI, etc. Local and hosted model support: Works with OpenAI, Anthropic, local models Confident AI integration: Cloud dashboard for tracking results Pros: Developer-friendly; CI/CD native; fast setup; production-oriented; excellent documentation Cons: Smaller benchmark library; Python-specific; newer framework\nBest for: Engineering teams; CI/CD integration; production model validation; custom evaluation pipelines\nComparison Table: Benchmark Coverage, Ease of Use, and Community Support | Feature | EleutherAI | OpenCompass | BIG-bench | HELM | AlpacaEval | DeepEval | |\n|\n|\n|\n|\n|\n|\n| | Tasks/Datasets | 500+ | 100+ | 200+ | 16 scenarios | 805 instructions | 20+ metrics | | Installation | pip install | pip install | pip install | Complex | pip install | pip install | | Setup time | 30 min | 30 min | 1 hour | 2+ hours | 15 min | 15 min | | Evaluation speed | Medium | Medium | Slow | Slow | Very fast | Very fast | | Multi-GPU support | Yes | Yes | Yes | Limited | No | No | | Chinese benchmarks | Limited | Excellent | Limited | No | No | No | | Code benchmarks | Yes | Yes | Yes | Limited | No | No | | Safety/bias tests | Yes | Yes | Yes | Excellent | No | Yes (custom) | | CI/CD integration | Manual | Manual | Manual | Manual | Manual | Native (pytest) | | Community | Very large | Large (China) | Medium | Medium | Growing | Growing | | Documentation | Good | Good (English/Chinese) | Good | Excellent | Good | Excellent | | GitHub stars | 4,000+ | 3,000+ | 3,500+ | 1,500+ | 2,500+ | 1,000+ |\nPopular LLM Benchmarks Explained MMLU: Massive Multitask Language Understanding MMLU tests knowledge across 57 subjects spanning STEM, humanities, social sciences, and more. It measures factual knowledge breadth through multiple-choice questions at elementary to professional difficulty levels.\nBest for: Comparing general knowledge across models Limitations: May favor larger models with more training data; doesn’t measure reasoning Top scores: GPT-4 (86.4%), Claude 3.5 Sonnet (88.7%), Gemini 1.5 Pro (85.9%) HumanEval: Code Generation Benchmark HumanEval measures functional code generation by asking models to write Python functions from docstrings. Success is measured by Pass@k (percentage of problems solved).\nBest for: Evaluating coding assistant capabilities Limitations: Only Python; doesn’t test debugging or code understanding Top scores: GPT-4 (90.2% Pass@1), Claude 3.5 Sonnet (92.0%), o1-preview (92.4%) TruthfulQA: Measuring Model Hallucination TruthfulQA tests whether models generate truthful answers to questions, particularly in areas where common misconceptions exist. It measures resistance to hallucination and false beliefs.\nBest for: Assessing model truthfulness and hallucination rates Limitations: Imitation of training data can inflate scores Top scores: GPT-4 (60.0%), Claude 3 Opus (65.8%), Llama 3.1 405B (55.2%) Automated vs Human Evaluation: Finding the Right Balance LLM-as-a-Judge: Using AI to Evaluate AI LLM-as-a-Judge uses a powerful LLM (typically GPT-4) to evaluate outputs from other models. This approach has gained popularity because it’s: - Scalable: No human annotators required\nFast: Evaluate thousands of samples instantly Consistent: Same criteria applied every time Correlated: Studies show high correlation with human judgment Popular implementations include AlpacaEval, MT-Bench, and custom G-Eval implementations.\nBest practices: - Use the strongest available judge model\nValidate against human judgment on a subset Be aware of bias toward outputs similar to the judge’s style Combine multiple evaluation dimensions Human Preference Alignment and RLHF Benchmarking Reinforcement Learning from Human Feedback (RLHF) trains models to align with human preferences. Evaluating RLHF quality requires: 1. Preference datasets: Paired comparisons of model outputs 2. Elo rating systems: Rank models based on head-to-head comparisons 3. ChatBot Arena: Crowdsourced human preference platform (lmsys.org) 4. Custom annotation: Domain-specific human evaluation\nChatBot Arena has become the gold standard for chatbot evaluation, with over 1 million human votes. Its Elo leaderboard is widely cited as the most reliable measure of real-world chatbot quality.\nOpen-Source vs Commercial Evaluation Frameworks | Factor | Open-Source (EleutherAI, OpenCompass, etc.) | Commercial (Confident AI, Scale AI, etc.) | |\n|\n|\n| | Cost | Free | $500–5,000+/month | | Customization | Full code access | API and configuration | | Support | Community | Dedicated support | | Maintenance | Community-driven | Vendor-managed | | Enterprise features | Limited | SSO, audit logs, SLA | | Setup effort | Higher (self-hosted) | Lower (managed) | | Benchmark library | Extensive | Curated |\nCommunity Support and Documentation Quality Community strength is a key factor in framework selection: - EleutherAI: Largest community; 4,000+ GitHub stars; very active Discord\nOpenCompass: Strong Chinese community; growing international presence DeepEval: Smaller but highly engaged; responsive maintainers BIG-bench: Google-backed; large contributor base but less active recently HELM: Stanford-backed; academic community; less frequent updates AlpacaEval: Growing rapidly; strong ties to LMSYS/ChatBot Arena How to Build an LLM Evaluation Pipeline Step 1: Define Evaluation Objectives Before running any benchmark, answer these questions: - What capabilities matter most for your use case? (reasoning, coding, creativity, safety)\nWho are your users? What quality bar do they expect? What are your cost and latency constraints? How does your model compare to existing solutions? What failure modes are most harmful? Step 2: Select Appropriate Benchmarks Choose benchmarks aligned with your objectives: | Use Case | Primary Benchmarks | Secondary Benchmarks | |\n|\n|\n| | General-purpose chatbot | AlpacaEval, MT-Bench, ChatBot Arena | MMLU, HellaSwag | | Coding assistant | HumanEval, MBPP, SWE-bench | DS-1000, LiveCodeBench | | Educational tool | MMLU, GSM8K | ARC, OpenBookQA | | Enterprise RAG | Custom retrieval QA, faithfulness | TruthfulQA, toxicity | | Creative writing | Human evaluation, LLM-as-judge | Perplexity, diversity metrics |\nStep 3: Implement Automated Evaluation Set up your evaluation infrastructure: 1. Install evaluation framework (EleutherAI, DeepEval, or OpenCompass) 2. Configure model access (API keys or local model weights) 3. Select tasks/benchmarks relevant to your use case 4. Run baseline evaluation on your current model 5. Set up CI/CD integration for continuous evaluation 6. Track results in a dashboard or spreadsheet 7. Iterate and compare results across model versions\nThe Future of LLM Evaluation: Dynamic Benchmarks and Human Feedback The LLM evaluation landscape is evolving rapidly: 1. Dynamic benchmarks: Automatically generating new test cases to prevent overfitting 2. Adversarial evaluation: Proactively finding failure modes through AI-generated challenges 3. Real-time monitoring: Continuous production evaluation with live user feedback 4. Multi-modal evaluation: Expanding beyond text to images, audio, and video 5. Standardized reporting: Industry-wide model cards and evaluation standards 6. Open evaluation platforms: Community-driven, transparent evaluation at scale\nThe ultimate goal: evaluation systems that evolve as fast as the models themselves, ensuring we can reliably measure and compare capabilities across an ever-improving landscape.\nFrequently Asked Questions What is the best framework for evaluating open-source LLMs? EleutherAI LM Evaluation Harness is the most widely used and comprehensive framework, with 500+ tasks and broad model support. It’s the standard for research papers and model comparisons. OpenCompass is excellent for multilingual and Chinese-language evaluation. DeepEval is ideal for engineering teams wanting CI/CD integration.\nHow accurate are LLM benchmarks in predicting real-world performance? Benchmarks correlate moderately (r=0.6–0.8) with real-world performance for similar tasks, but correlation is not causation. Models optimized for benchmarks may not generalize. The best approach combines: - Multiple diverse benchmarks\nCustom evaluations on your specific tasks Human evaluation and user feedback Production A/B testing No benchmark fully captures real-world utility.\nIs EleutherAI LM Eval free to use? Yes, EleutherAI LM Evaluation Harness is completely free and open-source under the MIT license. You only pay for the compute resources (GPU time) needed to run evaluations. For a full evaluation on 100+ tasks with a 7B parameter model, expect $10–50 in cloud GPU costs.\nWhat benchmarks should I use for code generation LLMs? For code generation models, use this hierarchy: 1. Primary: HumanEval (Python), MBPP (Python), MultiPL-E (multilingual) 2. Advanced: SWE-bench (real GitHub issues), DS-1000 (data science), LiveCodeBench 3. Supplementary: Codeforces rating, execution-based benchmarks\nStart with HumanEval and MBPP for quick iteration; add SWE-bench for production-grade evaluation.\nHow do I evaluate a custom fine-tuned LLM? Follow this workflow: 1. Evaluate the base model using standard benchmarks (EleutherAI Harness) 2. Evaluate the fine-tuned model on the same benchmarks to detect regression 3. Create custom evaluation on your specific task and dataset 4. Compare outputs side-by-side between base and fine-tuned versions 5. Run safety evaluation (TruthfulQA, toxicity, bias tests) 6. Test edge cases specific to your domain 7. Gather human feedback from domain experts\nUse DeepEval for CI/CD integration or EleutherAI for comprehensive benchmarking.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\nConclusion LLM evaluation is not optional — it’s a core discipline of responsible AI development. EleutherAI LM Evaluation Harness is the industry standard for comprehensive benchmarking. OpenCompass excels for multilingual evaluation. BIG-bench stress-tests frontier capabilities. HELM provides holistic, transparent assessment. AlpacaEval enables rapid instruction-following evaluation. DeepEval brings software engineering rigor to LLM testing.\nThe most effective evaluation strategy combines multiple frameworks: use EleutherAI for breadth, AlpacaEval for speed, DeepEval for CI/CD integration, and custom human evaluation for your specific use case. Evaluation is not a one-time task — it\"s an ongoing practice that evolves alongside your models.\nExplore these frameworks at EleutherAI on GitHub, OpenCompass on GitHub, Stanford HELM, AlpacaEval on GitHub, DeepEval/Confident AI on GitHub, and find the latest research on arXiv.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “LLM Evaluation \u0026 Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/llm-evaluation-benchmarking-frameworks\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "2853",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/llm-evaluation-benchmarking-frameworks/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">LLM Evaluation &amp; Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">LLM Evaluation &amp; Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared</h1>
-        
+
         
         <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
         
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,11 +151,11 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <p>title: &ldquo;LLM Evaluation &amp; Benchmarking Frameworks 2025: EleutherA&hellip;
-description: &ldquo;Technical guide and comparison.&rdquo;
+description: &ldquo;Technical guide and comparison&rdquo;
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
@@ -468,7 +540,7 @@ aliases:</p>
 <p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
 
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -478,7 +550,7 @@ aliases:</p>
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -498,8 +570,8 @@ aliases:</p>
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -523,6 +595,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -615,116 +688,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

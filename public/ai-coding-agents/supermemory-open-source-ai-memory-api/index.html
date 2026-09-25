@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/supermemory-open-source-ai-memory-api/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/supermemory-open-source-ai-memory-api/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="AI tool guide">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/supermemory-open-source-ai-memory-api/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/supermemory-open-source-ai-memory-api/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/supermemory-open-source-ai-memory-api/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything">
+  <meta property="og:description" content="AI tool guide">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything">
+  <meta name="twitter:description" content="AI tool guide">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything",
+      "item": "https://dibi8.com/ai-coding-agents/supermemory-open-source-ai-memory-api/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything",
+  "name": "Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything",
+  "description": "AI tool guide",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything TL;DR Supermemory is an open-source memory engine and app for AI applications. It provides a memory API with vector search, graph search, and session management. It’s the fastest self-hosted memory solution, designed for LLM apps that need persistent memory without external dependencies.\nSupermemory is an open-source memory engine and app for AI applications. It provides a memory API with vector search, graph search, and session management. It’s the fastest self-hosted memory solution, designed for LLM apps that need persistent memory without external dependencies.\n| Metric | Supermemory | Mem0 | LangChain Memory | |\n|\n|\n|\n| | Latency | \u003c 5ms | 15-30ms | 50-100ms | | Setup | ```pip install supermemory```` | Docker | Complex | | Dependencies | None | Cloud API | Many | | Self-hosted | ✓ | Limited | N/A |\nSupermemory achieves sub-5ms latency for memory retrieval — the fastest among open-source memory engines. It’s designed for developers who want persistent memory for their LLM apps without external dependencies. All data stays on your infrastructure, giving you full control over privacy and security. With support for 1M+ entries, 50+ languages, and 3+ search modes (vector, graph, full-text), Supermemory is the most scalable memory solution for AI applications.\nWhat It Is Supermemory solves one problem: LLM apps forget everything between sessions.\nIt provides a memory API that stores conversations, user preferences, and knowledge as structured data. Unlike simple vector databases, Supermemory combines vector search with graph relationships — so your app can remember not just “what was said” but “who said it, when, and how it connects to other things.”\nKey capabilities:\nVector search for semantic similarity Graph search for relationship querying Session management for conversation threads Self-hosted with zero external dependencies Python and JavaScript API Integrates with LangChain, LlamaIndex, CrewAI Supermemory is designed for developers who want persistent memory for their LLM apps without relying on external APIs or cloud services. All data stays on your infrastructure, giving you full control over privacy and security. It supports 1M+ entries, 50+ languages, and 3+ search modes (vector, graph, full-text) — making it the most scalable memory solution for AI applications.\nHow It Works (30 Seconds) User Input → Supermemory API → Memory Store ↓ Semantic Search (Vector) + Relationship Search (Graph) ↓ Structured Context Returned ↓ LLM Gets Rich Context Supermemory works in three layers: Layer 1 — Storage: Conversations, preferences, and facts are stored as structured data. Each memory entry has metadata: user ID, timestamp, source, and relationships.\nLayer 2 — Index: Memories are indexed for both vector search (semantic similarity) and graph search (relationship querying). This dual-indexing enables both “find similar memories” and “find memories about person X from project Y.”\nLayer 3 — Retrieval: When your app needs context, it queries the memory API. Results include both semantic matches and relationship graphs — so the LLM gets structured context, not raw text.\nQuickstart (60 Seconds) Install Supermemory in your Python project: `````bash pip install supermemory\nInitialize memory for your app python -c “import supermemory; m = supermemory.Memory(); m.init()”\nStore a memory m.add(“User likes spicy food”) m.add(“User is allergic to shellfish”)\nRetrieve relevant memories memories = m.search(“dietary preferences”) print(memories)\nOr using Docker for production: `````bash docker run -d \\ --name supermemory \\ -p 8000:8000 \\ supermemoryai/supermemory:latest # API available at http://localhost:8000 When to Use / When to Skip Great fit if you…\nBuild LLM apps that need persistent memory Want self-hosted memory without external dependencies Need both vector and graph search Use LangChain, LlamaIndex, or CrewAI Skip it if you…\nNeed cloud-based memory sharing across users Work in environments where Python can’t run Only need simple key-value storage Benchmarks Supermemory achieves sub-5ms latency for memory retrieval — the fastest among open-source memory engines.\nPerformance Comparison | Metric | Supermemory | Mem0 | LangChain | |\n|\n|\n|\n| | Latency | \u003c 5ms | 15-30ms | 50-100ms | | Setup Time | 60s | 5min | 30min | | Memory Limit | 1M entries | 100K entries | 10K entries | | Dependencies | 0 | 3-5 | 10+ |\nSource: Supermemory benchmarks\nPython API import supermemory # Initialize memory m = supermemory.Memory() m.init() # Add memories with metadata m.add(\"User likes spicy food\", tags=[\"diet\", \"preference\"]) m.add(\"User works at Google\", tags=[\"work\", \"company\"]) # Semantic search results = m.search(\"dietary preferences\", top_k=5) # Graph search connected = m.get_connections(\"User works at Google\") # Session management session = m.create_session() session.add(\"User preferences\") session.query(\"What does this user like?\") Advanced Features # Add memories with timestamps m.add(\"Meeting with John at 3pm\", timestamp=\"2026-06-10T15:00:00\") # Filter by metadata filtered = m.search(\"meeting\", metadata={\"tags\": [\"work\"]}) # Update memories m.update(\"User likes spicy food\", \"User prefers very spicy food\") # Delete memories m.delete(\"Outdated memory\") # Backup and restore m.backup(\"backup.tar.gz\") m.restore(\"backup.tar.gz\") The Python API provides full CRUD operations, metadata filtering, and session management. It’s designed for both simple use cases and complex production deployments.\nDocker Production Deployment For production environments, use Docker to deploy Supermemory: `````bash\nBuild the Docker image docker build -t supermemory-server .\nRun with environment variables docker run -d –name supermemory -e SUPERMEMORY_PORT=8000 -e SUPERMEMORY_HOST=0.0.0.0 -v /data/supermemory:/data -p 8000:8000 supermemory-server\nCheck logs docker logs -f supermemory\nHealth check curl http://localhost:8000/health\nDocker deployment supports: - Persistent data storage via volume mounts - Environment variable configuration - Health check endpoints - Log management and monitoring - Horizontal scaling with Docker Swarm or Kubernetes * * * ## API Reference Supermemory exposes a REST API for programmatic access: `````bash # Get all memories curl http://localhost:8000/memories # Add a new memory curl -X POST http://localhost:8000/memories \\ -H \"Content-Type: application/json\" \\ -d '{\"text\": \"User prefers dark mode\", \"tags\": [\"preference\"]}' # Search memories curl \"http://localhost:8000/memories/search?q=dark+mode\u0026limit=5\" # Delete a memory curl -X DELETE http://localhost:8000/memories/{id} The API supports: - CRUD operations for memories\nVector search queries Graph relationship queries Session management endpoints Batch operations for bulk imports Use Cases Use Case 1: Customer Support Bot # Store customer preferences memory.add(\"Customer prefers email contact\", tags=[\"customer\", \"contact\"]) memory.add(\"Customer has premium subscription\", tags=[\"customer\", \"subscription\"]) # Retrieve context for support queries context = memory.search(\"premium features\", top_k=10) Use Case 2: Personalized Recommendation Engine # Track user interactions memory.add(\"User clicked on Python tutorial\", tags=[\"interaction\", \"python\"]) memory.add(\"User completed SQL course\", tags=[\"interaction\", \"sql\"]) # Generate recommendations based on history recommendations = memory.search(\"user learning path\", top_k=5) Use Case 3: Research Knowledge Base # Store research notes memory.add(\"Paper: Attention Is All You Need\", tags=[\"research\", \"transformer\"]) memory.add(\"Experiment: BERT vs GPT on NLI\", tags=[\"research\", \"experiment\"]) # Cross-reference findings related = memory.get_connections(\"transformer models\") JavaScript API import { Memory } from 'supermemory'; const m = new Memory(); await m.init(); await m.add('User likes spicy food', { tags: [diet] }); const results = await m.search('dietary preferences', { top_k: 5 }); LangChain Integration from langchain.memory import SupermemoryMemory memory = SupermemoryMemory( session_id=\"user-123\", return_messages=True ) chat_history = memory.chat_memory print(chat_history.messages) Compared to Alternatives | Feature | Supermemory | Mem0 | LangChain Memory | |\n|\n|\n|\n| | Self-hosted | ✓ | Limited | N/A | | Vector Search | ✓ | ✓ | ✓ | | Graph Search | ✓ | ✗ | ✗ | | Python API | ✓ | ✓ | ✓ | | JS API | ✓ | ✗ | ✗ | | Latency | \u003c 5ms | 15-30ms | 50-100ms | | Dependencies | 0 | 3-5 | 10+ |\nSupermemory’s dual-indexing approach enables both semantic and relationship queries, making it the most versatile memory solution for AI applications.\nLimitations / Honest Assessment Supermemory is not for everyone: - Not for cloud teams: Self-hosted means you manage the infrastructure\nPython-first: JavaScript API exists but Python is the primary language No team sharing: Memory is per-app, not shared across organizations It’s built for individual developers and small teams who want persistent memory for their LLM apps without external dependencies.\nSecurity Considerations For production deployments, ensure you: - Use HTTPS for all API connections\nEnable authentication via API keys or JWT tokens Regularly backup your memory data Monitor access logs for suspicious activity Encrypt sensitive memories at rest using AES-256 # Enable HTTPS with Let's Encrypt sudo certbot --nginx -d supermemory.yourdomain.com # Configure API key authentication export SUPERMEMORY_API_KEY=*** Start with security enabled docker run -d \\ --name supermemory \\ -e SUPERMEMORY_API_KEY=*** \\ -p 443:443 \\ supermemory-server Supermemory stores sensitive data including conversations and preferences. For production use, implement these security measures to protect your data. Regular security audits and penetration testing are recommended for high-security deployments.\nQ1: Does Supermemory require any external services? No. Supermemory is self-hosted with zero external dependencies. Everything runs on your own infrastructure.\nQ2: Can I use Supermemory with any LLM framework? Yes. It provides Python and JavaScript APIs that work with LangChain, LlamaIndex, CrewAI, or any framework that can make HTTP requests.\nQ3: What’s the difference between vector search and graph search? Vector search finds semantically similar memories. Graph search finds memories connected by relationships (same user, same project, same time period). Supermemory provides both.\nQ4: How many memories can Supermemory handle? Supermemory supports up to 1 million entries per app instance. For larger datasets, you can scale horizontally across multiple instances.\nQ5: Can I use Supermemory in production? Yes. Supermemory includes Docker deployment options and is designed for production use. The self-hosted architecture means you control the infrastructure.\nQ6: How does Supermemory handle data privacy? All data stays on your infrastructure. No external APIs are called. You can encrypt data at rest and in transit using standard TLS.\nQ7: Can I migrate data from other memory systems? Yes. Supermemory supports bulk import via CSV, JSON, and custom data formats. Migration scripts are available for common systems.\nSources \u0026 Further Reading Official docs: supermemory.dev GitHub repository: supermemoryai/supermemory Python API docs: GitHub JavaScript API docs: GitHub Conclusion: Build LLM Apps That Actually Remember Supermemory solves the “goldfish LLM app” problem. It stores memories as structured data, indexes them for both vector and graph search, and returns structured context — all self-hosted with zero external dependencies.\nTry it now:\npip install supermemory python -c \"import supermemory; m = supermemory.Memory(); m.init()\" For self-hosted memory on a VPS, consider using HTStack for affordable GPU hosting, or DigitalOcean for easy cloud deployment.\nQuick Start Command:\n# One-liner setup pip install supermemory \u0026\u0026 python -c \" import supermemory m = supermemory.Memory() m.init() m.add('Test memory') print('Supermemory initialized!') print(m.search('test')) \" ```` This command demonstrates how to initialize Supermemory, add a test memory, and search for it — all in one command. It's perfect for getting started quickly with your own LLM applications. Supermemory solves the \"goldfish LLM app\" problem by providing persistent memory that actually remembers everything your users say. It\"s the most scalable memory solution for AI applications, with support for 1M+ entries, 50+ languages, and 3+ search modes (vector, graph, full-text). Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI memory systems and LLM app architecture. Related articles: - [Vector Database Comparison](/resources/llm-frameworks/vector-database-comparison/) *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/supermemory-open-source-ai-memory-api\" } } * * * ## Related Articles - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](supermemory-open-source-ai-memory-api) - [llm-inference-cost-optimization-guide-2026](supermemory-open-source-ai-memory-api) - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](supermemory-open-source-ai-memory-api) - [llm-inference-cost-optimization-guide-2026](supermemory-open-source-ai-memory-api) - [codebase-memory-mcp-high-performance-code-intelligence](supermemory-open-source-ai-memory-api) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "1947",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/supermemory-open-source-ai-memory-api/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h1 id="supermemory-the-fastest-open-source-ai-memory-api-for-building-llm-apps-that-remember-everything">Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything</h1>
 <hr>
 <h2 id="tldr">TL;DR</h2>
@@ -475,7 +547,7 @@ curl -X DELETE http://localhost:8000/memories/{id}
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 </span></span></span></code></pre></div>
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -485,7 +557,7 @@ curl -X DELETE http://localhost:8000/memories/{id}
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -505,8 +577,8 @@ curl -X DELETE http://localhost:8000/memories/{id}
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -530,6 +602,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -622,116 +695,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

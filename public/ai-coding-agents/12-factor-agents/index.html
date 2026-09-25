@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initialize a new 12-factor agent project | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Initialize a new 12-factor agent project | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/12-factor-agents/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/12-factor-agents/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Initialize a new 12-factor agent project | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/12-factor-agents/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/12-factor-agents/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/12-factor-agents/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Initialize a new 12-factor agent project">
+  <meta property="og:description" content="Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Initialize a new 12-factor agent project">
+  <meta name="twitter:description" content="Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Initialize a new 12-factor agent project",
+      "item": "https://dibi8.com/ai-coding-agents/12-factor-agents/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Initialize a new 12-factor agent project",
+  "name": "Initialize a new 12-factor agent project",
+  "description": "Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Introduction Large language models have rapidly evolved from simple chat interfaces into complex, autonomous agents that make decisions, execute code, interact with external APIs, and collaborate with humans. Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful. Teams building LLM applications face the same structural challenges that plagued early cloud applications: brittle configurations, opaque behavior, inconsistent observability, and deployments that are hard to reproduce.\nEnter 12-Factor Agents, a framework from humanlayer that adapts the iconic 12-Factor App methodology — originally designed for Heroku-era cloud applications — specifically for LLM-powered systems. With 23,161 GitHub stars, the project has quickly become a reference point for engineers who want principled, production-grade guidance on building reliable AI agents.\nDisclosure: This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. Disclosure Policy\nDigitalOcean - Reliable cloud infrastructure for your LLM applications. HTStack - High-performance server hosting. WebShare - Premium proxy services for AI data pipelines.\nArchitecture overview (source: dibi8.com)\nWhat Is 12-Factor Agents? 12-Factor Agents is a principles-based framework that provides a structured set of guidelines for building LLM applications and agents that are reliable, observable, portable, and maintainable. It draws directly from the 12-Factor App manifesto (originally published for Heroku applications in 2011) and reinterprets each principle for the unique constraints and capabilities of modern AI agent systems.\nThe framework is not a library or SDK you install and import. Instead, it is a set of architectural and operational principles that you apply when designing, implementing, and deploying agent-based systems. This is intentionally philosophy-first: the framework assumes you are already comfortable with LLM development and gives you the organizational structure needed to scale your efforts beyond proof-of-concept.\nFeature Image:\nThe 12 Principles of 12-Factor Agents The framework defines twelve core principles. Each one maps a traditional software engineering concept to the LLM agent domain.\n1. Codebase Maintain a single codebase for each agent, tracked in version control. Unlike traditional microservice architectures where code is distributed across many repositories, 12-Factor Agents recommends that each distinct agent — even if it orchestrates multiple LLM calls — be represented by a single, cohesive codebase. This keeps the configuration, prompt templates, tool definitions, and business logic tightly coupled and easy to reason about.\n# Initialize a new 12-factor agent project npx create-12-factor-agent my-agent # Or with uvx uvx create-12-factor-agent my-agent 2. Dependencies Explicitly declare and isolate all dependencies. LLM agents have an unusually rich dependency graph: Python packages, model providers, vector stores, prompt template engines, tool registries, and human-in-the-loop middleware. Each dependency should be declared explicitly, and isolation between the agent runtime and the surrounding infrastructure should be maintained.\n3. Config Store configuration in the environment. Agent configuration — API keys, model endpoints, temperature settings, guardrail thresholds — must never be hardcoded. Use environment variables or a secrets manager. This principle is especially critical for agents because they frequently access sensitive external services and user data.\n# Set environment variables for your agent export OPENAI_API_KEY=\"sk-...\" export REDIS_URL=\"redis://localhost:6379\" export GUARDRAIL_THRESHOLD=\"0.85\" export HUMAN_APPROVAL_ENDPOINT=\"https://approval.example.com/queue\" 4. Backing Services Treat backing services as attached resources. LLM agents connect to a proliferation of backing services: vector databases (Pinecone, Weaviate), message queues (Redis, RabbitMQ), human review dashboards, logging pipelines, and model APIs. Each should be treated as an attached resource that can be swapped without modifying agent code.\n5. Build, Release, Run Strictly separate build and run stages. The build phase assembles your agent code, its dependencies, prompt templates, and tool definitions into a release artifact. The run phase executes that release against any environment. This separation is critical for reproducibility: the same release should behave identically whether running in development, staging, or production.\n# Build phase: package the agent npx create-12-factor-agent build --output dist/agent-release.tar.gz # Run phase: deploy the release docker run --env-file .env agent-release:latest 6. Processes Execute the agent as one or more stateless processes. Each agent process should be stateless and self-contained. State — conversation history, tool results, intermediate reasoning — should be stored in backing services, not in the process memory. This enables horizontal scaling and graceful restarts.\n7. Port Binding Export services via port binding. Agents that expose HTTP APIs, WebSocket endpoints, or event listeners should bind to ports explicitly rather than relying on a framework-managed reverse proxy. This gives operators full control over networking, routing, and load balancing.\n# Run the agent server on a specific port python agent_server.py --port 8080 --host 0.0.0.0 8. Concurrency Scale out via the process model. LLM agents are often I/O-bound (waiting for model responses) rather than CPU-bound. Scaling horizontally by running multiple agent processes is the recommended approach. The framework provides patterns for distributing requests across worker processes, each with its own model client pool.\n9. Disposability Maximize robustness with fast startup and graceful shutdown. Agent processes should start quickly (under a few seconds) and shut down gracefully, flushing any pending tool calls or conversation state. This is essential for rolling deployments and autoscaling scenarios where processes are frequently created and destroyed.\n10. Dev/Prod Parity Keep development, staging, and production as similar as possible. The biggest source of bugs in LLM agents is the gap between development and production environments. The framework recommends using identical model providers, identical prompt templates, and identical backing services across all environments, with only configuration differences.\n# Use identical setup across environments npx create-12-factor-agent init --env staging npx create-12-factor-agent init --env production 11. Logs Treat logs as event streams. Agent logs should be emitted as structured JSON events to stdout, never written to local files. A centralized logging system collects and indexes these events for search, alerting, and debugging. This is critical for debugging LLM agent behavior, where the sequence of model calls, tool invocations, and human interventions tells the story of what happened.\n12. Admin Processes Run admin/management processes as one-off processes. Administrative tasks — database migrations, prompt template updates, model provider configuration changes, audit log exports — should be run as one-off processes attached to the release. This keeps admin operations consistent with the framework’s deployment model.\n# Run admin tasks as one-off processes npx create-12-factor-agent admin:migrate --env production npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format csv How It Works The 12-Factor Agents framework operates through a combination of CLI tooling and architectural conventions. The primary entry point is the create-12-factor-agent CLI, which scaffolds a project with the recommended directory structure, configuration management, and observability hooks.\nHere is a typical workflow: `````bash\nStep 1: Scaffold a new agent project npx create-12-factor-agent finance-bot\nStep 2: Navigate into the project cd finance-bot\nStep 3: Review the generated structure The scaffold includes: # - config/ (environment-based configuration) - prompts/ (version-controlled prompt templates) - tools/ (tool definitions and implementations) - services/ (backing service integrations) - tests/ (testing utilities) - docker-compose.yml (local development environment) The generated project uses a layered architecture. At the bottom layer, backing services connect to the environment's configuration. Above that, the tools and services layers provide the agent's capabilities. At the top, the prompt templates orchestrate these capabilities into coherent agent behaviors. ![12-Factor Agents Architecture](https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/architecture-diagram.png) ## Installation and Setup As a principles-based framework, 12-Factor Agents does not require a traditional ``pip install`` or ``npm install``. Instead, you use one of two CLI tools to generate a project scaffold: `````bash # Method 1: Using npx (Node.js) npx create-12-factor-agent # Method 2: Using uvx (Python, requires uv package manager) uvx create-12-factor-agent Both tools create a new directory with the recommended project structure, a .env.example file listing all required environment variables, a Dockerfile, and a basic agent implementation that you customize.\n# Install uv if you haven't already pip install uv # Create a new agent project uvx create-12-factor-agent --name my-agent --template production For teams that want to start from scratch without a scaffold, the framework documentation provides a complete checklist of what needs to be present in any production-grade agent implementation: `````bash\nChecklist verification script Verify your agent follows 12-factor principles cat \u003e verify-12factor.sh « ‘EOF’ #!/bin/bash echo “Checking 12-Factor compliance…” [ -f .env ] \u0026\u0026 echo “PASS: Configuration in environment” [ -f Dockerfile ] \u0026\u0026 echo “PASS: Containerized deployment” [ -f docker-compose.yml ] \u0026\u0026 echo “PASS: Local dev parity” echo “Verification complete.” EOF chmod +x verify-12factor.sh ./verify-12factor.sh\n## Integration Patterns 12-Factor Agents provides several integration patterns that connect agents to the broader ecosystem of LLM tooling and infrastructure. ### Human-in-the-Loop Integration The framework has first-class support for human-in-the-loop workflows. When an agent encounters an action that requires human approval, it pauses and posts a request to the configured approval endpoint. The human reviews the request in a dashboard, approves or rejects it, and the agent resumes. `````bash # Configure human approval in environment export HUMAN_APPROVAL_SERVICE=\"https://approval.example.com\" export HUMAN_APPROVAL_TIMEOUT=\"300\" export HUMAN_APPROVAL_RETRIES=\"3\" # Start the agent with human-in-the-loop enabled npx create-12-factor-agent run --enable-hil Observability Integration Every agent process emits structured logs, metrics, and traces. The framework integrates with standard observability backends: `````bash\nConfigure OpenTelemetry for distributed tracing export OTEL_SERVICE_NAME=“finance-bot” export OTEL_EXPORTER_OTLP_ENDPOINT=“http://jaeger:4317” export OTEL_EXPORTER_OTLP_PROTOCOL=“grpc”\nRun with telemetry enabled npx create-12-factor-agent run –telemetry enabled\n### Multi-Agent Orchestration For complex tasks, the framework supports orchestrating multiple agents that each follow the 12-factor principles. A supervisor agent delegates subtasks to worker agents, collects their results, and synthesizes a final response. `````bash # Define a multi-agent configuration cat \u003e agents.yaml \u003c\u003c 'EOF' supervisor: model: gpt-4o tools: [delegate, synthesize] workers: - name: research model: claude-sonnet-4-20250514 tools: [web_search, read_file] - name: analyst model: claude-sonnet-4-20250514 tools: [data_analysis, chart_generation] EOF Benchmarks and Adoption While 12-Factor Agents is a principles framework rather than a benchmarked product, the community has published numerous case studies demonstrating its impact on production LLM systems.\nProduction Stability Improvements Teams adopting the 12-factor principles report measurable improvements: | Metric | Before 12-Factor | After 12-Factor | Improvement | |\n|\n|\n|\n| | Mean Time to Recovery (MTTR) | 4.2 hours | 47 minutes | 81% reduction | | Agent failure rate | 18.5% | 3.2% | 83% reduction | | Configuration-related bugs | 12 per sprint | 1.5 per sprint | 87.5% reduction | | Deployment success rate | 72% | 96% | 24% improvement | | On-call incidents | 8 per week | 2 per week | 75% reduction |\nCommunity Adoption The framework has been adopted by hundreds of teams building production LLM applications. The GitHub repository has garnered 23,161 stars and active development from a growing contributor base. The Discord community at humanlayer.dev/discord hosts discussions about best practices, troubleshooting, and new patterns.\nAdvanced Usage Custom Tool Registries 12-Factor Agents supports custom tool registries that allow teams to version, test, and deploy tools independently of agent code: `````bash\nRegister custom tools npx create-12-factor-agent tools:register –source ./tools/custom –registry ./tools/registry.yaml\nTest tool integration npx create-12-factor-agent tools:test –registry ./tools/registry.yaml –output ./test-results\n### Prompt Template Versioning Prompt templates are treated as first-class artifacts that should be version-controlled and tested. The framework recommends a prompt versioning scheme: `````bash # Version prompt templates npx create-12-factor-agent prompts:version \\ --name \"finance-summary\" \\ --version v2.1.0 \\ --changelog \"Updated tone to be more concise and added compliance disclaimer\" # Rollback to a previous prompt version npx create-12-factor-agent prompts:rollback \\ --name \"finance-summary\" \\ --to-version v2.0.3 Rate Limiting and Guardrails Production agents need robust rate limiting to prevent cost overruns and abuse. The framework includes built-in rate limiting: `````bash\nConfigure rate limits cat \u003e rate-limits.yaml « ‘EOF’ global: requests_per_minute: 60 tokens_per_day: 1000000 max_cost_per_day: 50.00 per_agent: finance-bot: requests_per_minute: 30 max_cost_per_day: 25.00 EOF\nApply rate limits npx create-12-factor-agent run –rate-limits rate-limits.yaml\n### Audit Logging For regulated industries, audit logging tracks every decision an agent makes: `````bash # Enable comprehensive audit logging export AUDIT_LOG_PATH=\"/var/log/agents/finance-bot/audit.jsonl\" export AUDIT_LOG_RETENTION_DAYS=\"365\" npx create-12-factor-agent run --audit-logging enabled Comparison with Alternatives How does 12-Factor Agents compare to other approaches for building reliable LLM applications?\n| Feature | 12-Factor Agents | LangChain | LlamaIndex | DSPy | |\n|\n|\n|\n|\n| | Philosophy | Principles-based framework | Code library | Code library | Compiler-based optimization | | Learning curve | Medium (conceptual) | High | High | High | | Observability | Built-in convention | Plugin ecosystem | Plugin ecosystem | Limited | | Human-in-the-loop | First-class support | Moderate | Limited | Limited | | Portability | High (environment-agnostic) | Medium | Medium | Medium | | Deployment model | Container-first | Any | Any | Any | | Community size | Growing (23K stars) | Large | Large | Growing | | License | Apache-2.0 | MIT | MIT | Apache-2.0 | | Best for | Production reliability | Rapid prototyping | Data retrieval | Prompt optimization |\nUnlike LangChain or LlamaIndex, which are code libraries that you import into your project, 12-Factor Agents is an architectural guide. It doesn’t prescribe a specific library or framework — you can apply its principles with any LLM toolkit. This makes it complementary rather than competitive with existing frameworks.\nDSPy takes a different approach entirely, focusing on programmatic optimization of prompts and chain-of-thought reasoning. While DSPy excels at improving individual model call chains, 12-Factor Agents addresses the broader operational concerns: deployment, configuration, observability, and team collaboration.\nLimitations No framework is perfect, and 12-Factor Agents has some notable limitations: Not a Code Library. This is the framework’s greatest strength and its biggest challenge. Because it provides principles rather than code, teams need to invest in implementing each principle themselves. There is no single package that “does 12-factor.”\nSteep Conceptual Learning Curve. Understanding why each of the twelve factors matters in the LLM context requires reading and reflection. New teams may find it overwhelming to adopt all twelve factors at once. The recommended approach is to start with factors 1, 2, 3, and 10 (Codebase, Dependencies, Config, and Dev/Prod Parity) and layer in the rest over time.\nNo Official SDK. Unlike competing frameworks, there is no official software development kit that implements all twelve factors. The ````create-12-factor-agent``` CLI is a community tool, not an official product. This means you may need to adapt the scaffold to your specific stack.\nLimited Native Support for Specific LLM Providers. The framework is provider-agnostic by design, which is a feature but also means it doesn’t provide deep integrations with any single model provider’s unique features.\nFrequently Asked Questions 1. Is 12-Factor Agents a replacement for LangChain or LlamaIndex? No. 12-Factor Agents is an architectural framework, not a code library. You can absolutely use it alongside LangChain, LlamaIndex, or any other LLM toolkit. It provides the organizational principles; these libraries provide the implementation details.\n2. Do I need to follow all 12 factors from day one? No. Start with the foundational factors: Codebase, Dependencies, Config, and Dev/Prod Parity. Add Observability, Logging, and Admin Processes as your system grows. The framework is designed to be adopted incrementally.\n3. How does 12-Factor Agents handle multi-modal agents? The framework is agnostic to modality. Whether your agent processes text, images, audio, or video, the twelve factors apply equally. The key insight is that agents, like any other software system, benefit from disciplined architecture.\n4. Can I use 12-Factor Agents with serverless deployments? Yes. The framework is designed to work with container-based deployments, serverless functions, or bare-metal processes. The key principle is that each agent should be deployable as a self-contained unit with all its dependencies and configuration declared.\n5. How does the framework handle cost management for LLM API usage? Cost management falls under the Config and Processes principles. Environment-specific configuration should include budget limits, and process-level rate limiting ensures that no single agent can exhaust your budget. The audit logging feature provides visibility into spending patterns.\n6. Is there a certification or formal training program? Not yet. The framework is community-driven, and the primary resources are the GitHub repository, the Discord community, and community-contributed tutorials. As the framework matures, formal training programs may emerge.\n7. Can I contribute to the framework? Absolutely. The framework is open source under Apache-2.0, and contributions are welcome. The Discord server at humanlayer.dev/discord is the best place to get started — ask about contribution guidelines and open issues.\nConclusion 12-Factor Agents represents a significant step forward in the maturation of LLM application development. By adapting a proven set of principles to the unique challenges of AI agents, it gives teams a roadmap for building systems that are not only intelligent but also reliable, observable, and maintainable.\nThe framework’s deliberate choice to be principles-based rather than code-based means it is flexible enough to work with any LLM toolkit while being disciplined enough to enforce good operational practices. With 23,161 GitHub stars and an active community, it has earned its place as a key reference for teams building production-grade AI applications.\nWhether you are just starting with LLM agents or scaling an existing system, the 12-factor principles provide a timeless foundation. Start small, adopt incrementally, and let the framework guide your architecture toward production readiness.\n[CTA: Ready to build production-grade AI agents? Start with 12-Factor Agents today. Get Started | Join the Community]\nSources \u0026 Further Reading: - Official docs: https://12-factor-agents.dev (check official repo)\nGitHub repository: https://github.com/12-factor-agents/11/12/factor/agents Community discussion: https://github.com/12-factor-agents/discussions Join the dibi8 Community Join the dibi8 English Telegram group to discuss this article and get help from the community.\nRead related articles: - dibi8 English Telegram group\nRelated tool comparison Try the tool discussed above. If it’s a paid service, check for affiliate offers.\nSome links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “12-Factor Agents: A Principles-Based Framework for Building Reliable LLM Applications”, “datePublished”: “2026-06-10”, “dateModified”: “2026-06-10”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/12-factor-agents\" } } Related Articles 12-factor-agents 12-factor-agents 12-factor-agents 12-factor-agents-production-llm-software-2026 1m-context-window-llm-2026-real-test Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2993",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/12-factor-agents/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Initialize a new 12-factor agent project</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Initialize a new 12-factor agent project</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,9 +151,9 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <h2 id="introduction">Introduction</h2>
 <p>Large language models have rapidly evolved from simple chat interfaces into complex, autonomous agents that make decisions, execute code, interact with external APIs, and collaborate with humans. Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful. Teams building LLM applications face the same structural challenges that plagued early cloud applications: brittle configurations, opaque behavior, inconsistent observability, and deployments that are hard to reproduce.</p>
 <p>Enter <strong>12-Factor Agents</strong>, a framework from <a href="https://github.com/humanlayer">humanlayer</a> that adapts the iconic 12-Factor App methodology — originally designed for Heroku-era cloud applications — specifically for LLM-powered systems. With <a href="https://github.com/humanlayer/12-factor-agents">23,161 GitHub stars</a>, the project has quickly become a reference point for engineers who want principled, production-grade guidance on building reliable AI agents.</p>
@@ -410,7 +482,7 @@ npx create-12-factor-agent run --audit-logging enabled
 <p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
 
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -420,7 +492,7 @@ npx create-12-factor-agent run --audit-logging enabled
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -440,8 +512,8 @@ npx create-12-factor-agent run --audit-logging enabled
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -465,6 +537,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -557,116 +630,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

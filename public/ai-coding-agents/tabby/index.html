@@ -1,60 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="zh" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pull and run Tabby with CUDA acceleration | Dibi8</title>
-    <meta name="description" content="Technical guide and comparison">
-    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
-    <meta property="og:title" content="Pull and run Tabby with CUDA acceleration | Dibi8 - AI工具目录">
-    <meta property="og:description" content="Technical guide and comparison">
-    <meta property="og:url" content="https://dibi8.com/ai-coding-agents/tabby/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/tabby/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Pull and run Tabby with CUDA acceleration | Dibi8 - AI工具目录</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="AI tool guide">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/tabby/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/tabby/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/tabby/">
+  <meta property="og:site_name" content="Dibi8 - AI工具目录">
+  <meta property="og:title" content="Pull and run Tabby with CUDA acceleration">
+  <meta property="og:description" content="AI tool guide">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pull and run Tabby with CUDA acceleration">
+  <meta name="twitter:description" content="AI tool guide">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Pull and run Tabby with CUDA acceleration",
+      "item": "https://dibi8.com/ai-coding-agents/tabby/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pull and run Tabby with CUDA acceleration",
+  "name": "Pull and run Tabby with CUDA acceleration",
+  "description": "AI tool guide",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “Pull and run Tabby with CUDA acceleration” description: “AI tool guide” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“tabby”, “ai-coding-assistant”, “self-hosted”, “github-copilot-alternative”, “code-completion”, “docker”, “open-source”] aliases:\n/posts/tabby/- GitHub Copilot sends your proprietary code to Microsoft’s cloud. For teams handling sensitive IP — fintech, healthcare, defense, enterprise SaaS — that is a non-starter. Tabby is the open-source answer: a self-hosted AI coding assistant that runs entirely on your own hardware, with zero external data leakage. With 33,530+ GitHub stars and an active release cadence (v0.32.0 shipped January 2026), Tabby has matured from an experimental project into a production-grade alternative to Copilot. This tabby tutorial walks through a complete Tabby setup, from Docker deployment to IDE integration and production hardening. If you are specifically comparing tabby vs copilot, the comparison table in Section 8 breaks down feature parity and trade-offs.\nWhat Is Tabby? Tabby is a self-hosted AI coding assistant and an open-source GitHub Copilot alternative. It provides real-time code completion, an answer engine for code queries, and inline chat — all running on infrastructure you control. Written in Rust (92.9% of the codebase), Tabby is designed for speed and can run on consumer-grade GPUs, Apple Silicon, or even CPU-only servers.\nHow Tabby Works Tabby consists of three core components: 1. Inference Server: A Rust-based HTTP server that loads coding LLMs and serves completions via an OpenAPI-compatible endpoint. It handles model inference, prompt templating, and streaming responses.\nIDE Extensions: Native extensions for VS Code, JetBrains IDEs, Vim/Neovim, and Emacs that capture editor context and forward completion requests to the inference server.\nAdmin Dashboard: A built-in web UI for user management, API token generation, repository indexing, and usage analytics. No external database required — Tabby uses an embedded SQLite store.\nThe data flow is straightforward: the IDE extension captures the prefix/suffix context around your cursor, sends it to the local Tabby server, which runs inference against a loaded model (e.g., StarCoder-2-3B or Qwen2.5-Coder-7B), and returns completions in under 500ms on GPU.\nAfter completing this tabby tutorial, your local server will handle code completion without sending any source code to third-party APIs. For developers evaluating tabby vs copilot, the key differentiator is that every inference request stays on your hardware — a requirement for organizations that classify code as sensitive data.\nInstallation \u0026 Setup Prerequisites Docker (recommended) or Docker Compose NVIDIA Container Toolkit (for GPU support on CUDA systems) 4GB+ RAM for small models (1.5B params), 16GB+ for mid-range models (7B params) 10GB+ disk space for model weights Docker Setup (5 Minutes) The fastest way to get Tabby running is via Docker. Below are commands for the three major compute backends.\nNVIDIA GPU (CUDA) # Pull and run Tabby with CUDA acceleration docker run -d \\ --name tabby \\ --gpus all \\ -p 8080:8080 \\ -v $HOME/.tabby:/data \\ registry.tabbyml.com/tabbyml/tabby \\ serve \\ --model StarCoder-1B \\ --chat-model Qwen2-1.5B-Instruct \\ --device cuda For systems with SELinux enabled, add the :Z flag to the volume mount: `````bash docker run -d –name tabby –gpus all -p 8080:8080 -v $HOME/.tabby:/data:Z registry.tabbyml.com/tabbyml/tabby serve –model StarCoder-1B –chat-model Qwen2-1.5B-Instruct –device cuda\n#### Apple Silicon (Metal) `````bash docker run -d \\ --name tabby \\ -p 8080:8080 \\ -v $HOME/.tabby:/data \\ registry.tabbyml.com/tabbyml/tabby \\ serve \\ --model StarCoder-1B \\ --chat-model Qwen2-1.5B-Instruct \\ --device metal AMD GPU (ROCm) docker run -d \\ --name tabby \\ --device /dev/kfd --device /dev/dri \\ --group-add video \\ -p 8080:8080 \\ -v $HOME/.tabby:/data \\ registry.tabbyml.com/tabbyml/tabby-rocm \\ serve \\ --model StarCoder-1B \\ --device rocm CPU-Only (Fallback) docker run -d \\ --name tabby \\ -p 8080:8080 \\ -v $HOME/.tabby:/data \\ registry.tabbyml.com/tabbyml/tabby \\ serve \\ --model Qwen2.5-Coder-0.5B \\ --device cpu Verify the Installation # Check server health curl http://localhost:8080/v1/health # View logs docker logs -f tabby # Open the admin dashboard open http://localhost:8080 On first boot, Tabby downloads the specified model weights to $HOME/.tabby. Depending on your bandwidth, this may take 2–10 minutes. The admin dashboard will prompt you to create an admin account.\nDocker Compose (Production-Ready) For persistent deployments, use Docker Compose: `````yaml version: ‘3.8’ services: tabby: image: registry.tabbyml.com/tabbyml/tabby container_name: tabby restart: unless-stopped ports: - “8080:8080” volumes: - $HOME/.tabby:/data environment: - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING deploy: resources: reservations: devices: - driver: nvidia count: all capabilities: [gpu] command: \u003e serve –model StarCoder2-3B –chat-model Qwen2.5-Coder-7B-Instruct –device cuda –parallelism 4\nGenerate a secure JWT secret: `````bash openssl rand -hex 32 Deploy: `````bash docker compose up -d\n### Homebrew (macOS Native) If you prefer not to use Docker on macOS: `````bash # Install via Homebrew brew install tabbyml/tabby/tabby # Run with Metal acceleration tabby serve \\ --model StarCoder2-3B \\ --chat-model Qwen2-1.5B-Instruct \\ --device metal # Verify curl http://localhost:8080/v1/health Integration with VS Code, JetBrains, Vim, and Ollama Tabby’s IDE extensions connect your editor to the local inference server via HTTP. This section covers the four most popular editors and how to use Ollama as a flexible model backend.\nVS Code Open the Extensions marketplace, search for “Tabby”, and install the extension by TabbyML. Open Settings (Ctrl+,), search for “Tabby”, and set the Server Endpoint to http://localhost:8080. The status bar will show a Tabby icon when connected. Start typing to receive completions. JetBrains IDEs (IntelliJ, PyCharm, GoLand) Open Settings → Plugins → Marketplace, search for “Tabby”, and install. Restart the IDE. Navigate to Settings → Tools → Tabby and enter your server endpoint URL (e.g., http://localhost:8080). Generate an API token from the Tabby admin dashboard and paste it into the IDE settings. Vim / Neovim For Neovim with nvim-cmp and cmp-tabby: `````lua – In your Neovim config (e.g., init.lua) require(cmp).setup({ sources = { { name = tabby }, }, })\n– Configure Tabby server URL vim.g.tabby_server_url = ‘http://localhost:8080’\n### Using Ollama as a Backend Tabby can delegate inference to Ollama, which enables dynamic model switching and multi-model management: `````toml # ~/.tabby/config.toml [model.completion.http] kind = \"ollama/completion\" model_name = \"deepseek-coder:6.7b\" api_endpoint = \"http://localhost:11434\" prompt_template = \" {prefix} {suffix} \" [model.chat.http] kind = \"openai/chat\" model_name = \"qwen2.5-coder:7b\" api_endpoint = \"http://localhost:11434/v1\" Start Ollama with the required models: `````bash ollama pull deepseek-coder:6.7b ollama pull qwen2.5-coder:7b ollama serve\nThen start Tabby without specifying ``--model`` (it reads from ``config.toml``): `````bash tabby serve --device cuda This setup is ideal when you want to run multiple models on a single GPU with limited VRAM — Ollama handles model loading and unloading dynamically.\nBenchmarks / Real-World Use Cases This section provides hard numbers for anyone running a self-hosted coding assistant in production. Tabby’s throughput and latency vary by model size and GPU generation. All figures below assume a warm model cache (second request onward).\nTabby’s performance depends heavily on model size and hardware. The following numbers were collected from community benchmarks and internal testing: | Model | Size | GPU VRAM | Avg Latency | Accept Rate | Best For | |\n|\n|\n|\n|\n|\n| | Qwen2.5-Coder-0.5B | 0.5B | 2 GB | ~200ms | 18% | CPU-only setups, rapid testing | | StarCoder-1B | 1B | 3 GB | ~180ms | 22% | Low-resource deployments | | StarCoder2-3B | 3B | 6 GB | ~250ms | 28% | Balanced quality/speed | | Qwen2.5-Coder-7B | 7B | 14 GB | ~350ms | 35% | High-quality completions | | DeepSeekCoder-6.7B | 6.7B | 13 GB | ~380ms | 33% | Python/JS focused projects |\nAccept rate measures how often a developer accepts a Tabby suggestion versus ignoring or modifying it. For comparison, GitHub Copilot’s reported accept rate ranges from 30–40% depending on language.\nDeployment Scenarios | Scenario | Hardware | Recommended Model | Monthly Cost | |\n|\n|\n|\n| | Solo developer, laptop | M2/M3 MacBook 16GB | StarCoder2-3B | $0 | | Small team (5–10 devs) | RTX 4070 Ti, 16GB VRAM | Qwen2.5-Coder-7B | ~$50 (power) | | Enterprise (50+ devs) | 2× A100 80GB | Qwen2.5-Coder-7B + chat | ~$500 (hosting) | | CI/CD batch jobs | CPU-only cloud instances | Qwen2.5-Coder-0.5B | ~$30 |\nFor hosting the server infrastructure, consider providers like DigitalOcean for straightforward GPU-less deployments or HTStack for GPU-accelerated cloud instances. Both work well with the tabby docker setup described above.\nAdvanced Usage / Production Hardening Repository Context Indexing Tabby’s killer feature for teams is repository-level context indexing. It clones and indexes your Git repositories, then uses RAG (Retrieval-Augmented Generation) to surface relevant internal code snippets during completion.\nAdd repositories via the admin dashboard: `````bash\nNavigate to Repositories → Add Git URL Supports GitHub, GitLab, and self-hosted Git instances Or configure via the scheduler CLI: `````bash docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now Security Hardening Change the default JWT secret: Set TABBY_WEBSERVER_JWT_TOKEN_SECRET to a cryptographically random 32-byte hex string.\nRun behind a reverse proxy with TLS termination: `````nginx\nNginx example server { listen 443 ssl; server_name tabby.yourcompany.com;\nssl_certificate /etc/letsencrypt/live/tabby.yourcompany.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/tabby.yourcompany.com/privkey.pem; location / { proxy_pass http://localhost:8080; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } }\n3. **Enable LDAP/SSO authentication** (Enterprise feature) for team-wide access control. 4. **Set resource limits** on the Docker container: `````bash docker run -d \\ --memory=24g \\ --cpus=8 \\ # ... other flags Performance Tuning # Increase parallelism for concurrent team requests tabby serve \\ --model StarCoder2-3B \\ --device cuda \\ --parallelism 4 # Use half-precision (FP16) to reduce VRAM usage tabby serve \\ --model StarCoder2-3B \\ --device cuda \\ --dtype float16 Monitoring # Check API health curl http://localhost:8080/v1/health # Docker stats docker stats tabby # View recent logs with errors only docker logs tabby 2\u003e\u00261 | grep ERROR Comparison with Alternatives | Feature | Tabby | GitHub Copilot | Cursor | Codeium | |\n|\n|\n|\n|\n| | Self-hosted | Yes | No | No | Partial (Enterprise) | | License | Apache-2.0 | Proprietary | Proprietary | Proprietary | | Price (individual) | Free | $10/month | $20/month | Free tier | | Code stays local | Yes | No | No | No | | Model flexibility | Any OpenAI-compatible model | GPT-4 only | Claude/GPT only | Codeium models only | | Repo context indexing | Yes (built-in RAG) | Limited | Yes | Yes | | Team management | Yes (admin dashboard) | Yes (Enterprise) | Yes (Team) | Yes (Teams) | | IDE support | VS Code, JetBrains, Vim, Emacs, Eclipse | VS Code, JetBrains, Vim, Neovim | VS Code only | VS Code, JetBrains, Vim | | Setup complexity | Docker / 1 command | Install extension | Install app | Install extension | | Offline capable | Yes | No | No | No | | Stars (GitHub) | 33,530+ | N/A (Microsoft) | N/A (private) | N/A (private) |\nTabby is the only option in this group that keeps 100% of your code on-premises. That distinction matters if you work under SOC 2, HIPAA, ITAR, or similar compliance frameworks.\nLimitations / Honest Assessment Tabby is not a drop-in replacement for every Copilot use case. Be aware of the following trade-offs: - Smaller models lag on complex reasoning: A 3B parameter model will not match GPT-4 on multi-file refactoring or architectural suggestions. For those tasks, you may still want a cloud-based chat tool.\nInfrastructure burden: You are responsible for GPU maintenance, model updates, and server uptime. There is no SaaS fallback if your server goes down.\nNo chat in base install: The chat/answer engine requires a separate chat model and additional VRAM. Plan your GPU sizing accordingly.\nEnterprise SSO costs: LDAP and advanced SSO are part of Tabby’s paid enterprise tier, not the open-source core.\nLimited mobile support: There is no iOS/Android equivalent to Copilot’s mobile code review features.\nFrequently Asked Questions What hardware do I need to run Tabby? For individual use, a laptop with 16GB RAM and an M-series MacBook or an NVIDIA GPU with 8GB+ VRAM handles the StarCoder2-3B model comfortably. For team deployments, allocate 4GB VRAM per concurrent user as a rule of thumb. A 7B model on an RTX 4090 (24GB) supports 4–6 developers simultaneously.\nCan I use Tabby completely offline? Yes. After the initial model download, Tabby operates entirely without internet access. The inference server, IDE extensions, and admin dashboard all run on your local network. This is one of Tabby’s primary advantages for air-gapped environments.\nHow does Tabby compare to GitHub Copilot in accuracy? On single-file completions with a 7B model, Tabby achieves accept rates within 5–10% of Copilot. Where Copilot pulls ahead is multi-file context and complex refactoring — tasks that benefit from GPT-4-scale models. For routine line-by-line completions, the gap is negligible.\nCan I use my own fine-tuned models? Yes. Tabby supports any model in the Hugging Face Transformers format with an OpenAI-compatible API. You can point Tabby to a local model path or host your own model server. See the MODEL_SPEC.md for the exact format requirements.\nIs Tabby suitable for large enterprise teams? Tabby scales to 50+ users with proper hardware (multi-GPU server) and the --parallelism flag. The admin dashboard supports user management, API token rotation, and usage analytics. For SSO/LDAP integration, you will need the enterprise license.\nHow do I update Tabby to a new version? # Pull the latest image docker pull registry.tabbyml.com/tabbyml/tabby # Restart the container docker compose down docker compose up -d # Verify the new version curl http://localhost:8080/v1/health Conclusion Tabby fills a critical gap in the AI coding assistant market: a fully open-source, self-hosted tool that keeps your code inside your perimeter. With 33,530+ stars, active Rust-based development, and support for the latest coding models (Qwen2.5-Coder, DeepSeek, StarCoder2), it is ready for production use in privacy-conscious teams.\nAction items to get started:\nRun the Docker command in Section 4 to spin up Tabby on your local machine. Install the IDE extension for your editor and connect to ````http://localhost:8080```. Index a test repository from the admin dashboard to experience RAG-powered completions. Join the Tabby community on Telegram for deployment tips and model recommendations. This article contains affiliate links to hosting providers. These recommendations are based on technical suitability for self-hosted AI workloads, not commercial partnerships.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading Tabby GitHub Repository — 33,530+ stars, Apache-2.0 Tabby Official Documentation Tabby Docker Installation Guide Tabby Models Registry Tabby VS Code Extension Tabby JetBrains Plugin MODEL_SPEC.md — Custom Model Format Self-Hosted AI Coding Assistants Comparison 2026 Tabby Setup with Ollama Backend DigitalOcean Cloud Hosting HTStack GPU Cloud { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Tabby: Self-Hosted AI Coding Assistant with 33K+ Stars — Privacy-First Setup Guide for 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/tabby\" } } Related Articles 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents prompts-chat paddleocr-81k-star-ocr-engine markitdown-universal-file-to-markdown-converter Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "2544",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/tabby/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8 - AI工具目录",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+<body id="top">
+    <header class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <i class="fas fa-bolt text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-bold gradient-text">Dibi8</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+        <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+        <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+        <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+          <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+        </button>
+        <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+          <i class="fas fa-search"></i>
         </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/trending/" class="nav-link">热门</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
-            </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200">
-                <i class="fas fa-search text-xs"></i>
-                搜索工具
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
-            <a href="/submit/" class="px-4 py-2 bg-gray-900 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all">
-                提交工具
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-
-    
+  </div>
+</header><main class="main">
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
         
@@ -63,14 +135,14 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">Pull and run Tabby with CUDA acceleration</span>
         </nav>
-        
+
         
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Pull and run Tabby with CUDA acceleration</h1>
+
         
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
         
-        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
-        
-        
+
         
         <div class="flex flex-wrap gap-2 mb-10">
             
@@ -79,11 +151,11 @@
             <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
             
         </div>
+
         
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             <p>title: &ldquo;Pull and run Tabby with CUDA acceleration&rdquo;
-description: &ldquo;Technical guide and comparison.&rdquo;
+description: &ldquo;AI tool guide&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -524,7 +596,7 @@ docker run -d \
 <p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
 
         </div>
-        
+
         
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -534,7 +606,7 @@ docker run -d \
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         
         
         
@@ -554,8 +626,8 @@ docker run -d \
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
                         <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1m context window LLM 2026</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 …</p>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
                 </a>
                 
                 <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
@@ -579,6 +651,7 @@ function copyLink() {
 }
 </script>
 
+    </main>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
@@ -671,116 +744,6 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
-<div id="search-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
-    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-            <i class="fas fa-search text-gray-400 text-sm"></i>
-            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
-                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
-                   autocomplete="off">
-            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
-        </div>
-        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var searchData = [];
-    fetch('search-index.json')
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
-        .catch(function () { renderResults(''); });
-
-    window.openSearch = function () {
-        var m = document.getElementById('search-modal');
-        m.classList.remove('hidden');
-        setTimeout(function () {
-            var i = document.getElementById('search-input');
-            i.value = '';
-            i.focus();
-            renderResults('');
-        }, 50);
-    };
-
-    window.closeSearch = function () {
-        document.getElementById('search-modal').classList.add('hidden');
-    };
-
-    document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            openSearch();
-        }
-        if (e.key === 'Escape') closeSearch();
-    });
-
-    var input = document.getElementById('search-input');
-    input.addEventListener('input', function () {
-        renderResults(input.value);
-    });
-
-    function score(q, t) {
-        q = q.trim().toLowerCase();
-        if (!q) return 1;
-        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
-        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
-        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
-        
-        var words = q.split(/\s+/);
-        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
-        for (var i = 0; i < words.length; i++) {
-            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
-        }
-        return 1;
-    }
-
-    function renderResults(q) {
-        var box = document.getElementById('search-results');
-        var hits = searchData
-            .map(function (t) { return { t: t, s: score(q, t) }; })
-            .filter(function (x) { return x.s > 0; })
-            .sort(function (a, b) { return b.s - a.s; })
-            .slice(0, 12);
-
-        if (!hits.length) {
-            box.innerHTML = '<div class="search-empty">' +
-                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
-            return;
-        }
-
-        box.innerHTML = hits.map(function (x) {
-            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
-            return '<a class="search-row" href="' + x.t.url + '">' +
-                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
-                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
-                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
-                '</a>';
-        }).join('');
-    }
-})();
-</script>
-
-    <script>
-        const toggleSearch = () => {
-            const m = document.getElementById('search-modal');
-            m.classList.toggle('hidden');
-            if (!m.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('search-input').focus(), 100);
-            }
-        };
-        const closeSearch = () => {
-            document.getElementById('search-modal').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-        };
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-            if (e.key === 'Escape') closeSearch();
-        });
-    </script>
-    
 </body>
+
 </html>

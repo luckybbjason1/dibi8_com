@@ -15,12 +15,5 @@
       <guid>https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/</guid>
       <description>2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。</description>
     </item>
-    <item>
-      <title>RAG Systems 2026: Advanced Techniques for Production Deployment</title>
-      <link>https://dibi8.com/rag-systems-2026/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/rag-systems-2026/</guid>
-      <description>Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks.</description>
-    </item>
   </channel>
 </rss>
