@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Site.Title }} - 探索AI工具宇宙</title>
+    <title>{{ .Site.Title }} - 发现最佳AI工具</title>
     <meta name="description" content="{{ .Site.Params.description }}">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -15,12 +16,34 @@
             theme: {
                 extend: {
                     colors: {
-                        neon: { cyan: '#00f3ff', pink: '#ff00ff', purple: '#b829dd', green: '#39ff14' },
-                        cyber: { 900: '#0a0a0f', 800: '#0d0d14', 700: '#151520' }
+                        surface: {
+                            0: '#09090b',
+                            1: '#18181b',
+                            2: '#27272a',
+                            3: '#3f3f46',
+                            4: '#52525b',
+                        },
+                        accent: {
+                            DEFAULT: '#6366f1',
+                            light: '#818cf8',
+                            dark: '#4f46e5',
+                        }
                     },
-                    fontFamily: { 
-                        cyber: ['Orbitron', 'sans-serif'],
-                        body: ['Rajdhani', 'sans-serif']
+                    borderRadius: {
+                        'bento': '24px',
+                        'bento-sm': '16px',
+                        'bento-lg': '32px',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delay': 'float 6s ease-in-out 2s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
                     }
                 }
             }
@@ -28,409 +51,401 @@
     </script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
         
-        body { font-family: 'Rajdhani', sans-serif; background: #0a0a0f; }
+        * {
+            font-family: 'Inter', sans-serif;
+        }
         
-        .cyber-grid {
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        body {
+            background: #09090b;
             background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.06) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.04) 0px, transparent 50%);
+            background-attachment: fixed;
         }
         
-        .neon-glow {
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.1);
-        }
-        
-        .glass-panel {
-            background: rgba(21, 21, 32, 0.8);
+        /* Bento卡片样式 */
+        .bento-card {
+            background: rgba(24, 24, 27, 0.6);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .scan-line {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00f3ff, transparent);
-            animation: scan 3s linear infinite;
+        .bento-card:hover {
+            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(99, 102, 241, 0.1);
+        }
+        
+        .bento-card-accent {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bento-card-accent::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(99, 102, 241, 0.12), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
             pointer-events: none;
-            z-index: 9999;
         }
         
-        @keyframes scan {
-            0% { top: 0; }
-            100% { top: 100vh; }
+        .bento-card-accent:hover::before {
+            opacity: 1;
         }
         
-        .pulse-dot {
+        /* 渐变文字 */
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* 滚动条 */
+        ::-webkit-scrollbar {
             width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #39ff14;
-            animation: pulse 2s ease-in-out infinite;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3f3f46;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #52525b;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.5); }
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.2);
+        /* 分类卡片图标背景 */
+        .category-icon-bg {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
         }
     </style>
 </head>
-<body class="cyber-grid min-h-screen text-gray-100">
-    <div class="scan-line"></div>
-    
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-panel border-b border-neon-cyan/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-neon-cyan to-neon-pink flex items-center justify-center">
-                        <i class="fas fa-robot text-white text-xl"></i>
-                    </div>
-                    <span class="font-cyber text-2xl font-bold bg-gradient-to-r from-neon-cyan to-neon-pink bg-clip-text text-transparent">
-                        DIBI8
-                    </span>
-                    <span class="px-2 py-1 text-xs bg-neon-green/20 text-neon-green border border-neon-green/50 rounded">
-                        AI MATRIX
-                    </span>
+<body class="min-h-screen text-zinc-100">
+    <!-- 导航 -->
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-[#09090b]/80 backdrop-blur-xl">
+        <div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-bolt text-white text-sm"></i>
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-300 hover:text-neon-cyan transition-colors">首页</a>
-                    <a href="/categories/" class="text-gray-300 hover:text-neon-cyan transition-colors">分类</a>
-                    <a href="/tags/" class="text-gray-300 hover:text-neon-cyan transition-colors">标签</a>
-                    <a href="/about/" class="text-gray-300 hover:text-neon-cyan transition-colors">关于</a>
+                <span class="text-lg font-semibold tracking-tight">Dibi8</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-500 border border-zinc-800 rounded-md">beta</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="/" class="text-sm text-zinc-400 hover:text-white transition-colors">首页</a>
+                <a href="/categories/" class="text-sm text-zinc-400 hover:text-white transition-colors">分类</a>
+                <a href="/trending/" class="text-sm text-zinc-400 hover:text-white transition-colors">热门</a>
+                <a href="/about/" class="text-sm text-zinc-400 hover:text-white transition-colors">关于</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-lg">
+                    <i class="fas fa-search text-zinc-500 text-xs"></i>
+                    <input type="text" placeholder="搜索..." class="bg-transparent text-sm outline-none w-32 placeholder-zinc-600">
                 </div>
-                
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <input type="text" id="searchInput" placeholder="搜索AI工具..." 
-                               class="bg-cyber-700/50 border border-neon-cyan/30 rounded-lg px-4 py-2 pl-10 text-sm focus:outline-none focus:border-neon-cyan w-48">
-                        <i class="fas fa-search absolute left-3 top-3 text-neon-cyan/50"></i>
-                    </div>
-                </div>
+                <button class="px-4 py-2 text-sm font-medium bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-colors">
+                    提交工具
+                </button>
             </div>
         </div>
     </nav>
     
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-4 relative overflow-hidden">
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-neon-cyan/10 rounded-full blur-3xl animate-pulse"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-neon-pink/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center">
-                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-cyber-700/50 border border-neon-cyan/30 mb-6">
-                    <span class="pulse-dot"></span>
-                    <span class="text-sm text-gray-400">实时更新 · 每周新增 <span class="text-neon-green font-bold">50+</span> AI工具</span>
-                </div>
-                
-                <h1 class="font-cyber text-5xl md:text-7xl font-black mb-6">
-                    <span class="bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text text-transparent">
-                        探索AI工具宇宙
-                    </span>
-                </h1>
-                
-                <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                    {{ .Site.Data.stats.total_tools | default 493 }}+ 精选AI工具 · 覆盖编码、开发、LLM框架、MCP工具
-                </p>
-                
-                <div class="max-w-2xl mx-auto relative mb-8">
-                    <input type="text" id="heroSearch" placeholder="输入关键词搜索AI工具..." 
-                           class="w-full bg-cyber-700/80 border-2 border-neon-cyan/30 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:border-neon-cyan transition-all">
-                    <i class="fas fa-search absolute right-6 top-5 text-neon-cyan/50 text-xl"></i>
-                </div>
-                
-                <div class="flex flex-wrap justify-center gap-4 mb-12">
-                    <span class="px-4 py-2 bg-cyber-700/50 border border-neon-cyan/20 rounded-full text-sm text-gray-400 hover:border-neon-cyan hover:text-neon-cyan transition cursor-pointer">#AI Agent</span>
-                    <span class="px-4 py-2 bg-cyber-700/50 border border-neon-pink/20 rounded-full text-sm text-gray-400 hover:border-neon-pink hover:text-neon-pink transition cursor-pointer">#代码生成</span>
-                    <span class="px-4 py-2 bg-cyber-700/50 border border-neon-purple/20 rounded-full text-sm text-gray-400 hover:border-neon-purple hover:text-neon-purple transition cursor-pointer">#视频编辑</span>
-                    <span class="px-4 py-2 bg-cyber-700/50 border border-neon-green/20 rounded-full text-sm text-gray-400 hover:border-neon-green hover:text-neon-green transition cursor-pointer">#MCP协议</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Stats Section -->
-    <section class="py-12 px-4 border-y border-white/5 bg-cyber-800/30">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="font-cyber text-4xl font-bold text-neon-cyan mb-2">{{ .Site.Data.stats.total_tools | default 493 }}</div>
-                    <div class="text-gray-500 text-sm">AI工具</div>
-                </div>
-                <div class="text-center">
-                    <div class="font-cyber text-4xl font-bold text-neon-pink mb-2">4</div>
-                    <div class="text-gray-500 text-sm">分类</div>
-                </div>
-                <div class="text-center">
-                    <div class="font-cyber text-4xl font-bold text-neon-purple mb-2">50+</div>
-                    <div class="text-gray-500 text-sm">每周新增</div>
-                </div>
-                <div class="text-center">
-                    <div class="font-cyber text-4xl font-bold text-neon-green mb-2">98%</div>
-                    <div class="text-gray-500 text-sm">好评率</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Categories Section -->
-    <section class="py-16 px-4">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="font-cyber text-3xl font-bold text-center mb-12">
-                <span class="text-neon-cyan">选择</span>
-                <span class="text-gray-400">你的</span>
-                <span class="text-neon-pink">探索维度</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="/ai-tools/" class="group relative overflow-hidden rounded-2xl p-6 glass-panel card-hover">
-                    <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative z-10">
-                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-cyan to-blue-600 flex items-center justify-center mb-4 text-3xl">🎯</div>
-                        <h3 class="font-cyber text-xl font-bold mb-2 group-hover:text-neon-cyan transition-colors">AI工具</h3>
-                        <p class="text-gray-500 text-sm mb-4">图像生成、视频编辑、语音合成</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-neon-cyan">125</span>
-                            <span class="text-sm text-gray-400">工具</span>
+    <!-- Bento Grid -->
+    <main class="pt-24 pb-16 px-6">
+        <div class="max-w-[1400px] mx-auto">
+            <!-- Row 1: Hero + Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
+                <!-- Hero Card - 占8列 -->
+                <div class="md:col-span-8 bento-card bento-card-accent p-8 flex flex-col justify-between min-h-[320px]" style="--x: 70%; --y: 30%;">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-xs font-medium text-indigo-400 mb-6">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                            493+ 精选AI工具持续更新中
                         </div>
-                    </div>
-                </a>
-                
-                <a href="/dev-utils/" class="group relative overflow-hidden rounded-2xl p-6 glass-panel card-hover">
-                    <div class="absolute inset-0 bg-gradient-to-br from-neon-pink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative z-10">
-                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-pink to-red-600 flex items-center justify-center mb-4 text-3xl">💻</div>
-                        <h3 class="font-cyber text-xl font-bold mb-2 group-hover:text-neon-pink transition-colors">开发工具</h3>
-                        <p class="text-gray-500 text-sm mb-4">代码生成、调试、测试自动化</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-neon-pink">312</span>
-                            <span class="text-sm text-gray-400">工具</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="/llm-frameworks/" class="group relative overflow-hidden rounded-2xl p-6 glass-panel card-hover">
-                    <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative z-10">
-                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-purple to-indigo-600 flex items-center justify-center mb-4 text-3xl">🤖</div>
-                        <h3 class="font-cyber text-xl font-bold mb-2 group-hover:text-neon-purple transition-colors">LLM框架</h3>
-                        <p class="text-gray-500 text-sm mb-4">LangChain、RAG系统、Agent</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-neon-purple">38</span>
-                            <span class="text-sm text-gray-400">工具</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="/mcp-tools/" class="group relative overflow-hidden rounded-2xl p-6 glass-panel card-hover">
-                    <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative z-10">
-                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-green to-emerald-600 flex items-center justify-center mb-4 text-3xl">🔧</div>
-                        <h3 class="font-cyber text-xl font-bold mb-2 group-hover:text-neon-green transition-colors">MCP工具</h3>
-                        <p class="text-gray-500 text-sm mb-4">模型上下文协议、API集成</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-neon-green">18</span>
-                            <span class="text-sm text-gray-400">工具</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Featured Tools -->
-    <section class="py-16 px-4 bg-cyber-800/30">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="font-cyber text-3xl font-bold">
-                    <span class="text-neon-cyan">热门</span>
-                    <span class="text-gray-400">工具矩阵</span>
-                    <span class="ml-4 text-sm font-normal text-gray-500">按热度排序</span>
-                </h2>
-                <a href="/categories/" class="px-4 py-2 bg-cyber-700 border border-neon-cyan/30 rounded-lg hover:border-neon-cyan transition-colors text-sm">
-                    查看全部 <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {{ range first 6 .Site.RegularPages.ByWeight }}
-                <a href="{{ .Permalink }}" class="group glass-panel rounded-2xl p-6 card-hover">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-neon-pink/20 flex items-center justify-center text-2xl flex-shrink-0">
-                            {{ if .Params.initial }}{{ .Params.initial }}{{ else }}🤖{{ end }}
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-bold text-lg mb-2 truncate group-hover:text-neon-cyan transition-colors">
-                                {{ .Title }}
-                            </h3>
-                            <p class="text-gray-500 text-sm line-clamp-2 mb-3">
-                                {{ .Summary | plainify | truncate 100 }}
-                            </p>
-                            <div class="flex items-center space-x-4 text-xs text-gray-500">
-                                <span><i class="fas fa-eye mr-1"></i>{{ .Params.views | default "1.2k" }}</span>
-                                <span><i class="fas fa-star mr-1 text-neon-pink"></i>{{ .Params.rating | default "4.8" }}</span>
-                                <span class="px-2 py-1 bg-cyber-700 rounded">{{ index .Params "tags" 0 | default "AI" }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                {{ end }}
-            </div>
-        </div>
-    </section>
-    
-    <!-- Latest Tools -->
-    <section class="py-16 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="font-cyber text-3xl font-bold">
-                    <span class="text-neon-pink">最新</span>
-                    <span class="text-gray-400">工具发布</span>
-                </h2>
-                <a href="/latest/" class="px-4 py-2 bg-cyber-700 border border-neon-pink/30 rounded-lg hover:border-neon-pink transition-colors text-sm">
-                    更多更新 <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {{ range first 6 (where .Site.RegularPages "Section" "in" (slice "ai-coding-agents" "llm-frameworks" "dev-utils" "mcp-tools")) }}
-                <a href="{{ .Permalink }}" class="group glass-panel rounded-2xl overflow-hidden card-hover">
-                    <div class="h-40 bg-gradient-to-br from-cyber-700 to-cyber-800 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-cyber-900 to-transparent"></div>
-                        <span class="text-6xl relative z-10">{{ if .Params.initial }}{{ .Params.initial }}{{ else }}🚀{{ end }}</span>
-                        <div class="absolute top-4 right-4 px-3 py-1 bg-neon-green/20 text-neon-green text-xs rounded-full border border-neon-green/50">
-                            NEW
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 text-xs text-gray-500 mb-3">
-                            <span class="px-2 py-1 bg-cyber-700 rounded">{{ .Section }}</span>
-                            <span>·</span>
-                            <span>{{ .Date.Format "2006-01-02" }}</span>
-                            <span>·</span>
-                            <span>{{ .ReadingTime }} 分钟</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2 group-hover:text-neon-pink transition-colors line-clamp-1">
-                            {{ .Title }}
-                        </h3>
-                        <p class="text-gray-500 text-sm line-clamp-2">
-                            {{ .Summary | plainify | truncate 80 }}
+                        <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">
+                            发现<br>
+                            <span class="gradient-text">最佳AI工具</span>
+                        </h1>
+                        <p class="text-zinc-400 text-lg max-w-lg">
+                            探索{{ .Site.Data.stats.total_tools | default 493 }}+精选AI工具，帮您找到最适合的AI解决方案。每周新增50+优质工具。
                         </p>
                     </div>
-                </a>
-                {{ end }}
-            </div>
-        </div>
-    </section>
-    
-    <!-- Newsletter -->
-    <section class="py-20 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="glass-panel rounded-3xl p-12">
-                <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-neon-cyan to-neon-pink flex items-center justify-center text-4xl">
-                    📡
-                </div>
-                <h2 class="font-cyber text-3xl font-bold mb-4">
-                    <span class="text-neon-cyan">订阅</span>
-                    <span class="text-gray-400">工具更新</span>
-                </h2>
-                <p class="text-gray-400 mb-8">每周精选AI工具直接发送到您的邮箱</p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                    <input type="email" placeholder="输入您的邮箱地址" 
-                           class="flex-1 bg-cyber-700/50 border border-neon-cyan/30 rounded-xl px-6 py-4 focus:outline-none focus:border-neon-cyan">
-                    <button class="px-8 py-4 bg-gradient-to-r from-neon-cyan to-neon-pink text-white font-bold rounded-xl hover:opacity-90 transition-opacity">
-                        立即订阅
-                    </button>
-                </div>
-                
-                <p class="text-xs text-gray-600 mt-4">
-                    <i class="fas fa-lock mr-2"></i>我们不会发送垃圾邮件。取消订阅随时可用。
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="py-12 px-4 border-t border-white/5 bg-cyber-900">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-neon-cyan to-neon-pink flex items-center justify-center">
-                            <i class="fas fa-robot text-white text-xl"></i>
-                        </div>
-                        <span class="font-cyber text-2xl font-bold text-white">DIBI8</span>
+                    
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="/categories/" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-medium transition-all flex items-center gap-2">
+                            <i class="fas fa-compass"></i>
+                            浏览目录
+                        </a>
+                        <a href="/trending/" class="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-xl font-medium transition-all flex items-center gap-2">
+                            <i class="fas fa-fire"></i>
+                            热门工具
+                        </a>
                     </div>
-                    <p class="text-gray-500 text-sm">发现最佳AI工具的终极指南</p>
                 </div>
                 
-                <div>
-                    <h4 class="font-bold text-white mb-4">分类导航</h4>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="/ai-tools/" class="hover:text-neon-cyan transition-colors">AI工具</a></li>
-                        <li><a href="/dev-utils/" class="hover:text-neon-cyan transition-colors">开发工具</a></li>
-                        <li><a href="/llm-frameworks/" class="hover:text-neon-cyan transition-colors">LLM框架</a></li>
-                        <li><a href="/mcp-tools/" class="hover:text-neon-cyan transition-colors">MCP工具</a></li>
-                    </ul>
+                <!-- Stats Column - 占4列 -->
+                <div class="md:col-span-4 grid grid-rows-2 gap-4">
+                    <!-- 工具总数 -->
+                    <div class="bento-card p-6 flex flex-col justify-between">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-zinc-500 text-sm mb-1">AI工具</p>
+                                <h3 class="text-4xl font-bold">{{ .Site.Data.stats.total_tools | default 493 }}</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center">
+                                <i class="fas fa-robot text-indigo-400"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-4">覆盖编码、开发、LLM等</p>
+                    </div>
+                    
+                    <!-- 每周新增 -->
+                    <div class="bento-card p-6 flex flex-col justify-between">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-zinc-500 text-sm mb-1">每周新增</p>
+                                <h3 class="text-4xl font-bold">50+</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                                <i class="fas fa-plus text-emerald-400"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-4">持续更新中</p>
+                    </div>
                 </div>
-                
-                <div>
-                    <h4 class="font-bold text-white mb-4">资源链接</h4>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="/about/" class="hover:text-neon-cyan transition-colors">关于我们</a></li>
-                        <li><a href="/contact/" class="hover:text-neon-cyan transition-colors">联系我们</a></li>
-                        <li><a href="/privacy/" class="hover:text-neon-cyan transition-colors">隐私政策</a></li>
-                        <li><a href="/terms/" class="hover:text-neon-cyan transition-colors">使用条款</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-white mb-4">关注我们</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-lg bg-cyber-700 flex items-center justify-center text-gray-400 hover:text-neon-cyan hover:border-neon-cyan border border-transparent transition-all">
-                            <i class="fab fa-twitter"></i>
+            </div>
+            
+            <!-- Row 2: Categories -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
+                <div class="md:col-span-12 bento-card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-semibold">探索分类</h2>
+                            <p class="text-sm text-zinc-500 mt-1">按领域查找AI工具</p>
+                        </div>
+                        <a href="/categories/" class="text-sm text-zinc-500 hover:text-white transition-colors">查看全部 →</a>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <a href="/ai-tools/" class="group p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-indigo-500/30 transition-all">
+                            <div class="w-12 h-12 rounded-xl category-icon-bg flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">🎯</div>
+                            <h3 class="font-medium mb-1 group-hover:text-indigo-400 transition-colors">AI工具</h3>
+                            <p class="text-xs text-zinc-500">125 个工具</p>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-lg bg-cyber-700 flex items-center justify-center text-gray-400 hover:text-neon-pink hover:border-neon-pink border border-transparent transition-all">
-                            <i class="fab fa-github"></i>
+                        
+                        <a href="/dev-utils/" class="group p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-purple-500/30 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">💻</div>
+                            <h3 class="font-medium mb-1 group-hover:text-purple-400 transition-colors">开发工具</h3>
+                            <p class="text-xs text-zinc-500">312 个工具</p>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-lg bg-cyber-700 flex items-center justify-center text-gray-400 hover:text-neon-purple hover:border-neon-purple border border-transparent transition-all">
-                            <i class="fab fa-discord"></i>
+                        
+                        <a href="/llm-frameworks/" class="group p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-pink-500/30 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">🤖</div>
+                            <h3 class="font-medium mb-1 group-hover:text-pink-400 transition-colors">LLM框架</h3>
+                            <p class="text-xs text-zinc-500">38 个工具</p>
+                        </a>
+                        
+                        <a href="/mcp-tools/" class="group p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-emerald-500/30 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">🔧</div>
+                            <h3 class="font-medium mb-1 group-hover:text-emerald-400 transition-colors">MCP工具</h3>
+                            <p class="text-xs text-zinc-500">18 个工具</p>
                         </a>
                     </div>
                 </div>
             </div>
             
-            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
-                <p>&copy; 2026 Dibi8.com. All rights reserved.</p>
-                <p class="mt-2 md:mt-0">Made with ❤️ by AI Enthusiasts</p>
+            <!-- Row 3: Featured Tools -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
+                <div class="md:col-span-12 bento-card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-semibold">热门工具</h2>
+                            <p class="text-sm text-zinc-500 mt-1">根据浏览量和评分排序的精选工具</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="px-3 py-1.5 text-sm bg-indigo-600 rounded-lg">热门</button>
+                            <button class="px-3 py-1.5 text-sm text-zinc-500 hover:text-white transition-colors">最新</button>
+                            <button class="px-3 py-1.5 text-sm text-zinc-500 hover:text-white transition-colors">评分</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {{ range first 6 .Site.RegularPages.ByWeight }}
+                        <a href="{{ .Permalink }}" class="group p-4 rounded-2xl bg-zinc-900/30 border border-zinc-800 hover:border-indigo-500/30 transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center text-xl flex-shrink-0">
+                                    {{ if .Params.initial }}{{ .Params.initial }}{{ else }}🤖{{ end }}
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="font-medium mb-1 group-hover:text-indigo-400 transition-colors line-clamp-1">
+                                        {{ .Title }}
+                                    </h3>
+                                    <p class="text-sm text-zinc-500 line-clamp-2 mb-3">
+                                        {{ .Summary | plainify | truncate 80 }}
+                                    </p>
+                                    <div class="flex items-center gap-4 text-xs text-zinc-500">
+                                        <span><i class="fas fa-eye mr-1"></i>{{ .Params.views | default "1.2k" }}</span>
+                                        <span><i class="fas fa-star mr-1 text-yellow-500"></i>{{ .Params.rating | default "4.8" }}</span>
+                                        <span class="px-2 py-0.5 bg-zinc-800 rounded">{{ index .Params "tags" 0 | default "AI" }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 4: Latest + Newsletter -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                <!-- Latest Tools - 占8列 -->
+                <div class="md:col-span-8 bento-card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-semibold">最新工具发布</h2>
+                            <p class="text-sm text-zinc-500 mt-1">本周新添加的AI工具</p>
+                        </div>
+                        <a href="/latest/" class="text-sm text-zinc-500 hover:text-white transition-colors">查看全部 →</a>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        {{ range first 5 (where .Site.RegularPages "Section" "in" (slice "ai-coding-agents" "llm-frameworks" "dev-utils" "mcp-tools")) }}
+                        <a href="{{ .Permalink }}" class="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/30 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center text-lg flex-shrink-0">
+                                {{ if .Params.initial }}{{ .Params.initial }}{{ else }}🚀{{ end }}
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-xs font-mono text-indigo-400">{{ .Section }}</span>
+                                    <span class="text-zinc-600">·</span>
+                                    <span class="text-xs text-zinc-500">{{ .Date.Format "2006-01-02" }}</span>
+                                    <span class="text-zinc-600">·</span>
+                                    <span class="text-xs text-zinc-500">{{ .ReadingTime }} 分钟</span>
+                                </div>
+                                <h3 class="font-medium group-hover:text-indigo-400 transition-colors line-clamp-1">
+                                    {{ .Title }}
+                                </h3>
+                            </div>
+                            <i class="fas fa-arrow-right text-zinc-600 group-hover:text-indigo-400 transition-colors"></i>
+                        </a>
+                        {{ end }}
+                    </div>
+                </div>
+                
+                <!-- Newsletter - 占4列 -->
+                <div class="md:col-span-4 bento-card p-6 flex flex-col">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl mb-4">
+                        📡
+                    </div>
+                    <h2 class="text-lg font-semibold mb-2">订阅更新</h2>
+                    <p class="text-sm text-zinc-500 mb-6 flex-1">每周精选AI工具直接发送到您的邮箱</p>
+                    
+                    <form class="space-y-3">
+                        <input type="email" placeholder="your@email.com" 
+                               class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-sm outline-none focus:border-indigo-500/50 transition-colors">
+                        <button type="submit" 
+                                class="w-full px-4 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-sm font-medium transition-colors">
+                            立即订阅
+                        </button>
+                    </form>
+                    
+                    <p class="text-xs text-zinc-600 mt-4 text-center">
+                        <i class="fas fa-lock mr-1"></i>我们不会发送垃圾邮件
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 px-6">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-bolt text-white text-sm"></i>
+                        </div>
+                        <span class="font-semibold">Dibi8</span>
+                    </div>
+                    <p class="text-sm text-zinc-500">发现最佳AI工具的终极指南</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-medium mb-4">分类导航</h4>
+                    <ul class="space-y-2 text-sm text-zinc-500">
+                        <li><a href="/ai-tools/" class="hover:text-white transition-colors">AI工具</a></li>
+                        <li><a href="/dev-utils/" class="hover:text-white transition-colors">开发工具</a></li>
+                        <li><a href="/llm-frameworks/" class="hover:text-white transition-colors">LLM框架</a></li>
+                        <li><a href="/mcp-tools/" class="hover:text-white transition-colors">MCP工具</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-medium mb-4">资源链接</h4>
+                    <ul class="space-y-2 text-sm text-zinc-500">
+                        <li><a href="/about/" class="hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="/contact/" class="hover:text-white transition-colors">联系我们</a></li>
+                        <li><a href="/privacy/" class="hover:text-white transition-colors">隐私政策</a></li>
+                        <li><a href="/terms/" class="hover:text-white transition-colors">使用条款</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-medium mb-4">关注我们</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-lg bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all">
+                            <i class="fab fa-github text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all">
+                            <i class="fab fa-discord text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-zinc-600">© 2026 Dibi8.com. All rights reserved.</p>
+                <p class="text-sm text-zinc-600">Made with ❤️ by AI Enthusiasts</p>
             </div>
         </div>
     </footer>
     
     <script>
-        document.getElementById('searchInput').addEventListener('input', function(e) {
+        // 鼠标跟随效果
+        document.querySelectorAll('.bento-card-accent').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--x', x + '%');
+                card.style.setProperty('--y', y + '%');
+            });
+        });
+        
+        // 搜索过滤
+        document.querySelector('input[placeholder="搜索..."]')?.addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.glass-panel');
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                card.style.display = text.includes(query) ? 'block' : 'none';
+            document.querySelectorAll('.bento-card a').forEach(link => {
+                const text = link.textContent.toLowerCase();
+                link.style.opacity = text.includes(query) ? '1' : '0.3';
             });
         });
     </script>
