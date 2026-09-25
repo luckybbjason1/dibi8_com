@@ -58,34 +58,27 @@
 </nav>
 
     
-<article class="pt-28 pb-20 px-6">
-    <div class="max-w-4xl mx-auto">
-        
-        <nav class="text-sm text-gray-400 mb-8">
-            <a href="/" class="hover:text-gray-600">首页</a>
-            <span class="mx-2">/</span>
-            <span class="text-gray-600">TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南</span>
-        </nav>
-
-        
-        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南</h1>
-
-        
-        <p class="text-gray-500 text-lg mb-8">AI tool comparison and guide</p>
-        
-
-        
-        <div class="flex flex-wrap gap-2 mb-10">
-            
-            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
-            
-            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
-            
-        </div>
-
-        
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
-            <h1 id="tradingagents82-万星的-llm-多智能体交易框架--2026-实战指南">TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南</h1>
+<article class="max-w-4xl mx-auto px-4 py-12">
+  
+  <nav class="flex items-center space-x-2 text-sm text-zinc-500 mb-8" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-violet-400 transition-colors">首页</a>
+    <span>/</span>
+    <a href="/categories/" class="hover:text-violet-400 transition-colors">分类</a>
+    <span>/</span>
+    <span class="text-zinc-100">TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南</span>
+  </nav>
+  
+  
+  <header class="mb-8">
+    <h1 class="text-4xl font-bold text-zinc-100 mb-4">TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南</h1>
+    
+    <p class="text-xl text-zinc-400">AI tool comparison and guide</p>
+    
+  </header>
+  
+  
+  <div class="prose prose-invert prose-lg max-w-none mb-12">
+    <h1 id="tradingagents82-万星的-llm-多智能体交易框架--2026-实战指南">TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南</h1>
 <h2 id="引言">引言</h2>
 <p>大多数&quot;AI 交易 bot&quot;项目就是一个 LLM 套一句&quot;判断要不要买&quot;的提示词。可一旦真要做决策——查基本面、扫新闻、多空对辩、风控签字——这种单脑结构立刻崩。真实的交易台从不靠一个大脑，而是靠一个会吵架的团队。</p>
 <p>TradingAgents 把这件事照字面做了出来。它是个开源框架，拥有 <strong>82,254 个 GitHub star</strong>、<strong>Apache-2.0</strong> 许可，由 <strong>TauricResearch</strong> 维护，把一家交易公司建模成一队各司其职的 LLM 智能体——它们把研究沿流水线层层传递，辩论之后才给出 BUY/SELL/HOLD 决策。本文讲清楚智能体流水线怎么串、怎么安装运行（CLI 和 Python），以及与 Qlib、单智能体 bot 的诚实对比。</p>
@@ -338,62 +331,72 @@ dibi8 上的相关指南 -&gt; ai-coding-agent-landscape-2026-skills-mcp-opensou
 <p><strong>问：能否自定义AI Agent的行为？</strong></p>
 <p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
 
-        </div>
-
-        
-        <div class="border-t border-gray-200 pt-8 mt-12">
-            <div class="flex items-center gap-4">
-                <span class="text-sm text-gray-500">分享给朋友：</span>
-                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2ftradingagents-llm-multi-agent-trading-framework-2026%2f&text=TradingAgents%ef%bc%9a8.2%20%e4%b8%87%e6%98%9f%e7%9a%84%20LLM%20%e5%a4%9a%e6%99%ba%e8%83%bd%e4%bd%93%e4%ba%a4%e6%98%93%e6%a1%86%e6%9e%b6%20%e2%80%94%202026%20%e5%ae%9e%e6%88%98%e6%8c%87%e5%8d%97" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
-                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2ftradingagents-llm-multi-agent-trading-framework-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
-                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
-            </div>
-        </div>
-
-        
-        
-        
-        <div class="border-t border-gray-200 pt-12 mt-12">
-            <h2 class="text-xl font-bold mb-6">相关文章</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
-                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
-                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
-                    </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
-                </a>
-                
-                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
-                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
-                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
-                    </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
-                </a>
-                
-                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
-                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
-                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
-                    </div>
-                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
-                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
-                </a>
-                
-            </div>
-        </div>
-        
+  </div>
+  
+  
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold text-zinc-100 mb-6">相关工具</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      
     </div>
+  </section>
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南",
+    "description": "\"AI tool comparison and guide\"",
+    "url": "https:\/\/dibi8.com\/ai-coding-agents\/tradingagents-llm-multi-agent-trading-framework-2026\/",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https:\/\/dibi8.com\/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "分类",
+          "item": "https:\/\/dibi8.com\/categories/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南"
+        }
+      ]
+    }
+  }
+  </script>
 </article>
 
-<script>
-function copyLink() {
-    navigator.clipboard.writeText(window.location.href);
-    alert('链接已复制！');
-}
-</script>
 
+<nav class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800">
+  <div class="flex items-center justify-between">
+    
+    <a href="/ai-coding-agents/llamafile-portable-local-llm/" class="flex items-center space-x-2 text-zinc-400 hover:text-violet-400 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+      <span>Traditional LLM setup (complex)</span>
+    </a>
+    
+    
+    
+    <a href="/ai-coding-agents/toprank/" class="flex items-center space-x-2 text-zinc-400 hover:text-violet-400 transition-colors">
+      <span>Toprank: Open-Source Claude Code Skills That Automate SEO, GEO, and Ad Campaign Optimization</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+    
+  </div>
+</nav>
     
 <footer class="footer">
         <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 

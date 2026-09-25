@@ -1,453 +1,204 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Site.Title }} - 发现最佳AI工具</title>
-    <meta name="description" content="{{ .Site.Params.description }}">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        surface: {
-                            0: '#09090b',
-                            1: '#18181b',
-                            2: '#27272a',
-                            3: '#3f3f46',
-                            4: '#52525b',
-                        },
-                        accent: {
-                            DEFAULT: '#6366f1',
-                            light: '#818cf8',
-                            dark: '#4f46e5',
-                        }
-                    },
-                    borderRadius: {
-                        'bento': '24px',
-                        'bento-sm': '16px',
-                        'bento-lg': '32px',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'float-delay': 'float 6s ease-in-out 2s infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        body {
-            background: #09090b;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.06) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.04) 0px, transparent 50%);
-            background-attachment: fixed;
-        }
-        
-        /* Bento卡片样式 */
-        .bento-card {
-            background: rgba(24, 24, 27, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .bento-card:hover {
-            border-color: rgba(99, 102, 241, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(99, 102, 241, 0.1);
-        }
-        
-        .bento-card-accent {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .bento-card-accent::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(99, 102, 241, 0.12), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-        
-        .bento-card-accent:hover::before {
-            opacity: 1;
-        }
-        
-        /* 渐变文字 */
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* 滚动条 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #09090b;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #3f3f46;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #52525b;
-        }
-        
-        /* 分类卡片图标背景 */
-        .category-icon-bg {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Site.Title }} - 发现最佳AI工具</title>
+  <meta name="description" content="{{ .Site.Params.description }}">
+  
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ .Site.Title }}",
+    "url": "{{ .Site.BaseURL }}",
+    "description": "{{ .Site.Params.description }}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ .Site.BaseURL }}search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebDirectory",
+    "name": "AI工具目录",
+    "description": "发现、比较和选择最佳AI工具",
+    "url": "{{ .Site.BaseURL }}",
+    "about": {
+      "@type": "Thing",
+      "name": "人工智能工具"
+    }
+  }
+  </script>
 </head>
-<body class="min-h-screen text-zinc-100">
-    <!-- 导航 -->
-    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-[#09090b]/80 backdrop-blur-xl">
-        <div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                    <i class="fas fa-bolt text-white text-sm"></i>
-                </div>
-                <span class="text-lg font-semibold tracking-tight">Dibi8</span>
-                <span class="px-2 py-0.5 text-xs font-mono text-zinc-500 border border-zinc-800 rounded-md">beta</span>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-8">
-                <a href="/" class="text-sm text-zinc-400 hover:text-white transition-colors">首页</a>
-                <a href="/categories/" class="text-sm text-zinc-400 hover:text-white transition-colors">分类</a>
-                <a href="/trending/" class="text-sm text-zinc-400 hover:text-white transition-colors">热门</a>
-                <a href="/about/" class="text-sm text-zinc-400 hover:text-white transition-colors">关于</a>
-            </div>
-            
-            <div class="flex items-center gap-3">
-                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-lg">
-                    <i class="fas fa-search text-zinc-500 text-xs"></i>
-                    <input type="text" placeholder="搜索..." class="bg-transparent text-sm outline-none w-32 placeholder-zinc-600">
-                </div>
-                <button class="px-4 py-2 text-sm font-medium bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-colors">
-                    提交工具
-                </button>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Bento Grid -->
-    <main class="pt-24 pb-16 px-6">
-        <div class="max-w-[1400px] mx-auto">
-            <!-- Row 1: Hero + Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
-                <!-- Hero Card - 占8列 -->
-                <div class="md:col-span-8 bento-card bento-card-accent p-8 flex flex-col justify-between min-h-[320px]" style="--x: 70%; --y: 30%;">
-                    <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-xs font-medium text-indigo-400 mb-6">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
-                            493+ 精选AI工具持续更新中
-                        </div>
-                        <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">
-                            发现<br>
-                            <span class="gradient-text">最佳AI工具</span>
-                        </h1>
-                        <p class="text-zinc-400 text-lg max-w-lg">
-                            探索{{ .Site.Data.stats.total_tools | default 493 }}+精选AI工具，帮您找到最适合的AI解决方案。每周新增50+优质工具。
-                        </p>
-                    </div>
-                    
-                    <div class="mt-8 flex flex-wrap gap-3">
-                        <a href="/categories/" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-medium transition-all flex items-center gap-2">
-                            <i class="fas fa-compass"></i>
-                            浏览目录
-                        </a>
-                        <a href="/trending/" class="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-xl font-medium transition-all flex items-center gap-2">
-                            <i class="fas fa-fire"></i>
-                            热门工具
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Stats Column - 占4列 -->
-                <div class="md:col-span-4 grid grid-rows-2 gap-4">
-                    <!-- 工具总数 -->
-                    <div class="bento-card p-6 flex flex-col justify-between">
-                        <div class="flex items-start justify-between">
-                            <div>
-                                <p class="text-zinc-500 text-sm mb-1">AI工具</p>
-                                <h3 class="text-4xl font-bold">{{ .Site.Data.stats.total_tools | default 493 }}</h3>
-                            </div>
-                            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center">
-                                <i class="fas fa-robot text-indigo-400"></i>
-                            </div>
-                        </div>
-                        <p class="text-xs text-zinc-500 mt-4">覆盖编码、开发、LLM等</p>
-                    </div>
-                    
-                    <!-- 每周新增 -->
-                    <div class="bento-card p-6 flex flex-col justify-between">
-                        <div class="flex items-start justify-between">
-                            <div>
-                                <p class="text-zinc-500 text-sm mb-1">每周新增</p>
-                                <h3 class="text-4xl font-bold">50+</h3>
-                            </div>
-                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                                <i class="fas fa-plus text-emerald-400"></i>
-                            </div>
-                        </div>
-                        <p class="text-xs text-zinc-500 mt-4">持续更新中</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Row 2: Categories -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
-                <div class="md:col-span-12 bento-card p-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h2 class="text-lg font-semibold">探索分类</h2>
-                            <p class="text-sm text-zinc-500 mt-1">按领域查找AI工具</p>
-                        </div>
-                        <a href="/categories/" class="text-sm text-zinc-500 hover:text-white transition-colors">查看全部 →</a>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <a href="/ai-tools/" class="group p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-indigo-500/30 transition-all">
-                            <div class="w-12 h-12 rounded-xl category-icon-bg flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">🎯</div>
-                            <h3 class="font-medium mb-1 group-hover:text-indigo-400 transition-colors">AI工具</h3>
-                            <p class="text-xs text-zinc-500">125 个工具</p>
-                        </a>
-                        
-                        <a href="/dev-utils/" class="group p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-purple-500/30 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">💻</div>
-                            <h3 class="font-medium mb-1 group-hover:text-purple-400 transition-colors">开发工具</h3>
-                            <p class="text-xs text-zinc-500">312 个工具</p>
-                        </a>
-                        
-                        <a href="/llm-frameworks/" class="group p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-pink-500/30 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">🤖</div>
-                            <h3 class="font-medium mb-1 group-hover:text-pink-400 transition-colors">LLM框架</h3>
-                            <p class="text-xs text-zinc-500">38 个工具</p>
-                        </a>
-                        
-                        <a href="/mcp-tools/" class="group p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-emerald-500/30 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">🔧</div>
-                            <h3 class="font-medium mb-1 group-hover:text-emerald-400 transition-colors">MCP工具</h3>
-                            <p class="text-xs text-zinc-500">18 个工具</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Row 3: Featured Tools -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
-                <div class="md:col-span-12 bento-card p-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h2 class="text-lg font-semibold">热门工具</h2>
-                            <p class="text-sm text-zinc-500 mt-1">根据浏览量和评分排序的精选工具</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button class="px-3 py-1.5 text-sm bg-indigo-600 rounded-lg">热门</button>
-                            <button class="px-3 py-1.5 text-sm text-zinc-500 hover:text-white transition-colors">最新</button>
-                            <button class="px-3 py-1.5 text-sm text-zinc-500 hover:text-white transition-colors">评分</button>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {{ range first 6 .Site.RegularPages.ByWeight }}
-                        <a href="{{ .Permalink }}" class="group p-4 rounded-2xl bg-zinc-900/30 border border-zinc-800 hover:border-indigo-500/30 transition-all">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center text-xl flex-shrink-0">
-                                    {{ if .Params.initial }}{{ .Params.initial }}{{ else }}🤖{{ end }}
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <h3 class="font-medium mb-1 group-hover:text-indigo-400 transition-colors line-clamp-1">
-                                        {{ .Title }}
-                                    </h3>
-                                    <p class="text-sm text-zinc-500 line-clamp-2 mb-3">
-                                        {{ .Summary | plainify | truncate 80 }}
-                                    </p>
-                                    <div class="flex items-center gap-4 text-xs text-zinc-500">
-                                        <span><i class="fas fa-eye mr-1"></i>{{ .Params.views | default "1.2k" }}</span>
-                                        <span><i class="fas fa-star mr-1 text-yellow-500"></i>{{ .Params.rating | default "4.8" }}</span>
-                                        <span class="px-2 py-0.5 bg-zinc-800 rounded">{{ index .Params "tags" 0 | default "AI" }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        {{ end }}
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Row 4: Latest + Newsletter -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
-                <!-- Latest Tools - 占8列 -->
-                <div class="md:col-span-8 bento-card p-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h2 class="text-lg font-semibold">最新工具发布</h2>
-                            <p class="text-sm text-zinc-500 mt-1">本周新添加的AI工具</p>
-                        </div>
-                        <a href="/latest/" class="text-sm text-zinc-500 hover:text-white transition-colors">查看全部 →</a>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        {{ range first 5 (where .Site.RegularPages "Section" "in" (slice "ai-coding-agents" "llm-frameworks" "dev-utils" "mcp-tools")) }}
-                        <a href="{{ .Permalink }}" class="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/30 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800 transition-all group">
-                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center text-lg flex-shrink-0">
-                                {{ if .Params.initial }}{{ .Params.initial }}{{ else }}🚀{{ end }}
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="text-xs font-mono text-indigo-400">{{ .Section }}</span>
-                                    <span class="text-zinc-600">·</span>
-                                    <span class="text-xs text-zinc-500">{{ .Date.Format "2006-01-02" }}</span>
-                                    <span class="text-zinc-600">·</span>
-                                    <span class="text-xs text-zinc-500">{{ .ReadingTime }} 分钟</span>
-                                </div>
-                                <h3 class="font-medium group-hover:text-indigo-400 transition-colors line-clamp-1">
-                                    {{ .Title }}
-                                </h3>
-                            </div>
-                            <i class="fas fa-arrow-right text-zinc-600 group-hover:text-indigo-400 transition-colors"></i>
-                        </a>
-                        {{ end }}
-                    </div>
-                </div>
-                
-                <!-- Newsletter - 占4列 -->
-                <div class="md:col-span-4 bento-card p-6 flex flex-col">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl mb-4">
-                        📡
-                    </div>
-                    <h2 class="text-lg font-semibold mb-2">订阅更新</h2>
-                    <p class="text-sm text-zinc-500 mb-6 flex-1">每周精选AI工具直接发送到您的邮箱</p>
-                    
-                    <form class="space-y-3">
-                        <input type="email" placeholder="your@email.com" 
-                               class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-sm outline-none focus:border-indigo-500/50 transition-colors">
-                        <button type="submit" 
-                                class="w-full px-4 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-sm font-medium transition-colors">
-                            立即订阅
-                        </button>
-                    </form>
-                    
-                    <p class="text-xs text-zinc-600 mt-4 text-center">
-                        <i class="fas fa-lock mr-1"></i>我们不会发送垃圾邮件
-                    </p>
-                </div>
-            </div>
-        </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="border-t border-white/5 py-12 px-6">
-        <div class="max-w-[1400px] mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                            <i class="fas fa-bolt text-white text-sm"></i>
-                        </div>
-                        <span class="font-semibold">Dibi8</span>
-                    </div>
-                    <p class="text-sm text-zinc-500">发现最佳AI工具的终极指南</p>
-                </div>
-                
-                <div>
-                    <h4 class="font-medium mb-4">分类导航</h4>
-                    <ul class="space-y-2 text-sm text-zinc-500">
-                        <li><a href="/ai-tools/" class="hover:text-white transition-colors">AI工具</a></li>
-                        <li><a href="/dev-utils/" class="hover:text-white transition-colors">开发工具</a></li>
-                        <li><a href="/llm-frameworks/" class="hover:text-white transition-colors">LLM框架</a></li>
-                        <li><a href="/mcp-tools/" class="hover:text-white transition-colors">MCP工具</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-medium mb-4">资源链接</h4>
-                    <ul class="space-y-2 text-sm text-zinc-500">
-                        <li><a href="/about/" class="hover:text-white transition-colors">关于我们</a></li>
-                        <li><a href="/contact/" class="hover:text-white transition-colors">联系我们</a></li>
-                        <li><a href="/privacy/" class="hover:text-white transition-colors">隐私政策</a></li>
-                        <li><a href="/terms/" class="hover:text-white transition-colors">使用条款</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-medium mb-4">关注我们</h4>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-9 h-9 rounded-lg bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all">
-                            <i class="fab fa-twitter text-sm"></i>
-                        </a>
-                        <a href="#" class="w-9 h-9 rounded-lg bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all">
-                            <i class="fab fa-github text-sm"></i>
-                        </a>
-                        <a href="#" class="w-9 h-9 rounded-lg bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all">
-                            <i class="fab fa-discord text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-zinc-600">© 2026 Dibi8.com. All rights reserved.</p>
-                <p class="text-sm text-zinc-600">Made with ❤️ by AI Enthusiasts</p>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
-        // 鼠标跟随效果
-        document.querySelectorAll('.bento-card-accent').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                card.style.setProperty('--x', x + '%');
-                card.style.setProperty('--y', y + '%');
-            });
-        });
+<body class="bg-zinc-950 text-zinc-100 min-h-screen">
+  
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="/" class="flex items-center space-x-3">
+          <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">D</span>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+            Dibi8
+          </span>
+        </a>
         
-        // 搜索过滤
-        document.querySelector('input[placeholder="搜索..."]')?.addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            document.querySelectorAll('.bento-card a').forEach(link => {
-                const text = link.textContent.toLowerCase();
-                link.style.opacity = text.includes(query) ? '1' : '0.3';
-            });
-        });
-    </script>
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="/categories/" class="text-zinc-400 hover:text-zinc-100 transition-colors">
+            分类
+          </a>
+          <a href="/collections/" class="text-zinc-400 hover:text-zinc-100 transition-colors">
+            合集
+          </a>
+          <a href="/about/" class="text-zinc-400 hover:text-zinc-100 transition-colors">
+            关于
+          </a>
+        </nav>
+        
+        <!-- Search -->
+        <div class="flex items-center space-x-4">
+          <a href="/search/" class="p-2 text-zinc-400 hover:text-zinc-100">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+        <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+          发现最佳AI工具
+        </span>
+      </h1>
+      <p class="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto">
+        探索 {{ .Site.Data.stats.total_tools | default 493 }}+ 精选AI工具，
+        帮助你找到最适合的AI解决方案
+      </p>
+      
+      <!-- Search Box -->
+      <div class="max-w-2xl mx-auto mb-12">
+        <form action="/search/" method="GET" class="relative">
+          <input 
+            type="search" 
+            name="q"
+            placeholder="搜索AI工具..."
+            class="w-full px-6 py-4 bg-zinc-900 border border-zinc-800 rounded-2xl text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
+          >
+          <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 px-4 py-2 bg-violet-600 hover:bg-violet-700 rounded-xl text-white font-medium transition-colors">
+            搜索
+          </button>
+        </form>
+      </div>
+      
+      <!-- Category Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {{ range .Site.Taxonomies.categories }}
+        <a href="{{ .Page.RelPermalink }}" class="group p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:border-violet-500/50 hover:bg-zinc-900 transition-all">
+          <div class="text-2xl font-bold text-violet-400 group-hover:text-violet-300">
+            {{ .Count }}
+          </div>
+          <div class="text-sm text-zinc-500 group-hover:text-zinc-400">
+            {{ .Page.LinkTitle }}
+          </div>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Tools -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold text-zinc-100">精选工具</h2>
+        <a href="/categories/" class="text-violet-400 hover:text-violet-300 transition-colors">
+          查看全部 →
+        </a>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range first 6 .Site.RegularPages }}
+        <article class="group p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl hover:border-violet-500/50 hover:bg-zinc-900 transition-all">
+          <div class="flex items-start justify-between mb-4">
+            <span class="px-3 py-1 bg-violet-500/10 text-violet-400 text-sm rounded-full">
+              {{ index .Params.categories 0 | default "工具" }}
+            </span>
+            {{ with .Params.pricing }}
+            <span class="text-zinc-500 text-sm">{{ . }}</span>
+            {{ end }}
+          </div>
+          
+          <h3 class="text-lg font-semibold text-zinc-100 mb-2 group-hover:text-violet-400 transition-colors">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          
+          <p class="text-zinc-500 text-sm line-clamp-2 mb-4">
+            {{ .Description | plainify | truncate 100 }}
+          </p>
+          
+          <div class="flex items-center justify-between">
+            <div class="flex flex-wrap gap-2">
+              {{ with .Params.tags }}
+              {{ range first 3 . }}
+              <span class="text-xs text-zinc-600">#{{ . }}</span>
+              {{ end }}
+              {{ end }}
+            </div>
+            <a href="{{ .RelPermalink }}" class="text-violet-400 hover:text-violet-300 text-sm font-medium">
+              详情 →
+            </a>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-bold text-violet-400 mb-2">{{ .Site.Data.stats.total_tools | default 493 }}</div>
+          <div class="text-zinc-500">精选工具</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-fuchsia-400 mb-2">{{ len .Site.Taxonomies.categories }}</div>
+          <div class="text-zinc-500">分类目录</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-pink-400 mb-2">4.8</div>
+          <div class="text-zinc-500">平均评分</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-orange-400 mb-2">每周更新</div>
+          <div class="text-zinc-500">最新工具</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto text-center text-zinc-500">
+      <p>&copy; 2026 Dibi8. 发现最佳AI工具。</p>
+    </div>
+  </footer>
+  
 </body>
 </html>
