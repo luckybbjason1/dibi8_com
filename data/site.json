@@ -1,0 +1,22 @@
+{
+  "total_tools": 493,
+  "subscribers": 1250,
+  "categories": {
+    "ai-tools": "🎯",
+    "dev-utils": "💻",
+    "llm-frameworks": "🤖",
+    "mcp-tools": "🔧"
+  },
+  "featured_tools": [
+    {
+      "url": "/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/",
+      "title": "Jev Ultrafast",
+      "views": 15420
+    },
+    {
+      "url": "/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/",
+      "title": "Laya Decision Engine",
+      "views": 12380
+    }
+  ]
+}

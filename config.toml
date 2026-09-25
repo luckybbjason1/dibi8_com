@@ -29,7 +29,7 @@ enableGitInfo = false
 [languages.zh]
   weight = 1
   title = "Dibi8 - AI工具目录"
-  label = "中文"  # Use label instead of languageName
+  label = "中文"
   contentDir = "CN"
 
 # Menu configuration

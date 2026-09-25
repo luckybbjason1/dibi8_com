@@ -5,7 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Site.Title }} - 发现最佳AI工具</title>
   <meta name="description" content="{{ .Site.Params.description }}">
-  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8b5cf6',
+            secondary: '#ec4899',
+            dark: '#0f172a',
+            darker: '#020617',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    .shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .rating-stars {
+      display: flex;
+      gap: 2px;
+    }
+    .rating-stars i {
+      color: #fbbf24;
+    }
+    .price-badge {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+    .trending-badge {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+  </style>
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
@@ -21,7 +77,6 @@
     }
   }
   </script>
-  
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,173 +91,300 @@
   }
   </script>
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen">
+<body class="bg-darker text-gray-100 min-h-screen">
   
-  <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-lg">
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-xl border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
-        <a href="/" class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">D</span>
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-bolt text-white text-lg"></i>
           </div>
-          <span class="text-xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
-            Dibi8
-          </span>
-        </a>
-        
-        <!-- Navigation -->
-        <nav class="hidden md:flex items-center space-x-8">
-          <a href="/categories/" class="text-zinc-400 hover:text-zinc-100 transition-colors">
-            分类
-          </a>
-          <a href="/collections/" class="text-zinc-400 hover:text-zinc-100 transition-colors">
-            合集
-          </a>
-          <a href="/about/" class="text-zinc-400 hover:text-zinc-100 transition-colors">
-            关于
-          </a>
-        </nav>
-        
-        <!-- Search -->
+          <span class="text-2xl font-bold gradient-text">Dibi8</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/" class="text-gray-300 hover:text-white transition">首页</a>
+          <a href="/categories/" class="text-gray-300 hover:text-white transition">分类</a>
+          <a href="/collections/" class="text-gray-300 hover:text-white transition">合集</a>
+          <a href="/about/" class="text-gray-300 hover:text-white transition">关于</a>
+        </div>
         <div class="flex items-center space-x-4">
-          <a href="/search/" class="p-2 text-zinc-400 hover:text-zinc-100">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
+          <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/10 transition">
+            <i class="fas fa-moon text-gray-400" id="theme-icon"></i>
+          </button>
+          <a href="/search/" class="p-2 rounded-lg bg-violet-600 hover:bg-violet-700 transition">
+            <i class="fas fa-search"></i>
           </a>
+          <button onclick="openSubmitModal()" class="px-4 py-2 bg-gradient-to-r from-violet-600 to-pink-600 rounded-lg text-white font-medium hover:opacity-90 transition">
+            <i class="fas fa-plus mr-2"></i>提交工具
+          </button>
         </div>
       </div>
     </div>
-  </header>
-  
+  </nav>
+
   <!-- Hero Section -->
-  <section class="py-20 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">
-        <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
-          发现最佳AI工具
-        </span>
-      </h1>
-      <p class="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto">
-        探索 {{ .Site.Data.stats.total_tools | default 493 }}+ 精选AI工具，
-        帮助你找到最适合的AI解决方案
-      </p>
-      
-      <!-- Search Box -->
-      <div class="max-w-2xl mx-auto mb-12">
-        <form action="/search/" method="GET" class="relative">
-          <input 
-            type="search" 
-            name="q"
-            placeholder="搜索AI工具..."
-            class="w-full px-6 py-4 bg-zinc-900 border border-zinc-800 rounded-2xl text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
-          >
-          <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 px-4 py-2 bg-violet-600 hover:bg-violet-700 rounded-xl text-white font-medium transition-colors">
-            搜索
-          </button>
-        </form>
+  <section class="pt-32 pb-20 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-violet-900/20 via-transparent to-pink-900/20"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-violet-500/30 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute top-40 right-10 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="text-center mb-12">
+        <div class="inline-block px-4 py-2 bg-violet-500/20 rounded-full text-violet-300 text-sm mb-6">
+          <i class="fas fa-sparkles mr-2"></i>{{ .Site.Data.stats.total_tools | default 493 }}+ 精选AI工具
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+          <span class="gradient-text">发现最佳AI工具</span>
+        </h1>
+        <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+          探索{{ .Site.Data.stats.total_tools | default 493 }}+精选AI工具，帮助您找到最适合的AI解决方案
+        </p>
+        
+        <!-- Search Bar -->
+        <div class="max-w-2xl mx-auto mb-8">
+          <form action="/search/" method="GET" class="relative">
+            <input type="search" name="q" placeholder="搜索AI工具、功能、技术..." 
+                   class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 text-lg">
+            <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 px-6 py-2 bg-gradient-to-r from-violet-600 to-pink-600 rounded-xl text-white font-medium hover:opacity-90 transition">
+              <i class="fas fa-search mr-2"></i>搜索
+            </button>
+          </form>
+        </div>
+        
+        <!-- Quick Filters -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <a href="/categories/ai-tools/" class="px-4 py-2 bg-white/5 hover:bg-violet-500/20 border border-white/10 hover:border-violet-500/50 rounded-full text-sm transition">
+            🎯 AI工具
+          </a>
+          <a href="/categories/dev-utils/" class="px-4 py-2 bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 rounded-full text-sm transition">
+            💻 开发工具
+          </a>
+          <a href="/categories/llm-frameworks/" class="px-4 py-2 bg-white/5 hover:bg-green-500/20 border border-white/10 hover:border-green-500/50 rounded-full text-sm transition">
+            🤖 LLM框架
+          </a>
+          <a href="/collections/" class="px-4 py-2 bg-white/5 hover:bg-orange-500/20 border border-white/10 hover:border-orange-500/50 rounded-full text-sm transition">
+            ⭐ 精选合集
+          </a>
+          <a href="/trending/" class="px-4 py-2 bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/50 rounded-full text-sm transition">
+            🔥 热门工具
+          </a>
+        </div>
       </div>
       
-      <!-- Category Cards -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-        {{ range .Site.Taxonomies.categories }}
-        <a href="{{ .Page.RelPermalink }}" class="group p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:border-violet-500/50 hover:bg-zinc-900 transition-all">
-          <div class="text-2xl font-bold text-violet-400 group-hover:text-violet-300">
-            {{ .Count }}
-          </div>
-          <div class="text-sm text-zinc-500 group-hover:text-zinc-400">
-            {{ .Page.LinkTitle }}
-          </div>
-        </a>
-        {{ end }}
+      <!-- Stats Row -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="text-center p-4 bg-white/5 rounded-2xl border border-white/10">
+          <div class="text-3xl font-bold text-violet-400">{{ .Site.Data.stats.total_tools | default 493 }}</div>
+          <div class="text-sm text-gray-500">精选工具</div>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-2xl border border-white/10">
+          <div class="text-3xl font-bold text-pink-400">{{ len .Site.Taxonomies.categories }}</div>
+          <div class="text-sm text-gray-500">分类目录</div>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-2xl border border-white/10">
+          <div class="text-3xl font-bold text-blue-400">4.8</div>
+          <div class="text-sm text-gray-500">平均评分</div>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-2xl border border-white/10">
+          <div class="text-3xl font-bold text-orange-400">每周</div>
+          <div class="text-sm text-gray-500">更新工具</div>
+        </div>
       </div>
     </div>
   </section>
-  
-  <!-- Featured Tools -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 border-t border-zinc-800">
+
+  <!-- Trending Tools (Product Hunt Style) -->
+  <section class="py-16 px-4 bg-white/5">
     <div class="max-w-7xl mx-auto">
       <div class="flex items-center justify-between mb-8">
-        <h2 class="text-2xl font-bold text-zinc-100">精选工具</h2>
-        <a href="/categories/" class="text-violet-400 hover:text-violet-300 transition-colors">
-          查看全部 →
-        </a>
+        <div>
+          <h2 class="text-3xl font-bold mb-2">🔥 本周热门</h2>
+          <p class="text-gray-500">根据用户投票和浏览量排名的热门工具</p>
+        </div>
+        <a href="/trending/" class="text-violet-400 hover:text-violet-300 transition">查看全部 →</a>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {{ range first 6 .Site.RegularPages }}
-        <article class="group p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl hover:border-violet-500/50 hover:bg-zinc-900 transition-all">
+        {{ range first 6 (sort .Site.RegularPages "Params.views" "desc" ) }}
+        <article class="bg-dark border border-white/10 rounded-2xl p-6 card-hover transition-all duration-300">
           <div class="flex items-start justify-between mb-4">
-            <span class="px-3 py-1 bg-violet-500/10 text-violet-400 text-sm rounded-full">
-              {{ index .Params.categories 0 | default "工具" }}
-            </span>
-            {{ with .Params.pricing }}
-            <span class="text-zinc-500 text-sm">{{ . }}</span>
-            {{ end }}
+            <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-pink-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl">
+              {{ index .Params "initial" | default (printf "%.1s" .Title) }}
+            </div>
+            <div class="text-right">
+              <div class="flex items-center space-x-1 text-yellow-400 mb-1">
+                <i class="fas fa-star text-sm"></i>
+                <span class="text-sm font-medium">{{ .Params.rating | default "4.5" }}</span>
+              </div>
+              <span class="text-xs text-gray-500">{{ .Params.pricing | default "免费" }}</span>
+            </div>
           </div>
           
-          <h3 class="text-lg font-semibold text-zinc-100 mb-2 group-hover:text-violet-400 transition-colors">
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <h3 class="text-lg font-semibold mb-2 line-clamp-1">
+            <a href="{{ .RelPermalink }}" class="hover:text-violet-400 transition">{{ .Title }}</a>
           </h3>
+          <p class="text-gray-400 text-sm mb-4 line-clamp-2">{{ .Summary | truncate 100 }}</p>
           
-          <p class="text-zinc-500 text-sm line-clamp-2 mb-4">
-            {{ .Description | plainify | truncate 100 }}
-          </p>
-          
-          <div class="flex items-center justify-between">
-            <div class="flex flex-wrap gap-2">
-              {{ if .Params.tags }}
-                {{ $tags := .Params.tags }}
-                {{ if gt (len $tags) 3 }}
-                  {{ $tags = (slice $tags 0 3) }}
-                {{ end }}
-                {{ range $tags }}
-                <span class="text-xs text-zinc-600">#{{ . }}</span>
-                {{ end }}
-              {{ end }}
+          <div class="flex items-center justify-between text-sm">
+            <div class="flex items-center space-x-4 text-gray-500">
+              <span><i class="fas fa-arrow-up mr-1"></i>{{ .Params.views | default 1000 }}</span>
+              <span><i class="fas fa-heart mr-1"></i>{{ .Params.likes | default 50 }}</span>
             </div>
-            <a href="{{ .RelPermalink }}" class="text-violet-400 hover:text-violet-300 text-sm font-medium">
-              详情 →
-            </a>
+            <div class="flex items-center space-x-2">
+              {{ if eq .Params.category "free" }}
+              <span class="px-2 py-1 price-badge text-white rounded text-xs">免费</span>
+              {{ else }}
+              <span class="px-2 py-1 bg-white/5 text-gray-400 rounded text-xs">{{ .Params.category | default "工具" }}</span>
+              {{ end }}
+              <a href="{{ .RelPermalink }}" class="text-violet-400 hover:text-violet-300 transition">详情 →</a>
+            </div>
           </div>
         </article>
         {{ end }}
       </div>
     </div>
   </section>
-  
-  <!-- Stats Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 border-t border-zinc-800">
+
+  <!-- Categories -->
+  <section class="py-16 px-4">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-          <div class="text-4xl font-bold text-violet-400 mb-2">{{ .Site.Data.stats.total_tools | default 493 }}</div>
-          <div class="text-zinc-500">精选工具</div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-fuchsia-400 mb-2">{{ len .Site.Taxonomies.categories }}</div>
-          <div class="text-zinc-500">分类目录</div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-pink-400 mb-2">4.8</div>
-          <div class="text-zinc-500">平均评分</div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-orange-400 mb-2">每周更新</div>
-          <div class="text-zinc-500">最新工具</div>
-        </div>
+      <h2 class="text-3xl font-bold mb-8 text-center">📂 分类目录</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        <a href="{{ $name | relURL }}" class="group p-6 bg-dark border border-white/10 rounded-2xl hover:border-violet-500/50 hover:bg-violet-500/10 transition-all text-center">
+          <div class="text-4xl mb-3">{{ index $.Site.Data.stats.categories $name | default "📦" }}</div>
+          <div class="font-semibold text-lg group-hover:text-violet-400 transition">{{ $name }}</div>
+          <div class="text-sm text-gray-500">{{ len $taxonomy }} 个工具</div>
+        </a>
+        {{ end }}
       </div>
     </div>
   </section>
-  
+
+  <!-- Latest Tools -->
+  <section class="py-16 px-4 bg-white/5">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h2 class="text-3xl font-bold mb-2">✨ 最新工具</h2>
+          <p class="text-gray-500">最近添加的AI工具</p>
+        </div>
+        <a href="/categories/" class="text-violet-400 hover:text-violet-300 transition">查看全部 →</a>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range last 6 (sort .Site.RegularPages "Date" "desc" ) }}
+        <article class="bg-dark border border-white/10 rounded-2xl p-6 card-hover transition-all duration-300">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl">
+              {{ index .Params "initial" | default (printf "%.1s" .Title) }}
+            </div>
+            <div class="flex items-center space-x-1 text-yellow-400">
+              <i class="fas fa-star text-sm"></i>
+              <span class="text-sm font-medium">{{ .Params.rating | default "4.5" }}</span>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold mb-2 line-clamp-1">
+            <a href="{{ .RelPermalink }}" class="hover:text-violet-400 transition">{{ .Title }}</a>
+          </h3>
+          <p class="text-gray-400 text-sm mb-4 line-clamp-2">{{ .Summary | truncate 100 }}</p>
+          <div class="flex items-center justify-between text-sm">
+            <span class="px-2 py-1 bg-blue-500/10 text-blue-400 rounded text-xs">{{ .Params.category | default "新工具" }}</span>
+            <span class="text-gray-500"><i class="far fa-calendar mr-1"></i>{{ .Date.Format "2006-01-02" }}</span>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="bg-gradient-to-br from-violet-600/20 to-pink-600/20 border border-violet-500/30 rounded-3xl p-12">
+        <h2 class="text-3xl font-bold mb-4">📬 订阅更新</h2>
+        <p class="text-gray-400 mb-8">每周获取最新的AI工具和趋势报告</p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+          <input type="email" placeholder="输入您的邮箱" class="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-violet-500">
+          <button type="submit" class="px-8 py-4 bg-gradient-to-r from-violet-600 to-pink-600 rounded-xl text-white font-medium hover:opacity-90 transition">
+            订阅
+          </button>
+        </form>
+        <p class="text-sm text-gray-500 mt-4">我们已经发送了{{ .Site.Data.stats.subscribers | default "1250" }}封更新邮件</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
-  <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-zinc-800">
-    <div class="max-w-7xl mx-auto text-center text-zinc-500">
-      <p>&copy; 2026 Dibi8. 发现最佳AI工具。</p>
+  <footer class="py-12 px-4 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold">Dibi8</span>
+          </div>
+          <p class="text-gray-500 text-sm">发现最佳AI工具，比较功能、价格和评价</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">分类</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/categories/ai-tools/" class="hover:text-white transition">AI工具</a></li>
+            <li><a href="/categories/dev-utils/" class="hover:text-white transition">开发工具</a></li>
+            <li><a href="/categories/llm-frameworks/" class="hover:text-white transition">LLM框架</a></li>
+            <li><a href="/categories/mcp-tools/" class="hover:text-white transition">MCP工具</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">资源</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/collections/" class="hover:text-white transition">精选合集</a></li>
+            <li><a href="/search/" class="hover:text-white transition">搜索工具</a></li>
+            <li><a href="/trending/" class="hover:text-white transition">热门工具</a></li>
+            <li><a href="/about/" class="hover:text-white transition">关于我们</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">关注我们</h4>
+          <div class="flex space-x-4">
+            <a href="https://github.com/luckybbjason1/dibi8_com" class="w-10 h-10 bg-white/5 hover:bg-violet-500/20 rounded-lg flex items-center justify-center transition">
+              <i class="fab fa-github text-gray-400"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/5 hover:bg-blue-500/20 rounded-lg flex items-center justify-center transition">
+              <i class="fab fa-twitter text-gray-400"></i>
+            </a>
+            <a href="https://t.me/DIBI8_Group" class="w-10 h-10 bg-white/5 hover:bg-blue-600/20 rounded-lg flex items-center justify-center transition">
+              <i class="fab fa-telegram text-gray-400"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 text-center text-sm text-gray-500">
+        <p>&copy; 2026 Dibi8 - AI工具目录. 保留所有权利.</p>
+      </div>
     </div>
   </footer>
-  
+
+  <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      const icon = document.getElementById('theme-icon');
+      if (document.documentElement.classList.contains('dark')) {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      }
+    }
+    
+    function openSubmitModal() {
+      alert('工具提交流单功能即将上线！');
+    }
+  </script>
 </body>
 </html>
