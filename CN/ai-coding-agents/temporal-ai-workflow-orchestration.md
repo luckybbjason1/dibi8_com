@@ -1,6 +1,6 @@
 ---
 title: "Option A: Docker Compose (recommended for local dev)"
-description: "Technical guide and comparison"
+description: "Temporal is an open-source distributed system for running fault-tolerant workflows at scale"
 date: 2026-09-20
 slug: "temporal-ai-workflow-orchestration"
 category: "ai-tools"

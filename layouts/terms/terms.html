@@ -1,15 +1,15 @@
-{{ define "title" }}服务条款 | Dibi8 - AI工具目录{{ end }}
+{{ define "title" }}服务条款 | AI工具目录{{ end }}
 {{ define "main" }}
 <section class="pt-32 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
-        <nav class="text-sm text-gray-400 mb-8">
+        <nav class="text-sm text-gray-400 mb-8" aria-label="面包屑导航">
             <a href="/" class="hover:text-gray-600">首页</a>
             <span class="mx-2">/</span>
-            <span class="text-gray-600">服务条款</span>
+            <span class="text-gray-900">服务条款</span>
         </nav>
         
         <div class="text-center mb-12">
-            <span class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 text-2xl mb-6">
+            <span class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 text-2xl mb-6" aria-hidden="true">
                 <i class="fas fa-file-contract"></i>
             </span>
             <h1 class="text-4xl md:text-5xl font-bold mb-4">服务条款</h1>
@@ -39,8 +39,24 @@
         </div>
         
         <div class="mt-8 text-center">
-            <a href="/" class="text-blue-600 hover:underline">← 返回首页</a>
+            <a href="/" class="text-blue-600 hover:underline" aria-label="返回首页">← 返回首页</a>
         </div>
     </div>
 </section>
+{{ end }}
+{{ define "schema" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "服务条款",
+  "description": "Dibi8服务条款",
+  "url": "https://dibi8.com/terms/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "url": "https://dibi8.com"
+  }
+}
+</script>
 {{ end }}

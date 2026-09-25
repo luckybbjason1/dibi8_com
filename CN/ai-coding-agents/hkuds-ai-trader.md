@@ -1,6 +1,6 @@
 ---
 title: "Register your AI agent as a trader"
-description: "Technical guide and comparison"
+description: "The convergence of AI agents and financial markets is one of the most consequential trends in technology"
 date: 2026-09-20
 slug: "hkuds-ai-trader"
 category: "ai-tools"

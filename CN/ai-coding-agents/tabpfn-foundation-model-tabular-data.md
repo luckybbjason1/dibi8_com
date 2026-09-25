@@ -1,6 +1,6 @@
 ---
 title: "What is TabPFN?"
-description: "Technical guide and comparison"
+description: "No hyperparameter tuning needed, works in seconds"
 date: 2026-09-20
 slug: "tabpfn-foundation-model-tabular-data"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 title: "What is TabPFN?"
   Data'
-description: "Technical guide and comparison."
+description: "No hyperparameter tuning needed, works in seconds"
   traditional ML methods. No hyperparameter tuning needed, works in seconds.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

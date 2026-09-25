@@ -1,13 +1,13 @@
 ---
 title: "Install core framework"
-description: "Technical guide and comparison"
+description: "title: "LangChain: 3 Ways to Deploy Production-Ready AI Agents w"
 date: 2026-09-20
 slug: "langchain"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "LangChain: 3 Ways to Deploy Production-Ready AI Agents w...
-description: "Technical guide and comparison."
+description: "title: "LangChain: 3 Ways to Deploy Production-Ready AI Agents w"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "DESIGN.md: Google's Open-Source Format for Giving AI Coding Agents a Design System"
-description: "Technical guide and comparison"
+description: "md: Google's Open-Source Format for Giving AI Coding Agents a Design System"
 date: 2026-09-20
 slug: "design-md-google-open-source-format-ai-coding-agents-design-systems"
 category: "ai-tools"

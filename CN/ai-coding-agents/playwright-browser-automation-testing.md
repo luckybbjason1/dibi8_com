@@ -1,13 +1,13 @@
 ---
 title: "Install browser binaries (Chromium, Firefox, WebKit)"
-description: "Technical guide and comparison"
+description: "title: "Playwright 2026: The Cross-Browser Automation Tool Testi"
 date: 2026-09-20
 slug: "playwright-browser-automation-testing"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Playwright 2026: The Cross-Browser Automation Tool Testi...
-description: "Technical guide and comparison."
+description: "title: "Playwright 2026: The Cross-Browser Automation Tool Testi"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

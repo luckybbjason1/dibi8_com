@@ -1,6 +1,6 @@
 ---
 title: "What Are Vector Databases and Why Do You Need One?"
-description: "Technical guide and comparison"
+description: "The wrong choice leads to scaling bottlenecks, runaway costs, or integration headaches that surface months into a project"
 date: 2026-09-20
 slug: "vector-database-comparison"
 category: "ai-tools"

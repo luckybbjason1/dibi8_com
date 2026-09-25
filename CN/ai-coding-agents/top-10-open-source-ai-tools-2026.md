@@ -1,13 +1,13 @@
 ---
 title: "Top 10 Open-Source AI Tools for Developers in 2026 (Free Alternatives)"
-description: "Technical guide and comparison"
+description: "title: Top 10 Open-Source AI Tools for Developers in 2026 (Free"
 date: 2026-09-20
 slug: "top-10-open-source-ai-tools-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: Top 10 Open-Source AI Tools for Developers in 2026 (Free ...
-description: "Technical guide and comparison."
+description: "title: Top 10 Open-Source AI Tools for Developers in 2026 (Free"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

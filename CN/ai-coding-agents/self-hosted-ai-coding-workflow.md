@@ -1,13 +1,13 @@
 ---
 title: "Add to OpenCode's MCP config:"
-description: "Technical guide and comparison"
+description: "title: "Self-Hosted AI Coding Workflow: The Complete $6/Month St"
 date: 2026-09-20
 slug: "self-hosted-ai-coding-workflow"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Self-Hosted AI Coding Workflow: The Complete $6/Month St...
-description: "Technical guide and comparison."
+description: "title: "Self-Hosted AI Coding Workflow: The Complete $6/Month St"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker

@@ -1,13 +1,13 @@
 ---
 title: "codebase memory mcp deep code intelligence"
-description: "Technical guide and comparison"
+description: "title: "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server""
 date: 2026-09-20
 slug: "codebase-memory-mcp-deep-code-intelligence"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server"
-description: "Technical guide and comparison."
+description: "title: "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server""
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: codebase-memory-mcp-deep-code-intelligence

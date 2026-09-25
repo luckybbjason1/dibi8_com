@@ -1,13 +1,13 @@
 ---
 title: "put your .txt or .csv documents into ./ragtest/input"
-description: "Technical guide and comparison"
+description: "- /posts/graphrag-llm-frameworks-2026/"
 date: 2026-09-20
 slug: "graphrag-llm-frameworks-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "GraphRAG: Microsoft'"
-description: "Technical guide and comparison."
+description: "- /posts/graphrag-llm-frameworks-2026/"
 last_maintained: "2026-06-02"
 draft: false
 categories: ["llm-frameworks"]

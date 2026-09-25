@@ -1,13 +1,13 @@
 ---
 title: "Install the Python wrapper"
-description: "Technical guide and comparison"
+description: "title: "TA-Lib: The Industry Standard Technical Analysis Library"
 date: 2026-09-20
 slug: "ta-lib-technical-analysis-trading"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "TA-Lib: The Industry Standard Technical Analysis Library...
-description: "Technical guide and comparison."
+description: "title: "TA-Lib: The Industry Standard Technical Analysis Library"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

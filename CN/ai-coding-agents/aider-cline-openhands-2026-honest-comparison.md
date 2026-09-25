@@ -1,13 +1,13 @@
 ---
 title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison"
-description: "Technical guide and comparison"
+description: "title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin"
 date: 2026-09-20
 slug: "aider-cline-openhands-2026-honest-comparison"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin...
-description: "Technical guide and comparison."
+description: "title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]

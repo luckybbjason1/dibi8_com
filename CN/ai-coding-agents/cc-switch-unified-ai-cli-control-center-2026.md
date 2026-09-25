@@ -1,13 +1,13 @@
 ---
 title: "macOS / Linux"
-description: "Technical guide and comparison"
+description: "title: "CC Switch Review: The Missing Control Center for AI Codi"
 date: 2026-09-20
 slug: "cc-switch-unified-ai-cli-control-center-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "CC Switch Review: The Missing Control Center for AI Codi...
-description: "Technical guide and comparison."
+description: "title: "CC Switch Review: The Missing Control Center for AI Codi"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

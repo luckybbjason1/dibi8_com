@@ -1,13 +1,13 @@
 ---
 title: "Combine narration audio + b-roll video"
-description: "Technical guide and comparison"
+description: "title: "Multi-Modal Content Pipeline 2026: The 5-Component Stack"
 date: 2026-09-20
 slug: "multi-modal-content-pipeline"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Multi-Modal Content Pipeline 2026: The 5-Component Stack...
-description: "Technical guide and comparison."
+description: "title: "Multi-Modal Content Pipeline 2026: The 5-Component Stack"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

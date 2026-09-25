@@ -1,13 +1,13 @@
 ---
 title: "Groq API (free tier)"
-description: "Technical guide and comparison"
+description: "title: "Free LLM API Resources: Access AI Models Without Breakin"
 date: 2026-09-20
 slug: "free-llm-api-resources-ai-development"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Free LLM API Resources: Access AI Models Without Breakin...
-description: "Technical guide and comparison."
+description: "title: "Free LLM API Resources: Access AI Models Without Breakin"
   AI applications without API costs using these community-maintained free tiers.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

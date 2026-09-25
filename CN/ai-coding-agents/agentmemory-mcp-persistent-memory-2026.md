@@ -1,6 +1,6 @@
 ---
 title: "Verify the server starts"
-description: "Technical guide and comparison"
+description: "photos/seed/artificial-intelligence/1200x800)"
 date: 2026-09-20
 slug: "agentmemory-mcp-persistent-memory-2026"
 category: "ai-tools"

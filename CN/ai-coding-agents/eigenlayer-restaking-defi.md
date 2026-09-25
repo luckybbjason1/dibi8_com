@@ -1,6 +1,6 @@
 ---
 title: "Step 1: Stake ETH on Ethereum beacon chain"
-description: "Technical guide and comparison"
+description: "> **Affiliate Disclosure**: This article contains affiliate links to [Binance](https://www"
 date: 2026-09-20
 slug: "eigenlayer-restaking-defi"
 category: "ai-tools"

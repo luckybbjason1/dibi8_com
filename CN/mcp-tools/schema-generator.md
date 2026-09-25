@@ -1,6 +1,6 @@
 ---
 title: "Schema.org JSON-LD Generator — Article / Organization / FAQ / Product"
-description: "Technical guide and comparison"
+description: "org JSON-LD Generator — Article / Organization /"
 date: 2026-09-20
 slug: "schema-generator"
 category: "ai-tools"

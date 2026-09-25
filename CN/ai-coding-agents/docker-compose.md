@@ -1,6 +1,6 @@
 ---
 title: "Update package index"
-description: "Technical guide and comparison"
+description: "[Docker Compose Logo](https://raw"
 date: 2026-09-20
 slug: "docker-compose"
 category: "ai-tools"

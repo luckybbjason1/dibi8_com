@@ -1,13 +1,13 @@
 ---
 title: "Conceptual solver auction flow"
-description: "Technical guide and comparison"
+description: "title: "CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi"
 date: 2026-09-20
 slug: "cow-protocol-mev-protection"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi...
-description: "Technical guide and comparison."
+description: "title: "CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

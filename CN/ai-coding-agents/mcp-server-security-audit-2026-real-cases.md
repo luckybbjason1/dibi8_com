@@ -1,13 +1,13 @@
 ---
 title: "MCP Server Security Audit 2026: 5 Real Community Server Reviews + Trap Patterns"
-description: "Technical guide and comparison"
+description: "title: "MCP Server Security Audit 2026: 5 Real Community Server"
 date: 2026-09-20
 slug: "mcp-server-security-audit-2026-real-cases"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "MCP Server Security Audit 2026: 5 Real Community Server ...
-description: "Technical guide and comparison."
+description: "title: "MCP Server Security Audit 2026: 5 Real Community Server"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]

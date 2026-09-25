@@ -1,6 +1,6 @@
 ---
 title: "Works with OpenAI, Anthropic, Google, and 20+ providers"
-description: "Technical guide and comparison"
+description: "Building applications with large language models used to mean writing hundreds of lines of boilerplate code for every project"
 date: 2026-09-20
 slug: "langchain-complete-guide"
 category: "ai-tools"

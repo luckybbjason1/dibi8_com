@@ -1,6 +1,6 @@
 ---
 title: "portkey ai gateway production"
-description: "Technical guide and comparison"
+description: "Managing multiple Large Language Model (LLM) providers in production is a nightmare"
 date: 2026-09-20
 slug: "portkey-ai-gateway-production"
 category: "ai-tools"

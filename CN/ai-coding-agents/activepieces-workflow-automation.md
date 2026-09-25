@@ -1,6 +1,6 @@
 ---
 title: "ActivePieces: 开源自动化工作流平台配置指南"
-description: "Technical guide and comparison"
+description: "## Introduction: The $2,340/Year Problem with Workflow Automation"
 date: 2026-09-20
 slug: "activepieces-workflow-automation"
 category: "ai-tools"
@@ -359,7 +359,7 @@ export const myApiPiece = createPiece({
   auth: PieceAuth.SecretText({
     displayName: "API Key",
     required: true,
-    description: "Technical guide and comparison."
+    description: "## Introduction: The $2,340/Year Problem with Workflow Automation"
   minimumSupportedRelease: '0.46.0',
   actions: [sendNotification],
   triggers: [],

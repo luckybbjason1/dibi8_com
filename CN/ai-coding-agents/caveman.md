@@ -1,13 +1,13 @@
 ---
 title: "Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens"
-description: "Technical guide and comparison"
+description: "title: "Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens""
 date: 2026-09-20
 slug: "caveman"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens"
-description: "Technical guide and comparison."
+description: "title: "Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens""
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

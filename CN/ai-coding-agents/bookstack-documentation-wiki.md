@@ -1,13 +1,13 @@
 ---
 title: "Create data directories"
-description: "Technical guide and comparison"
+description: "title: "BookStack: The Developer-Friendly Documentation Wiki wit"
 date: 2026-09-20
 slug: "bookstack-documentation-wiki"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "BookStack: The Developer-Friendly Documentation Wiki wit...
-description: "Technical guide and comparison."
+description: "title: "BookStack: The Developer-Friendly Documentation Wiki wit"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

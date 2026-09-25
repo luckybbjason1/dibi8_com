@@ -1,6 +1,6 @@
 ---
 title: "Get current running configuration"
-description: "Technical guide and comparison"
+description: "Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought"
 date: 2026-09-20
 slug: "caddy"
 category: "ai-tools"

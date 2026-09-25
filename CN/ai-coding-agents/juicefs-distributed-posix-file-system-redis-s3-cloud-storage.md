@@ -1,6 +1,6 @@
 ---
 title: "JuiceFS: Cloud Storage, Local Speed"
-description: "Technical guide and comparison"
+description: "# JuiceFS: Cloud Storage, Local Speed"
 date: 2026-09-20
 slug: "juicefs-distributed-posix-file-system-redis-s3-cloud-storage"
 category: "ai-tools"

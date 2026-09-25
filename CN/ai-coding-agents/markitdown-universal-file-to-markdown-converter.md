@@ -1,6 +1,6 @@
 ---
 title: "Full installation with all format support"
-description: "Technical guide and comparison"
+description: "You have a PDF, a Word doc, a PowerPoint, an Excel spreadsheet — maybe even a scanned image with handwritten notes"
 date: 2026-09-20
 slug: "markitdown-universal-file-to-markdown-converter"
 category: "ai-tools"

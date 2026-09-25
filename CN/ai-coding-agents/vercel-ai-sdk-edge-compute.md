@@ -1,6 +1,6 @@
 ---
 title: "Create a new Next.js project with TypeScript"
-description: "Technical guide and comparison"
+description: "Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications"
 date: 2026-09-20
 slug: "vercel-ai-sdk-edge-compute"
 category: "ai-tools"
@@ -301,7 +301,7 @@ const result = streamText({
   messages,
   tools: {
     searchWeb: tool({
-      description: "Technical guide and comparison."
+      description: "Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications"
       parameters: z.object({
         query: z.string().describe("Search query"),
         maxResults: z.number().default(5),
@@ -314,7 +314,7 @@ const result = streamText({
       },
     }),
     calculate: tool({
-      description: "Technical guide and comparison."
+      description: "Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications"
       parameters: z.object({
         expression: z.string().describe("Mathematical expression"),
       }),
@@ -327,7 +327,7 @@ const result = streamText({
       },
     }),
     getWeather: tool({
-      description: "Technical guide and comparison."
+      description: "Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications"
       parameters: z.object({
         city: z.string().describe("City name"),
         country: z.string().describe("Country code"),

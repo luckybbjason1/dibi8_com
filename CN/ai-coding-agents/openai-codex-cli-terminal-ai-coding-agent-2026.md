@@ -1,6 +1,6 @@
 ---
 title: "AGENTS.md — AI Engineering Assistant Guide"
-description: "Technical guide and comparison"
+description: "## What Is OpenAI Codex CLI and Why Developers Are Switching in 2026"
 date: 2026-09-20
 slug: "openai-codex-cli-terminal-ai-coding-agent-2026"
 category: "ai-tools"

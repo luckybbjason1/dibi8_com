@@ -1,13 +1,13 @@
 ---
 title: "Install Ollama, then pull a coding-optimized model"
-description: "Technical guide and comparison"
+description: "title: "OpenCode: The Open-Source AI Coding Agent That Overtook"
 date: 2026-09-20
 slug: "opencode-open-source-claude-code-alternative-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "OpenCode: The Open-Source AI Coding Agent That Overtook ...
-description: "Technical guide and comparison."
+description: "title: "OpenCode: The Open-Source AI Coding Agent That Overtook"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

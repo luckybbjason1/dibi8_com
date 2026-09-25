@@ -1,6 +1,6 @@
 ---
 title: "qiaomu anything notebooklm"
-description: "Technical guide and comparison"
+description: "Google NotebookLM has rapidly become one of the most useful AI-powered knowledge management tools available"
 date: 2026-09-20
 slug: "qiaomu-anything-to-notebooklm"
 category: "ai-tools"

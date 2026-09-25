@@ -1,6 +1,6 @@
 ---
 title: "Load and chunk"
-description: "Technical guide and comparison"
+description: "Retrieval-Augmented Generation (RAG) has become the dominant architecture for grounding LLM applications in proprietary data"
 date: 2026-09-20
 slug: "rag-architecture-implementation-guide"
 category: "ai-tools"

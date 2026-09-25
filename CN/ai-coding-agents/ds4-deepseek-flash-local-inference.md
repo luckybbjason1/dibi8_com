@@ -1,6 +1,6 @@
 ---
 title: "DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal & CUDA — The Complete Guide"
-description: "Technical guide and comparison"
+description: "cpp: DeepSeek V4 Flash Local Infe"
 date: 2026-09-20
 slug: "ds4-deepseek-flash-local-inference"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 title: "DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe...
   128GB Mac'
-description: "Technical guide and comparison."
+description: "cpp: DeepSeek V4 Flash Local Infe"
   DeepSeek V4 Flash. Learn installation, benchmarks vs Ollama/llama.cpp, code examples,
   and how to run a 1M-context LLM locally on macOS and Linux.
 date: 2026-05-15T04:20:25+09:00

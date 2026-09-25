@@ -1,6 +1,6 @@
 ---
 title: "paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026"
-description: "Technical guide and comparison"
+description: "# paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026"
 date: 2026-09-20
 slug: "paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"
 category: "ai-tools"

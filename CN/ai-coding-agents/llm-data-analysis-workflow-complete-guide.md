@@ -1,6 +1,6 @@
 ---
 title: "Load your data"
-description: "Technical guide and comparison"
+description: "Large language models have fundamentally changed how data analysts interact with information"
 date: 2026-09-20
 slug: "llm-data-analysis-workflow-complete-guide"
 category: "ai-tools"

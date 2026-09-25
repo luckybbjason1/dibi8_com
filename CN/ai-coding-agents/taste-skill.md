@@ -1,6 +1,6 @@
 ---
 title: "Install all skills at once"
-description: "Technical guide and comparison"
+description: "Taste Skill gives your AI agent a design brain"
 date: 2026-09-20
 slug: "taste-skill"
 category: "ai-tools"

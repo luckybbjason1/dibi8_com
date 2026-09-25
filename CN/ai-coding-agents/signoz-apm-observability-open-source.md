@@ -1,13 +1,13 @@
 ---
 title: "No vendor-specific SDK needed — standard OTel only"
-description: "Technical guide and comparison"
+description: "title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos"
 date: 2026-09-20
 slug: "signoz-apm-observability-open-source"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos...
-description: "Technical guide and comparison."
+description: "title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -445,19 +445,19 @@ groups: - name: payment_service_alerts
         for: 2m
         labels: severity: critical
         annotations: summary: "Payment service error rate > 5%"
-          description: "Technical guide and comparison."
+          description: "title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos"
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
         labels: severity: warning
         annotations: summary: "Payment service P95 latency > 500ms"
-          description: "Technical guide and comparison."
+          description: "title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos"
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m
         labels: severity: warning
         annotations: summary: "Log error spike detected"
-          description: "Technical guide and comparison."
+          description: "title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos"
 Configure alert channels (Slack, PagerDuty, email) in the SigNoz UI under Settings → Alert Channels.
 
 ### Kubernetes Auto-Instrumentation

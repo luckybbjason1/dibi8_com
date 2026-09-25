@@ -1,13 +1,13 @@
 ---
 title: "Best AI Content Detector Tools 2025: GPTZero, Turnitin AI, Copyleaks & More Compared"
-description: "Technical guide and comparison"
+description: "title: "Best AI Content Detector Tools 2025: GPTZero, Turnitin A"
 date: 2026-09-20
 slug: "ai-content-detector-tools"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Best AI Content Detector Tools 2025: GPTZero, Turnitin A...
-description: "Technical guide and comparison."
+description: "title: "Best AI Content Detector Tools 2025: GPTZero, Turnitin A"
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

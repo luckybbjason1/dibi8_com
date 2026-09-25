@@ -1,6 +1,6 @@
 ---
 title: "NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)"
-description: "Technical guide and comparison"
+description: "[NVIDIA Cosmos platform](https://raw"
 date: 2026-09-20
 slug: "nvidia-cosmos-world-models-platform-2026"
 category: "ai-tools"

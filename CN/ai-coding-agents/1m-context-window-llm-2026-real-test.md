@@ -1,13 +1,13 @@
 ---
 title: "1m context window LLM 2026"
-description: "Technical guide and comparison"
+description: "title: "1M Context Window LLM 2026: Gemini 2"
 date: 2026-09-20
 slug: "1m-context-window-llm-2026-real-test"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test"
-description: "Technical guide and comparison."
+description: "title: "1M Context Window LLM 2026: Gemini 2"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Gemini, Claude, Long-context LLM]

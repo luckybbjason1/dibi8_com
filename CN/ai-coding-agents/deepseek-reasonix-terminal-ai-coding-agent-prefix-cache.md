@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability"
-description: "Technical guide and comparison"
+description: "title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f"
 date: 2026-09-20
 slug: "deepseek-reasonix-terminal-ai-coding-agent-prefix-cache"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f...
-description: "Technical guide and comparison."
+description: "title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f"
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

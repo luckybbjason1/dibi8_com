@@ -1,13 +1,13 @@
 ---
 title: "WorldMonitor: Real-Time Global Intelligence Dashboard"
-description: "Technical guide and comparison"
+description: "title: "WorldMonitor: Real-Time Global Intelligence Dashboard fo"
 date: 2026-09-20
 slug: "worldmonitor-real-time-global-intelligence-dashboard"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "WorldMonitor: Real-Time Global Intelligence Dashboard fo...
-  description: "Technical guide and comparison."
+  description: "title: "WorldMonitor: Real-Time Global Intelligence Dashboard fo"
   date: 2026-06-25
   lastmod: 2026-06-25
 draft: false

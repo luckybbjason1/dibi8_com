@@ -1,6 +1,6 @@
 ---
 title: "Step 1: Sign up at https://zapper.xyz and navigate to Developer Settings"
-description: "Technical guide and comparison"
+description: "**Tags:** Zapper, DeFi, Dashboard, Yield Farming, NFT, Portfolio, API, Web3"
 date: 2026-09-20
 slug: "zapper-defi-dashboard-aggregator"
 category: "ai-tools"

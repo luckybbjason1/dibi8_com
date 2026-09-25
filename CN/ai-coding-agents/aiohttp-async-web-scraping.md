@@ -1,13 +1,13 @@
 ---
 title: "Include speedups (recommended for production)"
-description: "Technical guide and comparison"
+description: "title: "aiohttp 2026: Build High-Performance Async Web Scrapers"
 date: 2026-09-20
 slug: "aiohttp-async-web-scraping"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "aiohttp 2026: Build High-Performance Async Web Scrapers ...
-description: "Technical guide and comparison."
+description: "title: "aiohttp 2026: Build High-Performance Async Web Scrapers"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

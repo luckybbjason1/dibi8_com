@@ -1,6 +1,6 @@
 ---
 title: "Install via npm (TypeScript-based CLI)"
-description: "Technical guide and comparison"
+description: "50,000 lines of code across 200 files"
 date: 2026-09-20
 slug: "understand-anything-interactive-knowledge-graphs-codebases"
 category: "ai-tools"

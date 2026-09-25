@@ -1,6 +1,6 @@
 ---
 title: "Define a container image with PyTorch and CUDA pre-installed"
-description: "Technical guide and comparison"
+description: "Modal is a serverless compute platform designed specifically for machine learning and data-intensive workloads"
 date: 2026-09-20
 slug: "modal-serverless-gpu-compute"
 category: "ai-tools"

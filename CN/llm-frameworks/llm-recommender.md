@@ -1,6 +1,6 @@
 ---
 title: "LLM Model Recommender 2026 — Pick the Right LLM by Use Case, Budget, Context Length, Privacy"
-description: "Technical guide and comparison"
+description: "# LLM Model Recommender 2026 — Pick the Right LLM by Use Case, Budget, Context Length, Privacy"
 date: 2026-09-20
 slug: "llm-recommender"
 category: "ai-tools"

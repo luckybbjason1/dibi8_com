@@ -1,13 +1,13 @@
 ---
 title: "Install the Python client"
-description: "Technical guide and comparison"
+description: "title: "Install the Python client""
 date: 2026-09-20
 slug: "mem0"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Install the Python client"
-description: "Technical guide and comparison."
+description: "title: "Install the Python client""
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

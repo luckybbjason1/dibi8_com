@@ -1,13 +1,13 @@
 ---
 title: "macOS (Homebrew)"
-description: "Technical guide and comparison"
+description: "date: 2026-05-19T00:00:00+08:00"
 date: 2026-09-20
 slug: "hoppscotch"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "macOS (Homebrew)"
-description: "Technical guide and comparison."
+description: "date: 2026-05-19T00:00:00+08:00"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

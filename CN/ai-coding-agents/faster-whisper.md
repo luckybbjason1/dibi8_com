@@ -1,13 +1,13 @@
 ---
 title: "Create virtual environment"
-description: "Technical guide and comparison"
+description: "title: "faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars"
 date: 2026-09-20
 slug: "faster-whisper"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars...
-description: "Technical guide and comparison."
+description: "title: "faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

@@ -1,13 +1,13 @@
 ---
 title: "Best AI Meeting Assistant Tools 2025: Otter.ai, Fireflies, Fathom & More Compared"
-description: "Technical guide and comparison"
+description: "title: "Best AI Meeting Assistant Tools 2025: Otter"
 date: 2026-09-20
 slug: "ai-meeting-assistant-tools"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Best AI Meeting Assistant Tools 2025: Otter.ai, Fireflie...
-description: "Technical guide and comparison."
+description: "title: "Best AI Meeting Assistant Tools 2025: Otter"
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

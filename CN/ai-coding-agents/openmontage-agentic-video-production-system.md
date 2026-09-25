@@ -1,6 +1,6 @@
 ---
 title: "Then add to .env:  VIDEO_GEN_LOCAL_ENABLED=true"
-description: "Technical guide and comparison"
+description: "slug: openmontage-agentic-video-production-system"
 date: 2026-09-20
 slug: "openmontage-agentic-video-production-system"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 slug: openmontage-agentic-video-production-system
 title: "OpenMontage Review: The World's First Open-Source Agenti..."
-description: "Technical guide and comparison."
+description: "slug: openmontage-agentic-video-production-system"
 tags: ["ai-agent", "ai-tools", "architecture", "automation", "llm", "open-source", "self-hosted", "system", "video-generation"]
 date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"

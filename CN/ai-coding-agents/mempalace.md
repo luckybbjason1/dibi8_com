@@ -1,13 +1,13 @@
 ---
 title: "MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars)"
-description: "Technical guide and comparison"
+description: "6% Recall Benchmark & Best AI Memo"
 date: 2026-09-20
 slug: "mempalace"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "MemPalace vs Mem0: 96.6% Recall Benchmark & Best AI Memo..."
-description: "Technical guide and comparison."
+description: "6% Recall Benchmark & Best AI Memo"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

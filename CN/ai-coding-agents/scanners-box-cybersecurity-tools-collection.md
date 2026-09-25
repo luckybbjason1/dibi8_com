@@ -1,13 +1,13 @@
 ---
 title: "Basic usage"
-description: "Technical guide and comparison"
+description: "title: "Scanners-Box: 200+ Cybersecurity Tools Collection for Se"
 date: 2026-09-20
 slug: "scanners-box-cybersecurity-tools-collection"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Scanners-Box: 200+ Cybersecurity Tools Collection for Se...
-description: "Technical guide and comparison."
+description: "title: "Scanners-Box: 200+ Cybersecurity Tools Collection for Se"
   cybersecurity tools for penetration testing, vulnerability scanning, and security
   research.
 date: 2026-05-15T04:20:25+09:00

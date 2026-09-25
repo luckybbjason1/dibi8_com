@@ -1,13 +1,13 @@
 ---
 title: "Flowise stores flow definitions as JSON in the database"
-description: "Technical guide and comparison"
+description: "title: "Flowise: The Low-Code AI Workflow Builder Deploying Lang"
 date: 2026-09-20
 slug: "flowise-ai-workflow-builder-lowcode"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Flowise: The Low-Code AI Workflow Builder Deploying Lang...
-description: "Technical guide and comparison."
+description: "title: "Flowise: The Low-Code AI Workflow Builder Deploying Lang"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

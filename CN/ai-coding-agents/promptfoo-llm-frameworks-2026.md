@@ -1,13 +1,13 @@
 ---
 title: "promptfooconfig.yaml"
-description: "Technical guide and comparison"
+description: "date: 2026-06-02T00:00:00+08:00"
 date: 2026-09-20
 slug: "promptfoo-llm-frameworks-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "promptfooconfig.yaml"
-description: "Technical guide and comparison."
+description: "date: 2026-06-02T00:00:00+08:00"
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -63,7 +63,7 @@ The workflow is config-first: 1. **Declarative configuration** — a single ``pr
 
 Here's a minimal ``promptfooconfig.yaml``: ````yaml
 # promptfooconfig.yaml
-description: "Technical guide and comparison."
+description: "date: 2026-06-02T00:00:00+08:00"
 prompts: - "What is the capital of ?"
   - "Explain quantum mechanics in one sentence."
 
@@ -134,7 +134,7 @@ promptfoo view
 
 Create a config that checks an expected substring: `````yaml
 # promptfooconfig.yaml
-description: "Technical guide and comparison."
+description: "date: 2026-06-02T00:00:00+08:00"
 prompts: - "What is the capital of ?"
 
 providers: - openai:gpt-4o-mini
@@ -154,7 +154,7 @@ Promptfoo executes the test case and reports whether the assertion passed.
 
 You can list several providers and mix assertion types — exact, semantic, and LLM-graded: `````yaml
 # promptfooconfig.yaml
-description: "Technical guide and comparison."
+description: "date: 2026-06-02T00:00:00+08:00"
 prompts: - "Answer concisely: "
 
 providers: - openai:gpt-4o

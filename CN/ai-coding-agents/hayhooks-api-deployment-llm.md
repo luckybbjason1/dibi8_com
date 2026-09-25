@@ -1,13 +1,13 @@
 ---
 title: "Create a virtual environment"
-description: "Technical guide and comparison"
+description: "title: "Hayhooks: Deploy Haystack Pipelines as REST APIs with On"
 date: 2026-09-20
 slug: "hayhooks-api-deployment-llm"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Hayhooks: Deploy Haystack Pipelines as REST APIs with On...
-description: "Technical guide and comparison."
+description: "title: "Hayhooks: Deploy Haystack Pipelines as REST APIs with On"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

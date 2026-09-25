@@ -1,13 +1,13 @@
 ---
 title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Workflows"
-description: "Technical guide and comparison"
+description: "title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor"
 date: 2026-09-20
 slug: "gemini-cli-vs-claude-code-2026-real-comparison"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor...
-description: "Technical guide and comparison."
+description: "title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]

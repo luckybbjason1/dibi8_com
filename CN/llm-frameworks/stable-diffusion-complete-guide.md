@@ -1,6 +1,6 @@
 ---
 title: "Inspect architecture"
-description: "Technical guide and comparison"
+description: "This comprehensive guide covers model selection, fine-tuning with LoRA/ControlNet, performance optimization, and production deployment at scale"
 date: 2026-09-20
 slug: "stable-diffusion-complete-guide"
 category: "ai-tools"

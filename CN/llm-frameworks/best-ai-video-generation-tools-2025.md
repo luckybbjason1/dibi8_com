@@ -1,6 +1,6 @@
 ---
 title: "Best AI Video Generation Tools 2025: Sora, Runway, Pika & More Compared"
-description: "Technical guide and comparison"
+description: "# Best AI Video Generation Tools 2025: Sora, Runway, Pika & More Compared"
 date: 2026-09-20
 slug: "best-ai-video-generation-tools-2025"
 category: "ai-tools"

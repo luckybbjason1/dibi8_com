@@ -1,13 +1,13 @@
 ---
 title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star Self-Hosted Image Generation — Complete Guide"
-description: "Technical guide and comparison"
+description: "title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star S"
 date: 2026-09-20
 slug: "stable-diffusion-webui-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star S...
-description: "Technical guide and comparison."
+description: "title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star S"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

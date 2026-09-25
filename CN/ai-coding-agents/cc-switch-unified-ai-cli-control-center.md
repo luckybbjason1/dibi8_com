@@ -1,6 +1,6 @@
 ---
 title: "cc-switch: The Cross-Platform Desktop CLI Control Center That Unifies 6+ AI Coding Agents — A Practical Setup Guide 2026"
-description: "Technical guide and comparison"
+description: "# cc-switch: The Cross-Platform Desktop CLI Control Center That Unifies 6+ AI Coding Agents — A Practical Setup Guide 2026"
 date: 2026-09-20
 slug: "cc-switch-unified-ai-cli-control-center"
 category: "ai-tools"

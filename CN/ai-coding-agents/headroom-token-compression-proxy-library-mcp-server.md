@@ -1,6 +1,6 @@
 ---
 title: "Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026"
-description: "Technical guide and comparison"
+description: "# Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026"
 date: 2026-09-20
 slug: "headroom-token-compression-proxy-library-mcp-server"
 category: "ai-tools"

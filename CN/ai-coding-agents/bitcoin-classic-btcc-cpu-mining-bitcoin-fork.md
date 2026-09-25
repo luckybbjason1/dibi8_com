@@ -1,13 +1,13 @@
 ---
 title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinary People Mine with CPU"
-description: "Technical guide and comparison"
+description: "title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinar"
 date: 2026-09-20
 slug: "bitcoin-classic-btcc-cpu-mining-bitcoin-fork"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinar..."
-description: "Technical guide and comparison."
+description: "title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinar"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

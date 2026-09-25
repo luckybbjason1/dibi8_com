@@ -1,13 +1,13 @@
 ---
 title: "Local-First AI Stack 2026: Offline Development Environment"
-description: "Technical guide and comparison"
+description: "title: "Local-First AI Stack 2026: Fully Offline AI Development"
 date: 2026-09-20
 slug: "local-first-ai-stack-offline-development-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Local-First AI Stack 2026: Fully Offline AI Development ...
-description: "Technical guide and comparison."
+description: "title: "Local-First AI Stack 2026: Fully Offline AI Development"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']

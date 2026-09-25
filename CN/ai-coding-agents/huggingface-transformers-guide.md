@@ -1,6 +1,6 @@
 ---
 title: "文本情感分析工具评测"
-description: "Technical guide and comparison"
+description: "If you work with natural language processing or large language models in 2025, you use Hugging Face Transformers"
 date: 2026-09-20
 slug: "huggingface-transformers-guide"
 category: "ai-tools"

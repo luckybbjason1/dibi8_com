@@ -1,6 +1,6 @@
 ---
 title: "For Claude Code"
-description: "Technical guide and comparison"
+description: "AI coding agents have fundamentally transformed how developers write, debug, and deploy code"
 date: 2026-09-20
 slug: "mattpocock-skills-ai-agent-framework-guide"
 category: "ai-tools"
@@ -338,7 +338,7 @@ import { defineSkill } from "@mattpocock/skills";
 
 export const myCustomSkill = defineSkill({
   name: "my-custom-skill",
-  description: "Technical guide and comparison."
+  description: "AI coding agents have fundamentally transformed how developers write, debug, and deploy code"
   version: "1.0.0",
   execute: async (args) => {
     // Your custom logic here

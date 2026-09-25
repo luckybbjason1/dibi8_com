@@ -1,6 +1,6 @@
 ---
 title: "Query tracked devices"
-description: "Technical guide and comparison"
+description: "With over 72,000 GitHub stars, RuView has emerged as a leader in the WiFi spatial intelligence space"
 date: 2026-09-20
 slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: "ai-tools"

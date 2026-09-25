@@ -1,6 +1,6 @@
 ---
 title: "LLM Inference Cost Optimization: Run Any Model for Pennies — The 2026 Definitive Guide"
-description: "Technical guide and comparison"
+description: "[Ollama - Local LLM inference made simple](https://opengraph"
 date: 2026-09-20
 slug: "llm-inference-cost-optimization-guide-2026"
 category: "ai-tools"

@@ -1,13 +1,13 @@
 ---
 title: "Run SearXNG"
-description: "Technical guide and comparison"
+description: "title: "Local Deep Research: The Ultimate Local-First AI Deep Re"
 date: 2026-09-20
 slug: "local-deep-research-local-first-ai-deep-research-tool"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Local Deep Research: The Ultimate Local-First AI Deep Re..."
-description: "Technical guide and comparison."
+description: "title: "Local Deep Research: The Ultimate Local-First AI Deep Re"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

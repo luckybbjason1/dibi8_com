@@ -1,6 +1,6 @@
 ---
 title: "Model selection mapping for different use cases"
-description: "Technical guide and comparison"
+description: "This guide provides a comprehensive integration roadmap for the Perplexity API in 2026"
 date: 2026-09-20
 slug: "perplexity-api-rag-search"
 category: "ai-tools"

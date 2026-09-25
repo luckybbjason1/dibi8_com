@@ -1,13 +1,13 @@
 ---
 title: "Vibe Coding 2026: The Korean Concept Explained for the Rest of Us"
-description: "Technical guide and comparison"
+description: "title: "Vibe Coding 2026: The Korean Developer Concept Explained"
 date: 2026-09-20
 slug: "vibe-coding-2026-korean-concept-explained"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Vibe Coding 2026: The Korean Developer Concept Explained...
-description: "Technical guide and comparison."
+description: "title: "Vibe Coding 2026: The Korean Developer Concept Explained"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'AI-driven development', 'Natural language programming']

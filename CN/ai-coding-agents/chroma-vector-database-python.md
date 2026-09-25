@@ -1,13 +1,13 @@
 ---
 title: "With specific embedding backends"
-description: "Technical guide and comparison"
+description: "title: "Chroma DB 2026: The Developer-Friendly Vector Database f"
 date: 2026-09-20
 slug: "chroma-vector-database-python"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Chroma DB 2026: The Developer-Friendly Vector Database f...
-description: "Technical guide and comparison."
+description: "title: "Chroma DB 2026: The Developer-Friendly Vector Database f"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

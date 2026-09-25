@@ -1,6 +1,6 @@
 ---
 title: "robots.txt Generator — With AI Crawler Controls (GPTBot, ClaudeBot, PerplexityBot)"
-description: "Technical guide and comparison"
+description: "txt Generator — With AI Crawler Controls (GPTBot,"
 date: 2026-09-20
 slug: "robots-txt-generator"
 category: "ai-tools"

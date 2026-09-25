@@ -1,6 +1,6 @@
 ---
 title: "What we measured before vs what we should have measured:  Before: organic_sessions, bounce_rate, pages_per_session"
-description: "Technical guide and comparison"
+description: "**TL;DR** — Three years ago we optimized for clicks"
 date: 2026-09-20
 slug: "ai-seo-geo-dibi8-methodology-google-sge-perplexity"
 category: "ai-tools"

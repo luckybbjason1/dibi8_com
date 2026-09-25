@@ -1,13 +1,13 @@
 ---
 title: "Run without installing — uses npx"
-description: "Technical guide and comparison"
+description: "title: "repomix 2026: Pack Your Entire Codebase into One LLM-Rea"
 date: 2026-09-20
 slug: "repomix-pack-repo-for-llm-context-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "repomix 2026: Pack Your Entire Codebase into One LLM-Rea...
-description: "Technical guide and comparison."
+description: "title: "repomix 2026: Pack Your Entire Codebase into One LLM-Rea"
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]

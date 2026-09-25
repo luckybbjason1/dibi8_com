@@ -1,6 +1,6 @@
 ---
 title: "Initialize Ray cluster"
-description: "Technical guide and comparison"
+description: "Ray is the industry-standard framework for scaling Python and AI workloads across single machines to thousands of nodes"
 date: 2026-09-20
 slug: "ray-distributed-ai-framework-complete-guide"
 category: "ai-tools"

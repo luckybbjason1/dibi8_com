@@ -1,13 +1,13 @@
 ---
 title: "Install Instructor"
-description: "Technical guide and comparison"
+description: "title: "Instructor: The Python Library That Forces LLMs to Outpu"
 date: 2026-09-20
 slug: "instructor-structured-llm-output"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Instructor: The Python Library That Forces LLMs to Outpu...
-description: "Technical guide and comparison."
+description: "title: "Instructor: The Python Library That Forces LLMs to Outpu"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -72,13 +72,13 @@ class UserProfile(BaseModel): name: str
     interests: list[str]
 
 # Extract structured data from natural language
-def extract_profile(user_description: "Technical guide and comparison."
+def extract_profile(user_description: "title: "Instructor: The Python Library That Forces LLMs to Outpu"
         model="gpt-4o",
         response_model=UserProfile,
         messages=[
             {
                 "role": "user",
-                "content": f"Extract a user profile from this description: "Technical guide and comparison."
+                "content": f"Extract a user profile from this description: "title: "Instructor: The Python Library That Forces LLMs to Outpu"
             }
         ]
     )
@@ -126,7 +126,7 @@ class ValidatedProduct(BaseModel): name: str = Field(description="Product name, 
         return round(v, 2)
 
 # Instructor automatically retries on validation failure
-def parse_product(description: "Technical guide and comparison."
+def parse_product(description: "title: "Instructor: The Python Library That Forces LLMs to Outpu"
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # Retry up to 3 times with feedback
@@ -213,7 +213,7 @@ class Event(BaseModel): name: str
     start_time: datetime
     end_time: Optional[datetime] = None
     location: Optional[str] = None
-    description: "Technical guide and comparison."
+    description: "title: "Instructor: The Python Library That Forces LLMs to Outpu"
 event = client.chat.completions.create(
     model="gpt-4o-mini",
     response_model=Event,

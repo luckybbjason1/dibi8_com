@@ -1,13 +1,13 @@
 ---
 title: "Or via pip: pip install ChatTTS"
-description: "Technical guide and comparison"
+description: "3k-Star Open-Source Dialogue TTS with L"
 date: 2026-09-20
 slug: "chattts-dialogue-tts-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with L...
-description: "Technical guide and comparison."
+description: "3k-Star Open-Source Dialogue TTS with L"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

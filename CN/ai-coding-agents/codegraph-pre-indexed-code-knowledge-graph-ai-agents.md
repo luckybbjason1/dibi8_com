@@ -1,6 +1,6 @@
 ---
 title: "Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026"
-description: "Technical guide and comparison"
+description: "# Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026"
 date: 2026-09-20
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
 category: "ai-tools"

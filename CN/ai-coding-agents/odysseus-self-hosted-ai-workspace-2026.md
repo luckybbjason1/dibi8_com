@@ -1,13 +1,13 @@
 ---
 title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days — 2026 Setup Guide"
-description: "Technical guide and comparison"
+description: "title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G"
 date: 2026-09-20
 slug: "odysseus-self-hosted-ai-workspace-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G...
-description: "Technical guide and comparison."
+description: "title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G"
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: []

@@ -1,13 +1,13 @@
 ---
 title: "Single-node 8-GPU pretraining"
-description: "Technical guide and comparison"
+description: "title: "nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT f"
 date: 2026-09-20
 slug: "nanochat-karpathy-train-your-own-llm-100-dollars-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT f...
-description: "Technical guide and comparison."
+description: "title: "nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT f"
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, 'LLM Training']

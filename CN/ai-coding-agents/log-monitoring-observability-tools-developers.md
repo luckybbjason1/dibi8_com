@@ -1,6 +1,6 @@
 ---
 title: "Log Monitoring & Observability Tools for Developers: 2025 Complete Guide"
-description: "Technical guide and comparison"
+description: "# Log Monitoring & Observability Tools for Developers: 2025 Complete Guide"
 date: 2026-09-20
 slug: "log-monitoring-observability-tools-developers"
 category: "ai-tools"

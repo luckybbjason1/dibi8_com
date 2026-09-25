@@ -1,6 +1,6 @@
 ---
 title: "Initialize a new 12-factor agent project"
-description: "Technical guide and comparison"
+description: "Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful"
 date: 2026-09-20
 slug: "12-factor-agents"
 category: "ai-tools"

@@ -1,13 +1,13 @@
 ---
 title: "Check Python version"
-description: "Technical guide and comparison"
+description: "date: 2026-05-19T00:00:00+08:00"
 date: 2026-09-20
 slug: "crewai"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Check Python version"
-description: "Technical guide and comparison."
+description: "date: 2026-05-19T00:00:00+08:00"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -213,7 +213,7 @@ Key configuration options per agent: | Parameter | Description | Example |
 Edit ``src/research_crew/config/tasks.yaml``: `````yaml
 # src/research_crew/config/tasks.yaml
 
-research_task: description: "Technical guide and comparison."
+research_task: description: "date: 2026-05-19T00:00:00+08:00"
     Research the topic: {topic}. Gather at least 10 key data points
     from multiple authoritative sources. Include statistics,
     expert opinions, and recent developments.
@@ -222,7 +222,7 @@ research_task: description: "Technical guide and comparison."
     citations, and a summary of key findings.
   agent: researcher
 
-writing_task: description: "Technical guide and comparison."
+writing_task: description: "date: 2026-05-19T00:00:00+08:00"
     Using the research brief provided, write a comprehensive
     technical article about {topic}. Target 1500 words.
     Use clear headings, examples, and engaging prose.
@@ -232,7 +232,7 @@ writing_task: description: "Technical guide and comparison."
   agent: writer
   context: [research_task]
 
-editing_task: description: "Technical guide and comparison."
+editing_task: description: "date: 2026-05-19T00:00:00+08:00"
     Edit the article for clarity, grammar, factual accuracy,
     and readability. Ensure all claims are supported by the
     research brief.

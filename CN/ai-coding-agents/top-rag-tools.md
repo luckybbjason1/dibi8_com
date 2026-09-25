@@ -1,6 +1,6 @@
 ---
 title: "Top RAG Tools for AI Knowledge Bases"
-description: "Technical guide and comparison"
+description: "# Top RAG Tools for AI Knowledge Bases"
 date: 2026-09-20
 slug: "top-rag-tools"
 category: "ai-tools"

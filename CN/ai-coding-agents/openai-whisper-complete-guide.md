@@ -1,6 +1,6 @@
 ---
 title: "openai whisper complete guide"
-description: "Technical guide and comparison"
+description: "OpenAI Whisper is the most capable open-source speech-to-text engine available in 2026, supporting 99+ languages with near-human accuracy"
 date: 2026-09-20
 slug: "openai-whisper-complete-guide"
 category: "ai-tools"

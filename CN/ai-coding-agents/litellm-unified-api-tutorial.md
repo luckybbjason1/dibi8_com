@@ -1,6 +1,6 @@
 ---
 title: "Call OpenAI"
-description: "Technical guide and comparison"
+description: "Managing multiple LLM providers in production is a nightmare most developers know too well"
 date: 2026-09-20
 slug: "litellm-unified-api-tutorial"
 category: "ai-tools"

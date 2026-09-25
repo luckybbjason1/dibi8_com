@@ -1,6 +1,6 @@
 ---
 title: "Best AI Voice Tools 2025: Text-to-Speech & Speech-to-Text Comparison"
-description: "Technical guide and comparison"
+description: "# Best AI Voice Tools 2025: Text-to-Speech & Speech-to-Text Comparison"
 date: 2026-09-20
 slug: "ai-voice-tools-text-to-speech-transcription"
 category: "ai-tools"

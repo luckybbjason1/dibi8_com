@@ -1,6 +1,6 @@
 ---
 title: "Install Knowledge Work Plugins"
-description: "Technical guide and comparison"
+description: "With 20,728 stars, it represents the gold standard for AI agent tool integration"
 date: 2026-09-20
 slug: "knowledge-work-plugins"
 category: "ai-tools"

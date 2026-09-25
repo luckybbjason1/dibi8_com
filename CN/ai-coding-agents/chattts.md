@@ -1,13 +1,13 @@
 ---
 title: "Sample and save a speaker embedding"
-description: "Technical guide and comparison"
+description: "title: "Sample and save a speaker embedding""
 date: 2026-09-20
 slug: "chattts"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Sample and save a speaker embedding"
-description: "Technical guide and comparison."
+description: "title: "Sample and save a speaker embedding""
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

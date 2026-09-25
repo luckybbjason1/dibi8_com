@@ -1,13 +1,13 @@
 ---
 title: "Toprank: Open-Source Claude Code Skills That Automate SEO, GEO, and Ad Campaign Optimization"
-description: "Technical guide and comparison"
+description: "title: "Toprank: Open-Source Claude Code Skills That Automate SE"
 date: 2026-09-20
 slug: "toprank"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Toprank: Open-Source Claude Code Skills That Automate SE..."
-description: "Technical guide and comparison."
+description: "title: "Toprank: Open-Source Claude Code Skills That Automate SE"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

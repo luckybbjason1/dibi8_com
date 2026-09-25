@@ -1,13 +1,13 @@
 ---
 title: "Your API credentials will look like this: API_KEY = PKABCDEF1234567890EXAMPLE"
-description: "Technical guide and comparison"
+description: "title: "Alpaca Trading API 2026: The Commission-Free Stock Broke"
 date: 2026-09-20
 slug: "alpaca-trading-api-stock-broker"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Alpaca Trading API 2026: The Commission-Free Stock Broke...
-description: "Technical guide and comparison."
+description: "title: "Alpaca Trading API 2026: The Commission-Free Stock Broke"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

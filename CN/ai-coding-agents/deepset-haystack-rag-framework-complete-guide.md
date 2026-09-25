@@ -1,6 +1,6 @@
 ---
 title: "For full features with all document converters"
-description: "Technical guide and comparison"
+description: "Deepset Haystack is the leading open-source Python framework for building production-grade Retrieval-Augmented Generation (RAG) applications in 2026"
 date: 2026-09-20
 slug: "deepset-haystack-rag-framework-complete-guide"
 category: "ai-tools"

@@ -1,6 +1,6 @@
 ---
 title: "Install via npx (recommended)"
-description: "Technical guide and comparison"
+description: "Humanizer is a powerful agent skill that eliminates AI-generated writing patterns from text while preserving the original meaning"
 date: 2026-09-20
 slug: "2026-09-20-humanizer-ai-writing"
 category: "ai-tools"

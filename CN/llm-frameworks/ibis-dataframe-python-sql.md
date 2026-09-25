@@ -1,6 +1,6 @@
 ---
 title: "Ibis looks familiar to any pandas user"
-description: "Technical guide and comparison"
+description: "With over 12,000 GitHub stars and an Apache-2"
 date: 2026-09-20
 slug: "ibis-dataframe-python-sql"
 category: "ai-tools"

@@ -1,15 +1,15 @@
-{{ define "title" }}关于 Dibi8 | Dibi8 - AI工具目录{{ end }}
+{{ define "title" }}关于 Dibi8 | AI工具目录{{ end }}
 {{ define "main" }}
 <section class="pt-32 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
-        <nav class="text-sm text-gray-400 mb-8">
+        <nav class="text-sm text-gray-400 mb-8" aria-label="面包屑导航">
             <a href="/" class="hover:text-gray-600">首页</a>
             <span class="mx-2">/</span>
-            <span class="text-gray-600">关于</span>
+            <span class="text-gray-900">关于</span>
         </nav>
         
         <div class="text-center mb-12">
-            <span class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 text-2xl mb-6">
+            <span class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 text-2xl mb-6" aria-hidden="true">
                 <i class="fas fa-info-circle"></i>
             </span>
             <h1 class="text-4xl md:text-5xl font-bold mb-4">关于 Dibi8</h1>
@@ -38,13 +38,33 @@
             <h2>联系方式</h2>
             <ul>
                 <li>邮箱: <a href="mailto:contact@dibi8.com">contact@dibi8.com</a></li>
-                <li>GitHub: <a href="https://github.com/luckybbjason1/dibi8_com" target="_blank">https://github.com/luckybbjason1/dibi8_com</a></li>
+                <li>GitHub: <a href="https://github.com/luckybbjason1/dibi8_com" target="_blank" rel="noopener noreferrer">https://github.com/luckybbjason1/dibi8_com</a></li>
             </ul>
         </div>
         
         <div class="mt-8 text-center">
-            <a href="/" class="text-blue-600 hover:underline">← 返回首页</a>
+            <a href="/" class="text-blue-600 hover:underline" aria-label="返回首页">← 返回首页</a>
         </div>
     </div>
 </section>
+{{ end }}
+{{ define "schema" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "关于 Dibi8",
+  "description": "Dibi8 - 专业的AI工具导航平台",
+  "url": "https://dibi8.com/about/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "url": "https://dibi8.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  }
+}
+</script>
 {{ end }}

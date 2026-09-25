@@ -1,13 +1,13 @@
 ---
 title: "Core inference pipeline (simplified)"
-description: "Technical guide and comparison"
+description: "title: "Core inference pipeline (simplified)""
 date: 2026-09-20
 slug: "open-sora"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Core inference pipeline (simplified)"
-description: "Technical guide and comparison."
+description: "title: "Core inference pipeline (simplified)""
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

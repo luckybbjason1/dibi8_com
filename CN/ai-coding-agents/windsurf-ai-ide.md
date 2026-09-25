@@ -1,13 +1,13 @@
 ---
 title: "Example: Ask Cascade to implement a feature"
-description: "Technical guide and comparison"
+description: "title: "Example: Ask Cascade to implement a feature""
 date: 2026-09-20
 slug: "windsurf-ai-ide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Example: Ask Cascade to implement a feature"
-description: "Technical guide and comparison."
+description: "title: "Example: Ask Cascade to implement a feature""
   code, debugs, and ships features autonomously. Pricing, benchmarks, and real-world
   workflows.
 tags: - ai-ide
@@ -150,7 +150,7 @@ Windsurf offers the best value for teams wanting true agentic coding capabilitie
 
 ### Workflow 1: Feature Development
 
-Start with a natural language description: "Technical guide and comparison."
+Start with a natural language description: "title: "Example: Ask Cascade to implement a feature""
 "Add dark mode toggle to settings page. Persist preference in localStorage.
 Update all components to respect the theme. Add CSS variables for colors."
 `````

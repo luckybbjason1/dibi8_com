@@ -1,6 +1,6 @@
 ---
 title: "Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026"
-description: "Technical guide and comparison"
+description: "# Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026"
 date: 2026-09-20
 slug: "ohmyzsh"
 category: "ai-tools"

@@ -1,6 +1,6 @@
 ---
 title: "Addy Osmani's Agent Skills: The Production-Grade Approach"
-description: "Technical guide and comparison"
+description: ""headline": "'Addy Osmani\'s Agent Skills: 96K-Star Framework for Prod"
 date: 2026-09-20
 slug: "2026-09-19-agent-skills"
 category: "ai-tools"

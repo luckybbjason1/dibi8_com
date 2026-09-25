@@ -1,6 +1,6 @@
 ---
 title: "Install the Python library"
-description: "Technical guide and comparison"
+description: "SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models"
 date: 2026-09-20
 slug: "sglang-structured-generation-llm"
 category: "ai-tools"

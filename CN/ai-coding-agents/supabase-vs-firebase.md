@@ -1,6 +1,6 @@
 ---
 title: "Supabase vs Firebase in 2026: Which BaaS Wins?"
-description: "Technical guide and comparison"
+description: "# Supabase vs Firebase in 2026: Which BaaS Wins?"
 date: 2026-09-20
 slug: "supabase-vs-firebase"
 category: "ai-tools"

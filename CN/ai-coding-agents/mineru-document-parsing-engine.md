@@ -1,6 +1,6 @@
 ---
 title: "Automatic OCR detection (recommended)"
-description: "Technical guide and comparison"
+description: "net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo"
 date: 2026-09-20
 slug: "mineru-document-parsing-engine"
 category: "ai-tools"

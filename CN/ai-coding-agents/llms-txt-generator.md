@@ -1,6 +1,6 @@
 ---
 title: "llms.txt Generator — Help AI Crawlers (ChatGPT, Claude, Perplexity) Understand Your Site"
-description: "Technical guide and comparison"
+description: "txt Generator — Help AI Crawlers (ChatGPT, Claude,"
 date: 2026-09-20
 slug: "llms-txt-generator"
 category: "ai-tools"

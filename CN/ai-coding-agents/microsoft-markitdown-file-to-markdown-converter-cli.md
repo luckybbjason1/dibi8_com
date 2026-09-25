@@ -1,6 +1,6 @@
 ---
 title: "process_uploads.sh — Process all uploaded documents daily"
-description: "Technical guide and comparison"
+description: "In today's data-driven world, the ability to convert documents into structured, readable, and portable formats is more critical than ever"
 date: 2026-09-20
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: "ai-tools"

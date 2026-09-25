@@ -1,6 +1,6 @@
 ---
 title: "Python SDK for institutional yield management"
-description: "Technical guide and comparison"
+description: "> **Affiliate Disclosure**: This article contains affiliate links to [Binance](https://www"
 date: 2026-09-20
 slug: "pendle-yield-tokenization-defi"
 category: "ai-tools"

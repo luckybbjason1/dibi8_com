@@ -1,6 +1,6 @@
 ---
 title: "Best AI Coding Assistants 2026"
-description: "Technical guide and comparison"
+description: "# Best AI Coding Assistants 2026"
 date: 2026-09-20
 slug: "best-ai-coding-assistants"
 category: "ai-tools"

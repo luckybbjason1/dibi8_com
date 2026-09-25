@@ -1,6 +1,6 @@
 ---
 title: "For full features"
-description: "Technical guide and comparison"
+description: "Lightning AI is the leading open-source framework for production machine learning in 2026, with 25k+ stars on GitHub"
 date: 2026-09-20
 slug: "lightning-ai-lightning-complete-guide"
 category: "ai-tools"

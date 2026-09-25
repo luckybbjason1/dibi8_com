@@ -1,6 +1,6 @@
 ---
 title: "TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting"
-description: "Technical guide and comparison"
+description: "5: Google's Revolutionary Time Series Foundation Model for Forecasting"
 date: 2026-09-20
 slug: "timesfm-google-time-series-foundation-model"
 category: "ai-tools"

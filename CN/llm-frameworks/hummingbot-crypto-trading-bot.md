@@ -1,13 +1,13 @@
 ---
 title: "Create a directory for Hummingbot files"
-description: "Technical guide and comparison"
+description: "title: "Hummingbot 2026: The Open-Source Crypto Trading Bot Runn"
 date: 2026-09-20
 slug: "hummingbot-crypto-trading-bot"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Hummingbot 2026: The Open-Source Crypto Trading Bot Runn...
-description: "Technical guide and comparison."
+description: "title: "Hummingbot 2026: The Open-Source Crypto Trading Bot Runn"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

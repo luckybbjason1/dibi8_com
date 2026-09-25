@@ -1,13 +1,13 @@
 ---
 title: "Local prep + push"
-description: "Technical guide and comparison"
+description: "title: "Fine-Tuning Stack 2026: 5-Component Pipeline From Datase"
 date: 2026-09-20
 slug: "fine-tuning-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Fine-Tuning Stack 2026: 5-Component Pipeline From Datase...
-description: "Technical guide and comparison."
+description: "title: "Fine-Tuning Stack 2026: 5-Component Pipeline From Datase"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

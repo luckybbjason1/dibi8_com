@@ -1,13 +1,13 @@
 ---
 title: "Get all markets sorted by volume"
-description: "Technical guide and comparison"
+description: "title: "Polymarket Agents: Build AI Trading Bots for Prediction"
 date: 2026-09-20
 slug: "polymarket-agents-ai-trading-bot-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Polymarket Agents: Build AI Trading Bots for Prediction ...
-description: "Technical guide and comparison."
+description: "title: "Polymarket Agents: Build AI Trading Bots for Prediction"
   AI agents that trade autonomously on Polymarket prediction markets.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

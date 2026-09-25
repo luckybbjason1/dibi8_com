@@ -1,6 +1,6 @@
 ---
 title: "Safe Git Skill"
-description: "Technical guide and comparison"
+description: "## What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego"
 date: 2026-09-20
 slug: "ai-agent-skills-framework-spec-driven-development-2026"
 category: "ai-tools"

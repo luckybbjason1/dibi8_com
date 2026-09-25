@@ -1,13 +1,13 @@
 ---
 title: "Download the official compose file (v1.6.x)"
-description: "Technical guide and comparison"
+description: "title: "Appwrite 2026: The Open-Source Firebase Alternative with"
 date: 2026-09-20
 slug: "appwrite-backend-as-service"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Appwrite 2026: The Open-Source Firebase Alternative with...
-description: "Technical guide and comparison."
+description: "title: "Appwrite 2026: The Open-Source Firebase Alternative with"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

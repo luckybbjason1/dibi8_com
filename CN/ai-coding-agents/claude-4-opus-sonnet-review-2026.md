@@ -1,6 +1,6 @@
 ---
 title: "Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested"
-description: "Technical guide and comparison"
+description: "# Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested"
 date: 2026-09-20
 slug: "claude-4-opus-sonnet-review-2026"
 category: "ai-tools"

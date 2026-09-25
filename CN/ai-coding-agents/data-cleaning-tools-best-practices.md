@@ -1,6 +1,6 @@
 ---
 title: "Data Cleaning Tools & Best Practices: OpenRefine, Python Libraries & Automated Solutions"
-description: "Technical guide and comparison"
+description: "# Data Cleaning Tools & Best Practices: OpenRefine, Python Libraries & Automated Solutions"
 date: 2026-09-20
 slug: "data-cleaning-tools-best-practices"
 category: "ai-tools"

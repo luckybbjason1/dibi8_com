@@ -1,6 +1,6 @@
 ---
 title: "Initialize Vanna with your API key"
-description: "Technical guide and comparison"
+description: "The ability to interact with databases using natural language has long been the holy grail of data analytics"
 date: 2026-09-20
 slug: "vanna-ai-sql-generation"
 category: "ai-tools"

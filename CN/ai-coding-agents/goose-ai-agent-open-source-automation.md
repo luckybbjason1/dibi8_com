@@ -1,13 +1,13 @@
 ---
 title: "What Is Goose?"
-description: "Technical guide and comparison"
+description: "title: "Goose AI Agent: Open-Source Automation by Linux Foundati"
 date: 2026-09-20
 slug: "goose-ai-agent-open-source-automation"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Goose AI Agent: Open-Source Automation by Linux Foundati...
-description: "Technical guide and comparison."
+description: "title: "Goose AI Agent: Open-Source Automation by Linux Foundati"
   Foundation Agentic AI Foundation (AAIF). Automate coding, research, and daily tasks.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

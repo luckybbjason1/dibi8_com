@@ -1,6 +1,6 @@
 ---
 title: "Install Academic Research Skills"
-description: "Technical guide and comparison"
+description: "With 31,628 stars, it automates the most time-consuming parts of academic research"
 date: 2026-09-20
 slug: "academic-research-skills"
 category: "ai-tools"

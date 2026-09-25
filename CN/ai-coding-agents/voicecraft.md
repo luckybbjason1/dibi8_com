@@ -1,13 +1,13 @@
 ---
 title: "开源项目克隆与部署指南"
-description: "Technical guide and comparison"
+description: "date: 2026-05-19T00:00:00+08:00"
 date: 2026-09-20
 slug: "voicecraft"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "开源项目克隆与部署指南"
-description: "Technical guide and comparison."
+description: "date: 2026-05-19T00:00:00+08:00"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

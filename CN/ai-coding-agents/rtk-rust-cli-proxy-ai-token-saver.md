@@ -1,6 +1,6 @@
 ---
 title: "Linux / macOS"
-description: "Technical guide and comparison"
+description: "## The Hidden Tax of AI-Powered Development"
 date: 2026-09-20
 slug: "rtk-rust-cli-proxy-ai-token-saver"
 category: "ai-tools"

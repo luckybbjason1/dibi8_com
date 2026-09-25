@@ -1,6 +1,6 @@
 ---
 title: "Zed vs Cursor in 2026: Native Speed vs AI Depth — Honest Comparison"
-description: "Technical guide and comparison"
+description: "# Zed vs Cursor in 2026: Native Speed vs AI Depth — Honest Comparison"
 date: 2026-09-20
 slug: "zed-vs-cursor"
 category: "ai-tools"

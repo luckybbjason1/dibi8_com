@@ -1,13 +1,13 @@
 ---
 title: "VoiceBox: The Open-Source AI Voice Studio"
-description: "Technical guide and comparison"
+description: "title: "VoiceBox: The Open-Source AI Voice Studio for Cloning, D"
 date: 2026-09-20
 slug: "voicebox-open-source-ai-voice-studio"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "VoiceBox: The Open-Source AI Voice Studio for Cloning, D...
-  description: "Technical guide and comparison."
+  description: "title: "VoiceBox: The Open-Source AI Voice Studio for Cloning, D"
   date: 2026-06-25
   lastmod: 2026-06-25
 draft: false

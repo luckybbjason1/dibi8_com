@@ -1,6 +1,6 @@
 ---
 title: "Why Fine-Tune Large Language Models?"
-description: "Technical guide and comparison"
+description: "Fine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time"
 date: 2026-09-20
 slug: "llm-fine-tuning-frameworks-comparison"
 category: "ai-tools"

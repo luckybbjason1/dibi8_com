@@ -1,13 +1,13 @@
 ---
 title: "Verify Docker is installed and running"
-description: "Technical guide and comparison"
+description: "title: "Verify Docker is installed and running""
 date: 2026-09-20
 slug: "lazydocker"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Verify Docker is installed and running"
-description: "Technical guide and comparison."
+description: "title: "Verify Docker is installed and running""
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

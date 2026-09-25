@@ -1,6 +1,6 @@
 ---
 title: "Install via npx (recommended)"
-description: "Technical guide and comparison"
+description: "This self-contained HTML tool generates beautiful, interactive diagrams from code analysis without requiring external dependencies"
 date: 2026-09-20
 slug: "2026-09-20-archify-diagrams"
 category: "ai-tools"

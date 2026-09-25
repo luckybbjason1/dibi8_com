@@ -1,13 +1,13 @@
 ---
 title: "Install Cognee"
-description: "Technical guide and comparison"
+description: "title: "Cognee: 26K+ Star Open-Source AI Memory Platform for Age"
 date: 2026-09-20
 slug: "cognee-ai-memory-platform"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Cognee: 26K+ Star Open-Source AI Memory Platform for Age...
-description: "Technical guide and comparison."
+description: "title: "Cognee: 26K+ Star Open-Source AI Memory Platform for Age"
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: cognee-ai-memory-platform

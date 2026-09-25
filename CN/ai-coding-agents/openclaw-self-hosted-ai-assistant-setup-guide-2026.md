@@ -1,6 +1,6 @@
 ---
 title: "SOUL.md — Who You Are"
-description: "Technical guide and comparison"
+description: "## Why OpenClaw Exploded in 2026"
 date: 2026-09-20
 slug: "openclaw-self-hosted-ai-assistant-setup-guide-2026"
 category: "ai-tools"

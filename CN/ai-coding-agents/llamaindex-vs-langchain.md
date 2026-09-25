@@ -1,6 +1,6 @@
 ---
 title: "Use LlamaIndex for ingestion and indexing"
-description: "Technical guide and comparison"
+description: "Picking the right LLM framework in 2025 feels overwhelming"
 date: 2026-09-20
 slug: "llamaindex-vs-langchain"
 category: "ai-tools"

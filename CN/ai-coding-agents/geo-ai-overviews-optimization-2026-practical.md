@@ -1,13 +1,13 @@
 ---
 title: "GEO / AI Overviews Optimization 2026: Practical Guide"
-description: "Technical guide and comparison"
+description: "title: "GEO / AI Overviews Optimization 2026: A Practical Guide"
 date: 2026-09-20
 slug: "geo-ai-overviews-optimization-2026-practical"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "GEO / AI Overviews Optimization 2026: A Practical Guide ...
-description: "Technical guide and comparison."
+description: "title: "GEO / AI Overviews Optimization 2026: A Practical Guide"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']

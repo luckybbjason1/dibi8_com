@@ -1,6 +1,6 @@
 ---
 title: "AI Image Generation Tools: Complete Guide to Midjourney, DALL-E, Stable Diffusion & More"
-description: "Technical guide and comparison"
+description: "# AI Image Generation Tools: Complete Guide to Midjourney, DALL-E, Stable Diffusion & More"
 date: 2026-09-20
 slug: "ai-image-generation-tools-complete-guide"
 category: "ai-tools"

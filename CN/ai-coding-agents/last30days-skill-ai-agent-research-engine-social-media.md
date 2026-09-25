@@ -1,6 +1,6 @@
 ---
 title: "Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement"
-description: "Technical guide and comparison"
+description: "title: 'Last30Days-Skill: AI Agent Search Engine That Scores Soc"
 date: 2026-09-20
 slug: "last30days-skill-ai-agent-research-engine-social-media"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Soc...
-description: "Technical guide and comparison."
+description: "title: 'Last30Days-Skill: AI Agent Search Engine That Scores Soc"
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

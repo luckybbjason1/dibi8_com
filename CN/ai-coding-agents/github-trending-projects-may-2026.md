@@ -1,6 +1,6 @@
 ---
 title: "npm — easiest path"
-description: "Technical guide and comparison"
+description: "[Modern workspace with multiple monitors](https://images"
 date: 2026-09-20
 slug: "github-trending-projects-may-2026"
 category: "ai-tools"

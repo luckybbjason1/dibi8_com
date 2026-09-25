@@ -1,6 +1,6 @@
 ---
 title: "Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026"
-description: "Technical guide and comparison"
+description: "# Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026"
 date: 2026-09-20
 slug: "odysseus-self-hosted-ai-workspace-chat-agent-deep-research"
 category: "ai-tools"

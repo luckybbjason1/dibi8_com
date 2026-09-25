@@ -1,6 +1,6 @@
 ---
 title: "No installation required — Zerion is a web-based dApp"
-description: "Technical guide and comparison"
+description: "**GitHub:** [zeriontech](https://github"
 date: 2026-09-20
 slug: "zerion-wallet-portfolio-tracker"
 category: "ai-tools"

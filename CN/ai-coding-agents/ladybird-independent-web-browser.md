@@ -1,13 +1,13 @@
 ---
 title: "Clone repository"
-description: "Technical guide and comparison"
+description: "No Chrome dependencies, no corporate influence, pure open source"
 date: 2026-09-20
 slug: "ladybird-independent-web-browser"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Clone repository"
-description: "Technical guide and comparison."
+description: "No Chrome dependencies, no corporate influence, pure open source"
   No Chrome dependencies, no corporate influence, pure open source.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

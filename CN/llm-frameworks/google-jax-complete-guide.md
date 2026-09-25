@@ -1,6 +1,6 @@
 ---
 title: "For GPU support"
-description: "Technical guide and comparison"
+description: "JAX is a Python library that combines NumPy-like array operations with automatic differentiation and just-in-time compilation"
 date: 2026-09-20
 slug: "google-jax-complete-guide"
 category: "ai-tools"

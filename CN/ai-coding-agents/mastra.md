@@ -1,13 +1,13 @@
 ---
 title: "Scaffold a new Mastra project with the interactive CLI"
-description: "Technical guide and comparison"
+description: "title: "Scaffold a new Mastra project with the interactive CLI""
 date: 2026-09-20
 slug: "mastra"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Scaffold a new Mastra project with the interactive CLI"
-description: "Technical guide and comparison."
+description: "title: "Scaffold a new Mastra project with the interactive CLI""
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -160,7 +160,7 @@ import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
-  description: "Technical guide and comparison."
+  description: "title: "Scaffold a new Mastra project with the interactive CLI""
   inputSchema: z.object({
     query: z.string().describe('The search..."
     environment: - OPENAI_API_KEY=${OPENAI_API_KEY}

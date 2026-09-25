@@ -1,6 +1,6 @@
 ---
 title: "GEO Optimization Checklist: Make ChatGPT Cite You Using Toprank (Free AI SEO Agent)"
-description: "Technical guide and comparison"
+description: "title: "GEO Optimization Checklist: Make ChatGPT Cite You Using"
 date: 2026-09-20
 slug: "toprank-guide"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 title: "GEO Optimization Checklist: Make ChatGPT Cite You Using ...
   Agent)'
-description: "Technical guide and comparison."
+description: "title: "GEO Optimization Checklist: Make ChatGPT Cite You Using"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

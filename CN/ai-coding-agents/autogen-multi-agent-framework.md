@@ -1,6 +1,6 @@
 ---
 title: "For local models via Ollama or LM Studio"
-description: "Technical guide and comparison"
+description: "Single LLM calls can write emails and summarize articles"
 date: 2026-09-20
 slug: "autogen-multi-agent-framework"
 category: "ai-tools"

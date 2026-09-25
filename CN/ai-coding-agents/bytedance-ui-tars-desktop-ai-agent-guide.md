@@ -1,6 +1,6 @@
 ---
 title: "7B parameter model (recommended for most use cases)"
-description: "Technical guide and comparison"
+description: "With over 36,000 GitHub stars, it has become one of the most popular vision-language agents for desktop automation"
 date: 2026-09-20
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: "ai-tools"

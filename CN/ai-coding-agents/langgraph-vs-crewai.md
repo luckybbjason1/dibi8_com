@@ -1,6 +1,6 @@
 ---
 title: "LangGraph vs CrewAI in 2026: Control-First State Graphs vs Role-Based Agent Crews"
-description: "Technical guide and comparison"
+description: "# LangGraph vs CrewAI in 2026: Control-First State Graphs vs Role-Based Agent Crews"
 date: 2026-09-20
 slug: "langgraph-vs-crewai"
 category: "ai-tools"

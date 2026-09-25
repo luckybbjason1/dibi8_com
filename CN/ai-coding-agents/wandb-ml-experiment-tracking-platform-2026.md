@@ -1,6 +1,6 @@
 ---
 title: "Initialize a new run with your configuration"
-description: "Technical guide and comparison"
+description: "[Weights & Biases Dashboard](https://opengraph"
 date: 2026-09-20
 slug: "wandb-ml-experiment-tracking-platform-2026"
 category: "ai-tools"

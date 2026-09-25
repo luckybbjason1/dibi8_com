@@ -1,13 +1,13 @@
 ---
 title: "Run: python main_idea2video.py"
-description: "Technical guide and comparison"
+description: "title: "Run: python main_idea2video"
 date: 2026-09-20
 slug: "vimax-agentic-video-generation-multi-agent-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Run: python main_idea2video.py"
-description: "Technical guide and comparison."
+description: "title: "Run: python main_idea2video"
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

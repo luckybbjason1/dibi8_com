@@ -1,6 +1,6 @@
 ---
 title: "Create a knowledge graph"
-description: "Technical guide and comparison"
+description: "Knowledge has always been visual"
 date: 2026-09-20
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: "ai-tools"

@@ -1,6 +1,6 @@
 ---
 title: "Why Feature Engineering is the Bottleneck in ML Pipelines"
-description: "Technical guide and comparison"
+description: "Feature engineering is the process of transforming raw data into variables that machine learning models can use effectively"
 date: 2026-09-20
 slug: "feature-engineering-tools-automation"
 category: "ai-tools"

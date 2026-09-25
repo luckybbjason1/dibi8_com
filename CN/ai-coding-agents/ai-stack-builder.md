@@ -1,6 +1,6 @@
 ---
 title: "AI Stack Builder — Find Your Perfect LLM + Vector DB + Framework Combo"
-description: "Technical guide and comparison"
+description: "# AI Stack Builder — Find Your Perfect LLM + Vector DB + Framework Combo"
 date: 2026-09-20
 slug: "ai-stack-builder"
 category: "ai-tools"

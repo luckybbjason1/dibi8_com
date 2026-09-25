@@ -1,6 +1,6 @@
 ---
 title: "Agent-Reach: Free Internet Access for Your AI Agent"
-description: "Technical guide and comparison"
+description: ""headline": "'Agent-Reach: 83K-Star Open Source Tool That Gives AI Age"
 date: 2026-09-20
 slug: "2026-09-19-agent-reach"
 category: "ai-tools"

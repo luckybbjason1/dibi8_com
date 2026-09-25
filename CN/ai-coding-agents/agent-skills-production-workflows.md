@@ -1,6 +1,6 @@
 ---
 title: "Addy Osmani's Agent Skills: The Production-Grade Approach"
-description: "Technical guide and comparison"
+description: "# Addy Osmani's Agent Skills: The Production-Grade Approach"
 date: 2026-09-20
 slug: "agent-skills-production-workflows"
 category: "ai-tools"
@@ -85,7 +85,7 @@ skills/
 
 * * *
 name: my-skill
-description: "Technical guide and comparison."
+description: "# Addy Osmani's Agent Skills: The Production-Grade Approach"
 version: 1.0.0
 author: your-name
 

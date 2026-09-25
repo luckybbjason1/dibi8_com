@@ -1,13 +1,13 @@
 ---
 title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts"
-description: "Technical guide and comparison"
+description: "title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts"
 date: 2026-09-20
 slug: "ai-coding-agent-monthly-bill-2026-real-receipts"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts ...
-description: "Technical guide and comparison."
+description: "title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts"
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']

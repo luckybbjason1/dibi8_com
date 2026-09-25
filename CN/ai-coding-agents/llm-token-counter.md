@@ -1,6 +1,6 @@
 ---
 title: "LLM Token Counter — GPT-4, Claude, Gemini Tokenization Comparison"
-description: "Technical guide and comparison"
+description: ""headline": ""LLM Token Counter — GPT-4, Claude, Gemini Tokenization C"
 date: 2026-09-20
 slug: "llm-token-counter"
 category: "ai-tools"

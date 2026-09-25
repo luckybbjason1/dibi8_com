@@ -1,6 +1,6 @@
 ---
 title: "Install Oh My Pi on a fresh Raspberry Pi OS"
-description: "Technical guide and comparison"
+description: "With 12,554 stars, it's the most popular Raspberry Pi automation framework on GitHub"
 date: 2026-09-20
 slug: "oh-my-pi"
 category: "ai-tools"
@@ -177,7 +177,7 @@ Deploy custom services with Oh My Pi's extension system: ### Writing a Custom Se
 # my-service.yaml — custom service definition
 service: name: my-custom-app
   version: "1.0"
-  description: "Technical guide and comparison."
+  description: "With 12,554 stars, it's the most popular Raspberry Pi automation framework on GitHub"
   docker: image: "myapp:latest"
     ports: - "8080:8080"
     volumes: - myapp-data:/data

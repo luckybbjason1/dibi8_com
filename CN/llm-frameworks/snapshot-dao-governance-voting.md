@@ -1,6 +1,6 @@
 ---
 title: "Step 1: Ensure you own an ENS domain"
-description: "Technical guide and comparison"
+description: "**Tags:** Snapshot, DAO, Governance, Voting, DeFi, Web3, IPFS, Blockchain"
 date: 2026-09-20
 slug: "snapshot-dao-governance-voting"
 category: "ai-tools"
@@ -732,7 +732,7 @@ function notifyDiscord(proposal: any) {
     embeds: [{
 title: "Step 1: Ensure you own an ENS domain"
       url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
-      description: "Technical guide and comparison."
+      description: "**Tags:** Snapshot, DAO, Governance, Voting, DeFi, Web3, IPFS, Blockchain"
       fields: [
         { name: Space, value: proposal.space.name, inline: true },
         { name: Author, value: proposal.author, inline: true },

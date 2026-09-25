@@ -1,13 +1,13 @@
 ---
 title: "Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）"
-description: "Technical guide and comparison"
+description: "title: "Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）""
 date: 2026-09-20
 slug: "supertonic-on-device-multilingual-tts-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）"
-description: "Technical guide and comparison."
+description: "title: "Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）""
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

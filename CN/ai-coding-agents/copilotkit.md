@@ -1,13 +1,13 @@
 ---
 title: "React core + UI components + runtime"
-description: "Technical guide and comparison"
+description: "title: "React core + UI components + runtime""
 date: 2026-09-20
 slug: "copilotkit"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "React core + UI components + runtime"
-description: "Technical guide and comparison."
+description: "title: "React core + UI components + runtime""
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -304,25 +304,25 @@ export function TaskManager() {
 
   // Expose task state to the LLM
   useCopilotReadable({
-    description: "Technical guide and comparison."
+    description: "title: "React core + UI components + runtime""
     value: tasks,
   });
 
   // Action: Add a new task
   useCopilotAction({
     name: "addTask",
-    description: "Technical guide and comparison."
+    description: "title: "React core + UI components + runtime""
     parameters: [
       {
         name: "title",
         type: "string",
-        description: "Technical guide and comparison."
+        description: "title: "React core + UI components + runtime""
         required: true,
       },
       {
         name: "priority",
         type: "string",
-        description: "Technical guide and comparison."
+        description: "title: "React core + UI components + runtime""
         required: false,
       },
     ],
@@ -341,12 +341,12 @@ export function TaskManager() {
   // Action: Mark task as complete
   useCopilotAction({
     name: "completeTask",
-    description: "Technical guide and comparison."
+    description: "title: "React core + UI components + runtime""
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "Technical guide and comparison."
+        description: "title: "React core + UI components + runtime""
         required: true,
       },
     ],
@@ -361,12 +361,12 @@ export function TaskManager() {
   // Action: Delete a task
   useCopilotAction({
     name: "deleteTask",
-    description: "Technical guide and comparison."
+    description: "title: "React core + UI components + runtime""
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "Technical guide and comparison."
+        description: "title: "React core + UI components + runtime""
         required: true,
       },
     ],
@@ -398,9 +398,9 @@ export function TaskManager() {
 // Render a task card inside the copilot chat
 useCopilotAction({
   name: "showTaskDetails",
-  description: "Technical guide and comparison."
+  description: "title: "React core + UI components + runtime""
   parameters: [
-    { name: "taskId", type: "string", description: "Technical guide and comparison."
+    { name: "taskId", type: "string", description: "title: "React core + UI components + runtime""
 , required: true },
   ],
   render: ({ taskId }) => {

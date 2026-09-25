@@ -1,6 +1,6 @@
 ---
 title: "ai engineering scratch"
-description: "Technical guide and comparison"
+description: "AI Engineering From Scratch is a comprehensive, hands-on curriculum for building production-grade AI systems"
 date: 2026-09-20
 slug: "ai-engineering-from-scratch"
 category: "ai-tools"

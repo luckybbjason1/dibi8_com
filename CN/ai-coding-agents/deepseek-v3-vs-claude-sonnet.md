@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights vs 1M Context"
-description: "Technical guide and comparison"
+description: "6 in 2026: Open Weights vs 1M Context"
 date: 2026-09-20
 slug: "deepseek-v3-vs-claude-sonnet"
 category: "ai-tools"

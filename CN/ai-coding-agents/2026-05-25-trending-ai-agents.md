@@ -1,6 +1,6 @@
 ---
 title: "Methodology"
-description: "Technical guide and comparison"
+description: "- **Source**: GitHub Search API, query window 'pushed:>2026-05-18'"
 date: 2026-09-20
 slug: "2026-05-25-trending-ai-agents"
 category: "ai-tools"

@@ -1,6 +1,7 @@
 ---
 title: "AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex"
 date: "2026-09-20"
+lastmod: "2026-09-20"
 authors: ["dibi8 Team"]
 description: "Complete comparison of OpenCode (45K stars), Claude Code, Cursor, and Codex AI coding agents. Benchmarks, pricing, and decision framework."
 tags: [ai-coding, comparison, 2026, opencode, claude-code, cursor, codex]

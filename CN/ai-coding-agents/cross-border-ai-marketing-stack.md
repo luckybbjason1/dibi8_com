@@ -1,13 +1,13 @@
 ---
 title: "Cross-Border AI Marketing Stack 2026: 7-Tool Setup for Chinese Teams Shipping Globally"
-description: "Technical guide and comparison"
+description: "title: "Cross-Border AI Marketing Stack 2026: 7-Tool Setup for C"
 date: 2026-09-20
 slug: "cross-border-ai-marketing-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Cross-Border AI Marketing Stack 2026: 7-Tool Setup for C...
-description: "Technical guide and comparison."
+description: "title: "Cross-Border AI Marketing Stack 2026: 7-Tool Setup for C"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker

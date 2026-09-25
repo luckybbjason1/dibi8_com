@@ -1,13 +1,13 @@
 ---
 title: "What is PageIndex?"
-description: "Technical guide and comparison"
+description: "date: 2026-05-15T04:20:25+09:00"
 date: 2026-09-20
 slug: "pageindex-vectorless-reasoning-rag"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "What is PageIndex?"
-description: "Technical guide and comparison."
+description: "date: 2026-05-15T04:20:25+09:00"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python

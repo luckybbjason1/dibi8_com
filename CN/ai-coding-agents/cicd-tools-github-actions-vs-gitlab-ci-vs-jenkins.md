@@ -1,6 +1,6 @@
 ---
 title: "CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jenkins in 2025"
-description: "Technical guide and comparison"
+description: "# CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jenkins in 2025"
 date: 2026-09-20
 slug: "cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins"
 category: "ai-tools"

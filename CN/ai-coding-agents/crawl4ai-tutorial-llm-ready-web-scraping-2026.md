@@ -1,13 +1,13 @@
 ---
 title: "Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and RAG Pipelines with the Fastest-Growing Open-Source Crawler"
-description: "Technical guide and comparison"
+description: "title: "Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and"
 date: 2026-09-20
 slug: "crawl4ai-tutorial-llm-ready-web-scraping-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and...
-description: "Technical guide and comparison."
+description: "title: "Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

@@ -1,13 +1,13 @@
 ---
 title: "High-level component view"
-description: "Technical guide and comparison"
+description: "title: "High-level component view""
 date: 2026-09-20
 slug: "kubeflow-ml-pipeline-kubernetes"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "High-level component view"
-description: "Technical guide and comparison."
+description: "title: "High-level component view""
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

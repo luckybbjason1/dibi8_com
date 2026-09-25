@@ -1,13 +1,13 @@
 ---
 title: "Moss Trade Bot Factory Review 2026: AI Agent Quant Workbench — Why Pretty Backtests Lie"
-description: "Technical guide and comparison"
+description: "title: "Moss Trade Bot Factory Review 2026: AI Agent Quant Workb"
 date: 2026-09-20
 slug: "moss-trade-bot-factory-2026-review"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Moss Trade Bot Factory Review 2026: AI Agent Quant Workb...
-description: "Technical guide and comparison."
+description: "title: "Moss Trade Bot Factory Review 2026: AI Agent Quant Workb"
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]

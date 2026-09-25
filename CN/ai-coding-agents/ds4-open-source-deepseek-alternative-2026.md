@@ -1,13 +1,13 @@
 ---
 title: "ds4: The Open-Source DeepSeek That Developers Are Switching"
-description: "Technical guide and comparison"
+description: "title: "ds4 Review 2026: The Open-Source DeepSeek Developers Are"
 date: 2026-09-20
 slug: "ds4-open-source-deepseek-alternative-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "ds4 Review 2026: The Open-Source DeepSeek Developers Are...
-description: "Technical guide and comparison."
+description: "title: "ds4 Review 2026: The Open-Source DeepSeek Developers Are"
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: []

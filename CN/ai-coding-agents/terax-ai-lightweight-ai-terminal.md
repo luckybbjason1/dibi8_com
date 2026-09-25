@@ -1,13 +1,13 @@
 ---
 title: "Terax AI: The Lightweight AI Terminal Emulator That Understands You"
-description: "Technical guide and comparison"
+description: "title: "Terax AI: The Lightweight AI Terminal Emulator That Unde"
 date: 2026-09-20
 slug: "terax-ai-lightweight-ai-terminal"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Terax AI: The Lightweight AI Terminal Emulator That Unde..."
-description: "Technical guide and comparison."
+description: "title: "Terax AI: The Lightweight AI Terminal Emulator That Unde"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

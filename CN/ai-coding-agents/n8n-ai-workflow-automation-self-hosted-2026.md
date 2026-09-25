@@ -1,6 +1,6 @@
 ---
 title: "docker-compose.yml"
-description: "Technical guide and comparison"
+description: "## Why n8n Is Exploding in 2026"
 date: 2026-09-20
 slug: "n8n-ai-workflow-automation-self-hosted-2026"
 category: "ai-tools"

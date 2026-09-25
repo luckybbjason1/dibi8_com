@@ -1,13 +1,13 @@
 ---
 title: "Create monitoring namespace"
-description: "Technical guide and comparison"
+description: "title: "Create monitoring namespace""
 date: 2026-09-20
 slug: "prometheus"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Create monitoring namespace"
-description: "Technical guide and comparison."
+description: "title: "Create monitoring namespace""
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -245,31 +245,31 @@ groups: - name: node-alerts
         for: 5m
         labels: severity: warning
         annotations: summary: "High memory usage on "
-          description: "Technical guide and comparison."
+          description: "title: "Create monitoring namespace""
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
         labels: severity: critical
         annotations: summary: "High CPU usage on "
-          description: "Technical guide and comparison."
+          description: "title: "Create monitoring namespace""
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
         labels: severity: warning
         annotations: summary: "Low disk space on "
-          description: "Technical guide and comparison."
+          description: "title: "Create monitoring namespace""
       - alert: InstanceDown
         expr: up == 0
         for: 3m
         labels: severity: critical
         annotations: summary: "Instance  is down"
-          description: "Technical guide and comparison."
+          description: "title: "Create monitoring namespace""
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m
         labels: severity: warning
         annotations: summary: "High request latency on "
-          description: "Technical guide and comparison."
+          description: "title: "Create monitoring namespace""
 Reference the rules in ``prometheus.yml``: `````yaml
 rule_files: - '/etc/prometheus/alert-rules.yml'
 

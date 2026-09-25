@@ -1,6 +1,6 @@
 ---
 title: "MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars"
-description: "Technical guide and comparison"
+description: ""headline": "'MoneyPrinterTurbo: One-Click AI Video Generator with 90K"
 date: 2026-09-20
 slug: "moneyprinterturbo-one-click-ai-video-generator"
 category: "ai-tools"
@@ -40,7 +40,7 @@ tags: ["ai", "tools"]
 
 * * *
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
-description: "Technical guide and comparison."
+description: ""headline": "'MoneyPrinterTurbo: One-Click AI Video Generator with 90K"
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

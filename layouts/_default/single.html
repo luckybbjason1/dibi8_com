@@ -1,4 +1,60 @@
-{{ define "title" }}{{ .Title }} | Dibi8{{ end }}
+{{- define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
+{{- define "schema" }}
+{{- if eq .Section "" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.BaseURL }}images/logo.png"
+    }
+  }
+}
+</script>
+{{- else }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
+  "image": "{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.BaseURL }}images/og-cover.png{{ end }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ with .Params.lastmod }}{{ .Format "2006-01-02T15:04:05Z07:00" }}{{ else }}{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}{{ end }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.BaseURL }}images/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "keywords": [{{- range $i, $tag := .Params.tags }}{{ if $i }},{{ end }}"{{ $tag }}"{{ end }}],
+  "articleSection": "{{ .Section }}"
+}
+</script>
+{{- end }}
+{{- end }}
 {{ define "main" }}
 <article class="pt-28 pb-20 px-6">
     <div class="max-w-4xl mx-auto">
@@ -8,26 +64,26 @@
             <span class="mx-2">/</span>
             <span class="text-gray-600">{{ .Title }}</span>
         </nav>
-        
+
         <!-- 标题 -->
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">{{ .Title }}</h1>
-        
+
         {{ with .Params.description }}
         <p class="text-gray-500 text-lg mb-8">{{ . }}</p>
         {{ end }}
-        
+
         <!-- 标签 -->
         <div class="flex flex-wrap gap-2 mb-10">
             {{ range .Params.tags }}
             <a href="/tags/{{ . | urlize }}/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#{{ . }}</a>
             {{ end }}
         </div>
-        
-        <!-- 内容 -->
-        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+
+        <!-- 内容 - wrap in div to avoid H1 conflict -->
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
             {{ .Content }}
         </div>
-        
+
         <!-- 分享 -->
         <div class="border-t border-gray-200 pt-8 mt-12">
             <div class="flex items-center gap-4">
@@ -37,7 +93,7 @@
                 <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
             </div>
         </div>
-        
+
         <!-- 相关文章 -->
         {{ $related := .Site.RegularPages.Related . | first 3 }}
         {{ with $related }}

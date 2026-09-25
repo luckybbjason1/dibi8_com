@@ -1,6 +1,6 @@
 ---
 title: "Change prefix to Ctrl+A (easier to reach)"
-description: "Technical guide and comparison"
+description: "Developers spend hours each day in the terminal"
 date: 2026-09-20
 slug: "terminal-command-line-tools-tmux-zsh-fzf-ripgrep"
 category: "ai-tools"

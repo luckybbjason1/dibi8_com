@@ -1,13 +1,13 @@
 ---
 title: "Install core Haystack"
-description: "Technical guide and comparison"
+description: "title: "Haystack 2026: The End-to-End NLP Framework for Producti"
 date: 2026-09-20
 slug: "haystack-rag-pipeline-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Haystack 2026: The End-to-End NLP Framework for Producti...
-description: "Technical guide and comparison."
+description: "title: "Haystack 2026: The End-to-End NLP Framework for Producti"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

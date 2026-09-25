@@ -1,13 +1,13 @@
 ---
 title: "Claude Code Session Memory: How to Integrate MemPalace for 96.6% Recall (2026 Guide)"
-description: "Technical guide and comparison"
+description: "title: "Claude Code Session Memory: How to Integrate MemPalace f"
 date: 2026-09-20
 slug: "mempalace-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Claude Code Session Memory: How to Integrate MemPalace f..."
-description: "Technical guide and comparison."
+description: "title: "Claude Code Session Memory: How to Integrate MemPalace f"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

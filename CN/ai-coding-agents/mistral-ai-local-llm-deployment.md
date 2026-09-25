@@ -1,6 +1,6 @@
 ---
 title: "Update system packages"
-description: "Technical guide and comparison"
+description: "Running Large Language Models locally has shifted from a niche experiment to a production necessity"
 date: 2026-09-20
 slug: "mistral-ai-local-llm-deployment"
 category: "ai-tools"

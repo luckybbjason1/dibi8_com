@@ -1,13 +1,13 @@
 ---
 title: "Introduction"
-description: "Technical guide and comparison"
+description: "title: "Skyvern: Automate Browser Workflows with AI Agents (21K"
 date: 2026-09-20
 slug: "skyvern-dev-utils-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Skyvern: Automate Browser Workflows with AI Agents (21K ...
-description: "Technical guide and comparison."
+description: "title: "Skyvern: Automate Browser Workflows with AI Agents (21K"
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []

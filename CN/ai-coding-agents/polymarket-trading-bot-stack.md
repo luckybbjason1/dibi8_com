@@ -1,13 +1,13 @@
 ---
 title: "28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown"
-description: "Technical guide and comparison"
+description: "title: "28 Tools Behind a $1M Polymarket Trading Bot: Full Stack"
 date: 2026-09-20
 slug: "polymarket-trading-bot-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "28 Tools Behind a $1M Polymarket Trading Bot: Full Stack...
-description: "Technical guide and comparison."
+description: "title: "28 Tools Behind a $1M Polymarket Trading Bot: Full Stack"
   $1M. Learn latency arbitrage, AI reasoning, and the complete tech stack for prediction
   market trading.
 date: 2026-05-15T04:20:25+09:00

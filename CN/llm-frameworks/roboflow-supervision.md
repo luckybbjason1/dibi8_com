@@ -1,6 +1,6 @@
 ---
 title: "Import supervision"
-description: "Technical guide and comparison"
+description: "**Supervision** by [Roboflow](https://github"
 date: 2026-09-20
 slug: "roboflow-supervision"
 category: "ai-tools"

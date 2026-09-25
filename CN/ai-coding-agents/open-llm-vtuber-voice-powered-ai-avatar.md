@@ -1,6 +1,6 @@
 ---
 title: "Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free"
-description: "Technical guide and comparison"
+description: "# Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free"
 date: 2026-09-20
 slug: "open-llm-vtuber-voice-powered-ai-avatar"
 category: "ai-tools"

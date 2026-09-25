@@ -1,6 +1,6 @@
 ---
 title: "Apple's Container: Docker-Like Experience on Mac with 37K Stars"
-description: "Technical guide and comparison"
+description: "title: "Apple's Container: Docker-Like Experience on Mac with 37"
 date: 2026-09-20
 slug: "apple-container"
 category: "ai-tools"
@@ -10,7 +10,7 @@ title: "Apple's Container: Docker-Like Experience on Mac with 37..."
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: apple-container-mac-vm-tool-2026
-description: "Technical guide and comparison."
+description: "title: "Apple's Container: Docker-Like Experience on Mac with 37"
 tags: ["apple", "container", "macos", "linux", "virtualization", "swift", "devops", "docker", "open-source"]
 categories: ["ai-tools"]
 faqs: - q: "Does container work on Intel Macs?"

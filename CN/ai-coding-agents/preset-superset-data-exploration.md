@@ -1,13 +1,13 @@
 ---
 title: "Checkout the latest stable release (v5.0.0 as of May 2025)"
-description: "Technical guide and comparison"
+description: "title: "Apache Superset 2026: The Open-Source Data Exploration P"
 date: 2026-09-20
 slug: "preset-superset-data-exploration"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Apache Superset 2026: The Open-Source Data Exploration P...
-description: "Technical guide and comparison."
+description: "title: "Apache Superset 2026: The Open-Source Data Exploration P"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

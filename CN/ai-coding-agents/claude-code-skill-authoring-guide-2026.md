@@ -1,13 +1,13 @@
 ---
 title: "Claude Code Skill Authoring: How to Package Procedures Claude Loads Only When Relevant (2026)"
-description: "Technical guide and comparison"
+description: "title: "Claude Code Skill Authoring: How to Package Procedures C"
 date: 2026-09-20
 slug: "claude-code-skill-authoring-guide-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Claude Code Skill Authoring: How to Package Procedures C...
-description: "Technical guide and comparison."
+description: "title: "Claude Code Skill Authoring: How to Package Procedures C"
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -76,7 +76,7 @@ The test: *would this instruction apply to a random prompt about anything?* If y
 
 * * *
 name: cut-release
-description: "Technical guide and comparison."
+description: "title: "Claude Code Skill Authoring: How to Package Procedures C"
 
 * * *
 You are helping cut a release. Follow these steps in order...
@@ -88,8 +88,8 @@ Kebab-case, descriptive. This is the skill's identity.
 
 ### ````description```` — the trigger signal that decides everything
 
-Claude reads skill descriptions to route: it scans them, decides which skill fits the current task, and loads that skill's body. So the description is not a label — it's a **when-to-fire condition**. Pack it with concrete triggers: > ❌ ````description: "Technical guide and comparison."
-> ✅ ````description: "Technical guide and comparison."
+Claude reads skill descriptions to route: it scans them, decides which skill fits the current task, and loads that skill's body. So the description is not a label — it's a **when-to-fire condition**. Pack it with concrete triggers: > ❌ ````description: "title: "Claude Code Skill Authoring: How to Package Procedures C"
+> ✅ ````description: "title: "Claude Code Skill Authoring: How to Package Procedures C"
 
 The first never fires because nothing in a real task matches "release helper." The second fires the moment the user says "let's ship 2.4.0." If your skill exists but never activates, the description is the culprit — every time.
 
@@ -120,7 +120,7 @@ Claude reads ````references/versioning.md```` only when it actually needs the ru
 
 * * *
 name: cut-release
-description: "Technical guide and comparison."
+description: "title: "Claude Code Skill Authoring: How to Package Procedures C"
 * * *
 
 You are cutting a release. Do NOT skip the precondition check.
@@ -143,7 +143,7 @@ The precondition and the "report where you stopped" line are what make it produc
 `````markdown
 * * *
 name: debug-flaky-test
-description: "Technical guide and comparison."
+description: "title: "Claude Code Skill Authoring: How to Package Procedures C"
 * * *
 
 You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.

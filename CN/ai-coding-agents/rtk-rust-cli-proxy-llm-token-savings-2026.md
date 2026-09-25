@@ -1,13 +1,13 @@
 ---
 title: "Restart Claude Code / Cursor / your agent"
-description: "Technical guide and comparison"
+description: "title: "rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills"
 date: 2026-09-20
 slug: "rtk-rust-cli-proxy-llm-token-savings-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills...
-description: "Technical guide and comparison."
+description: "title: "rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills"
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']

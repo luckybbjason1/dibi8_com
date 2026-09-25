@@ -1,13 +1,13 @@
 ---
 title: "Then add agentmemory to your LangGraph MCP toolset"
-description: "Technical guide and comparison"
+description: "title: "AI Agent Tool Chain 2026: The 6-Component Stack for Buil"
 date: 2026-09-20
 slug: "ai-agent-tool-chain"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "AI Agent Tool Chain 2026: The 6-Component Stack for Buil...
-description: "Technical guide and comparison."
+description: "title: "AI Agent Tool Chain 2026: The 6-Component Stack for Buil"
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python

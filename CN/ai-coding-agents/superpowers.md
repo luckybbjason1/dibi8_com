@@ -1,6 +1,6 @@
 ---
 title: "Superpowers Skill: LLM Query"
-description: "Technical guide and comparison"
+description: "title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &"
 date: 2026-09-20
 slug: "superpowers"
 category: "ai-tools"
@@ -8,7 +8,7 @@ tags: ["ai", "tools"]
 ---
 
 title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &...
-description: "Technical guide and comparison."
+description: "title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &"
 date: 2026-05-23
 lastmod: 2026-05-23
 slug: "superpowers"

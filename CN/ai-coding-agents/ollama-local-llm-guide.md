@@ -1,6 +1,6 @@
 ---
 title: "What is Ollama?"
-description: "Technical guide and comparison"
+description: "For many developers and organizations, that is unacceptable"
 date: 2026-09-20
 slug: "ollama-local-llm-guide"
 category: "ai-tools"

@@ -1,13 +1,13 @@
 ---
 title: "Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping"
-description: "Technical guide and comparison"
+description: "title: "Scrapling Reviewed: A Faster, Stealthier Take on Python"
 date: 2026-09-20
 slug: "scrapling-python-stealthy-web-scraping-review"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Scrapling Reviewed: A Faster, Stealthier Take on Python ...
-description: "Technical guide and comparison."
+description: "title: "Scrapling Reviewed: A Faster, Stealthier Take on Python"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

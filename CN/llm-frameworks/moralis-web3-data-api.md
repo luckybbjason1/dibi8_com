@@ -1,13 +1,13 @@
 ---
 title: "What Is Moralis?"
-description: "Technical guide and comparison"
+description: "title: "Moralis 2026: The Web3 Data API Powering 100K+ DApps wit"
 date: 2026-09-20
 slug: "moralis-web3-data-api"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Moralis 2026: The Web3 Data API Powering 100K+ DApps wit...
-description: "Technical guide and comparison."
+description: "title: "Moralis 2026: The Web3 Data API Powering 100K+ DApps wit"
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -305,7 +305,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
-  description: "Technical guide and comparison."
+  description: "title: "Moralis 2026: The Web3 Data API Powering 100K+ DApps wit"
   tag: usdc_transfers,
   includeNativeTxs: false,
   webhookUrl: 'https://your..."

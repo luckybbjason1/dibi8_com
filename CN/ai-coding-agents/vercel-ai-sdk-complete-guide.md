@@ -1,6 +1,6 @@
 ---
 title: "Or with specific provider"
-description: "Technical guide and comparison"
+description: "Vercel AI SDK is the most popular open-source framework for building AI-powered user interfaces in 2026, supporting 30k+ stars on GitHub"
 date: 2026-09-20
 slug: "vercel-ai-sdk-complete-guide"
 category: "ai-tools"
@@ -275,7 +275,7 @@ const result = await generateText({
   ],
   tools: {
     getWeather: tool({
-      description: "Technical guide and comparison."
+      description: "Vercel AI SDK is the most popular open-source framework for building AI-powered user interfaces in 2026, supporting 30k+ stars on GitHub"
       parameters: z.object({
         location: z.string().d..."
   },

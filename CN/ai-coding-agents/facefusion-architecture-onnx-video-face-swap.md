@@ -1,13 +1,13 @@
 ---
 title: "Why Did the Classic 'Roop' Die?"
-description: "Technical guide and comparison"
+description: "title: Why Did the Classic 'Roop' Die?"
 date: 2026-09-20
 slug: "facefusion-architecture-onnx-video-face-swap"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: Why Did the Classic 'Roop' Die?
-description: "Technical guide and comparison."
+description: "title: Why Did the Classic 'Roop' Die?"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

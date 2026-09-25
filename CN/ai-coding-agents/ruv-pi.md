@@ -1,6 +1,6 @@
 ---
 title: "Example: Define a custom tool for Pi"
-description: "Technical guide and comparison"
+description: "The landscape of AI coding tools has become remarkably fragmented"
 date: 2026-09-20
 slug: "ruv-pi"
 category: "ai-tools"

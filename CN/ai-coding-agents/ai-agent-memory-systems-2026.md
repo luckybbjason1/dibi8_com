@@ -1,13 +1,13 @@
 ---
 title: "AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hindsight vs MemPalace (Open-Source Compared)"
-description: "Technical guide and comparison"
+description: "title: "AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hin"
 date: 2026-09-20
 slug: "ai-agent-memory-systems-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hin...
-description: "Technical guide and comparison."
+description: "title: "AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hin"
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]

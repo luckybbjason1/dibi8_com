@@ -1,13 +1,13 @@
 ---
 title: "Install Netdata with all defaultscurl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash"
-description: "Technical guide and comparison"
+description: "title: "Install Netdata with all defaultscurl -Ss https://get"
 date: 2026-09-20
 slug: "netdata"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Install Netdata with all defaultscurl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash"
-description: "Technical guide and comparison."
+description: "title: "Install Netdata with all defaultscurl -Ss https://get"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []

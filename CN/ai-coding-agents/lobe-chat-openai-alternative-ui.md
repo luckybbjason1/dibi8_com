@@ -1,13 +1,13 @@
 ---
 title: "Multi-provider setup via environment variables"
-description: "Technical guide and comparison"
+description: "title: "Lobe Chat: The Open-Source ChatGPT UI Alternative with 2"
 date: 2026-09-20
 slug: "lobe-chat-openai-alternative-ui"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
 title: "Lobe Chat: The Open-Source ChatGPT UI Alternative with 2...
-description: "Technical guide and comparison."
+description: "title: "Lobe Chat: The Open-Source ChatGPT UI Alternative with 2"
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
