@@ -31,6 +31,37 @@
     body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
     .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    
+     
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .bento-card-small { grid-column: span 1; grid-row: span 1; }
+    .bento-card-medium { grid-column: span 2; grid-row: span 1; }
+    .bento-card-large { grid-column: span 2; grid-row: span 2; }
+    
+    @media (max-width: 640px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-card-medium, .bento-card-large { grid-column: span 1; grid-row: span 1; }
+    }
+    
+     
+    .star-10k { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+    .star-5k { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); }
+    .star-1k { background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); }
+    .star-500 { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); }
+    .star-default { background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%); }
+    
+    .bento-card {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .bento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 min-h-screen">
@@ -85,230 +116,537 @@
   </section>
   
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <div class="flex gap-8">
-      <div class="flex-1">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-bold text-gray-900">最新文章</h2>
-          <a href="/collections/" class="text-sm text-primary-600 hover:text-primary-700 font-medium">查看全部 →</a>
-        </div>
-        <div class="space-y-4">
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/terms/">服务条款</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">Dibi8服务条款</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-26</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>1分钟阅读</span>
-                  
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/about/">关于 Dibi8</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">了解Dibi8——专注于AI工具发现与导航的平台</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-26</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>1分钟阅读</span>
-                  
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/privacy/">隐私政策</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">Dibi8隐私政策说明</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-26</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>1分钟阅读</span>
-                  
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/multilingual-translation-guide/">多语言翻译</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">This is the content for the translations page</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-25</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>1分钟阅读</span>
-                  
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/">Jev Ultrafast: TypeSafe Browser Agents That Fly at 7.1 Seconds — browser-use 2026</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">AI tool comparison and guide</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-24</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>9分钟阅读</span>
-                  <span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#jev-ultrafast</span><span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#browser-agent</span>
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/ai-tools/jianying-headless-private-source-preview-automation-2026/">Jianying Headless: Private Source Preview &amp; Automation — AI Video Editing Without the App 2026</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">AI tool comparison and guide</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-24</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>7分钟阅读</span>
-                  <span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#jianying</span><span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#capcut</span>
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/llm-frameworks/kev-trainable-decision-models-qwen35-2026/">Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">AI tool comparison and guide</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-24</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>7分钟阅读</span>
-                  <span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#kev</span><span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#qwen35</span>
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/">Laya-MLX: Native Apple Silicon Decision Engine — 13.4ms Typed Inference 2026</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">Laya-MLX brings Apple Silicon native inference to the Laya decision engine. 13.4ms latency on M3 Max, MLX framework …</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-24</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>7分钟阅读</span>
-                  <span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#laya-mlx</span><span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#apple-silicon</span>
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/">Laya: Non-Autoregressive System 1 Decision Engine — 33ms Typed Decisions Over 100 Languages 2026</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">AI tool comparison and guide</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-24</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>10分钟阅读</span>
-                  <span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#laya</span><span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#system1</span>
-                </div>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0"><span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">AI工具</span></div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2"><a href="/dev-utils/niubigeo-open-source-ai-brand-visibility-2026/">NiubiGEO: Open-Source AI Brand Visibility Platform — Monitor Your Generative AI Presence 2026</a></h3>
-                <p class="text-gray-600 text-sm mb-3 line-clamp-2">AI tool comparison and guide</p>
-                <div class="flex items-center gap-4 text-xs text-gray-500">
-                  <span>2026-09-24</span>
-                  <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>7分钟阅读</span>
-                  <span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#niubigeo</span><span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#geo</span>
-                </div>
-              </div>
-            </div>
-          </article>
-          
-        </div>
-        <div class="mt-8 text-center">
-          <a href="/collections/" class="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 font-medium rounded-xl hover:border-primary-500 hover:text-primary-600 transition-all">加载更多文章</a>
-        </div>
+    <div class="mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">最新文章</h2>
+        <a href="/collections/" class="text-sm text-primary-600 hover:text-primary-700 font-medium">查看全部 →</a>
       </div>
-      <aside class="w-72 flex-shrink-0 space-y-6">
-        <div class="bg-white border border-gray-200 rounded-xl p-5">
-          <h3 class="font-bold text-gray-900 mb-4">分类浏览</h3>
-          <div class="space-y-2">
-            
-            
-            <a href="/categories/ai-tools/" class="flex items-center justify-between py-2 px-3 hover:bg-gray-50 rounded-lg transition-colors group">
-              <span class="text-gray-700 group-hover:text-primary-600 text-sm">Ai-Tools</span>
-              <span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">1</span>
-            </a>
-            
-            <a href="/categories/dev-utils/" class="flex items-center justify-between py-2 px-3 hover:bg-gray-50 rounded-lg transition-colors group">
-              <span class="text-gray-700 group-hover:text-primary-600 text-sm">Dev-Utils</span>
-              <span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">2</span>
-            </a>
-            
-            <a href="/categories/llm-frameworks/" class="flex items-center justify-between py-2 px-3 hover:bg-gray-50 rounded-lg transition-colors group">
-              <span class="text-gray-700 group-hover:text-primary-600 text-sm">Llm-Frameworks</span>
-              <span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">1</span>
-            </a>
-            
-          </div>
-        </div>
-        <div class="bg-white border border-gray-200 rounded-xl p-5">
-          <h3 class="font-bold text-gray-900 mb-4">编辑精选</h3>
-          <div class="space-y-3">
-            
-            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center text-white font-bold flex-shrink-0">J</div>
-              <div class="min-w-0"><div class="text-sm font-medium text-gray-900 truncate">Jev Ultrafast</div><div class="text-xs text-gray-500">深度评测</div></div>
+      <p class="text-gray-600 mb-6">卡片大小由标题长度决定，颜色由GitHub星星数量阶段决定</p>
+      
+      
+      <div class="bento-grid">
+        
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/terms/" class="bento-card bento-card-small block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">服务条款</h3>
+                <p class="text-white/80 text-sm line-clamp-2">Dibi8服务条款</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-26</span>
+                
+              </div>
             </div>
-            
-            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center text-white font-bold flex-shrink-0">Z</div>
-              <div class="min-w-0"><div class="text-sm font-medium text-gray-900 truncate">ZCode</div><div class="text-xs text-gray-500">深度评测</div></div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/about/" class="bento-card bento-card-small block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">关于 Dibi8</h3>
+                <p class="text-white/80 text-sm line-clamp-2">了解Dibi8——专注于AI工具发现与导航的平台</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-26</span>
+                
+              </div>
             </div>
-            
-            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center text-white font-bold flex-shrink-0">S</div>
-              <div class="min-w-0"><div class="text-sm font-medium text-gray-900 truncate">SoL-Pi</div><div class="text-xs text-gray-500">深度评测</div></div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/privacy/" class="bento-card bento-card-small block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">隐私政策</h3>
+                <p class="text-white/80 text-sm line-clamp-2">Dibi8隐私政策说明</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-26</span>
+                
+              </div>
             </div>
-            
-            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center text-white font-bold flex-shrink-0">L</div>
-              <div class="min-w-0"><div class="text-sm font-medium text-gray-900 truncate">Laya</div><div class="text-xs text-gray-500">深度评测</div></div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/multilingual-translation-guide/" class="bento-card bento-card-small block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">多语言翻译</h3>
+                <p class="text-white/80 text-sm line-clamp-2">This is the content for the translations page</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-25</span>
+                
+              </div>
             </div>
-            
-            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center text-white font-bold flex-shrink-0">K</div>
-              <div class="min-w-0"><div class="text-sm font-medium text-gray-900 truncate">Kev</div><div class="text-xs text-gray-500">深度评测</div></div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">Jev Ultrafast: TypeSafe Browser Agents That Fly at 7.1 Seconds — browser-use 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
             </div>
-            
-          </div>
-        </div>
-        <div class="bg-gradient-to-br from-primary-50 to-purple-50 border border-primary-100 rounded-xl p-5">
-          <h3 class="font-bold text-gray-900 mb-2">订阅更新</h3>
-          <p class="text-sm text-gray-600 mb-4">每周精选AI工具资讯</p>
-          <input type="email" placeholder="您的邮箱" class="w-full px-3 py-2 bg-white border border-primary-200 rounded-lg text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-primary-500 mb-2">
-          <button class="w-full py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-lg transition-colors">立即订阅</button>
-        </div>
-      </aside>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/ai-tools/jianying-headless-private-source-preview-automation-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">Jianying Headless: Private Source Preview &amp; Automation — AI Video Editing Without the App 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/llm-frameworks/kev-trainable-decision-models-qwen35-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">Kev: Train Your Own Decision Models on Qwen3.5 — A Practical Framework for Small Typed Decisions 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">Laya-MLX: Native Apple Silicon Decision Engine — 13.4ms Typed Inference 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">Laya-MLX brings Apple Silicon native inference to the Laya decision engine. …</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">Laya: Non-Autoregressive System 1 Decision Engine — 33ms Typed Decisions Over 100 Languages 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/dev-utils/niubigeo-open-source-ai-brand-visibility-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">NiubiGEO: Open-Source AI Brand Visibility Platform — Monitor Your Generative AI Presence 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/ai-tools/printfilm-ai-video-acquisition-short-drama-platform-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">Printfilm: AI Video Acquisition &amp; Short Drama Platform — Content Creation at Scale 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/llm-frameworks/nvlabs-sol-pi-agent-harness-efficiency-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">SoL-Pi: Scaling Auto-Research Loops for Efficient Agent Harnesses — NVlabs Open-Source Optimization Framework 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/dev-utils/tech-wechat-hub-local-intelligence-platform-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">Tech WeChat Hub: Local-First Intelligence Platform — Real-Time Chat Analysis &amp; Automation 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/ai-coding-agents/zcode-ai-coding-workbench-desktop-browser-terminal-2026/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">ZCode: AI-Powered Coding Workbench — Desktop, Browser &amp; Terminal in One Platform 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-24</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/ai-coding-agents/about/" class="bento-card bento-card-small block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">About dibi8</h3>
+                <p class="text-white/80 text-sm line-clamp-2">Who we are and why we built this AI tools directory</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-22</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/ecc-agent-harness/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">ECC (affaan-m/ECC): Hệ Thống Điều Khiển Agent Mạnh Nhất 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-22</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/mattpocock-skills/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">mattpocock/skills: Bộ Kỹ Năng Chuẩn Cho Engineers 2026</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-22</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/n8n-workflow-automation/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">n8n: Workflow Automation Platform 2026 (205K Stars)</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-22</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/ponytail-lazy-dev/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">Ponytail: Biến AI Agent Thành &#39;Kỹ Sư Lười&#39; Hiệu Quả Nhất</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-22</span>
+                
+              </div>
+            </div>
+          </a>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/rtk-token-killer/" class="bento-card bento-card-large block rounded-2xl p-5 text-white shadow-lg star-default" style="min-height: 120px;">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <h3 class="font-bold text-white leading-tight mb-2 line-clamp-3">RTK (rtk-ai/rtk): Giảm 90% Token Cost Cho AI Coding</h3>
+                <p class="text-white/80 text-sm line-clamp-2">AI tool comparison and guide</p>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs text-white/70">2026-09-22</span>
+                
+              </div>
+            </div>
+          </a>
+        
+      </div>
+    </div>
+    
+    
+    <div class="mt-12">
+      <h2 class="text-xl font-bold text-gray-900 mb-6">浏览分类</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        
+        <a href="/categories/ai-tools/" class="bg-white border border-gray-200 rounded-xl p-4 hover:border-primary-300 hover:shadow-md transition-all group">
+          <div class="text-2xl font-bold text-gray-900 group-hover:text-primary-600">1</div>
+          <div class="text-sm text-gray-600">Ai-Tools</div>
+        </a>
+        
+        <a href="/categories/dev-utils/" class="bg-white border border-gray-200 rounded-xl p-4 hover:border-primary-300 hover:shadow-md transition-all group">
+          <div class="text-2xl font-bold text-gray-900 group-hover:text-primary-600">2</div>
+          <div class="text-sm text-gray-600">Dev-Utils</div>
+        </a>
+        
+        <a href="/categories/llm-frameworks/" class="bg-white border border-gray-200 rounded-xl p-4 hover:border-primary-300 hover:shadow-md transition-all group">
+          <div class="text-2xl font-bold text-gray-900 group-hover:text-primary-600">1</div>
+          <div class="text-sm text-gray-600">Llm-Frameworks</div>
+        </a>
+        
+      </div>
     </div>
   </main>
   
