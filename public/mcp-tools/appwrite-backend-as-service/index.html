@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh" class="scroll-smooth">
 <head>
@@ -19,65 +18,67 @@
     
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
-    
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
-    <nav class="site-nav" role="navigation" aria-label="主导航">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
-        </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/categories/" class="nav-link">分类</a>
-            <a href="/collections/" class="nav-link">合集</a>
-            <a href="/tools/" class="nav-link">工具</a>
-            <a href="/about/" class="nav-link">关于</a>
-            <a href="/translations/" class="nav-link flex items-center gap-2">
-                <i class="fas fa-globe text-xs"></i>多语言
+<body class="bg-gray-50 font-sans antialiased text-gray-900">
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <a href="/" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">D</span>
+                </div>
+                <span class="text-xl font-bold text-gray-900">Dibi8</span>
             </a>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
-                <i class="fas fa-search text-xs"></i>
-                搜索
-                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
-            </button>
-            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
-                <i class="fas fa-search text-xs"></i>
-            </button>
+            
+            <div class="hidden md:flex items-center gap-6">
+                <a href="/categories/" class="text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors">分类</a>
+                <a href="/collections/" class="text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors">合集</a>
+                <a href="/about/" class="text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors">关于</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-600 transition-colors">
+                    <i class="fas fa-search text-xs"></i>
+                    搜索
+                    <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-500">⌘K</kbd>
+                </button>
+                <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600">
+                    <i class="fas fa-search text-sm"></i>
+                </button>
+            </div>
         </div>
     </div>
 </nav>
 
     
-<article class="max-w-4xl mx-auto px-4 py-12">
+<article class="max-w-4xl mx-auto px-4 py-10">
   
-  <nav class="flex items-center space-x-2 text-sm text-zinc-500 mb-8" aria-label="Breadcrumb">
-    <a href="/" class="hover:text-violet-400 transition-colors">首页</a>
+  <nav class="flex items-center gap-2 text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-primary-600 transition-colors">首页</a>
     <span>/</span>
-    <a href="/categories/" class="hover:text-violet-400 transition-colors">分类</a>
+    <a href="/categories/" class="hover:text-primary-600 transition-colors">分类</a>
     <span>/</span>
-    <span class="text-zinc-100">Download the official compose file (v1.6.x)</span>
+    <span class="text-gray-900 font-medium">Download the official compose file (v1.6.x)</span>
   </nav>
-  
+
   
   <header class="mb-8">
-    <h1 class="text-4xl font-bold text-zinc-100 mb-4">Download the official compose file (v1.6.x)</h1>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">Download the official compose file (v1.6.x)</h1>
     
-    <p class="text-xl text-zinc-400">Technical guide and comparison</p>
+    <p class="text-lg text-gray-600">Technical guide and comparison</p>
     
+    <div class="flex items-center gap-4 mt-4 text-sm text-gray-500">
+      <span>2026-09-20</span>
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        13 分钟阅读
+      </span>
+      
+    </div>
   </header>
+
   
-  
-  <div class="prose prose-invert prose-lg max-w-none mb-12">
+  <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed mb-12">
     <p>title: &ldquo;Appwrite 2026: The Open-Source Firebase Alternative with&hellip;
 description: &ldquo;Technical guide and comparison&rdquo;
 date: 2026-05-19T00:00:00+08:00
@@ -530,15 +531,21 @@ This article contains affiliate links to <a href="https://m.do.co/c/eca87ac14ee0
 <p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
 
   </div>
+
   
   
-  <section class="mt-12">
-    <h2 class="text-2xl font-bold text-zinc-100 mb-6">相关工具</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      
-    </div>
-  </section>
+  <div class="flex flex-wrap gap-2 mb-8 pb-6 border-b border-gray-200">
+    
+    <a href="/tags/ai/" class="px-3 py-1 bg-gray-100 hover:bg-primary-50 hover:text-primary-700 text-gray-600 text-sm rounded-full transition-colors">#ai</a>
+    
+    <a href="/tags/tools/" class="px-3 py-1 bg-gray-100 hover:bg-primary-50 hover:text-primary-700 text-gray-600 text-sm rounded-full transition-colors">#tools</a>
+    
+  </div>
   
+
+  
+  
+
   
   <script type="application/ld+json">
   {
@@ -550,23 +557,9 @@ This article contains affiliate links to <a href="https://m.do.co/c/eca87ac14ee0
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "首页",
-          "item": "https:\/\/dibi8.com\/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "分类",
-          "item": "https:\/\/dibi8.com\/categories/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Download the official compose file (v1.6.x)"
-        }
+        {"@type": "ListItem", "position": 1, "name": "首页", "item": "https:\/\/dibi8.com\/"},
+        {"@type": "ListItem", "position": 2, "name": "分类", "item": "https:\/\/dibi8.com\/categories/"},
+        {"@type": "ListItem", "position": 3, "name": "Download the official compose file (v1.6.x)"}
       ]
     }
   }
@@ -574,23 +567,19 @@ This article contains affiliate links to <a href="https://m.do.co/c/eca87ac14ee0
 </article>
 
 
-<nav class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800">
+<nav class="max-w-4xl mx-auto px-4 py-6 border-t border-gray-200">
   <div class="flex items-center justify-between">
     
-    <a href="/mcp-tools/feast-feature-store-ml/" class="flex items-center space-x-2 text-zinc-400 hover:text-violet-400 transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
+    <a href="/mcp-tools/feast-feature-store-ml/" class="flex items-center gap-2 text-gray-600 hover:text-primary-600 transition-colors text-sm">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
       <span>feature_store.yaml — Feast project configuration</span>
     </a>
     
+
     
-    
-    <a href="/mcp-tools/noco-db-airtable-alternative/" class="flex items-center space-x-2 text-zinc-400 hover:text-violet-400 transition-colors">
+    <a href="/mcp-tools/noco-db-airtable-alternative/" class="flex items-center gap-2 text-gray-600 hover:text-primary-600 transition-colors text-sm">
       <span>Create a directory for NocoDB data</span>
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-      </svg>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
     </a>
     
   </div>

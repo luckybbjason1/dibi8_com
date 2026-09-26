@@ -6,8 +6,29 @@
     <description>Recent content on Dibi8 - AI工具目录</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 25 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服务条款</title>
+      <link>https://dibi8.com/terms/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/terms/</guid>
+      <description>Dibi8服务条款</description>
+    </item>
+    <item>
+      <title>关于 Dibi8</title>
+      <link>https://dibi8.com/about/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/about/</guid>
+      <description>了解Dibi8——专注于AI工具发现与导航的平台</description>
+    </item>
+    <item>
+      <title>隐私政策</title>
+      <link>https://dibi8.com/privacy/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/privacy/</guid>
+      <description>Dibi8隐私政策说明</description>
+    </item>
     <item>
       <title>多语言翻译</title>
       <link>https://dibi8.com/multilingual-translation-guide/</link>

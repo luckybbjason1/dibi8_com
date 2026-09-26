@@ -3,7 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://dibi8.com/</loc>
-    <lastmod>2026-09-25T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-26T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://dibi8.com/terms/</loc>
+    <lastmod>2026-09-26T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://dibi8.com/about/</loc>
+    <lastmod>2026-09-26T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://dibi8.com/privacy/</loc>
+    <lastmod>2026-09-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>

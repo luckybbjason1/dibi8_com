@@ -1,4 +1,3 @@
-{{- $css := resources.Get "css/site.css" | default (resources.Get "css/site.css") }}
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang | default "zh-CN" }}" class="scroll-smooth">
 <head>
@@ -19,11 +18,8 @@
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Site CSS -->
-    {{ with $css }}<link rel="stylesheet" href="{{ .Permalink }}">{{ end }}
 </head>
-<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+<body class="bg-gray-50 font-sans antialiased text-gray-900">
     {{ partial "nav.html" . }}
     {{ block "main" . }}{{ end }}
     {{ partial "footer.html" . }}
