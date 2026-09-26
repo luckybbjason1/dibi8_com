@@ -37,8 +37,10 @@
           {{ .Description | plainify | truncate 100 }}
         </p>
         <div class="flex items-center justify-between">
-          {{ range first 3 .Params.tags }}
+          {{ with .Params.tags }}
+          {{ range first 3 . }}
           <span class="text-xs text-zinc-600">#{{ . }}</span>
+          {{ end }}
           {{ end }}
           <a href="{{ .RelPermalink }}" class="text-violet-400 hover:text-violet-300 text-sm font-medium">
             查看详情 →
