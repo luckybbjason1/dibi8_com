@@ -18,6 +18,55 @@
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* 移动端优化 */
+        html {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            background-color: #f9fafb;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            color: #111827;
+            line-height: 1.6;
+        }
+        
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        button, a, [role="button"] {
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        
+        /* 流畅滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 防止文本选择 */
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* 触摸反馈 */
+        .tap-feedback {
+            transition: transform 0.1s ease, opacity 0.1s ease;
+        }
+        
+        .tap-feedback:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased text-gray-900">
     {{ partial "nav.html" . }}
