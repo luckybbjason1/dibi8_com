@@ -5,6 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Site.Title }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
+  <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+  <meta name="author" content="Dibi8 Team">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dibi8 - AI工具目录">
+  <meta property="og:description" content="发现最佳AI工具，比较功能、价格和评价">
+  <meta property="og:url" content="https://dibi8.com/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:locale" content="zh_CN">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dibi8 - AI工具目录">
+  <meta name="twitter:description" content="发现最佳AI工具，比较功能、价格和评价">
+  <meta name="twitter:url" content="https://dibi8.com/">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Dibi8",
+    "url": "https://dibi8.com/",
+    "description": "发现最佳AI工具，比较功能、价格和评价",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://dibi8.com/search/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
