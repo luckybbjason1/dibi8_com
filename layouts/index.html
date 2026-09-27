@@ -106,9 +106,9 @@
           <button onclick="handleSearch()" class="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl transition-colors text-sm">搜索</button>
         </div>
         <div class="flex flex-wrap gap-6 mt-8 pt-6 border-t border-gray-100">
-          <div><div class="text-lg font-semibold text-gray-900">{{ .Site.Data.stats.total_tools | default 493 }}</div><div class="text-xs text-gray-500">精选工具</div></div>
-          <div><div class="text-lg font-semibold text-gray-900">{{ len .Site.Taxonomies.categories }}</div><div class="text-xs text-gray-500">分类目录</div></div>
-          <div><div class="text-lg font-semibold text-gray-900">持续更新</div><div class="text-xs text-gray-500">最新文章</div></div>
+          <div><div class="text-base font-medium text-gray-700">{{ .Site.Data.stats.total_tools | default 493 }}</div><div class="text-xs text-gray-500">精选工具</div></div>
+          <div><div class="text-base font-medium text-gray-700">{{ len .Site.Taxonomies.categories }}</div><div class="text-xs text-gray-500">分类目录</div></div>
+          <div><div class="text-base font-medium text-gray-700">持续更新</div><div class="text-xs text-gray-500">最新文章</div></div>
         </div>
       </div>
     </div>
@@ -169,7 +169,7 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
         {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
         <a href="{{ .Page.RelPermalink }}" class="bg-white border border-gray-200 rounded-xl p-4 hover:border-primary-300 hover:shadow-md transition-all group">
-          <div class="text-xl font-bold text-gray-900 group-hover:text-primary-600">{{ $taxonomy.Count }}</div>
+          <div class="text-base font-medium text-gray-700 group-hover:text-primary-600">{{ $taxonomy.Count }}</div>
           <div class="text-sm text-gray-600">{{ .Page.LinkTitle }}</div>
         </a>
         {{ end }}
