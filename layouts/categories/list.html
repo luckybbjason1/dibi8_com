@@ -11,7 +11,7 @@
     <a href="{{ .RelPermalink }}" class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-300 hover:shadow-md transition-all group">
       <div class="flex items-center justify-between mb-2">
         <h2 class="text-lg font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">{{ .LinkTitle }}</h2>
-        <span class="text-sm text-gray-400 bg-gray-100 px-2 py-1 rounded-full">{{ .Count }} 篇文章</span>
+        <span class="text-sm text-gray-400 bg-gray-100 px-2 py-1 rounded-full">{{ len .Data.Pages }} 篇文章</span>
       </div>
       <p class="text-sm text-gray-600 line-clamp-2">{{ .Description | plainify | truncate 100 }}</p>
     </a>
