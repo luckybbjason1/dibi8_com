@@ -1,19 +1,20 @@
 {{- define "main" }}
-<header class="max-w-6xl mx-auto px-4 py-10">
-  <h1 class="text-3xl font-bold text-gray-900 mb-2">AI工具目录</h1>
-  <p class="text-gray-600">浏览 {{ len .Site.RegularPages }} 个精选AI工具</p>
-</header>
+<div class="max-w-6xl mx-auto px-4 py-10">
+  <!-- Header -->
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">AI工具目录</h1>
+    <p class="text-gray-600">浏览 {{ len .Site.RegularPages }} 个精选AI工具</p>
+  </header>
 
-<main class="max-w-6xl mx-auto px-4 pb-16">
   <!-- RSS Subscription -->
-  <div class="mb-8 p-4 bg-primary-50 border border-primary-200 rounded-xl">
+  <div class="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
     <div class="flex items-center gap-3">
-      <i class="fas fa-rss text-primary-600 text-xl"></i>
+      <i class="fas fa-rss text-blue-600 text-xl"></i>
       <div>
         <h3 class="font-semibold text-gray-900">订阅更新</h3>
         <p class="text-sm text-gray-600">
-          <a href="/index.xml" class="text-primary-600 hover:underline">RSS 订阅</a> |
-          <a href="/atom.xml" class="text-primary-600 hover:underline">Atom 订阅</a>
+          <a href="/index.xml" class="text-blue-600 hover:underline">RSS 订阅</a> |
+          <a href="/atom.xml" class="text-blue-600 hover:underline">Atom 订阅</a>
         </p>
       </div>
     </div>
@@ -25,11 +26,11 @@
       type="search"
       id="tool-search"
       placeholder="搜索工具..."
-      class="flex-1 px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100 transition-all"
+      class="flex-1 px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
     >
     <select
       id="category-filter"
-      class="px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:border-primary-500"
+      class="px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:border-blue-500"
     >
       <option value="">所有分类</option>
       {{ range .Site.Taxonomies.categories }}
@@ -38,12 +39,13 @@
     </select>
   </div>
 
-  <!-- Tools Grid -->
+  <!-- Tools Grid - Use Paginated Pages -->
   <div id="tools-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-    {{ range .Site.RegularPages }}
-    <article class="tool-card p-5 bg-white border border-gray-200 rounded-2xl hover:border-primary-300 hover:shadow-lg transition-all cursor-pointer">
+    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "in" (slice "ai-tools" "ai-coding-agents" "llm-frameworks" "dev-utils")) }}
+    {{ range $paginator.Pages }}
+    <article class="tool-card p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-300 hover:shadow-lg transition-all cursor-pointer">
       <div class="flex items-start justify-between mb-3">
-        <span class="px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">
+        <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">
           {{ index .Params.categories 0 | default "工具" }}
         </span>
         {{ with .Params.pricing }}
@@ -52,7 +54,7 @@
       </div>
 
       <h2 class="text-base font-semibold text-gray-900 mb-2">
-        <a href="{{ .RelPermalink }}" class="hover:text-primary-600 transition-colors">
+        <a href="{{ .RelPermalink }}" class="hover:text-blue-600 transition-colors">
           {{ .Title }}
         </a>
       </h2>
@@ -69,7 +71,7 @@
           {{ end }}
           {{ end }}
         </div>
-        <a href="{{ .RelPermalink }}" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+        <a href="{{ .RelPermalink }}" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
           详情 →
         </a>
       </div>
@@ -78,13 +80,12 @@
   </div>
 
   <!-- Pagination -->
-  {{ $paginator := .Paginate .Site.RegularPages }}
   {{ if gt $paginator.TotalPages 1 }}
   <nav class="mt-10 flex justify-center" aria-label="Pagination">
     <ul class="flex items-center gap-2">
       {{ if $paginator.HasPrev }}
       <li>
-        <a href="{{ $paginator.Prev.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">
+        <a href="{{ $paginator.Prev.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-blue-300 transition-colors">
           <i class="fas fa-chevron-left mr-1"></i>上一页
         </a>
       </li>
@@ -93,18 +94,18 @@
       {{ range $paginator.Pagers }}
       {{ if eq . $paginator }}
       <li>
-        <span class="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium">{{ .PageNumber }}</span>
+        <span class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">{{ .PageNumber }}</span>
       </li>
       {{ else }}
       <li>
-        <a href="{{ .URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">{{ .PageNumber }}</a>
+        <a href="{{ .URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-blue-300 transition-colors">{{ .PageNumber }}</a>
       </li>
       {{ end }}
       {{ end }}
 
       {{ if $paginator.HasNext }}
       <li>
-        <a href="{{ $paginator.Next.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">
+        <a href="{{ $paginator.Next.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-blue-300 transition-colors">
           下一页<i class="fas fa-chevron-right ml-1"></i>
         </a>
       </li>
@@ -112,7 +113,7 @@
     </ul>
   </nav>
   {{ end }}
-</main>
+</div>
 
 <!-- JavaScript for Search & Filter -->
 <script>
