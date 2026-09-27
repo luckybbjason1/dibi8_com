@@ -18,6 +18,55 @@
     
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+         
+        html {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            background-color: #f9fafb;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            color: #111827;
+            line-height: 1.6;
+        }
+        
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        button, a, [role="button"] {
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        
+         
+        html {
+            scroll-behavior: smooth;
+        }
+        
+         
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+         
+        .tap-feedback {
+            transition: transform 0.1s ease, opacity 0.1s ease;
+        }
+        
+        .tap-feedback:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased text-gray-900">
     <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -584,99 +633,52 @@
     
   </div>
 </nav>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    <footer class="py-12 px-4 border-t border-gray-200 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-pink-500 rounded-lg flex items-center justify-center">
+            <i class="fas fa-bolt text-white text-sm"></i>
+          </div>
+          <span class="text-xl font-bold text-gray-900">Dibi8</span>
+        </div>
+        <p class="text-gray-500 text-sm">发现最佳AI工具，比较功能、价格和评价</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 mb-4">分类</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/categories/ai-tools/" class="text-gray-600 hover:text-primary-600 transition-colors">AI工具</a></li>
+          <li><a href="/categories/dev-utils/" class="text-gray-600 hover:text-primary-600 transition-colors">开发工具</a></li>
+          <li><a href="/categories/llm-frameworks/" class="text-gray-600 hover:text-primary-600 transition-colors">LLM框架</a></li>
+          <li><a href="/categories/mcp-tools/" class="text-gray-600 hover:text-primary-600 transition-colors">MCP工具</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 mb-4">资源</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/collections/" class="text-gray-600 hover:text-primary-600 transition-colors">精选合集</a></li>
+          <li><a href="/search/" class="text-gray-600 hover:text-primary-600 transition-colors">搜索工具</a></li>
+          <li><a href="/about/" class="text-gray-600 hover:text-primary-600 transition-colors">关于我们</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 mb-4">关注我们</h4>
+        <div class="flex gap-3">
+          <a href="https://github.com/luckybbjason1/dibi8_com" class="w-9 h-9 bg-gray-100 hover:bg-primary-50 rounded-lg flex items-center justify-center transition-colors">
+            <i class="fab fa-github text-gray-600 hover:text-primary-600 text-sm"></i>
+          </a>
+          <a href="https://t.me/DIBI8_Group" class="w-9 h-9 bg-gray-100 hover:bg-blue-50 rounded-lg flex items-center justify-center transition-colors">
+            <i class="fab fa-telegram text-gray-600 hover:text-blue-500 text-sm"></i>
+          </a>
+        </div>
+      </div>
     </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
+    <div class="border-t border-gray-100 pt-6 text-center text-sm text-gray-500">
+      <p>&copy; 2026 Dibi8 - AI工具目录. 保留所有权利.</p>
+    </div>
+  </div>
+</footer>
     
 <div id="search-modal" class="fixed inset-0 z-[100] hidden">
     <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>

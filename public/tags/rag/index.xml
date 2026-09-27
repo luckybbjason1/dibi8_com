@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Rag on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/tags/rag/</link>
+    <description>Recent content in Rag on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南</title>
+      <link>https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/langchain-vs-llamaindex-vs-langgraph/</guid>
+      <description>2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。</description>
+    </item>
+  </channel>
+</rss>
