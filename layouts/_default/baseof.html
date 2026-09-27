@@ -9,12 +9,43 @@
     <meta name="author" content="Dibi8 Team">
     <meta name="robots" content="index, follow">
     
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:title" content="{{ .Title }} | Dibi8">
+    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}发现最佳AI工具{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="Dibi8">
+    <meta property="og:locale" content="zh_CN">
+    {{ if .IsPage }}
+    <meta property="article:published_time" content="{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}">
+    <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+    {{ with .Params.tags }}
+    {{ range first 3 . }}
+    <meta property="article:tag" content="{{ . }}">
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title }} | Dibi8">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}发现最佳AI工具{{ end }}">
+    <meta name="twitter:url" content="{{ .Permalink }}">
+    
     <link rel="canonical" href="{{ .Permalink }}">
+    
+    <!-- RSS Feed -->
+    {{ if .IsHome }}
+    <link rel="alternate" type="application/rss+xml" title="Dibi8 RSS" href="/index.xml">
+    <link rel="alternate" type="application/atom+xml" title="Dibi8 Atom" href="/atom.xml">
+    {{ else }}
+    <link rel="alternate" type="application/rss+xml" title="{{ .Title }} - Dibi8" href="/index.xml">
+    {{ end }}
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">

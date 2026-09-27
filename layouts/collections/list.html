@@ -1,52 +1,75 @@
 {{- define "main" }}
-<header class="max-w-6xl mx-auto px-4 py-10">
-  <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ .Title }}</h1>
-  <p class="text-gray-600">{{ .Description | default "浏览所有文章" }}</p>
-</header>
+<div class="max-w-6xl mx-auto px-4 py-10">
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">{{ .Title }}</h1>
+    <p class="text-gray-600">{{ .Description | default "浏览所有合集" }}</p>
+  </div>
 
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-  <!-- 文章列表 -->
-  <div class="space-y-4">
+  <!-- RSS Subscription -->
+  <div class="mb-8 p-4 bg-primary-50 border border-primary-200 rounded-xl">
+    <div class="flex items-center gap-3">
+      <i class="fas fa-rss text-primary-600 text-xl"></i>
+      <div>
+        <h3 class="font-semibold text-gray-900">订阅合集更新</h3>
+        <p class="text-sm text-gray-600">
+          <a href="/collections.xml" class="text-primary-600 hover:underline">RSS 订阅</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collections List -->
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
     {{ range .Pages }}
-    <article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-md transition-all cursor-pointer">
-      <div class="flex items-start gap-4">
-        <div class="flex-shrink-0">
-          <span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">
-            {{ index .Params.categories 0 | default "AI工具" }}
-          </span>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h2 class="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors line-clamp-2">
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </h2>
-          <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ .Description | plainify | truncate 120 }}</p>
-          <div class="flex items-center gap-4 text-xs text-gray-500">
-            <span>{{ .Date.Format "2006-01-02" }}</span>
-            <span class="flex items-center gap-1">
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-              </svg>
-              {{ .ReadingTime }}分钟阅读
-            </span>
-            {{ with .Params.tags }}{{ range first 2 . }}<span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded">#{{ . }}</span>{{ end }}{{ end }}
-          </div>
-        </div>
+    <article class="bg-white border border-gray-200 rounded-xl p-6 hover:border-primary-300 hover:shadow-lg transition-all group">
+      <h2 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+      {{ with .Description }}
+      <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ . | plainify }}</p>
+      {{ end }}
+      <div class="flex items-center justify-between text-xs text-gray-500">
+        <span>{{ .Date.Format "2006-01-02" }}</span>
+        <a href="{{ .RelPermalink }}" class="text-primary-600 hover:text-primary-700 font-medium">查看详情 →</a>
       </div>
     </article>
     {{ end }}
   </div>
-  
-  <!-- 分页 -->
+
+  <!-- Pagination -->
   {{ if gt .Paginator.TotalPages 1 }}
-  <div class="mt-8 flex justify-center gap-2">
-    {{ if .Paginator.HasPrev }}
-    <a href="{{ .Paginator.Prev.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:border-primary-500 hover:text-primary-600 transition-all">上一页</a>
-    {{ end }}
-    <span class="px-4 py-2 text-gray-600">第 {{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }} 页</span>
-    {{ if .Paginator.HasNext }}
-    <a href="{{ .Paginator.Next.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:border-primary-500 hover:text-primary-600 transition-all">下一页</a>
-    {{ end }}
-  </div>
+  <nav class="mt-10 flex justify-center" aria-label="Pagination">
+    <ul class="flex items-center gap-2">
+      {{ if .Paginator.HasPrev }}
+      <li>
+        <a href="{{ .Paginator.Prev.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">
+          <i class="fas fa-chevron-left mr-1"></i>上一页
+        </a>
+      </li>
+      {{ end }}
+
+      {{ range .Paginator.Pagers }}
+      {{ if eq . $.Paginator }}
+      <li>
+        <span class="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium">{{ .PageNumber }}</span>
+      </li>
+      {{ else }}
+      <li>
+        <a href="{{ .URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">{{ .PageNumber }}</a>
+      </li>
+      {{ end }}
+      {{ end }}
+
+      {{ if .Paginator.HasNext }}
+      <li>
+        <a href="{{ .Paginator.Next.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">
+          下一页<i class="fas fa-chevron-right ml-1"></i>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </nav>
   {{ end }}
-</main>
+</div>
 {{- end }}

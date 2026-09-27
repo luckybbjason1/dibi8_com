@@ -1,0 +1,21 @@
+# 构建产物
+public/
+resources/
+hugo_stats.json
+
+# 依赖
+node_modules/
+vendor/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE配置
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Hugo缓存
+.hugo_cache/

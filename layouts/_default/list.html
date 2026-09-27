@@ -5,6 +5,20 @@
 </header>
 
 <main class="max-w-6xl mx-auto px-4 pb-16">
+  <!-- RSS Subscription -->
+  <div class="mb-8 p-4 bg-primary-50 border border-primary-200 rounded-xl">
+    <div class="flex items-center gap-3">
+      <i class="fas fa-rss text-primary-600 text-xl"></i>
+      <div>
+        <h3 class="font-semibold text-gray-900">订阅更新</h3>
+        <p class="text-sm text-gray-600">
+          <a href="/index.xml" class="text-primary-600 hover:underline">RSS 订阅</a> |
+          <a href="/atom.xml" class="text-primary-600 hover:underline">Atom 订阅</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
   <!-- Search & Filter -->
   <div class="flex flex-col md:flex-row gap-3 mb-8">
     <input
@@ -65,7 +79,39 @@
 
   <!-- Pagination -->
   {{ $paginator := .Paginate .Site.RegularPages }}
-  {{ template "_internal/pagination.html" . }}
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="mt-10 flex justify-center" aria-label="Pagination">
+    <ul class="flex items-center gap-2">
+      {{ if $paginator.HasPrev }}
+      <li>
+        <a href="{{ $paginator.Prev.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">
+          <i class="fas fa-chevron-left mr-1"></i>上一页
+        </a>
+      </li>
+      {{ end }}
+
+      {{ range $paginator.Pagers }}
+      {{ if eq . $paginator }}
+      <li>
+        <span class="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium">{{ .PageNumber }}</span>
+      </li>
+      {{ else }}
+      <li>
+        <a href="{{ .URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">{{ .PageNumber }}</a>
+      </li>
+      {{ end }}
+      {{ end }}
+
+      {{ if $paginator.HasNext }}
+      <li>
+        <a href="{{ $paginator.Next.URL }}" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:border-primary-300 transition-colors">
+          下一页<i class="fas fa-chevron-right ml-1"></i>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </nav>
+  {{ end }}
 </main>
 
 <!-- JavaScript for Search & Filter -->

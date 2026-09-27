@@ -27,6 +27,23 @@
     </div>
   </header>
 
+  <!-- Share Buttons -->
+  <div class="flex items-center gap-2 mb-6 pb-4 border-b border-gray-200">
+    <span class="text-sm text-gray-500">分享:</span>
+    <a href="https://twitter.com/intent/tweet?url={{ .Permalink | urlquery }}&text={{ .Title }}" target="_blank" rel="noopener noreferrer" class="p-2 text-gray-500 hover:text-blue-400 hover:bg-blue-50 rounded-lg transition-colors" title="分享到X">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+    <a href="https://facebook.com/sharer/sharer.php?u={{ .Permalink | urlquery }}" target="_blank" rel="noopener noreferrer" class="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="分享到Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://t.me/share/url?url={{ .Permalink | urlquery }}&text={{ .Title }}" target="_blank" rel="noopener noreferrer" class="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors" title="分享到Telegram">
+      <i class="fab fa-telegram-plane"></i>
+    </a>
+    <button onclick="copyLink()" class="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" title="复制链接">
+      <i class="fas fa-link"></i>
+    </button>
+  </div>
+
   <!-- Article Content -->
   <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed mb-12">
     {{ .Content }}
@@ -42,11 +59,12 @@
   {{ end }}
 
   <!-- Related Tools -->
-  {{ with .Pages }}
+  {{ $related := .Site.RegularPages.Related . | first 6 }}
+  {{ with $related }}
   <section class="mt-8">
     <h2 class="text-xl font-bold text-gray-900 mb-4">相关文章</h2>
     <div class="grid md:grid-cols-2 gap-4">
-      {{ range . | first 6 }}
+      {{ range . }}
       <article class="p-4 bg-white border border-gray-200 rounded-xl hover:border-primary-300 hover:shadow-md transition-all cursor-pointer">
         <h3 class="text-base font-semibold text-gray-900 mb-1">
           <a href="{{ .RelPermalink }}" class="hover:text-primary-600 transition-colors">{{ .Title }}</a>
@@ -62,10 +80,24 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "{{ .Title }}",
+    "@type": "Article",
+    "headline": "{{ .Title }}",
     "description": {{ with .Description }}{{ . | plainify | jsonify }}{{ else }}{{ .Title | jsonify }}{{ end }},
     "url": "{{ .Permalink }}",
+    "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+    "author": {
+      "@type": "Organization",
+      "name": "Dibi8 Team"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dibi8",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ .Site.BaseURL }}images/logo.png"
+      }
+    },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -74,9 +106,21 @@
         {"@type": "ListItem", "position": 3, "name": "{{ .Title }}"}
       ]
     }
+    {{ with .Params.tags }}
+    ,
+    "keywords": {{ . | jsonify }}
+    {{ end }}
   }
   </script>
 </article>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText('{{ .Permalink }}').then(() => {
+    alert('链接已复制!');
+  });
+}
+</script>
 
 <!-- Article Navigation -->
 <nav class="max-w-4xl mx-auto px-4 py-6 border-t border-gray-200">
