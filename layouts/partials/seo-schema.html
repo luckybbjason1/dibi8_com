@@ -1,35 +1,140 @@
-<!-- SEO Schema.org 结构化数据 -->
+# SEO Schema.org 结构化数据 (增强版)
+
+{{- if .IsHome }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Dibi8",
-  "url": "https://dibi8.com",
-  "description": "发现最佳AI工具，比较功能、价格和评价",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "inLanguage": "zh-CN",
+  "copyrightYear": {{ now.Year }},
+  "copyrightHolder": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "url": "{{ .Site.BaseURL }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.BaseURL }}images/logo.png",
+      "width": 512,
+      "height": 512
+    },
+    "sameAs": [
+      "https://github.com/luckybbjason1",
+      "https://t.me/DIBI8_Group"
+    ]
+  },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://dibi8.com/?s={search_term_string}",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ .Site.BaseURL }}search/?q={search_term_string}"
+    },
     "query-input": "required name=search_term_string"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "AI Tools Directory",
+    "description": "专业AI工具目录与评测平台"
+  },
+  "hasPart": [
+    {{ $cat := index hugo.Data "stats" "categories" }}
+    {{ range $name, $count := $cat }}
+    {"@type": "CollectionPage", "name": "{{ $name }}", "numberOfItems": {{ $count }}},
+    {{ end }}
+  ]
+}
+</script>
+{{- else if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": {{ with .Description }}{{ . | plainify | jsonify }}{{ else }}{{ .Title | jsonify }}{{ end }},
+  "image": "{{ .Params.featured_image | default (printf "%simages/og-image.png" .Site.BaseURL) }}",
+  "url": "{{ .Permalink }}",
+  "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8 Team",
+    "url": "{{ .Site.BaseURL }}about/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Dibi8",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://dibi8.com/logo.png"
+      "url": "{{ .Site.BaseURL }}images/logo.png",
+      "width": 512,
+      "height": 512
     }
+  },
+  "keywords": {{ with .Params.tags }}{{ . | jsonify }}{{ else }}["AI工具","编程"]{{ end }},
+  "articleSection": "{{ .Section }}",
+  "wordCount": {{ .WordCount }},
+  "readingTime": {{ .ReadingTime }},
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "首页", "item": "{{ .Site.BaseURL }}"},
+      {"@type": "ListItem", "position": 2, "name": "{{ .Section }}", "item": "{{ .Site.BaseURL }}{{ .Section }}/"}
+      {{ if ne .Section "home" }},
+      {"@type": "ListItem", "position": 3, "name": "{{ .Title }}"}
+      {{ end }}
+    ]
   }
+  {{ with .Params.github_stars }},
+  "additionalProperty": {
+    "@type": "PropertyValue",
+    "name": "GitHub Stars",
+    "value": {{ . }}
+  }
+  {{ end }}
 }
 </script>
+{{- else if .IsSection }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "AI工具目录",
-  "description": "精选AI工具合集，涵盖写作、设计、编程、效率提升等场景",
+  "name": "{{ .Title }}",
+  "description": "{{ .Description | plainify }}",
+  "url": "{{ .Permalink }}",
+  "numberOfItems": {{ len .Pages }},
   "about": {
     "@type": "Thing",
-    "name": "AI Tools Directory"
+    "name": "{{ .Title }}"
   }
 }
 </script>
+{{- end }}
+
+<!-- WebApplication Schema for Tools -->
+{{ if .Params.github_url }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ .Title }}",
+  "description": {{ with .Description }}{{ . | plainify | jsonify }}{{ else }}{{ .Title | jsonify }}{{ end }},
+  "url": "{{ .Params.github_url }}",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  {{ with .Params.github_stars }}"offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },{{ end }}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ if ge .Params.github_stars 1000 }}4.5{{ else if ge .Params.github_stars 500 }}4.0{{ else }}3.5{{ end }}",
+    "ratingCount": {{ .Params.github_stars | default 0 }},
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+</script>
+{{ end }}

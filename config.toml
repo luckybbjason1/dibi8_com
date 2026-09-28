@@ -10,7 +10,7 @@ pluralizelisttitles = true
 contentDir = "CN"
 
 # Output format
-enableRobotsTXT = true
+enableRobotsTXT = false
 enableGitInfo = false
 
 # Sitemap configuration

@@ -1,14 +1,51 @@
 User-agent: *
 Allow: /
+Allow: /ai-coding-agents/
+Allow: /llm-frameworks/
+Allow: /categories/
+Allow: /collections/
+Allow: /about/
+Allow: /privacy/
+Allow: /terms/
+Allow: /tools/
+Allow: /tags/
+Allow: /sitemap.xml
+Allow: /index.xml
+Allow: /atom.xml
+Allow: /llms.txt
 
-# Prevent tracking parameter crawling
-Disallow: *?_gl=
-Disallow: *?_ga=
-Disallow: *?_up=
-Disallow: *?_gid=
+# Disallow admin/utility paths
+Disallow: /404.html
+Disallow: /404
 
-# Sitemap
+# Sitemap location
 Sitemap: https://dibi8.com/sitemap.xml
 
-# Crawl-delay for polite bots
+# Crawl-delay for polite crawling
 Crawl-delay: 1
+
+# AI crawlers
+User-agent: GPTBot
+Allow: /
+Allow: /ai-coding-agents/
+Allow: /llm-frameworks/
+
+User-agent: Google-Extended
+Allow: /
+Allow: /ai-coding-agents/
+Allow: /llm-frameworks/
+
+User-agent: CCBot
+Allow: /
+Allow: /ai-coding-agents/
+Allow: /llm-frameworks/
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /ai-coding-agents/
+Allow: /llm-frameworks/
+
+# Block API/admin patterns (if any)
+Disallow: /api/
+Disallow: /admin/
+Disallow: /wp-admin/

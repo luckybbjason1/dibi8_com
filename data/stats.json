@@ -1,5 +1,6 @@
 {
   "total_tools": 493,
+  "total_articles": 482,
   "categories": {
     "AI编程助手": 401,
     "LLM框架": 53,
@@ -7,12 +8,44 @@
     "AI工具": 2,
     "MCP工具": 14
   },
-  "last_updated": "2026-09-25",
+  "languages": ["zh-CN"],
+  "translations_available": 14,
+  "last_updated": "2026-09-29",
+  "update_frequency": "daily",
   "featured_tools": [
-    "Jev Ultrafast",
-    "ZCode",
-    "SoL-Pi",
-    "Laya",
-    "Kev"
-  ]
+    {
+      "name": "Jev Ultrafast",
+      "stars": 8500,
+      "description": "超快速类型安全浏览器代理"
+    },
+    {
+      "name": "ZCode",
+      "stars": 12000,
+      "description": "AI编程工作台"
+    },
+    {
+      "name": "SoL-Pi",
+      "stars": 3200,
+      "description": "NV Labs Agent Harness效率工具"
+    },
+    {
+      "name": "Laya",
+      "stars": 5600,
+      "description": "Apple Silicon MLX决策引擎"
+    },
+    {
+      "name": "Kev",
+      "stars": 2800,
+      "description": "可训练决策模型 (Qwen3.5)"
+    }
+  ],
+  "seo": {
+    "domain_authority": "待提升",
+    "backlinks": "待统计",
+    "organic_traffic": "待追踪"
+  },
+  "social": {
+    "github": "https://github.com/luckybbjason1",
+    "telegram": "https://t.me/DIBI8_Group"
+  }
 }
