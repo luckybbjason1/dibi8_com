@@ -1,29 +1,106 @@
-<nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+<nav class="glass sticky top-0 z-50 border-b border-gray-200/50 dark:border-dark-700/50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-            <a href="/" class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">D</span>
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 bg-gradient-to-br from-primary-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/30 transition-shadow">
+                    <span class="text-white font-bold text-base">D</span>
                 </div>
-                <span class="text-xl font-bold text-gray-900">Dibi8</span>
+                <span class="text-xl font-bold text-gray-900 dark:text-white">Dibi8</span>
             </a>
             
-            <div class="hidden md:flex items-center gap-6">
-                <a href="/categories/" class="text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors">分类</a>
-                <a href="/collections/" class="text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors">合集</a>
-                <a href="/about/" class="text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors">关于</a>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-1">
+                <a href="/categories/" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-xl text-sm font-medium transition-all">
+                    <i class="fas fa-th-large mr-2"></i>分类
+                </a>
+                <a href="/collections/" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-xl text-sm font-medium transition-all">
+                    <i class="fas fa-layer-group mr-2"></i>合集
+                </a>
+                <a href="/about/" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-xl text-sm font-medium transition-all">
+                    <i class="fas fa-info-circle mr-2"></i>关于
+                </a>
             </div>
             
-            <div class="flex items-center gap-3">
-                <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-600 transition-colors">
+            <!-- Right Side Actions -->
+            <div class="flex items-center gap-2">
+                <!-- Search Button -->
+                <button onclick="document.getElementById('heroSearch').focus(); window.scrollTo({top: 0, behavior: 'smooth'});" 
+                        class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 rounded-xl text-sm text-gray-600 dark:text-gray-300 transition-all">
                     <i class="fas fa-search text-xs"></i>
-                    搜索
-                    <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-500">⌘K</kbd>
+                    <span class="hidden lg:inline">搜索</span>
+                    <kbd class="hidden lg:inline ml-2 px-2 py-0.5 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded text-xs text-gray-500">⌘K</kbd>
                 </button>
-                <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600">
-                    <i class="fas fa-search text-sm"></i>
+                
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" 
+                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 text-gray-600 dark:text-gray-300 transition-all"
+                        aria-label="切换主题">
+                    <i class="fas fa-sun hidden dark:block text-yellow-500"></i>
+                    <i class="fas fa-moon block dark:hidden text-gray-600"></i>
                 </button>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" 
+                        class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-dark-700 text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-bars" id="mobileMenuIcon"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden py-4 border-t border-gray-200 dark:border-dark-700">
+            <div class="flex flex-col gap-2">
+                <a href="/categories/" class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-xl transition-all">
+                    <i class="fas fa-th-large w-5"></i>分类
+                </a>
+                <a href="/collections/" class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-xl transition-all">
+                    <i class="fas fa-layer-group w-5"></i>合集
+                </a>
+                <a href="/about/" class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-xl transition-all">
+                    <i class="fas fa-info-circle w-5"></i>关于
+                </a>
+                <div class="mt-2 pt-4 border-t border-gray-200 dark:border-dark-700 flex items-center gap-2 px-4">
+                    <button onclick="toggleDarkMode()" class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-500"></i>
+                        <span>切换主题</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </nav>
+
+<script>
+    // Dark mode toggle
+    function toggleDarkMode() {
+        document.documentElement.classList.toggle('dark');
+        localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+    
+    // Check for saved theme preference
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    }
+    
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const icon = document.getElementById('mobileMenuIcon');
+        menu.classList.toggle('hidden');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        const menu = document.getElementById('mobileMenu');
+        const button = e.target.closest('[onclick="toggleMobileMenu()"]');
+        if (menu && !menu.contains(e.target) && !button) {
+            menu.classList.add('hidden');
+            document.getElementById('mobileMenuIcon').classList.add('fa-bars');
+            document.getElementById('mobileMenuIcon').classList.remove('fa-times');
+        }
+    });
+</script>
