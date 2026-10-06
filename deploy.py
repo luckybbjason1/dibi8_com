@@ -54,14 +54,20 @@ try:
     import requests
     
     # 获取deployment ID
+    import time
     manifest_resp = requests.post(
         f"https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/pages/projects/{PROJECT_NAME}/deployments/queue",
         headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"},
         json={
-            "name": f"manual-deploy-{int(subprocess.check_output(['date', '%s']))}",
+            "name": f"manual-deploy-{int(time.time())}",
             "production": True
         }
     )
+    
+    # Debug: print response
+    import json as _json
+    print(f"Manifest response status: {manifest_resp.status_code}")
+    print(f"Manifest response body: {manifest_resp.text[:500]}")
     
     manifest = manifest_resp.json()
     if 'result' not in manifest:
