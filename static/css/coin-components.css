@@ -1,0 +1,567 @@
+/* ============================================================
+   DIBI8 Coin Component Styles
+   Based on Design Tokens
+   ============================================================ */
+
+@import url('/css/design-tokens.css');
+
+/* ========================================
+   1. COIN CARD COMPONENT
+   ======================================== */
+
+.coin-card {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  
+  /* Spacing */
+  padding: var(--space-6);
+  gap: var(--space-4);
+  
+  /* Background */
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  
+  /* Glass Effect */
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  
+  /* Shadow */
+  box-shadow: var(--shadow-card);
+  
+  /* Transition */
+  transition: all var(--transition-slow);
+  
+  /* Accessibility */
+  min-height: 200px;
+}
+
+.coin-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-border-hover);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Card Types */
+.coin-card--community {
+  border-top: 3px solid var(--color-community);
+}
+
+.coin-card--incentives {
+  border-top: 3px solid var(--color-incentives);
+}
+
+.coin-card--governance {
+  border-top: 3px solid var(--color-governance);
+}
+
+.coin-card--technology {
+  border-top: 3px solid var(--color-technology);
+}
+
+.coin-card--ecosystem {
+  border-top: 3px solid var(--color-ecosystem);
+}
+
+.coin-card--vision {
+  border-top: 3px solid var(--color-vision);
+}
+
+/* ========================================
+   2. CARD HEADER
+   ======================================== */
+
+.coin-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.coin-card__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+  font-size: var(--text-2xl);
+  flex-shrink: 0;
+}
+
+/* Icon Colors by Dimension */
+.coin-card--community .coin-card__icon {
+  background: rgba(52, 211, 153, 0.15);
+  color: var(--color-community);
+}
+
+.coin-card--incentives .coin-card__icon {
+  background: rgba(244, 114, 182, 0.15);
+  color: var(--color-incentives);
+}
+
+.coin-card--governance .coin-card__icon {
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--color-governance);
+}
+
+.coin-card--technology .coin-card__icon {
+  background: rgba(34, 211, 238, 0.15);
+  color: var(--color-technology);
+}
+
+.coin-card--ecosystem .coin-card__icon {
+  background: rgba(251, 191, 36, 0.15);
+  color: var(--color-ecosystem);
+}
+
+.coin-card--vision .coin-card__icon {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--color-vision);
+}
+
+.coin-card__title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--leading-tight);
+}
+
+/* ========================================
+   3. CARD BODY
+   ======================================== */
+
+.coin-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.coin-card__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.coin-card__metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.coin-card__metric-value {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-black);
+  line-height: var(--leading-none);
+}
+
+.coin-card--community .coin-card__metric-value {
+  color: var(--color-community);
+}
+
+.coin-card--incentives .coin-card__metric-value {
+  color: var(--color-incentives);
+}
+
+.coin-card--governance .coin-card__metric-value {
+  color: var(--color-governance);
+}
+
+.coin-card--technology .coin-card__metric-value {
+  color: var(--color-technology);
+}
+
+.coin-card--ecosystem .coin-card__metric-value {
+  color: var(--color-ecosystem);
+}
+
+.coin-card--vision .coin-card__metric-value {
+  color: var(--color-vision);
+}
+
+.coin-card__metric-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  font-weight: var(--font-weight-medium);
+}
+
+.coin-card__description {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* ========================================
+   4. CARD FOOTER
+   ======================================== */
+
+.coin-card__footer {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.coin-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neon-purple);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.coin-card__link:hover {
+  color: var(--color-neon-cyan);
+  gap: var(--space-3);
+}
+
+.coin-card__link i {
+  transition: transform var(--transition-fast);
+}
+
+.coin-card__link:hover i {
+  transform: translateX(4px);
+}
+
+/* ========================================
+   5. SPAN SYSTEM
+   ======================================== */
+
+.span-1 { grid-column: span 1; }
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+
+.span-row-2 { grid-row: span 2; }
+
+/* ========================================
+   6. HERO SECTION
+   ======================================== */
+
+.hero-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-20) var(--space-6);
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-hero);
+  pointer-events: none;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: var(--text-6xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-tight);
+}
+
+.hero-title .gradient-text {
+  background: var(--gradient-primary);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.hero-subtitle {
+  font-size: var(--text-2xl);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+  font-weight: var(--font-weight-medium);
+}
+
+.hero-description {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ========================================
+   7. BUTTON COMPONENTS
+   ======================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  font-size: var(--text-base);
+  font-weight: var(--button-font-weight);
+  border-radius: var(--radius-button);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.btn--primary {
+  background: var(--color-neon-purple);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-glow-purple);
+}
+
+.btn--primary:hover {
+  background: #7c3aed;
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border-subtle);
+}
+
+.btn--secondary:hover {
+  border-color: var(--color-neon-cyan);
+  color: var(--color-neon-cyan);
+  transform: translateY(-2px);
+}
+
+.btn--large {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-lg);
+}
+
+/* ========================================
+   8. BADGE COMPONENT
+   ======================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--badge-padding-y) var(--badge-padding-x);
+  font-size: var(--badge-font-size);
+  font-weight: var(--badge-font-weight);
+  border-radius: var(--radius-badge);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+}
+
+.badge--community {
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.3);
+  color: var(--color-community);
+}
+
+.badge--incentives {
+  background: rgba(244, 114, 182, 0.1);
+  border-color: rgba(244, 114, 182, 0.3);
+  color: var(--color-incentives);
+}
+
+.badge--governance {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: var(--color-governance);
+}
+
+.badge--technology {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.3);
+  color: var(--color-technology);
+}
+
+.badge--ecosystem {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.3);
+  color: var(--color-ecosystem);
+}
+
+.badge--vision {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: var(--color-vision);
+}
+
+/* ========================================
+   9. STAT COUNTER
+   ======================================== */
+
+.stat-counter {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* ========================================
+   10. DIVIDER
+   ======================================== */
+
+.divider {
+  height: 1px;
+  background: var(--color-border-subtle);
+  margin: var(--space-6) 0;
+}
+
+.divider--gradient {
+  background: var(--gradient-primary);
+  opacity: 0.3;
+}
+
+/* ========================================
+   11. RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .span-3,
+  .span-4 {
+    grid-column: span 2;
+  }
+  
+  .hero-section {
+    min-height: 50vh;
+  }
+  
+  .hero-title {
+    font-size: var(--text-5xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .span-2,
+  .span-3,
+  .span-4 {
+    grid-column: span 1;
+  }
+  
+  .coin-card {
+    min-height: auto;
+  }
+  
+  .hero-section {
+    padding: var(--space-12) var(--space-4);
+  }
+  
+  .hero-title {
+    font-size: var(--text-4xl);
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   12. REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .coin-card,
+  .btn,
+  .coin-card__link {
+    transition: none;
+  }
+  
+  .coin-card:hover {
+    transform: none;
+  }
+  
+  .hero-section::after {
+    animation: none;
+  }
+  
+  .hero-title .gradient-text {
+    animation: none;
+    background: var(--color-neon-purple);
+    -webkit-text-fill-color: var(--color-neon-purple);
+  }
+}
+
+/* ========================================
+   13. HIGH CONTRAST
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  .coin-card {
+    border-width: 2px;
+  }
+  
+  .btn--primary {
+    border: 2px solid currentColor;
+  }
+}
+
+/* ========================================
+   14. PRINT STYLES
+   ======================================== */
+
+@media print {
+  .coin-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+  
+  .hero-section {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+}

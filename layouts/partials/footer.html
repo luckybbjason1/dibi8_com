@@ -1,82 +1,76 @@
-<footer class="bg-white dark:bg-dark-800 border-t border-gray-200 dark:border-dark-700 mt-auto">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-      <!-- Brand -->
-      <div class="md:col-span-1">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
-            <span class="text-white font-bold text-lg">D</span>
-          </div>
-          <span class="text-2xl font-bold text-gray-900 dark:text-white">Dibi8</span>
+<footer class="border-t border-white/10 mt-20" style="background: rgba(10, 10, 15, 0.95);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- Brand -->
+            <div class="md:col-span-1">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-neon-purple to-neon-cyan rounded-xl flex items-center justify-center glow">
+                        <span class="text-white font-bold text-lg">D</span>
+                    </div>
+                    <span class="text-2xl font-bold gradient-text">Dibi8</span>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                    发现最佳AI工具，比较功能、价格和评价。专注于提供高质量的AI工具评测和推荐。
+                </p>
+                <div class="flex gap-3">
+                    <a href="https://github.com/luckybbjason1" target="_blank" rel="noopener noreferrer" 
+                       class="w-10 h-10 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-all">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://t.me/DIBI8_Group" target="_blank" rel="noopener noreferrer"
+                       class="w-10 h-10 bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/30 rounded-xl flex items-center justify-center text-gray-400 hover:text-blue-400 transition-all">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Categories -->
+            <div>
+                <h4 class="font-semibold text-white mb-4">分类</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/categories/ai-coding-agents/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>AI编程助手</a></li>
+                    <li><a href="/categories/llm-frameworks/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>LLM框架</a></li>
+                    <li><a href="/categories/mcp-tools/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>MCP工具</a></li>
+                    <li><a href="/categories/dev-utils/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>开发工具</a></li>
+                    <li><a href="/categories/ai-tools/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>AI工具</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources -->
+            <div>
+                <h4 class="font-semibold text-white mb-4">资源</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/collections/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>精选合集</a></li>
+                    <li><a href="/categories/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>所有分类</a></li>
+                    <li><a href="/about/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>关于我们</a></li>
+                    <li><a href="/index.xml" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-rss text-xs"></i>RSS 订阅</a></li>
+                </ul>
+            </div>
+            
+            <!-- Legal -->
+            <div>
+                <h4 class="font-semibold text-white mb-4">法律</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/privacy/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>隐私政策</a></li>
+                    <li><a href="/terms/" class="text-gray-500 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>服务条款</a></li>
+                </ul>
+                
+                <div class="mt-6 p-4 rounded-xl" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);">
+                    <p class="text-xs text-gray-500 mb-2">统计信息</p>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="text-gray-400"><i class="fas fa-file-alt mr-1" style="color: #7c3aed;"></i>493+ 文章</div>
+                        <div class="text-gray-400"><i class="fas fa-tags mr-1" style="color: #ec4899;"></i>5 分类</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-          发现最佳AI工具，比较功能、价格和评价。专注于提供高质量的AI工具评测和推荐。
-        </p>
-        <div class="flex gap-3">
-          <a href="https://github.com/luckybbjason1" target="_blank" rel="noopener noreferrer" 
-             class="w-10 h-10 bg-gray-100 dark:bg-dark-700 hover:bg-gray-900 dark:hover:bg-gray-600 hover:text-white rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 transition-all">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://t.me/DIBI8_Group" target="_blank" rel="noopener noreferrer"
-             class="w-10 h-10 bg-gray-100 dark:bg-dark-700 hover:bg-blue-500 hover:text-white rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 transition-all">
-            <i class="fab fa-telegram-plane"></i>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Categories -->
-      <div>
-        <h4 class="font-semibold text-gray-900 dark:text-white mb-4">分类</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/categories/ai-coding-agents/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>AI编程助手</a></li>
-          <li><a href="/categories/llm-frameworks/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>LLM框架</a></li>
-          <li><a href="/categories/mcp-tools/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>MCP工具</a></li>
-          <li><a href="/categories/dev-utils/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>开发工具</a></li>
-          <li><a href="/categories/ai-tools/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>AI工具</a></li>
-        </ul>
-      </div>
-      
-      <!-- Resources -->
-      <div>
-        <h4 class="font-semibold text-gray-900 dark:text-white mb-4">资源</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/collections/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>精选合集</a></li>
-          <li><a href="/categories/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>所有分类</a></li>
-          <li><a href="/about/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>关于我们</a></li>
-          <li><a href="/index.xml" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-rss text-xs"></i>RSS 订阅</a></li>
-        </ul>
-      </div>
-      
-      <!-- Legal -->
-      <div>
-        <h4 class="font-semibold text-gray-900 dark:text-white mb-4">法律</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/privacy/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>隐私政策</a></li>
-          <li><a href="/terms/" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i>服务条款</a></li>
-        </ul>
         
-        <div class="mt-6 p-4 bg-gray-50 dark:bg-dark-700 rounded-xl">
-          <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">统计信息</p>
-          <div class="grid grid-cols-2 gap-2 text-xs">
-            <div class="text-gray-600 dark:text-gray-300"><i class="fas fa-file-alt mr-1 text-primary-500"></i>493+ 文章</div>
-            <div class="text-gray-600 dark:text-gray-300"><i class="fas fa-tags mr-1 text-pink-500"></i>5 分类</div>
-          </div>
+        <!-- Bottom Bar -->
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-600">© 2026 Dibi8 - AI工具发现平台</p>
+            <div class="flex items-center gap-4 text-sm text-gray-600">
+                <span>Made with <i class="fas fa-heart text-neon-pink mx-1"></i> for AI developers</span>
+            </div>
         </div>
-      </div>
     </div>
-    
-    <!-- Bottom Bar -->
-    <div class="border-t border-gray-200 dark:border-dark-700 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-gray-500 dark:text-gray-400">
-        &copy; 2026 Dibi8 - AI工具目录. 保留所有权利.
-      </p>
-      <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-        <span>Made with <i class="fas fa-heart text-pink-500 mx-1"></i> for AI developers</span>
-        <span class="hidden sm:inline">|</span>
-        <a href="https://github.com/luckybbjason1/dibi8_com" target="_blank" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-          <i class="fab fa-github mr-1"></i>GitHub
-        </a>
-      </div>
-    </div>
-  </div>
 </footer>

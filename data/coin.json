@@ -1,0 +1,33 @@
+{
+  "name": "DIBI8 Coin",
+  "description": "Community-driven AI tool discovery platform value narrative",
+  "type": "brand_narrative",
+  "not_token": true,
+  "data": {
+    "community": {
+      "tools_count": 493,
+      "categories": ["AI编程助手", "LLM框架", "开发工具", "AI工具", "MCP工具"],
+      "telegram": "https://t.me/DIBI8_Group",
+      "update_frequency": "daily"
+    },
+    "ecosystem": {
+      "featured_tools": [
+        {"name": "Jev Ultrafast", "stars": 8500},
+        {"name": "ZCode", "stars": 12000},
+        {"name": "SoL-Pi", "stars": 3200}
+      ],
+      "languages": ["zh-CN"],
+      "translations_available": 14
+    },
+    "vision": {
+      "mission": "让AI工具触手可及",
+      "goal": "成为全球最受欢迎的AI工具导航平台"
+    }
+  },
+  "constraints": {
+    "no_actual_token": true,
+    "no_smart_contract": true,
+    "no_supply_data": true,
+    "brand_narrative_only": true
+  }
+}
