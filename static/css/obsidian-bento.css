@@ -1,0 +1,56 @@
+/* Obsidian Glass Card Style - 黑耀石玻璃卡片 */
+
+.obsidian-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(20, 20, 30, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.obsidian-card:hover {
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 
+    0 8px 30px rgba(124, 58, 237, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+/* Gloss reflection effect - 光泽反射效果 */
+.obsidian-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 12px 12px 0 0;
+  pointer-events: none;
+}
+
+/* Glow effect on hover - 悬停发光效果 */
+.obsidian-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(145deg, 
+    rgba(124, 58, 237, 0.3),
+    rgba(6, 182, 212, 0.3)
+  );
+  border-radius: 13px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.obsidian-card:hover::after {
+  opacity: 1;
+}
