@@ -1,0 +1,33 @@
+{{- $pages := .Site.RegularPages }}
+{{- $sorted := sort $pages "Date" "desc" }}
+{{- $featured := where $pages ".Params.featured" true }}
+{{- $notFeatured := where $pages ".Params.featured" "!=" true }}
+{{- $all := union $featured $notFeatured }}
+{{- $limited := first 100 $all }}
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Site.Title }}</title>
+    <link>{{ .Site.BaseURL }}</link>
+    <description>{{ .Site.Params.description | default "AI工具目录" }}</description>
+    <language>zh-CN</language>
+    <lastBuildDate>{{ now.Format "Mon, 02 Jan 2006 15:04:05 MST" }}</lastBuildDate>
+    <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+    
+    {{- range $limited }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ .Description | plainify | truncate 200 }}</description>
+      {{- with .Params.categories }}
+      <category>{{ index . 0 }}</category>
+      {{- end }}
+      {{- range .Params.tags }}
+      <category>{{ . }}</category>
+      {{- end }}
+    </item>
+    {{- end }}
+  </channel>
+</rss>

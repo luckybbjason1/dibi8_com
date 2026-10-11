@@ -19,6 +19,16 @@ enableGitInfo = false
   filename = "sitemap.xml"
   priority = 0.5
 
+# RSS and Output configuration
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[rssLimit]
+  limit = 100
+
 # Taxonomies
 [taxonomies]
   tag = "tags"
