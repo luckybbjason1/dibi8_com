@@ -1,0 +1,374 @@
+/* ============================================================
+   DIBI8 Six Dimensions Components
+   Complete implementation for all six dimension cards
+   ============================================================ */
+
+/* Six Dimensions Section */
+.six-dimensions-section {
+  padding: 4rem 0;
+}
+
+/* Dimension Item Grid Layout */
+.dimension-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Responsive Grid */
+@media (max-width: 1024px) {
+  .dimension-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .dimension-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dimension Card Wrapper */
+.dimension-card {
+  position: relative;
+  background: var(--bg-secondary);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dimension-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Top Accent Bar */
+.dimension-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--dim-accent);
+  opacity: 0.9;
+}
+
+/* Dimension-Specific Styles */
+.dimension-card--tools {
+  --dim-accent: var(--dim-1-tools);
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.08) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+}
+
+.dimension-card--reports {
+  --dim-accent: var(--dim-2-reports);
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.08) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.dimension-card--price {
+  --dim-accent: var(--dim-3-price);
+  background: linear-gradient(180deg, rgba(244, 114, 182, 0.08) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(244, 114, 182, 0.15);
+}
+
+.dimension-card--guides {
+  --dim-accent: var(--dim-4-guides);
+  background: linear-gradient(180deg, rgba(52, 211, 153, 0.08) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+}
+
+.dimension-card--community {
+  --dim-accent: var(--dim-5-community);
+  background: linear-gradient(180deg, rgba(251, 191, 36, 0.08) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+}
+
+.dimension-card--dev {
+  --dim-accent: var(--dim-6-dev);
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.08) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+/* Card Content */
+.dimension-card__content {
+  padding: 2rem;
+}
+
+/* Icon Container */
+.dimension-card__icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--dim-accent);
+  color: var(--dim-accent);
+  transition: all 0.3s ease;
+}
+
+.dimension-card:hover .dimension-card__icon-wrap {
+  background: var(--dim-accent);
+  color: var(--bg-primary);
+  transform: scale(1.05);
+}
+
+/* Title */
+.dimension-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Subtitle */
+.dimension-card__subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Description */
+.dimension-card__description {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Stats Grid */
+.dimension-card__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dimension-card__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dimension-card__stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--dim-accent);
+}
+
+.dimension-card__stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Link Button */
+.dimension-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--dim-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--dim-accent);
+  transition: all 0.2s ease;
+}
+
+.dimension-card__link:hover {
+  background: var(--dim-accent);
+  color: var(--bg-primary);
+  transform: translateX(4px);
+}
+
+/* Featured Card (Tools + Reports) */
+.dimension-card--featured {
+  grid-column: span 2;
+}
+
+@media (max-width: 1024px) {
+  .dimension-card--featured {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .dimension-card--featured {
+    grid-column: span 1;
+  }
+}
+
+/* Full Width Cards (Guides + Community + Dev) */
+.dimension-card--full {
+  grid-column: span 4;
+}
+
+@media (max-width: 1024px) {
+  .dimension-card--full {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .dimension-card--full {
+    grid-column: span 1;
+  }
+}
+
+/* Horizontal Layout for Full Width Cards */
+.dimension-card--full .dimension-card__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .dimension-card--full .dimension-card__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+/* Stagger Animation */
+.dimension-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.dimension-card:nth-child(1) { animation-delay: 0.1s; }
+.dimension-card:nth-child(2) { animation-delay: 0.2s; }
+.dimension-card:nth-child(3) { animation-delay: 0.3s; }
+.dimension-card:nth-child(4) { animation-delay: 0.4s; }
+.dimension-card:nth-child(5) { animation-delay: 0.5s; }
+.dimension-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .dimension-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   BADGE & TAGS
+   ============================================================ */
+
+.dimension-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--dim-accent);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--dim-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   QUOTE BLOCK
+   ============================================================ */
+
+.dimension-quote {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--dim-accent);
+  border-radius: 0 0.75rem 0.75rem 0;
+  margin-top: 1rem;
+}
+
+.dimension-quote p {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ============================================================
+   LIST STYLES
+   ============================================================ */
+
+.dimension-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dimension-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+.dimension-list li::before {
+  content: '→';
+  color: var(--dim-accent);
+  font-weight: 700;
+}
+
+/* ============================================================
+   TOOLTIP
+   ============================================================ */
+
+.dim-tooltip {
+  position: relative;
+}
+
+.dim-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.dim-tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+}

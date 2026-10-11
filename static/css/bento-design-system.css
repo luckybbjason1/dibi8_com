@@ -1,44 +1,58 @@
 /* ============================================================
-   DIBI8 Design System - Accessibility Enhanced
-   WCAG 2.1 AA compliant (4.5:1 contrast ratio for text)
+   DIBI8 Six-Dimension Bento Design System
+   WCAG 2.1 AA compliant | Symmetric Architecture
    ============================================================ */
 
 :root {
   /* Background Colors - Deep Space Theme */
-  --bg-primary: #0a0a0f;      /* Contrast: 18.5:1 with white ✓ */
-  --bg-secondary: #12121a;    /* Contrast: 14.2:1 with white ✓ */
-  --bg-tertiary: #1e1e2e;     /* Contrast: 9.8:1 with white ✓ */
-  --bg-elevated: rgba(255, 255, 255, 0.05);  /* Subtle overlay */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-tertiary: #1e1e2e;
+  --bg-elevated: rgba(255, 255, 255, 0.05);
   
   /* Border Colors */
-  --border-subtle: rgba(255, 255, 255, 0.12);   /* Visible but subtle */
-  --border-hover: rgba(124, 58, 237, 0.6);      /* Stronger for hover states */
-  --border-focus: rgba(124, 58, 237, 0.8);      /* Visible focus indicator */
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(124, 58, 237, 0.6);
+  --border-focus: rgba(124, 58, 237, 0.8);
   
   /* Text Colors - WCAG AA Compliant */
-  --text-primary: #f1f5f9;    /* Contrast: 16.5:1 ✓ (AAA) */
-  --text-secondary: #cbd5e1;  /* Contrast: 11.2:1 ✓ (AAA) */
-  --text-muted: #94a3b8;      /* Contrast: 7.5:1 ✓ (AA large) */
-  --text-inverse: #0f172a;    /* For light backgrounds */
+  --text-primary: #f1f5f9;    /* Contrast: 16.5:1 ✓ */
+  --text-secondary: #cbd5e1;  /* Contrast: 11.2:1 ✓ */
+  --text-muted: #94a3b8;      /* Contrast: 7.5:1 ✓ */
+  --text-inverse: #0f172a;
   
-  /* Accent Colors - High Visibility */
-  --neon-purple: #8b5cf6;     /* Brighter for better contrast */
-  --neon-cyan: #22d3ee;       /* Brighter cyan */
-  --neon-pink: #f472b6;       /* Brighter pink */
-  --neon-green: #34d399;      /* Brighter green */
+  /* Six Dimensions Colors */
+  --dim-1-tools: #22d3ee;     /* 工具发现 - Neon Cyan */
+  --dim-2-reports: #8b5cf6;   /* 生态报告 - Neon Purple */
+  --dim-3-price: #f472b6;     /* 价格对比 - Neon Pink */
+  --dim-4-guides: #34d399;    /* 使用指南 - Neon Green */
+  --dim-5-community: #fbbf24; /* 社区动态 - Amber */
+  --dim-6-dev: #38bdf8;       /* 开发者资源 - Sky Blue */
   
-  /* Gradient */
-  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 50%, #f472b6 100%);
+  /* Accent Colors */
+  --neon-purple: #8b5cf6;
+  --neon-cyan: #22d3ee;
+  --neon-pink: #f472b6;
+  --neon-green: #34d399;
   
-  /* Shadows - Reduced for accessibility */
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 50%, #f472b6 100%);
+  --gradient-dim1: linear-gradient(135deg, #22d3ee, #3b82f6);
+  --gradient-dim2: linear-gradient(135deg, #8b5cf6, #ec4899);
+  --gradient-dim3: linear-gradient(135deg, #f472b6, #fb923c);
+  --gradient-dim4: linear-gradient(135deg, #34d399, #22d3ee);
+  --gradient-dim5: linear-gradient(135deg, #fbbf24, #f472b6);
+  --gradient-dim6: linear-gradient(135deg, #38bdf8, #8b5cf6);
+  
+  /* Shadows */
   --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.3);
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
   
-  /* Typography Scale - Responsive */
+  /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
-  /* Spacing Scale */
+  /* Spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -54,20 +68,19 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px; /* Base size for accessibility */
+  font-size: 16px;
 }
 
 body {
   font-family: var(--font-sans);
   background: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.7; /* Improved readability */
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-/* Focus Indicators - Essential for keyboard navigation */
+/* Focus Indicators */
 :focus-visible {
   outline: 2px solid var(--neon-purple);
   outline-offset: 2px;
@@ -80,7 +93,7 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-/* Typography - Improved Readability */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   font-weight: 700;
@@ -91,14 +104,13 @@ h1, h2, h3, h4, h5, h6 {
 h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
 h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
 h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); }
-h4 { font-size: 1.125rem; }
 
 p {
   margin: 1.2em 0;
-  max-width: 70ch; /* Optimal reading width */
+  max-width: 70ch;
 }
 
-/* Link Styles - Clear Visual Indicator */
+/* Links */
 a {
   color: var(--neon-purple);
   text-decoration: none;
@@ -111,13 +123,56 @@ a:hover {
   border-bottom-color: var(--neon-cyan);
 }
 
-a:focus-visible {
-  outline: 2px solid var(--neon-cyan);
-  outline-offset: 2px;
-  border-bottom-color: transparent;
+/* ============================================================
+   BENTO GRID SYSTEM
+   ============================================================ */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-/* Glass Card Component - Accessible */
+/* Span Variants */
+.span-1 { grid-column: span 1; }
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+
+/* Row Span Variants */
+.row-span-2 { grid-row: span 2; }
+.row-span-3 { grid-row: span 3; }
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .span-3, .span-4 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .span-1, .span-2, .span-3, .span-4 {
+    grid-column: span 1;
+  }
+  .row-span-2, .row-span-3 {
+    grid-row: span 1;
+  }
+}
+
+/* ============================================================
+   GLASS CARD COMPONENT
+   ============================================================ */
+
 .glass-card {
   background: var(--bg-elevated);
   backdrop-filter: blur(12px);
@@ -134,9 +189,301 @@ a:focus-visible {
   box-shadow: var(--shadow-card);
 }
 
-/* Gradient Text - With Fallback for Reduced Motion */
+/* ============================================================
+   DIMENSION CARDS - Six Dimensions
+   ============================================================ */
+
+/* Dimension Card Base */
+.dim-card {
+  position: relative;
+  padding: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dim-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-accent, var(--neon-purple));
+  opacity: 0.8;
+}
+
+.dim-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Dimension 1: Tools Discovery */
+.dim-card--tools {
+  --card-accent: var(--dim-1-tools);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border-color: rgba(34, 211, 238, 0.2);
+}
+
+/* Dimension 2: Ecosystem Reports */
+.dim-card--reports {
+  --card-accent: var(--dim-2-reports);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+/* Dimension 3: Price Comparison */
+.dim-card--price {
+  --card-accent: var(--dim-3-price);
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.1) 0%, rgba(251, 146, 60, 0.05) 100%);
+  border-color: rgba(244, 114, 182, 0.2);
+}
+
+/* Dimension 4: Usage Guides */
+.dim-card--guides {
+  --card-accent: var(--dim-4-guides);
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(34, 211, 238, 0.05) 100%);
+  border-color: rgba(52, 211, 153, 0.2);
+}
+
+/* Dimension 5: Community Hub */
+.dim-card--community {
+  --card-accent: var(--dim-5-community);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(244, 114, 182, 0.05) 100%);
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
+/* Dimension 6: Developer Resources */
+.dim-card--dev {
+  --card-accent: var(--dim-6-dev);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+/* Card Header */
+.dim-card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dim-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--card-accent, var(--neon-purple));
+  color: var(--card-accent, var(--neon-purple));
+}
+
+.dim-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dim-card__subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Card Body */
+.dim-card__body {
+  color: var(--text-secondary);
+}
+
+.dim-card__description {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Card Metrics */
+.dim-card__metrics {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dim-card__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dim-card__metric-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--card-accent, var(--neon-purple));
+}
+
+.dim-card__metric-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Card Footer */
+.dim-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dim-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--card-accent, var(--neon-purple));
+  transition: all 0.2s ease;
+}
+
+.dim-card__link:hover {
+  gap: 0.75rem;
+  color: var(--card-accent, var(--neon-purple));
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(34, 211, 238, 0.1) 50%, rgba(244, 114, 182, 0.1) 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--neon-cyan);
+}
+
+.hero-stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================================
+   SECTION STYLES
+   ============================================================ */
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.section-description {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   GRADIENT TEXT
+   ============================================================ */
+
 .gradient-text {
-  background: var(--gradient-primary);
+  background: var(--gradient-hero);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -144,7 +491,12 @@ a:focus-visible {
   animation: gradient-shift 8s ease infinite;
 }
 
-/* Reduced motion preference */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .gradient-text {
     animation: none;
@@ -159,155 +511,51 @@ a:focus-visible {
   }
 }
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 
-/* Bento Grid Layout - Accessible */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-
-@media (max-width: 1024px) {
-  .bento-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 640px) {
-  .bento-grid { grid-template-columns: 1fr; }
-}
-
-/* Prose Styling for Articles - High Contrast */
-.prose-dibi {
-  color: var(--text-secondary);
-  line-height: 1.8;
-  font-size: 1.0625rem; /* 17px minimum for readability */
-}
-
-.prose-dibi > * + * {
-  margin-top: 1.5em;
-}
-
-.prose-dibi h1,
-.prose-dibi h2,
-.prose-dibi h3,
-.prose-dibi h4 {
-  color: var(--text-primary);
-  font-weight: 700;
-  margin-top: 2.5em;
-  margin-bottom: 0.75em;
-  line-height: 1.3;
-}
-
-.prose-dibi h2 { 
-  font-size: 1.75rem;
-  padding-top: 1.5em; 
-  border-top: 2px solid var(--border-subtle);
-}
-
-.prose-dibi h3 { font-size: 1.4rem; }
-.prose-dibi h4 { font-size: 1.125rem; }
-
-.prose-dibi p { 
-  margin: 1.2em 0;
-  max-width: 75ch;
-}
-
-.prose-dibi a {
-  color: var(--neon-purple);
-  font-weight: 500;
-  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
-  transition: all 0.2s ease;
-}
-
-.prose-dibi a:hover {
-  color: var(--neon-cyan);
-  border-bottom-color: var(--neon-cyan);
-}
-
-.prose-dibi code {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--border-subtle);
-  padding: 0.2em 0.4em;
-  border-radius: 0.375rem;
-  font-size: 0.9em;
-  font-family: var(--font-mono);
-  color: var(--neon-cyan);
-}
-
-.prose-dibi pre {
-  background: #0f172a;
-  border: 1px solid var(--border-subtle);
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 0.75rem;
-  padding: 1.25rem;
-  overflow-x: auto;
-  margin: 1.5em 0;
-}
-
-.prose-dibi pre code {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--text-primary);
-  font-size: 0.875rem;
-  line-height: 1.6;
-}
-
-.prose-dibi blockquote {
-  border-left: 4px solid var(--neon-purple);
-  padding: 0.75em 1em;
-  margin: 1.5em 0;
-  color: var(--text-secondary);
-  background: rgba(139, 92, 246, 0.1);
-  border-radius: 0 0.5rem 0.5rem 0;
-}
-
-.prose-dibi ul,
-.prose-dibi ol {
-  padding-left: 1.5em;
-  margin: 1em 0;
-}
-
-.prose-dibi li {
-  margin: 0.5em 0;
-  padding-left: 0.5em;
-}
-
-.prose-dibi table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5em 0;
-  font-size: 0.9375rem;
-}
-
-.prose-dibi th,
-.prose-dibi td {
-  border: 1px solid var(--border-subtle);
-  padding: 0.875rem 1rem;
-  text-align: left;
-}
-
-.prose-dibi th {
-  background: rgba(139, 92, 246, 0.15);
   font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  color: white;
+}
+
+.btn--secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
   color: var(--text-primary);
 }
 
-.prose-dibi tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.02);
+.btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--neon-purple);
+  color: white;
 }
 
-.prose-dibi img {
-  border-radius: 0.75rem;
-  border: 1px solid var(--border-subtle);
-  margin: 1.5em 0;
-  max-width: 100%;
-  height: auto;
-}
+/* ============================================================
+   SKIP LINK
+   ============================================================ */
 
-/* Skip Link - Essential for keyboard users */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -318,13 +566,30 @@ a:focus-visible {
   z-index: 100;
   text-decoration: none;
   font-weight: 600;
+  border-radius: 0 0 8px 0;
 }
 
 .skip-link:focus {
   top: 0;
 }
 
-/* High Contrast Mode Support */
+/* ============================================================
+   ACCESSIBILITY UTILITIES
+   ============================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High Contrast Mode */
 @media (prefers-contrast: high) {
   :root {
     --border-subtle: rgba(255, 255, 255, 0.3);

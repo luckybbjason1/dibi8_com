@@ -1,280 +1,338 @@
 {{ define "main" }}
 <!-- 
-  DIBI8.com - AI Tools Discovery Platform
-  Updated with DIBI8 Coin Bento Grid Section
+  DIBI8.com - Six-Dimension Symmetric Architecture
+  Bento Grid Layout with Complete Brand Narrative
 -->
 
 <main id="main-content" class="pt-16">
   
   <!-- ========== HERO SECTION ========== -->
-  <section class="hero-section relative overflow-hidden" aria-labelledby="hero-title">
-    <!-- Background Gradient -->
-    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-cyan-900/20 pointer-events-none"></div>
-    
-    <!-- Decorative Glow -->
-    <div class="absolute inset-0 opacity-30 pointer-events-none">
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
-    </div>
-    
-    <!-- Hero Content -->
-    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-      <div class="text-center">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
-          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-          <span class="text-sm text-gray-400">AI工具发现平台 · 每日更新</span>
+  <section class="hero-section" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <!-- Badge -->
+      <div class="hero-badge">
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        <span>AI工具发现平台 · 六维架构 · 每日更新</span>
+      </div>
+      
+      <!-- Title -->
+      <h1 id="hero-title" class="hero-title">
+        <span class="gradient-text">DIBI8</span>
+        <span class="text-white"> · 六维AI工具发现平台</span>
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="hero-subtitle text-white/90">
+        让AI工具触手可及
+      </p>
+      
+      <!-- Description -->
+      <p class="hero-description">
+        基于六维对称架构的权威AI工具导航平台，涵盖工具发现、生态报告、价格对比、使用指南、社区动态、开发者资源六大维度
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="hero-cta">
+        <a href="#dimensions" class="btn btn--primary">
+          <i class="fas fa-th-large" aria-hidden="true"></i>
+          探索六维架构
+        </a>
+        <a href="/categories/" class="btn btn--secondary">
+          <i class="fas fa-rocket" aria-hidden="true"></i>
+          浏览工具
+        </a>
+      </div>
+      
+      <!-- Stats -->
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value text-cyan-400">493+</div>
+          <div class="hero-stat-label">工具收录</div>
         </div>
-        
-        <!-- Title -->
-        <h1 id="hero-title" class="text-5xl md:text-7xl font-black mb-6 leading-tight">
-          <span class="gradient-text">DIBI8</span>
-          <span class="text-white"> - AI工具发现新范式</span>
-        </h1>
-        
-        <!-- Subtitle -->
-        <p class="text-2xl md:text-3xl text-gray-300 mb-6 font-medium">
-          让AI工具触手可及
-        </p>
-        
-        <!-- Description -->
-        <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-          我们收录全球最优秀的AI工具，帮助开发者快速找到适合自身需求的解决方案
-        </p>
-        
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="/categories/" class="btn btn--primary btn--large group">
-            <i class="fas fa-rocket"></i>
-            探索工具
-          </a>
-          <a href="#coin-section" class="btn btn--secondary btn--large">
-            <i class="fas fa-coins"></i>
-            DIBI8 Coin
-          </a>
+        <div class="hero-stat">
+          <div class="hero-stat-value text-purple-400">482</div>
+          <div class="hero-stat-label">深度评测</div>
         </div>
-        
-        <!-- Stats Preview -->
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-          <div class="text-center">
-            <div class="text-3xl font-black text-neon-cyan">493+</div>
-            <div class="text-sm text-gray-500 mt-1">工具收录</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-black text-neon-pink">5</div>
-            <div class="text-sm text-gray-500 mt-1">大分类</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-black text-neon-purple">14</div>
-            <div class="text-sm text-gray-500 mt-1">语言支持</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-black text-neon-green">每日</div>
-            <div class="text-sm text-gray-500 mt-1">更新</div>
-          </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value text-pink-400">14</div>
+          <div class="hero-stat-label">语言支持</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value text-green-400">每日</div>
+          <div class="hero-stat-label">内容更新</div>
         </div>
       </div>
     </div>
     
     <!-- Scroll Indicator -->
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <i class="fas fa-chevron-down text-gray-500 text-2xl"></i>
+      <i class="fas fa-chevron-down text-gray-500 text-2xl" aria-hidden="true"></i>
     </div>
   </section>
 
-  <!-- ========== DIBI8 COIN BENTO GRID SECTION ========== -->
-  <section id="coin-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" aria-label="DIBI8 Coin - 社区价值叙事">
-    <!-- Section Header -->
-    <div class="text-center mb-12">
+  <!-- ========== SIX DIMENSIONS SECTION ========== -->
+  <section id="dimensions" class="section" aria-labelledby="dimensions-title">
+    <div class="section-header">
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
         <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-        <span class="text-sm text-gray-400">社区驱动 · 价值共享</span>
+        <span class="text-sm text-gray-400">六维对称架构</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-black mb-4">
-        <span class="gradient-text">DIBI8</span>
-        <span class="text-white"> Coin</span>
+      <h2 id="dimensions-title" class="section-title">
+        <span class="gradient-text">六大核心维度</span>
       </h2>
-      <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-        基于社区贡献的去中心化价值网络，让每个工具找到对的用户
-      </p>
-      <p class="text-xs text-gray-600 mt-4">
-        * 本页面为品牌叙事设计，非真实代币发行
+      <p class="section-description">
+        从工具发现到开发者资源，全方位覆盖AI工具生态
       </p>
     </div>
     
-    <!-- Bento Grid -->
-    <div class="bento-grid">
+    <!-- Dimension Grid -->
+    <div class="dimension-grid">
       
-      <!-- 1. COMMUNITY (span-2) -->
-      <article class="coin-card coin-card--community span-2" id="community">
-        <div class="coin-card__header">
-          <div class="coin-card__icon">
-            <i class="fas fa-users" aria-hidden="true"></i>
-          </div>
-          <h3 class="coin-card__title">活跃的创作者社区</h3>
-        </div>
-        <div class="coin-card__body">
-          <div class="coin-card__metrics">
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">493+</span>
-              <span class="coin-card__metric-label">工具收录</span>
+      <!-- 1. 工具发现 (Featured - span 2) -->
+      <article class="dimension-card dimension-card--tools dimension-card--featured" aria-labelledby="dim1-title">
+        <div class="dimension-card__content">
+          <div>
+            <div class="dimension-card__icon-wrap">
+              <i class="fas fa-tools" aria-hidden="true"></i>
             </div>
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">5</span>
-              <span class="coin-card__metric-label">大分类</span>
-            </div>
+            <h3 id="dim1-title" class="dimension-card__title">工具发现</h3>
+            <p class="dimension-card__subtitle">Tools Discovery</p>
+            <p class="dimension-card__description">
+              收录全球493+优秀AI工具，覆盖AI编程、LLM框架、MCP工具等核心领域，每日更新最新工具动态。
+            </p>
+            <ul class="dimension-list">
+              <li>AI编程代理评测 (401篇)</li>
+              <li>LLM框架对比 (53篇)</li>
+              <li>MCP工具生态 (14篇)</li>
+              <li>多语言版本支持</li>
+            </ul>
           </div>
-          <p class="coin-card__description">
-            全球开发者共同构建的AI工具生态，每日更新收录最新工具，覆盖AI编程、LLM框架、MCP工具等核心领域。
-          </p>
-          <div class="coin-card__footer">
-            <a href="https://t.me/DIBI8_Group" target="_blank" rel="noopener noreferrer" class="coin-card__link">
-              加入 Telegram 社区
+          <div>
+            <div class="dimension-card__stats">
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">493+</span>
+                <span class="dimension-card__stat-label">工具收录</span>
+              </div>
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">482</span>
+                <span class="dimension-card__stat-label">评测文章</span>
+              </div>
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">5</span>
+                <span class="dimension-card__stat-label">大分类</span>
+              </div>
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">14</span>
+                <span class="dimension-card__stat-label">语言版本</span>
+              </div>
+            </div>
+            <a href="/categories/" class="dimension-card__link">
+              探索所有工具
               <i class="fas fa-arrow-right" aria-hidden="true"></i>
             </a>
           </div>
         </div>
       </article>
 
-      <!-- 2. INCENTIVES (span-1) -->
-      <article class="coin-card coin-card--incentives" id="incentives">
-        <div class="coin-card__header">
-          <div class="coin-card__icon">
-            <i class="fas fa-gift" aria-hidden="true"></i>
-          </div>
-          <h3 class="coin-card__title">贡献即获得认可</h3>
-        </div>
-        <div class="coin-card__body">
-          <div class="coin-card__metrics">
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">∞</span>
-              <span class="coin-card__metric-label">贡献积分</span>
+      <!-- 2. 生态报告 (Featured - span 2) -->
+      <article class="dimension-card dimension-card--reports dimension-card--featured" aria-labelledby="dim2-title">
+        <div class="dimension-card__content">
+          <div>
+            <div class="dimension-card__icon-wrap">
+              <i class="fas fa-chart-line" aria-hidden="true"></i>
             </div>
-          </div>
-          <p class="coin-card__description">
-            你的每一次推荐、评论、评分都被看见和奖励，构建公平的贡献者经济体系。
-          </p>
-        </div>
-      </article>
-
-      <!-- 3. GOVERNANCE (span-1) -->
-      <article class="coin-card coin-card--governance" id="governance">
-        <div class="coin-card__header">
-          <div class="coin-card__icon">
-            <i class="fas fa-scale-balanced" aria-hidden="true"></i>
-          </div>
-          <h3 class="coin-card__title">社区民主决策</h3>
-        </div>
-        <div class="coin-card__body">
-          <div class="coin-card__metrics">
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">1:1</span>
-              <span class="coin-card__metric-label">投票权重</span>
-            </div>
-          </div>
-          <p class="coin-card__description">
-            每个成员都有平等的发言权，提案透明、投票可追溯，共建社区治理机制。
-          </p>
-        </div>
-      </article>
-
-      <!-- 4. TECHNOLOGY (span-2) -->
-      <article class="coin-card coin-card--technology span-2" id="technology">
-        <div class="coin-card__header">
-          <div class="coin-card__icon">
-            <i class="fas fa-shield-halved" aria-hidden="true"></i>
-          </div>
-          <h3 class="coin-card__title">安全可靠的技术底座</h3>
-        </div>
-        <div class="coin-card__body">
-          <div class="coin-card__metrics">
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">Hugo</span>
-              <span class="coin-card__metric-label">静态生成</span>
-            </div>
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">TW</span>
-              <span class="coin-card__metric-label">Tailwind CSS</span>
-            </div>
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">A11y</span>
-              <span class="coin-card__metric-label">WCAG 2.1 AA</span>
-            </div>
-          </div>
-          <p class="coin-card__description">
-            现代前端技术栈构建，Bento Grid布局、响应式设计、无障碍访问标准，确保极速加载和优质体验。
-          </p>
-        </div>
-      </article>
-
-      <!-- 5. ECOSYSTEM (span-1) -->
-      <article class="coin-card coin-card--ecosystem" id="ecosystem">
-        <div class="coin-card__header">
-          <div class="coin-card__icon">
-            <i class="fas fa-network-wired" aria-hidden="true"></i>
-          </div>
-          <h3 class="coin-card__title">整合的AI工具生态</h3>
-        </div>
-        <div class="coin-card__body">
-          <div class="coin-card__metrics">
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">493</span>
-              <span class="coin-card__metric-label">工具集成</span>
-            </div>
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">14</span>
-              <span class="coin-card__metric-label">语言支持</span>
-            </div>
-          </div>
-          <p class="coin-card__description">
-            连接工具、用户和价值的网络，多平台接入，一站式发现最佳AI解决方案。
-          </p>
-        </div>
-      </article>
-
-      <!-- 6. VISION (span-1, span-row-2) -->
-      <article class="coin-card coin-card--vision span-row-2" id="vision">
-        <div class="coin-card__header">
-          <div class="coin-card__icon">
-            <i class="fas fa-rocket" aria-hidden="true"></i>
-          </div>
-          <h3 class="coin-card__title">AI 民主化的未来</h3>
-        </div>
-        <div class="coin-card__body">
-          <div class="coin-card__metrics">
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">⚡</span>
-              <span class="coin-card__metric-label">使命</span>
-            </div>
-            <div class="coin-card__metric">
-              <span class="coin-card__metric-value">🌍</span>
-              <span class="coin-card__metric-label">愿景</span>
-            </div>
-          </div>
-          <p class="coin-card__description">
-            从中心到去中心化的价值回归，让每个工具都能找到对它需要的用户。
-          </p>
-          <div class="mt-4 p-4 rounded-xl bg-white/5 border border-white/10">
-            <p class="text-sm text-gray-400 italic">
-              "让AI工具触手可及"
+            <h3 id="dim2-title" class="dimension-card__title">生态报告</h3>
+            <p class="dimension-card__subtitle">Ecosystem Reports</p>
+            <p class="dimension-card__description">
+              深度评测AI编程代理、LLM框架和MCP工具生态，提供详细的性能对比、使用场景分析和选型建议。
             </p>
+            <ul class="dimension-list">
+              <li>功能深度评测</li>
+              <li>性能基准测试</li>
+              <li>最佳实践指南</li>
+              <li>社区热度追踪</li>
+            </ul>
+          </div>
+          <div>
+            <div class="dimension-card__stats">
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">482</span>
+                <span class="dimension-card__stat-label">评测文章</span>
+              </div>
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">401</span>
+                <span class="dimension-card__stat-label">AI编程代理</span>
+              </div>
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">53</span>
+                <span class="dimension-card__stat-label">LLM框架</span>
+              </div>
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">14</span>
+                <span class="dimension-card__stat-label">MCP工具</span>
+              </div>
+            </div>
+            <a href="/categories/ai-coding-agents/" class="dimension-card__link">
+              查看评测报告
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. 价格对比 (span 2) -->
+      <article class="dimension-card dimension-card--price" aria-labelledby="dim3-title">
+        <div class="dimension-card__content">
+          <div class="dimension-card__icon-wrap">
+            <i class="fas fa-coins" aria-hidden="true"></i>
+          </div>
+          <h3 id="dim3-title" class="dimension-card__title">价格对比</h3>
+          <p class="dimension-card__subtitle">Price Comparison</p>
+          <p class="dimension-card__description">
+            免费版 vs 付费版详细对比，帮助你找到最优性价比方案。
+          </p>
+          <div class="dimension-card__stats">
+            <div class="dimension-card__stat">
+              <span class="dimension-card__stat-value">$0</span>
+              <span class="dimension-card__stat-label">起免费额度</span>
+            </div>
+            <div class="dimension-card__stat">
+              <span class="dimension-card__stat-value">$20</span>
+              <span class="dimension-card__stat-label">月起订阅</span>
+            </div>
+          </div>
+          <a href="/collections/" class="dimension-card__link">
+            查看价格对比
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- 4. 使用指南 (span 2) -->
+      <article class="dimension-card dimension-card--guides" aria-labelledby="dim4-title">
+        <div class="dimension-card__content">
+          <div class="dimension-card__icon-wrap">
+            <i class="fas fa-book-open" aria-hidden="true"></i>
+          </div>
+          <h3 id="dim4-title" class="dimension-card__title">使用指南</h3>
+          <p class="dimension-card__subtitle">Usage Guides</p>
+          <p class="dimension-card__description">
+            从快速开始到高级配置，掌握每个AI工具的最佳用法。
+          </p>
+          <div class="dimension-card__stats">
+            <div class="dimension-card__stat">
+              <span class="dimension-card__stat-value">100+</span>
+              <span class="dimension-card__stat-label">教程文章</span>
+            </div>
+            <div class="dimension-card__stat">
+              <span class="dimension-card__stat-value">50+</span>
+              <span class="dimension-card__stat-label">配置示例</span>
+            </div>
+          </div>
+          <a href="/categories/" class="dimension-card__link">
+            浏览指南
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- 5. 社区动态 (Full Width) -->
+      <article class="dimension-card dimension-card--community dimension-card--full" aria-labelledby="dim5-title">
+        <div class="dimension-card__content">
+          <div>
+            <div class="dimension-card__icon-wrap">
+              <i class="fab fa-telegram" aria-hidden="true"></i>
+            </div>
+            <h3 id="dim5-title" class="dimension-card__title">社区动态</h3>
+            <p class="dimension-card__subtitle">Community Hub</p>
+            <p class="dimension-card__description">
+              加入DIBI8 Telegram社区，与全球开发者交流AI工具使用心得，获取最新工具推荐和行业动态。
+            </p>
+            <div class="dimension-card__stats">
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">1000+</span>
+                <span class="dimension-card__stat-label">社区成员</span>
+              </div>
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">每日</span>
+                <span class="dimension-card__stat-label">活跃讨论</span>
+              </div>
+            </div>
+            <a href="https://t.me/DIBI8_Group" target="_blank" rel="noopener noreferrer" class="dimension-card__link">
+              加入Telegram社区
+              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="dimension-quote">
+            <p>"让AI工具触手可及，连接每一位开发者"</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. 开发者资源 (Full Width) -->
+      <article class="dimension-card dimension-card--dev dimension-card--full" aria-labelledby="dim6-title">
+        <div class="dimension-card__content">
+          <div>
+            <div class="dimension-card__icon-wrap">
+              <i class="fab fa-github" aria-hidden="true"></i>
+            </div>
+            <h3 id="dim6-title" class="dimension-card__title">开发者资源</h3>
+            <p class="dimension-card__subtitle">Developer Resources</p>
+            <p class="dimension-card__description">
+              GitHub开源项目、API文档、贡献者指南、插件开发教程，助力开发者快速集成DIBI8工具链。
+            </p>
+            <div class="dimension-card__stats">
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">GitHub</span>
+                <span class="dimension-card__stat-label">开源项目</span>
+              </div>
+              <div class="dimension-card__stat">
+                <span class="dimension-card__stat-value">API</span>
+                <span class="dimension-card__stat-label">接口文档</span>
+              </div>
+            </div>
+            <a href="https://github.com/luckybbjason1/dibi8_com" target="_blank" rel="noopener noreferrer" class="dimension-card__link">
+              访问GitHub仓库
+              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="dimension-quote">
+            <p>"共建开放生态，让AI工具赋能更多开发者"</p>
           </div>
         </div>
       </article>
       
     </div>
-    
-    <!-- Coin Section CTA -->
-    <div class="mt-12 text-center">
-      <a href="https://t.me/DIBI8_Group" target="_blank" rel="noopener noreferrer" class="btn btn--primary inline-flex items-center gap-2">
-        <i class="fab fa-telegram" aria-hidden="true"></i>
-        加入社区了解更多
-      </a>
-    </div>
   </section>
 
-  <!-- ========== CONTENT FROM PARTIALS ========== -->
-  {{ .Content }}
+  <!-- ========== FEATURED TOOLS SECTION ========== -->
+  <section class="section" aria-labelledby="featured-title">
+    <div class="section-header">
+      <h2 id="featured-title" class="section-title">
+        <span class="gradient-text">精选工具</span>
+      </h2>
+      <p class="section-description">
+        本周最受关注的AI工具推荐
+      </p>
+    </div>
+    
+    <div class="bento-grid">
+      {{ range first 4 .Site.RegularPages.ByWeight }}
+      <article class="glass-card p-6 hover:border-neon-purple/50 transition-all">
+        <h3 class="text-lg font-bold text-white mb-2">
+          <a href="{{ .RelPermalink }}" class="hover:text-neon-purple transition-colors">
+            {{ .Title }}
+          </a>
+        </h3>
+        <p class="text-gray-400 text-sm line-clamp-2">{{ .Description | plainify | truncate 100 }}</p>
+        <div class="mt-4 flex items-center justify-between text-xs text-gray-500">
+          <span>{{ .Date.Format "2006-01-02" }}</span>
+          <span>{{ .ReadingTime }} 分钟阅读</span>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </section>
 
   <!-- ========== FOOTER ========== -->
   <footer class="border-t border-white/10 mt-16" role="contentinfo">
@@ -284,13 +342,13 @@
         <!-- Brand -->
         <div class="md:col-span-2">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-gradient-to-br from-neon-purple to-neon-cyan rounded-xl flex items-center justify-center glow">
+            <div class="w-10 h-10 bg-gradient-to-br from-neon-purple to-neon-cyan rounded-xl flex items-center justify-center">
               <span class="text-white font-bold text-lg">D</span>
             </div>
             <span class="text-2xl font-bold gradient-text">Dibi8</span>
           </div>
           <p class="text-gray-400 max-w-md">
-            发现最佳AI工具，比较功能、价格和评价。我们的使命是让AI工具触手可及。
+            六维AI工具发现平台，让AI工具触手可及。收录全球优秀AI工具，提供深度评测、价格对比和使用指南。
           </p>
           <div class="flex gap-4 mt-6">
             <a href="https://t.me/DIBI8_Group" target="_blank" rel="noopener noreferrer" 
@@ -310,10 +368,10 @@
         <div>
           <h4 class="font-semibold text-white mb-4">快速链接</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="/" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>首页</a></li>
-            <li><a href="/categories/" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>分类</a></li>
-            <li><a href="/collections/" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>合集</a></li>
-            <li><a href="/about/" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>关于</a></li>
+            <li><a href="/" class="text-gray-400 hover:text-neon-purple transition-colors">首页</a></li>
+            <li><a href="/categories/" class="text-gray-400 hover:text-neon-purple transition-colors">分类</a></li>
+            <li><a href="/collections/" class="text-gray-400 hover:text-neon-purple transition-colors">合集</a></li>
+            <li><a href="/about/" class="text-gray-400 hover:text-neon-purple transition-colors">关于</a></li>
           </ul>
         </div>
         
@@ -321,25 +379,17 @@
         <div>
           <h4 class="font-semibold text-white mb-4">资源</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="/collections/" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>精选合集</a></li>
-            <li><a href="/about/" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>关于我们</a></li>
-            <li><a href="/index.xml" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-rss text-xs" aria-hidden="true"></i>RSS 订阅</a></li>
+            <li><a href="/collections/" class="text-gray-400 hover:text-neon-purple transition-colors">精选合集</a></li>
+            <li><a href="/about/" class="text-gray-400 hover:text-neon-purple transition-colors">关于我们</a></li>
+            <li><a href="/index.xml" class="text-gray-400 hover:text-neon-purple transition-colors">RSS 订阅</a></li>
           </ul>
         </div>
         
-        <!-- Legal -->
-        <div>
-          <h4 class="font-semibold text-white mb-4">法律</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/privacy/" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>隐私政策</a></li>
-            <li><a href="/terms/" class="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>服务条款</a></li>
-          </ul>
-        </div>
       </div>
       
       <!-- Bottom Bar -->
       <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="text-sm text-gray-500">© 2026 Dibi8 - AI工具发现平台</p>
+        <p class="text-sm text-gray-500">© 2026 Dibi8 - 六维AI工具发现平台</p>
         <div class="flex items-center gap-4 text-sm text-gray-500">
           <span>Made with <i class="fas fa-heart text-neon-pink mx-1" aria-hidden="true"></i> for AI developers</span>
         </div>
@@ -350,16 +400,15 @@
 </main>
 
 <script>
-// Coin Page Interactive Scripts
 (function() {
   'use strict';
   
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
+        e.preventDefault();
         target.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
@@ -386,22 +435,13 @@
       });
     }, observerOptions);
     
-    // Observe all coin cards
-    document.querySelectorAll('.coin-card').forEach((card, index) => {
+    document.querySelectorAll('.dimension-card').forEach((card, index) => {
       card.style.opacity = '0';
       card.style.transform = 'translateY(20px)';
       card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
       observer.observe(card);
     });
   }
-  
-  // Keyboard shortcut: Escape to scroll to top
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  });
-  
 })();
 </script>
 {{ end }}
