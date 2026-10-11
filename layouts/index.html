@@ -89,7 +89,7 @@
       <!-- Obsidian Bento Grid -->
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {{ range first 10 (where .Site.RegularPages "Section" "ai-coding-agents").ByDate.Reverse }}
-        <article class="obsidian-card group cursor-pointer" aria-label="{{ .Title }}">
+        <a href="{{ .Permalink }}" class="obsidian-card group block cursor-pointer" aria-label="阅读: {{ .Title }}">
           <!-- Card Background with Gloss Effect -->
           <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           
@@ -115,7 +115,7 @@
           
           <!-- Gloss Reflection -->
           <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/5 to-transparent rounded-t-lg pointer-events-none"></div>
-        </article>
+        </a>
         {{ end }}
       </div>
 
@@ -382,7 +382,7 @@
     <div class="bento-grid">
       {{ $allArticles := where .Site.RegularPages "Section" "ai-coding-agents" }}
       {{ range first 8 $allArticles.ByDate.Reverse }}
-      <article class="glass-card p-6 hover:border-neon-purple/50 transition-all group" aria-label="{{ .Title }}">
+      <a href="{{ .Permalink }}" class="glass-card p-6 hover:border-neon-purple/50 transition-all group block" aria-label="阅读: {{ .Title }}">
         <div class="flex items-start justify-between mb-4">
           <div class="dimension-card__icon-wrap w-12 h-12" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(34, 211, 238, 0.2));">
             <i class="fas fa-star text-neon-purple"></i>
@@ -392,16 +392,14 @@
           {{ end }}
         </div>
         <h3 class="text-lg font-bold text-white mb-2 group-hover:text-neon-purple transition-colors">
-          <a href="{{ .RelPermalink }}" class="hover:no-underline">
-            {{ .Title }}
-          </a>
+          {{ .Title }}
         </h3>
         <p class="text-gray-400 text-sm line-clamp-2 mb-4">{{ .Description | plainify | truncate 100 }}</p>
         <div class="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-white/5">
           <span>{{ .Date.Format "2006-01-02" }}</span>
           <span>{{ .ReadingTime }} 分钟阅读</span>
         </div>
-      </article>
+      </a>
       {{ end }}
     </div>
     
@@ -433,7 +431,7 @@
       {{ $sorted := sort $articles "Date" "desc" }}
       {{ $after10 := after 10 $sorted }}
       {{ range first 6 $after10 }}
-      <article class="glass-card p-6 hover:border-neon-cyan/50 transition-all group" aria-label="{{ .Title }}">
+      <a href="{{ .Permalink }}" class="glass-card p-6 hover:border-neon-cyan/50 transition-all group block" aria-label="阅读: {{ .Title }}">
         <div class="flex items-center gap-3 mb-4">
           <div class="dimension-card__icon-wrap w-10 h-10 flex-shrink-0" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(139, 92, 246, 0.2));">
             <i class="fas fa-fire text-neon-cyan text-sm"></i>
@@ -441,12 +439,10 @@
           <span class="text-xs font-mono text-gray-500">{{ .Date.Format "2006-01-02" }}</span>
         </div>
         <h3 class="text-base font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors line-clamp-2">
-          <a href="{{ .RelPermalink }}" class="hover:no-underline">
-            {{ .Title }}
-          </a>
+          {{ .Title }}
         </h3>
         <p class="text-gray-500 text-xs line-clamp-2">{{ .Description | plainify | truncate 80 }}</p>
-      </article>
+      </a>
       {{ end }}
     </div>
   </section>
