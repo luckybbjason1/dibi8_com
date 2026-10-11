@@ -13,10 +13,7 @@ Allow: /sitemap.xml
 Allow: /index.xml
 Allow: /atom.xml
 Allow: /llms.txt
-
-# Disallow admin/utility paths
-Disallow: /404.html
-Disallow: /404
+Allow: /404.html
 
 # Sitemap location
 Sitemap: https://dibi8.com/sitemap.xml
@@ -44,8 +41,3 @@ User-agent: anthropic-ai
 Allow: /
 Allow: /ai-coding-agents/
 Allow: /llm-frameworks/
-
-# Block API/admin patterns (if any)
-Disallow: /api/
-Disallow: /admin/
-Disallow: /wp-admin/
