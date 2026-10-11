@@ -429,9 +429,9 @@
     </div>
     
     <div class="bento-grid">
-      {{ $allArticles := where .Site.RegularPages "Section" "ai-coding-agents" }}
-      {{ $trending := after 10 $allArticles.ByDate.Reverse | first 6 }}
-      {{ range $trending }}
+      {{ $articles := where .Site.RegularPages "Section" "ai-coding-agents" }}
+      {{ $sorted := sort $articles "Date" "desc" }}
+      {{ range first 6 (after 10 $sorted) }}
       <article class="glass-card p-6 hover:border-neon-cyan/50 transition-all group" aria-label="{{ .Title }}">
         <div class="flex items-center gap-3 mb-4">
           <div class="dimension-card__icon-wrap w-10 h-10 flex-shrink-0" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(139, 92, 246, 0.2));">
