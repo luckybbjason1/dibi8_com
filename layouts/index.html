@@ -428,7 +428,10 @@
     </div>
     
     <div class="bento-grid">
-      {{ range after 10 (where .Site.RegularPages "Section" "ai-coding-agents").ByDate.Reverse | first 6 }}
+      {{ $allArticles := where .Site.RegularPages "Section" "ai-coding-agents" }}
+      {{ $featured := first 10 $allArticles.ByDate.Reverse }}
+      {{ $trending := after 10 $featured | first 6 }}
+      {{ range $trending }}
       <article class="glass-card p-6 hover:border-neon-cyan/50 transition-all group" aria-label="{{ .Title }}">
         <div class="flex items-center gap-3 mb-4">
           <div class="dimension-card__icon-wrap w-10 h-10 flex-shrink-0" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(139, 92, 246, 0.2));">
