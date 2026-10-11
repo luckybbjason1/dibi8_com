@@ -1,14 +1,62 @@
-{{ define "title" }}404 Page not found | {{ .Site.Title }}{{ end }}
 {{ define "main" }}
-<div class="min-h-screen flex items-center justify-center px-6">
+<div class="min-h-screen bg-deep-900 flex items-center justify-center px-6 py-24">
     <div class="text-center max-w-lg">
-        <div class="text-8xl font-bold text-gray-200 mb-4">404</div>
-        <h1 class="text-2xl font-bold text-gray-900 mb-4">页面未找到</h1>
-        <p class="text-gray-500 mb-8">抱歉，您访问的页面不存在或已被移除。</p>
-        <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-blue-600 text-white font-medium rounded-xl transition-all">
-            <i class="fas fa-home"></i>
-            返回首页
-        </a>
+        <!-- 404 Number -->
+        <div class="text-9xl font-black text-white/10 mb-4 select-none">
+            404
+        </div>
+        
+        <!-- Title -->
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            页面未找到
+        </h1>
+        
+        <!-- Description -->
+        <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+            抱歉，您访问的页面不存在或已被移除。<br>
+            可能是链接已失效或页面已被删除。
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="/" class="btn btn--primary inline-flex items-center gap-2">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                返回首页
+            </a>
+            <a href="/categories/" class="btn btn--secondary inline-flex items-center gap-2">
+                <i class="fas fa-tools" aria-hidden="true"></i>
+                浏览工具
+            </a>
+        </div>
+        
+        <!-- Six Dimensions Quick Links -->
+        <div class="mt-12 pt-8 border-t border-white/10">
+            <p class="text-sm text-gray-500 mb-4">快速导航到六维架构</p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="/" class="px-3 py-1.5 text-xs text-gray-400 hover:text-neon-cyan bg-white/5 hover:bg-neon-cyan/10 rounded-full border border-white/10 hover:border-neon-cyan/30 transition-all">
+                    工具发现
+                </a>
+                <a href="/categories/" class="px-3 py-1.5 text-xs text-gray-400 hover:text-neon-purple bg-white/5 hover:bg-neon-purple/10 rounded-full border border-white/10 hover:border-neon-purple/30 transition-all">
+                    生态报告
+                </a>
+                <a href="/collections/" class="px-3 py-1.5 text-xs text-gray-400 hover:text-neon-pink bg-white/5 hover:bg-neon-pink/10 rounded-full border border-white/10 hover:border-neon-pink/30 transition-all">
+                    价格对比
+                </a>
+                <a href="/about/" class="px-3 py-1.5 text-xs text-gray-400 hover:text-neon-green bg-white/5 hover:bg-neon-green/10 rounded-full border border-white/10 hover:border-neon-green/30 transition-all">
+                    使用指南
+                </a>
+            </div>
+        </div>
+        
+        <!-- Logo -->
+        <div class="mt-12">
+            <a href="/" class="inline-flex items-center gap-2 text-gray-500 hover:text-white transition-colors">
+                <div class="w-8 h-8 bg-gradient-to-br from-neon-purple to-neon-cyan rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">D</span>
+                </div>
+                <span class="font-bold gradient-text">Dibi8</span>
+            </a>
+        </div>
     </div>
 </div>
 {{ end }}
