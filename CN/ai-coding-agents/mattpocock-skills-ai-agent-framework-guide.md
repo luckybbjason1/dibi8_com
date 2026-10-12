@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "mattpocock-skills-ai-agent-framework-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ## Introduction

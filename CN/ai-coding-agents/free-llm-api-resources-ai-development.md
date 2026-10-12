@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "free-llm-api-resources-ai-development"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Free LLM API Resources: Access AI Models Without Breakin...
 description: "Technical guide and comparison"

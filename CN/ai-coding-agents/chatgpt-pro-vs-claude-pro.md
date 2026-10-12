@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "chatgpt-pro-vs-claude-pro"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # ChatGPT Pro vs Claude Pro in 2026: Which $20 (or $200) AI Subscription Wins?

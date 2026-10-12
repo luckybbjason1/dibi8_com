@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ruv-pi"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ## Introduction

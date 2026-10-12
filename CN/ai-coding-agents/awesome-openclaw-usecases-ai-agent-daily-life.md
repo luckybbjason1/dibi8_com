@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "awesome-openclaw-usecases-ai-agent-daily-life"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "42 Real-World OpenClaw Use Cases: How People Use AI Agen...
 description: "Technical guide and comparison"

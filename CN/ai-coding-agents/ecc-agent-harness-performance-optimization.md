@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ecc-agent-harness-performance-optimization"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # ECC: Agent Harness Performance Optimization — 2026 Guide

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "deepseek-v3-vs-claude-sonnet"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights vs 1M Context

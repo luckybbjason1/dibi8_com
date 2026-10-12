@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "agent-skills-production-workflows"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Addy Osmani's Agent Skills: The Production-Grade Approach

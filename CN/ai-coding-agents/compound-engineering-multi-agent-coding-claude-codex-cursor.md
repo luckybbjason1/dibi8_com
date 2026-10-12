@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "compound-engineering-multi-agent-coding-claude-codex-cursor"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Compound Engineering: Multi-Agent Orchestration Plugin — 2026 Guide

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "cognee-ai-memory-platform"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Cognee: 26K+ Star Open-Source AI Memory Platform for Age...
 description: "Technical guide and comparison"
@@ -13,6 +14,7 @@ lastmod: 2026-07-03T09:00:00+09:00
 slug: cognee-ai-memory-platform
 category: llm-frameworks
 tags: ["ai-memory", "rag", "knowledge-graph", "ai-agents", "open-source"]
+categories: ["ai-coding-agents"]
 tech_stack: - Python
   - TypeScript
   - Docker

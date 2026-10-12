@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "2026-09-20-archify-diagrams"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 Archify by tt-a1i has emerged as one of the most popular architecture visualization tools in 2026, gaining **59,700 stars** and **3,900 forks** in a single month. This self-contained HTML tool generates beautiful, interactive diagrams from code analysis without requiring external dependencies.
 

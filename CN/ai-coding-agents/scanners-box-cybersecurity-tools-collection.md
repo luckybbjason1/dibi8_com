@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "scanners-box-cybersecurity-tools-collection"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Scanners-Box: 200+ Cybersecurity Tools Collection for Se...
 description: "Technical guide and comparison"

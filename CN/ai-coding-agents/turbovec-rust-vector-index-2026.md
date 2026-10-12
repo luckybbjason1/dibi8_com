@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "turbovec-rust-vector-index-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)

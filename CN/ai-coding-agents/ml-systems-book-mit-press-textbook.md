@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ml-systems-book-mit-press-textbook"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "ML Systems Book: MIT Press Textbook on Machine Learning ..."
 description: "Technical guide and comparison"

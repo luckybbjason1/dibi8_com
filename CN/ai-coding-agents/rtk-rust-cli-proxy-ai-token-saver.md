@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "rtk-rust-cli-proxy-ai-token-saver"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 {</* resource-info */>}

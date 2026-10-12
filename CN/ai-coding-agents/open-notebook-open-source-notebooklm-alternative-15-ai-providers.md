@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "open-notebook-open-source-notebooklm-alternative-15-ai-providers"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026

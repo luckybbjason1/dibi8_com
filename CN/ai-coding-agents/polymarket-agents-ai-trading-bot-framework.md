@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "polymarket-agents-ai-trading-bot-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Polymarket Agents: Build AI Trading Bots for Prediction ...
 description: "Technical guide and comparison"

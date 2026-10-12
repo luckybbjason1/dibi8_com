@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "huggingface-transformers-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 {</* resource-info */>}

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ## Introduction

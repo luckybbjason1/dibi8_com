@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "markitdown-dev-utils-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # markitdown: Convert Files & Office Docs to Markdown (141K Stars) — Practical 2026 Guide

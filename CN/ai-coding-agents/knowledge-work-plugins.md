@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "knowledge-work-plugins"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 th--.png

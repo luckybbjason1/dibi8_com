@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "agent-reach-internet-access-ai-agents"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Agent-Reach: Free Internet Access for Your AI Agent

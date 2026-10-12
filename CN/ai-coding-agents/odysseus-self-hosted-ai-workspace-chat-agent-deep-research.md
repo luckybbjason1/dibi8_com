@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "odysseus-self-hosted-ai-workspace-chat-agent-deep-research"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026

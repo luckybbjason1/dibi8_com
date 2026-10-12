@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "open-llm-vtuber-voice-powered-ai-avatar"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free

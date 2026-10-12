@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ds4-deepseek-flash-local-inference"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe...
   128GB Mac'

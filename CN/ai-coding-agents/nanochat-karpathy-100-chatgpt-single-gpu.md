@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "nanochat-karpathy-100-chatgpt-single-gpu"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # nanochat: Karpathy's $100 ChatGPT — Build Your Own AI Chat App on a Single GPU — A Practical Guide 2026

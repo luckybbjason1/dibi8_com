@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ds4-deepseek-4-flash-local-inference-engine"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 {</* resource-info */>}

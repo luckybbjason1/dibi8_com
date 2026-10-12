@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "facefusion-architecture-onnx-video-face-swap"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: Why Did the Classic 'Roop' Die?
 description: "AI tool guide"

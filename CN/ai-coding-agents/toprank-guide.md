@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "toprank-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "GEO Optimization Checklist: Make ChatGPT Cite You Using ...
   Agent)'

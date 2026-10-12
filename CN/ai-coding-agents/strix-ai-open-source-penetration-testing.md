@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "strix-ai-open-source-penetration-testing"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram...
 description: "Technical guide and comparison"
@@ -13,6 +14,7 @@ lastmod: 2026-07-03T09:00:00+09:00
 slug: strix-ai-open-source-penetration-testing
 category: dev-utils
 tags: ["security", "penetration-testing", "ai-agents", "vulnerability-scanning", "open-source"]
+categories: ["ai-coding-agents"]
 tech_stack: - Python
   - TypeScript
   - Bash

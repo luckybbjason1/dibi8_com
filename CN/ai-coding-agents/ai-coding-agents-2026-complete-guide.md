@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ai-coding-agents-2026-complete-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 {

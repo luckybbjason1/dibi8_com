@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "n8n-ai-workflow-automation-self-hosted-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 ## Why n8n Is Exploding in 2026
 

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "howtocook-programmer-open-source-cookbook"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "HowToCook: 297 Recipes for Programmers - The Open Source..."
 description: "Technical guide and comparison"

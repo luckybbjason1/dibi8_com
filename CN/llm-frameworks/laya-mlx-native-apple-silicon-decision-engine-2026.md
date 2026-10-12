@@ -5,6 +5,7 @@ date: 2026-09-24T00:00:00+08:00
 slug: "laya-mlx-native-apple-silicon-decision-engine-2026"
 category: "llm-frameworks"
 tags: ["laya-mlx", "apple-silicon", "mlx", "decision-engine", "m3-max", "system1", "typed-decisions", "2026", "open-source"]
+categories: ["llm-frameworks"]
 github_repo: "https://github.com/mizorewww/laya-mlx"
 stars: 5920
 maintainer: "mizorewww"

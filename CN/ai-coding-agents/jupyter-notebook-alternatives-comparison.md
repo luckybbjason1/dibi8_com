@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "jupyter-notebook-alternatives-comparison"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Top Jupyter Notebook Alternatives in 2024: JupyterLab vs Google Colab vs Deepnote vs Hex Compared

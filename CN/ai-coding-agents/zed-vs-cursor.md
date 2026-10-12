@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "zed-vs-cursor"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Zed vs Cursor in 2026: Native Speed vs AI Depth — Honest Comparison

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "cursor-vs-windsurf"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Cursor vs Windsurf in 2026: Which AI IDE Wins?

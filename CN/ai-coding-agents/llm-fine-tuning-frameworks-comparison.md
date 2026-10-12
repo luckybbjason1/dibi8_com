@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "llm-fine-tuning-frameworks-comparison"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 {</* resource-info */>}

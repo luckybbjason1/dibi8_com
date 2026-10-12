@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "code-quality-tools-eslint-prettier-black-ruff"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 
 # Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More

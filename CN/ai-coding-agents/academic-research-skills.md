@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "academic-research-skills"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "opensea-nft-marketplace-api"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 

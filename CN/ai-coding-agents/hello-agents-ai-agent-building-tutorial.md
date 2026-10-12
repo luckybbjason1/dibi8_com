@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "hello-agents-ai-agent-building-tutorial"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Hello-Agents: How Datawhale'"
   Production-Grade Agents from Scratch'

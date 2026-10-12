@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "supabase-vs-firebase"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Supabase vs Firebase in 2026: Which BaaS Wins?

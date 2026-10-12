@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "reading-explain-analyze-postgres"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: Reading EXPLAIN ANALYZE in Postgres Without Getting Lost
 description: "AI tool guide"

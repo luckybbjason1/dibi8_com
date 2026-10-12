@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "superpowers"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &...
@@ -14,6 +15,7 @@ lastmod: 2026-05-23
 slug: "superpowers"
 category: "llm-frameworks"
 tags: ["agentic-ai", "llm-frameworks", "shell-scripting", "software-development", "ai-agents", "developer-tools"]
+categories: ["ai-coding-agents"]
 
 * * *
 {

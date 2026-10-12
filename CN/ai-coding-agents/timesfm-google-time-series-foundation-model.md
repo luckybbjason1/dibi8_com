@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "timesfm-google-time-series-foundation-model"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting

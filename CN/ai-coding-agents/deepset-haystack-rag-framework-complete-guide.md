@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "deepset-haystack-rag-framework-complete-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 

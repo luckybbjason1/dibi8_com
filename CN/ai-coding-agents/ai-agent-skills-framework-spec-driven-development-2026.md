@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ai-agent-skills-framework-spec-driven-development-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 ## What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego
 

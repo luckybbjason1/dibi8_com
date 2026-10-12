@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "aiwind-ai-prompt-library-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Midjourney 示例"
 description: "等主流模型的专业提示词，覆盖写实肖像、赛博朋克、3D 渲染等多种风格"

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "windsurf-vs-github-copilot-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Why This Matters"
 description: "AI tool guide"

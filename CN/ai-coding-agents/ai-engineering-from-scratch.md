@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ai-engineering-from-scratch"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ## TL;DR

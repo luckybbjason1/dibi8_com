@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "impeccable-ai-design-language-harness-quality-ui"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review

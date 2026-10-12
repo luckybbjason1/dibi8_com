@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "mistral-ai-local-llm-deployment"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 

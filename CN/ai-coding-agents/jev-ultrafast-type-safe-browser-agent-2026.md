@@ -5,6 +5,7 @@ date: 2026-09-24T00:00:00+08:00
 slug: "jev-ultrafast-type-safe-browser-agent-2026"
 category: "ai-coding-agents"
 tags: ["jev-ultrafast", "browser-agent", "type-safe", "web-automation", "claude-code", "coding-agent", "llm-automation", "2026", "open-source"]
+categories: ["ai-coding-agents"]
 github_repo: "https://github.com/browser-use/jev-ultrafast"
 stars: 19001
 maintainer: "browser-use"

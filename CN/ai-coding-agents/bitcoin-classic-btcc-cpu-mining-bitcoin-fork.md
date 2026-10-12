@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "bitcoin-classic-btcc-cpu-mining-bitcoin-fork"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinar..."
 description: "Technical guide and comparison"

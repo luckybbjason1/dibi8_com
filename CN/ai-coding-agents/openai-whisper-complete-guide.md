@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "openai-whisper-complete-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 

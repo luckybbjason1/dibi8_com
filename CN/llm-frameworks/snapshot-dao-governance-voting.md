@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "snapshot-dao-governance-voting"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 
 

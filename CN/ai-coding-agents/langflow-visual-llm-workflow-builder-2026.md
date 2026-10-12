@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "langflow-visual-llm-workflow-builder-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026

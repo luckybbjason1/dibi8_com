@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "openai-codex-cli-terminal-ai-coding-agent-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 {</* resource-info */>}

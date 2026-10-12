@@ -3,6 +3,7 @@ title: "LLM Frameworks - dibi8"
 description: "LangChain, Llama, Transformers, and other LLM frameworks tested on real projects."
 date: 2026-09-22
 tags: ["llm-frameworks"]
+categories: ["llm-frameworks"]
 ---
 
 # LLM Frameworks

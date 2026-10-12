@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "voicebox-open-source-ai-voice-studio"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "VoiceBox: The Open-Source AI Voice Studio for Cloning, D...
   description: "Technical guide and comparison"
@@ -14,6 +15,7 @@ draft: false
   lang: en
   category: ai-tools
 tags: ["ai", "voice-ai", "voice-clone", "speech-to-text", "text-to-speech", "whisper", "qwen3-tts", "cuda", "mlx"]
+categories: ["ai-coding-agents"]
   slug: voicebox-open-source-ai-voice-studio
 
 

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "anthropic-financial-services-ai-finance-automation"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Anthropic Financial Services: How Financial Teams Can Au...
   Boost ROI by 300%'

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "cc-switch-all-in-one-ai-coding-agent-manager"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "1m-context-window-llm-2026-real-test"
 category: "ai-tools"
 tags: ["ai", "tools", "context-window"]
+categories: ["ai-coding-agents"]
 ---
 
 This is a comprehensive technical comparison of ultra-long context window LLMs...

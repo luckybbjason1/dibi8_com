@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "claude-agent-sdk-vs-openai-agents-sdk"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to Build On?

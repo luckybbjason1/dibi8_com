@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ## Introduction

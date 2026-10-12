@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "headroom-token-compression-proxy-library-mcp-server"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026

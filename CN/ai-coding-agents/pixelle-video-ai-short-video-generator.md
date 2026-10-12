@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "pixelle-video-ai-short-video-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video"
 description: "AI tool guide"

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ai-data-analysis-tools-2025"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Best AI Data Analysis Tools 2025: ChatGPT, Julius, Tableau AI & More

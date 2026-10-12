@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "2026-09-20-humanizer-ai-writing"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 Humanizer is a powerful agent skill that eliminates AI-generated writing patterns from text while preserving the original meaning. Created by blader, it has garnered **49,212 GitHub stars** and **3,993 forks** since its release in January 2026.
 

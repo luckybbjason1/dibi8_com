@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "agent-reach-ai-agent-internet-access"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Agent Reach: Give Your AI Agent Internet Superpowers"
 description: "AI tool guide"

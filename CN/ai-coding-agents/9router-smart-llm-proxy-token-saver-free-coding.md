@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "9router-smart-llm-proxy-token-saver-free-coding"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Clone and install"
 description: "AI tool guide"

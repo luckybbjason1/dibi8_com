@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ai-voice-tools-text-to-speech-transcription"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 
 # Best AI Voice Tools 2025: Text-to-Speech & Speech-to-Text Comparison

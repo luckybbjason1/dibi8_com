@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "mcp-deep-dive-definitive-2026-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers

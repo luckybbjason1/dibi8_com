@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "top-rag-tools"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Top RAG Tools for AI Knowledge Bases

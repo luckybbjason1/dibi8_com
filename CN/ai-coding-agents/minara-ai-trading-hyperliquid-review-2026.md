@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "minara-ai-trading-hyperliquid-review-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 

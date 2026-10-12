@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "worldmonitor-real-time-global-intelligence-dashboard"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "WorldMonitor: Real-Time Global Intelligence Dashboard fo...
   description: "Technical guide and comparison"
@@ -14,6 +15,7 @@ draft: false
   lang: en
   category: ai-tools
 tags: ["ai", "dashboard", "geopolitics", "monitoring", "news", "opensource", "osint", "palantir", "situation-awareness"]
+categories: ["ai-coding-agents"]
   slug: worldmonitor-real-time-global-intelligence-dashboard
 
 

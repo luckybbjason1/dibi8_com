@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "rag-architecture-implementation-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 {</* resource-info */>}

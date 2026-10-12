@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "paddleocr-81k-star-ocr-engine"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 
 # PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost

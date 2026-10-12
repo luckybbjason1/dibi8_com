@@ -3,6 +3,7 @@ title: "AI Coding Agents - dibi8"
 description: "AI tool guide"
 date: 2026-09-22
 tags: ["ai-coding-agents"]
+categories: ["ai-coding-agents"]
 ---
 
 # AI Coding Agents

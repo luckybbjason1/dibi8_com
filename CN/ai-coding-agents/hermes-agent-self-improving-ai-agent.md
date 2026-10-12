@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "hermes-agent-self-improving-ai-agent"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Run a skill every day at 9 AM"
 description: "AI tool guide"

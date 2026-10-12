@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "anythingllm-architecture-local-rag"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: Why Do Enterprises Fear ChatGPT?
 description: "AI tool guide"

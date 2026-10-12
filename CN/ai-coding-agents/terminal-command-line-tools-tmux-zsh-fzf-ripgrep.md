@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "terminal-command-line-tools-tmux-zsh-fzf-ripgrep"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 {</* resource-info */>}

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ollama-vs-lm-studio"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Ollama vs LM Studio in 2026: Which Local LLM Runner Wins?

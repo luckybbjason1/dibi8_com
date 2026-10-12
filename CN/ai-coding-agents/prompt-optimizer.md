@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "prompt-optimizer"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Prompt Optimizer — Restructure, Trim Fillers, Save Tokens (GPT / Claude / Gemini / DeepSeek)

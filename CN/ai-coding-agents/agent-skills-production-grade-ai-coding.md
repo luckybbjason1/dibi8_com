@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "agent-skills-production-grade-ai-coding"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Agent Skills: How Development Teams Can Ship Production-...
 description: "Technical guide and comparison"

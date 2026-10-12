@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "goose-ai-agent-open-source-automation"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Goose AI Agent: Open-Source Automation by Linux Foundati...
 description: "Technical guide and comparison"

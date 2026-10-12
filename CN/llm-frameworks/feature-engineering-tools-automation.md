@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "feature-engineering-tools-automation"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 
 {</* resource-info */>}

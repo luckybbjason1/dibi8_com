@@ -5,6 +5,7 @@ date: 2026-09-24T00:00:00+08:00
 slug: "kev-trainable-decision-models-qwen35-2026"
 category: "llm-frameworks"
 tags: ["kev", "qwen35", "trainable-models", "decision-models", "jared-palmer", "rlvr", "pydantic", "2026", "open-source"]
+categories: ["llm-frameworks"]
 github_repo: "https://github.com/jaredpalmer/kev"
 stars: 5888
 maintainer: "jaredpalmer"

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "polymarket-trading-bot-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "28 Tools Behind a $1M Polymarket Trading Bot: Full Stack...
 description: "Technical guide and comparison"

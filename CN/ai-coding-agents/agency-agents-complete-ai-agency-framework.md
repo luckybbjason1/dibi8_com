@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "agency-agents-complete-ai-agency-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Agency Agents: 125K+ Star Open-Source AI Agency Framework"
 description: "AI tool guide"
@@ -13,6 +14,7 @@ lastmod: 2026-07-03T09:00:00+09:00
 slug: agency-agents-complete-ai-agency-framework
 category: dev-utils
 tags: ["ai-agents", "open-source", "automation", "multi-agent", "agency"]
+categories: ["ai-coding-agents"]
 tech_stack: - Bash
   - Python
   - Shell

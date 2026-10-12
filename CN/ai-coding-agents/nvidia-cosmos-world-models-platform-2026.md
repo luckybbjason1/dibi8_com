@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "nvidia-cosmos-world-models-platform-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ![NVIDIA Cosmos platform](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)

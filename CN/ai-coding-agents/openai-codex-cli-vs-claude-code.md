@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "openai-codex-cli-vs-claude-code"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?

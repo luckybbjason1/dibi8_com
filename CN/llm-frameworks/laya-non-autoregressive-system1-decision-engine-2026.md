@@ -5,6 +5,7 @@ date: 2026-09-24T00:00:00+08:00
 slug: "laya-non-autoregressive-system1-decision-engine-2026"
 category: "llm-frameworks"
 tags: ["laya", "system1", "decision-engine", "non-autoregressive", "typed-decisions", "modernbert", "rlcd", "2026", "open-source"]
+categories: ["llm-frameworks"]
 github_repo: "https://github.com/NandhaKishorM/laya"
 stars: 20240
 maintainer: "NandhaKishorM"

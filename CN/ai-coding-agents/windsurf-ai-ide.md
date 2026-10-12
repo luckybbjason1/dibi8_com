@@ -5,12 +5,14 @@ date: 2026-09-20
 slug: "windsurf-ai-ide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Example: Ask Cascade to implement a feature"
 description: "AI tool guide"
   code, debugs, and ships features autonomously. Pricing, benchmarks, and real-world
   workflows.
 tags: - ai-ide
+categories: ["ai-coding-agents"]
 - coding-agent
 - windsurf
 - codeium

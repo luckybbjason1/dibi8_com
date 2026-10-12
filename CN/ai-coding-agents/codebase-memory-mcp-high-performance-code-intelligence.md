@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "codebase-memory-mcp-high-performance-code-intelligence"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents

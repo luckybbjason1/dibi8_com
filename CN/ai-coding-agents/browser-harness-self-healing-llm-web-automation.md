@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "browser-harness-self-healing-llm-web-automation"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "脆弱的选择器，页面一改就失效"
 description: "AI tool guide"

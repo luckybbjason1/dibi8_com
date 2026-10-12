@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ai-tools-directory"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "AI Tools Directory 2024: Complete Guide to Best AI Tools...
 description: "Technical guide and comparison"

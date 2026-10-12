@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "terax-ai-lightweight-ai-terminal"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Terax AI: The Lightweight AI Terminal Emulator That Unde..."
 description: "Technical guide and comparison"

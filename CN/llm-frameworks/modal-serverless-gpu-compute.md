@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "modal-serverless-gpu-compute"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 ## What Is Modal?
 

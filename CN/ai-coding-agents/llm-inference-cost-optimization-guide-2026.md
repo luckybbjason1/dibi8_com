@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "llm-inference-cost-optimization-guide-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ![Ollama - Local LLM inference made simple](https://opengraph.github.com/github/ollama/ollama)

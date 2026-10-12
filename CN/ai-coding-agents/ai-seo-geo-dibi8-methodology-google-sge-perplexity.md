@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ai-seo-geo-dibi8-methodology-google-sge-perplexity"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 geo

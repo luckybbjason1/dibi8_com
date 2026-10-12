@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "open-source-llm-ranking-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More

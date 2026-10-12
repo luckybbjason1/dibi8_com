@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "local-deep-research-local-first-ai-deep-research-tool"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Local Deep Research: The Ultimate Local-First AI Deep Re..."
 description: "Technical guide and comparison"

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "personal-ai-infrastructure-daniel-miessler"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide

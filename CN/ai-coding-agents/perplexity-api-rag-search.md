@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "perplexity-api-rag-search"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 

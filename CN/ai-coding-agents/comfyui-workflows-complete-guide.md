@@ -5,12 +5,14 @@ date: 2026-09-20
 slug: "comfyui-workflows-complete-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Conceptual flow (actual ComfyUI uses visual connections)"
 description: "AI tool guide"
   Build complex pipelines with nodes, manage dependencies, and create shareable workflow
   templates.
 tags: - comfyui
+categories: ["ai-coding-agents"]
 - ai-image-generation
 - workflow
 - nodes

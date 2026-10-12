@@ -3,6 +3,7 @@ title: "About dibi8"
 description: "Who we are and why we built this AI tools directory"
 date: 2026-09-22
 tags: ["about", "meta"]
+categories: ["ai-coding-agents"]
 ---
 
 # About dibi8

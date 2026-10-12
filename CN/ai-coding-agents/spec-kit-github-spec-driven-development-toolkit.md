@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "spec-kit-github-spec-driven-development-toolkit"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit

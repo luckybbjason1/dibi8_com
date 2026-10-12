@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "daily-stock-analysis-llm-powered-multi-market-stock-intelligence"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Daily Stock Analysis: LLM-Powered Multi-Market Stock Int...
   description: "Technical guide and comparison"
@@ -14,6 +15,7 @@ draft: false
   lang: en
   category: ai-trading
 tags: ["stock-analysis", "llm", "quantitative-trading", "ai-agent", "multi-market", "a-stock", "sentiment-analysis", "automated-trading"]
+categories: ["ai-coding-agents"]
   slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
 
 

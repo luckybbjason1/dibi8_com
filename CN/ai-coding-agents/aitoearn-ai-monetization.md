@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "aitoearn-ai-monetization"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "What Is AiToEarn?"
 description: "AI tool guide"

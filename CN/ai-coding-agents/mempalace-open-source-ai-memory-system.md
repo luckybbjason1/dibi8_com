@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "mempalace-open-source-ai-memory-system"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls

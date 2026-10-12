@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "claude-code-vs-aider"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown

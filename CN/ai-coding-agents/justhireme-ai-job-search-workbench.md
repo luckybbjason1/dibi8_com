@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "justhireme-ai-job-search-workbench"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "问题：找工作就是一份全职工作"
 description: "AI tool guide"

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "lightning-ai-lightning-complete-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 
 

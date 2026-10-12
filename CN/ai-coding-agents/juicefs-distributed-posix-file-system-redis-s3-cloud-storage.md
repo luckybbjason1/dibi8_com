@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "juicefs-distributed-posix-file-system-redis-s3-cloud-storage"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # JuiceFS: Cloud Storage, Local Speed

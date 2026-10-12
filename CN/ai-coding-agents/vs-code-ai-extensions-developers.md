@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "vs-code-ai-extensions-developers"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Best VS Code AI Extensions for Developers in 2025: Boost Productivity

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "mempalace"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "MemPalace vs Mem0: 96.6% Recall Benchmark & Best AI Memo..."
 description: "6% Recall Benchmark & Best AI Memo"

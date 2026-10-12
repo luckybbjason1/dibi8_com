@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "vscode-copilot-vs-cursor"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # VS Code Copilot vs Cursor in 2026: Which AI Coding Tool Wins?

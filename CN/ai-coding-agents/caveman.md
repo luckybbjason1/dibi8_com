@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "caveman"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens"
 description: "AI tool guide"

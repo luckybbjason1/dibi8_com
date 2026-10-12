@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "sglang-structured-generation-llm"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 ## What Is SGLang?
 

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "openhuman"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026

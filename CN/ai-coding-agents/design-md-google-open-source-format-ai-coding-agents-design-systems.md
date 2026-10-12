@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "design-md-google-open-source-format-ai-coding-agents-design-systems"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # DESIGN.md: Google's Open-Source Format for Giving AI Coding Agents a Design System

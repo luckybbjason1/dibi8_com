@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "codebase-memory-mcp-deep-code-intelligence"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server"
 description: "AI tool guide"
@@ -13,6 +14,7 @@ lastmod: 2026-07-03T09:00:00+09:00
 slug: codebase-memory-mcp-deep-code-intelligence
 category: llm-frameworks
 tags: ["mcp", "code-intelligence", "ai-agents", "vector-search", "open-source"]
+categories: ["ai-coding-agents"]
 tech_stack: - C
   - Rust
   - Python

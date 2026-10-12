@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "top-10-open-source-ai-tools-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: Top 10 Open-Source AI Tools for Developers in 2026 (Free ...
 description: "AI tool guide"

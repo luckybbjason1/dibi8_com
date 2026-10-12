@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "nuwa-skill-distill-thinking-model-ai-agent-skills"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026

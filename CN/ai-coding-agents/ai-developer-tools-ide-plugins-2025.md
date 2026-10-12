@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ai-developer-tools-ide-plugins-2025"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Best AI Developer Tools & IDE Plugins 2025: Beyond Code Generation

@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "skillspector-nvidia-open-source-security-scanner-ai-agent-skills"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 title: "SkillSpector: NVIDIA's Open-Source Security Scanner for ..."
   description: "Technical guide and comparison"
@@ -14,6 +15,7 @@ draft: false
   lang: en
   category: dev-utils
 tags: ["security", "ai-agents", "scanner", "vulnerability-detection", "claude-code", "codex", "mcp", "agent-skills", "nvidia"]
+categories: ["ai-coding-agents"]
   slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills
 
 

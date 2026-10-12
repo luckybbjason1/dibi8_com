@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 ## Introduction

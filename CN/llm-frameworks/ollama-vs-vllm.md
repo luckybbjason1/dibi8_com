@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "ollama-vs-vllm"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 
 # Ollama vs vLLM in 2026: Local Dev Simplicity vs Production Throughput

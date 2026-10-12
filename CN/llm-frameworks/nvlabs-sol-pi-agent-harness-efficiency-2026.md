@@ -5,6 +5,7 @@ date: 2026-09-24T00:00:00+08:00
 slug: "nvlabs-sol-pi-agent-harness-efficiency-2026"
 category: "llm-frameworks"
 tags: ["soL-Pi", "agent-harness", "token-efficiency", "nvidia", "auto-research", "claude-code-alternative", "coding-agent", "llm-optimization", "2026", "open-source"]
+categories: ["llm-frameworks"]
 github_repo: "https://github.com/NVlabs/SoL-Pi"
 stars: 2981
 maintainer: "NVlabs"

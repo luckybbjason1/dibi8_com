@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "llm-recommender"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["llm-frameworks"]
 ---
 
 # LLM Model Recommender 2026 — Pick the Right LLM by Use Case, Budget, Context Length, Privacy

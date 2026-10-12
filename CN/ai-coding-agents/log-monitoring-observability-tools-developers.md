@@ -5,6 +5,7 @@ date: 2026-09-20
 slug: "log-monitoring-observability-tools-developers"
 category: "ai-tools"
 tags: ["ai", "tools"]
+categories: ["ai-coding-agents"]
 ---
 
 # Log Monitoring & Observability Tools for Developers: 2025 Complete Guide

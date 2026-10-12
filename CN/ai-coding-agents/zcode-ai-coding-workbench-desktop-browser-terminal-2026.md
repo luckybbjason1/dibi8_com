@@ -5,6 +5,7 @@ date: 2026-09-24T00:00:00+08:00
 slug: "zcode-ai-coding-workbench-desktop-browser-terminal-2026"
 category: "ai-coding-agents"
 tags: ["zcode", "ai-coding", "workbench", "multi-agent", "vscode-extension", "web-ide", "coding-agent", "2026", "open-source"]
+categories: ["ai-coding-agents"]
 github_repo: "https://github.com/zai-org/ZCode"
 stars: 6525
 maintainer: "zai-org"
