@@ -8,7 +8,8 @@ slug: "claude-code-subagent-vs-mcp-server-skill-agent-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Subagent vs MCP Server vs Skill: When to Build Each Clau...

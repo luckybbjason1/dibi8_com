@@ -8,7 +8,8 @@ slug: "stable-diffusion-webui-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star S...

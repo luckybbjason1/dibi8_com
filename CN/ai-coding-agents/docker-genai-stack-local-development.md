@@ -8,7 +8,8 @@ slug: "docker-genai-stack-local-development"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Docker GenAI Stack: Spin Up LangChain, Vector DB & LLM i...

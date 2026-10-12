@@ -8,7 +8,8 @@ slug: "axolotl-llm-fine-tuning-framework-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F...

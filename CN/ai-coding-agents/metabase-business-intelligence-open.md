@@ -8,7 +8,8 @@ slug: "metabase-business-intelligence-open"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Metabase 2026: The Open-Source Business Intelligence Too...

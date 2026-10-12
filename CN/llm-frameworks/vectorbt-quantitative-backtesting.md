@@ -8,7 +8,8 @@ slug: "vectorbt-quantitative-backtesting"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "VectorBT: The Lightning-Fast Python Backtesting Library ...

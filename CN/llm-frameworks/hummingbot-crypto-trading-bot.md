@@ -8,7 +8,8 @@ slug: "hummingbot-crypto-trading-bot"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Hummingbot 2026: The Open-Source Crypto Trading Bot Runn...

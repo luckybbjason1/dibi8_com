@@ -8,7 +8,8 @@ slug: "puppeteer"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Install with bundled Chromium"

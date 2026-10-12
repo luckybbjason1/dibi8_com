@@ -8,7 +8,8 @@ slug: "knowledge-graph-tools-frameworks"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Best Knowledge Graph Tools & Frameworks 2025: Neo4j, RDF...

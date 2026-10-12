@@ -8,7 +8,8 @@ slug: "firecrawl-dev-utils-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St...

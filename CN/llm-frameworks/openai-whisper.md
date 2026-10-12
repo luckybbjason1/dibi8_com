@@ -8,7 +8,8 @@ slug: "openai-whisper"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "whisper-env\Scripts\activate   Windows"

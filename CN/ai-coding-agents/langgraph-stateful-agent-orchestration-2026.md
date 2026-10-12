@@ -8,7 +8,8 @@ slug: "langgraph-stateful-agent-orchestration-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "LangGraph 1.2 in Production: Stateful Agent Orchestratio...

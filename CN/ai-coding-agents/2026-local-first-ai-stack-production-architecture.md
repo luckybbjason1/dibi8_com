@@ -8,7 +8,8 @@ slug: "2026-local-first-ai-stack-production-architecture"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）"

@@ -8,7 +8,8 @@ slug: "stable-diffusion-webui"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Install dependencies (Ubuntu/Debian)"

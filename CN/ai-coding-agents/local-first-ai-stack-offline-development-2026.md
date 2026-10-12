@@ -8,7 +8,8 @@ slug: "local-first-ai-stack-offline-development-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Local-First AI Stack 2026: Fully Offline AI Development ...

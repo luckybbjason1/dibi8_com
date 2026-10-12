@@ -8,7 +8,8 @@ slug: "qdrant-vector-database-rust"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Qdrant: The Rust-Powered Vector Database Handling 1M+ Ve...

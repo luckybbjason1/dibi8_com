@@ -8,7 +8,8 @@ slug: "ai-presentation-tools"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Best AI Presentation Tools 2025: Gamma, Beautiful.ai, To...

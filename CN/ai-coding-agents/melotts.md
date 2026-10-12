@@ -8,7 +8,8 @@ slug: "melotts"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Ubuntu/Debian"

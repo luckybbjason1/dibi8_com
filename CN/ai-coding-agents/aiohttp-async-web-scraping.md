@@ -8,7 +8,8 @@ slug: "aiohttp-async-web-scraping"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "aiohttp 2026: Build High-Performance Async Web Scrapers ...

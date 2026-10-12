@@ -8,7 +8,8 @@ slug: "feast-feature-store-ml"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 title: "Feast: The Open-Source Feature Store Serving ML Features...

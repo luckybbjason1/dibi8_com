@@ -8,7 +8,8 @@ slug: "instructor-structured-llm-output"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Instructor: The Python Library That Forces LLMs to Outpu...

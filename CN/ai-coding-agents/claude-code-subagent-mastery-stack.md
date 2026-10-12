@@ -8,7 +8,8 @@ slug: "claude-code-subagent-mastery-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Claude Code Subagent Mastery Stack 2026: From One Conver...

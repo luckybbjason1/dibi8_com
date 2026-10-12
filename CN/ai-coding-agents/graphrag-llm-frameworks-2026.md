@@ -8,7 +8,8 @@ slug: "graphrag-llm-frameworks-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "GraphRAG: Microsoft'"

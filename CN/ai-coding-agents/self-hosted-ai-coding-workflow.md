@@ -8,7 +8,8 @@ slug: "self-hosted-ai-coding-workflow"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Self-Hosted AI Coding Workflow: The Complete $6/Month St...

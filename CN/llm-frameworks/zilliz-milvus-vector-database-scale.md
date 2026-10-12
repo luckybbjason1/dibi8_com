@@ -8,7 +8,8 @@ slug: "zilliz-milvus-vector-database-scale"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Milvus/Zilliz 2026: The Vector Database Handling 10 Bill...

@@ -8,7 +8,8 @@ slug: "baetyl-edge-ai-computing-platform"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Baetyl: The Cloud-Native Edge AI Computing Platform Depl...

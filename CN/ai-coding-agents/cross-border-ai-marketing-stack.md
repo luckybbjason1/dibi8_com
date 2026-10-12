@@ -8,7 +8,8 @@ slug: "cross-border-ai-marketing-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Cross-Border AI Marketing Stack 2026: 7-Tool Setup for C...

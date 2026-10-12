@@ -8,7 +8,8 @@ slug: "ultimate-vocal-remover"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Download UVR v5.6 from the official release page"

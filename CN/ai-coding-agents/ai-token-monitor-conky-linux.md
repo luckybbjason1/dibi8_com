@@ -8,7 +8,8 @@ slug: "ai-token-monitor-conky-linux"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota...

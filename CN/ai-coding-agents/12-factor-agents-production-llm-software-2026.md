@@ -8,7 +8,8 @@ slug: "12-factor-agents-production-llm-software-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）"

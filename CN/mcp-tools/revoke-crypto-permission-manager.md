@@ -8,7 +8,8 @@ slug: "revoke-crypto-permission-manager"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 

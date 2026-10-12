@@ -8,7 +8,8 @@ slug: "meilisearch-fast-search-engine"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Meilisearch: The Lightning-Fast Open-Source Search Engin...

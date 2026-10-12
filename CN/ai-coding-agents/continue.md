@@ -8,7 +8,8 @@ slug: "continue"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Method 1: Marketplace search"

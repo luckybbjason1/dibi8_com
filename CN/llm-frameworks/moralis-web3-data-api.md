@@ -8,7 +8,8 @@ slug: "moralis-web3-data-api"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Moralis 2026: The Web3 Data API Powering 100K+ DApps wit...

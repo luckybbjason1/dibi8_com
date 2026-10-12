@@ -8,7 +8,8 @@ slug: "cheap-llm-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "The Cheap LLM Stack 2026: How to Run Production AI on $0...

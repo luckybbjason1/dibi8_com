@@ -8,7 +8,8 @@ slug: "llm-evaluation-benchmarking-frameworks"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "LLM Evaluation & Benchmarking Frameworks 2025: EleutherA...

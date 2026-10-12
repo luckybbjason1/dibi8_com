@@ -8,7 +8,8 @@ slug: "rag-vs-fine-tuning-2026-decision-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "RAG vs Fine-Tuning 2026: A Data-Driven Decision Framewor...

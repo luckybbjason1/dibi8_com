@@ -8,7 +8,8 @@ slug: "arize-ai-observability-llm"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Arize AI Phoenix: The Open-Source LLM Observability Tool...

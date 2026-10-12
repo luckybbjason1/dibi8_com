@@ -8,7 +8,8 @@ slug: "lobe-chat-openai-alternative-ui"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Lobe Chat: The Open-Source ChatGPT UI Alternative with 2...

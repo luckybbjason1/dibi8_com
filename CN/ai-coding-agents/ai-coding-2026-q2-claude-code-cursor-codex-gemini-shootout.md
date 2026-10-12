@@ -8,7 +8,8 @@ slug: "ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr...

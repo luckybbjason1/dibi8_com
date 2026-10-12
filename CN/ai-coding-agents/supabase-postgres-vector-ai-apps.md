@@ -8,7 +8,8 @@ slug: "supabase-postgres-vector-ai-apps"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Supabase 2026: The Open-Source Firebase Alternative Powe...

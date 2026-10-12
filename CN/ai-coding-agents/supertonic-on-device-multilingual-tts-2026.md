@@ -8,7 +8,8 @@ slug: "supertonic-on-device-multilingual-tts-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）"

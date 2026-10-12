@@ -8,7 +8,8 @@ slug: "plausible-analytics-privacy-google"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Plausible Analytics: The Privacy-First Google Analytics ...

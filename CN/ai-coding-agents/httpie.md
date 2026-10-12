@@ -8,7 +8,8 @@ slug: "httpie"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Upgrade pip and wheel first"

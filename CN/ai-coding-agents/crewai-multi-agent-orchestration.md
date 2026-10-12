@@ -8,7 +8,8 @@ slug: "crewai-multi-agent-orchestration"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "CrewAI: Build Multi-Agent AI Teams That Collaborate Auto...

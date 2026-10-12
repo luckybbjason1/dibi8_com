@@ -8,7 +8,8 @@ slug: "opencode-open-source-claude-code-alternative-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "OpenCode: The Open-Source AI Coding Agent That Overtook ...

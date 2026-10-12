@@ -8,7 +8,8 @@ slug: "pgvector-postgres-vector-extension"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "pgvector 2026: Turn PostgreSQL into a High-Performance V...

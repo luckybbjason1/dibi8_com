@@ -8,7 +8,8 @@ slug: "faster-whisper"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars...

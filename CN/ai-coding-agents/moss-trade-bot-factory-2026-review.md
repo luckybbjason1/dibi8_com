@@ -8,7 +8,8 @@ slug: "moss-trade-bot-factory-2026-review"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Moss Trade Bot Factory Review 2026: AI Agent Quant Workb...

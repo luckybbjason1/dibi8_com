@@ -8,7 +8,8 @@ slug: "alpaca-trading-api-stock-broker"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Alpaca Trading API 2026: The Commission-Free Stock Broke...

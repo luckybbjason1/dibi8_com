@@ -8,7 +8,8 @@ slug: "vibe-coding-2026-korean-concept-explained"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Vibe Coding 2026: The Korean Developer Concept Explained...

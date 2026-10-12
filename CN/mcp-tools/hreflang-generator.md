@@ -8,7 +8,8 @@ slug: "hreflang-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 

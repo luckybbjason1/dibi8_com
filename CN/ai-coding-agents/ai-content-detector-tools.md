@@ -8,7 +8,8 @@ slug: "ai-content-detector-tools"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Best AI Content Detector Tools 2025: GPTZero, Turnitin A...

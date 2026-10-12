@@ -8,7 +8,8 @@ slug: "ai-agent-memory-persistence-letta-mem0-a-mem-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM...

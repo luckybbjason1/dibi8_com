@@ -8,7 +8,8 @@ slug: "cogvideo"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "CogVideo: 视频生成模型部署与使用指南"

@@ -8,7 +8,8 @@ slug: "llm-gateway-portkey-litellm-openrouter-comparison-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga...

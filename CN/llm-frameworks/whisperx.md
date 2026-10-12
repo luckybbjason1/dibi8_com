@@ -8,7 +8,8 @@ slug: "whisperx"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Install CUDA 12.8 toolkit first (Linux)"

@@ -8,7 +8,8 @@ slug: "apple-container"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Apple's Container: Docker-Like Experience on Mac with 37..."

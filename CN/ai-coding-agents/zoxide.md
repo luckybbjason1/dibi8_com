@@ -8,7 +8,8 @@ slug: "zoxide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "zoxide 0.9.7"

@@ -8,7 +8,8 @@ slug: "pancake-trading-bot-defi-bsc"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "PancakeSwap Trading Bot 2026: Build Automated DeFi Strat...

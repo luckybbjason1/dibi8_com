@@ -8,7 +8,8 @@ slug: "odysseus-self-hosted-ai-workspace-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G...

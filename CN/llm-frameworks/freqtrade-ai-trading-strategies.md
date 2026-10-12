@@ -8,7 +8,8 @@ slug: "freqtrade-ai-trading-strategies"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Freqtrade 2026: Build AI-Powered Crypto Trading Strategi...

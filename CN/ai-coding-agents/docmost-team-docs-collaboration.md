@@ -8,7 +8,8 @@ slug: "docmost-team-docs-collaboration"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Docmost 2026: The Open-Source Notion Alternative for Rea...

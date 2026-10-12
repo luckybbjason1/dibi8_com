@@ -8,7 +8,8 @@ slug: "dify"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Dify: Build Production-Grade AI Agents Visually in 5 Min...

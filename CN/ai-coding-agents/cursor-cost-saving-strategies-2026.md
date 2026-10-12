@@ -8,7 +8,8 @@ slug: "cursor-cost-saving-strategies-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Cursor Cost-Saving Strategies 2026: After the Credit Pri...

@@ -8,7 +8,8 @@ slug: "claude-code-subagent-patterns-multi-agent-workflows-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...

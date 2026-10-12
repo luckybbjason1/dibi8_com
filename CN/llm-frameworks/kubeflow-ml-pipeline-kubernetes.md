@@ -8,7 +8,8 @@ slug: "kubeflow-ml-pipeline-kubernetes"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "High-level component view"

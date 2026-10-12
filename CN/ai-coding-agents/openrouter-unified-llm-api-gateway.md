@@ -8,7 +8,8 @@ slug: "openrouter-unified-llm-api-gateway"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "OpenRouter: The Unified LLM API Gateway Connecting 300+ ...

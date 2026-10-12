@@ -8,7 +8,8 @@ slug: "ds4-open-source-deepseek-alternative-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "ds4 Review 2026: The Open-Source DeepSeek Developers Are...

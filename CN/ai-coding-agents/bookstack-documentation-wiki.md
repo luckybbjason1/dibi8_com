@@ -8,7 +8,8 @@ slug: "bookstack-documentation-wiki"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "BookStack: The Developer-Friendly Documentation Wiki wit...

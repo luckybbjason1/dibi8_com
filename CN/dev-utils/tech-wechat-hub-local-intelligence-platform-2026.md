@@ -13,7 +13,8 @@ maintainer: "Rion-Wu-Tech"
 license: MIT
 featureImage: "https://opengraph.github.com/github/Rion-Wu-Tech/WeChat-Hub"
 
-categories: ["dev-utils"]---
+categories: ["dev-utils"]
+---
 
 
 

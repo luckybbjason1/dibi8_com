@@ -8,7 +8,8 @@ slug: "rtk-rust-cli-proxy-llm-token-savings-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills...

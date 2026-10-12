@@ -8,7 +8,8 @@ slug: "repomix-pack-repo-for-llm-context-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "repomix 2026: Pack Your Entire Codebase into One LLM-Rea...

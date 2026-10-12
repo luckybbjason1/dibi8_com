@@ -8,7 +8,8 @@ slug: "pm-skills-68-product-management-skills-ai-agents"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 

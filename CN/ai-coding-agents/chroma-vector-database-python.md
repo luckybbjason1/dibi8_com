@@ -8,7 +8,8 @@ slug: "chroma-vector-database-python"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Chroma DB 2026: The Developer-Friendly Vector Database f...

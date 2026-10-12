@@ -8,7 +8,8 @@ slug: "voicecraft"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "开源项目克隆与部署指南"

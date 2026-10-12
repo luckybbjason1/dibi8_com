@@ -8,7 +8,8 @@ slug: "tabby"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Pull and run Tabby with CUDA acceleration"

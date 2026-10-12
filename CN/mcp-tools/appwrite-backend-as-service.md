@@ -8,7 +8,8 @@ slug: "appwrite-backend-as-service"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 title: "Appwrite 2026: The Open-Source Firebase Alternative with...

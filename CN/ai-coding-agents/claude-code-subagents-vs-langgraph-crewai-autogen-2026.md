@@ -8,7 +8,8 @@ slug: "claude-code-subagents-vs-langgraph-crewai-autogen-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen ...

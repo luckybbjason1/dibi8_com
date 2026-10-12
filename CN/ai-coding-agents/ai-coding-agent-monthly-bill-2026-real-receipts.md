@@ -8,7 +8,8 @@ slug: "ai-coding-agent-monthly-bill-2026-real-receipts"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts ...

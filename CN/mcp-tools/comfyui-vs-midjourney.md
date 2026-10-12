@@ -8,7 +8,8 @@ slug: "comfyui-vs-midjourney"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 title: "Midjourney Alternative (2026): Why ComfyUI is the Free, ...

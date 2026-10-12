@@ -8,7 +8,8 @@ slug: "mcp-server-security-audit-2026-real-cases"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "MCP Server Security Audit 2026: 5 Real Community Server ...

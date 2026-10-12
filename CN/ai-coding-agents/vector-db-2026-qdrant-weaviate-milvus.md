@@ -8,7 +8,8 @@ slug: "vector-db-2026-qdrant-weaviate-milvus"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (...

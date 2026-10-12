@@ -8,7 +8,8 @@ slug: "ai-coding-tools-cursor-alternatives-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Best Cursor Alternatives 2026: 7 AI Coding Tools Compare...

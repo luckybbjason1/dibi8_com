@@ -8,7 +8,8 @@ slug: "lean-quantconnect-trading-engine"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Lean: The Open-Source Algorithmic Trading Engine Powerin...

@@ -8,7 +8,8 @@ slug: "signoz-apm-observability-open-source"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos...

@@ -8,7 +8,8 @@ slug: "vectara-rag-as-service-platform"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Vectara 2026: The RAG-as-a-Service Platform with 90%+ An...

@@ -8,7 +8,8 @@ slug: "hyperliquid-perp-dex-trading"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Hyperliquid 2026: The On-Chain Perpetual DEX Processing ...

@@ -8,7 +8,8 @@ slug: "ai-agent-code-of-ethics"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "The AI Agent Code of Ethics (2026): A Practical Governan...

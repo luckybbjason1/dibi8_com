@@ -8,7 +8,8 @@ slug: "chattts-dialogue-tts-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with L...

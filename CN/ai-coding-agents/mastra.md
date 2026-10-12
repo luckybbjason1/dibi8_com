@@ -8,7 +8,8 @@ slug: "mastra"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Scaffold a new Mastra project with the interactive CLI"

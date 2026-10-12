@@ -8,7 +8,8 @@ slug: "ai-seo-geo-toolkit-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Tradit...

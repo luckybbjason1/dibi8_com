@@ -8,7 +8,8 @@ slug: "playwright-browser-automation-testing"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Playwright 2026: The Cross-Browser Automation Tool Testi...

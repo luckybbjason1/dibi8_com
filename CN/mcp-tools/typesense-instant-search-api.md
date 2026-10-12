@@ -8,7 +8,8 @@ slug: "typesense-instant-search-api"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 title: "Typesense 2026: The Open-Source Instant Search API Handl...

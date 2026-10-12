@@ -8,7 +8,8 @@ slug: "knowledge-base-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "The Knowledge Base Stack 2026: Build Your "Second Brain"...

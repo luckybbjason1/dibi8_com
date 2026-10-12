@@ -8,7 +8,8 @@ slug: "claude-code-mcp-advanced-10-server-stack-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Claude Code MCP Advanced 2026: The 10-Server Production ...

@@ -8,7 +8,8 @@ slug: "jesse-ai-trading-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Jesse: The Advanced Python Crypto Trading Framework with...

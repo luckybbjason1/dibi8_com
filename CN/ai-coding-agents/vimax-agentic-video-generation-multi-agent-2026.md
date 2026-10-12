@@ -8,7 +8,8 @@ slug: "vimax-agentic-video-generation-multi-agent-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Run: python main_idea2video.py"

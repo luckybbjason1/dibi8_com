@@ -8,7 +8,8 @@ slug: "pendle-yield-tokenization-defi"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 

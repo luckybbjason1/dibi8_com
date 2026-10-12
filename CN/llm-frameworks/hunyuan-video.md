@@ -8,7 +8,8 @@ slug: "hunyuan-video"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Pull the official CUDA 12 image"

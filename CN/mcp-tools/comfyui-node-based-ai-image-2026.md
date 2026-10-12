@@ -8,7 +8,8 @@ slug: "comfyui-node-based-ai-image-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 title: "ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio ...

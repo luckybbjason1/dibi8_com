@@ -8,7 +8,8 @@ slug: "n8n"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "n8n AI Workflow Automation: Self-Hosted Setup with 188K+...

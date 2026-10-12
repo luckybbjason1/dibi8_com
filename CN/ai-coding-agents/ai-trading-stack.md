@@ -8,7 +8,8 @@ slug: "ai-trading-stack"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "The AI Trading Stack 2026: 7-Component Open-Source Quant...

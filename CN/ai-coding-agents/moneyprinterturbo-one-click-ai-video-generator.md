@@ -8,7 +8,8 @@ slug: "moneyprinterturbo-one-click-ai-video-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 

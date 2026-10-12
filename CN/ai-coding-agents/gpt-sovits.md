@@ -8,7 +8,8 @@ slug: "gpt-sovits"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Step 1: Create and activate environment"

@@ -8,7 +8,8 @@ slug: "comfyui-workflow-2026-5-production-templates"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea...

@@ -8,7 +8,8 @@ slug: "weaviate-vector-search-enterprise"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "Weaviate 2026: The AI-Native Vector Search Engine Handli...

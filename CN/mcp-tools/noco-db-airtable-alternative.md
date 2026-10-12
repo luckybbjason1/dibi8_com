@@ -8,7 +8,8 @@ slug: "noco-db-airtable-alternative"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["mcp-tools"]---
+categories: ["mcp-tools"]
+---
 
 
 title: "NocoDB 2026: The Open-Source Airtable Alternative Turnin...

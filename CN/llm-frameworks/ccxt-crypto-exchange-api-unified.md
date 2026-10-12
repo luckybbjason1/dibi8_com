@@ -8,7 +8,8 @@ slug: "ccxt-crypto-exchange-api-unified"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "CCXT 2026: The Universal Crypto Exchange API Unifying 10...

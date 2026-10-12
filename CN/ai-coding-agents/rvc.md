@@ -8,7 +8,8 @@ slug: "rvc"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "RVC: Real-Time Voice Conversion AI模型"

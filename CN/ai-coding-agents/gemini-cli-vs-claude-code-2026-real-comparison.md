@@ -8,7 +8,8 @@ slug: "gemini-cli-vs-claude-code-2026-real-comparison"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor...

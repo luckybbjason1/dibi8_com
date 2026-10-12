@@ -8,7 +8,8 @@ slug: "deepseek-reasonix-terminal-ai-coding-agent-prefix-cache"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 

@@ -8,7 +8,8 @@ slug: "microsoft-presidio-pii-detection-redaction-sdk"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 slug: microsoft-presidio-pii-detection-redaction-sdk

@@ -8,7 +8,8 @@ slug: "trino-distributed-sql-query"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Trino 2026: The Distributed SQL Query Engine Analyzing P...

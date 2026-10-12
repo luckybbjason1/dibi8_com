@@ -8,7 +8,8 @@ slug: "claude-code"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Install via the official installer (auto-updates in background)"

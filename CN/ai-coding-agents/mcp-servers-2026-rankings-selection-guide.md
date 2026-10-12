@@ -8,7 +8,8 @@ slug: "mcp-servers-2026-rankings-selection-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a De...

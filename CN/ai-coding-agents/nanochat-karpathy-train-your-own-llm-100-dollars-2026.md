@@ -8,7 +8,8 @@ slug: "nanochat-karpathy-train-your-own-llm-100-dollars-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT f...

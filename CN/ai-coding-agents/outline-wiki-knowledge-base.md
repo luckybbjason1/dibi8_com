@@ -8,7 +8,8 @@ slug: "outline-wiki-knowledge-base"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Outline: The Open-Source Wiki & Knowledge Base Built for...

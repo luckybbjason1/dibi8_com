@@ -8,7 +8,8 @@ slug: "open-source-ai-agent-framework-top-10-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Open Source AI Agent Framework Top 10 (2026): Ranked by ...

@@ -8,7 +8,8 @@ slug: "aider-cline-openhands-2026-honest-comparison"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin...

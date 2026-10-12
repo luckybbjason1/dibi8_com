@@ -8,7 +8,8 @@ slug: "cc-switch-unified-ai-cli-control-center-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "CC Switch Review: The Missing Control Center for AI Codi...

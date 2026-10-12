@@ -8,7 +8,8 @@ slug: "ai-agent-frameworks-comparison-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap..."

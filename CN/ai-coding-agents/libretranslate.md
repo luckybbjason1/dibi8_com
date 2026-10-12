@@ -8,7 +8,8 @@ slug: "libretranslate"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "LibreTranslate: Self-Hosted Translation API with 14.4K+ ...

@@ -8,7 +8,8 @@ slug: "multi-modal-content-pipeline"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Multi-Modal Content Pipeline 2026: The 5-Component Stack...

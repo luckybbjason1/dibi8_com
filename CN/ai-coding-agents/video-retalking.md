@@ -8,7 +8,8 @@ slug: "video-retalking"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "For CUDA 11.1 (original project default)"

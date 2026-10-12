@@ -8,7 +8,8 @@ slug: "marker-dev-utils-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Activate the virtual environment (assuming you're using venv)"

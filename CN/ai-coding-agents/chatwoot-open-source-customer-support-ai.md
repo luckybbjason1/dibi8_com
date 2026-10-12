@@ -8,7 +8,8 @@ slug: "chatwoot-open-source-customer-support-ai"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Chatwoot 2026: The Open-Source Customer Support Platform...

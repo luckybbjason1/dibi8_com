@@ -8,7 +8,8 @@ slug: "cow-protocol-mev-protection"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["llm-frameworks"]---
+categories: ["llm-frameworks"]
+---
 
 
 title: "CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi...

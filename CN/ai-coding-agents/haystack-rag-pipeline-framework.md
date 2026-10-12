@@ -8,7 +8,8 @@ slug: "haystack-rag-pipeline-framework"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Haystack 2026: The End-to-End NLP Framework for Producti...

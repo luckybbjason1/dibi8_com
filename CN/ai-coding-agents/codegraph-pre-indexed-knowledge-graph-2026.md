@@ -8,7 +8,8 @@ slug: "codegraph-pre-indexed-knowledge-graph-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "macOS / Linux 官方安装脚本"

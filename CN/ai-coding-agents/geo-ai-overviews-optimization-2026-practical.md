@@ -8,7 +8,8 @@ slug: "geo-ai-overviews-optimization-2026-practical"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "GEO / AI Overviews Optimization 2026: A Practical Guide ...

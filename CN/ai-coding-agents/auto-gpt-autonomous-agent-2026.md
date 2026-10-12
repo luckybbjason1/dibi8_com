@@ -8,7 +8,8 @@ slug: "auto-gpt-autonomous-agent-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Auto-GPT 2026 Revival: How the OG Autonomous Agent Frame...

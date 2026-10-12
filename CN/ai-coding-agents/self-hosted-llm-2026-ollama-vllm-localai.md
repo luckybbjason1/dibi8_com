@@ -8,7 +8,8 @@ slug: "self-hosted-llm-2026-ollama-vllm-localai"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI"

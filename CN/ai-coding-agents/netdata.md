@@ -8,7 +8,8 @@ slug: "netdata"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Install Netdata with all defaultscurl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash"

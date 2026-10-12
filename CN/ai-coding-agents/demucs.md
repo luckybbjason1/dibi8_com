@@ -8,7 +8,8 @@ slug: "demucs"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "Python 3.8+ required"

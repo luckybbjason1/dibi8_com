@@ -8,7 +8,8 @@ slug: "ai-coding-ethics-corporate-policy-guide-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "AI Coding Ethics 2026: Corporate Policy Guide for Allow ...

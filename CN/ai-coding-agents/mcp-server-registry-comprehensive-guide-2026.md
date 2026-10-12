@@ -8,7 +8,8 @@ slug: "mcp-server-registry-comprehensive-guide-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 
-categories: ["ai-coding-agents"]---
+categories: ["ai-coding-agents"]
+---
 
 
 title: "The MCP Server Registry Guide 2026: 19,700+ Servers, 7 O...
