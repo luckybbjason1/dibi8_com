@@ -1,4 +1,6 @@
 ---
+
+
 title: "n8n: Workflow Automation Platform 2026 (205K Stars)"
 description: "AI tool comparison and guide"
 date: 2026-09-22
@@ -12,6 +14,8 @@ related_posts:
   - /cn/voicestudio-voice-cloning
 toc: true
 ---
+
+
 
 ## n8n là gì?
 
@@ -119,35 +123,4 @@ Orchestrator Agent → Specialist Agents → Merge → Output
 ## So sánh alternatives
 
 | Feature | n8n | Zapier | Make | Airflow |
-|---------|-----|--------|------|---------|
-| Self-host | ✅ | ❌ | ❌ | ✅ |
-| Price | Free* | Expensive | Expensive | Free |
-| AI native | ✅ | Basic | Basic | ❌ |
-| Visual builder | ✅ | ✅ | ✅ | ❌ |
-| Code flexibility | ✅ | Limited | Limited | ✅ |
-| Community | 200K+ | Large | Medium | Large |
-
-*Fair-code: free cho commercial use, trừ khi bán lại platform.
-
-## Tích hợp với AI Agents
-
-n8n có thể kết hợp với:
-- **ECC** — orchestrate agent workflows
-- **Claude Code** — generate code từ workflow
-- **Hermes** — trigger agents from events
-- **Custom agents** — build your own
-
-## Limitations
-
-⚠️ **Cần lưu ý:**
-- Self-hosting cần运维 knowledge
-- Complex workflows cần JavaScript skills
-- Community nodes có thể chưa stable
--Enterprise features cần paid plan
-
-## Kết luận
-
-n8n là **sweet spot** giữa power và ease-of-use. Cho người muốn automation mạnh mẽ mà không muốn trả giá đắt cho SaaS.
-
-**Link:** [github.com/n8n-io/n8n](https://github.com/n8n-io/n8n)
-**Website:** [n8n.io](https://n8n.io)
+|

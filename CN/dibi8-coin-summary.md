@@ -1,9 +1,13 @@
 ---
+
+
 title: "DIBI8 Coin 六维Bento Grid实现完成"
 description: "为dibi8.com创建DIBI8 Coin品牌叙事页面，采用六维对称Bento Grid布局，Web3美学风格，WCAG 2.1 AA无障碍合规"
 date: 2026-10-11
 draft: false
 ---
+
+
 
 # DIBI8 Coin 六维Bento Grid实现完成
 

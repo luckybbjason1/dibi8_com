@@ -1,11 +1,16 @@
 ---
+
+
 title: "Meta Tags Generator — SEO Title, Description, Open Graph & Twitter Card"
 description: "AI tool guide"
 date: 2026-09-20
 slug: "meta-tags-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
----
+
+categories: ["mcp-tools"]---
+
+
 
 {
   "@context": "https://schema.org",

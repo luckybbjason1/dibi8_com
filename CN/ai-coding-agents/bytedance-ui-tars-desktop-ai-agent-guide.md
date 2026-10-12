@@ -1,4 +1,6 @@
 ---
+
+
 title: "7B parameter model (recommended for most use cases)"
 description: "With over 36,000 GitHub stars, it has become one of the most popular vision-language agents for desktop automation"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ## Introduction
 

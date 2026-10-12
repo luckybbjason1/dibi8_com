@@ -1,4 +1,6 @@
 ---
+
+
 title: "macOS / Linux"
 description: "## What Is CC Switch? A Technical Overview"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 ## What Is CC Switch? A Technical Overview
 
 | Attribute | Detail |

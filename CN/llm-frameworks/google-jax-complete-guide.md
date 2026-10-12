@@ -1,4 +1,6 @@
 ---
+
+
 title: "For GPU support"
 description: "JAX is a Python library that combines NumPy-like array operations with automatic differentiation and just-in-time compilation"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["llm-frameworks"]
 ---
+
+
 
 
 ## TL;DR

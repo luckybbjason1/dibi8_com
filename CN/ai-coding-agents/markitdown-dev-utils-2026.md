@@ -1,4 +1,6 @@
 ---
+
+
 title: "markitdown: Convert Files & Office Docs to Markdown (141K Stars) — Practical 2026 Guide"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # markitdown: Convert Files & Office Docs to Markdown (141K Stars) — Practical 2026 Guide
 

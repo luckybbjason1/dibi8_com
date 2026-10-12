@@ -1,4 +1,6 @@
 ---
+
+
 title: "TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南"
 description: "AI tool comparison and guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南
 

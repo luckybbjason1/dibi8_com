@@ -1,4 +1,6 @@
 ---
+
+
 title: "What we measured before vs what we should have measured:  Before: organic_sessions, bounce_rate, pages_per_session"
 description: "**TL;DR** — Three years ago we optimized for clicks"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 geo
 * * *

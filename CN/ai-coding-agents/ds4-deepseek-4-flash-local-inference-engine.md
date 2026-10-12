@@ -1,4 +1,6 @@
 ---
+
+
 title: "ds4: The Open-Source DeepSeek That Developers Are Switching"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {</* resource-info */>}
 # ds4: The Open-Source DeepSeek That Developers Are Switching 

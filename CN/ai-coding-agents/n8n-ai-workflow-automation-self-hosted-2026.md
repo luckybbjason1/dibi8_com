@@ -1,4 +1,6 @@
 ---
+
+
 title: "docker-compose.yml"
 description: "## Why n8n Is Exploding in 2026"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 ## Why n8n Is Exploding in 2026
 
 ### The Numbers That Matter

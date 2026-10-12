@@ -1,4 +1,6 @@
 ---
+
+
 title: "NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ![NVIDIA Cosmos platform](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)
 

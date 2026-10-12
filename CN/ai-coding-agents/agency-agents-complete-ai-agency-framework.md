@@ -1,4 +1,6 @@
 ---
+
+
 title: "agency agents complete ai agency framework"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 title: "Agency Agents: 125K+ Star Open-Source AI Agency Framework"
 description: "AI tool guide"
 date: 2026-07-03T09:00:00+09:00
@@ -299,162 +303,3 @@ def quality_check(agent_output, task_requirements): checks = [
 
 | Feature | Agency Agents | AutoGPT | CrewAI | LangGraph |
 |
----
-|
-* * *
-|
-* * *
-|
-* * *
-|
-* * *
-|
-| Number of Agents | 12+ | 1-2 | 3-5 | Custom |
-| Pre-built Roles | Yes | No | Partial | No |
-| Task Routing | Semantic + Keyword | Manual | Manual | Manual |
-| Quality Checks | Built-in | No | No | Custom |
-| Open Source | MIT | Apache 2.0 | MIT | Apache 2.0 |
-| Community Size | 125K+ stars | 160K+ stars | 40K+ stars | 20K+ stars |
-
-## Limitations
-
-### 1. API Cost Scaling
-
-While the framework itself is free, running 12 agents on a single project can incur significant API costs. Each agent may make multiple API calls to complete a task, and complex projects can easily require hundreds of calls. Budget approximately $5-50 per project depending on complexity.
-
-### 2. Quality Variance
-
-Not all agents are equally mature. The frontend designer and content writer agents tend to produce higher-quality output than the security auditor and database administrator agents. This is because the former have more training data available (web design patterns, writing styles) compared to the latter (security best practices, database optimization).
-
-### 3. Integration Complexity
-
-Integrating Agency Agents into an existing development workflow requires significant setup. The framework assumes a relatively greenfield project where you can define the entire workflow from scratch. Migrating an existing project to use Agency Agents may require substantial refactoring.
-
-### 4. No Visual Interface
-
-The framework is CLI-only. There's no web dashboard for monitoring agent progress, viewing outputs, or adjusting parameters. This makes it less suitable for non-technical users who want to leverage AI agency capabilities.
-
-## This Week's Trends
-
-The explosive growth of Agency Agents reflects a broader trend in the AI ecosystem: **specialization over generalization**. While early AI agents aimed to be "do everything" solutions, the latest wave focuses on agents that excel at specific tasks. This mirrors the evolution of traditional software development, where teams of specialists produce better results than generalists.
-
-Additionally, the multi-agent orchestration pattern is becoming a standard approach for complex AI projects. Frameworks like CrewAI, LangGraph, and Agency Agents all recognize that breaking down complex tasks into smaller, manageable pieces handled by specialized agents leads to better quality and more predictable outcomes.
-
-## How We Collect This Data
-
-This analysis is based on publicly available information from the Agency Agents GitHub repository as of June 30, 2026. Star counts, fork counts, and commit frequency are retrieved via the GitHub API. Code examples are tested in a local environment with Claude Sonnet 4.
-
-## FAQ
-
-### Q: How much does it cost to run Agency Agents?
-
-A: The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used.
-
-### Q: Can I add custom agents to the framework?
-
-A: Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the ````BaseAgent```` interface and registering them with the task router. The framework provides templates for creating new agents.
-
-### Q: Does it support open-source AI models?
-
-A: Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs.
-
-### Q: How does it compare to AutoGPT?
-
-A: Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition.
-
-### Q: Is there a Docker setup?
-
-A: Yes. The repository includes a ``Dockerfile`` and ``docker-compose.yml`` for easy deployment. You can run the entire agency with: `````bash
-docker-compose up -d
-docker exec -it agency-agents python agency.py --project "Build a web app"
-`````
-
-## Join the Community
-
-- **GitHub:** [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents)
-- **Issues:** Report bugs or request features
-- **Discussions:** Share your experiences and tips
-
-## More from Dibi8
-
-- [Codebase Memory MCP: Deep Code Intelligence](/resources/dev-utils/codebase-memory-mcp/)
-- [Strix AI: Open-Source Penetration Testing](/resources/dev-utils/strix-ai-penetration-testing/)
-- [Cognee: AI Memory Platform](/resources/llm-frameworks/cognee-ai-memory-platform/)
-
-## Sources
-
-- [Agency Agents GitHub Repository](https://github.com/msitarzewski/agency-agents)
-- [GitHub API — Star Count Verification](https://api.github.com/repos/msitarzewski/agency-agents)
-- [Agency Agents README](https://github.com/msitarzewski/agency-agents/blob/main/README.md)
-
-
-* * *
-*This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
-
-
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "question": "How much does it cost to run Agency Agents?",
-      "answer": "The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used."
-    },
-    {
-      "question": "Can I add custom agents to the framework?",
-      "answer": "Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the ````BaseAgent```` interface and registering them with the task router. The framework provides templates for creating new agents."
-    },
-    {
-      "question": "Does it support open-source AI models?",
-      "answer": "Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs."
-    },
-    {
-      "question": "How does it compare to AutoGPT?",
-      "answer": "Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition."
-    },
-    {
-      "question": "Is there a Docker setup?",
-      "answer": "Yes. The repository includes a ``Dockerfile`` and ``docker-compose.yml`` for easy deployment. You can run the entire agency with:\n\n`````bash\ndocker-compose up -d\ndocker exec -it agency-agents python agency.py --project "Build a web app"\n````"
-    }
-  ]
-}
-</script>
-
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Agency Agents: 125K+ Star Open-Source AI Agency Framework",
-  "datePublished": "2026-07-03",
-  "dateModified": "2026-07-03",
-  "author": {
-    "@type": "Organization",
-    "name": "Dibi8"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/resources/agency-agents-complete-ai-agency-framework"
-  }
-}
-</script>
-
-
-* * *
-## Related Articles
-
-- [agency-agents-complete-ai-agency-framework](agency-agents-complete-ai-agency-framework)
-- [2026-05-25-trending-ai-agents](agency-agents-complete-ai-agency-framework)
-- [2026-06-01-trending-ai-agents](agency-agents-complete-ai-agency-framework)
-- [2026-06-08-trending-ai-agents](agency-agents-complete-ai-agency-framework)
-- [2026-06-15-trending-ai-agents](agency-agents-complete-ai-agency-framework)
-
-* * *
-
-*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

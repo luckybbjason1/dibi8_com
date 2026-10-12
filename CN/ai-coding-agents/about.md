@@ -1,10 +1,14 @@
 ---
+
+
 title: "About dibi8"
 description: "Who we are and why we built this AI tools directory"
 date: 2026-09-22
 tags: ["about", "meta"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # About dibi8
 
@@ -36,6 +40,3 @@ categories: ["ai-coding-agents"]
 - Telegram: [DIBI8群组](https://t.me/DIBI8_Group)
 - 邮件: [contact@dibi8.com](mailto:contact@dibi8.com)
 
----
-
-*最后更新：2026-09-22*

@@ -1,4 +1,6 @@
 ---
+
+
 title: "AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {
   "@context": "https://schema.org",

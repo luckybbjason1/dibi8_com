@@ -1,4 +1,6 @@
 ---
+
+
 title: "n8n vs Make.com in 2026: Open-Source Control vs Visual Simplicity"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # n8n vs Make.com in 2026: Open-Source Control vs Visual Simplicity
 

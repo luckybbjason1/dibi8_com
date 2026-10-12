@@ -1,4 +1,6 @@
 ---
+
+
 title: "mattpocock/skills: Bộ Kỹ Năng Chuẩn Cho Engineers 2026"
 description: "AI tool comparison and guide"
 date: 2026-09-22
@@ -12,6 +14,8 @@ related_posts:
   - /cn/rag-systems-2026
 toc: true
 ---
+
+
 
 ## Giới thiệu
 
@@ -55,42 +59,4 @@ toc: true
 ## Điểm khác biệt so với ECC
 
 | Tiêu chí | mattpocock/skills | ECC |
-|----------|------------------|-----|
-| Focus | TypeScript/JS depth | Broad engineering |
-| Style | Pragmatic, battle-tested | Structured, systematic |
-| Best for | JS/TS projects | Multi-language projects |
-| Teaching | Educational, explains why | Quick reference, actionable |
-| Community | Matt's followers (educators) | Engineering community |
-
-## Cài đặt nhanh
-
-```bash
-# Claude Code
-claude plugin install mattpocock/skills
-
-# Hoặc manual
-git clone https://github.com/mattpocock/skills.git ~/.agents/skills
-```
-
-## Tại sao nó phổ biến?
-
-1. **Tác giả có uy tín** — Matt Pocock là educator TypeScript hàng đầu
-2. **Thực chiến** — kỹ năng từ `.agents` directory thực tế
-3. **Chất lượng cao** — không có generic advice, toàn là concrete patterns
-4. **Cập nhật liên tục** — theo xu hướng mới nhất của JS ecosystem
-5. **Miễn phí hoàn toàn** — MIT license
-
-##适合项目类型
-
-- ✅ TypeScript/JavaScript projects
-- ✅ React/Next.js applications
-- ✅ Node.js backends
-- ✅ API services
-- ✅ Full-stack applications
-- ❌ Not ideal for: Python, Go, Rust projects (có ECC cho những ngôn ngữ này)
-
-## Kết luận
-
-Nếu bạn làm việc chủ yếu với TypeScript/JavaScript, **mattpocock/skills** là lựa chọn số 1. Chất lượng giáo dục từ Matt Pocock đảm bảo mỗi skill đều có giá trị thực tiễn cao.
-
-**Link:** [github.com/mattpocock/skills](https://github.com/mattpocock/skills)
+|

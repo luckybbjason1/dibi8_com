@@ -1,4 +1,6 @@
 ---
+
+
 title: "Define a container image with PyTorch and CUDA pre-installed"
 description: "Modal is a serverless compute platform designed specifically for machine learning and data-intensive workloads"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["llm-frameworks"]
 ---
+
+
 ## What Is Modal?
 
 Modal is a serverless compute platform designed specifically for machine learning and data-intensive workloads. Unlike traditional cloud providers where you provision VMs, manage Kubernetes clusters, or configure auto-scaling groups, Modal abstracts all infrastructure away into simple Python decorators.

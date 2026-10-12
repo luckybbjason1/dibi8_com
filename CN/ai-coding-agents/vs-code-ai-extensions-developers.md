@@ -1,4 +1,6 @@
 ---
+
+
 title: "Best VS Code AI Extensions for Developers in 2025: Boost Productivity"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # Best VS Code AI Extensions for Developers in 2025: Boost Productivity
 

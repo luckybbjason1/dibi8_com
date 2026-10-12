@@ -1,11 +1,16 @@
 ---
+
+
 title: "Python SDK for institutional yield management"
 description: "AI tool guide"
 date: 2026-09-20
 slug: "pendle-yield-tokenization-defi"
 category: "ai-tools"
 tags: ["ai", "tools"]
----
+
+categories: ["mcp-tools"]---
+
+
 
 
 

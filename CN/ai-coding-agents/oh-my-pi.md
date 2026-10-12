@@ -1,4 +1,6 @@
 ---
+
+
 title: "Install Oh My Pi on a fresh Raspberry Pi OS"
 description: "With 12,554 stars, it's the most popular Raspberry Pi automation framework on GitHub"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ## TL;DR
 

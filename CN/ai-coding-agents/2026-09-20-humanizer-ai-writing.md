@@ -1,4 +1,6 @@
 ---
+
+
 title: "Install via npx (recommended)"
 description: "Humanizer is a powerful agent skill that eliminates AI-generated writing patterns from text while preserving the original meaning"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 Humanizer is a powerful agent skill that eliminates AI-generated writing patterns from text while preserving the original meaning. Created by blader, it has garnered **49,212 GitHub stars** and **3,993 forks** since its release in January 2026.
 
 This comprehensive guide explores how Humanizer works, its 35-pattern system based on Wikipedia's "Signs of AI writing," and practical applications for content creators, developers, and writers.
@@ -305,158 +309,3 @@ Based on internal testing with 10,000 AI-generated samples: - **Pattern Detectio
 
 | Tool | Price | Accuracy | Speed | Features |
 |
----
-
-|
-* * *
-|
-* * *
-|
-* * *
-|
-* * *
-|
-| Humanizer | Free | 94% | Fast | 35 patterns, voice matching |
-| Grammarly | $12/mo | 85% | Fast | Basic patterns only |
-| QuillBot | $8/mo | 80% | Medium | Paraphrasing focus |
-| Originality.ai | $30/mo | 90% | Slow | Detection only |
-
-## Community and Support
-
-### GitHub Repository
-
-- **URL**: https://github.com/blader/humanizer
-- **Stars**: 49,212
-- **Forks**: 3,993
-- **License**: MIT
-- **Issues**: Active development, regular updates
-
-### Contributing
-
-Humanizer welcomes contributions: 1. Report false positives/negatives
-2. Suggest new patterns
-3. Improve voice matching algorithms
-4. Add translations for multilingual support
-
-### FAQ
-
-**Q: Is Humanizer free to use?**
-A: Yes, completely free under MIT license.
-
-**Q: Does it work with all AI models?**
-A: Yes, it processes output from any AI model (ChatGPT, Claude, Gemini, etc.).
-
-**Q: Will it change my meaning?**
-A: No, Humanizer preserves all factual claims and only rewrites expression.
-
-**Q: Can I use it commercially?**
-A: Yes, MIT license allows commercial use.
-
-**Q: Does it support other languages?**
-A: Currently optimized for English, but patterns may work for other languages.
-
-## Best Practices
-
-### 1. Always Review Output
-
-Humanizer improves text but doesn't replace human judgment: ````
-AI Draft → Humanizer → Human Review → Final
-`````
-
-### 2. Provide Voice Samples
-
-For best results, give Humanizer examples of your writing: `````
-/humanizer
-Sample: [your writing]
-Text: [AI content to humanize]
-`````
-
-### 3. Process in Chunks
-
-For long documents, process section by section: - Introduction
-- Body paragraphs
-- Conclusion
-- Appendices
-
-### 4. Track Changes
-
-Use version control to compare versions: `````bash
-diff original.md humanized.md
-````
-
-## Future Developments
-
-### Planned Features
-
-- **Multilingual Support**: Add patterns for Chinese, Korean, Vietnamese
-- **API Access**: REST API for integration
-- **Browser Extension**: Real-time humanization
-- **IDE Plugins**: VS Code, JetBrains integration
-- **Batch Processing**: Process multiple files at once
-
-### Roadmap 2026-2027
-
-- Q4 2026: API launch, browser extension
-- Q1 2027: Multilingual support, IDE plugins
-- Q2 2027: Advanced voice cloning, team features
-
-## Conclusion
-
-Humanizer represents a significant advancement in AI writing remediation. By addressing 35 specific patterns identified through linguistic research, it offers a systematic approach to making AI-generated text sound more natural.
-
-### Key Takeaways
-
-1. **Essential Tool**: For anyone using AI writing assistants
-2. **Free and Open**: MIT license, active development
-3. **Effective**: 94% pattern detection accuracy
-4. **Safe**: Preserves meaning, improves readability
-5. **Integrable**: Works with existing workflows
-
-### Who Should Use It
-
-- **Content Creators**: Polish AI-generated drafts
-- **Developers**: Humanize technical documentation
-- **Marketers**: Transform promotional copy
-- **Academics**: Improve paper readability
-- **Writers**: Edit AI-assisted manuscripts
-
-### Final Thoughts
-
-As AI writing tools become more prevalent, the need for humanization tools will only grow. Humanizer provides a free, effective solution that respects both the original meaning and the reader's experience.
-
-The future of AI writing isn't about choosing between machine and human output—it's about combining the efficiency of AI with the authenticity of human voice. Humanizer makes that combination possible.
-
-
-* * *
-**GitHub Repository**: https://github.com/blader/humanizer  
-**Stars**: 49,212 ⭐ | **Forks**: 3,993 🍴 | **License**: MIT  
-**Last Updated**: September 2026
-
-
-* * *
-*Found this helpful? Join our Telegram community for daily AI tool updates: https://t.me/DIBI8_Group*
-
-## Frequently Asked Questions (FAQ)
-
-**问：AI Agent和传统自动化有什么区别？**
-
-AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-
-**问：如何选择合适的AI Agent框架？**
-
-考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-
-**问：AI Agent的安全性如何保证？**
-
-实施权限最小化、输入验证、审计日志、以及定期安全评估。
-
-**问：AI Agent的学习成本有多高？**
-
-入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-
-**问：能否自定义AI Agent的行为？**
-
-是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-
-
-* * *

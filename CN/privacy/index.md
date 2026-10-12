@@ -1,9 +1,13 @@
 ---
+
+
 title: "隐私政策"
 description: "Dibi8隐私政策说明"
 date: 2026-09-26
 layout: single
 ---
+
+
 
 # Dibi8 - 隐私政策
 
@@ -52,6 +56,3 @@ Dibi8 不会主动收集您的个人信息。我们尊重您的隐私。
 
 如有疑问，请联系：contact@dibi8.com
 
----
-
-© 2026 Dibi8.com — 发现最佳AI工具

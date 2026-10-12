@@ -1,4 +1,6 @@
 ---
+
+
 title: "Call OpenAI"
 description: "Managing multiple LLM providers in production is a nightmare most developers know too well"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {</* resource-info */>}
 

@@ -1,11 +1,16 @@
 ---
+
+
 title: "Hreflang Tags Generator — Multi-Language & International SEO"
 description: "AI tool guide"
 date: 2026-09-20
 slug: "hreflang-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
----
+
+categories: ["mcp-tools"]---
+
+
 
 {
   "@context": "https://schema.org",

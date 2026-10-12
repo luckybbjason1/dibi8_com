@@ -1,4 +1,6 @@
 ---
+
+
 title: "Automatic OCR detection (recommended)"
 description: "net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 

@@ -1,11 +1,16 @@
 ---
+
+
 title: "PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents"
 description: "AI tool guide"
 date: 2026-09-20
 slug: "pm-skills-68-product-management-skills-ai-agents"
 category: "ai-tools"
 tags: ["ai", "tools"]
----
+
+categories: ["ai-coding-agents"]---
+
+
 
 title: 'PM-Skills: 68 Product Management Skills and 42 Workflows...
 description: "AI tool guide"

@@ -1,4 +1,6 @@
 ---
+
+
 title: "Cursor vs Claude Code in 2026: Which AI Coding Tool Wins?"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # Cursor vs Claude Code in 2026: Which AI Coding Tool Wins?
 

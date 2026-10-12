@@ -1,4 +1,6 @@
 ---
+
+
 title: "Safe Git Skill"
 description: "## What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 ## What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego
 
 ### Core Concept: Encoding Expert Intuition into Agent Constraints

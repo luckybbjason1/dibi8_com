@@ -1,4 +1,6 @@
 ---
+
+
 title: "Example: Define a custom tool for Pi"
 description: "The landscape of AI coding tools has become remarkably fragmented"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ## Introduction
 

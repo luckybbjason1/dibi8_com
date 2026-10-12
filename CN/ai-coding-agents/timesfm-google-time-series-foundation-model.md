@@ -1,4 +1,6 @@
 ---
+
+
 title: "TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting
 

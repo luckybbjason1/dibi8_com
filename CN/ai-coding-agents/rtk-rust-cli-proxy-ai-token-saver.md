@@ -1,4 +1,6 @@
 ---
+
+
 title: "Linux / macOS"
 description: "## The Hidden Tax of AI-Powered Development"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {</* resource-info */>}
 

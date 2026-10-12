@@ -1,4 +1,6 @@
 ---
+
+
 title: "DeepSeek Harness: The Plugin Framework Taking Over 2026"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # DeepSeek Harness: The Plugin Framework Taking Over 2026
 

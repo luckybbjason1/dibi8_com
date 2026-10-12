@@ -1,4 +1,6 @@
 ---
+
+
 title: "Use LlamaIndex for ingestion and indexing"
 description: "Picking the right LLM framework in 2025 feels overwhelming"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {</* resource-info */>}
 

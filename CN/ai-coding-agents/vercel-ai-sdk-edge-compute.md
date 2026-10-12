@@ -1,4 +1,6 @@
 ---
+
+
 title: "Create a new Next.js project with TypeScript"
 description: "Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 ## What Is Vercel AI SDK?
 
 Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications. At its core, it provides three main capabilities: 1. **Provider-agnostic API**: Write code once, deploy to any LLM provider

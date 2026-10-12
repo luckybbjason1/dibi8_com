@@ -1,4 +1,6 @@
 ---
+
+
 title: "RTK (rtk-ai/rtk): Giảm 90% Token Cost Cho AI Coding"
 description: "AI tool comparison and guide"
 date: 2026-09-22
@@ -12,6 +14,8 @@ related_posts:
   - /cn/rag-systems-2026
 toc: true
 ---
+
+
 
 ## Vấn đề token cost
 
@@ -115,45 +119,4 @@ rtk init -g --agent hermes
 Theo [rtk-ai.app/benchmarks](https://www.rtk-ai.app/benchmarks):
 
 | Metric | Without RTK | With RTK | Savings |
-|--------|-------------|----------|---------|
-| Average token usage | 100% | 10-40% | **60-90%** |
-| Cost per session | $1.00 | $0.10-$0.40 | **60-90%** |
-| Context window usage | 100% | 15-50% | **50-85%** |
-
-### Real-world example
-
-Task: Review PR with 500 lines changed
-- Without RTK: Agent đọc toàn bộ `git diff` → ~15.000 tokens
-- With RTK: RTK lọc chỉ giữ changes quan trọng → ~2.500 tokens
-- **Tiết kiệm: 12.500 tokens (~$0.05)**
-
-## Tại sao nên dùng RTK?
-
-1. **Giảm chi phí đáng kể** — 60-90% token savings
-2. **Tăng tốc độ** — output nhỏ hơn = xử lý nhanh hơn
-3. **Bảo toàn context** — không bị overflow token limit
-4. **Zero config** — cài xong là chạy
-5. **Cross-platform** — macOS, Linux, Windows
-6. **Open source** — Apache 2.0 license
-
-## So sánh với alternatives
-
-| Tool | Giá | Token Savings | Complexity |
-|------|-----|---------------|------------|
-| RTK | Free | 60-90% | Low |
-| Caveman | Free | ~30% | Medium |
-| Ponytail | Free | ~54% code | Low |
-| Manual filters | Free | Variable | High |
-
-## Lưu ý quan trọng
-
-> ⚠️ **RTK không giảm 90% bill của bạn** — nó giảm 90% output tokens. Input tokens từ prompt, system prompt, và conversation history vẫn tính đầy đủ.
-
-Tuy nhiên, vì input tokens thường chiếm phần lớn trong total cost, savings thực tế vẫn rất đáng kể.
-
-## Kết luận
-
-RTK là công cụ **phải có** nếu bạn dùng AI coding agents thường xuyên. Cài đặt trong 1 phút, tiết kiệm hàng giờ và hàng chục USD mỗi tháng.
-
-**Link:** [github.com/rtk-ai/rtk](https://github.com/rtk-ai/rtk)
-**Website:** [rtk-ai.app](https://www.rtk-ai.app)
+|

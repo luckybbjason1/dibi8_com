@@ -1,4 +1,6 @@
 ---
+
+
 title: "prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026
 
@@ -271,132 +275,4 @@ git push origin main --mirror
 How does prompts.chat compare to other solutions?
 
 | Feature | prompts.chat | PromptBase | ShareGPT | PromptPerfect |
-| :--- | :--- | :--- | :--- | :--- |
-| **Open Source** | ✅ Yes (MIT/NOASSERTION) | ❌ No (Proprietary) | ❌ No (Proprietary) | ❌ No (Proprietary) |
-| **Self-Hostable** | ✅ Yes | ❌ No | ❌ No | ❌ No |
-| **Cost** | Free (Hosting only) | Paid (Per prompt) | Free (Public) | Paid (Subscription) |
-| **Privacy** | ✅ Private (Self-hosted) | ❌ Public | ❌ Public | ✅ Private (SaaS) |
-| **Integrations** | CLI, MCP, Claude Plugin | API | API | API |
-| **Community Size** | 163k+ Stars | 100k+ Users | 100k+ Posts | N/A |
-
-**Key Differentiator:** prompts.chat is the only solution that combines massive community curation with full self-hosting capabilities and open-source transparency.
-
-## Limitations / Honest Assessment
-
-No tool is perfect. Here are the limitations you should be aware of: 1.  **No Native Model Execution:** prompts.chat does not run the prompts. You still need to copy/paste or use an integration (CLI/MCP) to send them to an LLM.
-2.  **Prompt Quality Variance:** While curated, the prompts are user-submitted. Some may be outdated, ineffective, or poorly written. You must review and curate your own instance.
-3.  **Static Content:** The core prompt library is updated via PRs to GitHub. It is not a real-time, live-updating feed. You must sync your self-hosted instance to get new prompts.
-4.  **Limited Analytics:** The self-hosted version does not provide built-in analytics on prompt usage (e.g., which prompts are most copied). You would need to add logging to your web server or integration layer.
-5.  **License Ambiguity:** The license is listed as ````NOASSERTION````. While the code is open, the legal status of the prompt content itself is not explicitly defined. Use caution for commercial redistribution.
-
-## Frequently Asked Questions
-
-### 1. Is prompts.chat free?
-Yes, the software and the prompt library are free and open-source. You only pay for your own hosting infrastructure (e.g., DigitalOcean, Vercel, or your own server).
-
-### 2. Can I use prompts.chat for commercial purposes?
-Yes, you can self-host it for your organization. However, check the ````NOASSERTION```` license and the content of individual prompts for any specific restrictions. The code itself is open.
-
-### 3. How do I update my self-hosted instance?
-You can pull the latest changes from the GitHub repository: `````bash
-git pull origin main
-npm install
-npm run setup # Re-run setup to apply any new config defaults
-`````
-
-### 4. Does it support authentication?
-Yes, the self-hosted version supports GitHub, Google, and Azure AD authentication. This is configured during the ````npm run setup``` wizard.
-
-### 5. Can I contribute prompts?
-Yes, you can submit prompts via the web interface at [prompts.chat/prompts/new](https://prompts.chat/prompts/new). They sync to the main repository automatically.
-
-## Conclusion
-
-prompts.chat is a foundational tool for anyone serious about prompt engineering. It solves the "blank page problem" by providing a massive, curated library of prompts that you can adapt, customize, and own.
-
-For individual developers, it’s a great resource for learning prompt structures. For enterprises, it’s a powerful way to standardize AI interactions, ensure privacy, and reduce costs by reusing effective prompts across the organization.
-
-The 5-minute setup is real. The self-hosting capability is robust. And the community support is unmatched.
-
-**Ready to deploy?** Check out the [SELF-HOSTING.md](https://github.com/f/prompts.chat/blob/main/SELF-HOSTING.md) guide for detailed instructions.
-
-Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss your deployment experiences and share your custom prompt configurations.
-
-
-* * *
-## Sources & Further Reading
-
-*   [prompts.chat GitHub Repository](https://github.com/f/prompts.chat)
-*   [prompts.chat Hugging Face Dataset](https://huggingface.co/datasets/fka/prompts.chat)
-*   [Self-Hosting Guide](https://github.com/f/prompts.chat/blob/main/SELF-HOSTING.md)
-*   [Docker Deployment Guide](https://github.com/f/prompts.chat/blob/main/DOCKER.md)
-*   [MCP Documentation](https://prompts.chat/docs/api)
-*   [Claude Code Plugin Documentation](https://github.com/f/prompts.chat/blob/main/CLAUDE-PLUGIN.md)
-*   [Forbes: ChatGPT Success Depends on Your Prompt](https://www.forbes.com/sites/tjmccue/2023/01/19/chatgpt-success-completely-depends-on-your-prompt/)
-*   [Harvard: AI Prompts](https://www.huit.harvard.edu/news/ai-prompts)
-*   [Columbia: Prompt Library](https://etc.cuit.columbia.edu/news/columbia-prompt-library-effective-academic-ai-use)
-
-* * *
-Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
-
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026",
-  "datePublished": "2026-06-12",
-  "dateModified": "2026-06-12",
-  "author": {
-    "@type": "Organization",
-    "name": "Dibi8"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/resources/prompts-chat"
-  }
-}
-</script>
-
-* * *
-
-## Related Articles
-
-- [free-mcp-tools-top10-2026](prompts-chat)
-- [impeccable-ai-design-language-harness-quality-ui](prompts-chat)
-- [cc-switch-all-in-one-ai-coding-agent-manager](prompts-chat)
-- [codebase-memory-mcp-high-performance-code-intelligence](prompts-chat)
-- [moneyprinterturbo-one-click-ai-video-generator](prompts-chat)
-
-* * *
-
-*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-
-## Frequently Asked Questions (FAQ)
-
-**问：LangChain和LlamaIndex哪个更好？**
-
-LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。
-
-**问：如何评估LLM框架的性能？**
-
-基准测试包括：推理速度、准确率、资源消耗、可扩展性。
-
-**问：开源LLM框架的商业使用限制？**
-
-大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。
-
-**问：是否需要GPU才能运行LLM框架？**
-
-推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。
-
-**问：企业级部署的最佳实践？**
-
-使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
-
+| :

@@ -1,4 +1,6 @@
 ---
+
+
 title: "Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas
 

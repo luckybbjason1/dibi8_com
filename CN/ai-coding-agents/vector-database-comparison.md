@@ -1,4 +1,6 @@
 ---
+
+
 title: "What Are Vector Databases and Why Do You Need One?"
 description: "The wrong choice leads to scaling bottlenecks, runaway costs, or integration headaches that surface months into a project"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {</* resource-info */>}
 

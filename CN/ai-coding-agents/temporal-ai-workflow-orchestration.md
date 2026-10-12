@@ -1,4 +1,6 @@
 ---
+
+
 title: "Option A: Docker Compose (recommended for local dev)"
 description: "Temporal is an open-source distributed system for running fault-tolerant workflows at scale"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 ## What Is Temporal?
 
 Temporal is an open-source distributed system for running fault-tolerant workflows at scale. At its core, it provides **durable execution** — your code runs inside Temporal's managed infrastructure, which automatically handles failures, retries, checkpoints, and state persistence.

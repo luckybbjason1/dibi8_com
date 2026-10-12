@@ -1,11 +1,16 @@
 ---
+
+
 title: "Schema.org JSON-LD Generator — Article / Organization / FAQ / Product"
 description: "org JSON-LD Generator — Article / Organization /"
 date: 2026-09-20
 slug: "schema-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
----
+
+categories: ["mcp-tools"]---
+
+
 
 {
   "@context": "https://schema.org",

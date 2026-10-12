@@ -1,9 +1,13 @@
 ---
+
+
 title: "关于 Dibi8"
 description: "了解Dibi8——专注于AI工具发现与导航的平台"
 date: 2026-09-26
 layout: single
 ---
+
+
 
 # Dibi8 - AI工具目录
 
@@ -28,6 +32,3 @@ Dibi8 是一个专注于AI工具发现与导航的网站。我们收集、整理
 - 邮箱: contact@dibi8.com
 - GitHub: https://github.com/luckybbjason1/dibi8_com
 
----
-
-© 2026 Dibi8.com — 发现最佳AI工具

@@ -1,4 +1,6 @@
 ---
+
+
 title: "codebase memory mcp deep code intelligence"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 title: "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server"
 description: "AI tool guide"
 date: 2026-07-03T09:00:00+09:00
@@ -349,158 +353,3 @@ docs = indexer.generate_documentation(
 
 | Feature | Codebase Memory MCP | Sourcegraph Cody | GitHub Copilot | Continue.dev |
 |
----
-|
-* * *
-|
-* * *
-|
-* * *
-|
-* * *
-|
-| Protocol | MCP | Proprietary | Proprietary | LSP |
-| Indexing Speed | ~15s/100K lines | ~2min/100K lines | N/A (cloud) | ~30s/100K lines |
-| Local Processing | Yes | Partial | No | Yes |
-| Multi-Model | Any MCP client | Claude only | GPT-only | Custom |
-| Incremental Update | Yes | Yes | N/A | Partial |
-| Open Source | MIT | Apache 2.0 | Closed | Apache 2.0 |
-| Stars | 24K+ | 15K+ | N/A | 10K+ |
-
-## Limitations
-
-### 1. Initial Indexing Time
-
-While incremental updates are fast, the first full index of a large codebase (500K+ lines) can take 1-5 minutes depending on hardware. This is acceptable for most use cases but worth noting for very large monorepos.
-
-### 2. Embedding Quality
-
-The default embedding model (all-MiniLM-L6-v2) is fast but not perfect. For specialized codebases (e.g., domain-specific languages), you may need to fine-tune the embedding model for better semantic understanding.
-
-### 3. Storage Requirements
-
-Vector embeddings for large codebases can consume significant disk space. A 100K line codebase typically requires 500MB-2GB of storage depending on the embedding dimensionality and storage backend.
-
-### 4. Limited IDE Integration
-
-While MCP clients like Claude Desktop and Cursor work well, IDE integration requires additional setup. VS Code users need the MCP extension, and JetBrains users currently have no native integration.
-
-## This Week's Trends
-
-Codebase Memory MCP's rapid growth reflects the maturation of the MCP ecosystem. As more tools adopt the Model Context Protocol, we're seeing a shift from proprietary AI coding assistants to interoperable, model-agnostic solutions. The emphasis on performance (C/Rust indexing) and incremental updates shows the community's growing demand for production-grade tools rather than experimental prototypes.
-
-## How We Collect This Data
-
-This analysis is based on publicly available information from the Codebase Memory MCP GitHub repository as of June 30, 2026. Indexing benchmarks were performed on a 100K line Python codebase using a MacBook Pro M3.
-
-## FAQ
-
-### Q: What embedding models are supported?
-
-A: Codebase Memory MCP supports any Sentence Transformers model out of the box. The default is ````all-MiniLM-L6-v2```` for speed, but you can swap in larger models like ````all-mpnet-base-v2```` for better accuracy, or domain-specific models for specialized codebases.
-
-### Q: Can I use it with my own vector database?
-
-A: Yes. The storage backend is pluggable. Built-in backends include Chroma, Pinecone, Weaviate, and Qdrant. You can also implement a custom backend by extending the ````VectorStore```` interface.
-
-### Q: How does it handle private repositories?
-
-A: All indexing and storage happens locally. Your code never leaves your machine. The only external call is to the embedding model API if you're using a cloud-based model (though local models are recommended for privacy).
-
-### Q: Does it support monorepos?
-
-A: Yes. The incremental indexer handles monorepos efficiently by tracking file-level changes. You can index multiple projects in a single vector store or use separate stores per project.
-
-### Q: What's the licensing?
-
-A: Codebase Memory MCP is released under the MIT License, making it free for commercial use.
-
-## Join the Community
-
-- **GitHub:** [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)
-- **Issues:** Report bugs or request features
-- **Discussions:** Share your experiences and tips
-
-## More from Dibi8
-
-- [Agency Agents: Complete AI Agency Framework](/resources/dev-utils/agency-agents-complete-ai-agency-framework/)
-- [Strix AI: Open-Source Penetration Testing](/resources/dev-utils/strix-ai-penetration-testing/)
-- [Cognee: AI Memory Platform](/resources/llm-frameworks/cognee-ai-memory-platform/)
-
-## Sources
-
-- [Codebase Memory MCP GitHub Repository](https://github.com/DeusData/codebase-memory-mcp)
-- [GitHub API — Star Count Verification](https://api.github.com/repos/DeusData/codebase-memory-mcp)
-- [Codebase Memory MCP README](https://github.com/DeusData/codebase-memory-mcp/blob/main/README.md)
-
-
-* * *
-*This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
-
-
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "question": "What embedding models are supported?",
-      "answer": "Codebase Memory MCP supports any Sentence Transformers model out of the box. The default is ````all-MiniLM-L6-v2```` for speed, but you can swap in larger models like ````all-mpnet-base-v2```` for better accuracy, or domain-specific models for specialized codebases."
-    },
-    {
-      "question": "Can I use it with my own vector database?",
-      "answer": "Yes. The storage backend is pluggable. Built-in backends include Chroma, Pinecone, Weaviate, and Qdrant. You can also implement a custom backend by extending the ````VectorStore``` interface."
-    },
-    {
-      "question": "How does it handle private repositories?",
-      "answer": "All indexing and storage happens locally. Your code never leaves your machine. The only external call is to the embedding model API if you're using a cloud-based model (though local models are recommended for privacy)."
-    },
-    {
-      "question": "Does it support monorepos?",
-      "answer": "Yes. The incremental indexer handles monorepos efficiently by tracking file-level changes. You can index multiple projects in a single vector store or use separate stores per project."
-    },
-    {
-      "question": "What's the licensing?",
-      "answer": "Codebase Memory MCP is released under the MIT License, making it free for commercial use."
-    }
-  ]
-}
-</script>
-
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server",
-  "datePublished": "2026-07-03",
-  "dateModified": "2026-07-03",
-  "author": {
-    "@type": "Organization",
-    "name": "Dibi8"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/resources/codebase-memory-mcp-deep-code-intelligence"
-  }
-}
-</script>
-
-
-* * *
-## Related Articles
-
-- [free-mcp-tools-top10-2026](codebase-memory-mcp-deep-code-intelligence)
-- [cc-switch-all-in-one-ai-coding-agent-manager](codebase-memory-mcp-deep-code-intelligence)
-- [codebase-memory-mcp-high-performance-code-intelligence](codebase-memory-mcp-deep-code-intelligence)
-- [headroom-token-compression-proxy-library-mcp-server](codebase-memory-mcp-deep-code-intelligence)
-- [codebase-memory-mcp-deep-code-intelligence](codebase-memory-mcp-deep-code-intelligence)
-
-* * *
-
-*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

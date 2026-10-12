@@ -1,4 +1,6 @@
 ---
+
+
 title: "Verify the server starts"
 description: "photos/seed/artificial-intelligence/1200x800)"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 

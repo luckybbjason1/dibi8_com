@@ -1,4 +1,6 @@
 ---
+
+
 title: "Install the Python library"
 description: "SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 ## What Is SGLang?
 
 SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models. It consists of two main components: 1. **SGLang Runtime**: A high-performance server that serves LLM endpoints with optimized memory management and request scheduling

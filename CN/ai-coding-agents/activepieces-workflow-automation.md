@@ -1,4 +1,6 @@
 ---
+
+
 title: "ActivePieces: 开源自动化工作流平台配置指南"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 

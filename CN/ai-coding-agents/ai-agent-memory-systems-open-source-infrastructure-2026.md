@@ -1,4 +1,6 @@
 ---
+
+
 title: "AI Agent Memory Systems 2026: The Infrastructure Layer You Can't Ignore"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # AI Agent Memory Systems 2026: The Infrastructure Layer You Can't Ignore
 

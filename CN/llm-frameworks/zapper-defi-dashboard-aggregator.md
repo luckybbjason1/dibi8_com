@@ -1,4 +1,6 @@
 ---
+
+
 title: "Step 1: Sign up at https://zapper.xyz and navigate to Developer Settings"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["llm-frameworks"]
 ---
+
+
 
 
 

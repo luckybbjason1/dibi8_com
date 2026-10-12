@@ -1,4 +1,6 @@
 ---
+
+
 title: "Ibis looks familiar to any pandas user"
 description: "With over 12,000 GitHub stars and an Apache-2"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["llm-frameworks"]
 ---
+
+
 
 
 

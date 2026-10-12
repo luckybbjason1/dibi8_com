@@ -1,9 +1,13 @@
 ---
+
+
 title: "服务条款"
 description: "Dibi8服务条款"
 date: 2026-09-26
 layout: single
 ---
+
+
 
 # Dibi8 - 服务条款
 
@@ -46,6 +50,3 @@ Dibi8 提供：
 
 如有疑问：contact@dibi8.com
 
----
-
-© 2026 Dibi8.com — 发现最佳AI工具

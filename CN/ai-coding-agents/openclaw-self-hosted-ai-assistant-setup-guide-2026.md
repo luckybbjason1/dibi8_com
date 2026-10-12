@@ -1,4 +1,6 @@
 ---
+
+
 title: "SOUL.md — Who You Are"
 description: "## Why OpenClaw Exploded in 2026"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {</* resource-info */>}
 

@@ -1,11 +1,16 @@
 ---
+
+
 title: "MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars"
 description: "AI tool guide"
 date: 2026-09-20
 slug: "moneyprinterturbo-one-click-ai-video-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
----
+
+categories: ["ai-coding-agents"]---
+
+
 
 {
   "@context": "https://schema.org",

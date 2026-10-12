@@ -1,4 +1,6 @@
 ---
+
+
 title: "Change prefix to Ctrl+A (easier to reach)"
 description: "Developers spend hours each day in the terminal"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {</* resource-info */>}
 

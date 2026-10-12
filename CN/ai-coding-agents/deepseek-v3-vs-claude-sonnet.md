@@ -1,4 +1,6 @@
 ---
+
+
 title: "DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights vs 1M Context"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights vs 1M Context
 

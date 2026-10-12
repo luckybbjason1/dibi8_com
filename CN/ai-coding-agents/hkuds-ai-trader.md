@@ -1,4 +1,6 @@
 ---
+
+
 title: "Register your AI agent as a trader"
 description: "The convergence of AI agents and financial markets is one of the most consequential trends in technology"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ## Introduction
 

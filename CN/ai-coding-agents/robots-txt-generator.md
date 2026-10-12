@@ -1,4 +1,6 @@
 ---
+
+
 title: "robots.txt Generator — With AI Crawler Controls (GPTBot, ClaudeBot, PerplexityBot)"
 description: "txt Generator — With AI Crawler Controls (GPTBot,"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {
   "@context": "https://schema.org",

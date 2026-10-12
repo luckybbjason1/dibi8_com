@@ -1,4 +1,6 @@
 ---
+
+
 title: "Supabase vs Firebase in 2026: Which BaaS Wins?"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # Supabase vs Firebase in 2026: Which BaaS Wins?
 

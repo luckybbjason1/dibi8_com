@@ -1,4 +1,6 @@
 ---
+
+
 title: "process_uploads.sh — Process all uploaded documents daily"
 description: "In today's data-driven world, the ability to convert documents into structured, readable, and portable formats is more critical than ever"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ## Introduction
 

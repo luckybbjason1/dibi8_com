@@ -1,4 +1,6 @@
 ---
+
+
 title: "Initialize Vanna with your API key"
 description: "The ability to interact with databases using natural language has long been the holy grail of data analytics"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 
 

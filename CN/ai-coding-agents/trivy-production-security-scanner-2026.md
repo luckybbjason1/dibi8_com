@@ -1,4 +1,6 @@
 ---
+
+
 title: "Expected: trivy version 0.65.x"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 ![Trivy Security Scanner](https://opengraph.github.com/github/aquasecurity/trivy)
 

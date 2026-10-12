@@ -1,4 +1,6 @@
 ---
+
+
 title: "Ripgrep 配置文件与搜索技巧"
 description: "Searching through code is one of the most frequent tasks developers perform"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 {</* resource-info */>}
 

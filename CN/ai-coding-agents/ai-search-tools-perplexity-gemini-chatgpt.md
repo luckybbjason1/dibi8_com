@@ -1,4 +1,6 @@
 ---
+
+
 title: "AI Search Tools Compared: Perplexity vs Google Gemini vs ChatGPT Search 2025"
 description: "AI tool guide"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 # AI Search Tools Compared: Perplexity vs Google Gemini vs ChatGPT Search 2025
 

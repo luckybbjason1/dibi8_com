@@ -1,4 +1,6 @@
 ---
+
+
 title: "Model selection mapping for different use cases"
 description: "This guide provides a comprehensive integration roadmap for the Perplexity API in 2026"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 
 

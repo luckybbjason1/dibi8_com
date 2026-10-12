@@ -1,4 +1,6 @@
 ---
+
+
 title: "Update system packages"
 description: "Running Large Language Models locally has shifted from a niche experiment to a production necessity"
 date: 2026-09-20
@@ -7,6 +9,8 @@ category: "ai-tools"
 tags: ["ai", "tools"]
 categories: ["ai-coding-agents"]
 ---
+
+
 
 
 
