@@ -381,7 +381,8 @@
     
     <div class="bento-grid">
       {{ $allArticles := where .Site.RegularPages "Section" "ai-coding-agents" }}
-      {{ range first 8 $allArticles.ByDate.Reverse }}
+      {{ $featuredArticles := after 10 $allArticles.ByDate.Reverse }}
+      {{ range first 8 $featuredArticles }}
       <a href="{{ .Permalink }}" class="glass-card p-6 hover:border-neon-purple/50 transition-all group block" aria-label="阅读: {{ .Title }}">
         <div class="flex items-start justify-between mb-4">
           <div class="dimension-card__icon-wrap w-12 h-12" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(34, 211, 238, 0.2));">
