@@ -4,6 +4,7 @@ description: "从开源到商业，全覆盖最新AI编程助手、代码代理�
 date: 2026-10-13
 tags: [ai-coding, agents, programming]
 categories: [ai-coding-agents]
+collections: [featured]
 ---
 
 # AI编程代理全集
