@@ -33,7 +33,6 @@ enableGitInfo = false
 [taxonomies]
   tag = "tags"
   category = "categories"
-  collection = "collections"
 
 # Languages configuration - only Chinese (CN) as source
 [languages.zh]
