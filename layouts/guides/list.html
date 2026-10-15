@@ -1,0 +1,63 @@
+{{- define "main" }}
+<div class="min-h-screen bg-deep-900">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <!-- Header -->
+        <header class="mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">{{ .Title }}</h1>
+            <p class="text-gray-400">{{ .Description | default "探索精心策划的AI工具合集" }}</p>
+        </header>
+
+        <!-- Collections Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{ range .Pages }}
+            <article class="glass-card p-6 hover:border-neon-purple/50 transition-all group" aria-label="{{ .Title }}">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="dimension-card__icon-wrap w-12 h-12" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(34, 211, 238, 0.2));">
+                        <i class="fas fa-layer-group text-neon-purple"></i>
+                    </div>
+                </div>
+                <h2 class="text-lg font-bold text-white mb-2 group-hover:text-neon-purple transition-colors">
+                    <a href="{{ .RelPermalink }}" class="hover:no-underline">
+                        {{ .Title }}
+                    </a>
+                </h2>
+                <p class="text-gray-500 text-sm line-clamp-2 mb-4">{{ .Description | plainify | truncate 100 }}</p>
+                <div class="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-white/5">
+                    <span>{{ .Date.Format "2006-01-02" }}</span>
+                    <a href="{{ .RelPermalink }}" class="text-neon-purple hover:text-neon-cyan transition-colors">
+                        查看详情 <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+
+        <!-- Empty State -->
+        {{ if eq (len .Pages) 0 }}
+        <div class="text-center py-20">
+            <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-layer-group text-2xl text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">暂无合集</h3>
+            <p class="text-gray-500 text-sm">我们正在整理精选的AI工具合集，敬请期待！</p>
+        </div>
+        {{ end }}
+
+        <!-- Schema.org Structured Data -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "{{ .Title }}",
+            "description": "探索精心策划的AI工具合集",
+            "url": "{{ .Permalink }}",
+            "about": {
+                "@type": "CollectionPage",
+                "name": "AI工具合集",
+                "numberOfItems": {{ len .Pages }}
+            }
+        }
+        </script>
+    </div>
+</div>
+{{- end }}

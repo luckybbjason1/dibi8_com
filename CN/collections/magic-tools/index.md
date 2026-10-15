@@ -4,7 +4,6 @@ description: "奇幻文学与影视中的魔法道具，如何启发AI产品设�
 date: 2026-10-13
 tags: [fantasy, magic, inspiration]
 categories: [ai-tools]
-collections: [featured]
 ---
 
 # 魔法工具合集

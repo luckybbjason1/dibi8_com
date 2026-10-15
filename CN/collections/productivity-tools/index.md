@@ -4,7 +4,6 @@ description: "提升工作效率的生产力工具：时间管理、笔记系统
 date: 2026-10-13
 tags: [productivity, efficiency, tools]
 categories: [dev-utils]
-collections: [featured]
 ---
 
 # 效率神器精选

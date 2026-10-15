@@ -2,8 +2,7 @@
 title: "精选合集"
 description: "探索精心策划的AI工具合集"
 date: 2026-10-13
-tags: [collections, featured]
-collections: [featured]
+tags: [featured]
 ---
 
 # 精选合集
