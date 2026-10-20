@@ -1,0 +1,24 @@
+# Dibi8 - AI Tools Directory
+# LLM-accessible metadata for AI agents
+
+## About
+Dibi8 is a comprehensive AI tools discovery platform with 644+ curated articles.
+
+## Content Structure
+- Categories: /categories/ (AI Coding Agents, LLM Frameworks, MCP Tools, etc.)
+- Collections: /collections/ (Productivity Tools, Creative Tools, etc.)
+- Tags: /tags/ (comprehensive tagging system)
+- Tools: /tools/ (calculators and utilities)
+
+## Key Sections
+- AI Coding Agents: In-depth reviews of AI coding tools
+- LLM Frameworks: Framework comparisons and guides
+- MCP Tools: Model Context Protocol tools
+- AI Tools: General AI tool directory
+
+## Updates
+Content is updated weekly with latest AI tool releases and reviews.
+
+## Contact
+- GitHub: https://github.com/luckybbjason1/dibi8_com
+- Telegram: https://t.me/DIBI8_Group

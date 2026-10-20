@@ -19,8 +19,6 @@ Allow: /404.html
 Sitemap: https://dibi8.com/sitemap.xml
 
 # Crawl-delay for polite crawling
-Crawl-delay: 1
-
 # AI crawlers
 User-agent: GPTBot
 Allow: /
